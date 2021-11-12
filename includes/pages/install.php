@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\Page;
+use wishthis\{Page, Database};
 
 $page = new page(__FILE__, 'Home');
 $page->header();
@@ -16,6 +16,12 @@ if (isset($_POST['action']) && 'install' === $_POST['action']) {
     $configPath = $configDirectory . '/config.php';
     $configSamplePath = $configDirectory . '/config-sample.php';
     $configContents = file_get_contents($configSamplePath);
+
+    foreach ($_POST as $key => $value) {
+        if ('DATABASE' === substr($key, 0, 8)) {
+            $configContents = preg_replace('/(' . $key . '.+?\').*?(\')/', '$1' . $value . '$2', $configContents);
+        }
+    }
 
     file_put_contents($configPath, $configContents);
 
@@ -35,11 +41,30 @@ if (isset($_POST['action']) && 'install' === $_POST['action']) {
         <section>
             <h1>Install</h1>
             <p>Welcome to the wishthis installer.</p>
-
-            <p>Click Install to begin the installation.</p>
+            <p>wishthis needs a database to function properly. Please enter your credentials.</p>
 
             <form method="post">
                 <input type="hidden" name="action" value="install" />
+
+                <fieldset>
+                    <label>Host</label>
+                    <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
+                </fieldset>
+
+                <fieldset>
+                    <label>Name</label>
+                    <input type="text" name="DATABASE_NAME" placeholder="withthis" value="withthis" />
+                </fieldset>
+
+                <fieldset>
+                    <label>Username</label>
+                    <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
+                </fieldset>
+
+                <fieldset>
+                    <label>Password</label>
+                    <input type="text" name="DATABASE_PASSWORD" />
+                </fieldset>
 
                 <input type="submit" value="Install" />
             </form>

@@ -20,8 +20,8 @@ autoInclude(__DIR__ . '/includes/functions');
 $configPath = 'includes/config/config.php';
 
 if (!file_exists($configPath)) {
-    $page = 'install';
 }
+$page = 'install';
 
 /**
  * Page

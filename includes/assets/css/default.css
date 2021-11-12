@@ -25,6 +25,13 @@ form {
     display: inline-block;
 }
 
+section {
+    max-width: 80ch;
+    padding: 2rem;
+
+    background-color: #fff;
+}
+
 /**
  * Buttons
  */
@@ -49,4 +56,22 @@ input[type="submit"] {
 
 a.button {
     text-decoration: none;
+}
+
+/**
+ * Inputs
+ */
+fieldset {
+    margin: 0 0 1em 0;
+    padding: 0;
+
+    border: none;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.4em;
+    font-size: inherit;
+
+    border: 1px solid #f8f8f8;
 }
