@@ -1,0 +1,11 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+section {
+    max-width: 768px;
+}
