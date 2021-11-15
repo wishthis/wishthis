@@ -28,7 +28,7 @@ form {
 section {
     max-width: 80ch;
     padding: 2rem;
-    margin: 0 auto;
+    margin: 1rem auto 0 auto;
 
     background-color: #fff;
 }

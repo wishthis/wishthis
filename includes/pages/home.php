@@ -16,6 +16,12 @@ $page->header();
     <section>
         <h1>Welcome to wishthis</h1>
         <a href="?page=register">Register</a>
+        <a href="?page=login">Login</a>
+    </section>
+
+    <section>
+        <h2>Wishlist</h2>
+        <a href="?page=wishlist">Create a wishlist</a>
     </section>
 </main>
 

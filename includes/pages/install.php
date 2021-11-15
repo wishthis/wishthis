@@ -95,6 +95,15 @@ switch ($step) {
         );');
 
         /**
+         * Wishlists
+         */
+        $database->query('CREATE TABLE `wishlists` (
+            `id`   int          AUTO_INCREMENT,
+            `name` varchar(128) NOT NULL,
+            PRIMARY KEY (id)
+        );');
+
+        /**
          * Options
          */
         $database->query('CREATE TABLE `options` (

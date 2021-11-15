@@ -32,12 +32,7 @@ $page->header();
     <form method="post">
         <fieldset>
             <label>Name</label>
-            <input type="name" name="name" placeholder="<?= getCurrentSeason() ?>" />
-        </fieldset>
-
-        <fieldset>
-            <label>Password</label>
-            <input type="password" name="password" />
+            <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" />
         </fieldset>
 
         <input type="submit" value="Create" />
