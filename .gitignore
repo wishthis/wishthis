@@ -1,3 +1,5 @@
-/vendor
+/vendor/*
+!/vendor/embed
+
 /.vscode
 /includes/config/config.php
