@@ -21,7 +21,8 @@ $page->header();
 
     <section>
         <h2>Wishlist</h2>
-        <a href="?page=wishlist">Create a wishlist</a>
+        <a href="?page=wishlist-create">Create a wishlist</a>
+        <a href="?page=wishlist-product-add">Add a product</a>
     </section>
 </main>
 
