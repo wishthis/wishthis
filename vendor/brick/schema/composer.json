@@ -1,0 +1,35 @@
+{
+  "name": "brick/schema",
+  "description": "Schema.org library for PHP",
+  "type": "library",
+  "keywords": [
+    "Brick",
+    "Schema",
+    "Schema.org",
+    "Structured data",
+    "Microdata",
+    "RDFa Lite",
+    "JSON-LD"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.2",
+    "ext-dom": "*",
+    "brick/structured-data": "^0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Brick\\Schema\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Brick\\Schema\\Meta\\": "meta/",
+      "Brick\\Schema\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "brick/varexporter": "^0.2.1 || ^0.3.0",
+    "phpunit/phpunit": "^8.1"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "brick/structured-data",
+  "description": "Microdata, RDFa Lite & JSON-LD structured data reader",
+  "type": "library",
+  "keywords": [
+    "Brick",
+    "Structured data",
+    "Microdata",
+    "RDFa",
+    "JSON-LD"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.2 || ^8.0",
+    "ext-dom": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "sabre/uri": "^2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0 || ^9.0",
+    "php-coveralls/php-coveralls": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Brick\\StructuredData\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Brick\\StructuredData\\Tests\\": "tests/"
+    }
+  }
+}

@@ -1,4 +1,6 @@
 /vendor/*
+!/vendor/brick
+!/vendor/brick/schema
 !/vendor/embed
 !/vendor/embed/embed
 !/vendor/laminas
