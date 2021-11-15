@@ -26,6 +26,8 @@ if (file_exists($configPath)) {
 /**
  * Database
  */
+$database = false;
+
 if (
        defined('DATABASE_HOST')
     && defined('DATABASE_NAME')
@@ -38,8 +40,17 @@ if (
         DATABASE_USER,
         DATABASE_PASSWORD
     );
-} else {
-    $page = 'install';
+}
+
+/**
+ * Install
+ */
+if ($database) {
+    try {
+        $database->getOption('isInstalled');
+    } catch (\Throwable $th) {
+        $page = 'install';
+    }
 }
 
 /**

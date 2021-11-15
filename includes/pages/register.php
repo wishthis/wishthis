@@ -11,6 +11,13 @@ use wishthis\Page;
 $page = new page(__FILE__, 'Home');
 $page->header();
 
+if (isset($_POST['email'], $_POST['password'])) {
+    $database->query('INSERT INTO `users`
+        (`email`, `password`) VALUES
+        ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
+    ;');
+}
+
 ?>
 <main>
 <section>

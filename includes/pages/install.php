@@ -71,7 +71,7 @@ switch ($step) {
             <section>
                 <h1>Install</h1>
                 <h2>Step <?= $step ?></h2>
-                <p>Klick Continue to test the database connection.</p>
+                <p>Click Continue to test the database connection.</p>
 
                 <form action="?page=install" method="post">
                     <input type="hidden" name="step" value="<?= $step + 1; ?>" />
@@ -84,12 +84,30 @@ switch ($step) {
         break;
 
     case 3:
-        $database->query('CREATE TABLE IF NOT EXISTS `users` (
-            `id` int AUTO_INCREMENT,
-            `email` varchar(64),
-            `password` varchar(128),
+        /**
+         * Users
+         */
+        $database->query('CREATE TABLE `users` (
+            `id`       int          AUTO_INCREMENT,
+            `email`    varchar(64)  NOT NULL UNIQUE,
+            `password` varchar(128) NOT NULL,
             PRIMARY KEY (id)
         );');
+
+        /**
+         * Options
+         */
+        $database->query('CREATE TABLE `options` (
+            `id`    int          AUTO_INCREMENT,
+            `key`   varchar(64)  NOT NULL UNIQUE,
+            `value` varchar(128) NOT NULL,
+            PRIMARY KEY (id)
+        );');
+
+        $database->query('INSERT INTO `options`
+            (`key`, `value`) VALUES
+            ("isInstalled", true)
+        ;');
         ?>
         <main>
             <section>

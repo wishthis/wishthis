@@ -51,7 +51,7 @@ class Page
             }
             ?>
 
-            <title><?= $this->title ?></title>
+            <title><?= $this->title ?> - wishthis</title>
         </head>
         <body>
         <?php
