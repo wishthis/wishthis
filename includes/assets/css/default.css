@@ -69,6 +69,8 @@ fieldset {
     border: none;
 }
 
+input[type="email"],
+input[type="password"],
 input[type="text"] {
     width: 100%;
     padding: 0.4em;

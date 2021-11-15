@@ -19,12 +19,11 @@ switch ($step) {
         <main>
             <section>
                 <h1>Install</h1>
-                <h2>Step <? $step ?></h2>
+                <h2>Step <?= $step ?></h2>
                 <p>Welcome to the wishthis installer.</p>
                 <p>wishthis needs a database to function properly. Please enter your credentials.</p>
 
-                <form method="post">
-                    <input type="hidden" name="action" value="install" />
+                <form action="?page=install" method="post">
                     <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
                     <fieldset>
@@ -34,7 +33,7 @@ switch ($step) {
 
                     <fieldset>
                         <label>Name</label>
-                        <input type="text" name="DATABASE_NAME" placeholder="withthis" value="withthis" />
+                        <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
                     </fieldset>
 
                     <fieldset>
@@ -47,7 +46,7 @@ switch ($step) {
                         <input type="text" name="DATABASE_PASSWORD" />
                     </fieldset>
 
-                    <input type="submit" value="Install" />
+                    <input type="submit" value="Continue" />
                 </form>
             </section>
         </main>
@@ -67,14 +66,35 @@ switch ($step) {
         }
 
         file_put_contents($configPath, $configContents);
+        ?>
+        <main>
+            <section>
+                <h1>Install</h1>
+                <h2>Step <?= $step ?></h2>
+                <p>Klick Continue to test the database connection.</p>
 
+                <form action="?page=install" method="post">
+                    <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+
+                    <input type="submit" value="Continue" />
+                </form>
+            </section>
+        </main>
+        <?php
+        break;
+
+    case 3:
+        $database->query('CREATE TABLE IF NOT EXISTS `users` (
+            `id` int AUTO_INCREMENT,
+            `email` varchar(64),
+            `password` varchar(128),
+            PRIMARY KEY (id)
+        );');
         ?>
         <main>
             <section>
                 <h1>Success</h1>
-                <p>wishthis has been successfully installed.</p>
-
-                <a class="button primary" href="">Continue</a>
+                <a href="?page=login">Login</a>
             </section>
         </main>
         <?php

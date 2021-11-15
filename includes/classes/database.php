@@ -29,4 +29,9 @@ class Database
             throw new \PDOException($PDOE->getMessage(), (int)$PDOE->getCode());
         }
     }
+
+    public function query(string $query): void
+    {
+        $this->pdo->query($query);
+    }
 }
