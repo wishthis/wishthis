@@ -10,12 +10,11 @@ use wishthis\Page;
 
 $page = new page(__FILE__, 'Home');
 
-if (isset($_POST['email'], $_POST['password'])) {
-    $user = $database->query(
-        'SELECT * FROM `users`
-         WHERE `email` = "' . $_POST['email'] . '"
-         AND `password` = "' . sha1($_POST['password']) . '";'
-    )->fetch();
+if (isset($_POST['name'])) {
+    $database->query('INSERT INTO `wishlists`
+        (`user`, `name`) VALUES
+        (' . $_SESSION['user']['id'] . ', "' . $_POST['name'] . '")
+    ;');
 
     $_SESSION['user'] = $user;
 
@@ -32,7 +31,7 @@ $page->header();
     <form method="post">
         <fieldset>
             <label>Name</label>
-            <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" />
+            <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" value="<?= getCurrentSeason() ?>" />
         </fieldset>
 
         <input type="submit" value="Create" />

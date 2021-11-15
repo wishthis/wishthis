@@ -99,6 +99,7 @@ switch ($step) {
          */
         $database->query('CREATE TABLE `wishlists` (
             `id`   int          AUTO_INCREMENT,
+            `user` int          NOT NULL,
             `name` varchar(128) NOT NULL,
             PRIMARY KEY (id)
         );');
@@ -121,7 +122,7 @@ switch ($step) {
         <main>
             <section>
                 <h1>Success</h1>
-                <a href="?page=login">Login</a>
+                <a href="?page=register">Login</a>
             </section>
         </main>
         <?php
