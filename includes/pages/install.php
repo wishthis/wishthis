@@ -105,6 +105,16 @@ switch ($step) {
         );');
 
         /**
+         * Products
+         */
+        $database->query('CREATE TABLE `products` (
+            `id`       int          NOT NULL AUTO_INCREMENT,
+            `wishlist` int          NOT NULL,
+            `url`      VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+        );');
+
+        /**
          * Options
          */
         $database->query('CREATE TABLE `options` (
