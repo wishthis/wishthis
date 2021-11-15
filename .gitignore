@@ -1,5 +1,8 @@
 /vendor/*
 !/vendor/embed
+!/vendor/embed/embed
+!/vendor/laminas
+!/vendor/laminas/laminas-diactoros
 
 /.vscode
 /includes/config/config.php

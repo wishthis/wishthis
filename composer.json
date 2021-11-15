@@ -3,6 +3,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
     },
     "require": {
-        "embed/embed": "^4.3"
+        "embed/embed": "^4.3",
+        "laminas/laminas-diactoros": "^2.8"
     }
 }

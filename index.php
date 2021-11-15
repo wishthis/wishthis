@@ -9,6 +9,8 @@
  /**
  * Include
  */
+
+require 'vendor/autoload.php';
 require 'includes/functions/auto-include.php';
 
 autoInclude(__DIR__ . '/includes/classes');
