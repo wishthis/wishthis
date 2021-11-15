@@ -7,20 +7,25 @@
  */
 
 use wishthis\Page;
-use Brick\Schema\SchemaReader;
-use Brick\Schema\Interfaces as Schema;
 use Embed\Embed;
 
-$page = new page(__FILE__, 'Add a product');
+if (isset($_POST['url'], $_POST['wishlist'])) {
+    $database->query('INSERT INTO `products`
+        (`wishlist`, `url`) VALUES
+        (' . $_POST['wishlist'] . ', "' . $_POST['url'] . '")
+    ;');
+}
 
 $url = 'https://www.amazon.de/Adventskalender-2020-Schokolade-Weihnachtskalender-346g/dp/B08CTTP5JX';
 $embed = new Embed();
 $info = $embed->get($url);
 
-echo '<pre>';
-var_dump($info->oembed);
-echo '</pre>';
+// https://github.com/oscarotero/Embed
+// echo '<pre>';
+// var_dump($info);
+// echo '</pre>';
 
+$page = new page(__FILE__, 'Add a product');
 $page->header();
 ?>
 <main>
@@ -30,7 +35,12 @@ $page->header();
     <form method="post">
         <fieldset>
             <label>URL</label>
-            <input type="url" name="url" />
+            <input type="url" name="url" value="<?= $url ?>" />
+        </fieldset>
+
+        <fieldset>
+            <label>Wishlist</label>
+            <input type="number" name="wishlist" value="1" />
         </fieldset>
 
         <input type="submit" value="Add" />
