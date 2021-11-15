@@ -30,17 +30,19 @@ class Database
         }
     }
 
-    public function query(string $query): void
+    public function query(string $query)
     {
-        $this->pdo->query($query);
+        return $this->pdo->query(
+            $query,
+            \PDO::FETCH_ASSOC
+        );
     }
 
     public function getOption(string $key): string
     {
-        $option = $this->pdo->query(
+        $option = $this->query(
             'SELECT * FROM `options`
-             WHERE `key` = "' . $key . '";',
-            \PDO::FETCH_ASSOC
+             WHERE `key` = "' . $key . '";'
         )->fetch();
 
         return $option['value'];

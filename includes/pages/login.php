@@ -1,7 +1,7 @@
 <?php
 
 /**
- * register.php
+ * login.php
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -11,12 +11,15 @@ use wishthis\Page;
 $page = new page(__FILE__, 'Home');
 
 if (isset($_POST['email'], $_POST['password'])) {
-    $database->query('INSERT INTO `users`
-        (`email`, `password`) VALUES
-        ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
-    ;');
+    $user = $database->query(
+        'SELECT * FROM `users`
+         WHERE `email` = "' . $_POST['email'] . '"
+         AND `password` = "' . sha1($_POST['password']) . '";'
+    )->fetch();
 
-    header('Location: ?page=login');
+    $_SESSION['user'] = $user;
+
+    header('Location: ?page=home');
     die();
 }
 
@@ -24,7 +27,7 @@ $page->header();
 ?>
 <main>
 <section>
-    <h1>Register</h1>
+    <h1>Login</h1>
 
     <form method="post">
         <fieldset>
@@ -37,7 +40,7 @@ $page->header();
             <input type="password" name="password" />
         </fieldset>
 
-        <input type="submit" value="Register" />
+        <input type="submit" value="Login" />
     </form>
 </section>
 </main>

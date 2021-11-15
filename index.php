@@ -54,6 +54,11 @@ if ($database) {
 }
 
 /**
+ * Session
+ */
+session_start();
+
+/**
  * Page
  */
 if (!isset($page)) {
