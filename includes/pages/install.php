@@ -8,7 +8,7 @@
 
 use wishthis\{Page, Database};
 
-$page = new page(__FILE__, 'Home');
+$page = new page(__FILE__, 'Install');
 $page->header();
 
 $step = isset($_POST['step']) ? $_POST['step'] : 1;

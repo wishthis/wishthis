@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Home');
+$page = new page(__FILE__, 'Create a wishlist');
 
 if (isset($_POST['name'])) {
     $database->query('INSERT INTO `wishlists`

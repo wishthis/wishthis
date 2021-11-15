@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Home');
+$page = new page(__FILE__, 'Register');
 
 if (isset($_POST['email'], $_POST['password'])) {
     $database->query('INSERT INTO `users`
