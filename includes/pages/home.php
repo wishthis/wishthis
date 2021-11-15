@@ -12,7 +12,12 @@ $page = new page(__FILE__, 'Home');
 $page->header();
 ?>
 
-<h1>Hello</h1>
+<main>
+    <section>
+        <h1>Welcome to wishthis</h1>
+        <a href="?page=register">Register</a>
+    </section>
+</main>
 
 <?php
 $page->footer();
