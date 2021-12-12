@@ -9,12 +9,10 @@
  /**
  * Include
  */
-
 require 'vendor/autoload.php';
-require 'includes/functions/auto-include.php';
 
-autoInclude(__DIR__ . '/includes/classes');
-autoInclude(__DIR__ . '/includes/functions');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/classes');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/functions');
 
 /**
  * Config

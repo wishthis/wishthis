@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72ca4d25f90c6bffc18b886e1ef67acb",
+    "content-hash": "3b4fa12289437129c7113dbe40a6bb96",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -156,6 +156,46 @@
                 "source": "https://github.com/oscarotero/Embed/tree/v4.3.5"
             },
             "time": "2021-10-10T17:10:44+00:00"
+        },
+        {
+            "name": "grandel/include-directory",
+            "version": "v0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grandeljay/include-directory.git",
+                "reference": "a5c830e8f1527c818b521ab18f2accecb02f9919"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grandeljay/include-directory/zipball/a5c830e8f1527c818b521ab18f2accecb02f9919",
+                "reference": "a5c830e8f1527c818b521ab18f2accecb02f9919",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Grandel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Trees",
+                    "email": "github.jay@grandel.anonaddy.me"
+                }
+            ],
+            "description": "Automatically include all files in a given directory.",
+            "support": {
+                "issues": "https://github.com/grandeljay/include-directory/issues",
+                "source": "https://github.com/grandeljay/include-directory/tree/v0.2.2"
+            },
+            "time": "2021-12-01T14:10:17+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -709,5 +749,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
