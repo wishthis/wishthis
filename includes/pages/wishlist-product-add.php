@@ -27,25 +27,28 @@ $info = $embed->get($url);
 
 $page = new page(__FILE__, 'Add a product');
 $page->header();
+$page->navigation();
 ?>
 <main>
-<section>
-    <h1>Add a product</h1>
+<div class="ui container">
+    <div class="ui segment">
+        <h1 class="ui header">Add a product</h1>
 
-    <form method="post">
-        <fieldset>
-            <label>URL</label>
-            <input type="url" name="url" value="<?= $url ?>" />
-        </fieldset>
+        <form class="ui form" method="post">
+            <div class="field">
+                <label>URL</label>
+                <input type="url" name="url" value="<?= $url ?>" />
+            </div>
 
-        <fieldset>
-            <label>Wishlist</label>
-            <input type="number" name="wishlist" value="1" />
-        </fieldset>
+            <div class="field">
+                <label>Wishlist</label>
+                <input type="number" name="wishlist" value="1" />
+            </div>
 
-        <input type="submit" value="Add" />
-    </form>
-</section>
+            <input class="ui button" type="submit" value="Add" />
+        </form>
+    </div>
+</div>
 </main>
 
 <?php
