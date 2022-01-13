@@ -6,5 +6,9 @@
 !/vendor/grandel
 !/vendor/grandel/include-directory
 
+/node_modules/*
+!/node_modules/jquery
+!/node_modules/fomantic-ui
+
 /.vscode
 /includes/config/config.php

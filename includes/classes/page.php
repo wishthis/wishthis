@@ -36,6 +36,11 @@ class Page
              * Stylesheets
              */
 
+            /** Fomantic UI */
+            $stylesheetFomantic = 'semantic/dist/semantic.min.css';
+            $stylesheetFomanticModified = filemtime($stylesheetFomantic);
+            echo '<link rel="stylesheet" href="' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
+
             /** Default */
             $stylesheetDefault = 'includes/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
@@ -50,6 +55,9 @@ class Page
                 echo '<link rel="stylesheet" href="' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
             }
             ?>
+
+            <script defer src="/node_modules/jquery/dist/jquery.min.js"></script>
+            <script defer src="/semantic/dist/semantic.min.js"></script>
 
             <title><?= $this->title ?> - wishthis</title>
         </head>
