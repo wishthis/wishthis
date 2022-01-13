@@ -16,3 +16,10 @@ composer install
 ```
 npm install
 ```
+
+### Theme changes
+```
+cd semantic
+gulp build
+```
+For more information see: https://fomantic-ui.com/introduction/build-tools.html
