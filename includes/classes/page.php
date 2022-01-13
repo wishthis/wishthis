@@ -54,10 +54,26 @@ class Page
 
                 echo '<link rel="stylesheet" href="' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
             }
-            ?>
 
-            <script defer src="/node_modules/jquery/dist/jquery.min.js"></script>
-            <script defer src="/semantic/dist/semantic.min.js"></script>
+            /**
+             * Scripts
+             */
+
+            /** jQuery */
+            $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
+            $scriptjQueryModified = filemtime($scriptjQuery);
+            echo '<script defer src="' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
+
+            /** Fomantic */
+            $scriptFomantic = 'semantic/dist/semantic.min.js';
+            $scriptFomanticModified = filemtime($scriptFomantic);
+            echo '<script defer src="' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
+
+            /** Default */
+            $scriptDefault = 'includes/assets/js/default.js';
+            $scriptDefaultModified = filemtime($scriptDefault);
+            echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+            ?>
 
             <title><?= $this->title ?> - wishthis</title>
         </head>
@@ -65,7 +81,8 @@ class Page
         <?php
     }
 
-    public function navigation(): void {
+    public function navigation(): void
+    {
         ?>
         <div class="ui attached stackable menu">
             <div class="ui container">

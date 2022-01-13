@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\Page;
+use wishthis\{Page, User};
 use Embed\Embed;
 
 if (isset($_POST['url'], $_POST['wishlist'])) {
@@ -28,6 +28,7 @@ $info = $embed->get($url);
 $page = new page(__FILE__, 'Add a product');
 $page->header();
 $page->navigation();
+$user = new User();
 ?>
 <main>
 <div class="ui container">
@@ -41,8 +42,9 @@ $page->navigation();
             </div>
 
             <div class="field">
-                <label>Wishlist</label>
-                <input type="number" name="wishlist" value="1" />
+                <select class="ui search selection dropdown loading wishlists" name="wishlist">
+                    <option value="">Loading your wishlists...</option>
+                </select>
             </div>
 
             <input class="ui primary button" type="submit" value="Add" />
