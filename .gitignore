@@ -3,6 +3,8 @@
 !/vendor/embed/embed
 !/vendor/laminas
 !/vendor/laminas/laminas-diactoros
+!/vendor/grandel
+!/vendor/grandel/include-directory
 
 /.vscode
 /includes/config/config.php
