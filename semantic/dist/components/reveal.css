@@ -282,25 +282,25 @@
   font-size: 1rem;
 }
 .ui.mini.reveal > .content {
-  font-size: 0.78571429rem;
+  font-size: 0.75rem;
 }
 .ui.tiny.reveal > .content {
-  font-size: 0.85714286rem;
+  font-size: 0.83333333rem;
 }
 .ui.small.reveal > .content {
-  font-size: 0.92857143rem;
+  font-size: 0.91666667rem;
 }
 .ui.large.reveal > .content {
-  font-size: 1.14285714rem;
+  font-size: 1.16666667rem;
 }
 .ui.big.reveal > .content {
-  font-size: 1.28571429rem;
+  font-size: 1.25rem;
 }
 .ui.huge.reveal > .content {
-  font-size: 1.42857143rem;
+  font-size: 1.41666667rem;
 }
 .ui.massive.reveal > .content {
-  font-size: 1.71428571rem;
+  font-size: 1.75rem;
 }
 
 

@@ -34,7 +34,7 @@
   background: #FFFFFF;
   padding: 0;
   border: none;
-  border-radius: 0.28571429rem;
+  border-radius: 0.33333333rem;
   -webkit-box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
           box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
   -webkit-transition: -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
@@ -100,16 +100,16 @@
 
 .ui.cards > .card > :first-child,
 .ui.card > :first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0 0 !important;
+  border-radius: 0.33333333rem 0.33333333rem 0 0 !important;
   border-top: none !important;
 }
 .ui.cards > .card > :last-child,
 .ui.card > :last-child {
-  border-radius: 0 0 0.28571429rem 0.28571429rem !important;
+  border-radius: 0 0 0.33333333rem 0.33333333rem !important;
 }
 .ui.cards > .card > :only-child,
 .ui.card > :only-child {
-  border-radius: 0.28571429rem !important;
+  border-radius: 0.33333333rem !important;
 }
 
 /*--------------
@@ -170,7 +170,7 @@
 .ui.card > .content > .header {
   display: block;
   margin: '';
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: rgba(0, 0, 0, 0.85);
 }
 
@@ -178,7 +178,7 @@
 .ui.cards > .card > .content > .header:not(.ui),
 .ui.card > .content > .header:not(.ui) {
   font-weight: bold;
-  font-size: 1.28571429em;
+  font-size: 1.25em;
   margin-top: -0.21425em;
   line-height: 1.28571429em;
 }
@@ -465,7 +465,7 @@
   background: rgba(255, 255, 255, 0.8);
   width: 100%;
   height: 100%;
-  border-radius: 0.28571429rem;
+  border-radius: 0.33333333rem;
   z-index: 100;
 }
 .ui.loading.card:after {
@@ -510,7 +510,7 @@
 }
 .ui.horizontal.cards > .card > .image,
 .ui.card.horizontal > .image {
-  border-radius: 0.28571429rem 0 0 0.28571429rem;
+  border-radius: 0.33333333rem 0 0 0.33333333rem;
   width: 150px;
 }
 .ui.horizontal.cards > .card > .image > img,
@@ -528,11 +528,11 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  border-radius: 0.28571429rem 0 0 0.28571429rem;
+  border-radius: 0.33333333rem 0 0 0.33333333rem;
 }
 .ui.horizontal.cards > .card > .image:last-child > img,
 .ui.card.horizontal > .image:last-child > img {
-  border-radius: 0 0.28571429rem 0.28571429rem 0;
+  border-radius: 0 0.33333333rem 0.33333333rem 0;
 }
 .ui.horizontal.cards > .card > .content,
 .ui.horizontal.card > .content {
@@ -618,14 +618,14 @@ a.ui.card:hover,
 .ui.primary.cards > .card,
 .ui.cards > .primary.card,
 .ui.primary.card {
-  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #2185D0, 0 1px 3px 0 #D4D4D5;
-          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #2185D0, 0 1px 3px 0 #D4D4D5;
+  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #6435C9, 0 1px 3px 0 #D4D4D5;
+          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #6435C9, 0 1px 3px 0 #D4D4D5;
 }
 .ui.primary.cards > .card:hover,
 .ui.cards > .primary.card:hover,
 .ui.primary.card:hover {
-  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #1678c2, 0 1px 3px 0 #BCBDBD;
-          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #1678c2, 0 1px 3px 0 #BCBDBD;
+  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #5829bb, 0 1px 3px 0 #BCBDBD;
+          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #5829bb, 0 1px 3px 0 #BCBDBD;
 }
 .ui.inverted.primary.cards > .card,
 .ui.inverted.cards > .primary.card,
@@ -1274,25 +1274,25 @@ a.ui.card:hover,
   font-size: 1em;
 }
 .ui.mini.cards .card {
-  font-size: 0.78571429rem;
+  font-size: 0.75rem;
 }
 .ui.tiny.cards .card {
-  font-size: 0.85714286rem;
+  font-size: 0.83333333rem;
 }
 .ui.small.cards .card {
-  font-size: 0.92857143rem;
+  font-size: 0.91666667rem;
 }
 .ui.large.cards .card {
-  font-size: 1.14285714rem;
+  font-size: 1.16666667rem;
 }
 .ui.big.cards .card {
-  font-size: 1.28571429rem;
+  font-size: 1.25rem;
 }
 .ui.huge.cards .card {
-  font-size: 1.42857143rem;
+  font-size: 1.41666667rem;
 }
 .ui.massive.cards .card {
-  font-size: 1.71428571rem;
+  font-size: 1.75rem;
 }
 
 /*-----------------

@@ -8,10 +8,10 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Lato';
+@fontName          : 'Raleway';
 
-@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@headerFont        : @fontName, sans-serif;
+@pageFont          : @fontName, sans-serif;
 
 @googleFontName    : @fontName;
 @importGoogleFonts : true;
@@ -31,10 +31,10 @@
 --------------------*/
 
 /* This is the single variable that controls them all */
-@emSize   : 14px;
+@emSize   : 12pt;
 
 /* The size of page text  */
-@fontSize : 14px;
+@fontSize : 12pt;
 
 
 /*-------------------
@@ -53,7 +53,7 @@
     Brand Colors
 --------------------*/
 
-@primaryColor        : @blue;
+@primaryColor        : @violet;
 @secondaryColor      : @black;
 
 @lightPrimaryColor   : @lightBlue;
@@ -127,7 +127,7 @@
         Page
 --------------------*/
 
-@pageBackground      : #FFFFFF;
+@pageBackground      : #F4F4F4;
 @pageOverflowX       : hidden;
 
 @lineHeight          : 1.4285em;
@@ -1460,6 +1460,3 @@
 
 @inputWarningPlaceholderColor: lighten(@formWarningColor, 40);
 @inputWarningPlaceholderFocusColor: lighten(@formWarningColor, 30);
-
-
-

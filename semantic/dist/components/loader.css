@@ -158,124 +158,124 @@
 --------------------*/
 
 .ui.loader {
-  width: 2.28571429rem;
-  height: 2.28571429rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
   font-size: 1em;
 }
 .ui.loader:before,
 .ui.loader:after {
-  width: 2.28571429rem;
-  height: 2.28571429rem;
-  margin: 0 0 0 -1.14285714rem;
+  width: 2.66666667rem;
+  height: 2.66666667rem;
+  margin: 0 0 0 -1.33333333rem;
 }
 .ui.text.loader {
-  min-width: 2.28571429rem;
-  padding-top: 3.07142857rem;
+  min-width: 2.66666667rem;
+  padding-top: 3.41666667rem;
 }
 .ui.mini.loader {
-  width: 1rem;
-  height: 1rem;
-  font-size: 0.78571429em;
+  width: 1.16666667rem;
+  height: 1.16666667rem;
+  font-size: 0.75em;
 }
 .ui.mini.loader:before,
 .ui.mini.loader:after {
-  width: 1rem;
-  height: 1rem;
-  margin: 0 0 0 -0.5rem;
+  width: 1.16666667rem;
+  height: 1.16666667rem;
+  margin: 0 0 0 -0.58333333rem;
 }
 .ui.mini.text.loader {
-  min-width: 1rem;
-  padding-top: 1.78571429rem;
+  min-width: 1.16666667rem;
+  padding-top: 1.91666667rem;
 }
 .ui.tiny.loader {
-  width: 1.14285714rem;
-  height: 1.14285714rem;
-  font-size: 0.85714286em;
+  width: 1.33333333rem;
+  height: 1.33333333rem;
+  font-size: 0.83333333em;
 }
 .ui.tiny.loader:before,
 .ui.tiny.loader:after {
-  width: 1.14285714rem;
-  height: 1.14285714rem;
-  margin: 0 0 0 -0.57142857rem;
+  width: 1.33333333rem;
+  height: 1.33333333rem;
+  margin: 0 0 0 -0.66666667rem;
 }
 .ui.tiny.text.loader {
-  min-width: 1.14285714rem;
-  padding-top: 1.92857143rem;
+  min-width: 1.33333333rem;
+  padding-top: 2.08333333rem;
 }
 .ui.small.loader {
-  width: 1.71428571rem;
-  height: 1.71428571rem;
-  font-size: 0.92857143em;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.91666667em;
 }
 .ui.small.loader:before,
 .ui.small.loader:after {
-  width: 1.71428571rem;
-  height: 1.71428571rem;
-  margin: 0 0 0 -0.85714286rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0 0 -1rem;
 }
 .ui.small.text.loader {
-  min-width: 1.71428571rem;
-  padding-top: 2.5rem;
+  min-width: 2rem;
+  padding-top: 2.75rem;
 }
 .ui.large.loader {
-  width: 3.42857143rem;
-  height: 3.42857143rem;
-  font-size: 1.14285714em;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.16666667em;
 }
 .ui.large.loader:before,
 .ui.large.loader:after {
-  width: 3.42857143rem;
-  height: 3.42857143rem;
-  margin: 0 0 0 -1.71428571rem;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 0 0 -2rem;
 }
 .ui.large.text.loader {
-  min-width: 3.42857143rem;
-  padding-top: 4.21428571rem;
+  min-width: 4rem;
+  padding-top: 4.75rem;
 }
 .ui.big.loader {
-  width: 3.71428571rem;
-  height: 3.71428571rem;
-  font-size: 1.28571429em;
+  width: 4.33333333rem;
+  height: 4.33333333rem;
+  font-size: 1.25em;
 }
 .ui.big.loader:before,
 .ui.big.loader:after {
-  width: 3.71428571rem;
-  height: 3.71428571rem;
-  margin: 0 0 0 -1.85714286rem;
+  width: 4.33333333rem;
+  height: 4.33333333rem;
+  margin: 0 0 0 -2.16666667rem;
 }
 .ui.big.text.loader {
-  min-width: 3.71428571rem;
-  padding-top: 4.5rem;
+  min-width: 4.33333333rem;
+  padding-top: 5.08333333rem;
 }
 .ui.huge.loader {
-  width: 4.14285714rem;
-  height: 4.14285714rem;
-  font-size: 1.42857143em;
+  width: 4.83333333rem;
+  height: 4.83333333rem;
+  font-size: 1.41666667em;
 }
 .ui.huge.loader:before,
 .ui.huge.loader:after {
-  width: 4.14285714rem;
-  height: 4.14285714rem;
-  margin: 0 0 0 -2.07142857rem;
+  width: 4.83333333rem;
+  height: 4.83333333rem;
+  margin: 0 0 0 -2.41666667rem;
 }
 .ui.huge.text.loader {
-  min-width: 4.14285714rem;
-  padding-top: 4.92857143rem;
+  min-width: 4.83333333rem;
+  padding-top: 5.58333333rem;
 }
 .ui.massive.loader {
-  width: 4.57142857rem;
-  height: 4.57142857rem;
-  font-size: 1.71428571em;
+  width: 5.33333333rem;
+  height: 5.33333333rem;
+  font-size: 1.75em;
 }
 .ui.massive.loader:before,
 .ui.massive.loader:after {
-  width: 4.57142857rem;
-  height: 4.57142857rem;
-  margin: 0 0 0 -2.28571429rem;
+  width: 5.33333333rem;
+  height: 5.33333333rem;
+  margin: 0 0 0 -2.66666667rem;
 }
 .ui.massive.text.loader {
-  min-width: 4.57142857rem;
-  padding-top: 5.35714286rem;
+  min-width: 5.33333333rem;
+  padding-top: 6.08333333rem;
 }
 
 /*-------------------
@@ -292,7 +292,7 @@
 .ui.primary.loading.loading.loading.loading .input > i.icon:after,
 .ui.primary.loading.loading.loading.loading > i.icon:after,
 .ui.primary.loader.loader.loader:after {
-  color: #2185D0;
+  color: #6435C9;
 }
 .ui.inverted.primary.elastic.loader:before,
 .ui.inverted.primary.elastic.loading.loading.loading:not(.segment):not(.segments):not(.card):before,

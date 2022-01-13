@@ -92,14 +92,14 @@
 
 .ui.primary.rating .active.icon {
   color: #54C8FF;
-  text-shadow: 0px -1px 0px #2185D0, -1px 0px 0px #2185D0, 0px 1px 0px #2185D0, 1px 0px 0px #2185D0;
+  text-shadow: 0px -1px 0px #6435C9, -1px 0px 0px #6435C9, 0px 1px 0px #6435C9, 1px 0px 0px #6435C9;
 }
 .ui.primary.rating .icon.selected,
 .ui.primary.rating .icon.selected.active,
 .ui.primary.rating .icon.selected.partial.active {
   background: inherit;
   color: #21b8ff;
-  text-shadow: 0px -1px 0px #1678c2, -1px 0px 0px #1678c2, 0px 1px 0px #1678c2, 1px 0px 0px #1678c2;
+  text-shadow: 0px -1px 0px #5829bb, -1px 0px 0px #5829bb, 0px 1px 0px #5829bb, 1px 0px 0px #5829bb;
   -webkit-text-stroke: unset;
   background-clip: unset;
 }
@@ -108,7 +108,7 @@
   background: -webkit-linear-gradient(left, #54C8FF 0% var(--full), rgba(0, 0, 0, 0.15) var(--full) 100%);
   background: linear-gradient(to right, #54C8FF 0% var(--full), rgba(0, 0, 0, 0.15) var(--full) 100%);
   text-shadow: none;
-  -webkit-text-stroke: #2185D0 0.78px;
+  -webkit-text-stroke: #6435C9 0.78px;
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
@@ -476,22 +476,22 @@
   font-size: 1rem;
 }
 .ui.mini.rating {
-  font-size: 0.78571429rem;
+  font-size: 0.75rem;
 }
 .ui.tiny.rating {
-  font-size: 0.85714286rem;
+  font-size: 0.83333333rem;
 }
 .ui.small.rating {
-  font-size: 0.92857143rem;
+  font-size: 0.91666667rem;
 }
 .ui.large.rating {
-  font-size: 1.14285714rem;
+  font-size: 1.16666667rem;
 }
 .ui.big.rating {
-  font-size: 1.28571429rem;
+  font-size: 1.25rem;
 }
 .ui.huge.rating {
-  font-size: 1.42857143rem;
+  font-size: 1.41666667rem;
 }
 .ui.massive.rating {
   font-size: 2rem;

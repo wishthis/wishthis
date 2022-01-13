@@ -30,7 +30,7 @@
   font-size: 1rem;
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0 0 0.28571429rem 0.28571429rem;
+  border-radius: 0 0 0.33333333rem 0.33333333rem;
   -webkit-transition: 0.2s background ease;
   transition: 0.2s background ease;
 }
@@ -55,7 +55,7 @@ a.ui.nag {
   transition: opacity 0.2s ease;
 }
 .ui.nag:not(.overlay):not(.fixed) {
-  border-radius: 0.28571429rem;
+  border-radius: 0.33333333rem;
 }
 
 
@@ -104,7 +104,7 @@ a.ui.nag {
 
 .ui.bottom.nags,
 .ui.bottom.nag {
-  border-radius: 0.28571429rem 0.28571429rem 0 0;
+  border-radius: 0.33333333rem 0.33333333rem 0 0;
   top: auto;
   bottom: 0;
 }
@@ -133,32 +133,32 @@ a.ui.nag {
 
 .ui.mini.nag,
 .ui.mini.nags .nag {
-  font-size: 0.78571429rem;
+  font-size: 0.75rem;
 }
 .ui.tiny.nag,
 .ui.tiny.nags .nag {
-  font-size: 0.85714286rem;
+  font-size: 0.83333333rem;
 }
 .ui.small.nag,
 .ui.small.nags .nag {
-  font-size: 0.92857143rem;
+  font-size: 0.91666667rem;
 }
 .ui.large.nag,
 .ui.large.nags .nag {
-  font-size: 1.14285714rem;
+  font-size: 1.16666667rem;
 }
 .ui.big.nag,
 .ui.big.nags .nag {
-  font-size: 1.28571429rem;
+  font-size: 1.25rem;
 }
 .ui.huge.nag,
 .ui.huge.nags .nag {
-  font-size: 1.42857143rem;
+  font-size: 1.41666667rem;
   line-height: 1;
 }
 .ui.massive.nag,
 .ui.massive.nags .nag {
-  font-size: 1.71428571rem;
+  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -167,7 +167,7 @@ a.ui.nag {
 -------------- */
 
 .ui.primary.nag {
-  background-color: #2185D0;
+  background-color: #6435C9;
 }
 .ui.inverted.primary.nag {
   background-color: #54C8FF;
@@ -275,16 +275,16 @@ a.ui.nag {
   border-radius: 0;
 }
 .ui.nags:not(.bottom) .nag:last-child {
-  border-radius: 0 0 0.28571429rem 0.28571429rem;
+  border-radius: 0 0 0.33333333rem 0.33333333rem;
 }
 .ui.bottom.nags .nag:first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0 0;
+  border-radius: 0.33333333rem 0.33333333rem 0 0;
 }
 .ui.nags:not(.fixed):not(.overlay) .nag:first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0 0;
+  border-radius: 0.33333333rem 0.33333333rem 0 0;
 }
 .ui.nags:not(.fixed):not(.overlay) .nag:only-child {
-  border-radius: 0.28571429rem;
+  border-radius: 0.33333333rem;
 }
 
 

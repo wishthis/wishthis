@@ -45,7 +45,7 @@ $page->navigation();
                 <input type="number" name="wishlist" value="1" />
             </div>
 
-            <input class="ui button" type="submit" value="Add" />
+            <input class="ui primary button" type="submit" value="Add" />
         </form>
     </div>
 </div>
