@@ -24,6 +24,16 @@ class User
     }
 
     /**
+     * Return whether the current user is logged in.
+     *
+     * @return bool
+     */
+    public function isLoggedIn(): bool
+    {
+        return isset($_SESSION['user']);
+    }
+
+    /**
      * Returns a list of the users wishlists.
      * Defaults to the currently logged in user.
      *

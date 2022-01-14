@@ -6,6 +6,8 @@
 
 namespace wishthis;
 
+use wishthis\User;
+
 class Page
 {
     private string $language = 'en';
@@ -93,26 +95,54 @@ class Page
         ?>
         <div class="ui attached stackable menu">
             <div class="ui container">
-                <a class="item">
-                <i class="home icon"></i> Home
-                </a>
-                <a class="item">
-                <i class="grid layout icon"></i> Browse
-                </a>
-                <a class="item">
-                <i class="mail icon"></i> Messages
+                <a class="item" href="/?page=home">
+                    <i class="home icon"></i> Home
                 </a>
                 <div class="ui simple dropdown item">
-                More
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a class="item"><i class="edit icon"></i> Edit Profile</a>
-                    <a class="item"><i class="globe icon"></i> Choose Language</a>
-                    <a class="item"><i class="settings icon"></i> Account Settings</a>
+                    Wishlist
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="/?page=wishlist-create">
+                            <i class="list icon"></i>
+                            Create
+                        </a>
+                        <a class="item" href="/?page=wishlist-product-add">
+                            <i class="plus square icon"></i>
+                            Add product
+                        </a>
+                    </div>
                 </div>
+                <div class="ui simple dropdown item">
+                    Account
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <?php
+                        $user = new User();
+
+                        if ($user->isLoggedIn()) {
+                            ?>
+                            <a class="item" href="/?page=logout">
+                                <i class="sign out alternate icon"></i>
+                                Logout
+                            </a>
+                            <?php
+                        } else {
+                            ?>
+                            <a class="item" href="/?page=login">
+                                <i class="sign in alternate icon"></i>
+                                Login
+                            </a>
+                            <a class="item" href="/?page=register">
+                                <i class="user plus icon"></i>
+                                Register
+                            </a>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div class="right item">
-                <div class="ui input"><input type="text" placeholder="Search..."></div>
+                    <div class="ui input"><input type="text" placeholder="Search..."></div>
                 </div>
             </div>
         </div>
