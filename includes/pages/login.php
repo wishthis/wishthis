@@ -24,25 +24,27 @@ if (isset($_POST['email'], $_POST['password'])) {
 }
 
 $page->header();
+$page->navigation();
 ?>
 <main>
-<section>
-    <h1>Login</h1>
+    <div class="ui container">
+        <div class="ui segment">
+            <h1 class="ui header">Login</h1>
 
-    <form method="post">
-        <fieldset>
-            <label>Email</label>
-            <input type="email" name="email" placeholder="john.doe@domain.tld" />
-        </fieldset>
+            <form class="ui form" method="post">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" />
+                </div>
 
-        <fieldset>
-            <label>Password</label>
-            <input type="password" name="password" />
-        </fieldset>
-
-        <input type="submit" value="Login" />
-    </form>
-</section>
+                <input class="ui primary button" type="submit" value="Login" />
+            </form>
+        </div>
+    </div>
 </main>
 
 <?php
