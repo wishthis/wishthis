@@ -21,7 +21,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 }
 
 if (isset($_SESSION['user'])) {
-    header('Location: ?page=home');
+    header('Location: /?page=home');
     die();
 }
 
