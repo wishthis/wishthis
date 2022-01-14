@@ -26,6 +26,7 @@ class Page
          * Session
          */
         $disableRedirect = array(
+            'home',
             'login',
             'register',
             'install'
