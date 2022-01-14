@@ -25,7 +25,11 @@ class Page
         /**
          * Session
          */
-        if (!isset($_SESSION['user']) && isset($_GET['page']) && 'login' !== $_GET['page']) {
+        $disableRedirect = array(
+            'login',
+            'install'
+        );
+        if (!isset($_SESSION['user']) && isset($_GET['page']) && !in_array($_GET['page'], $disableRedirect)) {
             header('Location: /?page=login');
             die();
         }
