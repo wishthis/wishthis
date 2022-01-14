@@ -103,7 +103,10 @@ if (isset($_GET['wishlist'])) {
                                     <?php } ?>
                                     <?php if ($info->favicon) { ?>
                                         <?php if ($info->providerName) { ?>
-                                            <img src="<?= $info->favicon ?>" title="<?= $info->providerName ?>" alt="<?= $info->providerName ?>" />
+                                            <img src="<?= $info->favicon ?>"
+                                                 title="<?= $info->providerName ?>"
+                                                 alt="<?= $info->providerName ?>"
+                                            />
                                         <?php } else { ?>
                                             <img src="<?= $info->favicon ?>" />
                                         <?php } ?>
