@@ -41,65 +41,68 @@ if (isset($_GET['wishlist'])) {
         </div>
 
         <?php if (!empty($products)) { ?>
-            <?php foreach ($products as $product) { ?>
-                <?php
-                $embed  = new Embed();
-                $info   = $embed->get($product['url']);
+            <div class="ui three column grid">
 
-                // https://github.com/oscarotero/Embed
-                echo '<pre>';
-                // var_dump($info->title);
-                // var_dump($info->description);
-                // var_dump($info->url);
-                // var_dump($info->keywords);
-                echo '</pre>';
-                ?>
-                <div class="ui link cards">
+                <?php foreach ($products as $product) { ?>
+                    <?php
+                    /**
+                     * @link https://github.com/oscarotero/Embed
+                     */
+                    $embed = new Embed();
+                    $info  = $embed->get($product['url']);
+                    ?>
+                        <div class="column">
+                            <div class="ui fluid card">
 
-                    <div class="card">
-                        <?php if ($info->image) { ?>
-                            <div class="image">
-                                <img src="<?= $info->image ?>" />
-                            </div>
-                        <?php } ?>
-
-                        <div class="content">
-                            <?php if ($info->title) { ?>
-                                <div class="header">
-                                    <?= $info->title ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if ($info->keywords) { ?>
-                                <div class="meta">
-                                    <?= $info->keywords ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if ($info->description) { ?>
-                                <div class="description">
-                                    <?= $info->description ?>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <div class="extra content">
-                            <?php if ($info->publishedTime) { ?>
-                                <span class="right floated">
-                                    <?= $info->publishedTime ?>
-                                </span>
-                            <?php } ?>
-                            <?php if ($info->favicon) { ?>
-                                <?php if ($info->providerName) { ?>
-                                    <img src="<?= $info->favicon ?>" title="<?= $info->providerName ?>" alt="<?= $info->providerName ?>" />
-                                <?php } else { ?>
-                                    <img src="<?= $info->favicon ?>" />
+                                <?php if ($info->image) { ?>
+                                    <div class="image">
+                                        <img src="<?= $info->image ?>" />
+                                    </div>
                                 <?php } ?>
-                            <?php } ?>
-                        </div>
-                    </div>
 
-                </div>
-            <?php } ?>
+                                <div class="content">
+                                    <?php if ($info->title) { ?>
+                                        <div class="header">
+                                            <?php if ($info->url) { ?>
+                                                <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
+                                            <?php } else { ?>
+                                                <?= $info->title ?>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+
+                                    <?php if ($info->keywords) { ?>
+                                        <div class="meta">
+                                            <?= $info->keywords ?>
+                                        </div>
+                                    <?php } ?>
+
+                                    <?php if ($info->description) { ?>
+                                        <div class="description">
+                                            <?= $info->description ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="extra content">
+                                    <?php if ($info->publishedTime) { ?>
+                                        <span class="right floated">
+                                            <?= $info->publishedTime ?>
+                                        </span>
+                                    <?php } ?>
+                                    <?php if ($info->favicon) { ?>
+                                        <?php if ($info->providerName) { ?>
+                                            <img src="<?= $info->favicon ?>" title="<?= $info->providerName ?>" alt="<?= $info->providerName ?>" />
+                                        <?php } else { ?>
+                                            <img src="<?= $info->favicon ?>" />
+                                        <?php } ?>
+                                    <?php } ?>
+                                </div>
+
+                            </div>
+                        </div>
+                <?php } ?>
+
+            </div>
         <?php } ?>
 
     </div>

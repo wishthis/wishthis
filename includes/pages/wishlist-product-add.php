@@ -28,7 +28,7 @@ $user = new User();
             <form class="ui form" method="post">
                 <div class="field">
                     <label>URL</label>
-                    <input type="url" name="url" value="<?= $url ?>" />
+                    <input type="url" name="url" />
                 </div>
 
                 <div class="field">
