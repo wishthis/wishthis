@@ -141,10 +141,13 @@ switch ($step) {
         ;');
         ?>
         <main>
-            <section>
-                <h1>Success</h1>
-                <a href="?page=register">Login</a>
-            </section>
+            <div class="ui hidden divider"></div>
+            <div class="ui container">
+                <div class="ui segment">
+                    <h1 class="ui header">Success</h1>
+                    <p><a class="ui primary button" href="/?page=register">Login</a></p>
+                </div>
+            </div>
         </main>
         <?php
         break;
