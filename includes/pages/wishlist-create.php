@@ -23,20 +23,22 @@ if (isset($_POST['name'])) {
 }
 
 $page->header();
+$page->navigation();
 ?>
 <main>
-<section>
-    <h1>Create a wishlist</h1>
+    <div class="ui container">
+        <div class="ui segment">
+            <h1 class="ui header">Create a wishlist</h1>
+            <form class="ui form" method="post">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" value="<?= getCurrentSeason() ?>" />
+                </div>
 
-    <form method="post">
-        <fieldset>
-            <label>Name</label>
-            <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" value="<?= getCurrentSeason() ?>" />
-        </fieldset>
-
-        <input type="submit" value="Create" />
-    </form>
-</section>
+                <input class="ui primary button" type="submit" value="Create" />
+            </form>
+        </div>
+    </div>
 </main>
 
 <?php
