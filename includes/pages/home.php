@@ -21,6 +21,9 @@ $page->navigation();
                 wishthis is a simple, intuitive and modern plattform to create,
                 manage and view your wishes for any kind of occasion.
             </p>
+            <p>
+                Go ahead and get started now and <a href="/?page=wishlist-create">create a wishlist</a>!
+            </p>
         </div>
     </div>
 </main>
