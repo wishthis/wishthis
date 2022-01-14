@@ -12,6 +12,8 @@ namespace wishthis;
 
 class Options
 {
+    public bool $updateAvailable = false;
+
     public function __construct(private Database $database)
     {
     }
@@ -23,6 +25,6 @@ class Options
              WHERE `key` = "' . $key . '";'
         )->fetch();
 
-        return $option['value'];
+        return $option['value'] ?? '';
     }
 }

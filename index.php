@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+$version_new = '0.1.0';
+
 /**
  * Include
  */
@@ -27,6 +29,7 @@ if (file_exists($configPath)) {
  * Database
  */
 $database = false;
+$options  = false;
 
 if (
        defined('DATABASE_HOST')
@@ -40,12 +43,12 @@ if (
         DATABASE_USER,
         DATABASE_PASSWORD
     );
-}
 
-/**
- * Options
- */
-$options = new wishthis\Options($database);
+    /**
+     * Options
+     */
+    $options = new wishthis\Options($database);
+}
 
 /**
  * Session
@@ -67,6 +70,17 @@ if (!$options) {
 }
 
 /**
+ * Update
+ */
+if ($options) {
+    $version_current = $options->getOption('version') ?? '0.0.0';
+
+    if (-1 === version_compare($version_current, $version_new)) {
+        $options->updateAvailable = true;
+    }
+}
+
+/**
  * Page
  */
 if (!isset($page)) {
@@ -74,4 +88,13 @@ if (!isset($page)) {
 }
 $pagePath = 'includes/pages/' . $page . '.php';
 
-require $pagePath;
+if (file_exists($pagePath)) {
+    require $pagePath;
+} else {
+    http_response_code(404);
+    ?>
+    <h1>Not found</h1>
+    <p>The requested URL was not found on this server.</p>
+    <?php
+    die();
+}

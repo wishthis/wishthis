@@ -23,11 +23,7 @@ class Database
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
         $options = array();
 
-        try {
-            $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
-        } catch (\PDOException $PDOE) {
-            throw new \PDOException($PDOE->getMessage(), (int)$PDOE->getCode());
-        }
+        $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
     public function query(string $query)

@@ -146,6 +146,12 @@ class Page
                         ?>
                     </div>
                 </div>
+                <?php global $options; ?>
+                <?php if ($options->updateAvailable) { ?>
+                    <a class="item" href="/?page=update">
+                        <i class="upload icon"></i> Update
+                    </a>
+                <?php } ?>
                 <div class="right item">
                     <div class="ui input"><input type="text" placeholder="Search..."></div>
                 </div>
