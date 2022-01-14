@@ -22,38 +22,41 @@ switch ($step) {
     case 1:
         ?>
         <main>
-            <section>
-                <h1>Install</h1>
-                <h2>Step <?= $step ?></h2>
-                <p>Welcome to the wishthis installer.</p>
-                <p>wishthis needs a database to function properly. Please enter your credentials.</p>
+            <div class="ui hidden divider"></div>
+            <div class="ui container">
+                <div class="ui segment">
+                    <h1 class="ui header">Install</h1>
+                    <h2 class="ui header">Step <?= $step ?></h2>
+                    <p>Welcome to the wishthis installer.</p>
+                    <p>wishthis needs a database to function properly. Please enter your credentials.</p>
 
-                <form action="?page=install" method="post">
-                    <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+                    <form class="ui form" action="/?page=install" method="post">
+                        <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
-                    <fieldset>
-                        <label>Host</label>
-                        <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
-                    </fieldset>
+                        <div class="field">
+                            <label>Host</label>
+                            <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
+                        </div>
 
-                    <fieldset>
-                        <label>Name</label>
-                        <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
-                    </fieldset>
+                        <div class="field">
+                            <label>Name</label>
+                            <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
+                        </div>
 
-                    <fieldset>
-                        <label>Username</label>
-                        <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
-                    </fieldset>
+                        <div class="field">
+                            <label>Username</label>
+                            <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
+                        </div>
 
-                    <fieldset>
-                        <label>Password</label>
-                        <input type="text" name="DATABASE_PASSWORD" />
-                    </fieldset>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="text" name="DATABASE_PASSWORD" />
+                        </div>
 
-                    <input type="submit" value="Continue" />
-                </form>
-            </section>
+                        <input class="ui primary button" type="submit" value="Continue" />
+                    </form>
+                </div>
+            </div>
         </main>
         <?php
         break;
@@ -73,17 +76,20 @@ switch ($step) {
         file_put_contents($configPath, $configContents);
         ?>
         <main>
-            <section>
-                <h1>Install</h1>
-                <h2>Step <?= $step ?></h2>
-                <p>Click Continue to test the database connection.</p>
+            <div class="ui hidden divider"></div>
+            <div class="ui container">
+                <div class="ui segment">
+                    <h1 class="ui header">Install</h1>
+                    <h2 class="ui header">Step <?= $step ?></h2>
+                    <p>Click Continue to test the database connection.</p>
 
-                <form action="?page=install" method="post">
-                    <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+                    <form class="ui form" action="?page=install" method="post">
+                        <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
-                    <input type="submit" value="Continue" />
-                </form>
-            </section>
+                        <input class="ui primary button" type="submit" value="Continue" />
+                    </form>
+                </div>
+            </div>
         </main>
         <?php
         break;
