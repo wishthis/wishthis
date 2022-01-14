@@ -32,7 +32,11 @@ $page->navigation();
             <form class="ui form" method="post">
                 <div class="field">
                     <label>Name</label>
-                    <input type="text" name="name" placeholder="<?= getCurrentSeason() ?>" value="<?= getCurrentSeason() ?>" />
+                    <input type="text"
+                           name="name"
+                           placeholder="<?= getCurrentSeason() ?>"
+                           value="<?= getCurrentSeason() ?>"
+                    />
                 </div>
 
                 <input class="ui primary button" type="submit" value="Create" />
