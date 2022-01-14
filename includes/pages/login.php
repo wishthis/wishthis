@@ -18,7 +18,9 @@ if (isset($_POST['email'], $_POST['password'])) {
     )->fetch();
 
     $_SESSION['user'] = $user;
+}
 
+if (isset($_SESSION['user'])) {
     header('Location: ?page=home');
     die();
 }
