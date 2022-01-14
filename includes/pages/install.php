@@ -8,7 +8,7 @@
 
 use wishthis\{Page, Database};
 
-if ($database->getOption('isInstalled')) {
+if ($options->getOption('isInstalled')) {
     header('Location: /?page=login');
     die();
 }

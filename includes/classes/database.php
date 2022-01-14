@@ -37,14 +37,4 @@ class Database
             \PDO::FETCH_ASSOC
         );
     }
-
-    public function getOption(string $key): string
-    {
-        $option = $this->query(
-            'SELECT * FROM `options`
-             WHERE `key` = "' . $key . '";'
-        )->fetch();
-
-        return $option['value'];
-    }
 }

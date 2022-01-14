@@ -43,6 +43,11 @@ if (
 }
 
 /**
+ * Options
+ */
+$options = new wishthis\Options($database);
+
+/**
  * Session
  */
 session_start();
@@ -57,9 +62,9 @@ if (isset($api)) {
 /**
  * Install
  */
-if ($database) {
+if ($options) {
     try {
-        $database->getOption('isInstalled');
+        $options->getOption('isInstalled');
     } catch (\Throwable $th) {
         $page = 'install';
     }
