@@ -46,9 +46,29 @@ class User
         $wishlists = $database->query(
             'SELECT *
              FROM wishlists
-             WHERE user = ' . $_SESSION['user']['id'] . ';'
+             WHERE user = ' . $this->id . ';'
         )->fetchAll();
 
         return $wishlists;
+    }
+
+    /**
+     * Returns a list of products for a given wishlist.
+     *
+     * @param  int   $wishlist
+     *
+     * @return array
+     */
+    public function getProducts(int $wishlist): array
+    {
+        global $database;
+
+        $products = $database->query(
+            'SELECT *
+             FROM products
+             WHERE wishlist = ' . $this->id . ';'
+        )->fetchAll();
+
+        return $products;
     }
 }
