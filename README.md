@@ -1,8 +1,11 @@
 # wishthis
 
-A simple wishlist plattform.
+A simple wishlist plattform ([demo](https://wishthis.online)).
 
-This project is a work in progress and not ready for production use.
+## Warning
+wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
+
+Use at your own risk.
 
 ## Requirements
 * PHP 8

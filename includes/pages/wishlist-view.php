@@ -23,21 +23,33 @@ if (isset($_GET['wishlist'])) {
 ?>
 <main>
     <div class="ui container">
-        <div class="ui segment">
-            <h1 class="ui header">View wishlist</h1>
-            <p>Please select a wishlist to view.</p>
+        <div class="ui horizontal segments">
+            <div class="ui segment">
+                <h1 class="ui header">View wishlist</h1>
+                <p>Please select a wishlist to view.</p>
 
-            <form class="ui form" method="get">
-                <input type="hidden" name="page" value="wishlist-view" />
+                <form class="ui form" method="get">
+                    <input type="hidden" name="page" value="wishlist-view" />
 
-                <div class="field">
-                    <select class="ui search selection dropdown loading wishlists" name="wishlist">
-                        <option value="">Loading your wishlists...</option>
-                    </select>
-                </div>
+                    <div class="field">
+                        <select class="ui search selection dropdown loading wishlists" name="wishlist">
+                            <option value="">Loading your wishlists...</option>
+                        </select>
+                    </div>
 
-                <input class="ui primary button" type="submit" value="View" />
-            </form>
+                    <input class="ui primary button" type="submit" value="View" />
+                </form>
+            </div>
+
+            <div class="ui segment">
+                <h2 class="ui header">Options</h1>
+                <p>Wishlist related options.</p>
+
+                <button class="ui labeled icon button">
+                    <i class="share icon"></i>
+                    Share
+                </button>
+            </div>
         </div>
 
         <?php if (!empty($products)) { ?>
@@ -91,7 +103,10 @@ if (isset($_GET['wishlist'])) {
                                     <?php } ?>
                                     <?php if ($info->favicon) { ?>
                                         <?php if ($info->providerName) { ?>
-                                            <img src="<?= $info->favicon ?>" title="<?= $info->providerName ?>" alt="<?= $info->providerName ?>" />
+                                            <img src="<?= $info->favicon ?>"
+                                                 title="<?= $info->providerName ?>"
+                                                 alt="<?= $info->providerName ?>"
+                                            />
                                         <?php } else { ?>
                                             <img src="<?= $info->favicon ?>" />
                                         <?php } ?>

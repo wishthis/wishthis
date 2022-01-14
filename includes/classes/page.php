@@ -25,8 +25,14 @@ class Page
         /**
          * Session
          */
-        if (!isset($_SESSION['user']) && isset($_GET['page']) && 'login' !== $_GET['page']) {
+        $disableRedirect = array(
+            'login',
+            'register',
+            'install'
+        );
+        if (!isset($_SESSION['user']) && isset($_GET['page']) && !in_array($_GET['page'], $disableRedirect)) {
             header('Location: /?page=login');
+            die();
         }
     }
 
@@ -121,9 +127,9 @@ class Page
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <?php
-                        $user = new User();
+                        $user = isset($_SESSION['user']) ? new User() : null;
 
-                        if ($user->isLoggedIn()) {
+                        if ($user && $user->isLoggedIn()) {
                             ?>
                             <a class="item" href="/?page=logout">
                                 <i class="sign out alternate icon"></i>
@@ -145,6 +151,12 @@ class Page
                         ?>
                     </div>
                 </div>
+                <?php global $options; ?>
+                <?php if ($options->updateAvailable && $user && $user->isLoggedIn()) { ?>
+                    <a class="item" href="/?page=update">
+                        <i class="upload icon"></i> Update
+                    </a>
+                <?php } ?>
                 <div class="right item">
                     <div class="ui input"><input type="text" placeholder="Search..."></div>
                 </div>
@@ -157,6 +169,21 @@ class Page
     public function footer(): void
     {
         ?>
+        <div class="ui hidden divider"></div>
+        <div class="ui inverted vertical footer segment">
+            <div class="ui container">
+            <div class="ui stackable inverted divided equal height stackable grid">
+                <div class="sixteen wide column">
+                    <h4 class="ui inverted header">wishthis</h4>
+
+                    <div class="ui inverted link list">
+                        <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank"><i class="big github icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
         </body>
         </html>
         <?php
