@@ -1,6 +1,6 @@
 # wishthis
 
-A simple wishlist plattform.
+A simple wishlist plattform ([demo](https://wishthis.online)).
 
 ## Warning
 wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
