@@ -62,12 +62,8 @@ if (isset($api)) {
 /**
  * Install
  */
-if ($options) {
-    try {
-        $options->getOption('isInstalled');
-    } catch (\Throwable $th) {
-        $page = 'install';
-    }
+if (!$options) {
+    $page = 'install';
 }
 
 /**
