@@ -6,6 +6,8 @@
 
 namespace wishthis;
 
+use wishthis\User;
+
 class Page
 {
     private string $language = 'en';
@@ -19,6 +21,13 @@ class Page
     public function __construct(string $filepath, public string $title = 'wishthis')
     {
         $this->name = pathinfo($filepath, PATHINFO_FILENAME);
+
+        /**
+         * Session
+         */
+        if (!isset($_SESSION['user']) && isset($_GET['page']) && 'login' !== $_GET['page']) {
+            header('Location: /?page=login');
+        }
     }
 
     public function header(): void
@@ -36,6 +45,11 @@ class Page
              * Stylesheets
              */
 
+            /** Fomantic UI */
+            $stylesheetFomantic = 'semantic/dist/semantic.min.css';
+            $stylesheetFomanticModified = filemtime($stylesheetFomantic);
+            echo '<link rel="stylesheet" href="' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
+
             /** Default */
             $stylesheetDefault = 'includes/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
@@ -49,11 +63,90 @@ class Page
 
                 echo '<link rel="stylesheet" href="' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
             }
+
+            /**
+             * Scripts
+             */
+
+            /** jQuery */
+            $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
+            $scriptjQueryModified = filemtime($scriptjQuery);
+            echo '<script defer src="' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
+
+            /** Fomantic */
+            $scriptFomantic = 'semantic/dist/semantic.min.js';
+            $scriptFomanticModified = filemtime($scriptFomantic);
+            echo '<script defer src="' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
+
+            /** Default */
+            $scriptDefault = 'includes/assets/js/default.js';
+            $scriptDefaultModified = filemtime($scriptDefault);
+            echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
             ?>
 
             <title><?= $this->title ?> - wishthis</title>
         </head>
         <body>
+        <?php
+    }
+
+    public function navigation(): void
+    {
+        ?>
+        <div class="ui attached stackable menu">
+            <div class="ui container">
+                <a class="item" href="/?page=home">
+                    <i class="home icon"></i> Home
+                </a>
+                <div class="ui simple dropdown item">
+                    Wishlist
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="/?page=wishlist-create">
+                            <i class="list icon"></i>
+                            Create
+                        </a>
+                        <a class="item" href="/?page=wishlist-product-add">
+                            <i class="plus square icon"></i>
+                            Add product
+                        </a>
+                    </div>
+                </div>
+                <div class="ui simple dropdown item">
+                    Account
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <?php
+                        $user = new User();
+
+                        if ($user->isLoggedIn()) {
+                            ?>
+                            <a class="item" href="/?page=logout">
+                                <i class="sign out alternate icon"></i>
+                                Logout
+                            </a>
+                            <?php
+                        } else {
+                            ?>
+                            <a class="item" href="/?page=login">
+                                <i class="sign in alternate icon"></i>
+                                Login
+                            </a>
+                            <a class="item" href="/?page=register">
+                                <i class="user plus icon"></i>
+                                Register
+                            </a>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="right item">
+                    <div class="ui input"><input type="text" placeholder="Search..."></div>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
         <?php
     }
 

@@ -10,13 +10,22 @@ use wishthis\Page;
 
 $page = new page(__FILE__, 'Home');
 $page->header();
+$page->navigation();
 ?>
 
 <main>
-    <section>
-        <h1>Welcome to wishthis</h1>
-        <a href="?page=register">Register</a>
-    </section>
+    <div class="ui container">
+        <div class="ui segment">
+            <h1 class="ui header">Welcome to wishthis</h1>
+            <p>
+                wishthis is a simple, intuitive and modern plattform to create,
+                manage and view your wishes for any kind of occasion.
+            </p>
+            <p>
+                Go ahead and get started now and <a href="/?page=wishlist-create">create a wishlist</a>!
+            </p>
+        </div>
+    </div>
 </main>
 
 <?php

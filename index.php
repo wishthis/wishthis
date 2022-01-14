@@ -6,18 +6,18 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
- /**
+/**
  * Include
  */
-require 'includes/functions/auto-include.php';
+require 'vendor/autoload.php';
 
-autoInclude(__DIR__ . '/includes/classes');
-autoInclude(__DIR__ . '/includes/functions');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/classes');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/functions');
 
 /**
  * Config
  */
-$configPath = 'includes/config/config.php';
+$configPath = __DIR__ . '/' . 'includes/config/config.php';
 
 if (file_exists($configPath)) {
     require $configPath;
@@ -43,6 +43,18 @@ if (
 }
 
 /**
+ * Session
+ */
+session_start();
+
+/**
+ * API
+ */
+if (isset($api)) {
+    return;
+}
+
+/**
  * Install
  */
 if ($database) {
@@ -52,11 +64,6 @@ if ($database) {
         $page = 'install';
     }
 }
-
-/**
- * Session
- */
-session_start();
 
 /**
  * Page

@@ -8,7 +8,7 @@
 
 use wishthis\{Page, Database};
 
-$page = new page(__FILE__, 'Home');
+$page = new page(__FILE__, 'Install');
 $page->header();
 
 $step = isset($_POST['step']) ? $_POST['step'] : 1;
@@ -95,6 +95,26 @@ switch ($step) {
         );');
 
         /**
+         * Wishlists
+         */
+        $database->query('CREATE TABLE `wishlists` (
+            `id`   int          AUTO_INCREMENT,
+            `user` int          NOT NULL,
+            `name` varchar(128) NOT NULL,
+            PRIMARY KEY (id)
+        );');
+
+        /**
+         * Products
+         */
+        $database->query('CREATE TABLE `products` (
+            `id`       int          NOT NULL AUTO_INCREMENT,
+            `wishlist` int          NOT NULL,
+            `url`      VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+        );');
+
+        /**
          * Options
          */
         $database->query('CREATE TABLE `options` (
@@ -112,7 +132,7 @@ switch ($step) {
         <main>
             <section>
                 <h1>Success</h1>
-                <a href="?page=login">Login</a>
+                <a href="?page=register">Login</a>
             </section>
         </main>
         <?php
