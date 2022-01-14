@@ -166,7 +166,7 @@ class Page
                     <h4 class="ui inverted header">wishthis</h4>
 
                     <div class="ui inverted link list">
-                        <a class="item" href="https://github.com/grandeljay/wishthis"><i class="github icon"></i></a>
+                        <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank"><i class="big github icon"></i></a>
                     </div>
                 </div>
             </div>
