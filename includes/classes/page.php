@@ -19,6 +19,13 @@ class Page
     public function __construct(string $filepath, public string $title = 'wishthis')
     {
         $this->name = pathinfo($filepath, PATHINFO_FILENAME);
+
+        /**
+         * Session
+         */
+        if (!isset($_SESSION['user']) && isset($_GET['page']) && 'login' !== $_GET['page']) {
+            header('Location: /?page=login');
+        }
     }
 
     public function header(): void
