@@ -27,6 +27,7 @@ class Page
          */
         $disableRedirect = array(
             'login',
+            'register',
             'install'
         );
         if (!isset($_SESSION['user']) && isset($_GET['page']) && !in_array($_GET['page'], $disableRedirect)) {
@@ -126,9 +127,9 @@ class Page
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <?php
-                        $user = new User();
+                        $user = isset($_SESSION['user']) ? new User() : null;
 
-                        if ($user->isLoggedIn()) {
+                        if ($user && $user->isLoggedIn()) {
                             ?>
                             <a class="item" href="/?page=logout">
                                 <i class="sign out alternate icon"></i>
@@ -151,7 +152,7 @@ class Page
                     </div>
                 </div>
                 <?php global $options; ?>
-                <?php if ($options->updateAvailable) { ?>
+                <?php if ($options->updateAvailable && $user && $user->isLoggedIn()) { ?>
                     <a class="item" href="/?page=update">
                         <i class="upload icon"></i> Update
                     </a>

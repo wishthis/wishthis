@@ -20,11 +20,19 @@ class Options
 
     public function getOption(string $key): string
     {
-        $option = $this->database->query(
-            'SELECT * FROM `options`
-             WHERE `key` = "' . $key . '";'
-        )->fetch();
+        $value = '';
 
-        return $option['value'] ?? '';
+        try {
+            $option = $this->database->query(
+                'SELECT * FROM `options`
+                 WHERE `key` = "' . $key . '";'
+            )->fetch();
+
+            $value = $option['value'] ?? '';
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return $value;
     }
 }
