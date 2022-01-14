@@ -158,6 +158,21 @@ class Page
     public function footer(): void
     {
         ?>
+        <div class="ui hidden divider"></div>
+        <div class="ui inverted vertical footer segment">
+            <div class="ui container">
+            <div class="ui stackable inverted divided equal height stackable grid">
+                <div class="sixteen wide column">
+                    <h4 class="ui inverted header">wishthis</h4>
+
+                    <div class="ui inverted link list">
+                        <a class="item" href="https://github.com/grandeljay/wishthis"><i class="github icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
         </body>
         </html>
         <?php
