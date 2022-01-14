@@ -8,6 +8,11 @@
 
 use wishthis\{Page, Database};
 
+if ($database->getOption('isInstalled')) {
+    header('Location: /?page=login');
+    die();
+}
+
 $page = new page(__FILE__, 'Install');
 $page->header();
 
