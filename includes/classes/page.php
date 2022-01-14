@@ -27,6 +27,7 @@ class Page
          */
         if (!isset($_SESSION['user']) && isset($_GET['page']) && 'login' !== $_GET['page']) {
             header('Location: /?page=login');
+            die();
         }
     }
 
