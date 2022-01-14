@@ -106,6 +106,10 @@ class Page
                             <i class="list icon"></i>
                             Create
                         </a>
+                        <a class="item" href="/?page=wishlist-view">
+                            <i class="list icon"></i>
+                            View
+                        </a>
                         <a class="item" href="/?page=wishlist-product-add">
                             <i class="plus square icon"></i>
                             Add product

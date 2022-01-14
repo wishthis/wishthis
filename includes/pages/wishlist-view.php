@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * wishlist.php
+ *
+ * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ */
+
+use wishthis\{Page, User};
+use Embed\Embed;
+
+$page = new page(__FILE__, 'View wishlist');
+$page->header();
+$page->navigation();
+
+$products = array();
+
+if (isset($_GET['wishlist'])) {
+    $user = new User();
+    $wishlist = $_GET['wishlist'];
+    $products = $user->getProducts($wishlist);
+}
+?>
+<main>
+    <div class="ui container">
+        <div class="ui segment">
+            <h1 class="ui header">View wishlist</h1>
+            <p>Please select a wishlist to view.</p>
+
+            <form class="ui form" method="get">
+                <input type="hidden" name="page" value="wishlist-view" />
+
+                <div class="field">
+                    <select class="ui search selection dropdown loading wishlists" name="wishlist">
+                        <option value="">Loading your wishlists...</option>
+                    </select>
+                </div>
+
+                <input class="ui primary button" type="submit" value="View" />
+            </form>
+        </div>
+
+        <?php if (!empty($products)) { ?>
+            <?php foreach ($products as $product) { ?>
+                <?php
+                $embed  = new Embed();
+                $info   = $embed->get($product['url']);
+
+                // https://github.com/oscarotero/Embed
+                echo '<pre>';
+                // var_dump($info->title);
+                // var_dump($info->description);
+                // var_dump($info->url);
+                // var_dump($info->keywords);
+                echo '</pre>';
+                ?>
+                <div class="ui link cards">
+
+                    <div class="card">
+                        <?php if ($info->image) { ?>
+                            <div class="image">
+                                <img src="<?= $info->image ?>" />
+                            </div>
+                        <?php } ?>
+
+                        <div class="content">
+                            <?php if ($info->title) { ?>
+                                <div class="header">
+                                    <?= $info->title ?>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($info->keywords) { ?>
+                                <div class="meta">
+                                    <?= $info->keywords ?>
+                                </div>
+                            <?php } ?>
+
+                            <?php if ($info->description) { ?>
+                                <div class="description">
+                                    <?= $info->description ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <div class="extra content">
+                            <?php if ($info->publishedTime) { ?>
+                                <span class="right floated">
+                                    <?= $info->publishedTime ?>
+                                </span>
+                            <?php } ?>
+                            <?php if ($info->favicon) { ?>
+                                <?php if ($info->providerName) { ?>
+                                    <img src="<?= $info->favicon ?>" title="<?= $info->providerName ?>" alt="<?= $info->providerName ?>" />
+                                <?php } else { ?>
+                                    <img src="<?= $info->favicon ?>" />
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                </div>
+            <?php } ?>
+        <?php } ?>
+
+    </div>
+</main>
+
+<?php
+$page->footer();
