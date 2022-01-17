@@ -151,5 +151,3 @@ switch ($step) {
         <?php
         break;
 }
-
-$page->footer();
