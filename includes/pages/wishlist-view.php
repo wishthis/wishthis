@@ -64,7 +64,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                     Share
                 </button>
 
-                <form class="ui form" method="post">
+                <form class="ui form" method="post" style="display: inline-block;">
                     <input type="hidden" name="wishlist_delete_id" />
 
                     <button class="ui small labeled red icon button" type="submit">
