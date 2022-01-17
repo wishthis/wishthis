@@ -26,7 +26,8 @@ $(function() {
         },
         onSuccess: function(response, element, xhr) {
             $('.ui.dropdown.wishlists').dropdown({
-                values: response.results
+                values: response.results,
+                placeholder: 'No wishlist selected.'
             })
         },
         onFailure: function(response, element, xhr) {
