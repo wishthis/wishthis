@@ -1,4 +1,12 @@
 $(function() {
+    /**
+     * URL Parameter
+     */
+    const urlParams = new URLSearchParams(window.location.search);
+
+    /**
+     * Fomantic UI
+     */
     $.fn.api.settings.api = {
         'get wishlists' : '/includes/api/wishlists.php'
     };
@@ -18,7 +26,6 @@ $(function() {
         },
         successTest: function(response) {
             console.log('successTest');
-            // test whether a JSON response is valid
             return response.success || false;
         },
         onComplete: function(response, element, xhr) {
@@ -29,6 +36,10 @@ $(function() {
                 values: response.results,
                 placeholder: 'No wishlist selected.'
             })
+
+            if (urlParams.has('wishlist')) {
+                $('.ui.dropdown.wishlists').dropdown('set selected', urlParams.get('wishlist'));
+            }
         },
         onFailure: function(response, element, xhr) {
             console.log('onFailure');
