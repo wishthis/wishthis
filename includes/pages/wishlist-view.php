@@ -45,7 +45,7 @@ if (isset($_GET['wishlist'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
-                <button class="ui labeled icon button">
+                <button class="ui labeled icon button disabled">
                     <i class="share icon"></i>
                     Share
                 </button>
