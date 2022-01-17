@@ -51,7 +51,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                         </select>
                     </div>
 
-                    <input class="ui primary button" type="submit" value="View" />
+                    <input class="ui primary button wishlist-view disabled" type="submit" value="View" />
                 </form>
             </div>
 
@@ -64,10 +64,10 @@ if (isset($_POST['wishlist_delete_id'])) {
                     Share
                 </button>
 
-                <form class="ui form" method="post" style="display: inline-block;">
+                <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
                     <input type="hidden" name="wishlist_delete_id" />
 
-                    <button class="ui small labeled red icon button" type="submit">
+                    <button class="ui small labeled red icon button disabled" type="submit">
                         <i class="trash icon"></i>
                         Delete
                     </button>

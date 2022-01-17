@@ -8,24 +8,26 @@ $(function() {
      * Fomantic UI
      */
     $.fn.api.settings.api = {
-        'get wishlists' : '/includes/api/wishlists.php'
+        'get wishlists'   : '/includes/api/wishlists.php',
+        'delete wishlist' : '/includes/api/wishlists.php'
     };
 
     $('.ui.dropdown.wishlists').dropdown({
         filterRemoteData: true
     });
 
+    wishlistRefresh();
+});
+
+function wishlistRefresh() {
     $('.ui.dropdown.wishlists').api({
         action: 'get wishlists',
         method: 'GET',
         on: 'now',
         onResponse: function(response) {
-            console.log('onResponse');
-            // make some adjustments to response
             return response;
         },
         successTest: function(response) {
-            console.log('successTest');
             return response.success || false;
         },
         onComplete: function(response, element, xhr) {
@@ -54,4 +56,4 @@ $(function() {
             // navigated to a new page, CORS issue, or user canceled request
         }
     });
-});
+}

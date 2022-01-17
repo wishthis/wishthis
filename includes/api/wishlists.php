@@ -32,6 +32,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response['success'] = true;
         }
         break;
+
+    case 'DELETE':
+        parse_str(file_get_contents("php://input"), $_DELETE);
+
+        $database->query('DELETE FROM `wishlists`
+            WHERE `id` = ' . $_DELETE['wishlistID'] . '
+        ;');
+
+        $response['success'] = true;
+        break;
 }
 
 echo json_encode($response);
