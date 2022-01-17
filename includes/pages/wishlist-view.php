@@ -20,6 +20,15 @@ if (isset($_GET['wishlist'])) {
     $wishlist = $_GET['wishlist'];
     $products = $user->getProducts($wishlist);
 }
+
+/**
+ * Delete wishlist
+ */
+if (isset($_POST['wishlist_delete_id'])) {
+    $database->query('DELETE FROM `wishlists`
+        WHERE id = ' . $_POST['wishlist_delete_id'] . '
+    ;');
+}
 ?>
 <main>
     <div class="ui container">
@@ -49,6 +58,15 @@ if (isset($_GET['wishlist'])) {
                     <i class="share icon"></i>
                     Share
                 </button>
+
+                <form class="ui form" method="post">
+                    <input type="hidden" name="wishlist_delete_id" />
+
+                    <button class="ui small labeled red icon button" type="submit">
+                        <i class="trash icon"></i>
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
 
