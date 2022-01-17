@@ -15,6 +15,9 @@ $page->navigation();
 
 $products = array();
 
+/**
+ * Get wishlist products
+ */
 if (isset($_GET['wishlist'])) {
     $user = new User();
     $wishlist = $_GET['wishlist'];
