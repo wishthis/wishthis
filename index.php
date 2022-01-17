@@ -73,9 +73,7 @@ if (!$options) {
  * Update
  */
 if ($options) {
-    $version_current = $options->getOption('version') ?? '0.0.0';
-
-    if (-1 === version_compare($version_current, $version_new)) {
+    if (-1 === version_compare($options->version, $version_new)) {
         $options->updateAvailable = true;
     }
 }
