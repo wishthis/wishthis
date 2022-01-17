@@ -25,11 +25,9 @@ $(function() {
             $('.ui.dropdown.wishlists').removeClass('loading');
         },
         onSuccess: function(response, element, xhr) {
-            $('.ui.dropdown.wishlists')
-            .dropdown({
+            $('.ui.dropdown.wishlists').dropdown({
                 values: response.results
             })
-            .dropdown('set selected', response.results[0].value);
         },
         onFailure: function(response, element, xhr) {
             console.log('onFailure');
