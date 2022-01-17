@@ -16,7 +16,7 @@ if (isset($_POST['name'])) {
         (' . $_SESSION['user']['id'] . ', "' . $_POST['name'] . '")
     ;');
 
-    header('Location: ?page=home');
+    header('Location: /?page=wishlist-product-add');
     die();
 }
 
