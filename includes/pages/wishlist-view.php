@@ -118,8 +118,30 @@ if (isset($_GET['wishlist'])) {
                 <?php } ?>
 
             </div>
+        <?php } else { ?>
+            <?php if (isset($_GET['wishlist'])) { ?>
+                <div class="ui icon message">
+                    <i class="info icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Empty
+                        </div>
+                        <p>The selected wishlist seems to be empty.</p>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="ui icon message">
+                    <i class="info icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            No wishlist selected
+                        </div>
+                        <p>Select a wishlist to see it's products.</p>
+                        <a class="ui primary button" href="/?page=wishlist-product-add">Add a product</a>
+                    </div>
+                </div>
+            <?php } ?>
         <?php } ?>
-
     </div>
 </main>
 
