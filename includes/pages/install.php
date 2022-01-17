@@ -121,7 +121,7 @@ switch ($step) {
             `wishlist` int          NOT NULL,
             `url`      VARCHAR(255) NOT NULL,
             FOREIGN KEY (`wishlist`)
-                REFERENCES `wishlists` (id)
+                REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
         );');
 
