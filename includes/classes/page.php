@@ -187,6 +187,14 @@ class Page
                     <h4 class="ui inverted header">wishthis</h4>
 
                     <div class="ui inverted link list">
+                        <?php
+                        global $options;
+
+                        echo 'v' . $options->version;
+                        ?>
+                    </div>
+
+                    <div class="ui inverted link list">
                         <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank"><i class="big github icon"></i></a>
                     </div>
                 </div>
