@@ -89,6 +89,15 @@ class Page
             $scriptDefault = 'includes/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
             echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+
+            /** Page */
+            $scriptPage = 'includes/assets/js/' . $this->name .  '.js';
+
+            if (file_exists($scriptPage)) {
+                $scriptPageModified = filemtime($scriptPage);
+
+                echo '<script defer src="' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
+            }
             ?>
 
             <title><?= $this->title ?> - wishthis</title>
@@ -176,6 +185,14 @@ class Page
             <div class="ui stackable inverted divided equal height stackable grid">
                 <div class="sixteen wide column">
                     <h4 class="ui inverted header">wishthis</h4>
+
+                    <div class="ui inverted link list">
+                        <?php
+                        global $options;
+
+                        echo 'v' . $options->version;
+                        ?>
+                    </div>
 
                     <div class="ui inverted link list">
                         <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank"><i class="big github icon"></i></a>

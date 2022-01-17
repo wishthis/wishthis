@@ -17,8 +17,8 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['userid'])) {
-            $user = new User($_GET['userid']);
+        if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
+            $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
             $wishlists = $user->getWishlists();
             $wishlists = array_map(function ($wishlist) {
                 return array(
@@ -31,6 +31,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response['results'] = $wishlists;
             $response['success'] = true;
         }
+        break;
+
+    case 'DELETE':
+        parse_str(file_get_contents("php://input"), $_DELETE);
+
+        $database->query('DELETE FROM `wishlists`
+            WHERE `id` = ' . $_DELETE['wishlistID'] . '
+        ;');
+
+        $response['success'] = true;
         break;
 }
 

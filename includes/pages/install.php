@@ -99,40 +99,42 @@ switch ($step) {
          * Users
          */
         $database->query('CREATE TABLE `users` (
-            `id`       int          AUTO_INCREMENT,
+            `id`       int          PRIMARY KEY AUTO_INCREMENT,
             `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL,
-            PRIMARY KEY (id)
+            `password` varchar(128) NOT NULL
         );');
 
         /**
          * Wishlists
          */
         $database->query('CREATE TABLE `wishlists` (
-            `id`   int          AUTO_INCREMENT,
+            `id`   int          PRIMARY KEY AUTO_INCREMENT,
             `user` int          NOT NULL,
             `name` varchar(128) NOT NULL,
-            PRIMARY KEY (id)
+            FOREIGN KEY (`user`)
+                REFERENCES `users` (`id`)
+                ON DELETE CASCADE
         );');
 
         /**
          * Products
          */
         $database->query('CREATE TABLE `products` (
-            `id`       int          NOT NULL AUTO_INCREMENT,
+            `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
             `url`      VARCHAR(255) NOT NULL,
-            PRIMARY KEY (id)
+            FOREIGN KEY (`wishlist`)
+                REFERENCES `wishlists` (`id`)
+                ON DELETE CASCADE
         );');
 
         /**
          * Options
          */
         $database->query('CREATE TABLE `options` (
-            `id`    int          AUTO_INCREMENT,
+            `id`    int          PRIMARY KEY AUTO_INCREMENT,
             `key`   varchar(64)  NOT NULL UNIQUE,
-            `value` varchar(128) NOT NULL,
-            PRIMARY KEY (id)
+            `value` varchar(128) NOT NULL
         );');
 
         $database->query('INSERT INTO `options`
@@ -152,5 +154,3 @@ switch ($step) {
         <?php
         break;
 }
-
-$page->footer();

@@ -15,17 +15,31 @@ $page->navigation();
 
 $products = array();
 
+/**
+ * Get wishlist products
+ */
 if (isset($_GET['wishlist'])) {
     $user = new User();
     $wishlist = $_GET['wishlist'];
     $products = $user->getProducts($wishlist);
 }
+
+/**
+ * Delete wishlist
+ */
+if (isset($_POST['wishlist_delete_id'])) {
+    $database->query('DELETE FROM `wishlists`
+        WHERE id = ' . $_POST['wishlist_delete_id'] . '
+    ;');
+}
 ?>
 <main>
     <div class="ui container">
+        <h1 class="ui header"><?= $page->title ?></h1>
+
         <div class="ui horizontal segments">
             <div class="ui segment">
-                <h1 class="ui header">View wishlist</h1>
+                <h2 class="ui header">Wishlists</h2>
                 <p>Please select a wishlist to view.</p>
 
                 <form class="ui form" method="get">
@@ -37,7 +51,7 @@ if (isset($_GET['wishlist'])) {
                         </select>
                     </div>
 
-                    <input class="ui primary button" type="submit" value="View" />
+                    <input class="ui primary button wishlist-view disabled" type="submit" value="View" />
                 </form>
             </div>
 
@@ -45,10 +59,19 @@ if (isset($_GET['wishlist'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
-                <button class="ui labeled icon button">
+                <button class="ui small labeled icon button disabled">
                     <i class="share icon"></i>
                     Share
                 </button>
+
+                <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
+                    <input type="hidden" name="wishlist_delete_id" />
+
+                    <button class="ui small labeled red icon button disabled" type="submit">
+                        <i class="trash icon"></i>
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -118,8 +141,30 @@ if (isset($_GET['wishlist'])) {
                 <?php } ?>
 
             </div>
+        <?php } else { ?>
+            <?php if (isset($_GET['wishlist'])) { ?>
+                <div class="ui icon message">
+                    <i class="info circle icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Empty
+                        </div>
+                        <p>The selected wishlist seems to be empty.</p>
+                        <a class="ui mini button" href="/?page=wishlist-product-add">Add a product</a>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="ui icon message">
+                    <i class="info circle icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            No wishlist selected
+                        </div>
+                        <p>Select a wishlist to see it's products.</p>
+                    </div>
+                </div>
+            <?php } ?>
         <?php } ?>
-
     </div>
 </main>
 

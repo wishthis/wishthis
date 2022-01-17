@@ -1,38 +1,47 @@
 $(function() {
+    /**
+     * URL Parameter
+     */
+    const urlParams = new URLSearchParams(window.location.search);
+
+    /**
+     * Fomantic UI
+     */
     $.fn.api.settings.api = {
-        'get wishlists' : '/includes/api/wishlists.php'
+        'get wishlists'   : '/includes/api/wishlists.php',
+        'delete wishlist' : '/includes/api/wishlists.php'
     };
 
     $('.ui.dropdown.wishlists').dropdown({
         filterRemoteData: true
     });
 
+    wishlistRefresh();
+});
+
+function wishlistRefresh() {
     $('.ui.dropdown.wishlists').api({
         action: 'get wishlists',
         method: 'GET',
-        data : {
-            userid: 1
-        },
         on: 'now',
         onResponse: function(response) {
-            console.log('onResponse');
-            // make some adjustments to response
             return response;
         },
         successTest: function(response) {
-            console.log('successTest');
-            // test whether a JSON response is valid
             return response.success || false;
         },
         onComplete: function(response, element, xhr) {
             $('.ui.dropdown.wishlists').removeClass('loading');
         },
         onSuccess: function(response, element, xhr) {
-            $('.ui.dropdown.wishlists')
-            .dropdown({
-                values: response.results
+            $('.ui.dropdown.wishlists').dropdown({
+                values: response.results,
+                placeholder: 'No wishlist selected.'
             })
-            .dropdown('set selected', response.results[0].value);
+
+            if (urlParams.has('wishlist')) {
+                $('.ui.dropdown.wishlists').dropdown('set selected', urlParams.get('wishlist'));
+            }
         },
         onFailure: function(response, element, xhr) {
             console.log('onFailure');
@@ -47,4 +56,4 @@ $(function() {
             // navigated to a new page, CORS issue, or user canceled request
         }
     });
-});
+}

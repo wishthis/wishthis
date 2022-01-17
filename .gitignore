@@ -1,4 +1,5 @@
 /vendor/*
+!/vendor/autoload.php
 !/vendor/embed
 !/vendor/embed/embed
 !/vendor/laminas

@@ -16,9 +16,7 @@ if (isset($_POST['name'])) {
         (' . $_SESSION['user']['id'] . ', "' . $_POST['name'] . '")
     ;');
 
-    $_SESSION['user'] = $user;
-
-    header('Location: ?page=home');
+    header('Location: /?page=wishlist-product-add');
     die();
 }
 
@@ -27,8 +25,9 @@ $page->navigation();
 ?>
 <main>
     <div class="ui container">
+        <h1 class="ui header"><?= $page->title ?></h1>
+
         <div class="ui segment">
-            <h1 class="ui header">Create a wishlist</h1>
             <form class="ui form" method="post">
                 <div class="field">
                     <label>Name</label>
