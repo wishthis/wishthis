@@ -145,6 +145,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                             Empty
                         </div>
                         <p>The selected wishlist seems to be empty.</p>
+                        <a class="ui mini button" href="/?page=wishlist-product-add">Add a product</a>
                     </div>
                 </div>
             <?php } else { ?>
@@ -155,7 +156,6 @@ if (isset($_POST['wishlist_delete_id'])) {
                             No wishlist selected
                         </div>
                         <p>Select a wishlist to see it's products.</p>
-                        <a class="ui primary button" href="/?page=wishlist-product-add">Add a product</a>
                     </div>
                 </div>
             <?php } ?>
