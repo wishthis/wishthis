@@ -1,4 +1,14 @@
+/**
+ * Footer
+ */
 .ui.footer {
     position: sticky;
     top: 100%;
+}
+
+/**
+ * Modal
+ */
+.ui.modal > .actions {
+	text-align: inherit;
 }
