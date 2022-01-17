@@ -54,7 +54,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
-                <button class="ui labeled icon button disabled">
+                <button class="ui small labeled icon button disabled">
                     <i class="share icon"></i>
                     Share
                 </button>
