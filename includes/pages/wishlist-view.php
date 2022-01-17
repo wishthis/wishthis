@@ -144,7 +144,7 @@ if (isset($_POST['wishlist_delete_id'])) {
         <?php } else { ?>
             <?php if (isset($_GET['wishlist'])) { ?>
                 <div class="ui icon message">
-                    <i class="info icon"></i>
+                    <i class="info circle icon"></i>
                     <div class="content">
                         <div class="header">
                             Empty
@@ -155,7 +155,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 </div>
             <?php } else { ?>
                 <div class="ui icon message">
-                    <i class="info icon"></i>
+                    <i class="info circle icon"></i>
                     <div class="content">
                         <div class="header">
                             No wishlist selected
