@@ -10,9 +10,6 @@ $(function() {
     $('.ui.dropdown.wishlists').api({
         action: 'get wishlists',
         method: 'GET',
-        data : {
-            userid: 1
-        },
         on: 'now',
         onResponse: function(response) {
             console.log('onResponse');

@@ -16,8 +16,6 @@ if (isset($_POST['name'])) {
         (' . $_SESSION['user']['id'] . ', "' . $_POST['name'] . '")
     ;');
 
-    $_SESSION['user'] = $user;
-
     header('Location: ?page=home');
     die();
 }

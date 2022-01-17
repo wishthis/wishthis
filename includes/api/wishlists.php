@@ -17,8 +17,8 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['userid'])) {
-            $user = new User($_GET['userid']);
+        if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
+            $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
             $wishlists = $user->getWishlists();
             $wishlists = array_map(function ($wishlist) {
                 return array(
