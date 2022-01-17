@@ -66,7 +66,7 @@ class User
         $products = $database->query(
             'SELECT *
              FROM products
-             WHERE wishlist = ' . $this->id . ';'
+             WHERE wishlist = ' . $wishlist . ';'
         )->fetchAll();
 
         return $products;
