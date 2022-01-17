@@ -119,7 +119,10 @@ switch ($step) {
         $database->query('CREATE TABLE `products` (
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
-            `url`      VARCHAR(255) NOT NULL,
+            `url`      VARCHAR(255) NOT NULL
+            FOREIGN KEY (`wishlist`)
+                REFERENCES `wishlists` (id)
+                ON DELETE CASCADE
         );');
 
         /**
