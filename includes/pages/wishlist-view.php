@@ -35,9 +35,11 @@ if (isset($_POST['wishlist_delete_id'])) {
 ?>
 <main>
     <div class="ui container">
+        <h1 class="ui header"><?= $page->title ?></h1>
+
         <div class="ui horizontal segments">
             <div class="ui segment">
-                <h1 class="ui header"><?= $page->title ?></h1>
+                <h2 class="ui header">Wishlists</h2>
                 <p>Please select a wishlist to view.</p>
 
                 <form class="ui form" method="get">

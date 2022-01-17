@@ -17,8 +17,9 @@ $page->navigation();
 ?>
 <main>
     <div class="ui container">
+        <h1 class="ui header"><?= $page->title ?></h1>
+
         <div class="ui segment">
-            <h1 class="ui header"><?= $page->title ?></h1>
             <h2 class="ui header">Goodbye</h2>
             <p>You have been logged out.</p>
         </div>
