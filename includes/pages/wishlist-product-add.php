@@ -23,7 +23,7 @@ $user = new User();
 <main>
     <div class="ui container">
         <div class="ui segment">
-            <h1 class="ui header">Add a product</h1>
+            <h1 class="ui header"><?= $page->title ?></h1>
 
             <form class="ui form" method="post">
                 <div class="field">

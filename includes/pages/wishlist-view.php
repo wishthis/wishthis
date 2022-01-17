@@ -25,7 +25,7 @@ if (isset($_GET['wishlist'])) {
     <div class="ui container">
         <div class="ui horizontal segments">
             <div class="ui segment">
-                <h1 class="ui header">View wishlist</h1>
+                <h1 class="ui header"><?= $page->title ?></h1>
                 <p>Please select a wishlist to view.</p>
 
                 <form class="ui form" method="get">
