@@ -16,7 +16,7 @@ if (isset($_POST['email'], $_POST['password'])) {
         ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
     ;');
 
-    header('Location: ?page=login');
+    header('Location: /?page=login');
     die();
 }
 
@@ -37,6 +37,8 @@ $page->navigation();
                     <label>Password</label>
                     <input type="password" name="password" />
                 </div>
+
+                <div class="ui error message"></div>
 
                 <input class="ui primary button" type="submit" value="Register" />
             </form>

@@ -89,6 +89,15 @@ class Page
             $scriptDefault = 'includes/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
             echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+
+            /** Page */
+            $scriptPage = 'includes/assets/js/' . $this->name .  '.js';
+
+            if (file_exists($scriptPage)) {
+                $scriptPageModified = filemtime($scriptPage);
+
+                echo '<script defer src="' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
+            }
             ?>
 
             <title><?= $this->title ?> - wishthis</title>
