@@ -15,6 +15,10 @@ Use at your own risk.
 ![Create a wishlist](/includes/assets/img/wishlist-create.png "Create a wishlist")
 ![Add a product](/includes/assets/img/wishlist-product-add.png "Add a product")
 
+## Installation
+1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server
+1. Follow the instructions of the installer
+
 ## Contributing
 Install dependencies
 ```
