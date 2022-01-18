@@ -6,8 +6,6 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-$version_new = '0.1.0';
-
 /**
  * Include
  */
@@ -73,7 +71,7 @@ if (!$options) {
  * Update
  */
 if ($options) {
-    if (-1 === version_compare($options->version, $version_new)) {
+    if (-1 === version_compare($options->version, '0.2.0')) {
         $options->updateAvailable = true;
     }
 }
