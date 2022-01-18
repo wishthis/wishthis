@@ -31,6 +31,7 @@ $page->navigation();
                 </div>
 
                 <div class="field">
+                    <label>Wishlist</label>
                     <select class="ui search selection dropdown loading wishlists" name="wishlist">
                         <option value="">Loading your wishlists...</option>
                     </select>

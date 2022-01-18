@@ -60,7 +60,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
-                <a class="ui small labeled icon button wishlist-share disabled" href="/?wishlist=<?= $wishlist['hash'] ?? '' ?>" target="_blank">
+                <a class="ui small labeled icon button wishlist-share <?= !isset($_GET['wishlist']) ? 'disabled' : '' ?>" href="/?wishlist=<?= $wishlist['hash'] ?? '' ?>" target="_blank">
                     <i class="share icon"></i>
                     Share
                 </a>
@@ -68,7 +68,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
                     <input type="hidden" name="wishlist_delete_id" />
 
-                    <button class="ui small labeled red icon button disabled" type="submit">
+                    <button class="ui small labeled red icon button <?= !isset($_GET['wishlist']) ? 'disabled' : '' ?>" type="submit">
                         <i class="trash icon"></i>
                         Delete
                     </button>
