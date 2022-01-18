@@ -101,7 +101,7 @@ switch ($step) {
         $database->query('CREATE TABLE `users` (
             `id`       int          PRIMARY KEY AUTO_INCREMENT,
             `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL
+            `password` varchar(128) NOT NULL INDEX
         );');
 
         /**

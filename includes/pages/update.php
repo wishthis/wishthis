@@ -28,6 +28,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
                              SET `isAdministrator` = ' . true . '
                            WHERE `id` = ' . $user->id .
         ';');
+        $database->query('ALTER TABLE `users` ADD INDEX(`password`);');
 
         $database->query('ALTER TABLE `wishlists`
                                   ADD `url` VARCHAR(128) NOT NULL AFTER `name`
