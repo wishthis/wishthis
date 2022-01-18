@@ -54,6 +54,11 @@ if (
 session_start();
 
 /**
+ * User
+ */
+$user = new wishthis\User();
+
+/**
  * API
  */
 if (isset($api)) {
@@ -75,7 +80,6 @@ define('VERSION', '0.2.0');
 if ($options) {
     if (-1 === version_compare($options->version, VERSION)) {
         $options->updateAvailable = true;
-        $page = 'update';
     }
 }
 

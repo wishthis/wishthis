@@ -13,8 +13,6 @@ $page = new page(__FILE__, 'Wishlist');
 $page->header();
 $page->navigation();
 
-$user = new User();
-
 $wishlist = $database->query('SELECT * FROM `wishlists`
                                       WHERE `hash` = "' . $_GET['wishlist'] . '"')
                      ->fetch();

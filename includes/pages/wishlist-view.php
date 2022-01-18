@@ -19,7 +19,6 @@ $products = array();
  * Get wishlist products
  */
 if (isset($_GET['wishlist'])) {
-    $user = new User();
     $wishlist = $database->query('SELECT * FROM `wishlists`
                                    WHERE `id` = "' . $_GET['wishlist'] . '"')
                          ->fetch();

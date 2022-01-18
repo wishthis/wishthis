@@ -12,8 +12,6 @@ $page = new page(__FILE__, 'Update');
 $page->header();
 $page->navigation();
 
-$user = new User();
-
 /**
  * Update
  */
