@@ -11,10 +11,19 @@ use wishthis\Page;
 $page = new page(__FILE__, 'Register');
 
 if (isset($_POST['email'], $_POST['password'])) {
-    $database->query('INSERT INTO `users`
-        (`email`, `password`) VALUES
-        ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
-    ;');
+    $users = $database->query('SELECT * FROM `users`;')->fetchAll();
+
+    if (0 === count($users)) {
+        $database->query('INSERT INTO `users`
+            (`email`, `password`) VALUES
+            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
+        ;');
+    } else {
+        $database->query('INSERT INTO `users`
+            (`email`, `password`, `isAdministrator`) VALUES
+            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '", ' . true . ')
+        ;');
+    }
 
     header('Location: /?page=login');
     die();

@@ -24,6 +24,10 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
                                   ADD `last_login`      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `password`,
                                   ADD `isAdministrator` BOOLEAN  NOT NULL AFTER `last_login`
         ;');
+        $database->query('UPDATE `users`
+                             SET `isAdministrator` = ' . true . '
+                           WHERE `id` = ' . $user->id .
+        ';');
 
         $database->query('ALTER TABLE `wishlists`
                                   ADD `url` VARCHAR(128) NOT NULL AFTER `name`
