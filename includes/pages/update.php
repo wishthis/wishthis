@@ -18,7 +18,7 @@ $user = new User();
  * Update
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-    /** Current version is below 0.1.0 */
+    /** Current version is below 0.2.0 */
     if (-1 === version_compare($options->version, '0.2.0')) {
         $database->query('ALTER TABLE `users`
                                   ADD `last_login`      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `password`,
