@@ -10,7 +10,7 @@ use wishthis\User;
 
 class Page
 {
-    private string $language = 'en';
+    public string $language = 'en';
 
     /**
      * __construct
