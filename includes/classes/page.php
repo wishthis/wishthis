@@ -177,9 +177,6 @@ class Page
                         <i class="upload icon"></i> Update
                     </a>
                 <?php } ?>
-                <div class="right item">
-                    <div class="ui input"><input type="text" placeholder="Search..."></div>
-                </div>
             </div>
         </div>
         <div class="ui hidden divider"></div>
