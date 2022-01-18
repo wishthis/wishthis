@@ -70,8 +70,10 @@ if (!$options) {
 /**
  * Update
  */
+define('VERSION', '0.2.0');
+
 if ($options) {
-    if (-1 === version_compare($options->version, '0.2.0')) {
+    if (-1 === version_compare($options->version, VERSION)) {
         $options->updateAvailable = true;
         $page = 'update';
     }
