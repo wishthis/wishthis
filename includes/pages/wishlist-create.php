@@ -19,7 +19,7 @@ if (isset($_POST['name'])) {
         ) VALUES (
             ' . $_SESSION['user']['id'] . ',
             "' . $_POST['name'] . '",
-            "' . time() . $_SESSION['user']['id'] . $_POST['name'] . '"
+            "' . sha1(time() . $_SESSION['user']['id'] . $_POST['name']) . '"
         )
     ;');
 
