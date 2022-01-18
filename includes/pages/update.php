@@ -31,8 +31,9 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $database->query('ALTER TABLE `users` ADD INDEX(`password`);');
 
         $database->query('ALTER TABLE `wishlists`
-                                  ADD `url` VARCHAR(128) NOT NULL AFTER `name`
+                                  ADD `hash` VARCHAR(128) NOT NULL AFTER `name`
         ;');
+        $database->query('ALTER TABLE `wishlists` ADD INDEX(`hash`);');
 
         $database->query('INSERT INTO `options` (`key`, `value`) VALUES ("version", "' . VERSION . '");');
 

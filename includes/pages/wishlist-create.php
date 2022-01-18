@@ -12,8 +12,15 @@ $page = new page(__FILE__, 'Create a wishlist');
 
 if (isset($_POST['name'])) {
     $database->query('INSERT INTO `wishlists`
-        (`user`, `name`) VALUES
-        (' . $_SESSION['user']['id'] . ', "' . $_POST['name'] . '")
+        (
+            `user`,
+            `name`,
+            `hash`
+        ) VALUES (
+            ' . $_SESSION['user']['id'] . ',
+            "' . $_POST['name'] . '",
+            "' . time() . $_SESSION['user']['id'] . $_POST['name'] . '"
+        )
     ;');
 
     header('Location: /?page=wishlist-product-add');

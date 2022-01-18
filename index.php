@@ -80,6 +80,13 @@ if ($options) {
 }
 
 /**
+ * Wishlist
+ */
+if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
+    $page = 'wishlist';
+}
+
+/**
  * Page
  */
 if (!isset($page)) {
