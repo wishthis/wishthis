@@ -54,11 +54,6 @@ if (
 session_start();
 
 /**
- * User
- */
-$user = new wishthis\User();
-
-/**
  * API
  */
 if (isset($api)) {
@@ -70,6 +65,13 @@ if (isset($api)) {
  */
 if (!$options) {
     $page = 'install';
+}
+
+/**
+ * User
+ */
+if ($options) {
+    $user = new wishthis\User();
 }
 
 /**

@@ -41,7 +41,7 @@ class Page
         /**
          * Power
          */
-        if ($user->power < $this->power) {
+        if ($user && $user->power < $this->power) {
             header('Location: /?page=power&required=' . $this->power);
             die();
         }

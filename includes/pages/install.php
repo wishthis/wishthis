@@ -9,7 +9,7 @@
 use wishthis\{Page, Database};
 
 if ($options && $options->getOption('isInstalled')) {
-    header('Location: /?page=login');
+    header('Location: /?page=home');
     die();
 }
 
@@ -20,6 +20,7 @@ $step = isset($_POST['step']) ? $_POST['step'] : 1;
 
 switch ($step) {
     case 1:
+        session_destroy();
         ?>
         <main>
             <div class="ui hidden divider"></div>
@@ -99,9 +100,11 @@ switch ($step) {
          * Users
          */
         $database->query('CREATE TABLE `users` (
-            `id`       int          PRIMARY KEY AUTO_INCREMENT,
-            `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL
+            `id`         int          PRIMARY KEY AUTO_INCREMENT,
+            `email`      varchar(64)  NOT NULL UNIQUE,
+            `password`   varchar(128) NOT NULL,
+            `last_login` datetime     NOT NULL DEFAULT NOW(),
+            `power`      int          NOT NULL DEFAULT 0
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
@@ -150,7 +153,7 @@ switch ($step) {
             <div class="ui container">
                 <div class="ui segment">
                     <h1 class="ui header">Success</h1>
-                    <p><a class="ui primary button" href="/?page=register">Login</a></p>
+                    <p><a class="ui primary button" href="/?page=register">Register</a></p>
                 </div>
             </div>
         </main>
