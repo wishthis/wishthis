@@ -45,8 +45,14 @@ if ($wishlist) {
                     Careful
                 </div>
                 <div class="text">
-                    <p>You are viewing your own wishlist! You will be able to see which products have already been bought for you. Don't you want to be surprised?</p>
-                    <p>It's probably best to just close this tab.</p>
+                    <p>
+                        You are viewing your own wishlist!
+                        You will be able to see which products have already been bought for you.
+                        Don't you want to be surprised?
+                    </p>
+                    <p>
+                        It's probably best to just close this tab.
+                    </p>
                 </div>
             </div>
         </div>
