@@ -17,7 +17,11 @@ if (isset($_POST['email'], $_POST['password'])) {
          AND `password` = "' . sha1($_POST['password']) . '";'
     )->fetch();
 
-    $_SESSION['user'] = $user;
+    if (false === $user) {
+        # code...
+    } else {
+        $_SESSION['user'] = $user;
+    }
 }
 
 if (isset($_SESSION['user'])) {

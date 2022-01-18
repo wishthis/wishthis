@@ -10,7 +10,12 @@ use wishthis\Page;
 
 $page = new page(__FILE__, 'Logout');
 
-session_destroy();
+if (PHP_SESSION_ACTIVE === session_status()) {
+    session_destroy();
+
+    header('Location: /?page=logout');
+    die();
+}
 
 $page->header();
 $page->navigation();
