@@ -28,7 +28,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         $database->query('ALTER TABLE `wishlists`
                                   ADD `url` VARCHAR(128) NOT NULL AFTER `name`
         ;');
+
+        $database->query('INSERT INTO `options` (`key`, `value`) VALUES ("version", "' . VERSION . '");');
+
+        // Use this for future versions since it didn't existsin 0.1.0
+        // $options->setOption('version', VERSION);
     }
+
+    header('Location: /?page=home');
+    die();
 }
 ?>
 

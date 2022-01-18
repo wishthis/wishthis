@@ -40,4 +40,18 @@ class Options
 
         return $value;
     }
+
+    public function setOption(string $key, string $value): void
+    {
+        try {
+            $option = $this->database->query('UPDATE `options`
+                                                 SET `value`
+                                               WHERE `key` = ' . $key . '
+            ;');
+
+            $value = $option['value'] ?? '';
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 }
