@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User};
 
-$page = new page(__FILE__, 'Update');
+$page = new page(__FILE__, 'Update', 100);
 $page->header();
 $page->navigation();
 
@@ -48,42 +48,26 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <?php if ($user->isLoggedIn()) { ?>
-            <div class="ui segment">
-                <h2 class="ui header">New version detected</h2>
-                <p>Thank you for updating to <strong>v<?= VERSION ?></strong>!</p>
-                <p>There have been some changes in the database, please run the updater.</p>
-                <div class="ui icon warning message">
-                    <i class="exclamation triangle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Use at own risk
-                        </div>
-                        <p>Be sure to make backups before proceeding.</p>
+        <div class="ui segment">
+            <h2 class="ui header">New version detected</h2>
+            <p>Thank you for updating to <strong>v<?= VERSION ?></strong>!</p>
+            <p>There have been some changes in the database, please run the updater.</p>
+            <div class="ui icon warning message">
+                <i class="exclamation triangle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Use at own risk
                     </div>
-                </div>
-                <form class="ui form" method="post">
-                    <button class="ui orange button" type="submit">
-                        <i class="upload icon"></i>
-                        Run the updater
-                    </button>
-                </form>
-            </div>
-        <?php } else { ?>
-            <div class="ui segment">
-                <h2 class="ui header">Maintenance</h2>
-                <p>
-                    The administrator of this site is currently running an update.
-                    This usually just takes a couple of seconds.
-                </p>
-                <p>
-                    Trying again in <span id="retryIn">5</span> seconds...
-                </p>
-                <div class="ui primary progress nolabel">
-                    <div class="bar"></div>
+                    <p>Be sure to make backups before proceeding.</p>
                 </div>
             </div>
-        <?php } ?>
+            <form class="ui form" method="post">
+                <button class="ui orange button" type="submit">
+                    <i class="upload icon"></i>
+                    Run the updater
+                </button>
+            </form>
+        </div>
     </div>
 </main>
 

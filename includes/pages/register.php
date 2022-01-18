@@ -15,13 +15,13 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     if (0 === count($users)) {
         $database->query('INSERT INTO `users`
-            (`email`, `password`) VALUES
-            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
+            (`email`, `password`, `power`) VALUES
+            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '", 100)
         ;');
     } else {
         $database->query('INSERT INTO `users`
-            (`email`, `password`, `power`) VALUES
-            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '", 100)
+            (`email`, `password`) VALUES
+            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '")
         ;');
     }
 

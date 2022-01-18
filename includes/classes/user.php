@@ -13,6 +13,7 @@ namespace wishthis;
 class User
 {
     public int $id;
+    public int $power = 0;
 
     public function __construct(int $id = -1)
     {
@@ -23,6 +24,18 @@ class User
         } else {
             $this->id = $id;
         }
+
+        if (!isset($this->id)) {
+            return;
+        }
+
+        global $database;
+
+        $user = $database->query('SELECT * FROM `users`
+                                   WHERE `id` = ' . $this->id . ';')
+                         ->fetch();
+
+        $this->power = $user['power'];
     }
 
     /**

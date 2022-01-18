@@ -18,13 +18,15 @@ class Page
      * @param string $filepath The filepath (__FILE__) of the page.
      * @param string $title    The HTML title of the page.
      */
-    public function __construct(string $filepath, public string $title = 'wishthis')
+    public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
         $this->name = pathinfo($filepath, PATHINFO_FILENAME);
 
         /**
          * Session
          */
+        global $user;
+
         $disableRedirect = array(
             'home',
             'login',
@@ -33,6 +35,14 @@ class Page
         );
         if (!isset($_SESSION['user']) && isset($_GET['page']) && !in_array($_GET['page'], $disableRedirect)) {
             header('Location: /?page=login');
+            die();
+        }
+
+        /**
+         * Power
+         */
+        if ($user->power < $this->power) {
+            header('Location: /?page=power&required=' . $this->power);
             die();
         }
     }
@@ -162,7 +172,7 @@ class Page
                     </div>
                 </div>
                 <?php global $options; ?>
-                <?php if ($options->updateAvailable && $user && $user->isLoggedIn()) { ?>
+                <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
                     <a class="item" href="/?page=update">
                         <i class="upload icon"></i> Update
                     </a>
