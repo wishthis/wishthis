@@ -145,7 +145,8 @@ switch ($step) {
 
         $database->query('INSERT INTO `options`
             (`key`, `value`) VALUES
-            ("isInstalled", true)
+            ("isInstalled", true),
+            ("version", "' . VERSION . '")
         ;');
         ?>
         <main>
