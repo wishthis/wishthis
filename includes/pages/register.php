@@ -20,8 +20,8 @@ if (isset($_POST['email'], $_POST['password'])) {
         ;');
     } else {
         $database->query('INSERT INTO `users`
-            (`email`, `password`, `isAdministrator`) VALUES
-            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '", ' . true . ')
+            (`email`, `password`, `power`) VALUES
+            ("' . $_POST['email'] . '", "' . sha1($_POST['password']) . '", 100)
         ;');
     }
 
