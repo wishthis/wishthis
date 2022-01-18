@@ -19,8 +19,8 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     /** Current version is below 0.2.0 */
     if (-1 === version_compare($options->version, '0.2.0')) {
         $database->query('ALTER TABLE `users`
-                                  ADD `last_login` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `password`,
-                                  ADD `power`      BOOLEAN  NOT NULL DEFAULT 0                 AFTER `last_login`
+                                  ADD `last_login` DATETIME NOT NULL DEFAULT NOW() AFTER `password`,
+                                  ADD `power`      BOOLEAN  NOT NULL DEFAULT 0     AFTER `last_login`
         ;');
         $database->query('UPDATE `users`
                              SET `power` = 100

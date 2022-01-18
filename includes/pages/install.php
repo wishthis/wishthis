@@ -9,7 +9,7 @@
 use wishthis\{Page, Database};
 
 if ($options && $options->getOption('isInstalled')) {
-    header('Location: /?page=login');
+    header('Location: /?page=home');
     die();
 }
 
@@ -20,6 +20,7 @@ $step = isset($_POST['step']) ? $_POST['step'] : 1;
 
 switch ($step) {
     case 1:
+        session_destroy();
         ?>
         <main>
             <div class="ui hidden divider"></div>
@@ -99,10 +100,13 @@ switch ($step) {
          * Users
          */
         $database->query('CREATE TABLE `users` (
-            `id`       int          PRIMARY KEY AUTO_INCREMENT,
-            `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL INDEX
+            `id`         int          PRIMARY KEY AUTO_INCREMENT,
+            `email`      varchar(64)  NOT NULL UNIQUE,
+            `password`   varchar(128) NOT NULL,
+            `last_login` datetime     NOT NULL DEFAULT NOW(),
+            `power`      int          NOT NULL DEFAULT 0
         );');
+        $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
         /**
          * Wishlists
@@ -111,10 +115,12 @@ switch ($step) {
             `id`   int          PRIMARY KEY AUTO_INCREMENT,
             `user` int          NOT NULL,
             `name` varchar(128) NOT NULL,
+            `hash` varchar(128) NOT NULL,
             FOREIGN KEY (`user`)
                 REFERENCES `users` (`id`)
                 ON DELETE CASCADE
         );');
+        $database->query('CREATE INDEX `idx_hash` ON `wishlists` (`hash`);');
 
         /**
          * Products
@@ -122,7 +128,7 @@ switch ($step) {
         $database->query('CREATE TABLE `products` (
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
-            `hash`     VARCHAR(255) NOT NULL INDEX,
+            `url`      VARCHAR(255) NOT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
@@ -139,7 +145,8 @@ switch ($step) {
 
         $database->query('INSERT INTO `options`
             (`key`, `value`) VALUES
-            ("isInstalled", true)
+            ("isInstalled", true),
+            ("version", "' . VERSION . '")
         ;');
         ?>
         <main>
@@ -147,7 +154,7 @@ switch ($step) {
             <div class="ui container">
                 <div class="ui segment">
                     <h1 class="ui header">Success</h1>
-                    <p><a class="ui primary button" href="/?page=register">Login</a></p>
+                    <p><a class="ui primary button" href="/?page=register">Register</a></p>
                 </div>
             </div>
         </main>
