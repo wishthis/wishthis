@@ -26,7 +26,7 @@ class Database
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query)
+    public function query(string $query): mixed
     {
         return $this->pdo->query(
             $query,
