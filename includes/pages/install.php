@@ -101,8 +101,9 @@ switch ($step) {
         $database->query('CREATE TABLE `users` (
             `id`       int          PRIMARY KEY AUTO_INCREMENT,
             `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL INDEX
+            `password` varchar(128) NOT NULL
         );');
+        $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
         /**
          * Wishlists
@@ -111,10 +112,12 @@ switch ($step) {
             `id`   int          PRIMARY KEY AUTO_INCREMENT,
             `user` int          NOT NULL,
             `name` varchar(128) NOT NULL,
+            `hash` varchar(128) NOT NULL,
             FOREIGN KEY (`user`)
                 REFERENCES `users` (`id`)
                 ON DELETE CASCADE
         );');
+        $database->query('CREATE INDEX `idx_hash` ON `wishlists` (`hash`);');
 
         /**
          * Products
@@ -122,7 +125,7 @@ switch ($step) {
         $database->query('CREATE TABLE `products` (
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
-            `hash`     VARCHAR(255) NOT NULL INDEX,
+            `url`      VARCHAR(255) NOT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
