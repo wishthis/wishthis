@@ -111,18 +111,7 @@ if ($wishlist) {
                         <div class="header">
                             Empty
                         </div>
-                        <p>The selected wishlist seems to be empty.</p>
-                        <a class="ui mini button" href="/?page=wishlist-product-add">Add a product</a>
-                    </div>
-                </div>
-            <?php } else { ?>
-                <div class="ui icon message">
-                    <i class="info circle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            No wishlist selected
-                        </div>
-                        <p>Select a wishlist to see it's products.</p>
+                        <p>This wishlist seems to be empty.</p>
                     </div>
                 </div>
             <?php } ?>
