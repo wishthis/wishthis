@@ -33,12 +33,31 @@ if ($wishlist) {
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
+        <?php
+        /**
+         * Warn the wishlist creator
+         */
+        if (isset($user->id) && $user->id === intval($wishlist['user'])) { ?>
+        <div class="ui icon warning message wishlist-own">
+            <i class="exclamation triangle icon"></i>
+            <div class="content">
+                <div class="header">
+                    Careful
+                </div>
+                <div class="text">
+                    <p>You are viewing your own wishlist! You will be able to see which products have already been bought for you. Don't you want to be surprised?</p>
+                    <p>It's probably best to just close this tab.</p>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+
         <div class="ui segment">
             <h2 class="ui header"><?= $wishlist['name'] ?></h2>
         </div>
 
         <?php if (!empty($products)) { ?>
-            <div class="ui three column grid">
+            <div class="ui three column grid wishlist-cards">
 
                 <?php foreach ($products as $product) { ?>
                     <?php
