@@ -5,6 +5,10 @@ $(function() {
     var value = 0;
     var total = retryIn * 1000;
 
+    if (!$('.ui.progress').length) {
+        return;
+    }
+
     $('#retryIn').html(retryIn);
 
     setTimeout(function step() {
