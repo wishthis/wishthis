@@ -12,3 +12,10 @@
 .ui.modal > .actions {
 	text-align: inherit;
 }
+
+/**
+ * Progress
+ */
+.ui.progress.nolabel:last-child {
+	margin: 0;
+}

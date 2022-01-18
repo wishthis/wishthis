@@ -73,6 +73,7 @@ if (!$options) {
 if ($options) {
     if (-1 === version_compare($options->version, '0.2.0')) {
         $options->updateAvailable = true;
+        $page = 'update';
     }
 }
 
@@ -92,5 +93,6 @@ if (file_exists($pagePath)) {
     <h1>Not found</h1>
     <p>The requested URL was not found on this server.</p>
     <?php
+    echo $pagePath;
     die();
 }
