@@ -17,7 +17,16 @@ $wishlist = $database->query('SELECT * FROM `wishlists`
                                       WHERE `hash` = "' . $_GET['wishlist'] . '"')
                      ->fetch();
 
-$products = $user->getProducts($wishlist['id']);
+if ($wishlist) {
+    $products = $user->getProducts($wishlist['id']);
+} else {
+    http_response_code(404);
+    ?>
+    <h1>Not found</h1>
+    <p>The requested Wishlist was not found and likely deleted by its creator.</p>
+    <?php
+    die();
+}
 ?>
 
 <main>
