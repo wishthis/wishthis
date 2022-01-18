@@ -11,10 +11,18 @@ use wishthis\Page;
 $page = new page(__FILE__, 'Login');
 
 if (isset($_POST['email'], $_POST['password'])) {
+    $email    = $_POST['email'];
+    $password = sha1($_POST['password']);
+
+    $database->query('UPDATE `users`
+                         SET `last_login` = NOW()
+                       WHERE `email` = "' . $email . '"
+                         AND `password` = "' . $password . '"
+    ;');
     $user = $database->query(
         'SELECT * FROM `users`
-         WHERE `email` = "' . $_POST['email'] . '"
-         AND `password` = "' . sha1($_POST['password']) . '";'
+         WHERE `email` = "' . $email . '"
+         AND `password` = "' . $password . '";'
     )->fetch();
 
     if (false === $user) {
