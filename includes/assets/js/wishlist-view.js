@@ -9,9 +9,11 @@ $(function() {
 
         if (wishlistValue) {
             $('.wishlist-view').removeClass('disabled');
+            $('.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
             $('.wishlist-view').addClass('disabled');
+            $('.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
     });

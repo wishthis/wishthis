@@ -18,7 +18,6 @@ if (isset($_POST['url'], $_POST['wishlist'])) {
 $page = new page(__FILE__, 'Add a product');
 $page->header();
 $page->navigation();
-$user = new User();
 ?>
 <main>
     <div class="ui container">

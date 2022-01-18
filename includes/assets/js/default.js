@@ -1,10 +1,5 @@
 $(function() {
     /**
-     * URL Parameter
-     */
-    const urlParams = new URLSearchParams(window.location.search);
-
-    /**
      * Fomantic UI
      */
     $.fn.api.settings.api = {
@@ -20,6 +15,11 @@ $(function() {
 });
 
 function wishlistRefresh() {
+    /**
+     * URL Parameter
+     */
+    const urlParams = new URLSearchParams(window.location.search);
+
     $('.ui.dropdown.wishlists').api({
         action: 'get wishlists',
         method: 'GET',

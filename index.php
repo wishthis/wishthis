@@ -6,8 +6,6 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-$version_new = '0.1.0';
-
 /**
  * Include
  */
@@ -56,6 +54,11 @@ if (
 session_start();
 
 /**
+ * User
+ */
+$user = new wishthis\User();
+
+/**
  * API
  */
 if (isset($api)) {
@@ -72,10 +75,19 @@ if (!$options) {
 /**
  * Update
  */
+define('VERSION', '0.2.0');
+
 if ($options) {
-    if (-1 === version_compare($options->version, $version_new)) {
+    if (-1 === version_compare($options->version, VERSION)) {
         $options->updateAvailable = true;
     }
+}
+
+/**
+ * Wishlist
+ */
+if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
+    $page = 'wishlist';
 }
 
 /**
@@ -94,5 +106,6 @@ if (file_exists($pagePath)) {
     <h1>Not found</h1>
     <p>The requested URL was not found on this server.</p>
     <?php
+    echo $pagePath;
     die();
 }

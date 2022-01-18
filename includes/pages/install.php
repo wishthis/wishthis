@@ -101,7 +101,7 @@ switch ($step) {
         $database->query('CREATE TABLE `users` (
             `id`       int          PRIMARY KEY AUTO_INCREMENT,
             `email`    varchar(64)  NOT NULL UNIQUE,
-            `password` varchar(128) NOT NULL
+            `password` varchar(128) NOT NULL INDEX
         );');
 
         /**
@@ -122,7 +122,7 @@ switch ($step) {
         $database->query('CREATE TABLE `products` (
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
-            `url`      VARCHAR(255) NOT NULL,
+            `hash`     VARCHAR(255) NOT NULL INDEX,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE

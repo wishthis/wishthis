@@ -9,71 +9,23 @@
 use wishthis\{Page, User};
 use Embed\Embed;
 
-$page = new page(__FILE__, 'View wishlist');
+$page = new page(__FILE__, 'Wishlist');
 $page->header();
 $page->navigation();
 
-$products = array();
+$wishlist = $database->query('SELECT * FROM `wishlists`
+                                      WHERE `hash` = "' . $_GET['wishlist'] . '"')
+                     ->fetch();
 
-/**
- * Get wishlist products
- */
-if (isset($_GET['wishlist'])) {
-    $wishlist = $database->query('SELECT * FROM `wishlists`
-                                   WHERE `id` = "' . $_GET['wishlist'] . '"')
-                         ->fetch();
-    $products = $user->getProducts($_GET['wishlist']);
-}
-
-/**
- * Delete wishlist
- */
-if (isset($_POST['wishlist_delete_id'])) {
-    $database->query('DELETE FROM `wishlists`
-        WHERE id = ' . $_POST['wishlist_delete_id'] . '
-    ;');
-}
+$products = $user->getProducts($wishlist['id']);
 ?>
+
 <main>
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <div class="ui horizontal segments">
-            <div class="ui segment">
-                <h2 class="ui header">Wishlists</h2>
-                <p>Please select a wishlist to view.</p>
-
-                <form class="ui form" method="get">
-                    <input type="hidden" name="page" value="wishlist-view" />
-
-                    <div class="field">
-                        <select class="ui search selection dropdown loading wishlists" name="wishlist">
-                            <option value="">Loading your wishlists...</option>
-                        </select>
-                    </div>
-
-                    <input class="ui primary button wishlist-view disabled" type="submit" value="View" />
-                </form>
-            </div>
-
-            <div class="ui segment">
-                <h2 class="ui header">Options</h1>
-                <p>Wishlist related options.</p>
-
-                <a class="ui small labeled icon button wishlist-share disabled" href="/?wishlist=<?= $wishlist['hash'] ?? '' ?>" target="_blank">
-                    <i class="share icon"></i>
-                    Share
-                </a>
-
-                <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
-                    <input type="hidden" name="wishlist_delete_id" />
-
-                    <button class="ui small labeled red icon button disabled" type="submit">
-                        <i class="trash icon"></i>
-                        Delete
-                    </button>
-                </form>
-            </div>
+        <div class="ui segment">
+            <h2 class="ui header"><?= $wishlist['name'] ?></h2>
         </div>
 
         <?php if (!empty($products)) { ?>
@@ -171,3 +123,4 @@ if (isset($_POST['wishlist_delete_id'])) {
 
 <?php
 $page->footer();
+?>
