@@ -57,7 +57,7 @@ if ($wishlist) {
         </div>
 
         <?php if (!empty($products)) { ?>
-            <div class="ui three column grid wishlist-cards">
+            <div class="ui three column stackable grid wishlist-cards">
 
                 <?php foreach ($products as $product) { ?>
                     <?php

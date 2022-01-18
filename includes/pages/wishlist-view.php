@@ -38,7 +38,7 @@ if (isset($_POST['wishlist_delete_id'])) {
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <div class="ui horizontal segments">
+        <div class="ui horizontal stackable segments">
             <div class="ui segment">
                 <h2 class="ui header">Wishlists</h2>
                 <p>Please select a wishlist to view.</p>
@@ -77,7 +77,7 @@ if (isset($_POST['wishlist_delete_id'])) {
         </div>
 
         <?php if (!empty($products)) { ?>
-            <div class="ui three column grid">
+            <div class="ui three column stackable grid">
 
                 <?php foreach ($products as $product) { ?>
                     <?php
