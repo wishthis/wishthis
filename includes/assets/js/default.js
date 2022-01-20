@@ -3,8 +3,9 @@ $(function() {
      * Fomantic UI
      */
     $.fn.api.settings.api = {
-        'get wishlists'   : '/includes/api/wishlists.php',
-        'delete wishlist' : '/includes/api/wishlists.php'
+        'get wishlists'        : '/includes/api/wishlists.php',
+        'delete wishlist'      : '/includes/api/wishlists.php',
+        'update product status': '/includes/api/products.php',
     };
 
     $('.ui.dropdown.wishlists').dropdown({

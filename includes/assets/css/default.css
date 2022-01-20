@@ -19,3 +19,19 @@
 .ui.progress.nolabel:last-child {
 	margin: 0;
 }
+
+/**
+ * Card
+ */
+.ui.card .header > img {
+	height: 1.25em;
+}
+
+/**
+ * Label
+ */
+p .ui.horizontal.label {
+    margin: 0;
+    cursor: default;
+    user-select: none;
+}
