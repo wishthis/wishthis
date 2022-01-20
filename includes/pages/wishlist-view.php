@@ -6,23 +6,17 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, User};
-use Embed\Embed;
+use wishthis\{Page, User, Wishlist};
 
 $page = new page(__FILE__, 'View wishlist');
 $page->header();
 $page->navigation();
 
-$products = array();
-
 /**
  * Get wishlist products
  */
 if (isset($_GET['wishlist'])) {
-    $wishlist = $database->query('SELECT * FROM `wishlists`
-                                   WHERE `id` = "' . $_GET['wishlist'] . '"')
-                         ->fetch();
-    $products = $user->getProducts($_GET['wishlist']);
+    $wishlist = new Wishlist(intval($_GET['wishlist']));
 }
 
 /**
@@ -60,7 +54,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
-                <a class="ui small labeled icon button wishlist-share <?= !isset($_GET['wishlist']) ? 'disabled' : '' ?>" href="/?wishlist=<?= $wishlist['hash'] ?? '' ?>" target="_blank">
+                <a class="ui small labeled icon button wishlist-share <?= !isset($_GET['wishlist']) ? 'disabled' : '' ?>" href="/?wishlist=<?= $wishlist->data['hash'] ?? '' ?>" target="_blank">
                     <i class="share icon"></i>
                     Share
                 </a>
@@ -76,96 +70,11 @@ if (isset($_POST['wishlist_delete_id'])) {
             </div>
         </div>
 
-        <?php if (!empty($products)) { ?>
-            <div class="ui three column stackable grid">
-
-                <?php foreach ($products as $product) { ?>
-                    <?php
-                    /**
-                     * @link https://github.com/oscarotero/Embed
-                     */
-                    $embed = new Embed();
-                    $info  = $embed->get($product['url']);
-                    ?>
-                        <div class="column">
-                            <div class="ui fluid card">
-
-                                <?php if ($info->image) { ?>
-                                    <div class="image">
-                                        <img src="<?= $info->image ?>" />
-                                    </div>
-                                <?php } ?>
-
-                                <div class="content">
-                                    <?php if ($info->title) { ?>
-                                        <div class="header">
-                                            <?php if ($info->url) { ?>
-                                                <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
-                                            <?php } else { ?>
-                                                <?= $info->title ?>
-                                            <?php } ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if ($info->keywords) { ?>
-                                        <div class="meta">
-                                            <?= $info->keywords ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if ($info->description) { ?>
-                                        <div class="description">
-                                            <?= $info->description ?>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                                <div class="extra content">
-                                    <?php if ($info->publishedTime) { ?>
-                                        <span class="right floated">
-                                            <?= $info->publishedTime ?>
-                                        </span>
-                                    <?php } ?>
-                                    <?php if ($info->favicon) { ?>
-                                        <?php if ($info->providerName) { ?>
-                                            <img src="<?= $info->favicon ?>"
-                                                 title="<?= $info->providerName ?>"
-                                                 alt="<?= $info->providerName ?>"
-                                            />
-                                        <?php } else { ?>
-                                            <img src="<?= $info->favicon ?>" />
-                                        <?php } ?>
-                                    <?php } ?>
-                                </div>
-
-                            </div>
-                        </div>
-                <?php } ?>
-
-            </div>
-        <?php } else { ?>
-            <?php if (isset($_GET['wishlist'])) { ?>
-                <div class="ui icon message">
-                    <i class="info circle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Empty
-                        </div>
-                        <p>The selected wishlist seems to be empty.</p>
-                        <a class="ui mini button" href="/?page=wishlist-product-add">Add a product</a>
-                    </div>
-                </div>
-            <?php } else { ?>
-                <div class="ui icon message">
-                    <i class="info circle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            No wishlist selected
-                        </div>
-                        <p>Select a wishlist to see it's products.</p>
-                    </div>
-                </div>
-            <?php } ?>
-        <?php } ?>
+        <?php
+        if (isset($_GET['wishlist'])) {
+            $wishlist->getCards();
+        }
+        ?>
     </div>
 </main>
 

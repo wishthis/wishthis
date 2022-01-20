@@ -62,7 +62,13 @@ $page->navigation();
             </p>
         </div>
 
-        <?php $wishlist->getCards() ?>
+        <?php
+        $wishlist->getCards(
+            array(
+                'exclude' => array('unavailable'),
+            )
+        );
+        ?>
     </div>
 </main>
 

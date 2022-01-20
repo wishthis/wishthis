@@ -28,6 +28,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response['success'] = true;
         }
         break;
+
+    case 'DELETE':
+        parse_str(file_get_contents("php://input"), $_DELETE);
+
+        if (isset($_DELETE['productID'])) {
+            $database->query('DELETE FROM `products`
+                                    WHERE `id` = ' . $_DELETE['productID'] . '
+            ;');
+
+            $response['success'] = true;
+        }
+        break;
 }
 
 echo json_encode($response);

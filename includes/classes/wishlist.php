@@ -13,8 +13,8 @@ class Wishlist
     private int $id;
     private string $hash;
 
-    public mixed $data;
-    public mixed $products;
+    public array $data;
+    public array $products = array();
 
     public bool $exists = false;
 
@@ -57,14 +57,24 @@ class Wishlist
                                    ->fetchAll();
     }
 
-    public function getCards(): void
+    public function getCards($options = array()): void
     {
-        $products = array_filter($this->products, function ($product) {
-            if ('unavailable' !== $product['status']) {
-                return true;
-            }
-        });
+        /**
+         * Exclude
+         */
+        $exclude = isset($options['exclude']) ? $options['exclude'] : array();
 
+        if ($exclude) {
+            $products = array_filter($this->products, function ($product) use ($exclude) {
+                return !in_array($product['status'], $exclude);
+            });
+        } else {
+            $products = $this->products;
+        }
+
+        /**
+         * Cards
+         */
         if (!empty($products)) { ?>
             <div class="ui three column stackable grid wishlist-cards">
 
@@ -122,7 +132,11 @@ class Wishlist
                                 <?php } ?>
                             </div>
                             <div class="extra content">
-                                <a class="ui tiny button commit">Commit</a>
+                                <?php if ($this->data['user'] === $_SESSION['user']['id']) { ?>
+                                    <a class="ui tiny red button delete">Delete</a>
+                                <?php } else { ?>
+                                    <a class="ui tiny button commit">Commit</a>
+                                <?php } ?>
                             </div>
 
                         </div>
