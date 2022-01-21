@@ -3,6 +3,14 @@
 /vendor/squizlabs/php_codesniffer
 /vendor/dealerdirect/phpcodesniffer-composer-installer
 
+/node_modules/.bin
+/node_modules/errno
+/node_modules/image-size
+/node_modules/make-dir
+/node_modules/mime
+/node_modules/needle
+/node_modules/prr
+/node_modules/sax
 
 /.vscode
 /includes/config/config.php
