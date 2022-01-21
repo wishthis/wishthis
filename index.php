@@ -106,14 +106,14 @@ if ($zip->open($zip_filename)) {
             continue;
         }
 
-        $filepath = $directory_wishthis_github . '/' . $filename;
+        $filepath = __DIR__ . '/' . $filename;
+        $filepath_github = $directory_wishthis_github . '/' . $filename;
 
-        if (is_dir($filepath)) {
+        if (is_dir($filepath) && is_dir($filepath_github)) {
             delete_directory($filepath);
         }
 
-        echo 'reanme: ' . $filepath . ' to ' . __DIR__ . '/' . $filename . '<br>';
-        // rename($filepath, __DIR__ . '/' . $filename);
+        rename($filepath_github, $filepath);
     }
 }
 

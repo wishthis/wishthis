@@ -16,16 +16,13 @@ function delete_directory(string $directoryToDelete)
         $filepath = $directoryToDelete . '/' . $filename;
 
         if (is_file($filepath) && !is_dir($filepath)) {
-            echo 'unlink: ' . $filepath . '<br>';
-            // unlink($filepath);
+            unlink($filepath);
         }
 
         if (is_dir($filepath)) {
-            echo 'delete_directory: ' . $filepath . '<br>';
-            // delete_directory($filepath);
+            delete_directory($filepath);
         }
     }
 
-    echo 'rmdir (final): ' . $filepath . '<br>';
-    // rmdir($directoryToDelete);
+    rmdir($directoryToDelete);
 }
