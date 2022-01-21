@@ -15,7 +15,7 @@ function delete_directory(string $directoryToDelete)
 
         $filepath = $directoryToDelete . '/' . $filename;
 
-        if (is_file($filepath)) {
+        if (is_file($filepath) && !is_dir($filepath)) {
             unlink($filepath);
         }
 
