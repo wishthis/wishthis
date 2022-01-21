@@ -77,6 +77,46 @@ if ($options) {
 /**
  * Update
  */
+use Github\Client;
+
+$client  = new Client();
+$release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
+$tag     = $release['tag_name'];
+
+$filename = __DIR__ . '/' . $tag . '.zip';
+
+/** Download */
+file_put_contents(
+    $filename,
+    file_get_contents('https://github.com/grandeljay/wishthis/archive/refs/tags/' . $tag . '.zip')
+);
+
+/** Decompress */
+$zip = new ZipArchive();
+
+if ($zip->open($filename)) {
+    $zip->extractTo(__DIR__);
+    $zip->close();
+
+    $directory_old = __DIR__ . '/wishthis-0.3.0';
+    $directory_new = __DIR__;
+
+    rename($directory_old, $directory_new);
+}
+
+/** Delete */
+unlink($filename);
+
+echo '<pre>';
+var_Dump($release);
+echo '</pre>';
+die();
+
+$releases = json_decode(file_get_contents('https://api.github.com/repos/grandeljay/wishthis/releases'));
+$version  = $releases[0]->tag_name;
+
+die($version);
+
 define('VERSION', '0.3.0');
 
 if ($options) {
