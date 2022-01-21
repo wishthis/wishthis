@@ -82,6 +82,7 @@ use Github\Client;
 $client  = new Client();
 $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
 $tag     = $release['tag_name'];
+$version = str_replace('v', '', $tag);
 
 $filename = __DIR__ . '/' . $tag . '.zip';
 
@@ -98,8 +99,20 @@ if ($zip->open($filename)) {
     $zip->extractTo(__DIR__);
     $zip->close();
 
-    $directory_old = __DIR__ . '/wishthis-0.3.0';
-    $directory_new = __DIR__;
+    $directory_wishthis_github = __DIR__ . '/wishthis-' . $version;
+
+    foreach (scandir($directory_wishthis_github) as $filename) {
+        if (in_array($filename, array('.', '..'))) {
+            continue;
+        }
+
+        $filepath = __DIR__ . '/' . $filename;
+        echo $filepath . '<br>';
+
+        if (is_file($filepath)) {
+            rename($filepath, __DIR__ . '/' . $filename);
+        }
+    }
 
     rename($directory_old, $directory_new);
 }
