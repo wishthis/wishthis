@@ -1,11 +1,5 @@
-/vendor/*
-!/vendor/autoload.php
-!/vendor/embed
-!/vendor/embed/embed
-!/vendor/laminas
-!/vendor/laminas/laminas-diactoros
-!/vendor/grandel
-!/vendor/grandel/include-directory
+/vendor/squizlabs/php_codesniffer
+/vendor/dealerdirect/phpcodesniffer-composer-installer
 
 /node_modules/*
 !/node_modules/jquery
