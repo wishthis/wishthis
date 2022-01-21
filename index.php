@@ -106,10 +106,10 @@ if ($zip->open($zip_filename)) {
             continue;
         }
 
-        $filepath = __DIR__ . '/' . $filename;
-        echo $filepath . '<br>';
+        $filepath = $directory_wishthis_github . '/' . $filename;
 
         if (is_file($filepath)) {
+            echo 'Rename ' . $filepath . ' to ' . __DIR__ . '/' . $filename . '<br>';
             rename($filepath, __DIR__ . '/' . $filename);
         }
     }
