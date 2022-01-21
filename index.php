@@ -79,61 +79,13 @@ if ($options) {
  */
 use Github\Client;
 
-$client  = new Client();
-$release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
-$tag     = $release['tag_name'];
-$version = str_replace('v', '', $tag);
-
-$zip_filename = __DIR__ . '/' . $tag . '.zip';
-
-/** Download */
-file_put_contents(
-    $zip_filename,
-    file_get_contents('https://github.com/grandeljay/wishthis/archive/refs/tags/' . $tag . '.zip')
-);
-
-/** Decompress */
-$zip = new ZipArchive();
-
-if ($zip->open($zip_filename)) {
-    $zip->extractTo(__DIR__);
-    $zip->close();
-
-    $directory_wishthis_github = __DIR__ . '/wishthis-' . $version;
-
-    foreach (scandir($directory_wishthis_github) as $filename) {
-        if (in_array($filename, array('.', '..', 'config'))) {
-            continue;
-        }
-
-        $filepath = __DIR__ . '/' . $filename;
-        $filepath_github = $directory_wishthis_github . '/' . $filename;
-
-        if (is_dir($filepath) && is_dir($filepath_github)) {
-            delete_directory($filepath);
-        }
-
-        rename($filepath_github, $filepath);
-    }
-}
-
-/** Delete */
-unlink($zip_filename);
-
-echo '<pre>';
-var_Dump($release);
-echo '</pre>';
-die();
-
-$releases = json_decode(file_get_contents('https://api.github.com/repos/grandeljay/wishthis/releases'));
-$version  = $releases[0]->tag_name;
-
-die($version);
-
-define('VERSION', '0.3.0');
-
 if ($options) {
-    if (-1 === version_compare($options->version, VERSION)) {
+    $client  = new Client();
+    $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
+    $tag     = $release['tag_name'];
+    $version = str_replace('v', '', $tag);
+
+    if (-1 === version_compare($options->version, $version)) {
         $options->updateAvailable = true;
     }
 }
