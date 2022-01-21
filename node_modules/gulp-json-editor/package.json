@@ -1,0 +1,39 @@
+{
+  "name": "gulp-json-editor",
+  "version": "2.5.6",
+  "description": "A gulp plugin to edit JSON objects",
+  "license": "MIT",
+  "main": "./index.js",
+  "homepage": "https://github.com/rejas/gulp-json-editor#readme",
+  "bugs": "https://github.com/rejas/gulp-json-editor/issues",
+  "repository": "https://github.com/rejas/gulp-json-editor.git",
+  "author": {
+    "name": "rejas",
+    "url": "https://github.com/rejas"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "detect-indent": "^6.0.0",
+    "js-beautify": "^1.13.13",
+    "plugin-error": "^1.0.1",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-gulp": "^5.0.1",
+    "gulp": "^4.0.2",
+    "mocha": "^8.4.0",
+    "should": "^13.2.3",
+    "vinyl": "^2.2.1"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "json"
+  ],
+  "scripts": {
+    "eslint": "eslint *.js test/*.js",
+    "eslint:fix": "eslint --fix *.js test/*.js",
+    "test": "mocha"
+  }
+}

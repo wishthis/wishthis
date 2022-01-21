@@ -1,0 +1,38 @@
+{
+  "name": "rework-import",
+  "version": "2.1.0",
+  "description": "A rework plugin to read and inline CSS files via @import",
+  "license": "MIT",
+  "repository": "reworkcss/rework-import",
+  "authors": [
+    "Kevin Mårtensson <kevinmartensson@gmail.com>",
+    "Jason Campbell <jason@js.la>",
+    "Maxime Thirouin <m@moox.io>"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "css",
+    "import",
+    "media",
+    "rework"
+  ],
+  "dependencies": {
+    "css": "^2.0.0",
+    "globby": "^2.0.0",
+    "parse-import": "^2.0.0",
+    "url-regex": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4",
+    "css-whitespace": "^1.1.0",
+    "rework": "^1.0.0"
+  }
+}

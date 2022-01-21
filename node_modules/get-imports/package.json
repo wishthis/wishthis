@@ -1,0 +1,33 @@
+{
+  "name": "get-imports",
+  "version": "1.0.0",
+  "description": "Get CSS @imports from a string",
+  "license": "MIT",
+  "repository": "kevva/get-import",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "css",
+    "import",
+    "string"
+  ],
+  "dependencies": {
+    "array-uniq": "^1.0.1",
+    "import-regex": "^1.1.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4"
+  }
+}

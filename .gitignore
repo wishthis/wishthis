@@ -3,9 +3,6 @@
 /vendor/squizlabs/php_codesniffer
 /vendor/dealerdirect/phpcodesniffer-composer-installer
 
-/node_modules/*
-!/node_modules/jquery
-!/node_modules/fomantic-ui
 
 /.vscode
 /includes/config/config.php

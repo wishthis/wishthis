@@ -1,0 +1,34 @@
+{
+  "name": "rework-plugin-function",
+  "version": "1.0.2",
+  "description": "function() plugin for rework, formerly included in core",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require should --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/reworkcss/rework-plugin-function.git"
+  },
+  "keywords": [
+    "browser",
+    "server",
+    "css",
+    "preprocess",
+    "transform"
+  ],
+  "author": "reworkcss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reworkcss/rework-plugin-function/issues"
+  },
+  "homepage": "https://github.com/reworkcss/rework-plugin-function",
+  "devDependencies": {
+    "should": "^3.1.3",
+    "mocha": "^1.17.1",
+    "rework": "^1.0.0"
+  },
+  "dependencies": {
+    "rework-visit": "^1.0.0"
+  }
+}
