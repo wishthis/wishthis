@@ -1,5 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Conform to PSR-12 coding standard
-*.php eol=lf
+Force LF endings
+* eol=lf
