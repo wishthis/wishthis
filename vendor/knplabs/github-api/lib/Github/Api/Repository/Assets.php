@@ -3,7 +3,6 @@
 namespace Github\Api\Repository;
 
 use Github\Api\AbstractApi;
-use Github\Api\AcceptHeaderTrait;
 use Github\Exception\ErrorException;
 use Github\Exception\MissingArgumentException;
 
@@ -14,8 +13,6 @@ use Github\Exception\MissingArgumentException;
  */
 class Assets extends AbstractApi
 {
-    use AcceptHeaderTrait;
-
     /**
      * Get all release's assets in selected repository
      * GET /repos/:owner/:repo/releases/:id/assets.
@@ -39,14 +36,10 @@ class Assets extends AbstractApi
      * @param string $repository the name of the repo
      * @param int    $id         the id of the asset
      *
-     * @return array|string
+     * @return array
      */
-    public function show($username, $repository, $id, bool $returnBinaryContent = false)
+    public function show($username, $repository, $id)
     {
-        if ($returnBinaryContent) {
-            $this->acceptHeaderValue = 'application/octet-stream';
-        }
-
         return $this->get('/repos/'.rawurlencode($username).'/'.rawurlencode($repository).'/releases/assets/'.$id);
     }
 

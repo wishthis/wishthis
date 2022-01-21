@@ -29,7 +29,7 @@ interface CacheItemPoolInterface
      * @return CacheItemInterface
      *   The corresponding Cache Item.
      */
-    public function getItem(string $key);
+    public function getItem($key);
 
     /**
      * Returns a traversable set of cache items.
@@ -47,7 +47,7 @@ interface CacheItemPoolInterface
      *   key is not found. However, if no keys are specified then an empty
      *   traversable MUST be returned instead.
      */
-    public function getItems(array $keys = []);
+    public function getItems(array $keys = array());
 
     /**
      * Confirms if the cache contains specified cache item.
@@ -66,7 +66,7 @@ interface CacheItemPoolInterface
      * @return bool
      *   True if item exists in the cache, false otherwise.
      */
-    public function hasItem(string $key);
+    public function hasItem($key);
 
     /**
      * Deletes all items in the pool.
@@ -89,14 +89,14 @@ interface CacheItemPoolInterface
      * @return bool
      *   True if the item was successfully removed. False if there was an error.
      */
-    public function deleteItem(string $key);
+    public function deleteItem($key);
 
     /**
      * Removes multiple items from the pool.
      *
      * @param string[] $keys
      *   An array of keys that should be removed from the pool.
-     *
+
      * @throws InvalidArgumentException
      *   If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
      *   MUST be thrown.

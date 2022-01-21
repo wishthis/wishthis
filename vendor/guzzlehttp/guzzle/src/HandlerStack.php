@@ -9,13 +9,11 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Creates a composed Guzzle handler function by stacking middlewares on top of
  * an HTTP handler function.
- *
- * @final
  */
 class HandlerStack
 {
     /**
-     * @var (callable(RequestInterface, array): PromiseInterface)|null
+     * @var null|callable(RequestInterface, array): PromiseInterface
      */
     private $handler;
 
@@ -25,7 +23,7 @@ class HandlerStack
     private $stack = [];
 
     /**
-     * @var (callable(RequestInterface, array): PromiseInterface)|null
+     * @var null|callable(RequestInterface, array): PromiseInterface
      */
     private $cached;
 
@@ -40,9 +38,9 @@ class HandlerStack
      * The returned handler stack can be passed to a client in the "handler"
      * option.
      *
-     * @param (callable(RequestInterface, array): PromiseInterface)|null $handler HTTP handler function to use with the stack. If no
-     *                                                                            handler is provided, the best handler for your
-     *                                                                            system will be utilized.
+     * @param null|callable(RequestInterface, array): PromiseInterface $handler HTTP handler function to use with the stack. If no
+     *                                                                          handler is provided, the best handler for your
+     *                                                                          system will be utilized.
      */
     public static function create(?callable $handler = null): self
     {
@@ -56,7 +54,7 @@ class HandlerStack
     }
 
     /**
-     * @param (callable(RequestInterface, array): PromiseInterface)|null $handler Underlying HTTP handler.
+     * @param null|callable(RequestInterface, array): PromiseInterface $handler Underlying HTTP handler.
      */
     public function __construct(callable $handler = null)
     {
@@ -180,10 +178,6 @@ class HandlerStack
      */
     public function remove($remove): void
     {
-        if (!is_string($remove) && !is_callable($remove)) {
-            trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a callable or string to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
-        }
-
         $this->cached = null;
         $idx = \is_callable($remove) ? 0 : 1;
         $this->stack = \array_values(\array_filter(
@@ -255,7 +249,7 @@ class HandlerStack
     /**
      * Provides a debug string for a given callable.
      *
-     * @param callable|string $fn Function to write as a string.
+     * @param callable $fn Function to write as a string.
      */
     private function debugCallable($fn): string
     {

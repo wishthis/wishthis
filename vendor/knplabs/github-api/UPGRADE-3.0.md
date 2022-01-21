@@ -13,7 +13,7 @@
     * `Github\HttpClient\Plugin\History`
     * `Github\HttpClient\Plugin\PathPrepend`
 
-### Authentication methods
+### Authetication methods
 
 * `Github\Client::AUTH_URL_TOKEN` use `Github\Client::AUTH_ACCESS_TOKEN` instead.
 * `Github\Client::AUTH_URL_CLIENT_ID` use `Github\Client::AUTH_CLIENT_ID` instead.

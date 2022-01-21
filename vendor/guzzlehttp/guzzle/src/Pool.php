@@ -2,7 +2,6 @@
 
 namespace GuzzleHttp;
 
-use GuzzleHttp\Promise as P;
 use GuzzleHttp\Promise\EachPromise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\PromisorInterface;
@@ -18,8 +17,6 @@ use Psr\Http\Message\RequestInterface;
  * When a function is yielded by the iterator, the function is provided the
  * "request_options" array that should be merged on top of any existing
  * options, and the function MUST then return a wait-able promise.
- *
- * @final
  */
 class Pool implements PromisorInterface
 {
@@ -38,8 +35,11 @@ class Pool implements PromisorInterface
      *                                  - fulfilled: (callable) Function to invoke when a request completes.
      *                                  - rejected: (callable) Function to invoke when a request is rejected.
      */
-    public function __construct(ClientInterface $client, $requests, array $config = [])
-    {
+    public function __construct(
+        ClientInterface $client,
+        $requests,
+        array $config = []
+    ) {
         if (!isset($config['concurrency'])) {
             $config['concurrency'] = 25;
         }
@@ -51,7 +51,7 @@ class Pool implements PromisorInterface
             $opts = [];
         }
 
-        $iterable = P\Create::iterFor($requests);
+        $iterable = \GuzzleHttp\Promise\iter_for($requests);
         $requests = static function () use ($iterable, $client, $opts) {
             foreach ($iterable as $key => $rfn) {
                 if ($rfn instanceof RequestInterface) {
@@ -59,7 +59,10 @@ class Pool implements PromisorInterface
                 } elseif (\is_callable($rfn)) {
                     yield $key => $rfn($opts);
                 } else {
-                    throw new \InvalidArgumentException('Each value yielded by the iterator must be a Psr7\Http\Message\RequestInterface or a callable that returns a promise that fulfills with a Psr7\Message\Http\ResponseInterface object.');
+                    throw new \InvalidArgumentException('Each value yielded by '
+                        . 'the iterator must be a Psr7\Http\Message\RequestInterface '
+                        . 'or a callable that returns a promise that fulfills '
+                        . 'with a Psr7\Message\Http\ResponseInterface object.');
                 }
             }
         };
@@ -93,8 +96,11 @@ class Pool implements PromisorInterface
      *
      * @throws \InvalidArgumentException if the event format is incorrect.
      */
-    public static function batch(ClientInterface $client, $requests, array $options = []): array
-    {
+    public static function batch(
+        ClientInterface $client,
+        $requests,
+        array $options = []
+    ): array {
         $res = [];
         self::cmpCallback($options, 'fulfilled', $res);
         self::cmpCallback($options, 'rejected', $res);

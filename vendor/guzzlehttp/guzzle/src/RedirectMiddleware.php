@@ -14,8 +14,6 @@ use Psr\Http\Message\UriInterface;
  *
  * Apply this middleware like other middleware using
  * {@see \GuzzleHttp\Middleware::redirect()}.
- *
- * @final
  */
 class RedirectMiddleware
 {
@@ -77,19 +75,23 @@ class RedirectMiddleware
     /**
      * @return ResponseInterface|PromiseInterface
      */
-    public function checkRedirect(RequestInterface $request, array $options, ResponseInterface $response)
-    {
+    public function checkRedirect(
+        RequestInterface $request,
+        array $options,
+        ResponseInterface $response
+    ) {
         if (\strpos((string) $response->getStatusCode(), '3') !== 0
             || !$response->hasHeader('Location')
         ) {
             return $response;
         }
 
-        $this->guardMax($request, $response, $options);
+        $this->guardMax($request, $options);
         $nextRequest = $this->modifyRequest($request, $options, $response);
 
         if (isset($options['allow_redirects']['on_redirect'])) {
-            ($options['allow_redirects']['on_redirect'])(
+            \call_user_func(
+                $options['allow_redirects']['on_redirect'],
                 $request,
                 $response,
                 $nextRequest->getUri()
@@ -136,7 +138,7 @@ class RedirectMiddleware
      *
      * @throws TooManyRedirectsException Too many redirects.
      */
-    private function guardMax(RequestInterface $request, ResponseInterface $response, array &$options): void
+    private function guardMax(RequestInterface $request, array &$options): void
     {
         $current = $options['__redirect_count']
             ?? 0;
@@ -144,12 +146,18 @@ class RedirectMiddleware
         $max = $options['allow_redirects']['max'];
 
         if ($options['__redirect_count'] > $max) {
-            throw new TooManyRedirectsException("Will not follow more than {$max} redirects", $request, $response);
+            throw new TooManyRedirectsException(
+                "Will not follow more than {$max} redirects",
+                $request
+            );
         }
     }
 
-    public function modifyRequest(RequestInterface $request, array $options, ResponseInterface $response): RequestInterface
-    {
+    public function modifyRequest(
+        RequestInterface $request,
+        array $options,
+        ResponseInterface $response
+    ): RequestInterface {
         // Request modifications to apply.
         $modify = [];
         $protocols = $options['allow_redirects']['protocols'];
@@ -161,10 +169,7 @@ class RedirectMiddleware
         if ($statusCode == 303 ||
             ($statusCode <= 302 && !$options['allow_redirects']['strict'])
         ) {
-            $safeMethods = ['GET', 'HEAD', 'OPTIONS'];
-            $requestMethod = $request->getMethod();
-
-            $modify['method'] = in_array($requestMethod, $safeMethods) ? $requestMethod : 'GET';
+            $modify['method'] = 'GET';
             $modify['body'] = '';
         }
 
@@ -175,7 +180,7 @@ class RedirectMiddleware
         }
 
         $modify['uri'] = $uri;
-        Psr7\Message::rewindBody($request);
+        Psr7\rewind_body($request);
 
         // Add the Referer header if it is told to do so and only
         // add the header if we are not redirecting from https to http.
@@ -193,14 +198,17 @@ class RedirectMiddleware
             $modify['remove_headers'][] = 'Authorization';
         }
 
-        return Psr7\Utils::modifyRequest($request, $modify);
+        return Psr7\modify_request($request, $modify);
     }
 
     /**
      * Set the appropriate URL on the request based on the location header
      */
-    private function redirectUri(RequestInterface $request, ResponseInterface $response, array $protocols): UriInterface
-    {
+    private function redirectUri(
+        RequestInterface $request,
+        ResponseInterface $response,
+        array $protocols
+    ): UriInterface {
         $location = Psr7\UriResolver::resolve(
             $request->getUri(),
             new Psr7\Uri($response->getHeaderLine('Location'))
@@ -208,7 +216,15 @@ class RedirectMiddleware
 
         // Ensure that the redirect URI is allowed based on the protocols.
         if (!\in_array($location->getScheme(), $protocols)) {
-            throw new BadResponseException(\sprintf('Redirect URI, %s, does not use one of the allowed redirect protocols: %s', $location, \implode(', ', $protocols)), $request, $response);
+            throw new BadResponseException(
+                \sprintf(
+                    'Redirect URI, %s, does not use one of the allowed redirect protocols: %s',
+                    $location,
+                    \implode(', ', $protocols)
+                ),
+                $request,
+                $response
+            );
         }
 
         return $location;

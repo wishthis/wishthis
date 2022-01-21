@@ -73,19 +73,15 @@ class Client
      * Authenticate using a client_id/client_secret combination.
      *
      * @var string
-     *
-     * @deprecated Use the AuthMethod const
      */
-    const AUTH_CLIENT_ID = AuthMethod::CLIENT_ID;
+    const AUTH_CLIENT_ID = 'client_id_header';
 
     /**
      * Authenticate using a GitHub access token.
      *
      * @var string
-     *
-     * @deprecated Use the AuthMethod const
      */
-    const AUTH_ACCESS_TOKEN = AuthMethod::ACCESS_TOKEN;
+    const AUTH_ACCESS_TOKEN = 'access_token_header';
 
     /**
      * Constant for authentication method.
@@ -94,10 +90,8 @@ class Client
      * to the API.
      *
      * @var string
-     *
-     * @deprecated Use the AuthMethod const
      */
-    const AUTH_JWT = AuthMethod::JWT;
+    const AUTH_JWT = 'jwt';
 
     /**
      * @var string
@@ -125,7 +119,6 @@ class Client
     {
         $this->responseHistory = new History();
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
-        $this->apiVersion = $apiVersion ?: 'v3';
 
         $builder->addPlugin(new GithubExceptionThrower());
         $builder->addPlugin(new Plugin\HistoryPlugin($this->responseHistory));
@@ -133,8 +126,10 @@ class Client
         $builder->addPlugin(new Plugin\AddHostPlugin(Psr17FactoryDiscovery::findUriFactory()->createUri('https://api.github.com')));
         $builder->addPlugin(new Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'php-github-api (http://github.com/KnpLabs/php-github-api)',
-            'Accept' => sprintf('application/vnd.github.%s+json', $this->apiVersion),
         ]));
+
+        $this->apiVersion = $apiVersion ?: 'v3';
+        $builder->addHeaderValue('Accept', sprintf('application/vnd.github.%s+json', $this->apiVersion));
 
         if ($enterpriseUrl) {
             $this->setEnterpriseUrl($enterpriseUrl);
@@ -319,7 +314,7 @@ class Client
      */
     public function authenticate($tokenOrLogin, $password = null, $authMethod = null): void
     {
-        if (null === $authMethod && (AuthMethod::JWT === $password || AuthMethod::ACCESS_TOKEN === $password)) {
+        if (null === $authMethod && (self::AUTH_JWT === $password || self::AUTH_ACCESS_TOKEN === $password)) {
             $authMethod = $password;
             $password = null;
         }

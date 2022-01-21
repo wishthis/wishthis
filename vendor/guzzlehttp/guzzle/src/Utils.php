@@ -49,7 +49,9 @@ final class Utils
 
         foreach ($lines as $line) {
             $parts = \explode(':', $line, 2);
-            $headers[\trim($parts[0])][] = isset($parts[1]) ? \trim($parts[1]) : null;
+            $headers[\trim($parts[0])][] = isset($parts[1])
+                ? \trim($parts[1])
+                : null;
         }
 
         return $headers;
@@ -71,7 +73,12 @@ final class Utils
             return \STDOUT;
         }
 
-        return \GuzzleHttp\Psr7\Utils::tryFopen('php://output', 'w');
+        $resource = \fopen('php://output', 'w');
+        if (false === $resource) {
+            throw new \RuntimeException('Can not open php output for writing to debug the resource.');
+        }
+
+        return $resource;
     }
 
     /**
@@ -99,7 +106,8 @@ final class Utils
                 ? Proxy::wrapStreaming($handler, new StreamHandler())
                 : new StreamHandler();
         } elseif (!$handler) {
-            throw new \RuntimeException('GuzzleHttp requires cURL, the allow_url_fopen ini setting, or a custom HTTP handler.');
+            throw new \RuntimeException('GuzzleHttp requires cURL, the '
+                . 'allow_url_fopen ini setting, or a custom HTTP handler.');
         }
 
         return $handler;
@@ -125,8 +133,6 @@ final class Utils
      * Note: the result of this function is cached for subsequent calls.
      *
      * @throws \RuntimeException if no bundle can be found.
-     *
-     * @deprecated Utils::defaultCaBundle will be removed in guzzlehttp/guzzle:8.0. This method is not needed in PHP 5.6+.
      */
     public static function defaultCaBundle(): string
     {
@@ -225,20 +231,20 @@ EOT
         }
 
         // Strip port if present.
-        [$host] = \explode(':', $host, 2);
+        if (\strpos($host, ':')) {
+            /** @var string[] $hostParts will never be false because of the checks above */
+            $hostParts = \explode($host, ':', 2);
+            $host = $hostParts[0];
+        }
 
         foreach ($noProxyArray as $area) {
             // Always match on wildcards.
             if ($area === '*') {
                 return true;
-            }
-
-            if (empty($area)) {
+            } elseif (empty($area)) {
                 // Don't match on empty values.
                 continue;
-            }
-
-            if ($area === $host) {
+            } elseif ($area === $host) {
                 // Exact matches.
                 return true;
             }
@@ -272,7 +278,9 @@ EOT
     {
         $data = \json_decode($json, $assoc, $depth, $options);
         if (\JSON_ERROR_NONE !== \json_last_error()) {
-            throw new InvalidArgumentException('json_decode error: ' . \json_last_error_msg());
+            throw new InvalidArgumentException(
+                'json_decode error: ' . \json_last_error_msg()
+            );
         }
 
         return $data;
@@ -293,7 +301,9 @@ EOT
     {
         $json = \json_encode($value, $options, $depth);
         if (\JSON_ERROR_NONE !== \json_last_error()) {
-            throw new InvalidArgumentException('json_encode error: ' . \json_last_error_msg());
+            throw new InvalidArgumentException(
+                'json_encode error: ' . \json_last_error_msg()
+            );
         }
 
         /** @var string */
@@ -325,7 +335,7 @@ EOT
             if ($asciiHost === false) {
                 $errorBitSet = $info['errors'] ?? 0;
 
-                $errorConstants = array_filter(array_keys(get_defined_constants()), static function (string $name): bool {
+                $errorConstants = array_filter(array_keys(get_defined_constants()), static function ($name) {
                     return substr($name, 0, 11) === 'IDNA_ERROR_';
                 });
 

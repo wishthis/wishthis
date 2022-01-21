@@ -2,7 +2,7 @@
 
 namespace Github\HttpClient\Plugin;
 
-use Github\AuthMethod;
+use Github\Client;
 use Github\Exception\RuntimeException;
 use Http\Client\Common\Plugin;
 use Http\Promise\Promise;
@@ -58,11 +58,11 @@ final class Authentication implements Plugin
     private function getAuthorizationHeader(): string
     {
         switch ($this->method) {
-            case AuthMethod::CLIENT_ID:
+            case Client::AUTH_CLIENT_ID:
                 return sprintf('Basic %s', base64_encode($this->tokenOrLogin.':'.$this->password));
-            case AuthMethod::ACCESS_TOKEN:
+            case Client::AUTH_ACCESS_TOKEN:
                 return sprintf('token %s', $this->tokenOrLogin);
-            case AuthMethod::JWT:
+            case Client::AUTH_JWT:
                 return sprintf('Bearer %s', $this->tokenOrLogin);
             default:
                 throw new RuntimeException(sprintf('%s not yet implemented', $this->method));

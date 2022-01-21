@@ -2,8 +2,6 @@
 
 namespace Http\Factory\Guzzle;
 
-use GuzzleHttp\Psr7\Stream;
-use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -11,16 +9,18 @@ class StreamFactory implements StreamFactoryInterface
 {
     public function createStream(string $content = ''): StreamInterface
     {
-        return Utils::streamFor($content);
+        return \GuzzleHttp\Psr7\stream_for($content);
     }
 
     public function createStreamFromFile(string $file, string $mode = 'r'): StreamInterface
     {
-        return $this->createStreamFromResource(Utils::tryFopen($file, $mode));
+        $resource = \GuzzleHttp\Psr7\try_fopen($file, $mode);
+
+        return \GuzzleHttp\Psr7\stream_for($resource);
     }
 
     public function createStreamFromResource($resource): StreamInterface
     {
-        return new Stream($resource);
+        return \GuzzleHttp\Psr7\stream_for($resource);
     }
 }

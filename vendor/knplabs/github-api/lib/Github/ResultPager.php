@@ -86,7 +86,7 @@ class ResultPager implements ResultPagerInterface
         $api = $closure($api);
         $result = $api->$method(...$parameters);
 
-        $this->postFetch(true);
+        $this->postFetch();
 
         return $result;
     }
@@ -130,13 +130,9 @@ class ResultPager implements ResultPagerInterface
     /**
      * {@inheritdoc}
      */
-    public function postFetch(/* $skipDeprecation = false */): void
+    public function postFetch(): void
     {
-        if (func_num_args() === 0 || (func_num_args() > 0 && false === func_get_arg(0))) {
-            trigger_deprecation('KnpLabs/php-github-api', '3.2', 'The "%s" method is deprecated and will be removed.', __METHOD__);
-        }
-
-        $this->setPagination();
+        $this->pagination = ResponseMediator::getPagination($this->client->getLastResponse());
     }
 
     /**
@@ -200,13 +196,8 @@ class ResultPager implements ResultPagerInterface
 
         $result = $this->client->getHttpClient()->get($this->pagination[$key]);
 
-        $this->postFetch(true);
+        $this->postFetch();
 
         return ResponseMediator::getContent($result);
-    }
-
-    private function setPagination(): void
-    {
-        $this->pagination = ResponseMediator::getPagination($this->client->getLastResponse());
     }
 }
