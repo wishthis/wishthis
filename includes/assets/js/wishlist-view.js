@@ -9,10 +9,16 @@ $(function() {
 
         if (wishlistValue) {
             $('.wishlist-view').removeClass('disabled');
+        } else {
+            $('.wishlist-view').addClass('disabled');
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (wishlistValue === urlParams.get('wishlist')) {
             $('.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
-            $('.wishlist-view').addClass('disabled');
             $('.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }

@@ -77,7 +77,7 @@ if ($options) {
 /**
  * Update
  */
-define('VERSION', '0.2.0');
+define('VERSION', '0.3.0');
 
 if ($options) {
     if (-1 === version_compare($options->version, VERSION)) {

@@ -3,15 +3,143 @@ $(function() {
      * Fomantic UI
      */
     $.fn.api.settings.api = {
-        'get wishlists'   : '/includes/api/wishlists.php',
-        'delete wishlist' : '/includes/api/wishlists.php'
+        'get wishlists'        : '/includes/api/wishlists.php',
+        'delete wishlist'      : '/includes/api/wishlists.php',
+        'update product status': '/includes/api/products.php',
+        'delete product'       : '/includes/api/products.php',
     };
 
     $('.ui.dropdown.wishlists').dropdown({
         filterRemoteData: true
     });
 
+    /**
+     * Refresh Wishlist
+     */
     wishlistRefresh();
+
+    /**
+     * Commit to Product
+     */
+     $('.ui.button.commit').on('click', function() {
+        var button = $(this);
+        var card   = button.closest('.ui.card');
+        var column = card.closest('.column');
+
+        $('body')
+        .modal({
+            title:    'Really commit?',
+            content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist anymore.',
+            class:    'tiny',
+            actions:  [
+                {
+                    text: 'Yes, commit',
+                    class: 'approve primary'
+                },
+                {
+                    text: 'Cancel',
+                    class: ''
+                }
+            ],
+            onApprove: function() {
+                /**
+                 * Update product status
+                 */
+                button.api({
+                    action: 'update product status',
+                    method: 'PUT',
+                    data: {
+                        productID: card.data('id'),
+                        productStatus: 'unavailable'
+                    },
+                    on: 'now',
+                    onResponse: function(response) {
+                        return response;
+                    },
+                    successTest: function(response) {
+                        return response.success || false;
+                    },
+                    onComplete: function(response, element, xhr) {
+
+                    },
+                    onSuccess: function(response, element, xhr) {
+                        column.fadeOut();
+                    },
+                    onFailure: function(response, element, xhr) {
+
+                    },
+                    onError: function(errorMessage, element, xhr) {
+
+                    },
+                    onAbort: function(errorMessage, element, xhr) {
+
+                    }
+                });
+            }
+        })
+        .modal('show');
+    });
+
+    /**
+     * Delete Product
+     */
+     $('.ui.button.delete').on('click', function() {
+        var button = $(this);
+        var card   = button.closest('.ui.card');
+        var column = card.closest('.column');
+
+        $('body')
+        .modal({
+            title:    'Really delete?',
+            content:  'Would you really like to delete to this product? It will be gone forever.',
+            class:    'tiny',
+            actions:  [
+                {
+                    text: 'Yes, delete',
+                    class: 'approve primary'
+                },
+                {
+                    text: 'Cancel',
+                    class: ''
+                }
+            ],
+            onApprove: function() {
+                /**
+                 * Delete product
+                 */
+                button.api({
+                    action: 'delete product',
+                    method: 'DELETE',
+                    data: {
+                        productID: card.data('id'),
+                    },
+                    on: 'now',
+                    onResponse: function(response) {
+                        return response;
+                    },
+                    successTest: function(response) {
+                        return response.success || false;
+                    },
+                    onComplete: function(response, element, xhr) {
+
+                    },
+                    onSuccess: function(response, element, xhr) {
+                        column.fadeOut();
+                    },
+                    onFailure: function(response, element, xhr) {
+
+                    },
+                    onError: function(errorMessage, element, xhr) {
+
+                    },
+                    onAbort: function(errorMessage, element, xhr) {
+
+                    }
+                });
+            }
+        })
+        .modal('show');
+    });
 });
 
 function wishlistRefresh() {
