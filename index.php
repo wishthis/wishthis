@@ -102,7 +102,7 @@ if ($zip->open($zip_filename)) {
     $directory_wishthis_github = __DIR__ . '/wishthis-' . $version;
 
     foreach (scandir($directory_wishthis_github) as $filename) {
-        if (in_array($filename, array('.', '..'))) {
+        if (in_array($filename, array('.', '..', 'config'))) {
             continue;
         }
 
