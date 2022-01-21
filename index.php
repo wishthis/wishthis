@@ -84,18 +84,18 @@ $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
 $tag     = $release['tag_name'];
 $version = str_replace('v', '', $tag);
 
-$filename = __DIR__ . '/' . $tag . '.zip';
+$zip_filename = __DIR__ . '/' . $tag . '.zip';
 
 /** Download */
 file_put_contents(
-    $filename,
+    $zip_filename,
     file_get_contents('https://github.com/grandeljay/wishthis/archive/refs/tags/' . $tag . '.zip')
 );
 
 /** Decompress */
 $zip = new ZipArchive();
 
-if ($zip->open($filename)) {
+if ($zip->open($zip_filename)) {
     $zip->extractTo(__DIR__);
     $zip->close();
 
@@ -113,12 +113,10 @@ if ($zip->open($filename)) {
             rename($filepath, __DIR__ . '/' . $filename);
         }
     }
-
-    rename($directory_old, $directory_new);
 }
 
 /** Delete */
-unlink($filename);
+unlink($zip_filename);
 
 echo '<pre>';
 var_Dump($release);
