@@ -110,8 +110,13 @@ if ($zip->open($zip_filename)) {
 
         if (is_file($filepath)) {
             echo 'Rename ' . $filepath . ' to ' . __DIR__ . '/' . $filename . '<br>';
-            rename($filepath, __DIR__ . '/' . $filename);
         }
+
+        if (is_dir($filepath)) {
+            delete_directory($filepath);
+        }
+
+        rename($filepath, __DIR__ . '/' . $filename);
     }
 }
 
