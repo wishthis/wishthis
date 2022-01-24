@@ -73,15 +73,19 @@ class Client
      * Authenticate using a client_id/client_secret combination.
      *
      * @var string
+     *
+     * @deprecated Use the AuthMethod const
      */
-    const AUTH_CLIENT_ID = 'client_id_header';
+    const AUTH_CLIENT_ID = AuthMethod::CLIENT_ID;
 
     /**
      * Authenticate using a GitHub access token.
      *
      * @var string
+     *
+     * @deprecated Use the AuthMethod const
      */
-    const AUTH_ACCESS_TOKEN = 'access_token_header';
+    const AUTH_ACCESS_TOKEN = AuthMethod::ACCESS_TOKEN;
 
     /**
      * Constant for authentication method.
@@ -90,8 +94,10 @@ class Client
      * to the API.
      *
      * @var string
+     *
+     * @deprecated Use the AuthMethod const
      */
-    const AUTH_JWT = 'jwt';
+    const AUTH_JWT = AuthMethod::JWT;
 
     /**
      * @var string
@@ -119,6 +125,7 @@ class Client
     {
         $this->responseHistory = new History();
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
+        $this->apiVersion = $apiVersion ?: 'v3';
 
         $builder->addPlugin(new GithubExceptionThrower());
         $builder->addPlugin(new Plugin\HistoryPlugin($this->responseHistory));
@@ -126,10 +133,8 @@ class Client
         $builder->addPlugin(new Plugin\AddHostPlugin(Psr17FactoryDiscovery::findUriFactory()->createUri('https://api.github.com')));
         $builder->addPlugin(new Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'php-github-api (http://github.com/KnpLabs/php-github-api)',
+            'Accept' => sprintf('application/vnd.github.%s+json', $this->apiVersion),
         ]));
-
-        $this->apiVersion = $apiVersion ?: 'v3';
-        $builder->addHeaderValue('Accept', sprintf('application/vnd.github.%s+json', $this->apiVersion));
 
         if ($enterpriseUrl) {
             $this->setEnterpriseUrl($enterpriseUrl);
@@ -314,7 +319,7 @@ class Client
      */
     public function authenticate($tokenOrLogin, $password = null, $authMethod = null): void
     {
-        if (null === $authMethod && (self::AUTH_JWT === $password || self::AUTH_ACCESS_TOKEN === $password)) {
+        if (null === $authMethod && (AuthMethod::JWT === $password || AuthMethod::ACCESS_TOKEN === $password)) {
             $authMethod = $password;
             $password = null;
         }
@@ -341,7 +346,14 @@ class Client
         $builder->removePlugin(PathPrepend::class);
 
         $builder->addPlugin(new Plugin\AddHostPlugin(Psr17FactoryDiscovery::findUriFactory()->createUri($enterpriseUrl)));
-        $builder->addPlugin(new PathPrepend(sprintf('/api/%s', $this->getApiVersion())));
+
+        // For GHE, v4 API endpoint is at `api/graphql` so we don't want to add the version number
+        // For earlier versions add the version number after /api
+        if ($this->getApiVersion() === 'v4') {
+            $builder->addPlugin(new PathPrepend('/api'));
+        } else {
+            $builder->addPlugin(new PathPrepend(sprintf('/api/%s', $this->getApiVersion())));
+        }
     }
 
     /**
