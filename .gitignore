@@ -1,15 +1,16 @@
-/vendor/*
-!/vendor/autoload.php
-!/vendor/embed
-!/vendor/embed/embed
-!/vendor/laminas
-!/vendor/laminas/laminas-diactoros
-!/vendor/grandel
-!/vendor/grandel/include-directory
+/vendor/bin
+/vendor/composer
+/vendor/squizlabs/php_codesniffer
+/vendor/dealerdirect/phpcodesniffer-composer-installer
 
-/node_modules/*
-!/node_modules/jquery
-!/node_modules/fomantic-ui
+/node_modules/.bin
+/node_modules/errno
+/node_modules/image-size
+/node_modules/make-dir
+/node_modules/mime
+/node_modules/needle
+/node_modules/prr
+/node_modules/sax
 
 /.vscode
 /includes/config/config.php

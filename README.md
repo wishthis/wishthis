@@ -21,17 +21,26 @@ Use at your own risk.
 
 ## Contributing
 Install dependencies
-```
-composer install
-```
 
-```
-npm install
-```
+### Composer
+- `composer install`
+- `composer install --dev`
+- `composer install --no-dev`
+
+### NPM
+Use one of the following commands.
+
+- `npm install`
+- `npm install --only=development`
+- `npm install --only=production --no-optional`
 
 ### Theme changes
 ```
 cd semantic
-gulp build
 ```
+
+And then one of the following commands:
+- `gulp build`
+- `gulp watch`
+
 For more information see: https://fomantic-ui.com/introduction/build-tools.html

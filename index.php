@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+define('VERSION', '0.3.0');
+
 /**
  * Include
  */
@@ -77,10 +79,15 @@ if ($options) {
 /**
  * Update
  */
-define('VERSION', '0.3.0');
+use Github\Client;
 
 if ($options) {
-    if (-1 === version_compare($options->version, VERSION)) {
+    $client  = new Client();
+    $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
+    $tag     = $release['tag_name'];
+    $version = str_replace('v', '', $tag);
+
+    if (-1 === version_compare($options->version, $version)) {
         $options->updateAvailable = true;
     }
 }

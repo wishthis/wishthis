@@ -132,6 +132,9 @@ class Wishlist
                                 <?php } ?>
                             </div>
                             <div class="extra content">
+                                <?php if ($info->url) { ?>
+                                    <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
+                                <?php } ?>
                                 <?php if ($this->data['user'] === $_SESSION['user']['id']) { ?>
                                     <a class="ui tiny red button delete">Delete</a>
                                 <?php } else { ?>

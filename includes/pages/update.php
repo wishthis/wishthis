@@ -16,6 +16,48 @@ $page->navigation();
  * Update
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
+    /**
+     * Files
+     */
+    $zip_filename = __DIR__ . '/' . $tag . '.zip';
+
+    /** Download */
+    file_put_contents(
+        $zip_filename,
+        file_get_contents('https://github.com/grandeljay/wishthis/archive/refs/tags/' . $tag . '.zip')
+    );
+
+    /** Decompress */
+    $zip = new ZipArchive();
+
+    if ($zip->open($zip_filename)) {
+        $zip->extractTo(__DIR__);
+        $zip->close();
+
+        $directory_wishthis_github = __DIR__ . '/wishthis-' . $version;
+
+        foreach (scandir($directory_wishthis_github) as $filename) {
+            if (in_array($filename, array('.', '..', 'config'))) {
+                continue;
+            }
+
+            $filepath = __DIR__ . '/' . $filename;
+            $filepath_github = $directory_wishthis_github . '/' . $filename;
+
+            if (is_dir($filepath) && is_dir($filepath_github)) {
+                delete_directory($filepath);
+            }
+
+            rename($filepath_github, $filepath);
+        }
+    }
+
+    /** Delete */
+    unlink($zip_filename);
+
+    /**
+     * Database
+     */
     /** Current version is below 0.2.0 */
     if (-1 === version_compare($options->version, '0.2.0')) {
         $database->query('ALTER TABLE `users`
@@ -33,7 +75,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         ;');
         $database->query('ALTER TABLE `wishlists` ADD INDEX(`hash`);');
 
-        $database->query('INSERT INTO `options` (`key`, `value`) VALUES ("version", "' . VERSION . '");');
+        $database->query('INSERT INTO `options` (`key`, `value`) VALUES ("version", "' . $version . '");');
     }
 
     /** Current version is below 0.3.0 */
@@ -44,7 +86,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     }
 
     /** Update version */
-    $options->setOption('version', VERSION);
+    $options->setOption('version', $version);
 
     header('Location: /?page=home');
     die();
@@ -57,8 +99,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
         <div class="ui segment">
             <h2 class="ui header">New version detected</h2>
-            <p>Thank you for updating to <strong>v<?= VERSION ?></strong>!</p>
-            <p>There have been some changes in the database, please run the updater.</p>
+            <p>An update is available. If you are brave, please click the button to start the self updater.</p>
             <div class="ui icon warning message">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -71,9 +112,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
             <form class="ui form" method="post">
                 <button class="ui orange button" type="submit">
                     <i class="upload icon"></i>
-                    Run the updater
+                    Update to v<?= $version ?>
                 </button>
             </form>
+        </div>
+
+        <div class="ui segment">
+            <h2 class="ui header">Changes</h2>
+
+            <?= str_replace(PHP_EOL, '<br>', $release['body']) ?>
         </div>
     </div>
 </main>
