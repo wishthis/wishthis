@@ -13,9 +13,9 @@ Use at your own risk.
 * PHP 8
 
 ## Screenshots
-![Home](/includes/assets/img/home.png "Home")
-![Create a wishlist](/includes/assets/img/wishlist-create.png "Create a wishlist")
-![Add a product](/includes/assets/img/wishlist-product-add.png "Add a product")
+![Home](/src/assets/img/home.png "Home")
+![Create a wishlist](/src/assets/img/wishlist-create.png "Create a wishlist")
+![Add a product](/src/assets/img/wishlist-product-add.png "Add a product")
 
 ## Installation
 1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server

@@ -13,4 +13,4 @@
 /node_modules/sax
 
 /.vscode
-/includes/config/config.php
+/src/config/config.php

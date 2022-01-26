@@ -8,6 +8,9 @@
 		"php-docblocker.author": {
 			"name": "Jay Trees",
 			"email": "github.jay@grandel.anonaddy.me"
+		},
+		"search.exclude": {
+			"**/semantic": true
 		}
 	}
 }
