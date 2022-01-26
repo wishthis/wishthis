@@ -9,6 +9,7 @@
 			"name": "Jay Trees",
 			"email": "github.jay@grandel.anonaddy.me"
 		},
+		"git.ignoreLimitWarning": true,
 		"search.exclude": {
 			"**/semantic": true
 		}
