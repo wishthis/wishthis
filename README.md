@@ -1,6 +1,11 @@
 # wishthis
 
-A simple wishlist plattform ([demo](https://wishthis.online)).
+wishthis is a simple, intuitive and modern platform to create, manage and view
+your wishes for any kind of occasion ([demo](https://wishthis.online)).
+
+![View wishlist](/src/assets/img/wishlist-view.png "View wishlist")
+
+Join the [Discord](https://discord.gg/WJaKrQd9)!
 
 ## Warning
 wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
@@ -9,11 +14,6 @@ Use at your own risk.
 
 ## Requirements
 * PHP 8
-
-## Screenshots
-![Home](/includes/assets/img/home.png "Home")
-![Create a wishlist](/includes/assets/img/wishlist-create.png "Create a wishlist")
-![Add a product](/includes/assets/img/wishlist-product-add.png "Add a product")
 
 ## Installation
 1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server

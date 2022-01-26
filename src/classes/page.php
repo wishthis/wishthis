@@ -68,12 +68,12 @@ class Page
             echo '<link rel="stylesheet" href="' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
 
             /** Default */
-            $stylesheetDefault = 'includes/assets/css/default.css';
+            $stylesheetDefault = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
             echo '<link rel="stylesheet" href="' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
 
             /** Page */
-            $stylesheetPage = 'includes/assets/css/' . $this->name .  '.css';
+            $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
 
             if (file_exists($stylesheetPage)) {
                 $stylesheetPageModified = filemtime($stylesheetPage);
@@ -96,12 +96,12 @@ class Page
             echo '<script defer src="' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
 
             /** Default */
-            $scriptDefault = 'includes/assets/js/default.js';
+            $scriptDefault = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
             echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
 
             /** Page */
-            $scriptPage = 'includes/assets/js/' . $this->name .  '.js';
+            $scriptPage = 'src/assets/js/' . $this->name .  '.js';
 
             if (file_exists($scriptPage)) {
                 $scriptPageModified = filemtime($scriptPage);

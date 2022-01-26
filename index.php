@@ -13,13 +13,13 @@ define('VERSION', '0.3.0');
  */
 require 'vendor/autoload.php';
 
-$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/classes');
-$include = new Grandel\IncludeDirectory(__DIR__ . '/includes/functions');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/src/classes');
+$include = new Grandel\IncludeDirectory(__DIR__ . '/src/functions');
 
 /**
  * Config
  */
-$configPath = __DIR__ . '/' . 'includes/config/config.php';
+$configPath = __DIR__ . '/' . 'src/config/config.php';
 
 if (file_exists($configPath)) {
     require $configPath;
@@ -105,7 +105,7 @@ if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
 if (!isset($page)) {
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 }
-$pagePath = 'includes/pages/' . $page . '.php';
+$pagePath = 'src/pages/' . $page . '.php';
 
 if (file_exists($pagePath)) {
     require $pagePath;

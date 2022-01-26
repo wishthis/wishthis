@@ -63,7 +63,7 @@ switch ($step) {
         break;
 
     case 2:
-        $configDirectory = 'includes/config';
+        $configDirectory = 'src/config';
         $configPath = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
         $configContents = file_get_contents($configSamplePath);
