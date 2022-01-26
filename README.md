@@ -2,6 +2,8 @@
 
 A simple wishlist plattform ([demo](https://wishthis.online)).
 
+Join the [Discord](https://discord.gg/WJaKrQd9)!
+
 ## Warning
 wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
 
