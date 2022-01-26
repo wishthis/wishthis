@@ -1,6 +1,7 @@
 # wishthis
 
-A simple wishlist plattform ([demo](https://wishthis.online)).
+wishthis is a simple, intuitive and modern platform to create, manage and view
+your wishes for any kind of occasion. ([demo](https://wishthis.online)).
 
 Join the [Discord](https://discord.gg/WJaKrQd9)!
 
