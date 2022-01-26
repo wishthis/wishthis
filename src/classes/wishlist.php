@@ -124,7 +124,7 @@ class Wishlist
                             <div class="extra content">
                                 <?php if ($info->publishedTime) { ?>
                                     <span class="right floated">
-                                        <?= $info->publishedTime ?>
+                                        <?= $info->publishedTime->format('d.m.Y') ?>
                                     </span>
                                 <?php } ?>
                                 <?php if ($info->providerName) { ?>
