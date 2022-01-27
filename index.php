@@ -83,13 +83,17 @@ if ($options) {
 use Github\Client;
 
 if ($options) {
-    $client  = new Client();
-    $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
-    $tag     = $release['tag_name'];
-    $version = str_replace('v', '', $tag);
+    try {
+        $client  = new Client();
+        $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
+        $tag     = $release['tag_name'];
+        $version = str_replace('v', '', $tag);
 
-    if (-1 === version_compare($options->version, $version)) {
-        $options->updateAvailable = true;
+        if (-1 === version_compare($options->version, $version)) {
+            $options->updateAvailable = true;
+        }
+    } catch (\Github\Exception\RuntimeException $th) {
+        echo $th->getMessage();
     }
 }
 
