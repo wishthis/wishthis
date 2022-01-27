@@ -7,6 +7,7 @@
  */
 
 define('VERSION', '0.3.0');
+define('ROOT', __DIR__);
 
 /**
  * Include

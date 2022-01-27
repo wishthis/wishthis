@@ -1,3 +1,5 @@
+/src/cache/*
+
 /vendor/bin
 /vendor/composer
 /vendor/squizlabs/php_codesniffer

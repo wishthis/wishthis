@@ -79,11 +79,8 @@ class Wishlist
             <div class="ui three column stackable grid wishlist-cards">
 
                 <?php foreach ($products as $product) {
-                    /**
-                     * @link https://github.com/oscarotero/Embed
-                     */
-                    $embed = new \Embed\Embed();
-                    $info  = $embed->get($product['url']);
+                    $cache = new EmbedCache();
+                    $info  = $cache->get($product['url']);
                     ?>
                     <div class="column">
                         <div class="ui fluid card" data-id="<?= $product['id'] ?>">
@@ -124,7 +121,7 @@ class Wishlist
                             <div class="extra content">
                                 <?php if ($info->publishedTime) { ?>
                                     <span class="right floated">
-                                        <?= $info->publishedTime->format('d.m.Y') ?>
+                                        <?= $info->publishedTime ?>
                                     </span>
                                 <?php } ?>
                                 <?php if ($info->providerName) { ?>

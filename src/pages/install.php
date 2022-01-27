@@ -63,6 +63,18 @@ switch ($step) {
         break;
 
     case 2:
+        /**
+         * Cache
+         */
+        $cacheDirectory = 'src/cache';
+
+        if (!file_exists($cacheDirectory)) {
+            mkdir($cacheDirectory);
+        }
+
+        /**
+         * Config
+         */
         $configDirectory = 'src/config';
         $configPath = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
