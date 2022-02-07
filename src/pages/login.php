@@ -62,6 +62,7 @@ $page->navigation();
                 </div>
 
                 <input class="ui primary button" type="submit" value="Login" />
+                <a href="/?page=register">Register</a>
             </form>
         </div>
     </div>

@@ -50,6 +50,7 @@ $page->navigation();
                 <div class="ui error message"></div>
 
                 <input class="ui primary button" type="submit" value="Register" />
+                <a href="/?page=login">Login</a>
             </form>
         </div>
     </div>
