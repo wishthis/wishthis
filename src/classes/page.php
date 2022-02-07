@@ -215,4 +215,62 @@ class Page
         </html>
         <?php
     }
+
+    public function message(string $content = '', string $header = '', string $type = ''): void
+    {
+        $containerClasses = array('ui', 'message');
+        $iconClasses      = array('ui', 'icon');
+
+        switch ($type) {
+            case 'error':
+                $containerClasses[] = 'error icon';
+                $iconClasses[] = 'exclamation triangle';
+                break;
+
+            case 'warning':
+                $containerClasses[] = 'warning';
+                $iconClasses[] = 'exclamation circle';
+                break;
+
+            case 'info':
+                $containerClasses[] = 'info';
+                $iconClasses[] = 'info circle';
+                break;
+        }
+
+        $containerClass = implode(' ', $containerClasses);
+        $iconClass      = implode(' ', $iconClasses);
+        ?>
+        <div class="<?= $containerClass ?>">
+            <?php if ($type) { ?>
+                <i class="<?= $iconClass ?>"></i>
+            <?php } ?>
+
+            <div class="content">
+                <?php if ($header) { ?>
+                    <div class="header"><?= $header ?></div>
+                <?php } ?>
+
+                <?php if ($content) { ?>
+                    <p><?= $content ?></p>
+                <?php } ?>
+            </div>
+        </div>
+        <?php
+    }
+
+    public function error(string $content, string $header = ''): void
+    {
+        $this->message($content, $header, 'error');
+    }
+
+    public function warning(string $content, string $header = ''): void
+    {
+        $this->message($content, $header, 'warning');
+    }
+
+    public function info(string $content, string $header = ''): void
+    {
+        $this->message($content, $header, 'info');
+    }
 }

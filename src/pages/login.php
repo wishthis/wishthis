@@ -1,7 +1,7 @@
 <?php
 
 /**
- * login.php
+ * The user login page.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -25,9 +25,9 @@ if (isset($_POST['email'], $_POST['password'])) {
          AND `password` = "' . $password . '";'
     )->fetch();
 
-    if (false === $user) {
-        # code...
-    } else {
+    $success = false !== $user;
+
+    if ($success) {
         $_SESSION['user'] = $user;
     }
 }
@@ -43,6 +43,12 @@ $page->navigation();
 <main>
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
+
+        <?php
+        if (!$success) {
+            $page->error('Invalid credentials!', 'Error');
+        }
+        ?>
 
         <div class="ui segment">
             <form class="ui form" method="post">
