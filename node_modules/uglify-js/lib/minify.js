@@ -28,7 +28,7 @@ function read_source_map(name, toplevel) {
         var match = /^# ([^\s=]+)=(\S+)\s*$/.exec(comment.value);
         if (!match) break;
         if (match[1] == "sourceMappingURL") {
-            match = /^data:application\/json(;.*?)?;base64,(\S+)$/.exec(match[2]);
+            match = /^data:application\/json(;.*?)?;base64,([^,]+)$/.exec(match[2]);
             if (!match) break;
             return to_ascii(match[2]);
         }
@@ -78,6 +78,7 @@ function minify(files, options) {
             enclose: false,
             ie: false,
             ie8: false,
+            keep_fargs: false,
             keep_fnames: false,
             mangle: {},
             nameCache: null,
@@ -99,6 +100,7 @@ function minify(files, options) {
         if (options.annotations !== undefined) set_shorthand("annotations", options, [ "compress", "output" ]);
         if (options.ie8) options.ie = options.ie || options.ie8;
         if (options.ie) set_shorthand("ie", options, [ "compress", "mangle", "output" ]);
+        if (options.keep_fargs) set_shorthand("keep_fargs", options, [ "compress", "mangle" ]);
         if (options.keep_fnames) set_shorthand("keep_fnames", options, [ "compress", "mangle" ]);
         if (options.toplevel) set_shorthand("toplevel", options, [ "compress", "mangle" ]);
         if (options.v8) set_shorthand("v8", options, [ "mangle", "output" ]);
@@ -109,6 +111,7 @@ function minify(files, options) {
                 cache: options.nameCache && (options.nameCache.vars || {}),
                 eval: false,
                 ie: false,
+                keep_fargs: false,
                 keep_fnames: false,
                 properties: false,
                 reserved: [],
