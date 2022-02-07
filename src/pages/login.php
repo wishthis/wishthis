@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Login');
+$page    = new page(__FILE__, 'Login');
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email    = $_POST['email'];
@@ -45,7 +45,7 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <?php
-        if (!$success) {
+        if (isset($success) && !$success) {
             $page->error('Invalid credentials!', 'Error');
         }
         ?>
