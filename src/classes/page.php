@@ -189,25 +189,36 @@ class Page
         <div class="ui hidden divider"></div>
         <div class="ui inverted vertical footer segment">
             <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="sixteen wide column">
-                    <h4 class="ui inverted header">wishthis</h4>
+                <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="ui inverted link list">
-                        <?php
-                        global $options;
+                    <div class="eight wide column">
+                        <h4 class="ui inverted header">wishthis</h4>
 
-                        echo 'v' . $options->version;
-                        ?>
+                        <div class="ui inverted link list">
+                            <?php
+                            global $options;
+
+                            echo 'v' . $options->version;
+                            ?>
+                        </div>
+
+                        <div class="ui inverted link list">
+                            <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank">
+                                <i class="big github icon"></i>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="ui inverted link list">
-                        <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank">
-                            <i class="big github icon"></i>
-                        </a>
+                    <div class="eight wide column">
+                        <h4 class="ui inverted header">Preferences</h4>
+
+                        <div class="ui inverted link list">
+                            <div class="dnt">Do Not Track</div>
+                            <div class="prefers-color-scheme">Prefers color scheme</div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
             </div>
         </div>
 
