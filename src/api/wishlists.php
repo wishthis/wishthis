@@ -21,13 +21,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
             $wishlists = $user->getWishlists();
             $wishlists = array_map(function ($wishlist) {
-                return array(
-                    'name'  => $wishlist['name'],
-                    'value' => $wishlist['id'],
-                    'text'  => $wishlist['name'],
-                );
-            }, $wishlists);
+                $newFormat = $wishlist;
+                // $newFormat['name'] = $wishlist['name'];
+                $newFormat['value'] = $wishlist['id'];
+                $newFormat['text'] = $wishlist['name'];
 
+                return $newFormat;
+            }, $wishlists);
             $response['results'] = $wishlists;
             $response['success'] = true;
         }
