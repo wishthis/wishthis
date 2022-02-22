@@ -1,6 +1,6 @@
 $(function() {
     /**
-     * Delete Wishlist
+     * Selection
      */
     $('.ui.dropdown.wishlists').on('change', function() {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
@@ -9,21 +9,24 @@ $(function() {
 
         if (wishlistValue) {
             $('.wishlist-view').removeClass('disabled');
-        } else {
-            $('.wishlist-view').addClass('disabled');
-        }
 
-        const urlParams = new URLSearchParams(window.location.search);
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('wishlist', wishlistValue);
+            window.history.pushState({}, '', '/?' + urlParams.toString());
 
-        if (wishlistValue === urlParams.get('wishlist')) {
             $('.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
+            $('.wishlist-view').addClass('disabled');
+
             $('.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
     });
 
+    /**
+     * Delete Wishlist
+     */
     $('.wishlist-delete').on('submit', function(event) {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
 
