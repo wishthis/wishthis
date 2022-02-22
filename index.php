@@ -79,21 +79,29 @@ if ($options) {
 
 /**
  * Update
+ *
+ * Check for update every 24 hours.
  */
 use Github\Client;
 
 if ($options) {
-    try {
-        $client  = new Client();
-        $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
-        $tag     = $release['tag_name'];
-        $version = str_replace('v', '', $tag);
+    $updateLastChecked = $options->getOption('updateLastChecked');
 
-        if (-1 === version_compare($options->version, $version)) {
-            $options->updateAvailable = true;
+    if (!$updateLastChecked || time() - $updateLastChecked >= 86400) {
+        try {
+            $client  = new Client();
+            $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
+            $tag     = $release['tag_name'];
+            $version = str_replace('v', '', $tag);
+
+            if (-1 === version_compare($options->version, $version)) {
+                $options->updateAvailable = true;
+            }
+        } catch (\Github\Exception\RuntimeException $th) {
+            echo wishthis\Page::warning($th->getMessage());
         }
-    } catch (\Github\Exception\RuntimeException $th) {
-        echo $th->getMessage();
+
+        $options->setOption('updateLastChecked', time());
     }
 }
 
