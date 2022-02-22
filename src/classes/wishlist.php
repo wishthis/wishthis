@@ -143,17 +143,10 @@ class Wishlist
                 </div>
             <?php } ?>
         <?php } else { ?>
-            <?php if (isset($_GET['wishlist'])) { ?>
-                <div class="ui icon message">
-                    <i class="info circle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Empty
-                        </div>
-                        <p>This wishlist seems to be empty.</p>
-                    </div>
-                </div><?php
-            }
+            <div class="sixteen wide column">
+                <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+            </div>
+            <?php
         }
 
         return ob_get_clean();

@@ -10,6 +10,76 @@ use wishthis\User;
 
 class Page
 {
+    /**
+     * Static
+     *
+     * @return string
+     */
+    public static function message(string $content = '', string $header = '', string $type = ''): string
+    {
+        ob_start();
+
+        $containerClasses = array('ui', 'message');
+        $iconClasses      = array('ui', 'icon');
+
+        switch ($type) {
+            case 'error':
+                $containerClasses[] = 'error icon';
+                $iconClasses[] = 'exclamation triangle';
+                break;
+
+            case 'warning':
+                $containerClasses[] = 'warning icon';
+                $iconClasses[] = 'exclamation circle';
+                break;
+
+            case 'info':
+                $containerClasses[] = 'info icon';
+                $iconClasses[] = 'info circle';
+                break;
+        }
+
+        $containerClass = implode(' ', $containerClasses);
+        $iconClass      = implode(' ', $iconClasses);
+        ?>
+        <div class="<?= $containerClass ?>">
+            <?php if ($type) { ?>
+                <i class="<?= $iconClass ?>"></i>
+            <?php } ?>
+
+            <div class="content">
+                <?php if ($header) { ?>
+                    <div class="header"><?= $header ?></div>
+                <?php } ?>
+
+                <?php if ($content) { ?>
+                    <p><?= $content ?></p>
+                <?php } ?>
+            </div>
+        </div>
+        <?php
+
+        return ob_get_clean();
+    }
+
+    public static function error(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'error');
+    }
+
+    public static function warning(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'warning');
+    }
+
+    public static function info(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'info');
+    }
+
+    /**
+     * Non-Static
+     */
     public string $language = 'en';
 
     /**
@@ -191,7 +261,7 @@ class Page
             <div class="ui container">
                 <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="eight wide column">
+                    <div class="sixteen wide column">
                         <h4 class="ui inverted header">wishthis</h4>
 
                         <div class="ui inverted link list">
@@ -209,15 +279,6 @@ class Page
                         </div>
                     </div>
 
-                    <div class="eight wide column">
-                        <h4 class="ui inverted header">Preferences</h4>
-
-                        <div class="ui inverted link list">
-                            <div class="dnt">Do Not Track</div>
-                            <div class="prefers-color-scheme">Prefers color scheme</div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -225,63 +286,5 @@ class Page
         </body>
         </html>
         <?php
-    }
-
-    public function message(string $content = '', string $header = '', string $type = ''): void
-    {
-        $containerClasses = array('ui', 'message');
-        $iconClasses      = array('ui', 'icon');
-
-        switch ($type) {
-            case 'error':
-                $containerClasses[] = 'error icon';
-                $iconClasses[] = 'exclamation triangle';
-                break;
-
-            case 'warning':
-                $containerClasses[] = 'warning';
-                $iconClasses[] = 'exclamation circle';
-                break;
-
-            case 'info':
-                $containerClasses[] = 'info';
-                $iconClasses[] = 'info circle';
-                break;
-        }
-
-        $containerClass = implode(' ', $containerClasses);
-        $iconClass      = implode(' ', $iconClasses);
-        ?>
-        <div class="<?= $containerClass ?>">
-            <?php if ($type) { ?>
-                <i class="<?= $iconClass ?>"></i>
-            <?php } ?>
-
-            <div class="content">
-                <?php if ($header) { ?>
-                    <div class="header"><?= $header ?></div>
-                <?php } ?>
-
-                <?php if ($content) { ?>
-                    <p><?= $content ?></p>
-                <?php } ?>
-            </div>
-        </div>
-        <?php
-    }
-
-    public function error(string $content, string $header = ''): void
-    {
-        $this->message($content, $header, 'error');
-    }
-
-    public function warning(string $content, string $header = ''): void
-    {
-        $this->message($content, $header, 'warning');
-    }
-
-    public function info(string $content, string $header = ''): void
-    {
-        $this->message($content, $header, 'info');
     }
 }

@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Login');
+$page = new Page(__FILE__, 'Login');
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email    = $_POST['email'];
@@ -46,7 +46,7 @@ $page->navigation();
 
         <?php
         if (isset($success) && !$success) {
-            $page->error('Invalid credentials!', 'Error');
+            echo Page::error('Invalid credentials!', 'Error');
         }
         ?>
 

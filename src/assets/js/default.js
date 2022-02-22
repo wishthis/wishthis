@@ -40,9 +40,7 @@ $(function() {
         console.log(element);
         console.log(xhr);
 
-        if (response.startsWith('<br />')) {
-            response = response.replace('<br />', '');
-        }
+        response = response.replace('<br />', '');
 
         $('body')
         .modal({
@@ -86,11 +84,6 @@ $(function() {
     $('.ui.dropdown.wishlists').dropdown({
         filterRemoteData: true
     });
-
-    /**
-     * Refresh Wishlist
-     */
-    // wishlistRefresh();
 
     /**
      * Commit to Product
@@ -178,14 +171,3 @@ $(function() {
         .modal('show');
     });
 });
-
-function wishlistRefresh() {
-    /**
-     * URL Parameter
-     */
-    $('.ui.dropdown.wishlists').api({
-        action: 'get wishlists',
-        method: 'GET',
-        on:     'now'
-    });
-}
