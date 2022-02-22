@@ -169,6 +169,10 @@ function wishlistRefresh() {
 
             if (urlParams.has('wishlist')) {
                 $('.ui.dropdown.wishlists').dropdown('set selected', urlParams.get('wishlist'));
+            } else {
+                if (response.results[0]) {
+                    $('.ui.dropdown.wishlists').dropdown('set selected', response.results[0].value);
+                }
             }
         },
         onFailure: function(response, element, xhr) {
