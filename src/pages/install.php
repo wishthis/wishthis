@@ -63,6 +63,18 @@ switch ($step) {
         break;
 
     case 2:
+        /**
+         * Cache
+         */
+        $cacheDirectory = 'src/cache';
+
+        if (!file_exists($cacheDirectory)) {
+            mkdir($cacheDirectory);
+        }
+
+        /**
+         * Config
+         */
         $configDirectory = 'src/config';
         $configPath = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
@@ -129,6 +141,7 @@ switch ($step) {
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
             `url`      VARCHAR(255) NOT NULL,
+            `status`   VARCHAR(32)  NOT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE

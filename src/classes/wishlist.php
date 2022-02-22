@@ -57,8 +57,10 @@ class Wishlist
                                    ->fetchAll();
     }
 
-    public function getCards($options = array()): void
+    public function getCards($options = array()): string
     {
+        ob_start();
+
         /**
          * Exclude
          */
@@ -76,89 +78,77 @@ class Wishlist
          * Cards
          */
         if (!empty($products)) { ?>
-            <div class="ui three column stackable grid wishlist-cards">
+            <?php foreach ($products as $product) {
+                $cache = new EmbedCache();
+                $info  = $cache->get($product['url']);
+                ?>
+                <div class="column">
+                    <div class="ui fluid card" data-id="<?= $product['id'] ?>">
 
-                <?php foreach ($products as $product) {
-                    /**
-                     * @link https://github.com/oscarotero/Embed
-                     */
-                    $embed = new \Embed\Embed();
-                    $info  = $embed->get($product['url']);
-                    ?>
-                    <div class="column">
-                        <div class="ui fluid card" data-id="<?= $product['id'] ?>">
+                        <?php if ($info->image) { ?>
+                            <div class="image">
+                                <img src="<?= $info->image ?>" />
+                            </div>
+                        <?php } ?>
 
-                            <?php if ($info->image) { ?>
-                                <div class="image">
-                                    <img src="<?= $info->image ?>" />
+                        <div class="content">
+                            <?php if ($info->title) { ?>
+                                <div class="header">
+                                    <?php if ($info->favicon) { ?>
+                                        <img src="<?= $info->favicon ?>" />
+                                    <?php } ?>
+
+                                    <?php if ($info->url) { ?>
+                                        <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
+                                    <?php } else { ?>
+                                        <?= $info->title ?>
+                                    <?php } ?>
                                 </div>
                             <?php } ?>
 
-                            <div class="content">
-                                <?php if ($info->title) { ?>
-                                    <div class="header">
-                                        <?php if ($info->favicon) { ?>
-                                            <img src="<?= $info->favicon ?>" />
-                                        <?php } ?>
+                            <?php if ($info->keywords) { ?>
+                                <div class="meta">
+                                    <?= $info->keywords ?>
+                                </div>
+                            <?php } ?>
 
-                                        <?php if ($info->url) { ?>
-                                            <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
-                                        <?php } else { ?>
-                                            <?= $info->title ?>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ($info->keywords) { ?>
-                                    <div class="meta">
-                                        <?= $info->keywords ?>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ($info->description) { ?>
-                                    <div class="description">
-                                        <?= $info->description ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <div class="extra content">
-                                <?php if ($info->publishedTime) { ?>
-                                    <span class="right floated">
-                                        <?= $info->publishedTime ?>
-                                    </span>
-                                <?php } ?>
-                                <?php if ($info->providerName) { ?>
-                                    <?= $info->providerName ?>
-                                <?php } ?>
-                            </div>
-                            <div class="extra content">
-                                <?php if ($info->url) { ?>
-                                    <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
-                                <?php } ?>
-                                <?php if ($this->data['user'] === $_SESSION['user']['id']) { ?>
-                                    <a class="ui tiny red button delete">Delete</a>
-                                <?php } else { ?>
-                                    <a class="ui tiny button commit">Commit</a>
-                                <?php } ?>
-                            </div>
-
+                            <?php if ($info->description) { ?>
+                                <div class="description">
+                                    <?= $info->description ?>
+                                </div>
+                            <?php } ?>
                         </div>
-                    </div>
-                <?php } ?>
+                        <div class="extra content">
+                            <?php if ($info->publishedTime) { ?>
+                                <span class="right floated">
+                                    <?= $info->publishedTime ?>
+                                </span>
+                            <?php } ?>
+                            <?php if ($info->providerName) { ?>
+                                <?= $info->providerName ?>
+                            <?php } ?>
+                        </div>
+                        <div class="extra content">
+                            <?php if ($info->url) { ?>
+                                <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
+                            <?php } ?>
+                            <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
+                                <a class="ui tiny red button delete">Delete</a>
+                            <?php } else { ?>
+                                <a class="ui tiny button commit">Commit</a>
+                            <?php } ?>
+                        </div>
 
-            </div>
+                    </div>
+                </div>
+            <?php } ?>
         <?php } else { ?>
-            <?php if (isset($_GET['wishlist'])) { ?>
-                <div class="ui icon message">
-                    <i class="info circle icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Empty
-                        </div>
-                        <p>This wishlist seems to be empty.</p>
-                    </div>
-                </div><?php
-            }
+            <div class="sixteen wide column">
+                <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+            </div>
+            <?php
         }
+
+        return ob_get_clean();
     }
 }

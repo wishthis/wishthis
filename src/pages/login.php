@@ -1,14 +1,14 @@
 <?php
 
 /**
- * login.php
+ * The user login page.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Login');
+$page = new Page(__FILE__, 'Login');
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email    = $_POST['email'];
@@ -25,9 +25,9 @@ if (isset($_POST['email'], $_POST['password'])) {
          AND `password` = "' . $password . '";'
     )->fetch();
 
-    if (false === $user) {
-        # code...
-    } else {
+    $success = false !== $user;
+
+    if ($success) {
         $_SESSION['user'] = $user;
     }
 }
@@ -44,6 +44,12 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
+        <?php
+        if (isset($success) && !$success) {
+            echo Page::error('Invalid credentials!', 'Error');
+        }
+        ?>
+
         <div class="ui segment">
             <form class="ui form" method="post">
                 <div class="field">
@@ -56,6 +62,7 @@ $page->navigation();
                 </div>
 
                 <input class="ui primary button" type="submit" value="Login" />
+                <a href="/?page=register">Register</a>
             </form>
         </div>
     </div>

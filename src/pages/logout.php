@@ -13,7 +13,7 @@ $page = new page(__FILE__, 'Logout');
 if (PHP_SESSION_ACTIVE === session_status()) {
     session_destroy();
 
-    header('Location: /?page=logout');
+    header('Location: /?page=home');
     die();
 }
 

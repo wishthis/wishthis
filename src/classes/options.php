@@ -43,9 +43,22 @@ class Options
 
     public function setOption(string $key, string $value): void
     {
-        $this->database->query('UPDATE `options`
-                                   SET `value` = "' . $value . '"
-                                 WHERE `key` = "' . $key . '"
-        ;');
+        $optionExists = 0 !== $this->database
+        ->query('SELECT *
+                   FROM `options`
+                  WHERE `key` = "' . $key . '";')
+        ->rowCount();
+
+        if ($optionExists) {
+            $this->database->query('UPDATE `options`
+                                       SET `value` = "' . $value . '"
+                                     WHERE `key`   = "' . $key . '"
+                           ;');
+        } else {
+            $this->database->query('INSERT INTO `options`
+                                   (`key`, `value`) VALUES
+                                   ("' . $key . '", "' . $value . '")
+                           ;');
+        }
     }
 }

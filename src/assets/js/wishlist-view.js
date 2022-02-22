@@ -1,30 +1,63 @@
 $(function() {
     /**
-     * Delete Wishlist
+     * Get Wishlists
      */
-    $('.ui.dropdown.wishlists').on('change', function() {
+    var wishlists = [];
+
+    $('.ui.dropdown.wishlists').api({
+        action:    'get wishlists',
+        method:    'GET',
+        on:        'now',
+        onSuccess: function(response, element, xhr) {
+            wishlists = response.results;
+
+            element.dropdown({
+                values: wishlists,
+                placeholder: 'No wishlist selected.'
+            })
+
+            if (urlParams.has('wishlist')) {
+                element.dropdown('set selected', urlParams.get('wishlist'));
+            } else {
+                if (wishlists[0]) {
+                    element.dropdown('set selected', wishlists[0].value);
+                }
+            }
+        }
+    });
+
+    /**
+     * Selection
+     */
+    $(document).on('change', '.ui.dropdown.wishlists', function() {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
+        var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
 
         $('[name="wishlist_delete_id"]').val(wishlistValue);
 
         if (wishlistValue) {
-            $('.wishlist-view').removeClass('disabled');
-        } else {
-            $('.wishlist-view').addClass('disabled');
-        }
+            urlParams.set('wishlist', wishlistValue);
+            window.history.pushState({}, '', '/?' + urlParams.toString());
 
-        const urlParams = new URLSearchParams(window.location.search);
+            $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
-        if (wishlistValue === urlParams.get('wishlist')) {
             $('.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
             $('.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
+
+        /**
+         * Cards
+         */
+        $('.wishlist-cards').html(wishlists[wishlistIndex].cards);
     });
 
-    $('.wishlist-delete').on('submit', function(event) {
+    /**
+     * Delete Wishlist
+     */
+    $(document).on('submit', '.wishlist-delete', function(event) {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
 
         if (wishlistValue) {
@@ -47,30 +80,23 @@ $(function() {
                     $('.ui.dropdown.wishlists').api({
                         action: 'delete wishlist',
                         method: 'DELETE',
-                        data: {
+                        data:   {
                             wishlistID: wishlistValue
                         },
-                        on: 'now',
-                        onResponse: function(response) {
-                            return response;
-                        },
-                        successTest: function(response) {
-                            return response.success || false;
-                        },
-                        onComplete: function(response, element, xhr) {
+                        on:     'now',
+                        onSuccess: function(response, wishlists) {
+                            $('.wishlist-cards .column').fadeOut();
 
-                        },
-                        onSuccess: function(response, element, xhr) {
-                            wishlistRefresh();
-                        },
-                        onFailure: function(response, element, xhr) {
+                            wishlists.dropdown('clear');
 
-                        },
-                        onError: function(errorMessage, element, xhr) {
+                            urlParams.delete('wishlist');
+                            window.history.pushState({}, '', '/?' + urlParams.toString());
 
-                        },
-                        onAbort: function(errorMessage, element, xhr) {
-
+                            $('.ui.dropdown.wishlists').api({
+                                action: 'get wishlists',
+                                method: 'GET',
+                                on:     'now'
+                            });
                         }
                     });
                 }

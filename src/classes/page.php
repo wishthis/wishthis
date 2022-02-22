@@ -10,6 +10,76 @@ use wishthis\User;
 
 class Page
 {
+    /**
+     * Static
+     *
+     * @return string
+     */
+    public static function message(string $content = '', string $header = '', string $type = ''): string
+    {
+        ob_start();
+
+        $containerClasses = array('ui', 'message');
+        $iconClasses      = array('ui', 'icon');
+
+        switch ($type) {
+            case 'error':
+                $containerClasses[] = 'error icon';
+                $iconClasses[] = 'exclamation triangle';
+                break;
+
+            case 'warning':
+                $containerClasses[] = 'warning icon';
+                $iconClasses[] = 'exclamation circle';
+                break;
+
+            case 'info':
+                $containerClasses[] = 'info icon';
+                $iconClasses[] = 'info circle';
+                break;
+        }
+
+        $containerClass = implode(' ', $containerClasses);
+        $iconClass      = implode(' ', $iconClasses);
+        ?>
+        <div class="<?= $containerClass ?>">
+            <?php if ($type) { ?>
+                <i class="<?= $iconClass ?>"></i>
+            <?php } ?>
+
+            <div class="content">
+                <?php if ($header) { ?>
+                    <div class="header"><?= $header ?></div>
+                <?php } ?>
+
+                <?php if ($content) { ?>
+                    <p><?= $content ?></p>
+                <?php } ?>
+            </div>
+        </div>
+        <?php
+
+        return ob_get_clean();
+    }
+
+    public static function error(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'error');
+    }
+
+    public static function warning(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'warning');
+    }
+
+    public static function info(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'info');
+    }
+
+    /**
+     * Non-Static
+     */
     public string $language = 'en';
 
     /**
@@ -189,25 +259,27 @@ class Page
         <div class="ui hidden divider"></div>
         <div class="ui inverted vertical footer segment">
             <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="sixteen wide column">
-                    <h4 class="ui inverted header">wishthis</h4>
+                <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="ui inverted link list">
-                        <?php
-                        global $options;
+                    <div class="sixteen wide column">
+                        <h4 class="ui inverted header">wishthis</h4>
 
-                        echo 'v' . $options->version;
-                        ?>
+                        <div class="ui inverted link list">
+                            <?php
+                            global $options;
+
+                            echo 'v' . $options->version;
+                            ?>
+                        </div>
+
+                        <div class="ui inverted link list">
+                            <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank">
+                                <i class="big github icon"></i>
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="ui inverted link list">
-                        <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank">
-                            <i class="big github icon"></i>
-                        </a>
-                    </div>
                 </div>
-            </div>
             </div>
         </div>
 

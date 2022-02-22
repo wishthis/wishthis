@@ -1,7 +1,7 @@
 <?php
 
 /**
- * home.php
+ * The home page.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -23,9 +23,17 @@ $page->navigation();
                 wishthis is a simple, intuitive and modern platform to create,
                 manage and view your wishes for any kind of occasion.
             </p>
-            <p>
-                Go ahead and get started now and <a href="/?page=wishlist-create">create a wishlist</a>!
-            </p>
+            <?php if ($user->isLoggedIn()) { ?>
+                <p>
+                    <a class="ui primary button" href="/?page=wishlist-create">Create a wishlist</a>
+                    <a class="ui button" href="/?page=wishlist-view">View your wishlists</a>
+                </p>
+            <?php } else { ?>
+                <p>
+                    <a class="ui primary button" href="/?page=register">Register now</a>
+                    <a class="ui button" href="/?page=login">Login</a>
+                </p>
+            <?php } ?>
 
             <h2 class="ui header">Use case</h2>
             <p>
