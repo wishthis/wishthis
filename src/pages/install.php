@@ -141,6 +141,7 @@ switch ($step) {
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
             `url`      VARCHAR(255) NOT NULL,
+            `status`   VARCHAR(32)  NOT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
