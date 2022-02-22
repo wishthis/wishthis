@@ -23,8 +23,10 @@ class EmbedCache
         $info       = null;
         $identifier = md5($url);
         $filepath   = $this->directory . '/' . $identifier;
+        $age        = time() - filemtime($filepath);
+        $maxAge     = 2592000; // 30 days
 
-        if (file_exists($filepath)) {
+        if (file_exists($filepath) && $age <= $maxAge) {
             $info = json_decode(file_get_contents($filepath));
         } else {
             /**
