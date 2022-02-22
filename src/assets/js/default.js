@@ -40,14 +40,18 @@ $(function() {
         console.log(element);
         console.log(xhr);
 
+        if (response.startsWith('<br />')) {
+            response = response.replace('<br />', '');
+        }
+
         $('body')
         .modal({
             title:    'Failure',
-            content:  'The process has failed.',
+            content:  response,
             class:    '',
             actions:  [
                 {
-                    text: 'Oh well',
+                    text: 'Thanks for nothing',
                     class: 'primary'
                 }
             ]
@@ -59,14 +63,18 @@ $(function() {
         console.log(element);
         console.log(xhr);
 
+        if (response.startsWith('<br />')) {
+            response = response.replace('<br />', '');
+        }
+
         $('body')
         .modal({
             title:    'Error',
-            content:  'There has been an error.',
+            content:  response,
             class:    '',
             actions:  [
                 {
-                    text: 'Oh well',
+                    text: 'Thanks for nothing',
                     class: 'primary'
                 }
             ]
@@ -85,7 +93,7 @@ $(function() {
             class:    '',
             actions:  [
                 {
-                    text: 'Oh well',
+                    text: 'Thanks for nothing',
                     class: 'primary'
                 }
             ]

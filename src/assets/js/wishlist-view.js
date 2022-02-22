@@ -10,6 +10,7 @@ $(function() {
         on:        'now',
         onSuccess: function(response, element, xhr) {
             wishlists = response.results;
+            console.log(wishlists);
 
             element.dropdown({
                 values: wishlists,
@@ -38,8 +39,6 @@ $(function() {
         $('[name="wishlist_delete_id"]').val(wishlistValue);
 
         if (wishlistValue) {
-            $('.wishlist-view').removeClass('disabled');
-
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.set('wishlist', wishlistValue);
             window.history.pushState({}, '', '/?' + urlParams.toString());
@@ -49,11 +48,14 @@ $(function() {
             $('.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
-            $('.wishlist-view').addClass('disabled');
-
             $('.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
+
+        /**
+         * Cards
+         */
+        $('.wishlist-cards').html(wishlists[wishlistIndex].cards);
     });
 
     /**

@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\User;
+use wishthis\{User, Wishlist};
 
 $api      = true;
 $response = array(
@@ -20,13 +20,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
             $wishlists = $user->getWishlists();
-            $wishlists = array_map(function ($wishlist) {
-                $newFormat = $wishlist;
+            $wishlists = array_map(function ($dataWishlist) {
+                $data = $dataWishlist;
                 // $newFormat['name'] = $wishlist['name'];
-                $newFormat['value'] = $wishlist['id'];
-                $newFormat['text'] = $wishlist['name'];
+                $data['value'] = $dataWishlist['id'];
+                $data['text'] = $dataWishlist['name'];
 
-                return $newFormat;
+                $wishlist = new Wishlist(intval($dataWishlist['id']));
+                $data['cards'] = $wishlist->getCards();
+
+                return $data;
             }, $wishlists);
             $response['results'] = $wishlists;
             $response['success'] = true;

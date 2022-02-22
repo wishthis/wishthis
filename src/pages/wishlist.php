@@ -62,13 +62,15 @@ $page->navigation();
             </p>
         </div>
 
-        <?php
-        $wishlist->getCards(
-            array(
-                'exclude' => array('unavailable'),
-            )
-        );
-        ?>
+        <div class="ui three column stackable grid wishlist-cards">
+            <?php
+            echo $wishlist->getCards(
+                array(
+                    'exclude' => array('unavailable'),
+                )
+            );
+            ?>
+        </div>
     </div>
 </main>
 
