@@ -31,7 +31,7 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <p>Please select a wishlist to view.</p>
 
                 <div class="field">
-                    <select class="ui search selection dropdown loading wishlists" name="wishlist">
+                    <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
                         <option value="">Loading your wishlists...</option>
                     </select>
                 </div>
