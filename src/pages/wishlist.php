@@ -32,25 +32,25 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if (isset($user->id) && $user->id === intval($wishlist->data['user'])) { ?>
-        <div class="ui icon warning message wishlist-own">
-            <i class="exclamation triangle icon"></i>
-            <div class="content">
-                <div class="header">
-                    Careful
-                </div>
-                <div class="text">
-                    <p>
-                        You are viewing your own wishlist!
-                        You will be able to see which products have already been bought for you.
-                        Don't you want to be surprised?
-                    </p>
-                    <p>
-                        It's probably best to just close this tab.
-                    </p>
+        if (isset($user->id) && $user->id === intval($wishlist->data['user']) && !empty($wishlist->products)) { ?>
+            <div class="ui icon warning message wishlist-own">
+                <i class="exclamation triangle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Careful
+                    </div>
+                    <div class="text">
+                        <p>
+                            You are viewing your own wishlist!
+                            You will be able to see which products have already been bought for you.
+                            Don't you want to be surprised?
+                        </p>
+                        <p>
+                            It's probably best to just close this tab.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php } ?>
 
         <div class="ui segment">
