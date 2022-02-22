@@ -23,16 +23,20 @@ Use at your own risk.
 Install dependencies
 
 ### Composer
-- `composer install`
-- `composer install --dev`
-- `composer install --no-dev`
+Use one of the following commands.
+
+| Command                     | Description                         |
+| --------------------------- | ----------------------------------- |
+| `composer install`          | Install all dependencies.           |
+| `composer install --no-dev` | Install only required dependencies. |
 
 ### NPM
 Use one of the following commands.
 
-- `npm install`
-- `npm install --only=development`
-- `npm install --only=production --no-optional`
+| Command                                       | Description                         |
+| --------------------------------------------- | ----------------------------------- |
+| `npm install`                                 | Install all dependencies.           |
+| `npm install --only=production --no-optional` | Install only required dependencies. |
 
 ### Theme changes
 ```
