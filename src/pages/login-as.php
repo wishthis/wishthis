@@ -21,10 +21,6 @@ if (isset($_POST['email'])) {
 
     if ($success) {
         $_SESSION['user'] = $user;
-
-        echo '<pre>';
-        var_dump($user);
-        echo '<pre>';
     }
 }
 
