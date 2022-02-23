@@ -1,6 +1,7 @@
 Force LF endings
 * text eol=lf
 
+*.png binary
 *.eot binary
 *.ttf binary
 *.woff binary
