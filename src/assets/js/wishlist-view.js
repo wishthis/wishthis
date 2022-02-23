@@ -135,7 +135,13 @@ $(function() {
 
                 /** Provider name */
                 if (info.providerName) {
-                    $('<span class="provider">' + info.providerName + '</span>').insertBefore(elementImage.children().last());
+                    var elementProviderName = elementImage.children('span.provider');
+
+                    if (!elementProviderName.length) {
+                        $('<span class="provider">' + info.providerName + '</span>').insertBefore(elementImage.children().last());
+                    } else {
+                        elementProviderName.text(info.providerName);
+                    }
                 }
 
                 /**
