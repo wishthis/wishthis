@@ -54,6 +54,8 @@ if (
 /**
  * Session
  */
+ini_set('session.gc_maxlifetime', 0);
+
 session_start();
 
 /**
