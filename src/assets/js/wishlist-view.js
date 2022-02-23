@@ -109,9 +109,11 @@ $(function() {
                     if (!elementImage.length) {
                         card.prepend(
                             '<div class="image">' +
-                                '<img src="' + info.image + '" loading="lazy">' +
+                                '<img class="preview" src="' + info.image + '" loading="lazy">' +
                             '</div>'
                         );
+                    } else {
+                        elementImage.children('img').attr('src', info.image);
                     }
                 }
 
