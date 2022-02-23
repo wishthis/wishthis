@@ -123,8 +123,6 @@ $(function() {
                     var elementFavicon = elementImage.children('img.favicon');
 
                     if (!elementFavicon.length) {
-                        console.log(elementImage.children());
-
                         elementImage.children().first().after(
                             '<img class="favicon" src="' + info.favicon + '" loading="lazy">'
                         );
