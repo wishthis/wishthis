@@ -37,6 +37,11 @@ class Page
                 $containerClasses[] = 'info icon';
                 $iconClasses[] = 'info circle';
                 break;
+
+            case 'success':
+                $containerClasses[] = 'success icon';
+                $iconClasses[] = 'check circle';
+                break;
         }
 
         $containerClass = implode(' ', $containerClasses);
@@ -75,6 +80,11 @@ class Page
     public static function info(string $content, string $header = ''): string
     {
         return self::message($content, $header, 'info');
+    }
+
+    public static function success(string $content, string $header = ''): string
+    {
+        return self::message($content, $header, 'success');
     }
 
     /**

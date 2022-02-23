@@ -56,132 +56,162 @@ $(function() {
         /**
          * Generate cache
          */
-        var timerInterval = 200;
+        var timerInterval = 1200;
         var timerCache    = setTimeout(
-            function generateCache() {
+            function generateCacheCards() {
                 var cards = $('.ui.card[data-cache="false"]');
 
                 cards.each(function(index, card) {
-                    card = $(card);
+                    generateCacheCard(card);
 
-                    var href       = card.find('.content [href]').prop('href');
-                    var product_id = card.data('id');
-
-                    card.addClass('loading');
-
-                    fetch('/src/api/cache.php?product_id=' + product_id + '&url=' + href, {
-                        method: 'GET'
-                    })
-                    .then(response => response.json())
-                    .then(response => {
-                        if (response.success) {
-                            var info = response.data;
-
-                            /**
-                             * Elements
-                             */
-                            var elementImage   = card.children('.image');
-                            var elementContent = card.children('.content').first();
-                            var elementDetails = card.children('.extra.content.details');
-                            var elementButtons = card.children('.extra.content.buttons');
-
-                            /**
-                             * Image
-                             */
-                            if (info.image) {
-                                if (!elementImage.length) {
-                                    card.prepend(
-                                        '<div class="image">' +
-                                            '<img src="' + info.image + '">' +
-                                        '</div>'
-                                    );
-                                }
-                            }
-
-                            /**
-                             * Header
-                             */
-                            var elementContentHeader      = elementContent.children('.header');
-                            var elementContentHeaderTitle = elementContentHeader.children('a');
-
-                            /** Favicon */
-                            if (info.favicon) {
-                                elementContentHeader.prepend(
-                                    '<img src="' + info.favicon + '">'
-                                );
-                            }
-
-                            /** Title */
-                            if (info.title) {
-                                elementContentHeaderTitle.text(info.title);
-                            }
-
-                            /**
-                             * Meta
-                             */
-                            var elementContentMeta = elementContent.children('.meta');
-
-                            if (info.keywords.length) {
-                                if (!elementContentMeta.length) {
-                                    elementContent.append(
-                                        '<div class="meta">' + info.keywords.join(', ') + '</div>'
-                                    );
-                                }
-                            }
-
-                            /**
-                             * Description
-                             */
-                            var elementContentDescription = elementContent.children('.description');
-
-                            if (info.description) {
-                                if (!elementContentDescription.length) {
-                                    elementContent.append(
-                                        '<div class="description">' + info.description + '</div>'
-                                    );
-                                }
-                            }
-
-                            /**
-                             * Details
-                             */
-                            if (info.publishedTime || info.providerName) {
-                                if (!elementDetails.length) {
-                                    elementButtons.before().append(
-                                        '<div class="extra content details"></div>'
-                                    );
-
-                                    if (info.publishedTime) {
-                                        elementContent.children('.extra.content.details').append(
-                                            '<span class="right floated">' + info.publishedTime + '</span>'
-                                        );
-                                    }
-
-                                    if (info.providerName) {
-                                        elementContent.children('.extra.content.details').append(
-                                            info.providerName
-                                        );
-                                    }
-                                }
-                            }
-
-                            /**
-                             * Finish
-                             */
-                            card.attr('data-cache', true);
-                            card.removeClass('loading');
-
-                            if (cards.length > 0) {
-                                setTimeout(generateCache, timerInterval);
-                            }
-                        }
-                    });
-
-                    return false;
+                    if (index >= 0) {
+                        return false;
+                    }
                 });
+
+                if (cards.length > 0) {
+                    setTimeout(generateCacheCards, timerInterval);
+                }
             },
-            timerInterval
+            0
         );
+    });
+
+    function generateCacheCard(card) {
+        card = $(card);
+
+        var href       = card.find('.content [href]').prop('href');
+        var product_id = card.data('id');
+        var refresh    = card.find('button.refresh');
+
+        card.addClass('loading');
+        card.attr('data-cache', true);
+
+        fetch('/src/api/cache.php?product_id=' + product_id + '&url=' + href, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(response => {
+            if (response.success) {
+                var info = response.data;
+
+                /**
+                 * Elements
+                 */
+                var elementImage   = card.children('.image');
+                var elementContent = card.children('.content').first();
+                var elementDetails = card.children('.extra.content.details');
+                var elementButtons = card.children('.extra.content.buttons');
+
+                /**
+                 * Image
+                 */
+                if (info.image) {
+                    if (!elementImage.length) {
+                        card.prepend(
+                            '<div class="image">' +
+                                '<img class="preview" src="' + info.image + '" loading="lazy">' +
+                            '</div>'
+                        );
+                    } else {
+                        elementImage.children('img').attr('src', info.image);
+                    }
+                }
+
+                /** Favicon */
+                if (info.favicon) {
+                    var elementFavicon = elementImage.children('img.favicon');
+
+                    if (!elementFavicon.length) {
+                        console.log(elementImage.children());
+
+                        elementImage.children().first().after(
+                            '<img class="favicon" src="' + info.favicon + '" loading="lazy">'
+                        );
+                    } else {
+                        elementFavicon.attr('src', info.favicon);
+                    }
+                }
+
+                /** Provider name */
+                if (info.providerName) {
+                    $('<span class="provider">' + info.providerName + '</span>').insertBefore(elementImage.children().last());
+                }
+
+                /**
+                 * Header
+                 */
+                var elementContentHeader      = elementContent.children('.header');
+                var elementContentHeaderTitle = elementContentHeader.children('a');
+
+                /** Title */
+                if (info.title) {
+                    elementContentHeaderTitle.text(info.title);
+                }
+
+                /**
+                 * Meta
+                 */
+                var elementContentMeta = elementContent.children('.meta');
+
+                if (info.keywords.length) {
+                    if (!elementContentMeta.length) {
+                        elementContent.append(
+                            '<div class="meta">' + info.keywords.join(', ') + '</div>'
+                        );
+                    }
+                }
+
+                /**
+                 * Description
+                 */
+                var elementContentDescription = elementContent.children('.description');
+
+                if (info.description) {
+                    if (!elementContentDescription.length) {
+                        elementContent.append(
+                            '<div class="description">' + info.description + '</div>'
+                        );
+                    }
+                }
+
+                /**
+                 * Details
+                 */
+                if (info.publishedTime) {
+                    if (!elementDetails.length) {
+                        elementButtons.before().append(
+                            '<div class="extra content details"></div>'
+                        );
+
+                        if (info.publishedTime) {
+                            elementContent.children('.extra.content.details').append(
+                                '<span class="right floated">' + info.publishedTime + '</span>'
+                            );
+                        }
+                    }
+                }
+
+                /**
+                 * Finish
+                 */
+                card.removeClass('loading');
+            }
+
+            refresh.removeClass('working');
+        });
+    }
+
+    /**
+     * Refresh
+     */
+    $(document).on('click', '.ui.button.refresh', function(event) {
+        var button = $(event.currentTarget);
+        var card   = button.closest('.ui.card');
+
+        button.addClass('working');
+
+        generateCacheCard(card);
     });
 
     /**

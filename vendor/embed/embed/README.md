@@ -14,7 +14,7 @@ Requirements:
 * Curl library installed
 * PSR-17 implementation. By default these libraries are detected automatically:
   * [laminas/laminas-diactoros](https://github.com/laminas/laminas-diactoros)
-  * [guzzle/psr7](https://github.com/guzzle/psr7) (Only the unreleased version 2.x, installed as `dev-master`)
+  * [guzzle/psr7](https://github.com/guzzle/psr7)
   * [nyholm/psr7](https://github.com/Nyholm/psr7)
   * [sunrise/http-message](https://github.com/sunrise-php/http-message)
 
@@ -315,7 +315,14 @@ use Embed\Http\CurlClient;
 $client = new CurlClient();
 $client->setSettings([
     'cookies_path' => $cookies_path,
-    'ignored_errors' => [18]
+    'ignored_errors' => [18],
+    'max_redirs' => 3,               // see CURLOPT_MAXREDIRS
+    'connect_timeout' => 2,          // see CURLOPT_CONNECTTIMEOUT
+    'timeout' => 2,                  // see CURLOPT_TIMEOUT
+    'ssl_verify_host' => 2,          // see CURLOPT_SSL_VERIFYHOST
+    'ssl_verify_peer' => 1,          // see CURLOPT_SSL_VERIFYPEER
+    'follow_location' => true,       // see CURLOPT_FOLLOWLOCATION
+    'user_agent' => 'Mozilla',       // see CURLOPT_USERAGENT
 ]);
 
 $embed = new Embed(new Crawler($client));
@@ -340,8 +347,6 @@ $info = $embed->get($url);
 Note: The built-in detectors does not require settings. This feature is only for convenience if you create a specific detector that requires settings.
 
 ---
-
-If this library is useful for you, say thanks [buying me a beer :beer:](https://www.paypal.me/oscarotero)!
 
 [ico-version]: https://poser.pugx.org/embed/embed/v/stable
 [ico-license]: https://poser.pugx.org/embed/embed/license

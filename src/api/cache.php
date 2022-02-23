@@ -20,7 +20,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $cache = new EmbedCache($_GET['url']);
         $info  = $cache->get(true);
 
-        if ($info->url) {
+        if ($info->url && str_contains($_GET['url'], $info->url)) {
             $database->query('UPDATE `products`
                                  SET `url` = "' . $info->url . '"
                                WHERE `id` = ' . $_GET['product_id'] . '

@@ -12,11 +12,18 @@ $(function() {
             closable: false,
             actions:  [
                 {
-                    text: 'Show wishlist anyway',
+                    text: 'Close this tab',
                     class: 'approve primary'
+                },
+                {
+                    text: 'Show wishlist anyway',
+                    class: 'deny'
                 }
             ],
             onApprove: function() {
+                window.close();
+            },
+            onDeny: function() {
                 $('.wishlist-own').slideUp();
             }
         })
