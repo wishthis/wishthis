@@ -46,7 +46,7 @@
     margin-right: auto;
   }
   .ui.ui.ui.grid.container {
-    width: calc(975px + 2rem);
+    width: calc(975px + 1rem);
   }
   .ui.ui.ui.relaxed.grid.container {
     width: calc(975px + 3rem);
@@ -64,7 +64,7 @@
     margin-right: auto;
   }
   .ui.ui.ui.grid.container {
-    width: calc(927px + 2rem);
+    width: calc(927px + 1rem);
   }
   .ui.ui.ui.relaxed.grid.container {
     width: calc(927px + 3rem);
@@ -82,7 +82,7 @@
     margin-right: auto;
   }
   .ui.ui.ui.grid.container {
-    width: calc(1119px + 2rem);
+    width: calc(1119px + 1rem);
   }
   .ui.ui.ui.relaxed.grid.container {
     width: calc(1119px + 3rem);
