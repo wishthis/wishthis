@@ -53,24 +53,26 @@ $page->navigation();
             </div>
         <?php } ?>
 
-        <div class="ui segment">
-            <h2 class="ui header">What to do?</h2>
-            <p>
-                If you found something you would like to buy,
-                click the <span class="ui tiny horizontal label">Commit</span> button
-                and it will become unavailable for others.
-            </p>
+        <div class="ui horizontal stackable segments">
+            <div class="ui segment">
+                <h2 class="ui header">What to do?</h2>
+                <p>
+                    If you found something you would like to buy,
+                    click the <span class="ui tiny horizontal label">Commit</span> button
+                    and it will become unavailable for others.
+                </p>
+            </div>
         </div>
+    </div>
 
-        <div class="wishlist-cards">
-            <?php
-            echo $wishlist->getCards(
-                array(
-                    'exclude' => array('unavailable'),
-                )
-            );
-            ?>
-        </div>
+    <div class="wishlist-cards">
+        <?php
+        echo $wishlist->getCards(
+            array(
+                'exclude' => array('unavailable'),
+            )
+        );
+        ?>
     </div>
 </main>
 
