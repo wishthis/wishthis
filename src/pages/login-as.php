@@ -32,8 +32,12 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <?php
-        if (isset($success) && !$success) {
-            echo Page::error('User not found!', 'Error');
+        if (isset($success)) {
+            if ($success) {
+                echo Page::success('Successfully logged in as ' . $_SESSION['user']['email'] . '.', 'Success');
+            } else {
+                echo Page::error('User not found!', 'Error');
+            }
         }
         ?>
 
