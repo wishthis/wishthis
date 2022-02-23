@@ -1,3 +1,7 @@
+:root {
+    --lineHeight: 1.4285;
+}
+
 /**
  * Footer
  */
@@ -23,15 +27,36 @@
 /**
  * Card
  */
-.ui.card .header > img {
-	height: 1.25em;
-    vertical-align: text-bottom;
+.ui.fluid.card.stretch {
+    height: 100%;
 }
+
+/** Image */
 .ui.card > .image > img,
 .ui.cards > .card > .image > img {
 	height: 30vh;
     object-fit: cover;
+    background-color: #fff;
 }
+
+/** Content */
+.ui.card > .content > .header + .description,
+.ui.card > .content > .meta + .description,
+.ui.cards > .card > .content > .header + .description,
+.ui.cards > .card > .content > .meta + .description {
+    max-height: calc(2em * var(--lineHeight));
+
+    overflow: hidden;
+}
+
+/** Icon */
+.ui.card .header > img {
+    position: absolute;
+    top: 1em;
+    height: 1.25em;
+    vertical-align: text-bottom;
+}
+
 
 /**
  * Label

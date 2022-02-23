@@ -56,9 +56,9 @@ if (isset($_POST['wishlist_delete_id'])) {
                 </form>
             </div>
         </div>
-
-        <div class="wishlist-cards"></div>
     </div>
+
+    <div class="wishlist-cards"></div>
 </main>
 
 <?php

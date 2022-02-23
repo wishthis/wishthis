@@ -78,67 +78,69 @@ class Wishlist
          * Cards
          */
         if (!empty($products)) { ?>
-            <div class="ui three stackable cards">
+            <div class="ui stackable three column grid container">
                 <?php foreach ($products as $product) {
                     $cache = new EmbedCache();
                     $info  = $cache->get($product['url']);
                     ?>
-                    <div class="card" data-id="<?= $product['id'] ?>">
+                    <div class="column">
+                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>">
 
-                        <?php if ($info->image) { ?>
-                            <div class="image">
-                                <img src="<?= $info->image ?>" />
+                            <?php if ($info->image) { ?>
+                                <div class="image">
+                                    <img src="<?= $info->image ?>" />
+                                </div>
+                            <?php } ?>
+
+                            <div class="content">
+                                <?php if ($info->title) { ?>
+                                    <div class="header">
+                                        <?php if ($info->favicon) { ?>
+                                            <img src="<?= $info->favicon ?>" />
+                                        <?php } ?>
+
+                                        <?php if ($info->url) { ?>
+                                            <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
+                                        <?php } else { ?>
+                                            <?= $info->title ?>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($info->keywords) { ?>
+                                    <div class="meta">
+                                        <?= implode(',', $info->keywords) ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($info->description) { ?>
+                                    <div class="description">
+                                        <?= $info->description ?>
+                                    </div>
+                                <?php } ?>
                             </div>
-                        <?php } ?>
+                            <div class="extra content">
+                                <?php if ($info->publishedTime) { ?>
+                                    <span class="right floated">
+                                        <?= $info->publishedTime ?>
+                                    </span>
+                                <?php } ?>
+                                <?php if ($info->providerName) { ?>
+                                    <?= $info->providerName ?>
+                                <?php } ?>
+                            </div>
+                            <div class="extra content">
+                                <?php if ($info->url) { ?>
+                                    <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
+                                <?php } ?>
+                                <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
+                                    <a class="ui tiny red button delete">Delete</a>
+                                <?php } else { ?>
+                                    <a class="ui tiny button commit">Commit</a>
+                                <?php } ?>
+                            </div>
 
-                        <div class="content">
-                            <?php if ($info->title) { ?>
-                                <div class="header">
-                                    <?php if ($info->favicon) { ?>
-                                        <img src="<?= $info->favicon ?>" />
-                                    <?php } ?>
-
-                                    <?php if ($info->url) { ?>
-                                        <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
-                                    <?php } else { ?>
-                                        <?= $info->title ?>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if ($info->keywords) { ?>
-                                <div class="meta">
-                                    <?= implode(',', $info->keywords) ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if ($info->description) { ?>
-                                <div class="description">
-                                    <?= $info->description ?>
-                                </div>
-                            <?php } ?>
                         </div>
-                        <div class="extra content">
-                            <?php if ($info->publishedTime) { ?>
-                                <span class="right floated">
-                                    <?= $info->publishedTime ?>
-                                </span>
-                            <?php } ?>
-                            <?php if ($info->providerName) { ?>
-                                <?= $info->providerName ?>
-                            <?php } ?>
-                        </div>
-                        <div class="extra content">
-                            <?php if ($info->url) { ?>
-                                <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
-                            <?php } ?>
-                            <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
-                                <a class="ui tiny red button delete">Delete</a>
-                            <?php } else { ?>
-                                <a class="ui tiny button commit">Commit</a>
-                            <?php } ?>
-                        </div>
-
                     </div>
                 <?php } ?>
             </div>
