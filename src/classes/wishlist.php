@@ -129,25 +129,25 @@ class Wishlist
                                 <?php } ?>
                             </div>
 
-                            <?php if ($info->publishedTime || $info->providerName) { ?>
-                                <div class="extra content details">
-                                    <?php if ($info->publishedTime) { ?>
-                                        <span class="right floated">
-                                            <?= $info->publishedTime ?>
-                                        </span>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-
                             <div class="extra content buttons">
-                                <?php if ($info->url) { ?>
-                                    <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
+                                <?php $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']; ?>
+
+                                <?php if (!$userIsCurrent) { ?>
+                                    <a class="ui primary right labeled icon button commit">
+                                        <i class="shopping cart icon"></i>
+                                        Commit
+                                    </a>
                                 <?php } ?>
 
-                                <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
-                                    <a class="ui tiny red button delete">Delete</a>
-                                <?php } else { ?>
-                                    <a class="ui tiny button commit">Commit</a>
+                                <?php if ($info->url) { ?>
+                                    <a class="ui right labeled icon button" href="<?= $info->url ?>" target="_blank">
+                                        <i class="external icon"></i>
+                                        View
+                                    </a>
+                                <?php } ?>
+
+                                <?php if ($userIsCurrent) { ?>
+                                    <a class="ui red button delete">Delete</a>
                                 <?php } ?>
                             </div>
 

@@ -180,23 +180,6 @@ $(function() {
                 }
 
                 /**
-                 * Details
-                 */
-                if (info.publishedTime) {
-                    if (!elementDetails.length) {
-                        elementButtons.before().append(
-                            '<div class="extra content details"></div>'
-                        );
-
-                        if (info.publishedTime) {
-                            elementContent.children('.extra.content.details').append(
-                                '<span class="right floated">' + info.publishedTime + '</span>'
-                            );
-                        }
-                    }
-                }
-
-                /**
                  * Finish
                  */
                 card.removeClass('loading');
