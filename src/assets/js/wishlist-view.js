@@ -93,7 +93,7 @@ $(function() {
                                 if (!elementImage.length) {
                                     card.prepend(
                                         '<div class="image">' +
-                                            '<img src="' + info.image + '">' +
+                                            '<img src="' + info.image + '" loading="lazy">' +
                                         '</div>'
                                     );
                                 }
@@ -108,7 +108,7 @@ $(function() {
                             /** Favicon */
                             if (info.favicon) {
                                 elementContentHeader.prepend(
-                                    '<img src="' + info.favicon + '">'
+                                    '<img src="' + info.favicon + '" loading="lazy">'
                                 );
                             }
 

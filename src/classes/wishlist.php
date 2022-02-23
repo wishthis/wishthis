@@ -89,7 +89,7 @@ class Wishlist
 
                             <?php if ($info->image) { ?>
                                 <div class="image">
-                                    <img src="<?= $info->image ?>" />
+                                    <img src="<?= $info->image ?>" loading="lazy"/>
                                 </div>
                             <?php } ?>
 
@@ -97,7 +97,7 @@ class Wishlist
                                 <?php if ($info->title) { ?>
                                     <div class="header">
                                         <?php if ($info->favicon) { ?>
-                                            <img src="<?= $info->favicon ?>" />
+                                            <img src="<?= $info->favicon ?>" loading="lazy"/>
                                         <?php } ?>
 
                                         <?php if ($info->url) { ?>
