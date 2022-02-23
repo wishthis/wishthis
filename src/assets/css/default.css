@@ -27,16 +27,53 @@
 /**
  * Card
  */
+.ui.card {
+    overflow: hidden;
+}
+
 .ui.fluid.card.stretch {
     height: 100%;
 }
 
 /** Image */
-.ui.card > .image > img,
-.ui.cards > .card > .image > img {
+.ui.card > .image > img.preview{
 	height: 30vh;
     object-fit: cover;
     background-color: #fff;
+}
+
+/** Favicon */
+.ui.card > .image > img.favicon {
+    position: absolute;
+    top: calc(0.91666667em * 1.25);
+    left: 1em;
+    height: 1.25em;
+    width: auto;
+
+    z-index: 1;
+}
+
+.ui.card > .image > img.favicon + span.provider {
+    padding-left: 3em;
+}
+
+/** Provider name */
+.ui.card > .image > span.provider {
+    transition: 0.4s ease opacity;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: calc(0.91666667em * 1.5) 0.91666667em;
+
+    line-height: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+
+    opacity: 0;
+}
+.ui.card:hover > .image > span.provider {
+    opacity: 1;
 }
 
 /** Refresh */
@@ -44,13 +81,29 @@
     transition: 0.4s ease opacity;
 
 	position: absolute;
-    top: 1em;
-    right: 1em;
+    top: calc(0.91666667em / 2);
+    right: calc(0.91666667em / 2);
+    margin: 0;
 
     opacity: 0;
+    background-color: transparent;
 }
 .ui.card:hover > .image > button {
+    animation: buttonWorking 2s linear infinite paused;
+
     opacity: 1;
+}
+.ui.card:hover > .image > button.working {
+    animation-play-state: running;
+}
+@keyframes buttonWorking {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
 }
 
 /** Content */
@@ -61,14 +114,6 @@
     max-height: calc(2em * var(--lineHeight));
 
     overflow: hidden;
-}
-
-/** Icon */
-.image + .content .header img {
-    position: absolute;
-    top: 1em;
-    height: 1.25em;
-    vertical-align: text-bottom;
 }
 
 /**

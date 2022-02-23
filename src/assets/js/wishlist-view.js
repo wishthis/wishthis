@@ -82,6 +82,7 @@ $(function() {
 
         var href       = card.find('.content [href]').prop('href');
         var product_id = card.data('id');
+        var refresh    = card.find('button.refresh');
 
         card.addClass('loading');
         card.attr('data-cache', true);
@@ -117,18 +118,31 @@ $(function() {
                     }
                 }
 
+                /** Favicon */
+                if (info.favicon) {
+                    var elementFavicon = elementImage.children('img.favicon');
+
+                    if (!elementFavicon.length) {
+                        console.log(elementImage.children());
+
+                        elementImage.children().first().after(
+                            '<img class="favicon" src="' + info.favicon + '" loading="lazy">'
+                        );
+                    } else {
+                        elementFavicon.attr('src', info.favicon);
+                    }
+                }
+
+                /** Provider name */
+                if (info.providerName) {
+                    $('<span class="provider">' + info.providerName + '</span>').insertBefore(elementImage.children().last());
+                }
+
                 /**
                  * Header
                  */
                 var elementContentHeader      = elementContent.children('.header');
                 var elementContentHeaderTitle = elementContentHeader.children('a');
-
-                /** Favicon */
-                if (info.favicon) {
-                    elementContentHeader.prepend(
-                        '<img src="' + info.favicon + '" loading="lazy">'
-                    );
-                }
 
                 /** Title */
                 if (info.title) {
@@ -164,7 +178,7 @@ $(function() {
                 /**
                  * Details
                  */
-                if (info.publishedTime || info.providerName) {
+                if (info.publishedTime) {
                     if (!elementDetails.length) {
                         elementButtons.before().append(
                             '<div class="extra content details"></div>'
@@ -175,12 +189,6 @@ $(function() {
                                 '<span class="right floated">' + info.publishedTime + '</span>'
                             );
                         }
-
-                        if (info.providerName) {
-                            elementContent.children('.extra.content.details').append(
-                                info.providerName
-                            );
-                        }
                     }
                 }
 
@@ -189,6 +197,8 @@ $(function() {
                  */
                 card.removeClass('loading');
             }
+
+            refresh.removeClass('working');
         });
     }
 
@@ -196,9 +206,10 @@ $(function() {
      * Refresh
      */
     $(document).on('click', '.ui.button.refresh', function(event) {
-        var card = $(event.currentTarget).closest('.ui.card');
+        var button = $(event.currentTarget);
+        var card   = button.closest('.ui.card');
 
-        console.log(card);
+        button.addClass('working');
 
         generateCacheCard(card);
     });

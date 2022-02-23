@@ -89,7 +89,15 @@ class Wishlist
 
                             <?php if ($info->image) { ?>
                                 <div class="image">
-                                    <img src="<?= $info->image ?>" loading="lazy"/>
+                                    <img class="preview" src="<?= $info->image ?>" loading="lazy"/>
+
+                                    <?php if ($info->favicon) { ?>
+                                        <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
+                                    <?php } ?>
+
+                                    <?php if ($info->providerName) { ?>
+                                        <span class="provider"><?= $info->providerName ?></span>
+                                    <?php } ?>
 
                                     <button class="ui icon button refresh">
                                         <i class="refresh icon"></i>
@@ -100,10 +108,6 @@ class Wishlist
                             <div class="content">
                                 <?php if ($info->title) { ?>
                                     <div class="header">
-                                        <?php if ($info->favicon) { ?>
-                                            <img src="<?= $info->favicon ?>" loading="lazy"/>
-                                        <?php } ?>
-
                                         <?php if ($info->url) { ?>
                                             <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
                                         <?php } else { ?>
@@ -131,10 +135,6 @@ class Wishlist
                                         <span class="right floated">
                                             <?= $info->publishedTime ?>
                                         </span>
-                                    <?php } ?>
-
-                                    <?php if ($info->providerName) { ?>
-                                        <?= $info->providerName ?>
                                     <?php } ?>
                                 </div>
                             <?php } ?>
