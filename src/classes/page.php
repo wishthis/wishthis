@@ -208,11 +208,7 @@ class Page
                     Wishlist
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item" href="/?page=wishlist-create">
-                            <i class="list icon"></i>
-                            Create
-                        </a>
-                        <a class="item" href="/?page=wishlist-view">
+                        <a class="item" href="/?page=wishlists">
                             <i class="list icon"></i>
                             View
                         </a>
