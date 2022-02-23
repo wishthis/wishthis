@@ -13,6 +13,7 @@ namespace wishthis;
 class EmbedCache
 {
     private string $directory = ROOT . '/src/cache';
+    private string $noImage   = '/src/assets/img/no-image.svg';
 
     private string $identifier;
     private string $filepath;
@@ -46,7 +47,7 @@ class EmbedCache
             $info_simplified->favicon       = '';
             $info_simplified->feeds         = array();
             $info_simplified->icon          = '';
-            $info_simplified->image         = '';
+            $info_simplified->image         = $this->noImage;
             $info_simplified->keywords      = array();
             $info_simplified->language      = '';
             $info_simplified->languages     = array();
