@@ -1,0 +1,21 @@
+{
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "name": "wishthis",
+    "orientation": "any",
+    "scope": "/",
+    "short_name": "wishthis",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "categories": [],
+    "screenshots": [],
+    "icons": [
+      {
+        "src": "/src/assets/img/logo-square.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any"
+      }
+    ],
+    "shortcuts": []
+  }
