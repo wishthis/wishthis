@@ -86,7 +86,7 @@ if ($options) {
  */
 use Github\Client;
 
-if ($options) {
+if ($options && !isset($_POST['step'])) {
     $updateLastChecked = $options->getOption('updateLastChecked');
 
     if (!$updateLastChecked || time() - $updateLastChecked >= 86400) {
