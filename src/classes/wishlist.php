@@ -77,6 +77,8 @@ class Wishlist
         /**
          * Cards
          */
+        $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id'];
+
         if (!empty($products)) { ?>
             <div class="ui stackable three column grid container">
                 <?php foreach ($products as $product) {
@@ -99,9 +101,11 @@ class Wishlist
                                         <span class="provider"><?= $info->providerName ?></span>
                                     <?php } ?>
 
-                                    <button class="ui icon button refresh">
-                                        <i class="refresh icon"></i>
-                                    </button>
+                                    <?php if($userIsCurrent) { ?>
+                                        <button class="ui icon button refresh">
+                                            <i class="refresh icon"></i>
+                                        </button>
+                                    <?php } ?>
                                 </div>
                             <?php } ?>
 
@@ -130,8 +134,6 @@ class Wishlist
                             </div>
 
                             <div class="extra content buttons">
-                                <?php $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']; ?>
-
                                 <?php if (!$userIsCurrent) { ?>
                                     <a class="ui primary labeled icon button commit">
                                         <i class="shopping cart icon"></i>
