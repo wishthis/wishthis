@@ -1,27 +1,20 @@
 <?php
 
 /**
- * The user login page.
+ * Allows administrators to login as a user. For debugging purposes.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
 use wishthis\Page;
 
-$page = new Page(__FILE__, 'Login');
+$page = new Page(__FILE__, 'Login as', 100);
 
-if (isset($_POST['email'], $_POST['password'])) {
-    $email    = $_POST['email'];
-    $password = sha1($_POST['password']);
+if (isset($_POST['email'])) {
+    $email = $_POST['email'];
 
-    $database->query('UPDATE `users`
-                         SET `last_login` = NOW()
-                       WHERE `email` = "' . $email . '"
-                         AND `password` = "' . $password . '"
-    ;');
     $user = $database->query('SELECT * FROM `users`
-                               WHERE `email`    = "' . $email . '"
-                                 AND `password` = "' . $password . '";')
+                               WHERE `email`    = "' . $email . '";')
                      ->fetch();
 
     $success = false !== $user;
@@ -29,11 +22,6 @@ if (isset($_POST['email'], $_POST['password'])) {
     if ($success) {
         $_SESSION['user'] = $user;
     }
-}
-
-if (isset($_SESSION['user'])) {
-    header('Location: /?page=home');
-    die();
 }
 
 $page->header();
@@ -45,7 +33,7 @@ $page->navigation();
 
         <?php
         if (isset($success) && !$success) {
-            echo Page::error('Invalid credentials!', 'Error');
+            echo Page::error('User not found!', 'Error');
         }
         ?>
 
@@ -55,13 +43,8 @@ $page->navigation();
                     <label>Email</label>
                     <input type="email" name="email" placeholder="john.doe@domain.tld" />
                 </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input type="password" name="password" />
-                </div>
 
                 <input class="ui primary button" type="submit" value="Login" />
-                <a href="/?page=register">Register</a>
             </form>
         </div>
     </div>

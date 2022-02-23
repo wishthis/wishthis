@@ -545,12 +545,12 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #4183C4;
+  color: #6435C9;
   text-decoration: none;
 }
 
 a:hover {
-  color: #1e70bf;
+  color: #4d17c0;
   text-decoration: none;
 }
 
@@ -565,17 +565,17 @@ a:hover {
 /* Site */
 
 ::-webkit-selection {
-  background-color: #CCE2FF;
+  background-color: #dfd6f4;
   color: rgba(0, 0, 0, 0.87);
 }
 
 ::-moz-selection {
-  background-color: #CCE2FF;
+  background-color: #dfd6f4;
   color: rgba(0, 0, 0, 0.87);
 }
 
 ::selection {
-  background-color: #CCE2FF;
+  background-color: #dfd6f4;
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -1388,7 +1388,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
 
 /* Tablet Or Below */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.stackable.buttons {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -5695,7 +5695,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
 
 /* Mobile */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.ui.ui.container:not(.fluid) {
     width: auto;
     margin-left: 1em;
@@ -5717,23 +5717,23 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
 
 /* Tablet */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.ui.ui.container:not(.fluid) {
-    width: 719px;
+    width: 975px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .ui.ui.ui.grid.container {
-    width: calc(719px + 2rem);
+    width: calc(975px + 2rem);
   }
 
   .ui.ui.ui.relaxed.grid.container {
-    width: calc(719px + 3rem);
+    width: calc(975px + 3rem);
   }
 
   .ui.ui.ui.very.relaxed.grid.container {
-    width: calc(719px + 5rem);
+    width: calc(975px + 5rem);
   }
 }
 
@@ -5952,7 +5952,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
 
 /* Inside grid */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.stackable.grid .ui.vertical.divider,
   .ui.grid .stackable.row .ui.vertical.divider {
     display: table;
@@ -6132,7 +6132,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABaAAAAACCAYAAACuTHuKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1OThBRDY4OUNDMTYxMUU0OUE3NUVGOEJDMzMzMjE2NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1OThBRDY4QUNDMTYxMUU0OUE3NUVGOEJDMzMzMjE2NyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjU5OEFENjg3Q0MxNjExRTQ5QTc1RUY4QkMzMzMyMTY3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU5OEFENjg4Q0MxNjExRTQ5QTc1RUY4QkMzMzMyMTY3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+VU513gAAADVJREFUeNrs0DENACAQBDBIWLGBJQby/mUcJn5sJXQmOQMAAAAAAJqt+2prAAAAAACg2xdgANk6BEVuJgyMAAAAAElFTkSuQmCC');
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1023px) {
   .ui.stackable.grid .ui.vertical.divider:before,
   .ui.grid .stackable.row .ui.vertical.divider:before,
   .ui.stackable.grid .ui.vertical.divider:after,
@@ -34701,7 +34701,7 @@ a.ui.active.label:hover:before {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #1e70bf;
+  color: #4d17c0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -34751,7 +34751,7 @@ a.ui.basic.label:hover {
 }
 
 .ui.inverted.basic.label:hover {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 /*-------------------
@@ -36641,12 +36641,12 @@ ol.ui.list ol li,
 .ui.list .list > a.item,
 .ui.list > a.item {
   cursor: pointer;
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.list .list > a.item:hover,
 .ui.list > a.item:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Linked Item Icons */
@@ -36663,12 +36663,12 @@ ol.ui.list ol li,
 .ui.list .list > .item a.header,
 .ui.list > .item a.header {
   cursor: pointer;
-  color: #4183C4 !important;
+  color: #6435C9 !important;
 }
 
 .ui.list .list > .item > a.header:hover,
 .ui.list > .item > a.header:hover {
-  color: #1e70bf !important;
+  color: #4d17c0 !important;
 }
 
 /* Floated Content */
@@ -36858,7 +36858,7 @@ ol.ui.list ol li,
 
 .ui.inverted.list .list > a.item:hover,
 .ui.inverted.list > a.item:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Linking Content */
@@ -36868,7 +36868,7 @@ ol.ui.list ol li,
 }
 
 .ui.inverted.list .item a:not(.ui):hover {
-  color: #1e70bf !important;
+  color: #4d17c0 !important;
 }
 
 /*-------------------
@@ -40574,7 +40574,7 @@ ol.ui.suffixed.list li:before,
 
 /* Mobile (Default) */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.steps:not(.unstackable) {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -40672,7 +40672,7 @@ ol.ui.suffixed.list li:before,
 }
 
 .ui.steps .step.active .title {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.ordered.steps .step.active:before,
@@ -41284,11 +41284,11 @@ span.ui.massive.text {
 /* Link */
 
 .ui.breadcrumb a {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.breadcrumb a:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Icon Divider */
@@ -43136,7 +43136,7 @@ span.ui.massive.text {
 
 /* Swap to full width on mobile */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.form .fields {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -43565,7 +43565,7 @@ span.ui.massive.text {
          Page Grid
   -------------------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.page.grid {
     width: auto;
     padding-left: 0;
@@ -43575,7 +43575,7 @@ span.ui.massive.text {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.page.grid {
     width: auto;
     margin-left: 0;
@@ -43905,7 +43905,7 @@ span.ui.massive.text {
 
 /* Mobile Sizing Combinations */
 
-@media only screen and (min-width: 320px) and (max-width: 767.98px) {
+@media only screen and (min-width: 320px) and (max-width: 1023.98px) {
   .ui.grid > .row > [class*="one wide mobile"].column,
   .ui.grid > .column.row > [class*="one wide mobile"].column,
   .ui.grid > [class*="one wide mobile"].column,
@@ -44021,7 +44021,7 @@ span.ui.massive.text {
 
 /* Tablet Sizing Combinations */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.grid > .row > [class*="one wide tablet"].column,
   .ui.grid > .column.row > [class*="one wide tablet"].column,
   .ui.grid > [class*="one wide tablet"].column,
@@ -45026,7 +45026,7 @@ span.ui.massive.text {
 
 /* Mobile */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui[class*="mobile reversed"].grid,
   .ui[class*="mobile reversed"].grid > .row,
   .ui.grid > [class*="mobile reversed"].row {
@@ -45085,7 +45085,7 @@ span.ui.massive.text {
 
 /* Tablet */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui[class*="tablet reversed"].grid,
   .ui[class*="tablet reversed"].grid > .row,
   .ui.grid > [class*="tablet reversed"].row {
@@ -45205,7 +45205,7 @@ span.ui.massive.text {
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.doubling.grid {
     width: auto;
   }
@@ -45319,7 +45319,7 @@ span.ui.massive.text {
 
 /* Mobile Only */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.grid > .doubling.row,
   .ui.doubling.grid > .row {
     margin: 0 !important;
@@ -45430,7 +45430,7 @@ span.ui.massive.text {
         Stackable
   --------------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.ui.ui.ui.stackable.grid {
     width: auto;
     margin-left: 0 !important;
@@ -45519,7 +45519,7 @@ span.ui.massive.text {
 
 /* Mobile Only Hide */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui[class*="tablet only"].grid.grid.grid:not(.mobile),
   .ui.grid.grid.grid > [class*="tablet only"].row:not(.mobile),
   .ui.grid.grid.grid > [class*="tablet only"].column:not(.mobile),
@@ -45551,7 +45551,7 @@ span.ui.massive.text {
 
 /* Tablet Only Hide */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui[class*="mobile only"].grid.grid.grid:not(.tablet),
   .ui.grid.grid.grid > [class*="mobile only"].row:not(.tablet),
   .ui.grid.grid.grid > [class*="mobile only"].column:not(.tablet),
@@ -46195,7 +46195,7 @@ span.ui.massive.text {
     Container
 ---------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.menu > .ui.container {
     width: 100% !important;
     margin-left: 0 !important;
@@ -46203,7 +46203,7 @@ span.ui.massive.text {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless) > .container > .item:not(.right):not(.borderless):first-child {
     border-left: 1px solid rgba(34, 36, 38, 0.1);
   }
@@ -47208,7 +47208,7 @@ Floated Menu / Item
       Stackable
   ---------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.stackable.menu {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -49284,7 +49284,7 @@ Floated Menu / Item
 
 /* Responsive */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.table:not(.unstackable) {
     width: 100%;
     padding: 0;
@@ -51921,7 +51921,7 @@ Floated Menu / Item
   display: none;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.mobile.ad {
     display: block;
   }
@@ -52304,7 +52304,7 @@ Floated Menu / Item
 
 .ui.cards > .card > .content > a.header:hover,
 .ui.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Meta */
@@ -52431,7 +52431,7 @@ Floated Menu / Item
 
 .ui.cards > .card > .extra a:not(.ui):hover,
 .ui.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /*******************************
@@ -53165,7 +53165,7 @@ a.ui.card:hover,
 
 /* Mobile Only */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.two.doubling.cards {
     margin-left: 0;
     margin-right: 0;
@@ -53268,7 +53268,7 @@ a.ui.card:hover,
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.two.doubling.cards {
     margin-left: 0;
     margin-right: 0;
@@ -53373,7 +53373,7 @@ a.ui.card:hover,
         Stackable
   --------------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.stackable.cards {
     display: block !important;
   }
@@ -53459,7 +53459,7 @@ a.ui.card:hover,
 
 .ui.inverted.cards > .card > .content > a.header:hover,
 .ui.inverted.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Description */
@@ -53501,7 +53501,7 @@ a.ui.card:hover,
 
 .ui.inverted.cards > .card > .extra a:not(.ui):hover,
 .ui.inverted.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Link card(s) */
@@ -53651,7 +53651,7 @@ a.inverted.ui.card:hover,
 }
 
 .ui.comments .comment a.author:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /*--------------
@@ -54462,7 +54462,7 @@ a.inverted.ui.card:hover,
 }
 
 .ui.items > .item > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Meta */
@@ -54569,7 +54569,7 @@ a.inverted.ui.card:hover,
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+@media only screen and (min-width: 1024px) and (max-width: 991.98px) {
   .ui.items > .item {
     margin: 1em 0;
   }
@@ -54586,7 +54586,7 @@ a.inverted.ui.card:hover,
 
 /* Mobile Only */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.items:not(.unstackable) > .item {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -54693,7 +54693,7 @@ a.inverted.ui.card:hover,
 
 .ui.items a.item:hover .content .header,
 .ui.link.items > .item:hover .content .header {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /*--------------
@@ -54736,7 +54736,7 @@ a.inverted.ui.card:hover,
      Unstackable
   ----------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.unstackable.items > .item > .image,
   .ui.unstackable.items > .item > .image > img {
     width: 125px !important;
@@ -54773,11 +54773,11 @@ a.inverted.ui.card:hover,
 }
 
 .ui.inverted.items > .item > .content a:not(.ui) {
-  color: #57a4ef;
+  color: #804af4;
 }
 
 .ui.inverted.items > .item > .content a:not(.ui):hover {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.inverted.items > .item > .content > a.header {
@@ -55395,7 +55395,7 @@ a.inverted.ui.card:hover,
       Stackable
   ---------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.stackable.statistics {
     width: auto;
     margin-left: 0 !important;
@@ -57888,7 +57888,7 @@ select.ui.dropdown {
   padding: 0.75rem 1.16666667rem;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.selection.dropdown.short .menu {
     max-height: 5.85rem;
   }
@@ -57910,7 +57910,7 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.selection.dropdown.short .menu {
     max-height: 7.8rem;
   }
@@ -58228,13 +58228,13 @@ select.ui.dropdown {
   -webkit-overflow-scrolling: touch;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.search.dropdown .menu {
     max-height: 7.8rem;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.search.dropdown .menu {
     max-height: 10.4rem;
   }
@@ -58963,14 +58963,14 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
     max-height: 10rem;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
     max-height: 15rem;
@@ -60094,14 +60094,14 @@ select.ui.dropdown {
 
 /* Modal Width */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.modal:not(.fullscreen) {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.modal:not(.fullscreen) {
     width: 88%;
     margin: 0 0 0 0;
@@ -60145,7 +60145,7 @@ select.ui.dropdown {
 
 /* Mobile */
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.modal > .header {
     padding: 0.75rem 1rem;
   }
@@ -60317,7 +60317,7 @@ select.ui.dropdown {
   bottom: 5vh;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .modals.dimmer .ui.top.aligned.modal {
     top: 1rem;
   }
@@ -60438,14 +60438,14 @@ select.ui.dropdown {
   font-size: 1.3em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.mini.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.mini.modal {
     width: 35.2%;
     margin: 0 0 0 0;
@@ -60477,14 +60477,14 @@ select.ui.dropdown {
   font-size: 1.3em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.tiny.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.tiny.modal {
     width: 52.8%;
     margin: 0 0 0 0;
@@ -60516,14 +60516,14 @@ select.ui.dropdown {
   font-size: 1.3em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.small.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.small.modal {
     width: 70.4%;
     margin: 0 0 0 0;
@@ -60555,14 +60555,14 @@ select.ui.dropdown {
   font-size: 1.6em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.large.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.large.modal {
     width: 88%;
     margin: 0 0 0 0;
@@ -60594,14 +60594,14 @@ select.ui.dropdown {
   font-size: 1.6em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.big.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.big.modal {
     width: 88%;
     margin: 0 0 0 0;
@@ -60633,14 +60633,14 @@ select.ui.dropdown {
   font-size: 1.6em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.huge.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.huge.modal {
     width: 88%;
     margin: 0 0 0 0;
@@ -60672,14 +60672,14 @@ select.ui.dropdown {
   font-size: 1.8em;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.massive.modal {
     width: 95%;
     margin: 0 0 0 0;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.massive.modal {
     width: 88%;
     margin: 0 0 0 0;
@@ -61320,7 +61320,7 @@ a.ui.nag {
   width: 550px;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   [data-tooltip][data-variation~="fixed"]:after {
     width: 250px;
   }
@@ -61868,7 +61868,7 @@ a.ui.nag {
   width: 550px;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.wide.popup,
   .ui[class*="very wide"].popup {
     max-width: 250px;
@@ -64888,13 +64888,13 @@ a.ui.nag {
   -webkit-overflow-scrolling: touch;
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.scrolling.search > .results {
     max-height: 11.98666667em;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.scrolling.search > .results {
     max-height: 17.98em;
   }
@@ -64912,7 +64912,7 @@ a.ui.nag {
   }
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.search.short > .results {
     max-height: 11.98666667em;
   }
@@ -64930,7 +64930,7 @@ a.ui.nag {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
   .ui.search.short > .results {
     max-height: 17.98em;
   }
@@ -65046,7 +65046,7 @@ a.ui.nag {
       Mobile
 ---------------*/
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.search .results {
     max-width: calc(100vw - 2rem);
   }

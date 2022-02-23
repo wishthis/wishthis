@@ -40,7 +40,9 @@ $(function() {
         console.log(element);
         console.log(xhr);
 
-        response = response.replace('<br />', '');
+        if ('string' === typeof response) {
+            response = response.replace('<br />', '');
+        }
 
         $('body')
         .modal({
@@ -61,7 +63,7 @@ $(function() {
         console.log(element);
         console.log(xhr);
 
-        if (response.startsWith('<br />')) {
+        if ('string' === typeof response) {
             response = response.replace('<br />', '');
         }
 

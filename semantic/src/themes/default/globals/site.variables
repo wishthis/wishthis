@@ -144,7 +144,7 @@
        Links
 --------------------*/
 
-@linkColor           : #4183C4;
+@linkColor           : @primaryColor;
 @linkUnderline       : none;
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
@@ -178,7 +178,7 @@
   Highlighted Text
 --------------------*/
 
-@highlightBackground      : #CCE2FF;
+@highlightBackground      : lighten(@primaryColor, 40);
 @highlightColor           : @textColor;
 
 @inputHighlightBackground : rgba(100, 100, 100, 0.4);
@@ -218,7 +218,7 @@
 --------------------*/
 
 @mobileBreakpoint            : 320px;
-@tabletBreakpoint            : 768px;
+@tabletBreakpoint            : 1024px;
 @computerBreakpoint          : 992px;
 @largeMonitorBreakpoint      : 1200px;
 @widescreenMonitorBreakpoint : 1920px;
