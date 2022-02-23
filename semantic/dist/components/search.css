@@ -384,12 +384,12 @@
           backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
 }
-@media only screen and (max-width: 809.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.scrolling.search > .results {
     max-height: 11.98666667em;
   }
 }
-@media only screen and (min-width: 810px) {
+@media only screen and (min-width: 1024px) {
   .ui.scrolling.search > .results {
     max-height: 17.98em;
   }
@@ -404,7 +404,7 @@
     max-height: 35.96em;
   }
 }
-@media only screen and (max-width: 809.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.search.short > .results {
     max-height: 11.98666667em;
   }
@@ -418,7 +418,7 @@
     max-height: 35.96em;
   }
 }
-@media only screen and (min-width: 810px) {
+@media only screen and (min-width: 1024px) {
   .ui.search.short > .results {
     max-height: 17.98em;
   }
@@ -515,7 +515,7 @@
       Mobile
 ---------------*/
 
-@media only screen and (max-width: 809.98px) {
+@media only screen and (max-width: 1023.98px) {
   .ui.search .results {
     max-width: calc(100vw - 2rem);
   }
