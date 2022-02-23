@@ -58,8 +58,11 @@ $page->navigation();
                 <h2 class="ui header">What to do?</h2>
                 <p>
                     If you found something you would like to buy,
-                    click the <span class="ui tiny horizontal label">Commit</span> button
-                    and it will become unavailable for others.
+                    click the
+                    <span class="ui primary tiny horizontal label">
+                        <i class="shopping cart icon"></i> Commit
+                    </span>
+                    button and it will become unavailable for others.
                 </p>
             </div>
         </div>
