@@ -149,6 +149,8 @@ class Wishlist
             <?php
         }
 
-        return ob_get_clean();
+        $html = ob_get_clean();
+
+        return $html;
     }
 }

@@ -219,8 +219,13 @@ class Page
                         <?php
                         $user = isset($_SESSION['user']) ? new User() : null;
 
-                        if ($user && $user->isLoggedIn()) {
-                            ?>
+                        if ($user && $user->isLoggedIn()) { ?>
+                            <?php if ($user && 100 === $user->power) { ?>
+                                <a class="item" href="/?page=login-as">
+                                    <i class="sign out alternate icon"></i>
+                                    Login as
+                                </a>
+                            <?php } ?>
                             <a class="item" href="/?page=logout">
                                 <i class="sign out alternate icon"></i>
                                 Logout

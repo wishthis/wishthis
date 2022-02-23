@@ -42,6 +42,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 }
 
-echo json_encode($response);
 header('Content-type: application/json; charset=utf-8');
+echo json_encode($response);
 die();

@@ -31,9 +31,10 @@ class User
 
         global $database;
 
-        $user = $database->query('SELECT * FROM `users`
-                                   WHERE `id` = ' . $this->id . ';')
-                         ->fetch();
+        $user = $database
+        ->query('SELECT * FROM `users`
+                  WHERE `id` = ' . $this->id . ';')
+        ->fetch();
 
         $this->power = $user['power'];
     }

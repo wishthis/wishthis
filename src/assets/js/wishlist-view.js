@@ -10,6 +10,7 @@ $(function() {
         on:        'now',
         onSuccess: function(response, element, xhr) {
             wishlists = response.results;
+            console.log(wishlists);
 
             element.dropdown({
                 values: wishlists,
