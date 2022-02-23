@@ -50,7 +50,7 @@
 }
 
 /** Icon */
-.ui.card .header > img {
+.image + .content .header img {
     position: absolute;
     top: 1em;
     height: 1.25em;
