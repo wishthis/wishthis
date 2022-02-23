@@ -80,11 +80,12 @@ class Wishlist
         if (!empty($products)) { ?>
             <div class="ui stackable three column grid container">
                 <?php foreach ($products as $product) {
-                    $cache = new EmbedCache();
-                    $info  = $cache->get($product['url']);
+                    $cache  = new EmbedCache($product['url']);
+                    $info   = $cache->get(false);
+                    $exists = $cache->exists() ? 'true' : 'false';
                     ?>
                     <div class="column">
-                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>">
+                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-cache="<?= $exists ?>">
 
                             <?php if ($info->image) { ?>
                                 <div class="image">
@@ -109,7 +110,7 @@ class Wishlist
 
                                 <?php if ($info->keywords) { ?>
                                     <div class="meta">
-                                        <?= implode(',', $info->keywords) ?>
+                                        <?= implode(', ', $info->keywords) ?>
                                     </div>
                                 <?php } ?>
 
@@ -119,20 +120,26 @@ class Wishlist
                                     </div>
                                 <?php } ?>
                             </div>
-                            <div class="extra content">
-                                <?php if ($info->publishedTime) { ?>
-                                    <span class="right floated">
-                                        <?= $info->publishedTime ?>
-                                    </span>
-                                <?php } ?>
-                                <?php if ($info->providerName) { ?>
-                                    <?= $info->providerName ?>
-                                <?php } ?>
-                            </div>
-                            <div class="extra content">
+
+                            <?php if ($info->publishedTime || $info->providerName) { ?>
+                                <div class="extra content details">
+                                    <?php if ($info->publishedTime) { ?>
+                                        <span class="right floated">
+                                            <?= $info->publishedTime ?>
+                                        </span>
+                                    <?php } ?>
+
+                                    <?php if ($info->providerName) { ?>
+                                        <?= $info->providerName ?>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+
+                            <div class="extra content buttons">
                                 <?php if ($info->url) { ?>
                                     <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
                                 <?php } ?>
+
                                 <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
                                     <a class="ui tiny red button delete">Delete</a>
                                 <?php } else { ?>

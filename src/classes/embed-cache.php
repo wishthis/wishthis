@@ -12,22 +12,25 @@ namespace wishthis;
 
 class EmbedCache
 {
-    private $directory = ROOT . '/src/cache';
+    private string $directory = ROOT . '/src/cache';
 
-    public function __construct()
+    private string $identifier;
+    private string $filepath;
+
+    public function __construct(private string $url)
     {
+        $this->identifier = md5($this->url);
+        $this->filepath   = $this->directory . '/' . $this->identifier;
     }
 
-    public function get(string $url): mixed
+    public function get(bool $generateCache = true): mixed
     {
         $info       = null;
-        $identifier = md5($url);
-        $filepath   = $this->directory . '/' . $identifier;
         $maxAge     = 2592000; // 30 days
-        $age        = file_exists($filepath) ? time() - filemtime($filepath) : $maxAge;
+        $age        = file_exists($this->filepath) ? time() - filemtime($this->filepath) : $maxAge;
 
-        if (file_exists($filepath) && $age <= $maxAge) {
-            $info = json_decode(file_get_contents($filepath));
+        if ($this->exists() && $age <= $maxAge) {
+            $info = json_decode(file_get_contents($this->filepath));
         } else {
             /**
              * @link https://github.com/oscarotero/Embed
@@ -52,42 +55,51 @@ class EmbedCache
             $info_simplified->providerUrl   = '';
             $info_simplified->publishedTime = '';
             $info_simplified->redirect      = '';
-            $info_simplified->title         = $url;
-            $info_simplified->url           = $url;
+            $info_simplified->title         = $this->url;
+            $info_simplified->url           = $this->url;
 
-            /*
-            try {
-                $info = $embed->get($url);
+            if ($generateCache) {
+                try {
+                    $info = $embed->get($this->url);
 
-                $info_simplified->authorName    = (string) $info->authorName;
-                $info_simplified->authorUrl     = (string) $info->authorUrl;
-                $info_simplified->cms           = (string) $info->cms;
-                $info_simplified->code          = (string) $info->code;
-                $info_simplified->description   = (string) $info->description;
-                $info_simplified->favicon       = (string) $info->favicon;
-                $info_simplified->feeds         = (array)  $info->feeds;
-                $info_simplified->icon          = (string) $info->icon;
-                $info_simplified->image         = (string) $info->image;
-                $info_simplified->keywords      = (array)  $info->keywords;
-                $info_simplified->language      = (string) $info->language;
-                $info_simplified->languages     = (array)  $info->languages;
-                $info_simplified->license       = (string) $info->license;
-                $info_simplified->providerName  = (string) $info->providerName;
-                $info_simplified->providerUrl   = (string) $info->providerUrl;
-                $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
-                $info_simplified->redirect      = (string) $info->redirect;
-                $info_simplified->title         = (string) $info->title;
-                $info_simplified->url           = (string) $info->url;
-            } catch (\Throwable $ex) {
-                $info_simplified->title = $ex->getMessage();
+                    $info_simplified->authorName    = (string) $info->authorName;
+                    $info_simplified->authorUrl     = (string) $info->authorUrl;
+                    $info_simplified->cms           = (string) $info->cms;
+                    $info_simplified->code          = (string) $info->code;
+                    $info_simplified->description   = (string) $info->description;
+                    $info_simplified->favicon       = (string) $info->favicon;
+                    $info_simplified->feeds         = (array)  $info->feeds;
+                    $info_simplified->icon          = (string) $info->icon;
+                    $info_simplified->image         = (string) $info->image;
+                    $info_simplified->keywords      = (array)  $info->keywords;
+                    $info_simplified->language      = (string) $info->language;
+                    $info_simplified->languages     = (array)  $info->languages;
+                    $info_simplified->license       = (string) $info->license;
+                    $info_simplified->providerName  = (string) $info->providerName;
+                    $info_simplified->providerUrl   = (string) $info->providerUrl;
+                    $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
+                    $info_simplified->redirect      = (string) $info->redirect;
+                    $info_simplified->title         = (string) $info->title;
+                    $info_simplified->url           = (string) $info->url;
+                } catch (\Throwable $ex) {
+                    $generateCache = false;
+
+                    $info_simplified->title = $ex->getMessage();
+                }
             }
-            */
 
             $info = $info_simplified;
 
-            // file_put_contents($filepath, json_encode($info));
+            if ($generateCache) {
+                file_put_contents($this->filepath, json_encode($info));
+            }
         }
 
         return $info;
+    }
+
+    public function exists(): bool
+    {
+        return file_exists($this->filepath);
     }
 }
