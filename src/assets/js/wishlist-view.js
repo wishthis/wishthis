@@ -56,7 +56,7 @@ $(function() {
         /**
          * Generate cache
          */
-        var timerInterval = 200;
+        var timerInterval = 1200;
         var timerCache    = setTimeout(
             function generateCache() {
                 var cards = $('.ui.card[data-cache="false"]');
@@ -68,6 +68,7 @@ $(function() {
                     var product_id = card.data('id');
 
                     card.addClass('loading');
+                    card.attr('data-cache', true);
 
                     fetch('/src/api/cache.php?product_id=' + product_id + '&url=' + href, {
                         method: 'GET'
@@ -168,19 +169,20 @@ $(function() {
                             /**
                              * Finish
                              */
-                            card.attr('data-cache', true);
                             card.removeClass('loading');
-
-                            if (cards.length > 0) {
-                                setTimeout(generateCache, timerInterval);
-                            }
                         }
                     });
 
-                    return false;
+                    if (index >= 0) {
+                        return false;
+                    }
                 });
+
+                if (cards.length > 0) {
+                    setTimeout(generateCache, timerInterval);
+                }
             },
-            timerInterval
+            0
         );
     });
 
