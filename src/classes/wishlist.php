@@ -90,6 +90,10 @@ class Wishlist
                             <?php if ($info->image) { ?>
                                 <div class="image">
                                     <img src="<?= $info->image ?>" loading="lazy"/>
+
+                                    <button class="ui icon button refresh">
+                                        <i class="refresh icon"></i>
+                                    </button>
                                 </div>
                             <?php } ?>
 

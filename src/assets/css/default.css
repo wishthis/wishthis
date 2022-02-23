@@ -39,6 +39,20 @@
     background-color: #fff;
 }
 
+/** Refresh */
+.ui.card > .image > button {
+    transition: 0.4s ease opacity;
+
+	position: absolute;
+    top: 1em;
+    right: 1em;
+
+    opacity: 0;
+}
+.ui.card:hover > .image > button {
+    opacity: 1;
+}
+
 /** Content */
 .ui.card > .content > .header + .description,
 .ui.card > .content > .meta + .description,
@@ -56,7 +70,6 @@
     height: 1.25em;
     vertical-align: text-bottom;
 }
-
 
 /**
  * Label
