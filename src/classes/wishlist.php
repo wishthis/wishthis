@@ -133,7 +133,7 @@ class Wishlist
                                 <?php $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']; ?>
 
                                 <?php if (!$userIsCurrent) { ?>
-                                    <a class="ui primary right labeled icon button commit">
+                                    <a class="ui primary labeled icon button commit">
                                         <i class="shopping cart icon"></i>
                                         Commit
                                     </a>
@@ -147,7 +147,10 @@ class Wishlist
                                 <?php } ?>
 
                                 <?php if ($userIsCurrent) { ?>
-                                    <a class="ui red button delete">Delete</a>
+                                    <a class="ui labeled red icon button delete">
+                                        <i class="trash icon"></i>
+                                        Delete
+                                    </a>
                                 <?php } ?>
                             </div>
 
