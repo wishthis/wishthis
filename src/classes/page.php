@@ -210,7 +210,7 @@ class Page
                     <div class="menu">
                         <a class="item" href="/?page=wishlists">
                             <i class="list icon"></i>
-                            View
+                            Wishlists
                         </a>
                         <a class="item" href="/?page=wishlist-product-add">
                             <i class="plus square icon"></i>
