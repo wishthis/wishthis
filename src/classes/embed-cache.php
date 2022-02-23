@@ -24,13 +24,13 @@ class EmbedCache
         $this->filepath   = $this->directory . '/' . $this->identifier;
     }
 
-    public function get(bool $generateCache = true): mixed
+    public function get(bool $generateCache = false): mixed
     {
         $info       = null;
         $maxAge     = 2592000; // 30 days
         $age        = file_exists($this->filepath) ? time() - filemtime($this->filepath) : $maxAge;
 
-        if ($this->exists() && $age <= $maxAge) {
+        if ($this->exists() && $age <= $maxAge && false === $generateCache) {
             $info = json_decode(file_get_contents($this->filepath));
         } else {
             /**
