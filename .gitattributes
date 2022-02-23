@@ -1,4 +1,4 @@
 Force LF endings
-* eol=lf
+* text eol=lf
 
-*.png binary
+* binary eol=auto
