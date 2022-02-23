@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new Page(__FILE__, 'Login as');
+$page = new Page(__FILE__, 'Login as', 100);
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
