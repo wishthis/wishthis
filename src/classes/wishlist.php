@@ -62,7 +62,7 @@ class Wishlist
         ob_start();
 
         /**
-         * Exclude
+         * Options
          */
         $exclude = isset($options['exclude']) ? $options['exclude'] : array();
 

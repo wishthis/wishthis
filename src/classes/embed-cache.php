@@ -52,9 +52,10 @@ class EmbedCache
             $info_simplified->providerUrl   = '';
             $info_simplified->publishedTime = '';
             $info_simplified->redirect      = '';
-            $info_simplified->title         = '';
-            $info_simplified->url           = '';
+            $info_simplified->title         = $url;
+            $info_simplified->url           = $url;
 
+            /*
             try {
                 $info = $embed->get($url);
 
@@ -78,13 +79,13 @@ class EmbedCache
                 $info_simplified->title         = (string) $info->title;
                 $info_simplified->url           = (string) $info->url;
             } catch (\Throwable $ex) {
-                $info_simplified->title = (string) $ex->getMessage();
-                $info_simplified->url   = (string) $url;
+                $info_simplified->title = $ex->getMessage();
             }
+            */
 
             $info = $info_simplified;
 
-            file_put_contents($filepath, json_encode($info));
+            // file_put_contents($filepath, json_encode($info));
         }
 
         return $info;

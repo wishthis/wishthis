@@ -19,6 +19,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
+
             $wishlists = $user->getWishlists();
             $wishlists = array_map(function ($dataWishlist) {
                 $data = $dataWishlist;
@@ -31,6 +32,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 return $data;
             }, $wishlists);
+
             $response['results'] = $wishlists;
             $response['success'] = true;
         }
