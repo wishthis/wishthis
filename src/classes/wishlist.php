@@ -78,12 +78,12 @@ class Wishlist
          * Cards
          */
         if (!empty($products)) { ?>
-            <?php foreach ($products as $product) {
-                $cache = new EmbedCache();
-                $info  = $cache->get($product['url']);
-                ?>
-                <div class="column">
-                    <div class="ui fluid card" data-id="<?= $product['id'] ?>">
+            <div class="ui three stackable cards">
+                <?php foreach ($products as $product) {
+                    $cache = new EmbedCache();
+                    $info  = $cache->get($product['url']);
+                    ?>
+                    <div class="card" data-id="<?= $product['id'] ?>">
 
                         <?php if ($info->image) { ?>
                             <div class="image">
@@ -140,8 +140,8 @@ class Wishlist
                         </div>
 
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         <?php } else { ?>
             <div class="sixteen wide column">
                 <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>

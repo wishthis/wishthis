@@ -57,7 +57,7 @@ if (isset($_POST['wishlist_delete_id'])) {
             </div>
         </div>
 
-        <div class="ui three column stackable grid wishlist-cards"></div>
+        <div class="wishlist-cards"></div>
     </div>
 </main>
 

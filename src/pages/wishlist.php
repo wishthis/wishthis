@@ -62,7 +62,7 @@ $page->navigation();
             </p>
         </div>
 
-        <div class="ui three column stackable grid wishlist-cards">
+        <div class="wishlist-cards">
             <?php
             echo $wishlist->getCards(
                 array(

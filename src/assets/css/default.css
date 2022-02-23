@@ -27,6 +27,11 @@
 	height: 1.25em;
     vertical-align: text-bottom;
 }
+.ui.card > .image > img,
+.ui.cards > .card > .image > img {
+	height: 30vh;
+    object-fit: cover;
+}
 
 /**
  * Label
