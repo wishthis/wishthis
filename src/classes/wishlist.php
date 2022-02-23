@@ -108,7 +108,7 @@ class Wishlist
 
                             <?php if ($info->keywords) { ?>
                                 <div class="meta">
-                                    <?= $info->keywords ?>
+                                    <?= implode(',', $info->keywords) ?>
                                 </div>
                             <?php } ?>
 
