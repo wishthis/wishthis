@@ -468,7 +468,7 @@ select.ui.dropdown {
 .ui.selection.dropdown .menu > .message {
   padding: 0.75rem 1.16666667rem;
 }
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 809.98px) {
   .ui.selection.dropdown.short .menu {
     max-height: 5.85rem;
   }
@@ -485,7 +485,7 @@ select.ui.dropdown {
     max-height: 23.4rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 810px) {
   .ui.selection.dropdown.short .menu {
     max-height: 7.8rem;
   }
@@ -757,12 +757,12 @@ select.ui.dropdown {
           backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
 }
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 809.98px) {
   .ui.search.dropdown .menu {
     max-height: 7.8rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 810px) {
   .ui.search.dropdown .menu {
     max-height: 10.4rem;
   }
@@ -1405,13 +1405,13 @@ select.ui.dropdown {
     min-width: calc(100% - 17px);
   }
 }
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 809.98px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
     max-height: 10rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 810px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
     max-height: 15rem;
