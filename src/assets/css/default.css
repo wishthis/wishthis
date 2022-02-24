@@ -2,6 +2,10 @@
     --lineHeight: 1.4285;
 }
 
+img {
+    max-width: 100%;
+}
+
 /**
  * Logo
  */
