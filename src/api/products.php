@@ -26,6 +26,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ;');
 
             $response['success'] = true;
+        } elseif (isset($_PUT['wishlist_id'], $_PUT['url'])) {
+            $database->query('INSERT INTO `products`
+                             (
+                             `wishlist`,
+                             `url`
+                             ) VALUES ('
+                             . $_PUT['wishlist_id'] . ',
+                             "' . $_PUT['url'] . '"
+                             )
+            ;');
+
+            $response['success'] = true;
+            $response['data']    = array(
+                'lastInsertId' => $database->lastInsertId(),
+            );
         }
         break;
 
