@@ -213,8 +213,8 @@ class Page
         ?>
         <div class="ui attached stackable menu">
             <div class="ui container">
-                <a class="item" href="/?page=home">
-                    <i class="home icon"></i> Home
+                <a class="item home" href="/?page=home">
+                    <img src="/src/assets/img/logo.svg" />
                 </a>
                 <div class="ui simple dropdown item">
                     Wishlist

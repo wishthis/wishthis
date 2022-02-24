@@ -125,3 +125,12 @@ p .ui.horizontal.label {
     cursor: default;
     user-select: none;
 }
+
+/**
+ * Logo
+ */
+.ui.menu .item.home > img:not(.ui) {
+    width: auto;
+    height: 1em;
+    margin: 0;
+}
