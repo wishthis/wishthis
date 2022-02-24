@@ -40,6 +40,10 @@ img {
 /**
  * Card
  */
+.wishlist-cards {
+    margin-top: 1rem;
+}
+
 .ui.card {
     overflow: hidden;
 }
@@ -137,4 +141,11 @@ p .ui.horizontal.label {
     margin: 0;
     cursor: default;
     user-select: none;
+}
+
+/**
+ * Segment
+ */
+.ui.segments {
+    overflow: hidden;
 }

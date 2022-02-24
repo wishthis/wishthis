@@ -45,66 +45,73 @@ if (isset($_POST['wishlist_delete_id'])) {
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <div class="ui segment">
-            <h2 class="ui header">Create</h2>
-            <p>
-                Choose a new name for your wishlist.
-                Here's a suggestion to get you started!
-            </p>
+        <div class="ui equal width stackable grid">
 
-            <form class="ui form" method="post">
-                <div class="field">
-                    <label>Name</label>
-                    <input type="text"
-                           name="name"
-                           placeholder="<?= getCurrentSeason() ?>"
-                           value="<?= getCurrentSeason() ?>"
-                    />
+            <div class="column">
+                <div class="ui segment form">
+                    <h2 class="ui header">View</h2>
+                    <p>Please select a wishlist to view.</p>
+
+                    <div class="field">
+                        <label>Wishlist</label>
+                        <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
+                            <option value="">Loading your wishlists...</option>
+                        </select>
+                    </div>
                 </div>
+            </div>
 
-                <input class="ui primary button"
-                       type="submit"
-                       name="wishlist-create"
-                       value="Create"
-                />
-            </form>
+            <div class="column">
+                <div class="ui segment">
+                    <h2 class="ui header">Create</h2>
+                    <p>
+                        Choose a new name for your wishlist.
+                        Here's a suggestion to get you started!
+                    </p>
+
+                    <form class="ui form" method="post">
+                        <div class="field">
+                            <label>Name</label>
+                            <input type="text"
+                                name="name"
+                                placeholder="<?= getCurrentSeason() ?>"
+                                value="<?= getCurrentSeason() ?>"
+                            />
+                        </div>
+
+                        <input class="ui primary button"
+                            type="submit"
+                            name="wishlist-create"
+                            value="Create"
+                        />
+                    </form>
+                </div>
+            </div>
+
         </div>
 
-        <div class="ui horizontal stackable segments">
-            <div class="ui segment">
-                <h2 class="ui header">View</h2>
-                <p>Please select a wishlist to view.</p>
+        <div class="ui segment">
+            <h2 class="ui header">Options</h1>
+            <p>Wishlist related options.</p>
 
-                <div class="field">
-                    <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
-                        <option value="">Loading your wishlists...</option>
-                    </select>
-                </div>
-            </div>
+            <a class="ui small labeled icon button wishlist-product-add" href="/?page=wishlist-product-add">
+                <i class="add icon"></i>
+                Add products
+            </a>
 
-            <div class="ui segment">
-                <h2 class="ui header">Options</h1>
-                <p>Wishlist related options.</p>
+            <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
+                <i class="share icon"></i>
+                Share
+            </a>
 
-                <a class="ui small labeled icon button wishlist-product-add" href="/?page=wishlist-product-add">
-                    <i class="add icon"></i>
-                    Add products
-                </a>
+            <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
+                <input type="hidden" name="wishlist_delete_id" />
 
-                <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
-                    <i class="share icon"></i>
-                    Share
-                </a>
-
-                <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
-                    <input type="hidden" name="wishlist_delete_id" />
-
-                    <button class="ui small labeled red icon button disabled" type="submit">
-                        <i class="trash icon"></i>
-                        Delete
-                    </button>
-                </form>
-            </div>
+                <button class="ui small labeled red icon button disabled" type="submit">
+                    <i class="trash icon"></i>
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
 
