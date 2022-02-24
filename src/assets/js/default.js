@@ -101,50 +101,6 @@ $(function() {
     });
 
     /**
-     * Commit to Product
-     */
-     $(document).on('click', '.ui.button.commit', function() {
-        var button = $(this);
-        var card   = button.closest('.ui.card');
-        var column = card.closest('.column');
-
-        $('body')
-        .modal({
-            title:    'Really commit?',
-            content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist anymore.',
-            class:    'tiny',
-            actions:  [
-                {
-                    text: 'Yes, commit',
-                    class: 'approve primary'
-                },
-                {
-                    text: 'Cancel',
-                    class: ''
-                }
-            ],
-            onApprove: function() {
-                /**
-                 * Update product status
-                 */
-                button.api({
-                    action: 'update product status',
-                    method: 'PUT',
-                    data: {
-                        productID: card.data('id'),
-                        productStatus: 'unavailable'
-                    },
-                    on: 'now',
-                    onSuccess: function(response, element, xhr) {
-                        column.fadeOut();
-                    },
-                });
-            }
-        })
-        .modal('show');
-    });
-
-    /**
      * Delete Product
      */
      $(document).on('click', '.ui.button.delete', function() {
