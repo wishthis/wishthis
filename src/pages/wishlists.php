@@ -86,6 +86,11 @@ if (isset($_POST['wishlist_delete_id'])) {
                 <h2 class="ui header">Options</h1>
                 <p>Wishlist related options.</p>
 
+                <a class="ui small labeled icon button wishlist-product-add" href="/?page=wishlist-product-add">
+                    <i class="add icon"></i>
+                    Add products
+                </a>
+
                 <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
                     <i class="share icon"></i>
                     Share
