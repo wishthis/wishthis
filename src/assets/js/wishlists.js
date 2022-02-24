@@ -292,7 +292,7 @@ $(function () {
                     onSuccess: function () {
                         column.fadeOut();
 
-                        location.href = '/?page=wishlists';
+                        location.reload();
                     },
                 });
             }
@@ -328,6 +328,8 @@ $(function () {
                     }
 
                     button.removeClass('loading');
+
+                    location.reload();
                 });
 
                 return false;
