@@ -3,6 +3,15 @@
 }
 
 /**
+ * Logo
+ */
+.ui.menu .item.home > img:not(.ui) {
+    width: auto;
+    height: 1em;
+    margin: 0;
+}
+
+/**
  * Footer
  */
 .ui.footer {
@@ -124,13 +133,4 @@ p .ui.horizontal.label {
     margin: 0;
     cursor: default;
     user-select: none;
-}
-
-/**
- * Logo
- */
-.ui.menu .item.home > img:not(.ui) {
-    width: auto;
-    height: 1em;
-    margin: 0;
 }
