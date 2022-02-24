@@ -47,7 +47,7 @@ img {
 
 /** Image */
 .ui.card > .image > img.preview{
-	height: 20vh;
+    height: 25vh;
     object-fit: cover;
     background-color: #fff;
 }
