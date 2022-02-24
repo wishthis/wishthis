@@ -143,7 +143,7 @@ if (isset($_POST['wishlist_delete_id'])) {
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button">
+        <div class="ui primary approve button disabled">
             Add
         </div>
         <div class="ui deny button">

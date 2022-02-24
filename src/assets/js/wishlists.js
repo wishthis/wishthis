@@ -331,10 +331,7 @@ $(function () {
                 });
 
                 return false;
-            },
-            onDeny: function (element) {
-                return false;
-            },
+            }
         })
         .modal('show');
     });
@@ -377,41 +374,47 @@ $(function () {
                     elementModalFetch.find('input.current').val(href);
                     elementModalFetch.find('input.proposed').val(info.url);
 
+                    elementButtons.addClass('disabled');
+
                     elementModalFetch
-                        .modal({
-                            allowMultiple: true,
-                            closable: false,
-                            onApprove: function (button) {
-                                var formData = new URLSearchParams();
-                                formData.append('product_url_current', href);
-                                formData.append('product_url_proposed', info.url);
+                    .modal({
+                        allowMultiple: true,
+                        closable: false,
+                        onApprove: function (buttonFetch) {
+                            var formData = new URLSearchParams();
+                            formData.append('product_url_current', href);
+                            formData.append('product_url_proposed', info.url);
 
-                                button.addClass('loading');
+                            buttonFetch.addClass('loading');
 
-                                fetch('/src/api/products.php', {
-                                    method: 'PUT',
-                                    body: formData
-                                })
-                                    .then(response => response.json())
-                                    .then(response => {
-                                        if (response.success) {
-                                            form.find('input[type="url"]').val(info.url);
+                            fetch('/src/api/products.php', {
+                                method: 'PUT',
+                                body: formData
+                            })
+                                .then(response => response.json())
+                                .then(response => {
+                                    if (response.success) {
+                                        form.find('input[type="url"]').val(info.url);
 
-                                            elementModalFetch.modal('hide');
-                                        }
+                                        elementModalFetch.modal('hide');
+                                    }
 
-                                        button.removeClass('loading');
-                                    });
+                                    buttonFetch.removeClass('loading');
+                                });
 
-                                return false;
-                            }
-                        })
-                        .modal('show');
+                            return false;
+                        },
+                        onHide: function() {
+                            form.removeClass('loading');
+                            elementButtons.removeClass('disabled');
+                        }
+                    })
+                    .modal('show');
+                } else {
+                    form.removeClass('loading');
+                    elementButtons.removeClass('disabled');
                 }
             }
-
-            form.removeClass('loading');
-            elementButtons.removeClass('disabled');
         });
     });
 
