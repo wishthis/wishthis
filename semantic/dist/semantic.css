@@ -60040,9 +60040,9 @@ select.ui.dropdown {
 
 .ui.modal > .content > i.icon + .description,
 .ui.modal > .content > .image + .description {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
   min-width: '';
   width: auto;
   padding-left: 2em;
