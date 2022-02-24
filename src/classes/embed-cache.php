@@ -12,26 +12,39 @@ namespace wishthis;
 
 class EmbedCache
 {
+    /**
+     * Private
+     */
     private string $directory = ROOT . '/src/cache';
     private string $noImage   = '/src/assets/img/no-image.svg';
 
-    private string $identifier;
     private string $filepath;
 
+    private function getIdentifier(): string
+    {
+        return md5($this->url);
+    }
+
+    private function getFilepath(): string
+    {
+        return $this->directory . '/' . $this->getIdentifier();
+    }
+
+    /**
+     * Public
+     */
     public function __construct(private string $url)
     {
-        $this->identifier = md5($this->url);
-        $this->filepath   = $this->directory . '/' . $this->identifier;
     }
 
     public function get(bool $generateCache = false): mixed
     {
         $info       = null;
         $maxAge     = 2592000; // 30 days
-        $age        = file_exists($this->filepath) ? time() - filemtime($this->filepath) : $maxAge;
+        $age        = file_exists($this->getFilepath()) ? time() - filemtime($this->getFilepath()) : $maxAge;
 
         if ($this->exists() && $age <= $maxAge && false === $generateCache) {
-            $info = json_decode(file_get_contents($this->filepath));
+            $info = json_decode(file_get_contents($this->getFilepath()));
         } else {
             /**
              * @link https://github.com/oscarotero/Embed
@@ -92,7 +105,7 @@ class EmbedCache
             $info = $info_simplified;
 
             if ($generateCache) {
-                file_put_contents($this->filepath, json_encode($info));
+                file_put_contents($this->getFilepath(), json_encode($info));
             }
         }
 
@@ -101,6 +114,6 @@ class EmbedCache
 
     public function exists(): bool
     {
-        return file_exists($this->filepath);
+        return file_exists($this->getFilepath());
     }
 }

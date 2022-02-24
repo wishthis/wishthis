@@ -393,16 +393,16 @@ $(function () {
                                 method: 'PUT',
                                 body: formData
                             })
-                                .then(response => response.json())
-                                .then(response => {
-                                    if (response.success) {
-                                        form.find('input[type="url"]').val(info.url);
+                            .then(response => response.json())
+                            .then(response => {
+                                if (response.success) {
+                                    form.find('input[type="url"]').val(info.url);
 
-                                        elementModalFetch.modal('hide');
-                                    }
+                                    elementModalFetch.modal('hide');
+                                }
 
-                                    buttonFetch.removeClass('loading');
-                                });
+                                buttonFetch.removeClass('loading');
+                            });
 
                             return false;
                         },
