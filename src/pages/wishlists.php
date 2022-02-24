@@ -28,7 +28,7 @@ if (isset($_POST['wishlist-create'], $_POST['name'])) {
         )
     ;');
 
-    header('Location: /?page=wishlist-product-add');
+    header('Location: /?page=wishlists');
     die();
 }
 
@@ -94,9 +94,9 @@ if (isset($_POST['wishlist_delete_id'])) {
             <h2 class="ui header">Options</h1>
             <p>Wishlist related options.</p>
 
-            <a class="ui small labeled icon button wishlist-product-add" href="/?page=wishlist-product-add">
+            <a class="ui small labeled icon button wishlist-product-add disabled">
                 <i class="add icon"></i>
-                Add products
+                Add a product
             </a>
 
             <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
@@ -117,6 +117,72 @@ if (isset($_POST['wishlist_delete_id'])) {
 
     <div class="wishlist-cards"></div>
 </main>
+
+<div class="ui modal wishlist-product-add">
+    <div class="header">
+        Add a product
+    </div>
+    <div class="image content">
+        <div class="ui medium image">
+            <img src="/src/assets/img/no-image.svg" loading="lazy" />
+        </div>
+        <div class="description">
+            <div class="ui header">Product</div>
+            <p>Fill out the below fields to add your new product.</p>
+
+            <form class="ui form wishlist-product-fetch" method="post">
+                <input type="hidden" name="wishlist_id" />
+
+                <div class="field">
+                    <label>URL</label>
+                    <input type="url" name="product_url" />
+                </div>
+
+                <input class="ui button" type="submit" value="Fetch" />
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button">
+            Add
+        </div>
+        <div class="ui deny button">
+            Cancel
+        </div>
+    </div>
+</div>
+
+<div class="ui small modal wishlist-product-fetch">
+    <div class="header">
+        Incorrect URL
+    </div>
+    <div class="content">
+        <div class="description">
+            <div class="ui header">Product URLs</div>
+            <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
+
+            <div class="ui form urls">
+                <div class="field">
+                    <label>Current</label>
+                    <input class="current" type="url" readonly />
+                </div>
+
+                <div class="field">
+                    <label>Proposed</label>
+                    <input class="proposed" type="url" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button">
+            Yes, update
+        </div>
+        <div class="ui deny button">
+            No, leave it
+        </div>
+    </div>
+</div>
 
 <?php
 $page->footer();

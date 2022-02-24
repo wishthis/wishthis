@@ -78,6 +78,7 @@ class Wishlist
          * Cards
          */
         $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id'];
+        $cardIndex     = 0;
 
         if (!empty($products)) { ?>
             <div class="ui container">
@@ -88,7 +89,7 @@ class Wishlist
                         $exists = $cache->exists() ? 'true' : 'false';
                         ?>
                         <div class="column">
-                            <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-cache="<?= $exists ?>">
+                            <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
 
                                 <?php if ($info->image) { ?>
                                     <div class="image">
@@ -162,6 +163,8 @@ class Wishlist
                     <?php } ?>
                 </div>
             </div>
+
+            <? $cardIndex++ ?>
         <?php } else { ?>
             <div class="ui container">
                 <div class="sixteen wide column">
