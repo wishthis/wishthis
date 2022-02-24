@@ -216,20 +216,10 @@ class Page
                 <a class="item home" href="/?page=home">
                     <img src="/src/assets/img/logo.svg" />
                 </a>
-                <div class="ui simple dropdown item">
-                    Wishlist
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="/?page=wishlists">
-                            <i class="list icon"></i>
-                            Wishlists
-                        </a>
-                        <a class="item" href="/?page=wishlist-product-add">
-                            <i class="plus square icon"></i>
-                            Add product
-                        </a>
-                    </div>
-                </div>
+                <a class="item" href="/?page=wishlists">
+                    <i class="list icon"></i>
+                    Wishlists
+                </a>
                 <div class="ui simple dropdown item">
                     Account
                     <i class="dropdown icon"></i>
