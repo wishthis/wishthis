@@ -179,7 +179,7 @@
   background: #F9FAFB;
   padding: 1rem 1rem;
   border-top: 1px solid rgba(34, 36, 38, 0.15);
-  text-align: right;
+  text-align: left;
 }
 .ui.modal .actions > .button:not(.fluid) {
   margin-left: 0.75em;
