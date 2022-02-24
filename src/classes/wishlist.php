@@ -135,21 +135,21 @@ class Wishlist
 
                             <div class="extra content buttons">
                                 <?php if (!$userIsCurrent) { ?>
-                                    <a class="ui primary labeled icon button commit">
+                                    <a class="ui small primary labeled icon button commit">
                                         <i class="shopping cart icon"></i>
                                         Commit
                                     </a>
                                 <?php } ?>
 
                                 <?php if ($info->url) { ?>
-                                    <a class="ui right labeled icon button" href="<?= $info->url ?>" target="_blank">
+                                    <a class="ui small right labeled icon button" href="<?= $info->url ?>" target="_blank">
                                         <i class="external icon"></i>
                                         View
                                     </a>
                                 <?php } ?>
 
                                 <?php if ($userIsCurrent) { ?>
-                                    <a class="ui labeled red icon button delete">
+                                    <a class="ui small labeled red icon button delete">
                                         <i class="trash icon"></i>
                                         Delete
                                     </a>
