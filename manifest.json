@@ -15,6 +15,12 @@
         "src": "/src/assets/img/logo-square.svg",
         "sizes": "any",
         "purpose": "any"
+      },
+      {
+        "src": "/src/assets/img/logo-square.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
       }
     ],
     "shortcuts": [],
