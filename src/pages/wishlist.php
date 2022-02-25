@@ -68,14 +68,18 @@ $page->navigation();
         </div>
     </div>
 
-    <div class="wishlist-cards">
-        <?php
-        echo $wishlist->getCards(
-            array(
-                'exclude' => array('unavailable'),
-            )
-        );
-        ?>
+    <div class="ui container">
+        <h2 class="ui header">Products</h2>
+
+        <div class="wishlist-cards">
+            <?php
+            echo $wishlist->getCards(
+                array(
+                    'exclude' => array('unavailable'),
+                )
+            );
+            ?>
+        </div>
     </div>
 </main>
 

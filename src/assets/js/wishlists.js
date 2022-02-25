@@ -4,27 +4,31 @@ $(function () {
      */
     var wishlists = [];
 
-    $('.ui.dropdown.wishlists').api({
-        action: 'get wishlists',
-        method: 'GET',
-        on: 'now',
-        onSuccess: function (response, element, xhr) {
-            wishlists = response.results;
+    function wishlistsRefresh() {
+        $('.ui.dropdown.wishlists').api({
+            action: 'get wishlists',
+            method: 'GET',
+            on: 'now',
+            onSuccess: function (response, element, xhr) {
+                wishlists = response.results;
 
-            element.dropdown({
-                values: wishlists,
-                placeholder: 'No wishlist selected.'
-            })
+                element.dropdown({
+                    values: wishlists,
+                    placeholder: 'No wishlist selected.'
+                })
 
-            if (urlParams.has('wishlist')) {
-                element.dropdown('set selected', urlParams.get('wishlist'));
-            } else {
-                if (wishlists[0]) {
-                    element.dropdown('set selected', wishlists[0].value);
+                if (urlParams.has('wishlist')) {
+                    element.dropdown('set selected', urlParams.get('wishlist'));
+                } else {
+                    if (wishlists[0]) {
+                        element.dropdown('set selected', wishlists[0].value);
+                    }
                 }
             }
-        }
-    });
+        });
+    }
+
+    wishlistsRefresh();
 
     /**
      * Selection
@@ -53,7 +57,11 @@ $(function () {
         /**
          * Cards
          */
-        $('.wishlist-cards').html(wishlists[wishlistIndex].cards);
+        if (wishlistIndex >= 0) {
+            $('.wishlist-cards').html(wishlists[wishlistIndex].cards);
+        } else {
+            $('.wishlist-cards').html('');
+        }
 
         /**
          * Generate cache
@@ -292,7 +300,7 @@ $(function () {
                     onSuccess: function () {
                         column.fadeOut();
 
-                        location.reload();
+                        wishlistsRefresh();
                     },
                 });
             }
@@ -329,7 +337,7 @@ $(function () {
 
                     button.removeClass('loading');
 
-                    location.reload();
+                    wishlistsRefresh();
                 });
 
                 return false;
@@ -418,6 +426,46 @@ $(function () {
                 }
             }
         });
+    });
+
+    /**
+     * Create wishlist
+     */
+     $(document).on('click', '.button.wishlist-create', function () {
+        var modalWishlistCreate = $('.ui.modal.wishlist-create');
+        var formWishlistCreate  = modalWishlistCreate.find('.ui.form');
+
+        modalWishlistCreate
+        .modal({
+            onApprove: function (buttonCreate) {
+                const formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
+
+                formWishlistCreate.addClass('loading');
+                buttonCreate.addClass('loading');
+
+                fetch('/src/api/wishlists.php', {
+                    method: 'POST',
+                    body:   formData
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if(response.success) {
+                        modalWishlistCreate.modal('hide');
+
+                        urlParams.set('wishlist', response.data.lastInsertId);
+
+                        wishlistsRefresh();
+                    }
+                })
+                .finally(() => {
+                    formWishlistCreate.removeClass('loading');
+                    buttonCreate.removeClass('loading');
+                });
+
+                return false;
+            }
+        })
+        .modal('show');
     });
 
 });

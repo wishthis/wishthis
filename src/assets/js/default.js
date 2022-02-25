@@ -10,7 +10,6 @@ if ('serviceWorker' in navigator) {
     })
 }
 
-
 const urlParams = new URLSearchParams(window.location.search);
 
 $(function() {
