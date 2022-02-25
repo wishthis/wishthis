@@ -23,17 +23,16 @@ $page->navigation();
                 wishthis is a simple, intuitive and modern platform to create,
                 manage and view your wishes for any kind of occasion.
             </p>
-            <?php if ($user->isLoggedIn()) { ?>
-                <p>
-                    <a class="ui primary button" href="/?page=wishlists">Create a wishlist</a>
-                    <a class="ui button" href="/?page=wishlists">View your wishlists</a>
-                </p>
-            <?php } else { ?>
-                <p>
-                    <a class="ui primary button" href="/?page=register">Register now</a>
-                    <a class="ui button" href="/?page=login">Login</a>
-                </p>
-            <?php } ?>
+
+            <div class="ui four column doubling stackable grid">
+                <?php if ($user->isLoggedIn()) { ?>
+                    <div class="column"><a class="ui fluid primary button" href="/?page=wishlists">Create a wishlist</a></div>
+                    <div class="column"><a class="ui fluid button" href="/?page=wishlists">View your wishlists</a></div>
+                <?php } else { ?>
+                    <div class="column"><a class="ui fluid primary button" href="/?page=register">Register now</a></div>
+                    <div class="column"><a class="ui fluid button" href="/?page=login">Login</a></div>
+                <?php } ?>
+            </div>
 
             <h2 class="ui header">Use case</h2>
             <p>

@@ -203,3 +203,24 @@ p .ui.horizontal.label {
     cursor: default;
     user-select: none;
 }
+
+/**
+ * Flex
+ */
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+}
+@media (max-width: 767px) {
+    .flex {
+        flex-direction: column;
+    }
+
+    .flex > *,
+    .flex > .ui.button {
+        margin-bottom: 0.5rem;
+    }
+    .flex :last-child {
+        margin-bottom: 0;
+    }
+}
