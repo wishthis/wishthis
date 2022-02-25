@@ -81,7 +81,7 @@ class Wishlist
         $cardIndex     = 0;
 
         if (!empty($products)) { ?>
-            <div class="ui stackable three column grid">
+            <div class="ui three column doubling stackable grid">
                 <?php foreach ($products as $product) {
                     $cache  = new EmbedCache($product['url']);
                     $info   = $cache->get(false);

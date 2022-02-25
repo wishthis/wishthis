@@ -26,7 +26,7 @@ class User
         }
 
         if (!isset($this->id)) {
-            return;
+            return null;
         }
 
         global $database;

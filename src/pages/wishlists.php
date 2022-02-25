@@ -35,24 +35,26 @@ $page->navigation();
 
                 <div class="ui divider"></div>
 
-                <a class="ui small labeled icon button wishlist-product-add disabled">
-                    <i class="add icon"></i>
-                    Add a product
-                </a>
+                <div class="flex">
+                    <a class="ui small labeled icon button wishlist-product-add disabled">
+                        <i class="add icon"></i>
+                        Add a product
+                    </a>
 
-                <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
-                    <i class="share icon"></i>
-                    Share
-                </a>
+                    <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
+                        <i class="share icon"></i>
+                        Share
+                    </a>
 
-                <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
-                    <input type="hidden" name="wishlist_delete_id" />
+                    <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
+                        <input type="hidden" name="wishlist_delete_id" />
 
-                    <button class="ui small labeled red icon button disabled" type="submit">
-                        <i class="trash icon"></i>
-                        Delete
-                    </button>
-                </form>
+                        <button class="ui fluid small labeled red icon button disabled" type="submit">
+                            <i class="trash icon"></i>
+                            Delete
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <div class="ui segment">

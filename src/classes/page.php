@@ -210,6 +210,35 @@ class Page
 
     public function navigation(): void
     {
+        $user = new User();
+
+        $pagesAccount = array();
+
+        if ($user && $user->isLoggedIn()) {
+            if (100 === $user->power) {
+                $pagesAccount[] = array(
+                    'url'  => '/?page=login-as',
+                    'icon' => 'sign out alternate',
+                    'text' => 'Login as',
+                );
+            }
+            $pagesAccount[] = array(
+                'url'  => '/?page=logout',
+                'icon' => 'sign out alternate',
+                'text' => 'Logout',
+            );
+        } else {
+            $pagesAccount[] = array(
+                'url'  => '/?page=login',
+                'icon' => 'sign in alternate',
+                'text' => 'Login',
+            );
+            $pagesAccount[] = array(
+                'url'  => '/?page=register',
+                'icon' => 'user plus alternate',
+                'text' => 'Register',
+            );
+        }
         ?>
         <div class="ui attached stackable menu">
             <div class="ui container">
@@ -220,40 +249,32 @@ class Page
                     <i class="list icon"></i>
                     Wishlists
                 </a>
-                <div class="ui simple dropdown item">
-                    Account
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <?php
-                        $user = isset($_SESSION['user']) ? new User() : null;
 
-                        if ($user && $user->isLoggedIn()) { ?>
-                            <?php if ($user && 100 === $user->power) { ?>
-                                <a class="item" href="/?page=login-as">
-                                    <i class="sign out alternate icon"></i>
-                                    Login as
-                                </a>
-                            <?php } ?>
-                            <a class="item" href="/?page=logout">
-                                <i class="sign out alternate icon"></i>
-                                Logout
-                            </a>
+                <?php if (count($pagesAccount) === 1) { ?>
+                    <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
+                        <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
+                        <?= $pagesAccount[0]['text'] ?>
+                    </a>
+                <?php } elseif (count($pagesAccount) >= 2) { ?>
+                    <div class="ui simple dropdown item">
+                        Account
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
                             <?php
-                        } else {
+                            if (count($pagesAccount) >= 2) {
+                                foreach ($pagesAccount as $item) {
+                                    ?>
+                                    <a class="item" href="<?= $item['url'] ?>">
+                                        <i class="<?= $item['icon'] ?> icon"></i>
+                                        <?= $item['text'] ?>
+                                    </a>
+                                    <?php
+                                }
+                            }
                             ?>
-                            <a class="item" href="/?page=login">
-                                <i class="sign in alternate icon"></i>
-                                Login
-                            </a>
-                            <a class="item" href="/?page=register">
-                                <i class="user plus icon"></i>
-                                Register
-                            </a>
-                            <?php
-                        }
-                        ?>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
                 <?php global $options; ?>
                 <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
                     <a class="item" href="/?page=update">

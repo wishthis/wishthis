@@ -3,7 +3,7 @@
 wishthis is a simple, intuitive and modern platform to create, manage and view
 your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
-![View wishlist](/src/assets/img/wishlist-view.png "View wishlist")
+![Wishlists](/src/assets/img/screenshots/wishlists.png "Wishlists")
 
 Join the conversation on:
 * [Discord](https://discord.gg/WrUXnpNyza)
