@@ -45,12 +45,12 @@ $(function () {
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
-            $('.wishlist-product-add').removeClass('disabled');
-            $('.wishlist-share').removeClass('disabled');
+            $('.button.wishlist-product-add').removeClass('disabled');
+            $('.button.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
         } else {
-            $('.wishlist-product-add').addClass('disabled');
-            $('.wishlist-share').addClass('disabled');
+            $('.button.wishlist-product-add').addClass('disabled');
+            $('.button.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
 
@@ -215,10 +215,14 @@ $(function () {
      * Delete Wishlist
      */
     $(document).on('submit', '.wishlist-delete', function (event) {
+        event.preventDefault();
+
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
 
         if (wishlistValue) {
-            $('body')
+            var modalDefault = $('.ui.modal.default');
+
+            modalDefault
             .modal({
                 title: 'Really delete?',
                 class: 'tiny',
@@ -233,7 +237,9 @@ $(function () {
                         class: 'deny'
                     },
                 ],
-                onApprove: function () {
+                onApprove: function (buttonApprove) {
+                    buttonApprove.addClass('loading');
+
                     $('.ui.dropdown.wishlists').api({
                         action: 'delete wishlist',
                         method: 'DELETE',
@@ -247,35 +253,45 @@ $(function () {
                             wishlists.dropdown('clear');
 
                             urlParams.delete('wishlist');
-                            window.history.pushState({}, '', '/?' + urlParams.toString());
 
-                            $('.ui.dropdown.wishlists').api({
-                                action: 'get wishlists',
-                                method: 'GET',
-                                on: 'now'
+                            $('body').toast({
+                                class:    'success',
+                                showIcon: 'check',
+                                message:  'Wishlist successfully deleted.'
                             });
+
+                            wishlistsRefresh();
+
+                            modalDefault.modal('hide');
                         }
                     });
+
+                    /**
+                     * Return false is currently not working.
+                     *
+                     * @version 2.8.8
+                     * @see     https://github.com/fomantic/Fomantic-UI/issues/2105
+                     */
+                    return false;
                 }
             })
             .modal('show');
         }
-
-        event.preventDefault();
     });
 
     /**
      * Delete Product
      */
     $(document).on('click', '.ui.button.delete', function () {
-        var button = $(this);
-        var card = button.closest('.ui.card');
-        var column = card.closest('.column');
+        var button       = $(this);
+        var card         = button.closest('.ui.card');
+        var column       = card.closest('.column');
+        var modalDefault = $('.ui.modal.default');
 
-        $('body')
+        modalDefault
         .modal({
             title: 'Really delete?',
-            content: 'Would you really like to delete to this product? It will be gone forever.',
+            content: '<p>Would you really like to delete to this product? It will be gone forever.</p>',
             class: 'tiny',
             actions: [
                 {
@@ -286,7 +302,9 @@ $(function () {
                     text: 'Cancel'
                 }
             ],
-            onApprove: function () {
+            onApprove: function (buttonApprove) {
+                buttonApprove.addClass('loading');
+
                 /**
                  * Delete product
                  */
@@ -300,9 +318,25 @@ $(function () {
                     onSuccess: function () {
                         column.fadeOut();
 
+                        $('body').toast({
+                            class:   'success',
+                            showIcon: 'check',
+                            message:  'Product successfully deleted.'
+                        });
+
                         wishlistsRefresh();
+
+                        modalDefault.modal('hide');
                     },
                 });
+
+                /**
+                 * Return false is currently not working.
+                 *
+                 * @version 2.8.8
+                 * @see     https://github.com/fomantic/Fomantic-UI/issues/2105
+                 */
+                return false;
             }
         })
         .modal('show');
@@ -311,11 +345,13 @@ $(function () {
     /**
      * Add product
      */
-    $(document).on('click', '.wishlist-product-add', function () {
-        var modal = $('.ui.modal.wishlist-product-add');
+    $(document).on('click', '.button.wishlist-product-add', function () {
+        var modalWishlistProductAdd = $('.ui.modal.wishlist-product-add');
 
-        modal.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
-        modal
+        modalWishlistProductAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
+        modalWishlistProductAdd.find('.primary.approve.button').addClass('disabled');
+
+        modalWishlistProductAdd
         .modal({
             onApprove: function (button) {
                 button.addClass('loading');
@@ -332,12 +368,18 @@ $(function () {
                 .then(response => response.json())
                 .then(response => {
                     if (response.success) {
-                        modal.modal('hide');
+                        $('body').toast({
+                            class:    'success',
+                            showIcon: 'check',
+                            message:  'Product successfully added.'
+                        });
+
+                        wishlistsRefresh();
+
+                        modalWishlistProductAdd.modal('hide');
                     }
 
                     button.removeClass('loading');
-
-                    wishlistsRefresh();
                 });
 
                 return false;
@@ -354,8 +396,8 @@ $(function () {
         var href = form.find('[name="product_url"]').val();
 
         var elementModalAdd = $('.ui.modal.wishlist-product-add');
-        var elementButtons = elementModalAdd.find('.actions .button');
-        var elementImage = elementModalAdd.find('.image img');
+        var elementButtons  = elementModalAdd.find('.actions .button');
+        var elementImage    = elementModalAdd.find('.image img');
 
         form.addClass('loading');
         elementButtons.addClass('disabled');
@@ -453,6 +495,12 @@ $(function () {
                         modalWishlistCreate.modal('hide');
 
                         urlParams.set('wishlist', response.data.lastInsertId);
+
+                        $('body').toast({
+                            class: 'success',
+                            showIcon: 'check',
+                            message: 'Wishlist successfully created.'
+                        });
 
                         wishlistsRefresh();
                     }

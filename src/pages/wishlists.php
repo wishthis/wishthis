@@ -72,6 +72,13 @@ $page->navigation();
     </div>
 </main>
 
+<!-- Modal: Default -->
+<div class="ui modal default">
+    <div class="header"></div>
+    <div class="content"></div>
+    <div class="actions"></div>
+</div>
+
 <!-- Wishlist: Create -->
 <div class="ui modal wishlist-create">
     <div class="header">

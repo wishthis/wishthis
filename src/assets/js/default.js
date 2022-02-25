@@ -16,6 +16,7 @@ $(function() {
     /**
      * Fomantic UI
      */
+    /** API */
     $.fn.api.settings.api = {
         'get wishlists'        : '/src/api/wishlists.php',
         'delete wishlist'      : '/src/api/wishlists.php',
@@ -94,4 +95,9 @@ $(function() {
         .modal('show');
     }
     /** */
+
+    /** Toasts */
+    $.fn.toast.settings.displayTime    = 'auto';
+    $.fn.toast.settings.minDisplayTime = 3000;
+    $.fn.toast.settings.showProgress   = true;
 });
