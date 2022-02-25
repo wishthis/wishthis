@@ -42,22 +42,24 @@ img {
 }
 
 /** Overlay */
-.ui.card .overlay {
-    transition: 0.4s ease opacity;
+@media (hover: hover) {
+    .ui.card .overlay {
+        transition: 0.4s ease opacity;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
 
-    z-index: 1;
-    opacity: 0;
+        z-index: 1;
+        opacity: 0;
 
-    background-color: rgba(255, 255, 255, 0.6);
-}
-.ui.card:hover .overlay {
-    opacity: 1;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+    .ui.card:hover .overlay {
+        opacity: 1;
+    }
 }
 
 /** Image */
@@ -105,24 +107,28 @@ img {
 /** Refresh */
 .ui.card > .image > button {
     transition: 0.4s ease opacity;
+    animation: buttonWorking 2s linear infinite paused;
 
 	position: absolute;
     top: calc(0.91666667em / 2);
     right: calc(0.91666667em / 2);
     margin: 0;
 
-    opacity: 0;
     background-color: transparent;
     z-index: 2;
 }
-.ui.card:hover > .image > button {
-    animation: buttonWorking 2s linear infinite paused;
-
-    opacity: 1;
+@media (hover: hover) {
+    .ui.card > .image > button {
+        opacity: 0;
+    }
+    .ui.card:hover > .image > button {
+        opacity: 1;
+    }
 }
-.ui.card:hover > .image > button.working {
+.ui.card > .image > button.working {
     animation-play-state: running;
 }
+
 @keyframes buttonWorking {
     0% {
         transform: rotate(0deg);
@@ -134,11 +140,22 @@ img {
 }
 
 /** Content */
+.ui.card > .content > .header {
+    max-height: calc(2 * 1.28571429em);
+    overflow: hidden;
+}
+
 .ui.card > .content > .description {
-    position: absolute;
-    left: 1em;
-    right: 1em;
     max-height: calc(3em * var(--lineHeight));
+    overflow: hidden;
+}
+@media (hover: hover) {
+    .ui.card > .content > .description {
+        position: absolute;
+        left: 1em;
+        right: 1em;
+        max-height: calc(3em * var(--lineHeight));
+    }
 }
 
 .ui.card > .content > .description-fade {
@@ -159,9 +176,14 @@ img {
 
     display: flex;
 
-    opacity: 0;
     background-color: inherit;
     z-index: 2;
+}
+@media (hover: hover) {
+    .ui.card > .extra.buttons,
+    .ui.cards > .card > .extra.buttons {
+        opacity: 0;
+    }
 }
 .ui.card:hover > .extra.buttons,
 .ui.cards > .card:hover > .extra.buttons {
