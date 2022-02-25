@@ -90,9 +90,9 @@ $(function () {
     function generateCacheCard(card) {
         card = $(card);
 
-        var href = card.find('.content [href]').prop('href');
+        var href       = card.find('.content [href]').prop('href');
         var product_id = card.data('id');
-        var refresh = card.find('button.refresh');
+        var refresh    = card.find('button.refresh');
 
         card.addClass('loading');
         card.attr('data-cache', true);
@@ -117,8 +117,6 @@ $(function () {
                  * Image
                  */
                 if (info.image) {
-                    console.log(elementImage);
-
                     if (!elementImage.length) {
                         card.prepend(
                             '<div class="image">' +
