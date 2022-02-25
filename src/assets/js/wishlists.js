@@ -33,9 +33,14 @@ $(function () {
     /**
      * Selection
      */
+    var progress = $('.ui.progress');
+
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
+
+        progress.progress('reset');
+        progress.addClass('indeterminate');
 
         $('[name="wishlist_delete_id"]').val(wishlistValue);
 
@@ -66,6 +71,18 @@ $(function () {
         /**
          * Generate cache
          */
+        var cards = $('.ui.card[data-cache="false"]');
+
+        if (cards.length > 0) {
+            progress.slideDown();
+            progress.removeClass('indeterminate');
+            progress.progress({
+                total: cards.length
+            });
+        } else {
+            progress.slideUp();
+        }
+
         var timerInterval = 1200;
         var timerCache = setTimeout(
             function generateCacheCards() {
@@ -194,6 +211,7 @@ $(function () {
                  * Finish
                  */
                 card.removeClass('loading');
+                progress.progress('increment');
             }
 
             refresh.removeClass('working');

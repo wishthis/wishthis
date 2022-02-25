@@ -68,6 +68,12 @@ $page->navigation();
 
         <h2 class="ui header">Products</h2>
 
+        <div class="ui primary progress">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+
         <div class="wishlist-cards"></div>
     </div>
 </main>
