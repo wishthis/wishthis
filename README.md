@@ -5,7 +5,9 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
 ![View wishlist](/src/assets/img/wishlist-view.png "View wishlist")
 
-Join the [Discord](https://discord.gg/WrUXnpNyza)!
+Join the conversation on:
+* [Discord](https://discord.gg/WrUXnpNyza)
+* [Matrix](https://matrix.to/#/#wishthis:matrix.org)
 
 ## Warning
 wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
