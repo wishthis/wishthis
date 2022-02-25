@@ -138,6 +138,7 @@ img {
     position: absolute;
     left: 1em;
     right: 1em;
+    max-height: calc(3em * var(--lineHeight));
 }
 
 .ui.card > .content > .description-fade {

@@ -117,10 +117,12 @@ $(function () {
                  * Image
                  */
                 if (info.image) {
+                    console.log(elementImage);
+
                     if (!elementImage.length) {
                         card.prepend(
                             '<div class="image">' +
-                            '<img class="preview" src="' + info.image + '" loading="lazy">' +
+                                '<img class="preview" src="' + info.image + '" loading="lazy">' +
                             '</div>'
                         );
                     } else {
@@ -184,7 +186,8 @@ $(function () {
                 if (info.description) {
                     if (!elementContentDescription.length) {
                         elementContent.append(
-                            '<div class="description">' + info.description + '</div>'
+                            '<div class="description">' + info.description + '</div>' +
+                            '<div class="description-fade"></div>'
                         );
                     }
                 }

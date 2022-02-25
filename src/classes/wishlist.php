@@ -91,25 +91,26 @@ class Wishlist
                         <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
                             <div class="overlay"></div>
 
-                            <?php if ($info->image) { ?>
-                                <div class="image">
+                            <div class="image">
+                                <?php if ($info->image) { ?>
                                     <img class="preview" src="<?= $info->image ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->favicon) { ?>
-                                        <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
-                                    <?php } ?>
+                                <?php if ($info->favicon) { ?>
+                                    <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->providerName) { ?>
-                                        <span class="provider"><?= $info->providerName ?></span>
-                                    <?php } ?>
+                                <?php if ($info->providerName) { ?>
+                                    <span class="provider"><?= $info->providerName ?></span>
+                                <?php } ?>
 
-                                    <?php if ($userIsCurrent) { ?>
-                                        <button class="ui icon button refresh">
-                                            <i class="refresh icon"></i>
-                                        </button>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
+                                <?php if ($userIsCurrent) { ?>
+                                    <button class="ui icon button refresh">
+                                        <i class="refresh icon"></i>
+                                    </button>
+                                <?php } ?>
+                            </div>
+
 
                             <div class="content">
                                 <?php if ($info->title) { ?>
