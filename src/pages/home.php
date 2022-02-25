@@ -25,8 +25,8 @@ $page->navigation();
             </p>
             <?php if ($user->isLoggedIn()) { ?>
                 <p>
-                    <a class="ui primary button" href="/?page=wishlist-create">Create a wishlist</a>
-                    <a class="ui button" href="/?page=wishlist-view">View your wishlists</a>
+                    <a class="ui primary button" href="/?page=wishlists">Create a wishlist</a>
+                    <a class="ui button" href="/?page=wishlists">View your wishlists</a>
                 </p>
             <?php } else { ?>
                 <p>

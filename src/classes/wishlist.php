@@ -77,33 +77,40 @@ class Wishlist
         /**
          * Cards
          */
+        $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id'];
+        $cardIndex     = 0;
+
         if (!empty($products)) { ?>
-            <div class="ui stackable three column grid container">
+            <div class="ui stackable three column grid">
                 <?php foreach ($products as $product) {
                     $cache  = new EmbedCache($product['url']);
                     $info   = $cache->get(false);
                     $exists = $cache->exists() ? 'true' : 'false';
                     ?>
                     <div class="column">
-                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-cache="<?= $exists ?>">
+                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
+                            <div class="overlay"></div>
 
-                            <?php if ($info->image) { ?>
-                                <div class="image">
+                            <div class="image">
+                                <?php if ($info->image) { ?>
                                     <img class="preview" src="<?= $info->image ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->favicon) { ?>
-                                        <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
-                                    <?php } ?>
+                                <?php if ($info->favicon) { ?>
+                                    <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->providerName) { ?>
-                                        <span class="provider"><?= $info->providerName ?></span>
-                                    <?php } ?>
+                                <?php if ($info->providerName) { ?>
+                                    <span class="provider"><?= $info->providerName ?></span>
+                                <?php } ?>
 
+                                <?php if ($userIsCurrent) { ?>
                                     <button class="ui icon button refresh">
                                         <i class="refresh icon"></i>
                                     </button>
-                                </div>
-                            <?php } ?>
+                                <?php } ?>
+                            </div>
+
 
                             <div class="content">
                                 <?php if ($info->title) { ?>
@@ -126,38 +133,43 @@ class Wishlist
                                     <div class="description">
                                         <?= $info->description ?>
                                     </div>
+                                    <div class="description-fade"></div>
                                 <?php } ?>
                             </div>
-
-                            <?php if ($info->publishedTime || $info->providerName) { ?>
-                                <div class="extra content details">
-                                    <?php if ($info->publishedTime) { ?>
-                                        <span class="right floated">
-                                            <?= $info->publishedTime ?>
-                                        </span>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
 
                             <div class="extra content buttons">
-                                <?php if ($info->url) { ?>
-                                    <a class="ui tiny button" href="<?= $info->url ?>" target="_blank">View</a>
+                                <?php if (!$userIsCurrent) { ?>
+                                    <a class="ui small primary labeled icon button commit">
+                                        <i class="shopping cart icon"></i>
+                                        Commit
+                                    </a>
                                 <?php } ?>
 
-                                <?php if (isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id']) { ?>
-                                    <a class="ui tiny red button delete">Delete</a>
-                                <?php } else { ?>
-                                    <a class="ui tiny button commit">Commit</a>
+                                <?php if ($info->url) { ?>
+                                    <a class="ui small labeled icon button" href="<?= $info->url ?>" target="_blank">
+                                        <i class="external icon"></i>
+                                        View
+                                    </a>
+                                <?php } ?>
+
+                                <?php if ($userIsCurrent) { ?>
+                                    <a class="ui small labeled red icon button delete">
+                                        <i class="trash icon"></i>
+                                        Delete
+                                    </a>
                                 <?php } ?>
                             </div>
-
                         </div>
                     </div>
                 <?php } ?>
             </div>
+
+            <? $cardIndex++ ?>
         <?php } else { ?>
-            <div class="sixteen wide column">
-                <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+            <div class="ui container">
+                <div class="sixteen wide column">
+                    <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+                </div>
             </div>
             <?php
         }

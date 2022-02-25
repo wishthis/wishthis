@@ -1,4 +1,4 @@
-Force LF endings
-* text eol=lf
+* text=auto
 
-* binary eol=auto
+Force LF endings
+*.php text eol=lf

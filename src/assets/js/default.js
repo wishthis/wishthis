@@ -1,9 +1,22 @@
+/**
+ * Service Worker
+ */
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+    navigator.serviceWorker
+        .register('/serviceWorker.js')
+        .then(res => console.log('service worker registered'))
+        .catch(err => console.log('service worker not registered', err))
+    })
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 
 $(function() {
     /**
      * Fomantic UI
      */
+    /** API */
     $.fn.api.settings.api = {
         'get wishlists'        : '/src/api/wishlists.php',
         'delete wishlist'      : '/src/api/wishlists.php',
@@ -83,93 +96,8 @@ $(function() {
     }
     /** */
 
-    $('.ui.dropdown.wishlists').dropdown({
-        filterRemoteData: true
-    });
-
-    /**
-     * Commit to Product
-     */
-     $(document).on('click', '.ui.button.commit', function() {
-        var button = $(this);
-        var card   = button.closest('.ui.card');
-        var column = card.closest('.column');
-
-        $('body')
-        .modal({
-            title:    'Really commit?',
-            content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist anymore.',
-            class:    'tiny',
-            actions:  [
-                {
-                    text: 'Yes, commit',
-                    class: 'approve primary'
-                },
-                {
-                    text: 'Cancel',
-                    class: ''
-                }
-            ],
-            onApprove: function() {
-                /**
-                 * Update product status
-                 */
-                button.api({
-                    action: 'update product status',
-                    method: 'PUT',
-                    data: {
-                        productID: card.data('id'),
-                        productStatus: 'unavailable'
-                    },
-                    on: 'now',
-                    onSuccess: function(response, element, xhr) {
-                        column.fadeOut();
-                    },
-                });
-            }
-        })
-        .modal('show');
-    });
-
-    /**
-     * Delete Product
-     */
-     $(document).on('click', '.ui.button.delete', function() {
-        var button = $(this);
-        var card   = button.closest('.ui.card');
-        var column = card.closest('.column');
-
-        $('body')
-        .modal({
-            title:    'Really delete?',
-            content:  'Would you really like to delete to this product? It will be gone forever.',
-            class:    'tiny',
-            actions:  [
-                {
-                    text: 'Yes, delete',
-                    class: 'approve primary'
-                },
-                {
-                    text: 'Cancel'
-                }
-            ],
-            onApprove: function() {
-                /**
-                 * Delete product
-                 */
-                button.api({
-                    action:     'delete product',
-                    method:     'DELETE',
-                    data:       {
-                        productID: card.data('id'),
-                    },
-                    on:        'now',
-                    onSuccess: function() {
-                        column.fadeOut();
-                    },
-                });
-            }
-        })
-        .modal('show');
-    });
+    /** Toasts */
+    $.fn.toast.settings.displayTime    = 'auto';
+    $.fn.toast.settings.minDisplayTime = 3000;
+    $.fn.toast.settings.showProgress   = true;
 });

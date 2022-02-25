@@ -16,6 +16,30 @@ $response = array(
 require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
+    case 'POST':
+        /**
+         * Create
+         */
+        if (isset($_POST['wishlist-name'], $_SESSION['user']['id'])) {
+            $database->query('INSERT INTO `wishlists`
+                (
+                    `user`,
+                    `name`,
+                    `hash`
+                ) VALUES (
+                    ' . $_SESSION['user']['id'] . ',
+                    "' . $_POST['wishlist-name'] . '",
+                    "' . sha1(time() . $_SESSION['user']['id'] . $_POST['wishlist-name']) . '"
+                )
+            ;');
+
+            $response['success'] = true;
+            $response['data']    = array(
+                'lastInsertId' => $database->lastInsertId(),
+            );
+        }
+        break;
+
     case 'GET':
         if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();

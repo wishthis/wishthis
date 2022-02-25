@@ -5725,7 +5725,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   }
 
   .ui.ui.ui.grid.container {
-    width: calc(975px + 2rem);
+    width: calc(975px + 1rem);
   }
 
   .ui.ui.ui.relaxed.grid.container {
@@ -5747,7 +5747,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   }
 
   .ui.ui.ui.grid.container {
-    width: calc(927px + 2rem);
+    width: calc(927px + 1rem);
   }
 
   .ui.ui.ui.relaxed.grid.container {
@@ -5769,7 +5769,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   }
 
   .ui.ui.ui.grid.container {
-    width: calc(1119px + 2rem);
+    width: calc(1119px + 1rem);
   }
 
   .ui.ui.ui.relaxed.grid.container {
@@ -43420,10 +43420,10 @@ span.ui.massive.text {
 -----------------------*/
 
 .ui.grid {
-  margin-top: -1rem;
-  margin-bottom: -1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 }
 
 .ui.relaxed.grid {
@@ -43439,7 +43439,7 @@ span.ui.massive.text {
 /* Preserve Rows Spacing on Consecutive Grids */
 
 .ui.grid + .grid {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 /*-------------------
@@ -43453,14 +43453,14 @@ span.ui.massive.text {
   position: relative;
   display: inline-block;
   width: 6.25%;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   vertical-align: top;
 }
 
 .ui.grid > * {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 /*-------------------
@@ -43486,8 +43486,8 @@ span.ui.massive.text {
   align-items: stretch;
   width: 100% !important;
   padding: 0;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /*-------------------
@@ -43497,8 +43497,8 @@ span.ui.massive.text {
 /* Vertical padding when no rows */
 
 .ui.grid > .column:not(.row) {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .ui.grid > .row > .column {
@@ -43542,11 +43542,11 @@ span.ui.massive.text {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  margin: 1rem 1rem;
+  margin: 0.5rem 0.5rem;
 }
 
 .ui.grid .column + .ui.vertical.divider {
-  height: calc(50% - 1rem);
+  height: calc(50% - 0.5rem);
 }
 
 /* Remove Border on Last Horizontal Segment */
@@ -44585,8 +44585,8 @@ span.ui.massive.text {
 
 .ui[class*="vertically divided"].grid > .column:not(.row),
 .ui[class*="vertically divided"].grid > .row > .column {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -44633,9 +44633,9 @@ span.ui.massive.text {
   content: "";
   top: 0;
   left: 0;
-  width: calc(100% - 2rem);
+  width: calc(100% - 1rem);
   height: 1px;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   -webkit-box-shadow: 0 -1px 0 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 -1px 0 0 rgba(34, 36, 38, 0.15);
 }
@@ -45219,8 +45219,8 @@ span.ui.massive.text {
   .ui.grid > .doubling.row > .column,
   .ui.doubling.grid > .row > .column {
     display: inline-block !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     margin: 0;
@@ -45328,8 +45328,8 @@ span.ui.massive.text {
 
   .ui.grid > .doubling.row > .column,
   .ui.doubling.grid > .row > .column {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
     margin: 0 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -45448,7 +45448,7 @@ span.ui.massive.text {
     margin: 0 0 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
   }
 
   .ui.stackable.grid:not(.vertically) > .row {
@@ -45468,8 +45468,8 @@ span.ui.massive.text {
 
   .ui.grid .ui.stackable.grid,
   .ui.segment:not(.vertical) .ui.stackable.page.grid {
-    margin-left: -1rem !important;
-    margin-right: -1rem !important;
+    margin-left: -0.5rem !important;
+    margin-right: -0.5rem !important;
   }
 
   /* Divided Stackable */
@@ -45495,8 +45495,8 @@ span.ui.massive.text {
     border-top: 1px solid rgba(34, 36, 38, 0.15);
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
   }
 
   .ui.stackable.celled.grid > .row {
@@ -45661,25 +45661,25 @@ span.ui.massive.text {
   -----------------*/
 
 .ui.ui.ui.compact.grid {
-  margin: -0.5rem;
+  margin: -0.25rem;
 }
 
 .ui.ui.ui.compact.grid > .column:not(.row),
 .ui.ui.ui.compact.grid > .row > .column {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .ui.ui.ui.compact.grid > * {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 /* Row */
 
 .ui.ui.ui.compact.grid > .row {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   padding-left: 0;
   padding-right: 0;
 }
@@ -45687,8 +45687,8 @@ span.ui.massive.text {
 /* Columns */
 
 .ui.ui.ui.compact.grid > .column:not(.row) {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 /* Relaxed + Celled */
@@ -45708,25 +45708,25 @@ span.ui.massive.text {
   -----------------*/
 
 .ui.ui.ui[class*="very compact"].grid {
-  margin: -0.25rem;
+  margin: -0.125rem;
 }
 
 .ui.ui.ui[class*="very compact"].grid > .column:not(.row),
 .ui.ui.ui[class*="very compact"].grid > .row > .column {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
 }
 
 .ui.ui.ui[class*="very compact"].grid > * {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
 }
 
 /* Row */
 
 .ui.ui.ui[class*="very compact"].grid > .row {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
   padding-left: 0;
   padding-right: 0;
 }
@@ -45734,8 +45734,8 @@ span.ui.massive.text {
 /* Columns */
 
 .ui.ui.ui[class*="very compact"].grid > .column:not(.row) {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
 /* Relaxed + Celled */
@@ -60040,9 +60040,9 @@ select.ui.dropdown {
 
 .ui.modal > .content > i.icon + .description,
 .ui.modal > .content > .image + .description {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
   min-width: '';
   width: auto;
   padding-left: 2em;
@@ -60066,7 +60066,7 @@ select.ui.dropdown {
   background: #F9FAFB;
   padding: 1rem 1rem;
   border-top: 1px solid rgba(34, 36, 38, 0.15);
-  text-align: right;
+  text-align: left;
 }
 
 .ui.modal .actions > .button:not(.fluid) {

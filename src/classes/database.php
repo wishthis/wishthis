@@ -14,6 +14,8 @@ class Database
 {
     public \PDO $pdo;
 
+    private int $lastInsertId;
+
     public function __construct(
         public string $host,
         public string $database,
@@ -26,11 +28,20 @@ class Database
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query): mixed
+    public function query(string $query): \PDOStatement
     {
-        return $this->pdo->query(
+        $statement = $this->pdo->query(
             $query,
             \PDO::FETCH_ASSOC
         );
+
+        $this->lastInsertId = $this->pdo->lastInsertId();
+
+        return $statement;
+    }
+
+    public function lastInsertId(): int
+    {
+        return $this->lastInsertId;
     }
 }

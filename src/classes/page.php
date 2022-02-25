@@ -137,6 +137,18 @@ class Page
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+            <link rel="manifest" href="manifest.json" />
+
+            <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
+            <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/favicon/favicon-16x16.png" />
+            <link rel="manifest" href="/src/assets/img/favicon/site.webmanifest" />
+            <link rel="mask-icon" href="/src/assets/img/favicon/safari-pinned-tab.svg" color="#5829bb" />
+            <link rel="shortcut icon" href="/src/assets/img/favicon/favicon.ico" />
+            <meta name="msapplication-TileColor" content="#ffffff" />
+            <meta name="msapplication-config" content="/src/assets/img/favicon/browserconfig.xml" />
+            <meta name="theme-color" content="#f4f4f4" />
+
             <?php
             /**
              * Stylesheets
@@ -201,27 +213,13 @@ class Page
         ?>
         <div class="ui attached stackable menu">
             <div class="ui container">
-                <a class="item" href="/?page=home">
-                    <i class="home icon"></i> Home
+                <a class="item home" href="/?page=home">
+                    <img src="/src/assets/img/logo.svg" />
                 </a>
-                <div class="ui simple dropdown item">
-                    Wishlist
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="/?page=wishlist-create">
-                            <i class="list icon"></i>
-                            Create
-                        </a>
-                        <a class="item" href="/?page=wishlist-view">
-                            <i class="list icon"></i>
-                            View
-                        </a>
-                        <a class="item" href="/?page=wishlist-product-add">
-                            <i class="plus square icon"></i>
-                            Add product
-                        </a>
-                    </div>
-                </div>
+                <a class="item" href="/?page=wishlists">
+                    <i class="list icon"></i>
+                    Wishlists
+                </a>
                 <div class="ui simple dropdown item">
                     Account
                     <i class="dropdown icon"></i>
