@@ -41,6 +41,25 @@ img {
     height: 100%;
 }
 
+/** Overlay */
+.ui.card .overlay {
+    transition: 0.4s ease opacity;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 1;
+    opacity: 0;
+
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.ui.card:hover .overlay {
+    opacity: 1;
+}
+
 /** Image */
 .ui.card > .image > img.preview{
     height: 25vh;
@@ -56,11 +75,13 @@ img {
     height: 1.25em;
     width: auto;
 
-    z-index: 1;
+    z-index: 2;
 }
 
 .ui.card > .image > img.favicon + span.provider {
     padding-left: 3em;
+
+    z-index: 2;
 }
 
 /** Provider name */
@@ -74,9 +95,7 @@ img {
     padding: calc(0.91666667em * 1.5) 0.91666667em;
 
     line-height: 1;
-    background-color: rgba(255, 255, 255, 0.6);
     user-select: none;
-
     opacity: 0;
 }
 .ui.card:hover > .image > span.provider {
@@ -94,6 +113,7 @@ img {
 
     opacity: 0;
     background-color: transparent;
+    z-index: 2;
 }
 .ui.card:hover > .image > button {
     animation: buttonWorking 2s linear infinite paused;
@@ -114,13 +134,42 @@ img {
 }
 
 /** Content */
-.ui.card > .content > .header + .description,
-.ui.card > .content > .meta + .description,
-.ui.cards > .card > .content > .header + .description,
-.ui.cards > .card > .content > .meta + .description {
-    max-height: calc(2em * var(--lineHeight));
+.ui.card > .content > .description {
+    position: absolute;
+    left: 1em;
+    right: 1em;
+}
 
-    overflow: hidden;
+.ui.card > .content > .description-fade {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 4em;
+    width: 100%;
+    background-image: linear-gradient(0deg, rgba(255,255,255,1) 0.75em, rgba(255,255,255,0.8995799003195029) 45%, rgba(255,255,255,0) 100%);
+}
+
+/** Buttons */
+.ui.card > .extra.buttons,
+.ui.cards > .card > .extra.buttons {
+    transition: 0.4s ease opacity;
+
+    display: flex;
+
+    opacity: 0;
+    background-color: inherit;
+    z-index: 2;
+}
+.ui.card:hover > .extra.buttons,
+.ui.cards > .card:hover > .extra.buttons {
+    opacity: 1;
+}
+
+.ui.card > .extra.buttons > .button,
+.ui.cards > .card > .extra.buttons > .button {
+    flex: 1 1 auto;
 }
 
 /**

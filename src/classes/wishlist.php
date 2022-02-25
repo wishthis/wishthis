@@ -89,6 +89,7 @@ class Wishlist
                     ?>
                     <div class="column">
                         <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
+                            <div class="overlay"></div>
 
                             <?php if ($info->image) { ?>
                                 <div class="image">
@@ -131,6 +132,7 @@ class Wishlist
                                     <div class="description">
                                         <?= $info->description ?>
                                     </div>
+                                    <div class="description-fade"></div>
                                 <?php } ?>
                             </div>
 
@@ -143,7 +145,7 @@ class Wishlist
                                 <?php } ?>
 
                                 <?php if ($info->url) { ?>
-                                    <a class="ui small right labeled icon button" href="<?= $info->url ?>" target="_blank">
+                                    <a class="ui small labeled icon button" href="<?= $info->url ?>" target="_blank">
                                         <i class="external icon"></i>
                                         View
                                     </a>
@@ -156,7 +158,6 @@ class Wishlist
                                     </a>
                                 <?php } ?>
                             </div>
-
                         </div>
                     </div>
                 <?php } ?>
