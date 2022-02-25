@@ -2,7 +2,10 @@
     "name": "wishthis",
     "short_name": "wishthis",
     "description": "wishthis is a simple, intuitive and modern platform to create, manage and view your wishes for any kind of occasion.",
-    "categories": ["productivity", "shopping"],
+    "categories": [
+        "productivity",
+        "shopping"
+    ],
     "background_color": "#f4f4f4",
     "display": "standalone",
     "orientation": "any",
@@ -11,19 +14,19 @@
     "theme_color": "#5829bb",
     "screenshots": [],
     "icons": [
-      {
-        "src": "/src/assets/img/logo-square.svg",
-        "sizes": "any",
-        "purpose": "any"
-      },
-      {
-        "src": "/src/assets/img/logo-square.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "any"
-      }
+        {
+            "src": "/src/assets/img/logo-square.svg",
+            "sizes": "any",
+            "purpose": "any"
+        },
+        {
+            "src": "/src/assets/img/logo-square.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
     ],
     "shortcuts": [],
     "lang": "en",
     "dir": "rtl"
-  }
+}
