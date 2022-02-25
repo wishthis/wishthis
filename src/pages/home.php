@@ -45,25 +45,6 @@ $page->navigation();
                 everybody else.
             </p>
         </div>
-
-        <div class="ui segment">
-            <h2 class="ui header">Statistics</h2>
-
-            <div class="ui statistics">
-                <div class="statistic">
-                    <div class="value">22</div>
-                    <div class="label">Products</div>
-                </div>
-                <div class="statistic">
-                    <div class="value">31,200</div>
-                    <div class="label">Wishlists</div>
-                </div>
-                <div class="statistic">
-                    <div class="value">22</div>
-                    <div class="label">Registered users</div>
-                </div>
-            </div>
-        </div>
     </div>
 </main>
 
