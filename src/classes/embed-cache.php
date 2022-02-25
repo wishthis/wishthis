@@ -1,9 +1,9 @@
 <?php
 
 /**
- * cache.php
- *
  * Cache embed requests.
+ *
+ * @see https://github.com/oscarotero/Embed/issues/471
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */

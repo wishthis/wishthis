@@ -33,9 +33,14 @@ $(function () {
     /**
      * Selection
      */
+    var progress = $('.ui.progress');
+
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
+
+        progress.progress('reset');
+        progress.addClass('indeterminate');
 
         $('[name="wishlist_delete_id"]').val(wishlistValue);
 
@@ -66,6 +71,18 @@ $(function () {
         /**
          * Generate cache
          */
+        var cards = $('.ui.card[data-cache="false"]');
+
+        if (cards.length > 0) {
+            progress.slideDown();
+            progress.removeClass('indeterminate');
+            progress.progress({
+                total: cards.length
+            });
+        } else {
+            progress.slideUp();
+        }
+
         var timerInterval = 1200;
         var timerCache = setTimeout(
             function generateCacheCards() {
@@ -90,9 +107,9 @@ $(function () {
     function generateCacheCard(card) {
         card = $(card);
 
-        var href = card.find('.content [href]').prop('href');
+        var href       = card.find('.content [href]').prop('href');
         var product_id = card.data('id');
-        var refresh = card.find('button.refresh');
+        var refresh    = card.find('button.refresh');
 
         card.addClass('loading');
         card.attr('data-cache', true);
@@ -120,7 +137,7 @@ $(function () {
                     if (!elementImage.length) {
                         card.prepend(
                             '<div class="image">' +
-                            '<img class="preview" src="' + info.image + '" loading="lazy">' +
+                                '<img class="preview" src="' + info.image + '" loading="lazy">' +
                             '</div>'
                         );
                     } else {
@@ -184,7 +201,8 @@ $(function () {
                 if (info.description) {
                     if (!elementContentDescription.length) {
                         elementContent.append(
-                            '<div class="description">' + info.description + '</div>'
+                            '<div class="description">' + info.description + '</div>' +
+                            '<div class="description-fade"></div>'
                         );
                     }
                 }
@@ -193,6 +211,7 @@ $(function () {
                  * Finish
                  */
                 card.removeClass('loading');
+                progress.progress('increment');
             }
 
             refresh.removeClass('working');

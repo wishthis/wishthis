@@ -89,26 +89,28 @@ class Wishlist
                     ?>
                     <div class="column">
                         <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
+                            <div class="overlay"></div>
 
-                            <?php if ($info->image) { ?>
-                                <div class="image">
+                            <div class="image">
+                                <?php if ($info->image) { ?>
                                     <img class="preview" src="<?= $info->image ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->favicon) { ?>
-                                        <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
-                                    <?php } ?>
+                                <?php if ($info->favicon) { ?>
+                                    <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
+                                <?php } ?>
 
-                                    <?php if ($info->providerName) { ?>
-                                        <span class="provider"><?= $info->providerName ?></span>
-                                    <?php } ?>
+                                <?php if ($info->providerName) { ?>
+                                    <span class="provider"><?= $info->providerName ?></span>
+                                <?php } ?>
 
-                                    <?php if ($userIsCurrent) { ?>
-                                        <button class="ui icon button refresh">
-                                            <i class="refresh icon"></i>
-                                        </button>
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
+                                <?php if ($userIsCurrent) { ?>
+                                    <button class="ui icon button refresh">
+                                        <i class="refresh icon"></i>
+                                    </button>
+                                <?php } ?>
+                            </div>
+
 
                             <div class="content">
                                 <?php if ($info->title) { ?>
@@ -131,6 +133,7 @@ class Wishlist
                                     <div class="description">
                                         <?= $info->description ?>
                                     </div>
+                                    <div class="description-fade"></div>
                                 <?php } ?>
                             </div>
 
@@ -143,7 +146,7 @@ class Wishlist
                                 <?php } ?>
 
                                 <?php if ($info->url) { ?>
-                                    <a class="ui small right labeled icon button" href="<?= $info->url ?>" target="_blank">
+                                    <a class="ui small labeled icon button" href="<?= $info->url ?>" target="_blank">
                                         <i class="external icon"></i>
                                         View
                                     </a>
@@ -156,7 +159,6 @@ class Wishlist
                                     </a>
                                 <?php } ?>
                             </div>
-
                         </div>
                     </div>
                 <?php } ?>
