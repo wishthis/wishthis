@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User, Wishlist};
 
-$wishlist = new Wishlist($_GET['wishlist']);
+$wishlist = new Wishlist(intval($_GET['wishlist']));
 
 if (!$wishlist->exists) {
     http_response_code(404);

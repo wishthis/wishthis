@@ -125,6 +125,46 @@ class Page
             header('Location: /?page=power&required=' . $this->power);
             die();
         }
+
+        /**
+         * Redirect
+         */
+        $htaccess    = explode(PHP_EOL, file_get_contents('.htaccess'));
+        $redirect_to = '';
+
+        foreach ($htaccess as $index => $line) {
+            $parts = explode(chr(32), $line);
+
+            if (count($parts) >= 2) {
+                switch ($parts[0]) {
+                    case 'RewriteRule':
+                        $url   = $parts[1];
+                        $url   = ltrim($url, '^');
+                        $url   = rtrim($url, '$');
+                        $flags = explode(',', substr($parts[3], 1, -1)) ?? array();
+
+                        preg_match('/\((.+?)\)/', $url, $regex);
+
+                        if (isset($_GET)) {
+                            foreach ($_GET as $key => $value) {
+                                if (preg_match('/^' . $regex[1] . '$/', $value)) {
+                                    $redirect_to = '/' . str_replace($regex[0], $value, $url);
+
+                                    if (in_array('L', $flags)) {
+                                        break 3;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        if ($redirect_to && $redirect_to !== $_SERVER['REQUEST_URI']) {
+            header('Location: ' . $redirect_to);
+            die();
+        }
     }
 
     public function header(): void
@@ -157,12 +197,12 @@ class Page
             /** Fomantic UI */
             $stylesheetFomantic = 'semantic/dist/semantic.min.css';
             $stylesheetFomanticModified = filemtime($stylesheetFomantic);
-            echo '<link rel="stylesheet" href="' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
+            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
 
             /** Default */
             $stylesheetDefault = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
-            echo '<link rel="stylesheet" href="' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
+            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
 
             /** Page */
             $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
@@ -170,7 +210,7 @@ class Page
             if (file_exists($stylesheetPage)) {
                 $stylesheetPageModified = filemtime($stylesheetPage);
 
-                echo '<link rel="stylesheet" href="' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
+                echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
             }
 
             /**
@@ -180,17 +220,17 @@ class Page
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
-            echo '<script defer src="' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
+            echo '<script defer src="/' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
 
             /** Fomantic */
             $scriptFomantic = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
-            echo '<script defer src="' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
+            echo '<script defer src="/' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
 
             /** Default */
             $scriptDefault = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
-            echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+            echo '<script defer src="/' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
 
             /** Page */
             $scriptPage = 'src/assets/js/' . $this->name .  '.js';
@@ -198,7 +238,7 @@ class Page
             if (file_exists($scriptPage)) {
                 $scriptPageModified = filemtime($scriptPage);
 
-                echo '<script defer src="' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
+                echo '<script defer src="/' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
             }
             ?>
 
