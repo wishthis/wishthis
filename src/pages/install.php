@@ -112,11 +112,11 @@ switch ($step) {
          * Users
          */
         $database->query('CREATE TABLE `users` (
-            `id`         int          PRIMARY KEY AUTO_INCREMENT,
-            `email`      varchar(64)  NOT NULL UNIQUE,
-            `password`   varchar(128) NOT NULL,
+            `id`         INT          PRIMARY KEY AUTO_INCREMENT,
+            `email`      VARCHAR(64)  NOT NULL UNIQUE,
+            `password`   VARCHAR(128) NOT NULL,
             `last_login` datetime     NOT NULL DEFAULT NOW(),
-            `power`      int          NOT NULL DEFAULT 0
+            `power`      INT          NOT NULL DEFAULT 0
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
@@ -124,10 +124,10 @@ switch ($step) {
          * Wishlists
          */
         $database->query('CREATE TABLE `wishlists` (
-            `id`   int          PRIMARY KEY AUTO_INCREMENT,
-            `user` int          NOT NULL,
-            `name` varchar(128) NOT NULL,
-            `hash` varchar(128) NOT NULL,
+            `id`   INT          PRIMARY KEY AUTO_INCREMENT,
+            `user` INT          NOT NULL,
+            `name` VARCHAR(128) NOT NULL,
+            `hash` VARCHAR(128) NOT NULL,
             FOREIGN KEY (`user`)
                 REFERENCES `users` (`id`)
                 ON DELETE CASCADE
@@ -138,8 +138,8 @@ switch ($step) {
          * Wishes
          */
         $database->query('CREATE TABLE `wishes` (
-            `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `wishlist` int          NOT NULL,
+            `id`       INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `wishlist` INT          NOT NULL,
             `type`     VARCHAR(32)  NULL DEFAULT NULL,
             `url`      VARCHAR(255) NULL DEFAULT NULL,
             `status`   VARCHAR(32)  NULL DEFAULT NULL,
@@ -152,9 +152,9 @@ switch ($step) {
          * Options
          */
         $database->query('CREATE TABLE `options` (
-            `id`    int          PRIMARY KEY AUTO_INCREMENT,
-            `key`   varchar(64)  NOT NULL UNIQUE,
-            `value` varchar(128) NOT NULL
+            `id`    INT          PRIMARY KEY AUTO_INCREMENT,
+            `key`   VARCHAR(64)  NOT NULL UNIQUE,
+            `value` VARCHAR(128) NOT NULL
         );');
 
         $database->query('INSERT INTO `options`
