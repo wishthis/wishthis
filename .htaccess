@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Wishlists
+RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&wishlist=$2 [QSA,L]
+
+# Wishlist
+RewriteRule ^wishlist/([a-z0-9]+)$ /?wishlist=$1 [QSA,L]
+
+# Page
+RewriteRule ^([a-z\-]+)$ /?page=$1 [QSA,L]

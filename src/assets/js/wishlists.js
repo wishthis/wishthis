@@ -17,8 +17,8 @@ $(function () {
                     placeholder: 'No wishlist selected.'
                 })
 
-                if (urlParams.has('wishlist')) {
-                    element.dropdown('set selected', urlParams.get('wishlist'));
+                if ($_GET.wishlist) {
+                    element.dropdown('set selected', $_GET.wishlist);
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -45,14 +45,26 @@ $(function () {
         $('[name="wishlist_delete_id"]').val(wishlistValue);
 
         if (wishlistValue) {
-            urlParams.set('wishlist', wishlistValue);
-            window.history.pushState({}, '', '/?' + urlParams.toString());
+            $_GET.wishlist = wishlistValue;
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
             $('.button.wishlist-product-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
+
+            /** Update URL */
+            urlParams.set('wishlist', wishlistValue);
+
+            fetch('/src/api/url.php?url=' + btoa(urlParams.toString()), {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.success) {
+                    window.history.pushState({}, '', response.data.url);
+                }
+            });
         } else {
             $('.button.wishlist-product-add').addClass('disabled');
             $('.button.wishlist-share').addClass('disabled');

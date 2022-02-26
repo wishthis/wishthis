@@ -6,7 +6,7 @@
 
 namespace wishthis;
 
-use wishthis\User;
+use wishthis\{User, URL};
 
 class Page
 {
@@ -125,6 +125,17 @@ class Page
             header('Location: /?page=power&required=' . $this->power);
             die();
         }
+
+        /**
+         * Redirect
+         */
+        $url         = new URL($_SERVER['QUERY_STRING']);
+        $redirect_to = $url->getPretty();
+
+        if ($redirect_to && $redirect_to !== $_SERVER['REQUEST_URI']) {
+            header('Location: ' . $redirect_to);
+            die();
+        }
     }
 
     public function header(): void
@@ -157,12 +168,12 @@ class Page
             /** Fomantic UI */
             $stylesheetFomantic = 'semantic/dist/semantic.min.css';
             $stylesheetFomanticModified = filemtime($stylesheetFomantic);
-            echo '<link rel="stylesheet" href="' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
+            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
 
             /** Default */
             $stylesheetDefault = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
-            echo '<link rel="stylesheet" href="' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
+            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
 
             /** Page */
             $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
@@ -170,27 +181,32 @@ class Page
             if (file_exists($stylesheetPage)) {
                 $stylesheetPageModified = filemtime($stylesheetPage);
 
-                echo '<link rel="stylesheet" href="' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
+                echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
             }
 
             /**
              * Scripts
              */
+            ?>
+            <script type="text/javascript">
+                var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+            </script>
+            <?php
 
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
-            echo '<script defer src="' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
+            echo '<script defer src="/' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
 
             /** Fomantic */
             $scriptFomantic = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
-            echo '<script defer src="' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
+            echo '<script defer src="/' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
 
             /** Default */
             $scriptDefault = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
-            echo '<script defer src="' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+            echo '<script defer src="/' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
 
             /** Page */
             $scriptPage = 'src/assets/js/' . $this->name .  '.js';
@@ -198,7 +214,7 @@ class Page
             if (file_exists($scriptPage)) {
                 $scriptPageModified = filemtime($scriptPage);
 
-                echo '<script defer src="' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
+                echo '<script defer src="/' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
             }
             ?>
 
@@ -320,5 +336,16 @@ class Page
         </body>
         </html>
         <?php
+    }
+
+    public function messages(array $messages): string
+    {
+        $html = '';
+
+        foreach ($messages as $message) {
+            $html .= $message;
+        }
+
+        return $html;
     }
 }
