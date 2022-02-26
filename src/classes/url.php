@@ -80,8 +80,6 @@ class URL
             }
         }
 
-        error_log($pretty_url);
-
         return $pretty_url;
     }
 }
