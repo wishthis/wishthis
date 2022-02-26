@@ -427,7 +427,7 @@ $(function () {
 
         var elementModalAdd = $('.ui.modal.wishlist-wish-add');
         var elementButtons  = elementModalAdd.find('.actions .button');
-        var elementName     = elementModalAdd.find('input[name="wish_name"]');
+        var elementTitle    = elementModalAdd.find('input[name="wish_name"]');
 
         buttonValidate.addClass('disabled loading');
         elementButtons.addClass('disabled');
@@ -443,8 +443,8 @@ $(function () {
                 /**
                  * Name
                  */
-                if (info.title && elementName.length) {
-                    elementName.val(info.title);
+                if (info.title && elementTitle.length) {
+                    elementTitle.val(info.title);
                 }
 
                 /**
