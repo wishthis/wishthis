@@ -441,7 +441,7 @@ $(function () {
                 var info = response.data;
 
                 /**
-                 * Name
+                 * Title
                  */
                 if (info.title && elementTitle.length) {
                     elementTitle.val(info.title);
