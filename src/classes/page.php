@@ -138,17 +138,41 @@ class Page
             if (count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
-                        $url   = $parts[1];
-                        $url   = ltrim($url, '^');
-                        $url   = rtrim($url, '$');
-                        $flags = explode(',', substr($parts[3], 1, -1)) ?? array();
+                        $rewriteRule = $parts[1];
+                        $rewriteRule = ltrim($rewriteRule, '^');
+                        $rewriteRule = rtrim($rewriteRule, '$');
+                        $url         = $parts[2];
+                        $keys        = array_map(
+                            function($item) {
+                                return explode('=', $item)[0];
+                            },
+                            explode('&', parse_url($url, PHP_URL_QUERY))
+                        );
+                        $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
 
-                        preg_match('/\((.+?)\)/', $url, $regex);
+                        preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
 
                         if (isset($_GET)) {
-                            foreach ($_GET as $key => $value) {
-                                if (preg_match('/^' . $regex[1] . '$/', $value)) {
-                                    $redirect_to = '/' . str_replace($regex[0], $value, $url);
+                            $countMatches = 0;
+
+                            foreach ($regexes as $matches) {
+                                foreach ($matches as $match) {
+                                    foreach ($_GET as $key => $value) {
+                                        if (
+                                               preg_match('/^' . $match . '$/', $value)
+                                            && in_array($key, $keys)
+                                            && count($_GET) === count($keys)
+                                        ) {
+                                            $rewriteRule = str_replace($match, $value, $rewriteRule);
+
+                                            $countMatches++;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if ($countMatches > 0 && $countMatches === count($matches)) {
+                                    $redirect_to = '/' . $rewriteRule;
 
                                     if (in_array('L', $flags)) {
                                         break 3;

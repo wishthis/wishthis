@@ -35,10 +35,13 @@ class Wishlist
         /**
          * Get Wishlist
          */
-        $this->data = $database->query('SELECT *
-                                          FROM `wishlists`
-                                         WHERE `' . $column . '` = ' . $id_or_hash . ';')
-                               ->fetch();
+        $result = $database
+        ->query('SELECT *
+                   FROM `wishlists`
+                  WHERE `' . $column . '` = ' . $id_or_hash . ';')
+        ->fetch();
+
+        $this->data = $result ? $result : array();
 
         /** Exists */
         if (isset($this->data['id'])) {
