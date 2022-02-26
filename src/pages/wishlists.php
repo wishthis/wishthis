@@ -139,6 +139,14 @@ $page->navigation();
                 <input type="hidden" name="wishlist_id" />
 
                 <div class="field">
+                    <label>Type</label>
+                    <select class="ui fluid selection dropdown types" name="wish_type">
+                        <option value="product">Product</option>
+                        <option value="custom" disabled>Custom</option>
+                    </select>
+                </div>
+
+                <div class="field">
                     <label>URL</label>
                     <input type="url" name="wish_url" />
                 </div>

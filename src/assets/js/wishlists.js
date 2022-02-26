@@ -376,6 +376,8 @@ $(function () {
     /**
      * Add wish
      */
+    $('.ui.dropdown.types').dropdown();
+
     $(document).on('click', '.button.wishlist-wish-add', function () {
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
 
@@ -387,17 +389,16 @@ $(function () {
             onApprove: function (button) {
                 button.addClass('loading');
 
-                var form = $('.ui.form.wishlist-wish-fetch');
-                var formData = new URLSearchParams();
-                formData.append('wishlist_id', form.find('input[name="wishlist_id"]').val());
-                formData.append('wish_url', form.find('input[name="wish_url"]').val());
+                var form     = $('.ui.form.wishlist-wish-fetch');
+                var formData = new URLSearchParams(new FormData(form[0]));
 
                 fetch('/src/api/wishes.php', {
                     method: 'POST',
-                    body: formData
+                    body:   formData
                 })
-                .then(response => response.json())
-                .then(response => {
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
                     if (response.success) {
                         $('body').toast({
                             class:    'success',
@@ -411,6 +412,9 @@ $(function () {
                     }
 
                     button.removeClass('loading');
+                })
+                .catch(function(error) {
+                    console.log(error);
                 });
 
                 return false;
