@@ -380,14 +380,12 @@ $(function () {
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
 
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
-        modalWishlistWishAdd.find('.primary.approve.button').addClass('disabled');
-
         modalWishlistWishAdd
         .modal({
-            onApprove: function (button) {
-                button.addClass('loading');
+            onApprove: function (buttonAdd) {
+                buttonAdd.addClass('loading');
 
-                var form     = $('.ui.form.wishlist-wish-fetch');
+                var form     = $('.form.wishlist-wish-add');
                 var formData = new URLSearchParams(new FormData(form[0]));
 
                 fetch('/src/api/wishes.php', {
@@ -409,7 +407,7 @@ $(function () {
                         modalWishlistWishAdd.modal('hide');
                     }
 
-                    button.removeClass('loading');
+                    buttonAdd.removeClass('loading');
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -422,20 +420,19 @@ $(function () {
     });
 
     /** Fetch */
-    $(document).on('submit', '.wishlist-wish-fetch', function (event) {
-        event.preventDefault();
-
-        var form = $(event.currentTarget);
-        var href = form.find('[name="wish_url"]').val();
+    $(document).on('click', '#wishlist-wish-add-url-validate', function () {
+        var buttonValidate    = $(this);
+        var inputWishURL      = buttonValidate.prev();
+        var inputURLContainer = buttonValidate.parent();
 
         var elementModalAdd = $('.ui.modal.wishlist-wish-add');
         var elementButtons  = elementModalAdd.find('.actions .button');
-        var elementImage    = elementModalAdd.find('.image img');
+        var elementName     = elementModalAdd.find('input[name="wish_name"]');
 
-        form.addClass('loading');
+        buttonValidate.addClass('disabled loading');
         elementButtons.addClass('disabled');
 
-        fetch('/src/api/cache.php?wish_url=' + href, {
+        fetch('/src/api/cache.php?wish_url=' + inputWishURL.val(), {
             method: 'GET'
         })
         .then(response => response.json())
@@ -444,19 +441,19 @@ $(function () {
                 var info = response.data;
 
                 /**
-                 * Image
+                 * Name
                  */
-                if (info.image && elementImage.length) {
-                    elementImage.attr('src', info.image);
+                if (info.title && elementName.length) {
+                    elementName.val(info.title);
                 }
 
                 /**
                  * URL
                  */
-                if (info.url && info.url !== href) {
+                if (info.url && info.url !== inputWishURL.val()) {
                     var elementModalFetch = $('.ui.modal.wishlist-wish-fetch');
 
-                    elementModalFetch.find('input.current').val(href);
+                    elementModalFetch.find('input.current').val(inputWishURL.val());
                     elementModalFetch.find('input.proposed').val(info.url);
 
                     elementButtons.addClass('disabled');
@@ -467,7 +464,7 @@ $(function () {
                         closable: false,
                         onApprove: function (buttonFetch) {
                             var formData = new URLSearchParams();
-                            formData.append('wish_url_current', href);
+                            formData.append('wish_url_current', inputWishURL.val());
                             formData.append('wish_url_proposed', info.url);
 
                             buttonFetch.addClass('loading');
@@ -479,7 +476,7 @@ $(function () {
                             .then(response => response.json())
                             .then(response => {
                                 if (response.success) {
-                                    form.find('input[type="url"]').val(info.url);
+                                    inputWishURL.val(info.url);
 
                                     elementModalFetch.modal('hide');
                                 }
@@ -490,15 +487,17 @@ $(function () {
                             return false;
                         },
                         onHide: function() {
-                            form.removeClass('loading');
+                            buttonValidate.removeClass('disabled loading');
                             elementButtons.removeClass('disabled');
                         }
                     })
                     .modal('show');
                 } else {
-                    form.removeClass('loading');
+                    buttonValidate.removeClass('disabled loading');
                     elementButtons.removeClass('disabled');
                 }
+
+                inputURLContainer.attr('data-validated', 'true');
             }
         });
     });

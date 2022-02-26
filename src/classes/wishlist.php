@@ -89,6 +89,8 @@ class Wishlist
                     $cache  = new EmbedCache($wish['url']);
                     $info   = $cache->get(false);
                     $exists = $cache->exists() ? 'true' : 'false';
+
+                    $title = $wish['title'] ?? $info->title;
                     ?>
                     <div class="column">
                         <div class="ui fluid card stretch" data-id="<?= $wish['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
@@ -114,14 +116,13 @@ class Wishlist
                                 <?php } ?>
                             </div>
 
-
                             <div class="content">
-                                <?php if ($info->title) { ?>
+                                <?php if ($title) { ?>
                                     <div class="header">
                                         <?php if ($info->url) { ?>
-                                            <a href="<?= $info->url ?>" target="_blank"><?= $info->title ?></a>
+                                            <a href="<?= $info->url ?>" target="_blank"><?= $title ?></a>
                                         <?php } else { ?>
-                                            <?= $info->title ?>
+                                            <?= $title ?>
                                         <?php } ?>
                                     </div>
                                 <?php } ?>
@@ -151,7 +152,7 @@ class Wishlist
                                 <?php if ($info->url) { ?>
                                     <a class="ui small labeled icon button" href="<?= $info->url ?>" target="_blank">
                                         <i class="external icon"></i>
-                                        View
+                                        Visit
                                     </a>
                                 <?php } ?>
 

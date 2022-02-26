@@ -140,7 +140,7 @@ switch ($step) {
         $database->query('CREATE TABLE `wishes` (
             `id`       INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` INT          NOT NULL,
-            `type`     VARCHAR(32)  NULL DEFAULT NULL,
+            `title`    VARCHAR(128) NULL DEFAULT NULL,
             `url`      VARCHAR(255) NULL DEFAULT NULL,
             `status`   VARCHAR(32)  NULL DEFAULT NULL,
             FOREIGN KEY (`wishlist`)
