@@ -49,10 +49,6 @@ $(function() {
         }
     }
     $.fn.api.settings.onFailure = function(response, element, xhr) {
-        console.log(response);
-        console.log(element);
-        console.log(xhr);
-
         if ('string' === typeof response) {
             response = response.replace('<br />', '');
         }
@@ -72,10 +68,6 @@ $(function() {
         .modal('show');
     }
     $.fn.api.settings.onError = function(response, element, xhr) {
-        console.log(response);
-        console.log(element);
-        console.log(xhr);
-
         if ('string' === typeof response) {
             response = response.replace('<br />', '');
         }
@@ -101,3 +93,52 @@ $(function() {
     $.fn.toast.settings.minDisplayTime = 3000;
     $.fn.toast.settings.showProgress   = true;
 });
+
+/**
+ * Functions
+ */
+function handleFetchError(response) {
+    if (!response.ok) {
+        console.log('handleFetchError');
+        console.log(response);
+
+        showError(response.statusText);
+        throw Error(response.statusText);
+    }
+
+    return response;
+}
+
+function handleFetchResponse(response) {
+    var isText = response.headers.get('content-type')?.includes('text/html');
+    var isJSON = response.headers.get('content-type')?.includes('application/json');
+
+    if (isText) {
+        return response.text()
+        .then(function(text) {
+            if (text.toLowerCase().includes('error') || text.toLowerCase().includes('exception')) {
+                showError(text);
+            }
+        })
+    } else if (isJSON) {
+        return response.json();
+    }
+}
+
+function showError(error) {
+    error = error.replace('<br />', '');
+
+    $('body')
+        .modal({
+            title:    'Error',
+            content:  error,
+            class:    '',
+            actions:  [
+                {
+                    text: 'Thanks for nothing',
+                    class: 'primary'
+                }
+            ]
+        })
+        .modal('show');
+}
