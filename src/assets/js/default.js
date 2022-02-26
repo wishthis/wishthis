@@ -10,7 +10,7 @@ if ('serviceWorker' in navigator) {
     })
 }
 
-const urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams($_GET);
 
 $(function() {
     /**
@@ -40,8 +40,8 @@ $(function() {
             placeholder: 'No wishlist selected.'
         })
 
-        if (urlParams.has('wishlist')) {
-            element.dropdown('set selected', urlParams.get('wishlist'));
+        if ($_GET.wishlist) {
+            element.dropdown('set selected', $_GET.wishlist);
         } else {
             if (response.results[0]) {
                 element.dropdown('set selected', response.results[0].value);

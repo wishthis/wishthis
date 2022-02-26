@@ -129,6 +129,15 @@ class Page
         /**
          * Redirect
          */
+        $redirect_to = $this->getPrettyURL($_SERVER['QUERY_STRING']);
+
+        if ($redirect_to && $redirect_to !== $_SERVER['REQUEST_URI']) {
+            header('Location: ' . $redirect_to);
+            die();
+        }
+    }
+
+    public function getPrettyURL(string $forURL): string {
         $htaccess    = explode(PHP_EOL, file_get_contents('.htaccess'));
         $redirect_to = '';
 
@@ -150,33 +159,42 @@ class Page
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
 
+                        $parameters_pairs = explode('&', parse_url($forURL, PHP_URL_PATH));
+                        $parameters       = array();
+
+                        foreach ($parameters_pairs as $index => $pair) {
+                            $parts = explode('=', $pair);
+                            $key   = $parts[0];
+                            $value = $parts[1];
+
+                            $parameters[$key] = $value;
+                        }
+
                         preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
 
-                        if (isset($_GET)) {
-                            $countMatches = 0;
+                        $countMatches = 0;
 
-                            foreach ($regexes as $matches) {
-                                foreach ($matches as $match) {
-                                    foreach ($_GET as $key => $value) {
-                                        if (
-                                               preg_match('/^' . $match . '$/', $value)
-                                            && in_array($key, $keys)
-                                            && count($_GET) === count($keys)
-                                        ) {
-                                            $rewriteRule = str_replace($match, $value, $rewriteRule);
+                        foreach ($regexes as $matches) {
+                            foreach ($matches as $match) {
+                                foreach ($parameters as $key => $value) {
+                                    if (
+                                           preg_match('/^' . $match . '$/', $value)
+                                        && in_array($key, $keys)
+                                        && count($parameters) === count($keys)
+                                    ) {
+                                        $rewriteRule = str_replace($match, $value, $rewriteRule);
 
-                                            $countMatches++;
-                                            break;
-                                        }
+                                        $countMatches++;
+                                        break;
                                     }
                                 }
+                            }
 
-                                if ($countMatches > 0 && $countMatches === count($matches)) {
-                                    $redirect_to = '/' . $rewriteRule;
+                            if ($countMatches > 0 && $countMatches === count($matches)) {
+                                $redirect_to = '/' . $rewriteRule;
 
-                                    if (in_array('L', $flags)) {
-                                        break 3;
-                                    }
+                                if (in_array('L', $flags)) {
+                                    break 3;
                                 }
                             }
                         }
@@ -185,10 +203,7 @@ class Page
             }
         }
 
-        if ($redirect_to && $redirect_to !== $_SERVER['REQUEST_URI']) {
-            header('Location: ' . $redirect_to);
-            die();
-        }
+        return $redirect_to;
     }
 
     public function header(): void
@@ -240,6 +255,11 @@ class Page
             /**
              * Scripts
              */
+            ?>
+            <script type="text/javascript">
+                var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+            </script>
+            <?php
 
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
