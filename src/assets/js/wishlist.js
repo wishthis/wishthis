@@ -31,7 +31,7 @@ $(function() {
     }
 
     /**
-     * Commit to Product
+     * Commit to Wish
      */
     $(document).on('click', '.ui.button.commit', function() {
     var button = $(this);
@@ -55,14 +55,14 @@ $(function() {
         ],
         onApprove: function() {
             /**
-             * Update product status
+             * Update wish status
              */
             button.api({
-                action: 'update product status',
+                action: 'update wish status',
                 method: 'PUT',
                 data: {
-                    productID: card.data('id'),
-                    productStatus: 'unavailable'
+                    wish_id: card.data('id'),
+                    wish_status: 'unavailable'
                 },
                 on: 'now',
                 onSuccess: function(response, element, xhr) {

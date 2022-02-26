@@ -80,7 +80,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
     /** Current version is below 0.3.0 */
     if (-1 === version_compare($options->version, '0.3.0')) {
-        $database->query('ALTER TABLE `products`
+        $database->query('ALTER TABLE `wishes`
                                   ADD `status`   VARCHAR(32) NOT NULL AFTER `url`
         ;');
     }

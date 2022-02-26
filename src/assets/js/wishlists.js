@@ -49,7 +49,7 @@ $(function () {
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
-            $('.button.wishlist-product-add').removeClass('disabled');
+            $('.button.wishlist-wish-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
 
@@ -66,7 +66,7 @@ $(function () {
                 }
             });
         } else {
-            $('.button.wishlist-product-add').addClass('disabled');
+            $('.button.wishlist-wish-add').addClass('disabled');
             $('.button.wishlist-share').addClass('disabled');
             $('.wishlist-delete button').addClass('disabled');
         }
@@ -119,14 +119,14 @@ $(function () {
     function generateCacheCard(card) {
         card = $(card);
 
-        var href       = card.find('.content [href]').prop('href');
-        var product_id = card.data('id');
-        var refresh    = card.find('button.refresh');
+        var href    = card.find('.content [href]').prop('href');
+        var wish_id = card.data('id');
+        var refresh = card.find('button.refresh');
 
         card.addClass('loading');
         card.attr('data-cache', true);
 
-        fetch('/src/api/cache.php?product_id=' + product_id + '&product_url=' + href, {
+        fetch('/src/api/cache.php?wish_id=' + wish_id + '&wish_url=' + href, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -311,7 +311,7 @@ $(function () {
     });
 
     /**
-     * Delete Product
+     * Delete Wish
      */
     $(document).on('click', '.ui.button.delete', function () {
         var button       = $(this);
@@ -322,7 +322,7 @@ $(function () {
         modalDefault
         .modal({
             title: 'Really delete?',
-            content: '<p>Would you really like to delete to this product? It will be gone forever.</p>',
+            content: '<p>Would you really like to delete to this wish? It will be gone forever.</p>',
             class: 'tiny',
             actions: [
                 {
@@ -337,13 +337,13 @@ $(function () {
                 buttonApprove.addClass('loading');
 
                 /**
-                 * Delete product
+                 * Delete wish
                  */
                 button.api({
-                    action: 'delete product',
+                    action: 'delete wish',
                     method: 'DELETE',
                     data: {
-                        productID: card.data('id'),
+                        wish_id: card.data('id'),
                     },
                     on: 'now',
                     onSuccess: function () {
@@ -352,7 +352,7 @@ $(function () {
                         $('body').toast({
                             class:   'success',
                             showIcon: 'check',
-                            message:  'Product successfully deleted.'
+                            message:  'Wish successfully deleted.'
                         });
 
                         wishlistsRefresh();
@@ -374,25 +374,25 @@ $(function () {
     });
 
     /**
-     * Add product
+     * Add wish
      */
-    $(document).on('click', '.button.wishlist-product-add', function () {
-        var modalWishlistProductAdd = $('.ui.modal.wishlist-product-add');
+    $(document).on('click', '.button.wishlist-wish-add', function () {
+        var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
 
-        modalWishlistProductAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
-        modalWishlistProductAdd.find('.primary.approve.button').addClass('disabled');
+        modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
+        modalWishlistWishAdd.find('.primary.approve.button').addClass('disabled');
 
-        modalWishlistProductAdd
+        modalWishlistWishAdd
         .modal({
             onApprove: function (button) {
                 button.addClass('loading');
 
-                var form = $('.ui.form.wishlist-product-fetch');
+                var form = $('.ui.form.wishlist-wish-fetch');
                 var formData = new URLSearchParams();
                 formData.append('wishlist_id', form.find('input[name="wishlist_id"]').val());
-                formData.append('product_url', form.find('input[name="product_url"]').val());
+                formData.append('wish_url', form.find('input[name="wish_url"]').val());
 
-                fetch('/src/api/products.php', {
+                fetch('/src/api/wishes.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -402,12 +402,12 @@ $(function () {
                         $('body').toast({
                             class:    'success',
                             showIcon: 'check',
-                            message:  'Product successfully added.'
+                            message:  'Wish successfully added.'
                         });
 
                         wishlistsRefresh();
 
-                        modalWishlistProductAdd.modal('hide');
+                        modalWishlistWishAdd.modal('hide');
                     }
 
                     button.removeClass('loading');
@@ -420,20 +420,20 @@ $(function () {
     });
 
     /** Fetch */
-    $(document).on('submit', '.wishlist-product-fetch', function (event) {
+    $(document).on('submit', '.wishlist-wish-fetch', function (event) {
         event.preventDefault();
 
         var form = $(event.currentTarget);
-        var href = form.find('[name="product_url"]').val();
+        var href = form.find('[name="wish_url"]').val();
 
-        var elementModalAdd = $('.ui.modal.wishlist-product-add');
+        var elementModalAdd = $('.ui.modal.wishlist-wish-add');
         var elementButtons  = elementModalAdd.find('.actions .button');
         var elementImage    = elementModalAdd.find('.image img');
 
         form.addClass('loading');
         elementButtons.addClass('disabled');
 
-        fetch('/src/api/cache.php?product_url=' + href, {
+        fetch('/src/api/cache.php?wish_url=' + href, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -452,7 +452,7 @@ $(function () {
                  * URL
                  */
                 if (info.url && info.url !== href) {
-                    var elementModalFetch = $('.ui.modal.wishlist-product-fetch');
+                    var elementModalFetch = $('.ui.modal.wishlist-wish-fetch');
 
                     elementModalFetch.find('input.current').val(href);
                     elementModalFetch.find('input.proposed').val(info.url);
@@ -465,12 +465,12 @@ $(function () {
                         closable: false,
                         onApprove: function (buttonFetch) {
                             var formData = new URLSearchParams();
-                            formData.append('product_url_current', href);
-                            formData.append('product_url_proposed', info.url);
+                            formData.append('wish_url_current', href);
+                            formData.append('wish_url_proposed', info.url);
 
                             buttonFetch.addClass('loading');
 
-                            fetch('/src/api/products.php', {
+                            fetch('/src/api/wishes.php', {
                                 method: 'PUT',
                                 body: formData
                             })

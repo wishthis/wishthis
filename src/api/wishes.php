@@ -1,7 +1,7 @@
 <?php
 
 /**
- * products.php
+ * wishes.php
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -17,17 +17,17 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        if (isset($_POST['wishlist_id'], $_POST['product_url'])) {
+        if (isset($_POST['wishlist_id'], $_POST['wish_url'])) {
             /**
-             * Insert New Product
+             * Insert New Wish
              */
-            $database->query('INSERT INTO `products`
+            $database->query('INSERT INTO `wishes`
                              (
                                 `wishlist`,
                                 `url`
                              ) VALUES ('
                                 . $_POST['wishlist_id'] . ',
-                                "' . $_POST['product_url'] . '"
+                                "' . $_POST['wish_url'] . '"
                              )
             ;');
 
@@ -41,23 +41,23 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'PUT':
         parse_str(file_get_contents("php://input"), $_PUT);
 
-        if (isset($_PUT['productID'], $_PUT['productStatus'])) {
+        if (isset($_PUT['wish_id'], $_PUT['wish_status'])) {
             /**
-             * Update Product Status
+             * Update Wish Status
              */
-            $database->query('UPDATE `products`
-                                 SET `status` = "' . $_PUT['productStatus'] . '"
-                               WHERE `id` = ' . $_PUT['productID'] . '
+            $database->query('UPDATE `wishes`
+                                 SET `status` = "' . $_PUT['wish_status'] . '"
+                               WHERE `id` = ' . $_PUT['wish_id'] . '
             ;');
 
             $response['success'] = true;
-        } elseif (isset($_PUT['product_url_current'], $_PUT['product_url_proposed'])) {
+        } elseif (isset($_PUT['wish_url_current'], $_PUT['wish_url_proposed'])) {
             /**
-             * Update Product URL
+             * Update Wish URL
              */
-            $database->query('UPDATE `products`
-                                 SET `url` = "' . $_PUT['product_url_proposed'] . '"
-                               WHERE `url` = "' . $_PUT['product_url_current'] . '"
+            $database->query('UPDATE `wishes`
+                                 SET `url` = "' . $_PUT['wish_url_proposed'] . '"
+                               WHERE `url` = "' . $_PUT['wish_url_current'] . '"
             ;');
 
             $response['success'] = true;
@@ -67,9 +67,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'DELETE':
         parse_str(file_get_contents("php://input"), $_DELETE);
 
-        if (isset($_DELETE['productID'])) {
-            $database->query('DELETE FROM `products`
-                                    WHERE `id` = ' . $_DELETE['productID'] . '
+        if (isset($_DELETE['wish_id'])) {
+            $database->query('DELETE FROM `wishes`
+                                    WHERE `id` = ' . $_DELETE['wish_id'] . '
             ;');
 
             $response['success'] = true;

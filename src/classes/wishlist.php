@@ -14,7 +14,7 @@ class Wishlist
     private string $hash;
 
     public array $data;
-    public array $products = array();
+    public array $wishes = array();
 
     public bool $exists = false;
 
@@ -52,10 +52,10 @@ class Wishlist
         }
 
         /**
-         * Get Products
+         * Get Wishes
          */
-        $this->products = $database->query('SELECT *
-                                              FROM `products`
+        $this->wishes = $database->query('SELECT *
+                                              FROM `wishes`
                                              WHERE `wishlist` = ' . $this->id . ';')
                                    ->fetchAll();
     }
@@ -70,11 +70,11 @@ class Wishlist
         $exclude = isset($options['exclude']) ? $options['exclude'] : array();
 
         if ($exclude) {
-            $products = array_filter($this->products, function ($product) use ($exclude) {
-                return !in_array($product['status'], $exclude);
+            $wishes = array_filter($this->wishes, function ($wish) use ($exclude) {
+                return !in_array($wish['status'], $exclude);
             });
         } else {
-            $products = $this->products;
+            $wishes = $this->wishes;
         }
 
         /**
@@ -83,15 +83,15 @@ class Wishlist
         $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id'];
         $cardIndex     = 0;
 
-        if (!empty($products)) { ?>
+        if (!empty($wishes)) { ?>
             <div class="ui three column doubling stackable grid">
-                <?php foreach ($products as $product) {
-                    $cache  = new EmbedCache($product['url']);
+                <?php foreach ($wishes as $wish) {
+                    $cache  = new EmbedCache($wish['url']);
                     $info   = $cache->get(false);
                     $exists = $cache->exists() ? 'true' : 'false';
                     ?>
                     <div class="column">
-                        <div class="ui fluid card stretch" data-id="<?= $product['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
+                        <div class="ui fluid card stretch" data-id="<?= $wish['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
                             <div class="overlay"></div>
 
                             <div class="image">

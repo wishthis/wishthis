@@ -69,22 +69,22 @@ class User
     }
 
     /**
-     * Returns a list of products for a given wishlist.
+     * Returns a list of wishes for a given wishlist.
      *
      * @param  int   $wishlist
      *
      * @return array
      */
-    public function getProducts(int $wishlist): array
+    public function getWishes(int $wishlist): array
     {
         global $database;
 
-        $products = $database->query(
+        $wishes = $database->query(
             'SELECT *
-             FROM products
+             FROM wishes
              WHERE wishlist = ' . $wishlist . ';'
         )->fetchAll();
 
-        return $products;
+        return $wishes;
     }
 }

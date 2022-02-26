@@ -18,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['table'])) {
             if ('all' === $_GET['table']) {
                 $tables = array(
-                    'products',
+                    'wishes',
                     'wishlists',
                     'users',
                 );

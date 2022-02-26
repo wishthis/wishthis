@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generate cache for product
+ * Generate cache for wish
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -17,7 +17,7 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        $cache = new EmbedCache($_GET['product_url']);
+        $cache = new EmbedCache($_GET['wish_url']);
         $info  = $cache->get(true);
 
         $response['success'] = true;

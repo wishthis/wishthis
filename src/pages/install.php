@@ -135,9 +135,9 @@ switch ($step) {
         $database->query('CREATE INDEX `idx_hash` ON `wishlists` (`hash`);');
 
         /**
-         * Products
+         * Wishes
          */
-        $database->query('CREATE TABLE `products` (
+        $database->query('CREATE TABLE `wishes` (
             `id`       int          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist` int          NOT NULL,
             `url`      VARCHAR(255) NOT NULL,

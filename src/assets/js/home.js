@@ -11,8 +11,8 @@ $(function() {
 
         if (response.success) {
             showStatistic(
-                $('#products .value'),
-                response.data.products.count,
+                $('#wishes .value'),
+                response.data.wishes.count,
                 0
             );
             showStatistic(

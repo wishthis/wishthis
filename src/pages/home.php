@@ -51,9 +51,9 @@ $page->navigation();
 
             <div class="ui stackable statistics">
 
-                <div class="statistic" id="products">
+                <div class="statistic" id="wishes">
                     <div class="value">N. A.</div>
-                    <div class="label">Products</div>
+                    <div class="label">Wishes</div>
                 </div>
 
                 <div class="statistic" id="wishlists">

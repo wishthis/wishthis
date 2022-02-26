@@ -32,7 +32,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if (isset($user->id) && $user->id === intval($wishlist->data['user']) && !empty($wishlist->products)) { ?>
+        if (isset($user->id) && $user->id === intval($wishlist->data['user']) && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -42,7 +42,7 @@ $page->navigation();
                     <div class="text">
                         <p>
                             You are viewing your own wishlist!
-                            You will be able to see which products have already been bought for you.
+                            You will be able to see which wishes have already been bought for you.
                             Don't you want to be surprised?
                         </p>
                         <p>
@@ -69,7 +69,7 @@ $page->navigation();
     </div>
 
     <div class="ui container">
-        <h2 class="ui header">Products</h2>
+        <h2 class="ui header">Wishes</h2>
 
         <div class="wishlist-cards">
             <?php

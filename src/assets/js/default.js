@@ -20,8 +20,8 @@ $(function() {
     $.fn.api.settings.api = {
         'get wishlists'        : '/src/api/wishlists.php',
         'delete wishlist'      : '/src/api/wishlists.php',
-        'update product status': '/src/api/products.php',
-        'delete product'       : '/src/api/products.php',
+        'update wish status': '/src/api/wishes.php',
+        'delete wish'       : '/src/api/wishes.php',
     };
 
     /** Default callbacks */

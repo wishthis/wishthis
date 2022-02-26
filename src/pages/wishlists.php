@@ -36,9 +36,9 @@ $page->navigation();
                 <div class="ui divider"></div>
 
                 <div class="flex">
-                    <a class="ui small labeled icon button wishlist-product-add disabled">
+                    <a class="ui small labeled icon button wishlist-wish-add disabled">
                         <i class="add icon"></i>
-                        Add a product
+                        Add a wish
                     </a>
 
                     <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
@@ -68,7 +68,7 @@ $page->navigation();
 
         </div>
 
-        <h2 class="ui header">Products</h2>
+        <h2 class="ui header">Wishes</h2>
 
         <div class="ui primary progress">
             <div class="bar">
@@ -122,25 +122,25 @@ $page->navigation();
     </div>
 </div>
 
-<!-- Wishlist: Add a product -->
-<div class="ui modal wishlist-product-add">
+<!-- Wishlist: Add a wish -->
+<div class="ui modal wishlist-wish-add">
     <div class="header">
-        Add a product
+        Add a wish
     </div>
     <div class="image content">
         <div class="ui medium image">
             <img src="/src/assets/img/no-image.svg" loading="lazy" />
         </div>
         <div class="description">
-            <div class="ui header">Product</div>
-            <p>Fill out the below fields to add your new product.</p>
+            <div class="ui header">Wish</div>
+            <p>Fill out the below fields to add your new wish.</p>
 
-            <form class="ui form wishlist-product-fetch" method="post">
+            <form class="ui form wishlist-wish-fetch" method="post">
                 <input type="hidden" name="wishlist_id" />
 
                 <div class="field">
                     <label>URL</label>
-                    <input type="url" name="product_url" />
+                    <input type="url" name="wish_url" />
                 </div>
 
                 <input class="ui button" type="submit" value="Fetch" />
@@ -157,14 +157,14 @@ $page->navigation();
     </div>
 </div>
 
-<!-- Wishlist: Add a product (fetch) -->
-<div class="ui small modal wishlist-product-fetch">
+<!-- Wishlist: Add a wish (fetch) -->
+<div class="ui small modal wishlist-wish-fetch">
     <div class="header">
         Incorrect URL
     </div>
     <div class="content">
         <div class="description">
-            <div class="ui header">Product URLs</div>
+            <div class="ui header">Wish URLs</div>
             <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
 
             <div class="ui form urls">
