@@ -47,21 +47,27 @@ $page->navigation();
 
         <div class="ui segment">
             <h2 class="ui header">Statistics</h2>
+            <p>Join the others and get started now!</p>
 
-            <div class="ui statistics">
-                <div class="statistic">
-                    <div class="value">22</div>
+            <div class="ui stackable statistics">
+
+                <div class="statistic" id="products">
+                    <div class="value">N. A.</div>
                     <div class="label">Products</div>
                 </div>
-                <div class="statistic">
-                    <div class="value">31,200</div>
+
+                <div class="statistic" id="wishlists">
+                    <div class="value">N. A.</div>
                     <div class="label">Wishlists</div>
                 </div>
-                <div class="statistic">
-                    <div class="value">22</div>
+
+                <div class="statistic" id="users">
+                    <div class="value">N. A.</div>
                     <div class="label">Registered users</div>
                 </div>
+
             </div>
+
         </div>
     </div>
 </main>
