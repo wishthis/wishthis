@@ -376,8 +376,6 @@ $(function () {
     /**
      * Add wish
      */
-    $('.ui.dropdown.types').dropdown();
-
     $(document).on('click', '.button.wishlist-wish-add', function () {
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
 

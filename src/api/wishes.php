@@ -24,11 +24,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $database->query('INSERT INTO `wishes`
                              (
                                 `wishlist`,
-                                `type`,
                                 `url`
                              ) VALUES ('
                                 . $_POST['wishlist_id'] . ',
-                                "' . $_POST['wish_type'] . '",
                                 "' . $_POST['wish_url'] . '"
                              )
             ;');
