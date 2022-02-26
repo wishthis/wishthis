@@ -337,4 +337,15 @@ class Page
         </html>
         <?php
     }
+
+    public function messages(array $messages): string
+    {
+        $html = '';
+
+        foreach ($messages as $message) {
+            $html .= $message;
+        }
+
+        return $html;
+    }
 }
