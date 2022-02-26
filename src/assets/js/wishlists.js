@@ -46,15 +46,25 @@ $(function () {
 
         if (wishlistValue) {
             $_GET.wishlist = wishlistValue;
-            urlParams.set('wishlist', wishlistValue);
-
-            window.history.pushState({}, '', '/?' + urlParams.toString());
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
             $('.button.wishlist-product-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
             $('.wishlist-delete button').removeClass('disabled');
+
+            /** Update URL */
+            urlParams.set('wishlist', wishlistValue);
+
+            fetch('/src/api/url.php?url=' + btoa(urlParams.toString()), {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.success) {
+                    window.history.pushState({}, '', response.data.url);
+                }
+            });
         } else {
             $('.button.wishlist-product-add').addClass('disabled');
             $('.button.wishlist-share').addClass('disabled');
