@@ -23,9 +23,29 @@
             "src": "/src/assets/img/logo-square.svg",
             "sizes": "any",
             "purpose": "maskable"
+        },
+        {
+            "src": "/src/assets/img/logo-square.png",
+            "sizes": "any",
+            "purpose": "any"
+        },
+        {
+            "src": "/src/assets/img/logo-square.png",
+            "sizes": "any",
+            "purpose": "maskable"
         }
     ],
     "shortcuts": [],
     "lang": "en",
-    "dir": "rtl"
+    "dir": "rtl",
+    "share_target": {
+        "action": "/?page=wishlists",
+        "method": "GET",
+        "params": {
+            "title": "title",
+            "text": "text",
+            "url": "url"
+        }
+    }
+
 }
