@@ -63,7 +63,7 @@ class Wish
         $description = $this->description ?? $info->description ?? null;
         $url         = $this->url         ?? $info->url         ?? null;
 
-        $image        = $info->image        ?? '/src/assets/img/no-image.svg';
+        $image        = $info->image        ? $info->image : '/src/assets/img/no-image.svg';
         $favicon      = $info->favicon      ?? null;
         $providerName = $info->providerName ?? null;
         $keywords     = $info->keywords     ?? null;
