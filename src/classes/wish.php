@@ -10,6 +10,8 @@ namespace wishthis;
 
 class Wish
 {
+    private EmbedCache $cache;
+
     public int $id;
     public int $wishlist;
     public ?string $title;
@@ -17,13 +19,15 @@ class Wish
     public ?string $url;
     public ?string $status;
 
-    public function __construct(int|array $wish)
+    public \stdClass $info;
+
+    public function __construct(int|array $wish, bool $generateCache = false)
     {
         global $database;
 
         $columns = array();
 
-        if (is_int($wish)) {
+        if (is_numeric($wish)) {
             $wish = $database
             ->query('SELECT *
                        FROM `wishes`
@@ -40,9 +44,26 @@ class Wish
                 $this->$key = $value;
             }
         }
+
+        $this->info = new \stdClass();
+
+        if ($this->url) {
+            $this->cache = new EmbedCache($this->url);
+            $this->info  = $this->cache->get($generateCache);
+        }
+
+        if (empty($this->info->image)) {
+            $this->info->image = '/src/assets/img/no-image.svg';
+        }
+
+        foreach ($columns as $key => $value) {
+            if (empty($value) && isset($this->info->$key)) {
+                $this->$key = $this->info->$key;
+            }
+        }
     }
 
-    public function getCard(int $ofUser, bool $generateCache = false): string
+    public function getCard(int $ofUser): string
     {
         ob_start();
 
@@ -52,40 +73,29 @@ class Wish
         $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $ofUser;
 
         if ($this->url) {
-            $cache  = new EmbedCache($this->url);
-            $info   = $cache->get($generateCache);
-            $exists = $cache->exists() || !$this->url ? 'true' : 'false';
+            $exists = $this->cache->exists() || !$this->url ? 'true' : 'false';
         } else {
             $exists = 'true';
         }
-
-        $title       = $this->title       ?? $info->title       ?? null;
-        $description = $this->description ?? $info->description ?? null;
-        $url         = $this->url         ?? $info->url         ?? null;
-
-        $image        = $info->image        ? $info->image : '/src/assets/img/no-image.svg';
-        $favicon      = $info->favicon      ?? null;
-        $providerName = $info->providerName ?? null;
-        $keywords     = $info->keywords     ?? null;
         ?>
 
         <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $exists ?>">
             <div class="overlay"></div>
 
             <div class="image">
-                <?php if ($image) { ?>
-                    <img class="preview" src="<?= $image ?>" loading="lazy" />
+                <?php if (isset($this->info->image)) { ?>
+                    <img class="preview" src="<?= $this->info->image ?>" loading="lazy" />
                 <?php } ?>
 
-                <?php if ($favicon) { ?>
-                    <img class="favicon" src="<?= $favicon ?>" loading="lazy" />
+                <?php if (isset($this->info->favicon)) { ?>
+                    <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                 <?php } ?>
 
-                <?php if ($providerName) { ?>
-                    <span class="provider"><?= $providerName ?></span>
+                <?php if (isset($this->info->providerName)) { ?>
+                    <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
 
-                <?php if ($userIsCurrent && $url) { ?>
+                <?php if ($userIsCurrent && isset($this->url)) { ?>
                     <button class="ui icon button refresh">
                         <i class="refresh icon"></i>
                     </button>
@@ -93,25 +103,25 @@ class Wish
             </div>
 
             <div class="content">
-                <?php if ($title) { ?>
+                <?php if ($this->title) { ?>
                     <div class="header">
-                        <?php if ($url) { ?>
-                            <a href="<?= $url ?>" target="_blank"><?= $title ?></a>
+                        <?php if ($this->url) { ?>
+                            <a href="<?= $this->url ?>" target="_blank"><?= $this->title ?></a>
                         <?php } else { ?>
-                            <?= $title ?>
+                            <?= $this->title ?>
                         <?php } ?>
                     </div>
                 <?php } ?>
 
-                <?php if ($keywords) { ?>
+                <?php if (isset($this->info->keywords)) { ?>
                     <div class="meta">
-                        <?= implode(', ', $keywords) ?>
+                        <?= implode(', ', $this->info->keywords) ?>
                     </div>
                 <?php } ?>
 
-                <?php if ($description) { ?>
+                <?php if ($this->description) { ?>
                     <div class="description">
-                        <?= $description ?>
+                        <?= $this->description ?>
                     </div>
                     <div class="description-fade"></div>
                 <?php } ?>
@@ -119,25 +129,40 @@ class Wish
 
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
-                    <a class="ui small primary labeled icon button commit">
+                    <a class="ui primary labeled icon button commit">
                         <i class="shopping cart icon"></i>
                         Commit
                     </a>
                 <?php } ?>
 
-                <?php if ($url) { ?>
-                    <a class="ui small labeled icon button" href="<?= $url ?>" target="_blank">
+                <?php if ($this->url) { ?>
+                    <a class="ui labeled icon button" href="<?= $this->url ?>" target="_blank">
                         <i class="external icon"></i>
                         Visit
                     </a>
                 <?php } ?>
 
                 <?php if ($userIsCurrent) { ?>
-                    <a class="ui small labeled red icon button delete">
-                        <i class="trash icon"></i>
-                        Delete
-                    </a>
+                    <div class="ui menu">
+                        <div class="ui fluid floating dropdown labeled icon button">
+                            <i class="cog icon"></i>
+                            Options
+
+                            <div class="bottom menu options">
+                                <a class="item" href="/?page=wish&id=<?= $this->id ?>">
+                                    <i class="pen icon"></i>
+                                    Edit
+                                </a>
+
+                                <a class="item delete">
+                                    <i class="trash icon"></i>
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 <?php } ?>
+
             </div>
         </div>
         <?php

@@ -35,7 +35,7 @@ class EmbedCache
     {
     }
 
-    public function get(bool $generateCache = false): mixed
+    public function get(bool $generateCache = false): \stdClass
     {
         $info   = null;
         $maxAge = 2592000; // 30 days

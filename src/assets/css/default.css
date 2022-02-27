@@ -1,5 +1,6 @@
 :root {
     --lineHeight: 1.4285;
+    --wishPreviewHeight: 25vh;
 }
 
 img {
@@ -33,16 +34,16 @@ img {
 /**
  * Card
  */
-.ui.card {
-    overflow: hidden;
-}
-
 .ui.fluid.card.stretch {
     height: 100%;
 }
 
 /** Overlay */
 @media (hover: hover) {
+    .ui.card:hover {
+        z-index: 102;
+    }
+
     .ui.card .overlay {
         transition: 0.4s ease opacity;
 
@@ -64,8 +65,9 @@ img {
 
 /** Image */
 .ui.card > .image > img.preview{
-    height: 25vh;
+    height: var(--wishPreviewHeight);
     object-fit: cover;
+    object-position: 50%;
     background-color: #fff;
 }
 
@@ -195,6 +197,19 @@ img {
 .ui.card > .extra.buttons > .button,
 .ui.cards > .card > .extra.buttons > .button {
     flex: 1 1 auto;
+}
+
+.ui.card .ui.menu {
+    flex: 1 1 auto;
+
+    margin: 0;
+
+    box-shadow: none;
+}
+.ui.card .ui.menu .ui.button {
+    margin: 0;
+
+    text-align: center;
 }
 
 /**

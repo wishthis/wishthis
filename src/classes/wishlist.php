@@ -24,11 +24,10 @@ class Wishlist
 
         $column;
 
-        if (is_int($id_or_hash)) {
+        if (is_numeric($id_or_hash)) {
             $column = 'id';
-        }
-        if (is_string($id_or_hash)) {
-            $column = 'hash';
+        } elseif (is_string($id_or_hash)) {
+            $column     = 'hash';
             $id_or_hash = '"' . $id_or_hash . '"';
         }
 
@@ -61,7 +60,7 @@ class Wishlist
         ->fetchAll();
 
         foreach ($this->wishes as &$wish) {
-            $wish = new Wish($wish);
+            $wish = new Wish($wish, false);
         }
     }
 
@@ -89,7 +88,7 @@ class Wishlist
             <div class="ui three column doubling stackable grid">
                 <?php foreach ($wishes as $wish) { ?>
                     <div class="column">
-                        <?= $wish->getCard($this->data['user'], false) ?>
+                        <?= $wish->getCard($this->data['user']) ?>
                     </div>
                 <?php } ?>
             </div>

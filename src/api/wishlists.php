@@ -45,17 +45,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
 
             $wishlists = $user->getWishlists();
-            $wishlists = array_map(function ($dataWishlist) {
-                $data = $dataWishlist;
-                // $newFormat['name'] = $wishlist['name'];
-                $data['value'] = $dataWishlist['id'];
-                $data['text'] = $dataWishlist['name'];
+            $wishlists = array_map(
+                function ($dataWishlist) {
+                    $data = $dataWishlist;
+                    // $newFormat['name'] = $wishlist['name'];
+                    $data['value'] = $dataWishlist['id'];
+                    $data['text'] = $dataWishlist['name'];
 
-                $wishlist = new Wishlist(intval($dataWishlist['id']));
-                $data['cards'] = $wishlist->getCards();
+                    $wishlist = new Wishlist($dataWishlist['id']);
+                    $data['cards'] = $wishlist->getCards();
 
-                return $data;
-            }, $wishlists);
+                    return $data;
+                },
+                $wishlists
+            );
 
             $response['results'] = $wishlists;
             $response['success'] = true;

@@ -24,11 +24,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                       WHERE `id` = ' . $_GET['wish_id'] . ';')
             ->fetch();
 
-            $wish = new wish($columns);
+            $wish = new wish($columns, true);
 
             $response = array(
                 'info' => $wish,
-                'html' => $wish->getCard($_GET['wishlist_user'], true)
+                'html' => $wish->getCard($_GET['wishlist_user'])
             );
         } elseif (isset($_GET['wish_url'])) {
             $cache  = new EmbedCache($_GET['wish_url']);
@@ -42,10 +42,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'POST':
-        if (isset($_POST['wishlist_id'], $_POST['wish_url'])) {
+        if (isset($_POST['wishlist_id'])) {
             /**
              * Insert New Wish
              */
+            if (
+                   empty($_POST['wish_title'])
+                && empty($_POST['wish_description'])
+                && empty($_POST['wish_url'])
+            ) {
+                break;
+            }
+
             $database->query('INSERT INTO `wishes`
                              (
                                 `wishlist`,
@@ -54,9 +62,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                 `url`
                              ) VALUES ('
                                 . $_POST['wishlist_id'] . ',
-                                "' . $_POST['wish_title'] . '",
-                                "' . $_POST['wish_description'] . '",
-                                "' . $_POST['wish_url'] . '"
+                                "' . trim($_POST['wish_title']) . '",
+                                "' . trim($_POST['wish_description']) . '",
+                                "' . trim($_POST['wish_url']) . '"
                              )
             ;');
 

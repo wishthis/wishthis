@@ -24,6 +24,8 @@ $(function () {
                         element.dropdown('set selected', wishlists[0].value);
                     }
                 }
+
+                $('.ui.dropdown').dropdown();
             }
         });
     }
@@ -146,6 +148,8 @@ $(function () {
         .finally(function() {
             card.attr('data-cache', 'true');
             card.removeClass('loading');
+
+            $('.ui.dropdown').dropdown();
         });
 
         refresh.removeClass('working');
@@ -234,9 +238,9 @@ $(function () {
     /**
      * Delete Wish
      */
-    $(document).on('click', '.ui.button.delete', function () {
-        var button       = $(this);
-        var card         = button.closest('.ui.card');
+    $(document).on('click', '.menu.options .item.delete', function () {
+        var buttonDelete = $(this);
+        var card         = buttonDelete.closest('.ui.card');
         var column       = card.closest('.column');
         var modalDefault = $('.ui.modal.default');
 
@@ -260,7 +264,7 @@ $(function () {
                 /**
                  * Delete wish
                  */
-                button.api({
+                buttonDelete.api({
                     action: 'delete wish',
                     method: 'DELETE',
                     data: {
