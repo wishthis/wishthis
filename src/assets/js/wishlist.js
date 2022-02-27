@@ -43,7 +43,7 @@ $(function() {
     $('body')
     .modal({
         title:    'Really commit?',
-        content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist anymore.',
+        content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore.',
         class:    'tiny',
         actions:  [
             {
