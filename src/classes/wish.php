@@ -94,12 +94,6 @@ class Wish
                 <?php if (isset($this->info->providerName)) { ?>
                     <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
-
-                <?php if ($userIsCurrent && isset($this->url)) { ?>
-                    <button class="ui icon button refresh">
-                        <i class="refresh icon"></i>
-                    </button>
-                <?php } ?>
             </div>
 
             <div class="content">

@@ -125,7 +125,6 @@ $(function () {
         card = $(card);
 
         var href    = card.find('.content [href]').prop('href');
-        var refresh = card.find('button.refresh');
 
         if (!href) {
             return;
@@ -156,21 +155,7 @@ $(function () {
 
             $('.ui.dropdown').dropdown();
         });
-
-        refresh.removeClass('working');
     }
-
-    /**
-     * Refresh
-     */
-    $(document).on('click', '.ui.button.refresh', function (event) {
-        var button = $(event.currentTarget);
-        var card   = button.closest('.ui.card');
-
-        button.addClass('working');
-
-        generateCacheCard(card);
-    });
 
     /**
      * Delete Wishlist

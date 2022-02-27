@@ -106,41 +106,6 @@ img {
     opacity: 1;
 }
 
-/** Refresh */
-.ui.card > .image > button {
-    transition: 0.4s ease opacity;
-    animation: buttonWorking 2s linear infinite paused;
-
-	position: absolute;
-    top: calc(0.91666667em / 2);
-    right: calc(0.91666667em / 2);
-    margin: 0;
-
-    background-color: transparent;
-    z-index: 2;
-}
-@media (hover: hover) {
-    .ui.card > .image > button {
-        opacity: 0;
-    }
-    .ui.card:hover > .image > button {
-        opacity: 1;
-    }
-}
-.ui.card > .image > button.working {
-    animation-play-state: running;
-}
-
-@keyframes buttonWorking {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(359deg);
-    }
-}
-
 /** Content */
 .ui.card > .content > .header {
     max-height: calc(2 * 1.28571429em);
