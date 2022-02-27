@@ -255,7 +255,7 @@ class Page
             );
         }
         ?>
-        <div class="ui attached stackable menu">
+        <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
                 <a class="item home" href="/?page=home">
                     <img src="/src/assets/img/logo.svg" />
@@ -296,6 +296,14 @@ class Page
                         <i class="upload icon"></i> Update
                     </a>
                 <?php } ?>
+            </div>
+        </div>
+        <div class="ui attached stackable menu toggle">
+            <div class="ui container">
+                <a class="item">
+                    <i class="hamburger icon"></i>
+                    Menu
+                </a>
             </div>
         </div>
         <div class="ui hidden divider"></div>

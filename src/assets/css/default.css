@@ -206,3 +206,12 @@ p .ui.horizontal.label {
         margin-bottom: 0;
     }
 }
+
+/**
+ * Menu
+ */
+@media (min-width: 768px) {
+    .menu.toggle {
+        display: none;
+    }
+}
