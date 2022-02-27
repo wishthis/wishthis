@@ -54,10 +54,15 @@ class Wishlist
         /**
          * Get Wishes
          */
-        $this->wishes = $database->query('SELECT *
-                                              FROM `wishes`
-                                             WHERE `wishlist` = ' . $this->id . ';')
-                                   ->fetchAll();
+        $this->wishes = $database
+        ->query('SELECT *
+                   FROM `wishes`
+                  WHERE `wishlist` = ' . $this->id . ';')
+        ->fetchAll();
+
+        foreach ($this->wishes as &$wish) {
+            $wish = new Wish($wish);
+        }
     }
 
     public function getCards($options = array()): string
@@ -71,7 +76,7 @@ class Wishlist
 
         if ($exclude) {
             $wishes = array_filter($this->wishes, function ($wish) use ($exclude) {
-                return !in_array($wish['status'], $exclude);
+                return !in_array($wish->status, $exclude);
             });
         } else {
             $wishes = $this->wishes;
@@ -80,96 +85,14 @@ class Wishlist
         /**
          * Cards
          */
-        $userIsCurrent = isset($_SESSION['user']) && $this->data['user'] === $_SESSION['user']['id'];
-        $cardIndex     = 0;
-
         if (!empty($wishes)) { ?>
             <div class="ui three column doubling stackable grid">
-                <?php foreach ($wishes as $wish) {
-                    $cache  = new EmbedCache($wish['url']);
-                    $info   = $cache->get(false);
-                    $exists = $cache->exists() || !$info->url ? 'true' : 'false';
-
-                    $title       = $wish['title'] ?? $info->title;
-                    $description = $wish['description'] ?? $info->description;
-                    ?>
+                <?php foreach ($wishes as $wish) { ?>
                     <div class="column">
-                        <div class="ui fluid card stretch" data-id="<?= $wish['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
-                            <div class="overlay"></div>
-
-                            <div class="image">
-                                <?php if ($info->image) { ?>
-                                    <img class="preview" src="<?= $info->image ?>" loading="lazy"/>
-                                <?php } ?>
-
-                                <?php if ($info->favicon) { ?>
-                                    <img class="favicon" src="<?= $info->favicon ?>" loading="lazy"/>
-                                <?php } ?>
-
-                                <?php if ($info->providerName) { ?>
-                                    <span class="provider"><?= $info->providerName ?></span>
-                                <?php } ?>
-
-                                <?php if ($userIsCurrent && $info->url) { ?>
-                                    <button class="ui icon button refresh">
-                                        <i class="refresh icon"></i>
-                                    </button>
-                                <?php } ?>
-                            </div>
-
-                            <div class="content">
-                                <?php if ($title) { ?>
-                                    <div class="header">
-                                        <?php if ($info->url) { ?>
-                                            <a href="<?= $info->url ?>" target="_blank"><?= $title ?></a>
-                                        <?php } else { ?>
-                                            <?= $title ?>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ($info->keywords) { ?>
-                                    <div class="meta">
-                                        <?= implode(', ', $info->keywords) ?>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if ($description) { ?>
-                                    <div class="description">
-                                        <?= $description ?>
-                                    </div>
-                                    <div class="description-fade"></div>
-                                <?php } ?>
-                            </div>
-
-                            <div class="extra content buttons">
-                                <?php if (!$userIsCurrent) { ?>
-                                    <a class="ui small primary labeled icon button commit">
-                                        <i class="shopping cart icon"></i>
-                                        Commit
-                                    </a>
-                                <?php } ?>
-
-                                <?php if ($info->url) { ?>
-                                    <a class="ui small labeled icon button" href="<?= $info->url ?>" target="_blank">
-                                        <i class="external icon"></i>
-                                        Visit
-                                    </a>
-                                <?php } ?>
-
-                                <?php if ($userIsCurrent) { ?>
-                                    <a class="ui small labeled red icon button delete">
-                                        <i class="trash icon"></i>
-                                        Delete
-                                    </a>
-                                <?php } ?>
-                            </div>
-                        </div>
+                        <?= $wish->getCard($this->data['user'], false) ?>
                     </div>
                 <?php } ?>
             </div>
-
-            <? $cardIndex++ ?>
         <?php } else { ?>
             <div class="ui container">
                 <div class="sixteen wide column">

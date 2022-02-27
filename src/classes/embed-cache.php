@@ -16,8 +16,6 @@ class EmbedCache
      * Private
      */
     private string $directory = ROOT . '/src/cache';
-    private string $noImage   = '/src/assets/img/no-image.svg';
-
     private string $filepath;
 
     private function getIdentifier(): string
@@ -39,9 +37,9 @@ class EmbedCache
 
     public function get(bool $generateCache = false): mixed
     {
-        $info       = null;
-        $maxAge     = 2592000; // 30 days
-        $age        = file_exists($this->getFilepath()) ? time() - filemtime($this->getFilepath()) : $maxAge;
+        $info   = null;
+        $maxAge = 2592000; // 30 days
+        $age    = file_exists($this->getFilepath()) ? time() - filemtime($this->getFilepath()) : $maxAge;
 
         if ($this->exists() && $age <= $maxAge && false === $generateCache) {
             $info = json_decode(file_get_contents($this->getFilepath()));
@@ -60,7 +58,7 @@ class EmbedCache
             $info_simplified->favicon       = '';
             $info_simplified->feeds         = array();
             $info_simplified->icon          = '';
-            $info_simplified->image         = $this->noImage;
+            $info_simplified->image         = '';
             $info_simplified->keywords      = array();
             $info_simplified->language      = '';
             $info_simplified->languages     = array();
@@ -84,7 +82,7 @@ class EmbedCache
                     $info_simplified->favicon       = (string) $info->favicon;
                     $info_simplified->feeds         = (array)  $info->feeds;
                     $info_simplified->icon          = (string) $info->icon;
-                    $info_simplified->image         = $info->image ? (string) $info->image : $this->noImage;
+                    $info_simplified->image         = (string) $info->image;
                     $info_simplified->keywords      = (array)  $info->keywords;
                     $info_simplified->language      = (string) $info->language;
                     $info_simplified->languages     = (array)  $info->languages;
@@ -98,7 +96,7 @@ class EmbedCache
                 } catch (\Throwable $ex) {
                     $generateCache = false;
 
-                    $info_simplified->title = $ex->getMessage();
+                    $info_simplified->description = $ex->getMessage();
                 }
             }
 

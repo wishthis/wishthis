@@ -7,8 +7,6 @@ $(function() {
     })
     .then(response => response.json())
     .then(response => {
-        console.log(response);
-
         if (response.success) {
             showStatistic(
                 $('#wishes .value'),
@@ -51,7 +49,6 @@ function showStatistic(elementStatistic, amount, timeout) {
                     interval += interval * 0.1;
                 }
 
-                console.log(interval);
                 setTimeout(count, interval);
             }
         },

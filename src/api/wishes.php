@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\User;
+use wishthis\{User, Wish, EmbedCache};
 
 $api      = true;
 $response = array(
@@ -16,6 +16,31 @@ $response = array(
 require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
+    case 'GET':
+        if (isset($_GET['wish_id'], $_GET['wishlist_user'])) {
+            $columns = $database
+            ->query('SELECT *
+                       FROM `wishes`
+                      WHERE `id` = ' . $_GET['wish_id'] . ';')
+            ->fetch();
+
+            $wish = new wish($columns);
+
+            $response = array(
+                'info' => $wish,
+                'html' => $wish->getCard($_GET['wishlist_user'], true)
+            );
+        } elseif (isset($_GET['wish_url'])) {
+            $cache  = new EmbedCache($_GET['wish_url']);
+            $info   = $cache->get(true);
+            $exists = $cache->exists() ? 'true' : 'false';
+
+            $response = array(
+                'info' => $info
+            );
+        }
+        break;
+
     case 'POST':
         if (isset($_POST['wishlist_id'], $_POST['wish_url'])) {
             /**

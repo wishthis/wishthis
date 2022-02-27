@@ -120,7 +120,6 @@ $(function () {
         card = $(card);
 
         var href    = card.find('.content [href]').prop('href');
-        var wish_id = card.data('id');
         var refresh = card.find('button.refresh');
 
         if (!href) {
@@ -130,108 +129,26 @@ $(function () {
         card.addClass('loading');
         card.attr('data-cache', true);
 
-        fetch('/src/api/cache.php?wish_id=' + wish_id + '&wish_url=' + href, {
+        var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
+        var wishlist_user = wishlists[wishlistIndex].user;
+
+        fetch('/src/api/wishes.php?wish_id=' + card.data('id') + '&wishlist_user=' + wishlist_user, {
             method: 'GET'
         })
-        .then(response => response.json())
-        .then(response => {
-            if (response.success) {
-                var info = response.data;
-
-                /**
-                 * Elements
-                 */
-                var elementImage = card.children('.image');
-                var elementContent = card.children('.content').first();
-                var elementDetails = card.children('.extra.content.details');
-                var elementButtons = card.children('.extra.content.buttons');
-
-                /**
-                 * Image
-                 */
-                if (info.image) {
-                    if (!elementImage.length) {
-                        card.prepend(
-                            '<div class="image">' +
-                                '<img class="preview" src="' + info.image + '" loading="lazy">' +
-                            '</div>'
-                        );
-                    } else {
-                        elementImage.children('img').attr('src', info.image);
-                    }
-                }
-
-                /** Favicon */
-                if (info.favicon) {
-                    var elementFavicon = elementImage.children('img.favicon');
-
-                    if (!elementFavicon.length) {
-                        elementImage.children().first().after(
-                            '<img class="favicon" src="' + info.favicon + '" loading="lazy">'
-                        );
-                    } else {
-                        elementFavicon.attr('src', info.favicon);
-                    }
-                }
-
-                /** Provider name */
-                if (info.providerName) {
-                    var elementProviderName = elementImage.children('span.provider');
-
-                    if (!elementProviderName.length) {
-                        $('<span class="provider">' + info.providerName + '</span>').insertBefore(elementImage.children().last());
-                    } else {
-                        elementProviderName.text(info.providerName);
-                    }
-                }
-
-                /**
-                 * Header
-                 */
-                var elementContentHeader = elementContent.children('.header');
-                var elementContentHeaderTitle = elementContentHeader.children('a');
-
-                /** Title */
-                if (info.title) {
-                    elementContentHeaderTitle.text(info.title);
-                }
-
-                /**
-                 * Meta
-                 */
-                var elementContentMeta = elementContent.children('.meta');
-
-                if (info.keywords.length) {
-                    if (!elementContentMeta.length) {
-                        elementContent.append(
-                            '<div class="meta">' + info.keywords.join(', ') + '</div>'
-                        );
-                    }
-                }
-
-                /**
-                 * Description
-                 */
-                var elementContentDescription = elementContent.children('.description');
-
-                if (info.description) {
-                    if (!elementContentDescription.length) {
-                        elementContent.append(
-                            '<div class="description">' + info.description + '</div>' +
-                            '<div class="description-fade"></div>'
-                        );
-                    }
-                }
-
-                /**
-                 * Finish
-                 */
-                card.removeClass('loading');
-                progress.progress('increment');
-            }
-
-            refresh.removeClass('working');
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            card.html(response.html);
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+        .finally(function() {
+            card.attr('data-cache', 'true');
+            card.removeClass('loading');
         });
+
+        refresh.removeClass('working');
     }
 
     /**
@@ -427,91 +344,91 @@ $(function () {
     $(document).on('click', '#wishlist-wish-add-url-validate', function () {
         var buttonValidate    = $(this);
         var inputWishURL      = buttonValidate.prev();
-        var inputURLContainer = buttonValidate.parent();
 
         var elementModalAdd    = $('.ui.modal.wishlist-wish-add');
         var elementButtons     = elementModalAdd.find('.actions .button');
-        var elementTitle       = elementModalAdd.find('[name="wish_name"]');
+        var elementTitle       = elementModalAdd.find('[name="wish_title"]');
         var elementDescription = elementModalAdd.find('[name="wish_description"]');
 
         buttonValidate.addClass('disabled loading');
         elementButtons.addClass('disabled');
 
-        fetch('/src/api/cache.php?wish_url=' + inputWishURL.val(), {
+        fetch('/src/api/wishes.php?wish_url=' + inputWishURL.val(), {
             method: 'GET'
         })
-        .then(response => response.json())
-        .then(response => {
-            if (response.success) {
-                var info = response.data;
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            var info = response.info;
 
-                /**
-                 * Title
-                 */
-                if (info.title && elementTitle.length) {
-                    elementTitle.val(info.title);
-                }
-
-                /**
-                 * Description
-                 */
-                 if (info.description && elementDescription.length) {
-                    elementDescription.text(info.description);
-                }
-
-                /**
-                 * URL
-                 */
-                if (info.url && info.url !== inputWishURL.val()) {
-                    var elementModalFetch = $('.ui.modal.wishlist-wish-fetch');
-
-                    elementModalFetch.find('input.current').val(inputWishURL.val());
-                    elementModalFetch.find('input.proposed').val(info.url);
-
-                    elementButtons.addClass('disabled');
-
-                    elementModalFetch
-                    .modal({
-                        allowMultiple: true,
-                        closable: false,
-                        onApprove: function (buttonFetch) {
-                            var formData = new URLSearchParams();
-                            formData.append('wish_url_current', inputWishURL.val());
-                            formData.append('wish_url_proposed', info.url);
-
-                            buttonFetch.addClass('loading');
-
-                            fetch('/src/api/wishes.php', {
-                                method: 'PUT',
-                                body: formData
-                            })
-                            .then(response => response.json())
-                            .then(response => {
-                                if (response.success) {
-                                    inputWishURL.val(info.url);
-
-                                    elementModalFetch.modal('hide');
-                                }
-
-                                buttonFetch.removeClass('loading');
-                            });
-
-                            return false;
-                        },
-                        onHide: function() {
-                            buttonValidate.removeClass('disabled loading');
-                            elementButtons.removeClass('disabled');
-                        }
-                    })
-                    .modal('show');
-                } else {
-                    buttonValidate.removeClass('disabled loading');
-                    elementButtons.removeClass('disabled');
-                }
-
-                inputURLContainer.attr('data-validated', 'true');
+            /**
+             * Title
+             */
+            if (info.title && elementTitle.length) {
+                elementTitle.val(info.title);
             }
+
+            /**
+             * Description
+             */
+             if (info.description && elementDescription.length) {
+                elementDescription.val(info.description);
+            }
+
+            /**
+             * URL
+             */
+            if (info.url && info.url !== inputWishURL.val()) {
+                var elementModalFetch = $('.ui.modal.wishlist-wish-fetch');
+
+                elementModalFetch.find('input.current').val(inputWishURL.val());
+                elementModalFetch.find('input.proposed').val(info.url);
+
+                elementButtons.addClass('disabled');
+
+                elementModalFetch
+                .modal({
+                    allowMultiple: true,
+                    closable: false,
+                    onApprove: function (buttonFetch) {
+                        var formData = new URLSearchParams();
+                        formData.append('wish_url_current', inputWishURL.val());
+                        formData.append('wish_url_proposed', info.url);
+
+                        buttonFetch.addClass('loading');
+
+                        fetch('/src/api/wishes.php', {
+                            method: 'PUT',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(response => {
+                            if (response.success) {
+                                inputWishURL.val(info.url);
+
+                                elementModalFetch.modal('hide');
+                            }
+
+                            buttonFetch.removeClass('loading');
+                        });
+
+                        return false;
+                    },
+                    onHide: function() {
+                        buttonValidate.removeClass('disabled loading');
+                        elementButtons.removeClass('disabled');
+                    }
+                })
+                .modal('show');
+            } else {
+                buttonValidate.removeClass('disabled loading');
+                elementButtons.removeClass('disabled');
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
         });
+
     });
 
     /**

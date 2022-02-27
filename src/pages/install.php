@@ -148,6 +148,7 @@ switch ($step) {
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
         );');
+        $database->query('CREATE INDEX `idx_url` ON `wishes` (`url`);');
 
         /**
          * Options
