@@ -142,6 +142,7 @@ switch ($step) {
             `wishlist`    INT          NOT NULL,
             `title`       VARCHAR(128) NULL DEFAULT NULL,
             `description` TEXT         NULL DEFAULT NULL,
+            `image      ` VARCHAR(255) NULL DEFAULT NULL,
             `url`         VARCHAR(255) NULL DEFAULT NULL,
             `status`      VARCHAR(32)  NULL DEFAULT NULL,
             FOREIGN KEY (`wishlist`)

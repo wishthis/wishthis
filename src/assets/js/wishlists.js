@@ -200,12 +200,7 @@ $(function () {
 
                             urlParams.delete('wishlist');
 
-                            $('body').toast({
-                                class:    'success',
-                                showIcon: 'check',
-                                title:    'Success',
-                                message:  'Wishlist successfully deleted.'
-                            });
+                            $('body').toast({ message: 'Wishlist successfully deleted.' });
 
                             wishlistsRefresh();
 
@@ -265,12 +260,7 @@ $(function () {
                     onSuccess: function () {
                         column.fadeOut();
 
-                        $('body').toast({
-                            class:    'success',
-                            showIcon: 'check',
-                            title:    'Success',
-                            message:  'Wish successfully deleted.'
-                        });
+                        $('body').toast({ message: 'Wish successfully deleted.' });
 
                         wishlistsRefresh();
 
@@ -313,12 +303,7 @@ $(function () {
                 .then(handleFetchResponse)
                 .then(function(response) {
                     if (response.success) {
-                        $('body').toast({
-                            class:    'success',
-                            showIcon: 'check',
-                            title:    'Success',
-                            message:  'Wish successfully added.'
-                        });
+                        $('body').toast({ message: 'Wish successfully added.' });
 
                         wishlistsRefresh();
 
@@ -363,12 +348,7 @@ $(function () {
 
                         urlParams.set('wishlist', response.data.lastInsertId);
 
-                        $('body').toast({
-                            class:    'success',
-                            showIcon: 'check',
-                            title:    'Success',
-                            message:  'Wishlist successfully created.'
-                        });
+                        $('body').toast({ message: 'Wishlist successfully created.' });
 
                         wishlistsRefresh();
                     }

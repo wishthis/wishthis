@@ -62,8 +62,8 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
                     <div class="stackable row">
                         <div class="column">
-                            <?php if ($wish->info->image) { ?>
-                                <img class="ui fluid rounded image" src="<?= $wish->info->image ?>" />
+                            <?php if ($wish->image) { ?>
+                                <img class="ui fluid rounded image preview" src="<?= $wish->image ?>" />
                             <?php } ?>
                         </div>
 
@@ -131,6 +131,33 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
     </div>
 </main>
+
+<!-- Image -->
+<div class="ui small modal image">
+    <div class="header">
+        Image
+    </div>
+    <div class="content">
+        <p>Define a new URL to be used as a preview.</p>
+
+        <form class="ui form image">
+            <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
+
+            <div class="field">
+                <label>URL</label>
+                <input class="current" type="url" name="wish_url" />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button">
+            Save
+        </div>
+        <div class="ui deny button">
+            Discard
+        </div>
+    </div>
+</div>
 
 <!-- Auto-fill -->
 <div class="ui small modal auto-fill">

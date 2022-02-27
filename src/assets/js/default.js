@@ -92,6 +92,9 @@ $(function() {
     $.fn.toast.settings.displayTime    = 'auto';
     $.fn.toast.settings.minDisplayTime = 3000;
     $.fn.toast.settings.showProgress   = true;
+    $.fn.toast.settings.class          = 'success';
+    $.fn.toast.settings.showIcon       = 'check';
+    $.fn.toast.settings.title          = 'Success';
 });
 
 /**

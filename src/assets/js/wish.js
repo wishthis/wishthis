@@ -78,12 +78,7 @@ $(function () {
 
                                         elementModalFetch.modal('hide');
 
-                                        $('body').toast({
-                                            class:    'success',
-                                            showIcon: 'check',
-                                            title:    'Success',
-                                            message:  'Wish information updated.'
-                                        });
+                                        $('body').toast({ message: 'Wish information updated.' });
                                     }
 
                                     buttonFetch.removeClass('loading');
@@ -97,12 +92,7 @@ $(function () {
                         })
                         .modal('show');
                     } else {
-                        $('body').toast({
-                            class:    'success',
-                            showIcon: 'check',
-                            title:    'Success',
-                            message:  'Wish information updated.'
-                        });
+                        $('body').toast({ message: 'Wish information updated.' });
 
                         formWish.removeClass('loading');
                     }
@@ -114,6 +104,42 @@ $(function () {
         })
         .modal('show');
 
+    });
+
+    /**
+     * Image
+     */
+    $(document).on('click', '.image.preview', function() {
+        var modalImage = $('.modal.image');
+
+        modalImage
+        .modal({
+            onApprove: function(buttonApprove) {
+                var formImage = modalImage.find('form.image');
+                var formData  = new URLSearchParams(new FormData(formImage[0]));
+
+                formImage.addClass('loading');
+
+                fetch('/src/api/wishes.php', {
+                    method: 'PUT',
+                    body:   formData
+                })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    var elementImage = $('.form.wish img.preview');
+                    elementImage.attr('src', response.wish_url);
+
+                    formImage.removeClass('loading');
+                    modalImage.modal('hide');
+
+                    $('body').toast({ message: 'Wish image successfully updated.' });
+                });
+
+                return false;
+            }
+        })
+        .modal('show');
     });
 
 });

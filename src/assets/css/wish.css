@@ -1,6 +1,8 @@
-.ui.fluid.image {
+.image.preview {
     height: var(--wishPreviewHeight);
 
     object-fit: cover;
     object-position: 50%;
+
+    cursor: pointer;
 }

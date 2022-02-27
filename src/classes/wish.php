@@ -16,6 +16,7 @@ class Wish
     public int $wishlist;
     public ?string $title;
     public ?string $description;
+    public ?string $image;
     public ?string $url;
     public ?string $status;
 
@@ -52,14 +53,14 @@ class Wish
             $this->info  = $this->cache->get($generateCache);
         }
 
-        if (empty($this->info->image)) {
-            $this->info->image = '/src/assets/img/no-image.svg';
-        }
-
         foreach ($columns as $key => $value) {
             if (empty($value) && isset($this->info->$key)) {
                 $this->$key = $this->info->$key;
             }
+        }
+
+        if (empty($this->image)) {
+            $this->image = '/src/assets/img/no-image.svg';
         }
     }
 
@@ -83,8 +84,8 @@ class Wish
             <div class="overlay"></div>
 
             <div class="image">
-                <?php if (isset($this->info->image)) { ?>
-                    <img class="preview" src="<?= $this->info->image ?>" loading="lazy" />
+                <?php if ($this->image) { ?>
+                    <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                 <?php } ?>
 
                 <?php if (isset($this->info->favicon)) { ?>
