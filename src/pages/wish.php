@@ -147,12 +147,12 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 <!-- Validate -->
 <div class="ui small modal validate">
     <div class="header">
-        Incorrect URL
+        URL mismatch
     </div>
     <div class="content">
         <div class="description">
-            <div class="ui header">Wish URLs</div>
             <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
+            <p class="provider">According to <strong class="providerName">Unknown</strong>, this is the canonical (correct) URL.</p>
 
             <div class="ui form urls">
                 <div class="field">
@@ -168,7 +168,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button" data-title="Recommended action" data-content="If you don't have a specific reason to not, click this." >
+        <div class="ui primary approve button">
             Yes, update
         </div>
         <div class="ui deny button">

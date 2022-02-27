@@ -148,15 +148,8 @@ $page->navigation();
                 <div class="field">
                     <label>URL</label>
 
-                    <div class="ui action input url">
+                    <div class="ui input url">
                         <input type="url" name="wish_url" maxlength="255" />
-
-                        <button class="ui button"
-                                id="wishlist-wish-add-url-validate"
-                                type="button"
-                        >
-                            Validate
-                        </button>
                     </div>
                 </div>
             </form>

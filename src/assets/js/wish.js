@@ -27,6 +27,15 @@ $(function () {
                     var info = response.info;
 
                     /**
+                     * Prodiver name
+                     */
+                    if (info.providerName) {
+                        modalValidate.find('.providerName').text(info.providerName);
+                    } else {
+                        modalValidate.find('.provider').remove();
+                    }
+
+                    /**
                      * Title
                      */
                     if (info.title) {
@@ -45,9 +54,6 @@ $(function () {
                      */
                     if (info.url && info.url !== inputURL.val()) {
                         var elementModalFetch = $('.modal.validate');
-
-                        modalValidate.find('.primary.button').popup();
-                        console.log(modalValidate.find('.primary.button'));
 
                         elementModalFetch.find('input.current').val(inputURL.val());
                         elementModalFetch.find('input.proposed').val(info.url);
@@ -91,6 +97,13 @@ $(function () {
                         })
                         .modal('show');
                     } else {
+                        $('body').toast({
+                            class:    'success',
+                            showIcon: 'check',
+                            title:    'Success',
+                            message:  'Wish information updated.'
+                        });
+
                         formWish.removeClass('loading');
                     }
                 })
