@@ -123,6 +123,10 @@ $(function () {
         var wish_id = card.data('id');
         var refresh = card.find('button.refresh');
 
+        if (!href) {
+            return;
+        }
+
         card.addClass('loading');
         card.attr('data-cache', true);
 

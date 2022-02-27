@@ -88,7 +88,7 @@ class Wishlist
                 <?php foreach ($wishes as $wish) {
                     $cache  = new EmbedCache($wish['url']);
                     $info   = $cache->get(false);
-                    $exists = $cache->exists() ? 'true' : 'false';
+                    $exists = $cache->exists() || !$info->url ? 'true' : 'false';
 
                     $title = $wish['title'] ?? $info->title;
                     ?>
