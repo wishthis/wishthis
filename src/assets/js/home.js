@@ -29,7 +29,7 @@ $(function() {
 
 function showStatistic(elementStatistic, amount, timeout) {
     var interval    = 20;
-    var intervalEnd = 1000;
+    var intervalEnd = 750;
 
     setTimeout(
         function count() {
@@ -40,13 +40,11 @@ function showStatistic(elementStatistic, amount, timeout) {
             if (value <= amount) {
                 elementStatistic.text(value + 1);
 
-                var remainingSlowDown    = 3;
+                var remainingSlowDown    = 6;
                 var remainingInterations = amount - value;
 
                 if (remainingInterations < remainingSlowDown) {
                     interval = (remainingSlowDown - remainingInterations) * (intervalEnd / remainingSlowDown);
-                } else {
-                    interval += interval * 0.1;
                 }
 
                 setTimeout(count, interval);
