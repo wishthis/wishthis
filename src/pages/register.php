@@ -111,7 +111,7 @@ $page->navigation();
                         <div class="column">
                             <h2 class="ui header">Authentication</h2>
                             <p>
-                                Prove you are a Human, Lizard-person or Zuck-Like creature.
+                                Prove you are a Human, Lizard-person or Zuck-like creature.
                                 Please name a planet from our solar system.
                             </p>
 

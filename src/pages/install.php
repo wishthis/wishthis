@@ -138,15 +138,17 @@ switch ($step) {
          * Wishes
          */
         $database->query('CREATE TABLE `wishes` (
-            `id`       INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `wishlist` INT          NOT NULL,
-            `type`     VARCHAR(32)  NULL DEFAULT NULL,
-            `url`      VARCHAR(255) NULL DEFAULT NULL,
-            `status`   VARCHAR(32)  NULL DEFAULT NULL,
+            `id`          INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `wishlist`    INT          NOT NULL,
+            `title`       VARCHAR(128) NULL DEFAULT NULL,
+            `description` TEXT         NULL DEFAULT NULL,
+            `url`         VARCHAR(255) NULL DEFAULT NULL,
+            `status`      VARCHAR(32)  NULL DEFAULT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE
         );');
+        $database->query('CREATE INDEX `idx_url` ON `wishes` (`url`);');
 
         /**
          * Options

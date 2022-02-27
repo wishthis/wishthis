@@ -127,28 +127,43 @@ $page->navigation();
     <div class="header">
         Add a wish
     </div>
-    <div class="image content">
-        <div class="ui medium image">
-            <img src="/src/assets/img/no-image.svg" loading="lazy" />
-        </div>
+    <div class="content">
         <div class="description">
             <div class="ui header">Wish</div>
-            <p>Fill out the below fields to add your new wish.</p>
+            <p>Fill out any or all of the below fields to add your new wish.</p>
 
-            <form class="ui form wishlist-wish-fetch" method="post">
+            <form class="ui form wishlist-wish-add" method="post">
                 <input type="hidden" name="wishlist_id" />
 
                 <div class="field">
-                    <label>URL</label>
-                    <input type="url" name="wish_url" />
+                    <label>Title</label>
+                    <input type="text" name="wish_title" maxlength="128" />
                 </div>
 
-                <input class="ui button" type="submit" value="Fetch" />
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="wish_description"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>URL</label>
+
+                    <div class="ui action input url">
+                        <input type="url" name="wish_url" maxlength="255" />
+
+                        <button class="ui button"
+                                id="wishlist-wish-add-url-validate"
+                                type="button"
+                        >
+                            Validate
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button disabled">
+        <div class="ui primary approve button">
             Add
         </div>
         <div class="ui deny button">
