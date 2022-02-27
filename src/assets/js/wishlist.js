@@ -1,4 +1,6 @@
 $(function() {
+    $('.ui.dropdown').dropdown();
+
     /**
      * User Warning
      */

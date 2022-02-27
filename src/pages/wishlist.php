@@ -66,9 +66,7 @@ $page->navigation();
                 </p>
             </div>
         </div>
-    </div>
 
-    <div class="ui container">
         <h2 class="ui header">Wishes</h2>
 
         <div class="wishlist-cards">
@@ -80,6 +78,7 @@ $page->navigation();
             );
             ?>
         </div>
+
     </div>
 </main>
 
