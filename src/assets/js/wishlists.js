@@ -91,7 +91,10 @@ $(function () {
             progress.slideDown();
             progress.removeClass('indeterminate');
             progress.progress({
-                total: cards.length
+                total: cards.length,
+                onSuccess: function() {
+                    $(this).slideUp();
+                }
             });
         } else {
             progress.slideUp();
@@ -140,7 +143,7 @@ $(function () {
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            card.html(response.html);
+            card.replaceWith(response.html);
         })
         .catch(function(error) {
             console.log(error);
@@ -148,6 +151,8 @@ $(function () {
         .finally(function() {
             card.attr('data-cache', 'true');
             card.removeClass('loading');
+
+            progress.progress('increment');
 
             $('.ui.dropdown').dropdown();
         });
