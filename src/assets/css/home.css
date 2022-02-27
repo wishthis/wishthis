@@ -1,0 +1,6 @@
+.ui.statistics {
+    justify-content: space-around;
+}
+.ui.statistics::after {
+    display: none;
+}
