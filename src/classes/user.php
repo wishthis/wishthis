@@ -59,11 +59,11 @@ class User
     {
         global $database;
 
-        $wishlists = $database->query(
-            'SELECT *
-             FROM wishlists
-             WHERE user = ' . $this->id . ';'
-        )->fetchAll();
+        $wishlists = $database
+        ->query('SELECT *
+                   FROM `wishlists`
+                  WHERE `user` = ' . $this->id . ';')
+        ->fetchAll();
 
         return $wishlists;
     }
@@ -79,11 +79,11 @@ class User
     {
         global $database;
 
-        $wishes = $database->query(
-            'SELECT *
-             FROM wishes
-             WHERE wishlist = ' . $wishlist . ';'
-        )->fetchAll();
+        $wishes = $database
+        ->query('SELECT *
+                   FROM `wishes`
+                  WHERE `wishlist` = ' . $wishlist . ';')
+        ->fetchAll();
 
         return $wishes;
     }

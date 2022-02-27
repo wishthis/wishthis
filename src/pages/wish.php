@@ -21,10 +21,18 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $messages[] = Page::success('Wish successfully updated.', 'Success');
 }
 
-$wish = new Wish($_GET['id'], false);
+$userIsAuthenticated = false;
+$wish                = new Wish($_GET['id'], false);
+$wishlists           = $user->getWishlists($wish->wishlist);
 
-/*
-if (!$wish->exists()) {
+foreach ($wishlists as $wishlist) {
+    if ($wish->wishlist === intval($wishlist['id'])) {
+        $userIsAuthenticated = true;
+        break;
+    }
+}
+
+if (!$userIsAuthenticated) {
     http_response_code(404);
     ?>
     <h1>Not found</h1>
@@ -32,7 +40,6 @@ if (!$wish->exists()) {
     <?php
     die();
 }
-*/
 
 $page = new page(__FILE__, $wish->title);
 $page->header();
