@@ -94,7 +94,6 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <div class="ui header">Wishlist</div>
             <p>
                 Choose a new name for your wishlist.
                 Here's a suggestion to get you started.
@@ -129,7 +128,6 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <div class="ui header">Wish</div>
             <p>Fill out any or all of the below fields to add your new wish.</p>
 
             <form class="ui form wishlist-wish-add" method="post">
