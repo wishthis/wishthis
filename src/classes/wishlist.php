@@ -109,7 +109,7 @@ class Wishlist
                                     <span class="provider"><?= $info->providerName ?></span>
                                 <?php } ?>
 
-                                <?php if ($userIsCurrent) { ?>
+                                <?php if ($userIsCurrent && $info->url) { ?>
                                     <button class="ui icon button refresh">
                                         <i class="refresh icon"></i>
                                     </button>
