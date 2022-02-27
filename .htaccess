@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Wish
+RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&id=$2 [QSA,L]
+
 # Wishlists
 RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&wishlist=$2 [QSA,L]
 

@@ -213,6 +213,7 @@ $(function () {
                             $('body').toast({
                                 class:    'success',
                                 showIcon: 'check',
+                                title:    'Success',
                                 message:  'Wishlist successfully deleted.'
                             });
 
@@ -275,8 +276,9 @@ $(function () {
                         column.fadeOut();
 
                         $('body').toast({
-                            class:   'success',
+                            class:    'success',
                             showIcon: 'check',
+                            title:    'Success',
                             message:  'Wish successfully deleted.'
                         });
 
@@ -324,6 +326,7 @@ $(function () {
                         $('body').toast({
                             class:    'success',
                             showIcon: 'check',
+                            title:    'Success',
                             message:  'Wish successfully added.'
                         });
 
@@ -462,9 +465,10 @@ $(function () {
                         urlParams.set('wishlist', response.data.lastInsertId);
 
                         $('body').toast({
-                            class: 'success',
+                            class:    'success',
                             showIcon: 'check',
-                            message: 'Wishlist successfully created.'
+                            title:    'Success',
+                            message:  'Wishlist successfully created.'
                         });
 
                         wishlistsRefresh();

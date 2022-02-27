@@ -48,7 +48,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         <?= $page->messages($messages) ?>
 
         <div class="ui segment">
-            <form class="ui form" method="POST">
+            <form class="ui form wish" method="POST">
                 <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>">
 
                 <div class="ui two column grid">
@@ -67,6 +67,13 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                                 <i class="external icon"></i>
                                 Visit
                             </a>
+
+                            <button class="ui labeled icon button autofill"
+                                    type="button"
+                            >
+                                <i class="redo icon"></i>
+                                Auto-fill
+                            </button>
                         </div>
                     </div>
 
@@ -81,6 +88,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                                            name="wish_title"
                                            placeholder="<?= $wish->title ?>"
                                            value="<?= $wish->title ?>"
+                                           maxlength="128"
                                     />
                                 </div>
                             </div>
@@ -95,18 +103,17 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                             <div class="field">
                                 <label>URL</label>
 
-                                <div class="ui input">
-                                    <input type="url"
-                                           name="wish_url"
-                                           placeholder="<?= $wish->url ?>"
-                                           value="<?= $wish->url ?>"
-                                    />
-                                </div>
+                                <input type="url"
+                                       name="wish_url"
+                                       placeholder="<?= $wish->url ?>"
+                                       value="<?= $wish->url ?>"
+                                       maxlength="255"
+                                />
                             </div>
 
                             <input class="ui primary button" type="submit" value="Save" />
                             <input class="ui button" type="reset" value="Reset" />
-                            <a class="ui secondary button" href="<?= $referer ?>">Cancel</a>
+                            <a class="ui secondary button" href="<?= $referer ?>">Back</a>
 
                         </div>
                     </div>
@@ -117,6 +124,58 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
     </div>
 </main>
+
+<!-- Auto-fill -->
+<div class="ui small modal auto-fill">
+    <div class="header">
+        Warning
+    </div>
+    <div class="content">
+        <p>This action will potentially overwrite all fields in this wish.</p>
+        <p>Would you like to continue?</p>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button">
+            Yes, overwrite
+        </div>
+        <div class="ui deny button">
+            No
+        </div>
+    </div>
+</div>
+
+<!-- Validate -->
+<div class="ui small modal validate">
+    <div class="header">
+        Incorrect URL
+    </div>
+    <div class="content">
+        <div class="description">
+            <div class="ui header">Wish URLs</div>
+            <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
+
+            <div class="ui form urls">
+                <div class="field">
+                    <label>Current</label>
+                    <input class="current" type="url" readonly />
+                </div>
+
+                <div class="field">
+                    <label>Proposed</label>
+                    <input class="proposed" type="url" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button" data-title="Recommended action" data-content="If you don't have a specific reason to not, click this." >
+            Yes, update
+        </div>
+        <div class="ui deny button">
+            No, leave it
+        </div>
+    </div>
+</div>
 
 <?php
 $page->footer();

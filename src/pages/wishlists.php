@@ -172,38 +172,5 @@ $page->navigation();
     </div>
 </div>
 
-<!-- Wishlist: Add a wish (fetch) -->
-<div class="ui small modal wishlist-wish-fetch">
-    <div class="header">
-        Incorrect URL
-    </div>
-    <div class="content">
-        <div class="description">
-            <div class="ui header">Wish URLs</div>
-            <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
-
-            <div class="ui form urls">
-                <div class="field">
-                    <label>Current</label>
-                    <input class="current" type="url" readonly />
-                </div>
-
-                <div class="field">
-                    <label>Proposed</label>
-                    <input class="proposed" type="url" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="actions">
-        <div class="ui primary approve button">
-            Yes, update
-        </div>
-        <div class="ui deny button">
-            No, leave it
-        </div>
-    </div>
-</div>
-
 <?php
 $page->footer();
