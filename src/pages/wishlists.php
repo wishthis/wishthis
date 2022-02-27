@@ -141,6 +141,11 @@ $page->navigation();
                 </div>
 
                 <div class="field">
+                    <label>Description</label>
+                    <textarea name="wish_description"></textarea>
+                </div>
+
+                <div class="field">
                     <label>URL</label>
 
                     <div class="ui action input url">

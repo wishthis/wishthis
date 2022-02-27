@@ -239,7 +239,7 @@ $(function () {
      */
     $(document).on('click', '.ui.button.refresh', function (event) {
         var button = $(event.currentTarget);
-        var card = button.closest('.ui.card');
+        var card   = button.closest('.ui.card');
 
         button.addClass('working');
 
@@ -429,9 +429,10 @@ $(function () {
         var inputWishURL      = buttonValidate.prev();
         var inputURLContainer = buttonValidate.parent();
 
-        var elementModalAdd = $('.ui.modal.wishlist-wish-add');
-        var elementButtons  = elementModalAdd.find('.actions .button');
-        var elementTitle    = elementModalAdd.find('input[name="wish_name"]');
+        var elementModalAdd    = $('.ui.modal.wishlist-wish-add');
+        var elementButtons     = elementModalAdd.find('.actions .button');
+        var elementTitle       = elementModalAdd.find('[name="wish_name"]');
+        var elementDescription = elementModalAdd.find('[name="wish_description"]');
 
         buttonValidate.addClass('disabled loading');
         elementButtons.addClass('disabled');
@@ -449,6 +450,13 @@ $(function () {
                  */
                 if (info.title && elementTitle.length) {
                     elementTitle.val(info.title);
+                }
+
+                /**
+                 * Description
+                 */
+                 if (info.description && elementDescription.length) {
+                    elementDescription.text(info.description);
                 }
 
                 /**

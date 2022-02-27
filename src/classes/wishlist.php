@@ -90,7 +90,8 @@ class Wishlist
                     $info   = $cache->get(false);
                     $exists = $cache->exists() || !$info->url ? 'true' : 'false';
 
-                    $title = $wish['title'] ?? $info->title;
+                    $title       = $wish['title'] ?? $info->title;
+                    $description = $wish['description'] ?? $info->description;
                     ?>
                     <div class="column">
                         <div class="ui fluid card stretch" data-id="<?= $wish['id'] ?>" data-index="<?= $cardIndex ?>" data-cache="<?= $exists ?>">
@@ -133,9 +134,9 @@ class Wishlist
                                     </div>
                                 <?php } ?>
 
-                                <?php if ($info->description) { ?>
+                                <?php if ($description) { ?>
                                     <div class="description">
-                                        <?= $info->description ?>
+                                        <?= $description ?>
                                     </div>
                                     <div class="description-fade"></div>
                                 <?php } ?>

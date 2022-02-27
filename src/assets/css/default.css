@@ -144,17 +144,19 @@ img {
     max-height: calc(2 * 1.28571429em);
     overflow: hidden;
 }
-
 .ui.card > .content > .description {
     max-height: calc(3em * var(--lineHeight));
     overflow: hidden;
 }
 @media (hover: hover) {
+    .ui.card > .content:not(.extra) {
+        margin-bottom: calc(3em * var(--lineHeight));
+    }
+
     .ui.card > .content > .description {
         position: absolute;
         left: 1em;
         right: 1em;
-        max-height: calc(3em * var(--lineHeight));
     }
 }
 

@@ -25,10 +25,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                              (
                                 `wishlist`,
                                 `title`,
+                                `description`,
                                 `url`
                              ) VALUES ('
                                 . $_POST['wishlist_id'] . ',
                                 "' . $_POST['wish_title'] . '",
+                                "' . $_POST['wish_description'] . '",
                                 "' . $_POST['wish_url'] . '"
                              )
             ;');
