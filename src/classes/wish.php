@@ -124,14 +124,14 @@ class Wish
 
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
-                    <a class="ui primary labeled icon button commit">
+                    <a class="ui small primary labeled icon button commit">
                         <i class="shopping cart icon"></i>
                         Commit
                     </a>
                 <?php } ?>
 
                 <?php if ($this->url) { ?>
-                    <a class="ui labeled icon button" href="<?= $this->url ?>" target="_blank">
+                    <a class="ui small labeled icon button" href="<?= $this->url ?>" target="_blank">
                         <i class="external icon"></i>
                         Visit
                     </a>
@@ -139,7 +139,7 @@ class Wish
 
                 <?php if ($userIsCurrent) { ?>
                     <div class="ui menu">
-                        <div class="ui fluid floating dropdown labeled icon button">
+                        <div class="ui small fluid floating dropdown labeled icon button">
                             <i class="cog icon"></i>
                             Options
 
