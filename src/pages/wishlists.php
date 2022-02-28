@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User, Wishlist};
 
-$page = new page(__FILE__, 'Wishlists');
+$page = new page(__FILE__, 'My lists');
 $page->header();
 $page->navigation();
 ?>

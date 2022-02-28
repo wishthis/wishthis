@@ -262,7 +262,7 @@ class Page
                 </a>
                 <a class="item" href="/?page=wishlists">
                     <i class="list icon"></i>
-                    Wishlists
+                    My lists
                 </a>
 
                 <?php if (count($pagesAccount) === 1) { ?>
