@@ -171,6 +171,8 @@ img {
     flex: 1 1 auto;
 
     margin: 0;
+    border: none;
+    min-height: auto;
 
     box-shadow: none;
 }
