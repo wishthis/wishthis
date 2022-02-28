@@ -81,8 +81,6 @@ class Wish
         ?>
 
         <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $exists ?>">
-            <div class="overlay"></div>
-
             <div class="image">
                 <?php if ($this->image) { ?>
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
@@ -96,6 +94,8 @@ class Wish
                     <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
             </div>
+
+            <div class="overlay"></div>
 
             <div class="content">
                 <?php if ($this->title) { ?>
@@ -124,14 +124,14 @@ class Wish
 
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
-                    <a class="ui primary labeled icon button commit">
+                    <a class="ui small primary labeled icon button commit">
                         <i class="shopping cart icon"></i>
                         Commit
                     </a>
                 <?php } ?>
 
                 <?php if ($this->url) { ?>
-                    <a class="ui labeled icon button" href="<?= $this->url ?>" target="_blank">
+                    <a class="ui small labeled icon button" href="<?= $this->url ?>" target="_blank">
                         <i class="external icon"></i>
                         Visit
                     </a>
@@ -139,7 +139,7 @@ class Wish
 
                 <?php if ($userIsCurrent) { ?>
                     <div class="ui menu">
-                        <div class="ui fluid floating dropdown labeled icon button">
+                        <div class="ui small fluid floating dropdown labeled icon button">
                             <i class="cog icon"></i>
                             Options
 

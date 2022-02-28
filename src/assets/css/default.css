@@ -55,6 +55,7 @@ img {
 
         z-index: 1;
         opacity: 0;
+        border-radius: 0.33333333rem;
 
         background-color: rgba(255, 255, 255, 0.6);
     }
@@ -136,6 +137,7 @@ img {
     height: 4em;
     width: 100%;
     background-image: linear-gradient(0deg, rgba(255,255,255,1) 0.75em, rgba(255,255,255,0.8995799003195029) 45%, rgba(255,255,255,0) 100%);
+    border-radius: 0.33333333rem;
 }
 
 /** Buttons */
@@ -152,6 +154,7 @@ img {
     .ui.card > .extra.buttons,
     .ui.cards > .card > .extra.buttons {
         opacity: 0;
+        margin-bottom: 0;
     }
 }
 .ui.card:hover > .extra.buttons,
@@ -168,6 +171,8 @@ img {
     flex: 1 1 auto;
 
     margin: 0;
+    border: none;
+    min-height: auto;
 
     box-shadow: none;
 }
