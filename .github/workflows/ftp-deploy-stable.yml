@@ -1,8 +1,8 @@
-name: Deploy to dev.wishthis.online
+name: Deploy to wishthis.online
 on:
   push:
     branches:
-      - 'develop'
+      - 'stable'
 jobs:
   web-deploy:
     name: 🎉 Deploy
