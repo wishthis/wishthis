@@ -103,14 +103,6 @@ $(function() {
         $('.menu.sidebar').sidebar('show');
     });
 
-    $(window).resize(function(event) {
-        if ($(window).width() > 768) {
-            $('.menu.sidebar').removeClass('vertical sidebar');
-        } else {
-            $('.menu.sidebar').addClass('vertical sidebar');
-        }
-    });
-    $(window).trigger('resize');
 });
 
 /**
