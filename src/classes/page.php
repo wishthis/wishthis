@@ -219,6 +219,12 @@ class Page
 
             <title><?= $this->title ?> - wishthis</title>
         </head>
+        <?php
+    }
+
+    public function bodyStart(): void
+    {
+        ?>
         <body>
         <?php
     }
@@ -255,56 +261,103 @@ class Page
             );
         }
         ?>
-        <div class="ui attached stackable menu">
+
+        <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
+
                 <a class="item home" href="/?page=home">
-                    <img src="/src/assets/img/logo.svg" />
+                    <img src="/src/assets/img/logo.svg" alt="wishthis logo" />
                 </a>
                 <a class="item" href="/?page=wishlists">
                     <i class="list icon"></i>
                     My lists
                 </a>
 
-                <div class="right menu">
-                    <?php global $options; ?>
+                <?php global $options; ?>
 
-                    <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
-                        <a class="item" href="/?page=update">
-                            <i class="upload icon"></i> Update
-                        </a>
-                    <?php } ?>
+                <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
+                    <a class="item" href="/?page=update">
+                        <i class="upload icon"></i> Update
+                    </a>
+                <?php } ?>
 
-                    <?php if (count($pagesAccount) === 1) { ?>
-                        <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
-                            <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
-                            <?= $pagesAccount[0]['text'] ?>
-                        </a>
-                    <?php } elseif (count($pagesAccount) >= 2) { ?>
-                        <div class="ui simple dropdown item">
-                            <i class="user circle icon"></i>
-                            Account
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <?php
-                                if (count($pagesAccount) >= 2) {
-                                    foreach ($pagesAccount as $item) {
-                                        ?>
-                                        <a class="item" href="<?= $item['url'] ?>">
-                                            <i class="<?= $item['icon'] ?> icon"></i>
-                                            <?= $item['text'] ?>
-                                        </a>
-                                        <?php
+                <?php
+                foreach ($pagesAccount as $item) {
+                    ?>
+                    <a class="item" href="<?= $item['url'] ?>">
+                        <i class="<?= $item['icon'] ?> icon"></i>
+                        <?= $item['text'] ?>
+                    </a>
+                    <?php
+                }
+                ?>
+
+            </div>
+
+            <?= $this->footer() ?>
+        </div>
+
+        <div class="pusher">
+            <div class="ui attached menu desktop">
+                <div class="ui container">
+                    <a class="item home" href="/?page=home">
+                        <img src="/src/assets/img/logo.svg" />
+                    </a>
+                    <a class="item" href="/?page=wishlists">
+                        <i class="list icon"></i>
+                        My lists
+                    </a>
+
+                    <div class="right menu">
+                        <?php global $options; ?>
+
+                        <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
+                            <a class="item" href="/?page=update">
+                                <i class="upload icon"></i> Update
+                            </a>
+                        <?php } ?>
+
+                        <?php if (count($pagesAccount) === 1) { ?>
+                            <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
+                                <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
+                                <?= $pagesAccount[0]['text'] ?>
+                            </a>
+                        <?php } elseif (count($pagesAccount) >= 2) { ?>
+                            <div class="ui simple dropdown item">
+                                <i class="user circle icon"></i>
+                                Account
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <?php
+                                    if (count($pagesAccount) >= 2) {
+                                        foreach ($pagesAccount as $item) {
+                                            ?>
+                                            <a class="item" href="<?= $item['url'] ?>">
+                                                <i class="<?= $item['icon'] ?> icon"></i>
+                                                <?= $item['text'] ?>
+                                            </a>
+                                            <?php
+                                        }
                                     }
-                                }
-                                ?>
+                                    ?>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="ui hidden divider"></div>
-        <?php
+
+            <div class="ui attached stackable menu toggle">
+                <div class="ui container">
+                    <a class="item">
+                        <i class="hamburger icon"></i>
+                        Menu
+                    </a>
+                </div>
+            </div>
+
+            <div class="ui hidden divider"></div>
+            <?php
     }
 
     public function footer(): void
@@ -336,6 +389,13 @@ class Page
                 </div>
             </div>
         </div>
+        <?php
+    }
+
+    public function bodyEnd(): void
+    {
+        ?>
+        </div><!-- Pusher -->
 
         </body>
         </html>

@@ -211,3 +211,28 @@ p .ui.horizontal.label {
         margin-bottom: 0;
     }
 }
+
+/**
+ * Menu
+ */
+.pusher .menu.toggle {
+    display: none;
+}
+
+.ui.attached.menu.sidebar:not(.tabular) {
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    .pusher .menu.toggle {
+        display: block;
+    }
+
+    .pusher > .footer {
+        display: none;
+    }
+
+    .pusher .menu.attached.desktop {
+        display: none;
+    }
+}

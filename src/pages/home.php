@@ -10,6 +10,7 @@ use wishthis\Page;
 
 $page = new page(__FILE__, 'Home');
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 
@@ -74,4 +75,5 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();
 ?>

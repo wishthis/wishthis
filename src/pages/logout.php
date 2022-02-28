@@ -18,6 +18,7 @@ if (PHP_SESSION_ACTIVE === session_status()) {
 }
 
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 <main>
@@ -33,3 +34,4 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();

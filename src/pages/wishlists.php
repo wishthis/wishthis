@@ -10,6 +10,7 @@ use wishthis\{Page, User, Wishlist};
 
 $page = new page(__FILE__, 'My lists');
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 <main>
@@ -165,3 +166,4 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();

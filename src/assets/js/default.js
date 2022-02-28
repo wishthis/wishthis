@@ -95,6 +95,14 @@ $(function() {
     $.fn.toast.settings.class          = 'success';
     $.fn.toast.settings.showIcon       = 'check';
     $.fn.toast.settings.title          = 'Success';
+
+    /**
+     * Menu
+     */
+    $(document).on('click', '.menu.toggle', function() {
+        $('.menu.sidebar').sidebar('show');
+    });
+
 });
 
 /**

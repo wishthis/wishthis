@@ -82,6 +82,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
 }
 
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 <main>
@@ -140,3 +141,4 @@ $page->navigation();
 </main>
 <?php
 $page->footer();
+$page->bodyEnd();
