@@ -71,28 +71,29 @@ class EmbedCache
             $info_simplified->url           = $this->url;
 
             if ($generateCache) {
-                try {
-                    $info = $embed->get($this->url);
+                $info = $embed->get($this->url);
 
-                    $info_simplified->authorName    = (string) $info->authorName;
-                    $info_simplified->authorUrl     = (string) $info->authorUrl;
-                    $info_simplified->cms           = (string) $info->cms;
-                    $info_simplified->code          = (string) $info->code;
-                    $info_simplified->description   = (string) $info->description;
-                    $info_simplified->favicon       = (string) $info->favicon;
-                    $info_simplified->feeds         = (array)  $info->feeds;
-                    $info_simplified->icon          = (string) $info->icon;
-                    $info_simplified->image         = (string) $info->image;
-                    $info_simplified->keywords      = (array)  $info->keywords;
-                    $info_simplified->language      = (string) $info->language;
-                    $info_simplified->languages     = (array)  $info->languages;
-                    $info_simplified->license       = (string) $info->license;
-                    $info_simplified->providerName  = (string) $info->providerName;
-                    $info_simplified->providerUrl   = (string) $info->providerUrl;
-                    $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
-                    $info_simplified->redirect      = (string) $info->redirect;
-                    $info_simplified->title         = (string) $info->title;
-                    $info_simplified->url           = (string) $info->url;
+                $info_simplified->authorName    = (string) $info->authorName;
+                $info_simplified->authorUrl     = (string) $info->authorUrl;
+                $info_simplified->cms           = (string) $info->cms;
+                $info_simplified->code          = (string) $info->code;
+                $info_simplified->description   = (string) $info->description;
+                $info_simplified->favicon       = (string) $info->favicon;
+                $info_simplified->feeds         = (array)  $info->feeds;
+                $info_simplified->icon          = (string) $info->icon;
+                $info_simplified->image         = $info->image ? (string) $info->image : $this->noImage;
+                $info_simplified->keywords      = (array)  $info->keywords;
+                $info_simplified->language      = (string) $info->language;
+                $info_simplified->languages     = (array)  $info->languages;
+                $info_simplified->license       = (string) $info->license;
+                $info_simplified->providerName  = (string) $info->providerName;
+                $info_simplified->providerUrl   = (string) $info->providerUrl;
+                $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
+                $info_simplified->redirect      = (string) $info->redirect;
+                $info_simplified->title         = (string) $info->title;
+                $info_simplified->url           = (string) $info->url;
+
+                try {
                 } catch (\Throwable $ex) {
                     $generateCache = false;
 
