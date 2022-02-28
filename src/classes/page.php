@@ -265,37 +265,41 @@ class Page
                     My lists
                 </a>
 
-                <?php if (count($pagesAccount) === 1) { ?>
-                    <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
-                        <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
-                        <?= $pagesAccount[0]['text'] ?>
-                    </a>
-                <?php } elseif (count($pagesAccount) >= 2) { ?>
-                    <div class="ui simple dropdown item">
-                        Account
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <?php
-                            if (count($pagesAccount) >= 2) {
-                                foreach ($pagesAccount as $item) {
-                                    ?>
-                                    <a class="item" href="<?= $item['url'] ?>">
-                                        <i class="<?= $item['icon'] ?> icon"></i>
-                                        <?= $item['text'] ?>
-                                    </a>
-                                    <?php
+                <div class="right menu">
+                    <?php global $options; ?>
+
+                    <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
+                        <a class="item" href="/?page=update">
+                            <i class="upload icon"></i> Update
+                        </a>
+                    <?php } ?>
+
+                    <?php if (count($pagesAccount) === 1) { ?>
+                        <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
+                            <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
+                            <?= $pagesAccount[0]['text'] ?>
+                        </a>
+                    <?php } elseif (count($pagesAccount) >= 2) { ?>
+                        <div class="ui simple dropdown item">
+                            Account
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <?php
+                                if (count($pagesAccount) >= 2) {
+                                    foreach ($pagesAccount as $item) {
+                                        ?>
+                                        <a class="item" href="<?= $item['url'] ?>">
+                                            <i class="<?= $item['icon'] ?> icon"></i>
+                                            <?= $item['text'] ?>
+                                        </a>
+                                        <?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
-                <?php global $options; ?>
-                <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
-                    <a class="item" href="/?page=update">
-                        <i class="upload icon"></i> Update
-                    </a>
-                <?php } ?>
+                    <?php } ?>
+                </div>
             </div>
         </div>
         <div class="ui hidden divider"></div>
