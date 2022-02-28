@@ -307,7 +307,7 @@ class Page
         ?>
         <div class="ui hidden divider"></div>
         <div class="ui inverted vertical footer segment">
-            <div class="ui container">
+            <div class="ui center aligned container">
                 <div class="ui stackable inverted divided equal height stackable grid">
 
                     <div class="sixteen wide column">
