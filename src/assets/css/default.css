@@ -223,6 +223,11 @@ p .ui.horizontal.label {
     border: 0;
 }
 
+.ui.vertical.menu .footer .item > i.icon,
+.ui.vertical.menu .footer .item > i.icons {
+    float: none;
+}
+
 @media (max-width: 767px) {
     .pusher .menu.toggle {
         display: block;
