@@ -81,8 +81,6 @@ class Wish
         ?>
 
         <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $exists ?>">
-            <div class="overlay"></div>
-
             <div class="image">
                 <?php if ($this->image) { ?>
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
@@ -96,6 +94,8 @@ class Wish
                     <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
             </div>
+
+            <div class="overlay"></div>
 
             <div class="content">
                 <?php if ($this->title) { ?>
