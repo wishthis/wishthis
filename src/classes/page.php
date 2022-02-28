@@ -281,6 +281,7 @@ class Page
                         </a>
                     <?php } elseif (count($pagesAccount) >= 2) { ?>
                         <div class="ui simple dropdown item">
+                            <i class="user circle icon"></i>
                             Account
                             <i class="dropdown icon"></i>
                             <div class="menu">
