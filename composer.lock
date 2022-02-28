@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c370a196fb020d63e645d8ea571d04ac",
+    "content-hash": "25846fd23f7252ccce4ba4832e5697ad",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1723,6 +1723,47 @@
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
+            "name": "qferr/mjml-php",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qferr/mjml-php.git",
+                "reference": "c6ea36c190e304e399a957f7e03b5a378faf41b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qferr/mjml-php/zipball/c6ea36c190e304e399a957f7e03b5a378faf41b9",
+                "reference": "c6ea36c190e304e399a957f7e03b5a378faf41b9",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|~7.0",
+                "php": ">=7.2",
+                "symfony/process": "~4.0|~5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qferrer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Quentin",
+                    "email": "qferrer@outook.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/qferr/mjml-php/issues",
+                "source": "https://github.com/qferr/mjml-php/tree/1.1.0"
+            },
+            "time": "2021-03-19T19:03:44+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -1982,6 +2023,68 @@
                 }
             ],
             "time": "2021-09-13T13:58:33+00:00"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v5.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "95440409896f90a5f85db07a32b517ecec17fa4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/95440409896f90a5f85db07a32b517ecec17fa4c",
+                "reference": "95440409896f90a5f85db07a32b517ecec17fa4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Executes commands in sub-processes",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v5.4.5"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-01-30T18:16:22+00:00"
         }
     ],
     "packages-dev": [
@@ -2124,5 +2227,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

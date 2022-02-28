@@ -101,11 +101,20 @@ $page->navigation();
 
                             <div class="field">
                                 <label>Email</label>
-                                <input type="email" name="email" placeholder="john.doe@domain.tld" />
+
+                                <div class="ui left icon input">
+                                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                    <i class="envelope icon"></i>
+                                </div>
                             </div>
+
                             <div class="field">
                                 <label>Password</label>
-                                <input type="password" name="password" />
+
+                                <div class="ui left icon input">
+                                    <input type="password" name="password" />
+                                    <i class="key icon"></i>
+                                </div>
                             </div>
                         </div>
 
@@ -118,7 +127,11 @@ $page->navigation();
 
                             <div class="field">
                                 <label>Planet</label>
-                                <input type="text" name="planet" />
+
+                                <div class="ui left icon input">
+                                    <input type="text" name="planet" />
+                                    <i class="globe icon"></i>
+                                </div>
                             </div>
                             <p>Robots are obivously from another solar system so this will keep them at bay.</p>
                         </div>

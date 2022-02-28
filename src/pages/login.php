@@ -10,7 +10,10 @@ use wishthis\Page;
 
 $page = new Page(__FILE__, 'Login');
 
-if (isset($_POST['email'], $_POST['password'])) {
+/**
+ * Login
+ */
+if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     $email    = $_POST['email'];
     $password = sha1($_POST['password']);
 
@@ -36,6 +39,21 @@ if (isset($_SESSION['user'])) {
     die();
 }
 
+/**
+ * Reset
+ */
+if (isset($_POST['reset'], $_POST['email'])) {
+    $user = $database
+    ->query('SELECT *
+               FROM `users`
+              WHERE `email` = ' . $_POST['email'] . ';')
+    ->fetch();
+
+    if ($user) {
+        $emailReset = new email($_POST['email']);
+    }
+}
+
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -51,19 +69,67 @@ $page->navigation();
         ?>
 
         <div class="ui segment">
-            <form class="ui form" method="post">
-                <div class="field">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
-                </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input type="password" name="password" />
+            <div class="ui divided relaxed stackable two column grid">
+
+                <div class="row">
+                    <div class="column">
+                        <h2 class="ui header">Credentials</h2>
+
+                        <form class="ui form login" method="post">
+                            <div class="field">
+                                <label>Email</label>
+
+                                <div class="ui left icon input">
+                                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                    <i class="envelope icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Password</label>
+
+                                <div class="ui left icon input">
+                                    <input type="password" name="password" />
+                                    <i class="key icon"></i>
+                                </div>
+                            </div>
+
+                            <input class="ui primary button" type="submit" name="login" value="Login" />
+                            <a class="ui tertiary button" href="/?page=register">Register</a>
+                        </form>
+                    </div>
+
+                    <div class="column">
+                        <h2 class="ui header">Forgot password?</h2>
+
+                        <p>
+                            Consider using a password manager.
+                            It will save all your passwords and allow you to access them with one master password.
+                            Never forget a password ever again.
+                        </p>
+                        <p><a href="https://bitwarden.com/" target="_blank">Bitwarden</a> is the most trusted open source password manager.</p>
+
+                        <p>
+                            <form class="ui form reset" method="post">
+                                <div class="field">
+                                    <div class="ui action input">
+                                        <div class="ui left icon action input">
+                                            <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                            <i class="envelope icon"></i>
+                                        </div>
+
+                                        <input class="ui primary button" type="submit" name="reset" value="Send email" />
+                                    </div>
+
+                                </div>
+                            </form>
+                        </p>
+
+                        <p>Please note that you have to enter the email address, you have registered with.</p>
+                    </div>
                 </div>
 
-                <input class="ui primary button" type="submit" value="Login" />
-                <a href="/?page=register">Register</a>
-            </form>
+            </div>
         </div>
     </div>
 </main>

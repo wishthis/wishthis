@@ -1,0 +1,12 @@
+{
+  "name": "mjml-php",
+  "description": "MJML in PHP",
+  "author": "Quentin Ferrer",
+  "bugs": {
+    "url": "https://github.com/qferr/mjml-php/issues"
+  },
+  "homepage": "https://github.com/qferr/mjml-php#readme",
+  "devDependencies": {
+    "mjml": "^4.9.0"
+  }
+}

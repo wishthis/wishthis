@@ -215,6 +215,9 @@ p .ui.horizontal.label {
 /**
  * Menu
  */
+.pusher {
+    min-height: 100vh;
+}
 .pusher .menu.toggle {
     display: none;
 }
