@@ -25,6 +25,7 @@ if (isset($_POST['email'])) {
 }
 
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 <main>
@@ -56,3 +57,4 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();

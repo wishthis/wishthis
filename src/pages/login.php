@@ -37,6 +37,7 @@ if (isset($_SESSION['user'])) {
 }
 
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 <main>
@@ -69,3 +70,4 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();

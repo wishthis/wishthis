@@ -43,6 +43,7 @@ if (!$userIsAuthenticated) {
 
 $page = new page(__FILE__, $wish->title);
 $page->header();
+$page->bodyStart();
 $page->navigation();
 
 $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
@@ -213,4 +214,5 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
 <?php
 $page->footer();
+$page->bodyEnd();
 ?>

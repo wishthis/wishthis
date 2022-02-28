@@ -15,6 +15,7 @@ if ($options && $options->getOption('isInstalled')) {
 
 $page = new page(__FILE__, 'Install');
 $page->header();
+$page->bodyStart();
 
 $step = isset($_POST['step']) ? $_POST['step'] : 1;
 

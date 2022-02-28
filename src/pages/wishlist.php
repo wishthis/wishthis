@@ -21,6 +21,7 @@ if (!$wishlist->exists) {
 
 $page = new page(__FILE__, $wishlist->data['name']);
 $page->header();
+$page->bodyStart();
 $page->navigation();
 ?>
 
@@ -84,4 +85,5 @@ $page->navigation();
 
 <?php
 $page->footer();
+$page->bodyEnd();
 ?>
