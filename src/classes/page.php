@@ -167,12 +167,22 @@ class Page
             /** Fomantic UI */
             $stylesheetFomantic = 'semantic/dist/semantic.min.css';
             $stylesheetFomanticModified = filemtime($stylesheetFomantic);
-            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetFomantic . '?m=' . $stylesheetFomanticModified . '" />';
+            ?>
+            <link rel="stylesheet"
+                  type="text/css"
+                  href="/<?= $stylesheetFomantic ?>?m=<?= $stylesheetFomanticModified ?>"
+            />
+            <?php
 
             /** Default */
             $stylesheetDefault = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
-            echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetDefault . '?m=' . $stylesheetDefaultModified . '" />';
+            ?>
+            <link rel="stylesheet"
+                  type="text/css"
+                  href="/<?= $stylesheetDefault ?>?m=<?= $stylesheetDefaultModified ?>"
+            />';
+            <?php
 
             /** Page */
             $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
@@ -180,7 +190,12 @@ class Page
             if (file_exists($stylesheetPage)) {
                 $stylesheetPageModified = filemtime($stylesheetPage);
 
-                echo '<link rel="stylesheet" type="text/css" href="/' . $stylesheetPage . '?m=' . $stylesheetPageModified . '" />';
+                ?>
+                <link rel="stylesheet"
+                      type="text/css"
+                      href="/<?= $stylesheetPage ?>?m=<?= $stylesheetPageModified ?>"
+                />
+                <?php
             }
 
             /**
@@ -195,17 +210,23 @@ class Page
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
-            echo '<script defer src="/' . $scriptjQuery . '?m=' . $scriptjQueryModified . '"></script>';
+            ?>
+            <script defer src="/<?= $scriptjQuery ?>?m=<?= $scriptjQueryModified ?>"></script>
+            <?php
 
             /** Fomantic */
             $scriptFomantic = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
-            echo '<script defer src="/' . $scriptFomantic . '?m=' . $scriptFomanticModified . '"></script>';
+            ?>
+            <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>'"></script>
+            <?php
 
             /** Default */
             $scriptDefault = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
-            echo '<script defer src="/' . $scriptDefault . '?m=' . $scriptDefaultModified . '"></script>';
+            ?>
+            <script defer src="/<?= $scriptDefault ?>?m=<?= $scriptDefaultModified ?>"></script>
+            <?php
 
             /** Page */
             $scriptPage = 'src/assets/js/' . $this->name .  '.js';
@@ -213,7 +234,9 @@ class Page
             if (file_exists($scriptPage)) {
                 $scriptPageModified = filemtime($scriptPage);
 
-                echo '<script defer src="/' . $scriptPage . '?m=' . $scriptPageModified . '"></script>';
+                ?>
+                <script defer src="/<?= $scriptPage ?>?m=<?= $scriptPageModified ?>"></script>
+                <?php
             }
             ?>
 
@@ -249,13 +272,7 @@ class Page
                 'text'      => 'System',
                 'icon'      => 'wrench',
                 'alignment' => 'right',
-                'items'     => array(
-                    array(
-                        'url'  => '/?page=settings',
-                        'text' => 'Settings',
-                        'icon' => 'cog',
-                    ),
-                ),
+                'items'     => array(),
             ),
             'account'   => array(
                 'text'      => 'Account',
@@ -288,6 +305,16 @@ class Page
                 'url'  => '/?page=register',
                 'text' => 'Register',
                 'icon' => 'user plus alternate',
+            );
+        }
+
+        if (100 === $user->power) {
+            $pages['system']['items'][] = array(
+                array(
+                    'url'  => '/?page=settings',
+                    'text' => 'Settings',
+                    'icon' => 'cog',
+                ),
             );
         }
 

@@ -111,7 +111,10 @@ $page->navigation();
                             It will save all your passwords and allow you to access them with one master password.
                             Never forget a password ever again.
                         </p>
-                        <p><a href="https://bitwarden.com/" target="_blank">Bitwarden</a> is the most trusted open source password manager.</p>
+                        <p>
+                            <a href="https://bitwarden.com/" target="_blank">Bitwarden</a>
+                            is the most trusted open source password manager.
+                        </p>
 
                         <p>
                             <form class="ui form reset" method="post">
@@ -122,7 +125,11 @@ $page->navigation();
                                             <i class="envelope icon"></i>
                                         </div>
 
-                                        <input class="ui primary button" type="submit" name="reset" value="Send email" />
+                                        <input class="ui primary button"
+                                               type="submit"
+                                               name="reset"
+                                               value="Send email"
+                                        />
                                     </div>
 
                                 </div>

@@ -10,7 +10,8 @@ namespace wishthis;
 
 class URL
 {
-    public function __construct(private string $url) {
+    public function __construct(private string $url)
+    {
     }
 
     public function getPretty(): string
@@ -29,7 +30,7 @@ class URL
                         $rewriteRule = rtrim($rewriteRule, '$');
                         $target      = $parts[2];
                         $keys        = array_map(
-                            function($item) {
+                            function ($item) {
                                 return explode('=', $item)[0];
                             },
                             explode('&', parse_url($target, PHP_URL_QUERY))
