@@ -47,7 +47,6 @@ class Email
             $html = $renderer->render($this->mjml);
         }
 
-
         $to      = $this->to;
         $subject = $this->subject;
         $message = $html;
