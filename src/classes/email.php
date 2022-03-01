@@ -34,7 +34,7 @@ class Email
 
         $html = $this->mjml;
 
-        if (ENV_IS_DEV) {
+        if (defined('ENV_IS_DEV') && ENV_IS_DEV) {
             /**
              * Ignore SSL certificate errors
              */
