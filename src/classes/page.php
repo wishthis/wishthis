@@ -233,31 +233,73 @@ class Page
     {
         $user = new User();
 
-        $pagesAccount = array();
+        $pages = array(
+            'wishlists' => array(
+                'text'      => 'Wishlists',
+                'alignment' => 'left',
+                'items'     => array(
+                    array(
+                        'url'  => '/?page=wishlists',
+                        'text' => 'My lists',
+                        'icon' => 'list',
+                    )
+                ),
+            ),
+            'system'    => array(
+                'text'      => 'System',
+                'icon'      => 'wrench',
+                'alignment' => 'right',
+                'items'     => array(
+                    array(
+                        'url'  => '/?page=settings',
+                        'text' => 'Settings',
+                        'icon' => 'cog',
+                    ),
+                ),
+            ),
+            'account'   => array(
+                'text'      => 'Account',
+                'icon'      => 'user circle',
+                'alignment' => 'right',
+                'items'     => array(),
+            ),
+        );
 
         if ($user && $user->isLoggedIn()) {
             if (100 === $user->power) {
-                $pagesAccount[] = array(
+                $pages['account']['items'][] = array(
                     'url'  => '/?page=login-as',
-                    'icon' => 'sign out alternate',
                     'text' => 'Login as',
+                    'icon' => 'sign out alternate',
                 );
             }
-            $pagesAccount[] = array(
+            $pages['account']['items'][] = array(
                 'url'  => '/?page=logout',
-                'icon' => 'sign out alternate',
                 'text' => 'Logout',
+                'icon' => 'sign out alternate',
             );
         } else {
-            $pagesAccount[] = array(
+            $pages['account']['items'][] = array(
                 'url'  => '/?page=login',
-                'icon' => 'sign in alternate',
                 'text' => 'Login',
+                'icon' => 'sign in alternate',
             );
-            $pagesAccount[] = array(
+            $pages['account']['items'][] = array(
                 'url'  => '/?page=register',
-                'icon' => 'user plus alternate',
                 'text' => 'Register',
+                'icon' => 'user plus alternate',
+            );
+        }
+
+        global $options;
+
+        if ($options->updateAvailable && $user && 100 === $user->power) {
+            $pages['system']['items'][] = array(
+                array(
+                    'url'  => '/?page=update',
+                    'text' => 'Update',
+                    'icon' => 'upload',
+                ),
             );
         }
         ?>
@@ -268,29 +310,15 @@ class Page
                 <a class="item home" href="/?page=home">
                     <img src="/src/assets/img/logo.svg" alt="wishthis logo" />
                 </a>
-                <a class="item" href="/?page=wishlists">
-                    <i class="list icon"></i>
-                    My lists
-                </a>
 
-                <?php global $options; ?>
-
-                <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
-                    <a class="item" href="/?page=update">
-                        <i class="upload icon"></i> Update
-                    </a>
+                <?php foreach ($pages as $page) { ?>
+                    <?php foreach ($page['items'] as $item) { ?>
+                        <a class="item" href="<?= $item['url'] ?>">
+                            <i class="<?= $item['icon'] ?> icon"></i>
+                            <?= $item['text'] ?>
+                        </a>
+                    <?php } ?>
                 <?php } ?>
-
-                <?php
-                foreach ($pagesAccount as $item) {
-                    ?>
-                    <a class="item" href="<?= $item['url'] ?>">
-                        <i class="<?= $item['icon'] ?> icon"></i>
-                        <?= $item['text'] ?>
-                    </a>
-                    <?php
-                }
-                ?>
 
             </div>
 
@@ -303,45 +331,70 @@ class Page
                     <a class="item home" href="/?page=home">
                         <img src="/src/assets/img/logo.svg" />
                     </a>
-                    <a class="item" href="/?page=wishlists">
-                        <i class="list icon"></i>
-                        My lists
-                    </a>
 
-                    <div class="right menu">
-                        <?php global $options; ?>
+                    <?php foreach ($pages as $page) { ?>
+                        <?php if ('left' === $page['alignment']) { ?>
+                            <?php if (count($page['items']) > 1) { ?>
+                                <div class="ui simple dropdown item">
+                                    <?php if (isset($page['icon'])) { ?>
+                                        <i class="<?= $page['icon'] ?> icon"></i>
+                                    <?php } ?>
 
-                        <?php if ($options->updateAvailable && $user && 100 === $user->power) { ?>
-                            <a class="item" href="/?page=update">
-                                <i class="upload icon"></i> Update
-                            </a>
-                        <?php } ?>
+                                    <?= $page['text'] ?>
 
-                        <?php if (count($pagesAccount) === 1) { ?>
-                            <a class="item" href="<?= $pagesAccount[0]['url'] ?>">
-                                <i class="<?= $pagesAccount[0]['icon'] ?> icon"></i>
-                                <?= $pagesAccount[0]['text'] ?>
-                            </a>
-                        <?php } elseif (count($pagesAccount) >= 2) { ?>
-                            <div class="ui simple dropdown item">
-                                <i class="user circle icon"></i>
-                                Account
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <?php
-                                    if (count($pagesAccount) >= 2) {
-                                        foreach ($pagesAccount as $item) {
-                                            ?>
+                                    <i class="dropdown icon"></i>
+
+                                    <div class="menu">
+                                        <?php foreach ($page['items'] as $item) { ?>
                                             <a class="item" href="<?= $item['url'] ?>">
                                                 <i class="<?= $item['icon'] ?> icon"></i>
                                                 <?= $item['text'] ?>
                                             </a>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } else { ?>
+                                <?php foreach ($page['items'] as $item) { ?>
+                                    <a class="item" href="<?= $item['url'] ?>">
+                                        <i class="<?= $item['icon'] ?> icon"></i>
+                                        <?= $item['text'] ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <div class="right menu">
+                        <?php foreach ($pages as $page) { ?>
+                            <?php if ('right' === $page['alignment']) { ?>
+                                <?php if (count($page['items']) > 1) { ?>
+                                    <div class="ui simple dropdown item">
+                                        <?php if (isset($page['icon'])) { ?>
+                                            <i class="<?= $page['icon'] ?> icon"></i>
+                                        <?php } ?>
+
+                                        <?= $page['text'] ?>
+
+                                        <i class="dropdown icon"></i>
+
+                                        <div class="menu">
+                                            <?php foreach ($page['items'] as $item) { ?>
+                                                <a class="item" href="<?= $item['url'] ?>">
+                                                    <i class="<?= $item['icon'] ?> icon"></i>
+                                                    <?= $item['text'] ?>
+                                                </a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <?php foreach ($page['items'] as $item) { ?>
+                                        <a class="item" href="<?= $item['url'] ?>">
+                                            <i class="<?= $item['icon'] ?> icon"></i>
+                                            <?= $item['text'] ?>
+                                        </a>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>
