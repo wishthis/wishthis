@@ -218,6 +218,7 @@ p .ui.horizontal.label {
 .pusher {
     min-height: 100vh;
 }
+
 .pusher .menu.toggle {
     display: none;
 }
