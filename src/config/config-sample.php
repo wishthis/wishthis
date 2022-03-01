@@ -10,3 +10,5 @@ define('DATABASE_HOST', 'localhost');
 define('DATABASE_NAME', 'wishthis');
 define('DATABASE_USER', 'root');
 define('DATABASE_PASSWORD', '');
+
+define('ENV_IS_DEV', false);

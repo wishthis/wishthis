@@ -31,7 +31,22 @@ class Email
             $options->getOption('mjml_api_key'),
             $options->getOption('mjml_api_secret')
         );
-        $html     = $renderer->render($this->mjml);
+
+        $html = $this->mjml;
+
+        if (ENV_IS_DEV) {
+            /**
+             * Ignore SSL certificate errors
+             */
+            try {
+                $html = $renderer->render($this->mjml);
+            } catch (\GuzzleHttp\Exception\RequestException $th) {
+                error_log($th->getMessage());
+            }
+        } else {
+            $html = $renderer->render($this->mjml);
+        }
+
 
         $to      = $this->to;
         $subject = $this->subject;
