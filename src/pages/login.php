@@ -51,7 +51,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
 
     if ($user) {
         $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
-        $mjml = str_replace('https://wishthis.online', $_SERVER['HTTP_HOST'], $mjml);
+        $mjml = str_replace('wishthis.online', $_SERVER['HTTP_HOST'], $mjml);
 
         $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
         $emailReset->send();
