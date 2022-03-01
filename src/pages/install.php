@@ -76,10 +76,10 @@ switch ($step) {
         /**
          * Config
          */
-        $configDirectory = 'src/config';
-        $configPath = $configDirectory . '/config.php';
+        $configDirectory  = 'src/config';
+        $configPath       = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
-        $configContents = file_get_contents($configSamplePath);
+        $configContents   = str_replace('config-sample.php', 'config.php', file_get_contents($configSamplePath));
 
         foreach ($_POST as $key => $value) {
             if ('DATABASE' === substr($key, 0, 8)) {
