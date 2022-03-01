@@ -42,8 +42,8 @@ class URL
 
                         foreach ($parameters_pairs as $index => $pair) {
                             $parts = explode('=', $pair);
-                            $key   = $parts[0];
-                            $value = $parts[1];
+                            $key   = reset($parts);
+                            $value = end($parts);
 
                             $parameters[$key] = $value;
                         }
