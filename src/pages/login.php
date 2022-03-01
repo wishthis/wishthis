@@ -32,7 +32,10 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     if ($success) {
         $_SESSION['user'] = $user;
     } else {
-        $page->messages[] = Page::error('We could not find a user with the credential combination you provided.', 'Invalid credentials');
+        $page->messages[] = Page::error(
+            'We could not find a user with the credential combination you provided.',
+            'Invalid credentials'
+        );
     }
 }
 
@@ -58,7 +61,10 @@ if (isset($_POST['reset'], $_POST['email'])) {
         $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
         $emailReset->send();
 
-        $page->messages[] = Page::info('If I can find a match for this email address, a password reset link will be sent to it.', 'Info');
+        $page->messages[] = Page::info(
+            'If I can find a match for this email address, a password reset link will be sent to it.',
+            'Info'
+        );
     }
 }
 
