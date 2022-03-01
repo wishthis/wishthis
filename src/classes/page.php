@@ -182,7 +182,7 @@ class Page
             <link rel="stylesheet"
                   type="text/css"
                   href="/<?= $stylesheetDefault ?>?m=<?= $stylesheetDefaultModified ?>"
-            />';
+            />
             <?php
 
             /** Page */
