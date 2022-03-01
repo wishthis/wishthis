@@ -311,11 +311,9 @@ class Page
 
         if (100 === $user->power) {
             $pages['system']['items'][] = array(
-                array(
-                    'url'  => '/?page=settings',
-                    'text' => 'Settings',
-                    'icon' => 'cog',
-                ),
+                'url'  => '/?page=settings',
+                'text' => 'Settings',
+                'icon' => 'cog',
             );
         }
 
