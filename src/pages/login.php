@@ -31,6 +31,8 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
 
     if ($success) {
         $_SESSION['user'] = $user;
+    } else {
+        $page->messages[] = Page::error('We could not find a user with the credential combination you provided.', 'Invalid credentials');
     }
 }
 
@@ -68,11 +70,7 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <?php
-        if (isset($success) && !$success) {
-            echo Page::error('Invalid credentials!', 'Error');
-        }
-        ?>
+        <?= $page->messages() ?>
 
         <div class="ui segment">
             <div class="ui divided relaxed stackable two column grid">
