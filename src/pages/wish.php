@@ -8,7 +8,7 @@
 
 use wishthis\{Page, Wish};
 
-$messages = array();
+$page = new page(__FILE__, $wish->title);
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $database
@@ -18,7 +18,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
                     `url`         = "' . trim($_POST['wish_url']) . '"
               WHERE `id`          = ' . trim($_POST['wish_id']) . ';');
 
-    $messages[] = Page::success('Wish successfully updated.', 'Success');
+    $page->messages[] = Page::success('Wish successfully updated.', 'Success');
 }
 
 $userIsAuthenticated = false;
@@ -41,7 +41,6 @@ if (!$userIsAuthenticated) {
     die();
 }
 
-$page = new page(__FILE__, $wish->title);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -53,7 +52,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <?= $page->messages($messages) ?>
+        <?= $page->messages() ?>
 
         <div class="ui segment">
             <form class="ui form wish" method="POST">

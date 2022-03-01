@@ -55,6 +55,8 @@ if (isset($_POST['reset'], $_POST['email'])) {
 
         $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
         $emailReset->send();
+
+        $page->messages[] = Page::info('If we can find a match for this email address, a password reset link will be sent to it.', 'Info');
     }
 }
 

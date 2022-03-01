@@ -91,6 +91,7 @@ class Page
      * Non-Static
      */
     public string $language = 'en';
+    public array $messages  = array();
 
     /**
      * __construct
@@ -482,11 +483,11 @@ class Page
         <?php
     }
 
-    public function messages(array $messages): string
+    public function messages(): string
     {
         $html = '';
 
-        foreach ($messages as $message) {
+        foreach ($this->messages as $message) {
             $html .= $message;
         }
 
