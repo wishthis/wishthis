@@ -249,13 +249,7 @@ class Page
                 'text'      => 'System',
                 'icon'      => 'wrench',
                 'alignment' => 'right',
-                'items'     => array(
-                    array(
-                        'url'  => '/?page=settings',
-                        'text' => 'Settings',
-                        'icon' => 'cog',
-                    ),
-                ),
+                'items'     => array(),
             ),
             'account'   => array(
                 'text'      => 'Account',
@@ -288,6 +282,16 @@ class Page
                 'url'  => '/?page=register',
                 'text' => 'Register',
                 'icon' => 'user plus alternate',
+            );
+        }
+
+        if (100 === $user->power) {
+            $pages['system']['items'][] = array(
+                array(
+                    'url'  => '/?page=settings',
+                    'text' => 'Settings',
+                    'icon' => 'cog',
+                ),
             );
         }
 
