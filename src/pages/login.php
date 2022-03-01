@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\Page;
+use wishthis\{Page, Email};
 
 $page = new Page(__FILE__, 'Login');
 
@@ -46,11 +46,15 @@ if (isset($_POST['reset'], $_POST['email'])) {
     $user = $database
     ->query('SELECT *
                FROM `users`
-              WHERE `email` = ' . $_POST['email'] . ';')
+              WHERE `email` = "' . $_POST['email'] . '";')
     ->fetch();
 
     if ($user) {
-        $emailReset = new email($_POST['email']);
+        $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
+        $mjml = str_replace('https://wishthis.online', $_SERVER['HTTP_HOST'], $mjml);
+
+        $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
+        $emailReset->send();
     }
 }
 

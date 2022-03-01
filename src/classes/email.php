@@ -12,6 +12,8 @@
 
 namespace wishthis;
 
+use Qferrer\Mjml\Renderer\ApiRenderer;
+
 class Email
 {
     public function __construct(
@@ -23,9 +25,17 @@ class Email
 
     public function send()
     {
+        global $options;
+
+        $renderer = new ApiRenderer(
+            $options->getOption('mjml_api_key'),
+            $options->getOption('mjml_api_secret')
+        );
+        $html     = $renderer->render($this->mjml);
+
         $to      = $this->to;
         $subject = $this->subject;
-        $message = $this->mjml;
+        $message = $html;
         $headers = array(
             'From'         => 'no-reply@' . $_SERVER['HTTP_HOST'],
             'Content-type' => 'text/html; charset=utf-8',
