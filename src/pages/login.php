@@ -33,7 +33,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
         $_SESSION['user'] = $user;
     } else {
         $page->messages[] = Page::error(
-            'We could not find a user with the credential combination you provided.',
+            'I could not find a user with the credential combination you provided.',
             'Invalid credentials'
         );
     }
