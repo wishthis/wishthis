@@ -72,7 +72,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
             $mjml
         );
         $mjml = str_replace(
-            '<mj-button href="#">',
+            'password-reset-link',
             $_SERVER['HTTP_HOST'] . '/register.php?password-reset=' . $_POST['email'] . '&token=' . $token,
             $mjml
         );
