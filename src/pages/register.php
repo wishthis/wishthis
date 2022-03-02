@@ -46,33 +46,64 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     }
 
     if ($isHuman) {
-        if (0 === count($users)) {
-            $database->query('INSERT INTO `users`
-                             (
-                                 `email`,
-                                 `password`,
-                                 `power`
-                             ) VALUES (
-                                 "' . $_POST['email'] . '",
-                                 "' . sha1($_POST['password']) . '",
-                                 100
-                             )
-            ;');
-        } else {
-            if (in_array($_POST['email'], $emails)) {
-                $page->messages[] = Page::error('An account with this email address already exists.', 'Invalid email address');
-            } else {
-                $database->query('INSERT INTO `users`
-                                 (
-                                     `email`,
-                                     `password`
-                                 ) VALUES (
-                                     "' . $_POST['email'] . '",
-                                     "' . sha1($_POST['password']) . '"
-                                 )
-                ;');
+        if (isset($_GET['password-reset'], $_GET['token'])) {
+            /**
+             * Password reset
+             */
+            $user = $database
+            ->query('SELECT * FROM `users`
+                      WHERE `email`                = "' . $_GET['password-reset'] . '"
+                        AND `password_reset_token` = "' . $_GET['token'] . '";')
+            ->fetch();
 
-                $page->messages[] = Page::success('Your account was successfully created.', 'Success');
+            if ($user) {
+                if (time() <= $user['password_reset_valid_until']) {
+                    $database
+                    ->query('UPDATE `users`
+                                SET `password`                   = "' . sha1($_POST['password']) . '",
+                                    `password_reset_token`       = NULL,
+                                    `password_reset_valid_until` = NULL,
+                              WHERE `id`       = ' . $user['id'] . ';');
+
+                    $page->messages[] = Page::success('Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.', 'Success');
+                } else {
+                    $page->messages[] = Page::error('This link has expired.', 'Failure');
+                }
+            } else {
+                $page->messages[] = Page::error('This link seems invalid.', 'Failure');
+            }
+        } else {
+            /**
+             * Register
+             */
+            if (0 === count($users)) {
+                $database->query('INSERT INTO `users`
+                                (
+                                    `email`,
+                                    `password`,
+                                    `power`
+                                ) VALUES (
+                                    "' . $_POST['email'] . '",
+                                    "' . sha1($_POST['password']) . '",
+                                    100
+                                )
+                ;');
+            } else {
+                if (in_array($_POST['email'], $emails)) {
+                    $page->messages[] = Page::error('An account with this email address already exists.', 'Invalid email address');
+                } else {
+                    $database->query('INSERT INTO `users`
+                                    (
+                                        `email`,
+                                        `password`
+                                    ) VALUES (
+                                        "' . $_POST['email'] . '",
+                                        "' . sha1($_POST['password']) . '"
+                                    )
+                    ;');
+
+                    $page->messages[] = Page::success('Your account was successfully created.', 'Success');
+                }
             }
         }
     } else {

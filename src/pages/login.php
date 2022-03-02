@@ -55,8 +55,27 @@ if (isset($_POST['reset'], $_POST['email'])) {
     ->fetch();
 
     if ($user) {
+        $token      = sha1(time() . rand(0, 999999));
+        $validUntil = time() + 3600;
+
+        $database
+        ->query('UPDATE `users`
+                    SET `password_reset_token`       = "' . $token . '",
+                        `password_reset_valid_until` = ' . $validUntil . '
+                  WHERE `id` = ' . $user['id'] . '
+        ;');
+
         $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
-        $mjml = str_replace('wishthis.online', $_SERVER['HTTP_HOST'], $mjml);
+        $mjml = str_replace(
+            'wishthis.online',
+            $_SERVER['HTTP_HOST'],
+            $mjml
+        );
+        $mjml = str_replace(
+            '<mj-button href="#">',
+            $_SERVER['HTTP_HOST'] . '/register.php?password-reset=' . $_POST['email'] . '&token=' . $token,
+            $mjml
+        );
 
         $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
         $emailReset->send();

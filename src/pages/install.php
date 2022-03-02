@@ -115,11 +115,13 @@ switch ($step) {
          * Users
          */
         $database->query('CREATE TABLE `users` (
-            `id`         INT          PRIMARY KEY AUTO_INCREMENT,
-            `email`      VARCHAR(64)  NOT NULL UNIQUE,
-            `password`   VARCHAR(128) NOT NULL,
-            `last_login` datetime     NOT NULL DEFAULT NOW(),
-            `power`      INT          NOT NULL DEFAULT 0
+            `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
+            `email`                      VARCHAR(64)  NOT NULL UNIQUE,
+            `password`                   VARCHAR(128) NOT NULL,
+            `password_reset_token`       VARCHAR(128) NULL DEFAULT NULL,
+            `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
+            `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
+            `power`                      INT          NOT NULL DEFAULT 0
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
