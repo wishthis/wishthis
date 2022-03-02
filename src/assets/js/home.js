@@ -37,7 +37,7 @@ function showStatistic(elementStatistic, amount, timeout) {
                       ? parseInt(elementStatistic.text())
                       : -1;
 
-            if (value <= amount) {
+            if (value < amount) {
                 elementStatistic.text(value + 1);
 
                 var remainingSlowDown    = 6;
