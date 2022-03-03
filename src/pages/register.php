@@ -62,8 +62,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     ->query('UPDATE `users`
                                 SET `password`                   = "' . sha1($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
-                                    `password_reset_valid_until` = NULL,
-                              WHERE `id`       = ' . $user['id'] . ';');
+                                    `password_reset_valid_until` = NULL
+                              WHERE `id`                         = ' . $user['id'] . ';');
 
                     $page->messages[] = Page::success('Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.', 'Success');
                 } else {
