@@ -138,7 +138,16 @@ $page->navigation();
                                 <label>Email</label>
 
                                 <div class="ui left icon input">
-                                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                    <?php if ($_GET['password-reset']) { ?>
+                                        <input type="email"
+                                               name="email"
+                                               placeholder="john.doe@domain.tld"
+                                               value="<?= $_GET['password-reset'] ?>"
+                                               readonly
+                                        />
+                                    <?php } else { ?>
+                                        <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                    <?php } ?>
                                     <i class="envelope icon"></i>
                                 </div>
                             </div>
