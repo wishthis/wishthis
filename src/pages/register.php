@@ -57,7 +57,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             ->fetch();
 
             if ($user) {
-                if (time() <= $user['password_reset_valid_until']) {
+                if (time() > $user['password_reset_valid_until']) {
                     $database
                     ->query('UPDATE `users`
                                 SET `password`                   = "' . sha1($_POST['password']) . '",
