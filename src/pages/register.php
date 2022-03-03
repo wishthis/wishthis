@@ -8,7 +8,12 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Register');
+$passwordReset = isset($_GET['password-reset'], $_GET['token']);
+
+$pageTitle    = $passwordReset ? 'Reset password' : 'Register';
+$buttonSubmit = $passwordReset ? 'Reset'          : 'Register';
+
+$page = new page(__FILE__, $pageTitle);
 
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $users  = $database->query('SELECT * FROM `users`;')->fetchAll();
@@ -171,7 +176,7 @@ $page->navigation();
                         <div class="column">
                             <div class="ui error message"></div>
 
-                            <input class="ui primary button" type="submit" value="Register" />
+                            <input class="ui primary button" type="submit" value="<?= $buttonSubmit ?>" />
                             <a class="ui tertiary button" href="/?page=login">Login</a>
                         </div>
                     </div>
