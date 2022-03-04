@@ -1,9 +1,13 @@
 $(function () {
 
     /**
-     * Validate
+     * Auto fill
      */
-    $(document).on('click', '.button.autofill', function () {
+    if ($('[name="wish_url"]').val()) {
+        $('.button.auto-fill').removeClass('disabled');
+    }
+
+    $(document).on('click', '.button.auto-fill', function () {
         var modalAutoFill = $('.modal.auto-fill');
         var modalValidate = $('.modal.validate');
 

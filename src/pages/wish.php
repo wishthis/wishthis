@@ -9,10 +9,9 @@
 use wishthis\{Page, Wish};
 
 $userIsAuthenticated = false;
-$wish                = new Wish($_GET['id'], false);
-$wishlists           = $user->getWishlists($wish->wishlist);
 
-$page = new page(__FILE__, $wish->title);
+$wish = new Wish($_GET['id'], false);
+$page = new Page(__FILE__, $wish->title);
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $database
@@ -22,8 +21,11 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
                     `url`         = "' . trim($_POST['wish_url']) . '"
               WHERE `id`          = ' . trim($_POST['wish_id']) . ';');
 
+    $wish             = new Wish($_GET['id'], false);
     $page->messages[] = Page::success('Wish successfully updated.', 'Success');
 }
+
+$wishlists = $user->getWishlists($wish->wishlist);
 
 foreach ($wishlists as $wishlist) {
     if ($wish->wishlist === intval($wishlist['id'])) {
@@ -76,7 +78,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                                     Visit
                                 </a>
 
-                                <button class="ui labeled icon button autofill"
+                                <button class="ui labeled icon button auto-fill disabled"
                                         type="button"
                                 >
                                     <i class="redo icon"></i>
