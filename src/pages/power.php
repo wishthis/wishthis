@@ -22,7 +22,10 @@ $page->navigation();
             <h2 class="ui header">Restricted access</h2>
             <p>
                 You do not have enough power to view this page.
-                You need <strong><?= $_GET['required'] ?></strong> to see this page, but only have <strong><?= $user->power ?></strong>.
+                You need
+                <strong><?= $_GET['required'] ?></strong>
+                to see this page, but only have
+                <strong><?= $user->power ?></strong>.
             </p>
         </div>
     </div>

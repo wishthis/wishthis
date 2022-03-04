@@ -27,11 +27,19 @@ $page->navigation();
 
             <div class="ui four column doubling stackable grid">
                 <?php if ($user->isLoggedIn()) { ?>
-                    <div class="column"><a class="ui fluid primary button" href="/?page=wishlists">Create a wishlist</a></div>
-                    <div class="column"><a class="ui fluid button" href="/?page=wishlists">View your wishlists</a></div>
+                    <div class="column">
+                        <a class="ui fluid primary button" href="/?page=wishlists">Create a wishlist</a>
+                    </div>
+                    <div class="column">
+                        <a class="ui fluid button" href="/?page=wishlists">View your wishlists</a>
+                    </div>
                 <?php } else { ?>
-                    <div class="column"><a class="ui fluid primary button" href="/?page=register">Register now</a></div>
-                    <div class="column"><a class="ui fluid button" href="/?page=login">Login</a></div>
+                    <div class="column">
+                        <a class="ui fluid primary button" href="/?page=register">Register now</a>
+                    </div>
+                    <div class="column">
+                        <a class="ui fluid button" href="/?page=login">Login</a>
+                    </div>
                 <?php } ?>
             </div>
 

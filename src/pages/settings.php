@@ -25,7 +25,10 @@ if (isset($_POST['mjml_api'], $_POST['api_key'], $_POST['api_secret'])) {
 
         <div class="ui segment">
             <h2 class="ui header">MJML</h2>
-            <p>MJML is required for sending emails. Visit <a href="https://mjml.io/api" target="_blank">https://mjml.io/api</a> to request API access.</p>
+            <p>
+                MJML is required for sending emails.
+                Visit <a href="https://mjml.io/api" target="_blank">https://mjml.io/api</a> to request API access.
+            </p>
 
             <h3 class="ui header">API</h3>
             <form class="ui form" method="POST">
