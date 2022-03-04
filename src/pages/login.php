@@ -141,27 +141,29 @@ $page->navigation();
                             is the most trusted open source password manager.
                         </p>
 
-                        <p>
-                            <form class="ui form reset" method="post">
-                                <div class="field">
-                                    <div class="ui action input">
-                                        <div class="ui left icon action input">
-                                            <input type="email" name="email" placeholder="john.doe@domain.tld" />
-                                            <i class="envelope icon"></i>
+                        <?php if ($options->getOption('mjml_api_key') && $options->getOption('mjml_api_secret')) { ?>
+                            <p>
+                                <form class="ui form reset" method="post">
+                                    <div class="field">
+                                        <div class="ui action input">
+                                            <div class="ui left icon action input">
+                                                <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                                <i class="envelope icon"></i>
+                                            </div>
+
+                                            <input class="ui primary button"
+                                                type="submit"
+                                                name="reset"
+                                                value="Send email"
+                                            />
                                         </div>
 
-                                        <input class="ui primary button"
-                                               type="submit"
-                                               name="reset"
-                                               value="Send email"
-                                        />
                                     </div>
+                                </form>
+                            </p>
 
-                                </div>
-                            </form>
-                        </p>
-
-                        <p>Please note that you have to enter the email address, you have registered with.</p>
+                            <p>Please note that you have to enter the email address, you have registered with.</p>
+                        <?php } ?>
                     </div>
                 </div>
 
