@@ -8,6 +8,10 @@
 
 use wishthis\{Page, Wish};
 
+$userIsAuthenticated = false;
+$wish                = new Wish($_GET['id'], false);
+$wishlists           = $user->getWishlists($wish->wishlist);
+
 $page = new page(__FILE__, $wish->title);
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
@@ -20,10 +24,6 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
 
     $page->messages[] = Page::success('Wish successfully updated.', 'Success');
 }
-
-$userIsAuthenticated = false;
-$wish                = new Wish($_GET['id'], false);
-$wishlists           = $user->getWishlists($wish->wishlist);
 
 foreach ($wishlists as $wishlist) {
     if ($wish->wishlist === intval($wishlist['id'])) {
