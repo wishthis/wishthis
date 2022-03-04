@@ -49,3 +49,10 @@ And then one of the following commands:
 - `gulp watch`
 
 For more information see: https://fomantic-ui.com/introduction/build-tools.html
+
+## Style
+
+### PHP
+| Language | Style |
+| -------- | ----- |
+| PHP      | PSR-12 |
