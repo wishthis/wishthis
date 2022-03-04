@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-define('VERSION', '0.3.0');
+define('VERSION', '0.4.0');
 define('ROOT', __DIR__);
 
 /**
