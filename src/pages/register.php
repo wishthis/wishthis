@@ -127,7 +127,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             is not a planet in our solar system. Read this for more information:
             <a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">
                 Solar system planets: Order of the 8 (or 9) planets
-            </a>',
+            </a>.',
             'Invalid planet'
         );
     }
