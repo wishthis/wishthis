@@ -36,7 +36,7 @@ $page->navigation();
 
                 <div class="ui divider"></div>
 
-                <div class="flex">
+                <div class="flex buttons">
                     <a class="ui small labeled icon button wishlist-wish-add disabled">
                         <i class="add icon"></i>
                         Add a wish
@@ -61,10 +61,12 @@ $page->navigation();
             <div class="ui segment">
                 <p>General options.</p>
 
-                <a class="ui small labeled icon button wishlist-create">
-                    <i class="add icon"></i>
-                    Create a wishlist
-                </a>
+                <div class="flex buttons">
+                    <a class="ui small labeled icon button wishlist-create">
+                        <i class="add icon"></i>
+                        Create a wishlist
+                    </a>
+                </div>
             </div>
 
         </div>
