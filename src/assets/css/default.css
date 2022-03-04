@@ -245,3 +245,28 @@ p .ui.horizontal.label {
         display: none;
     }
 }
+
+/**
+ * Action Input
+ */
+.ui.action.input > .action.input > input {
+    flex-shrink: 1;
+    width: 100%;
+}
+
+@media (max-width: 400px) {
+    .ui.action.input {
+        flex-direction: column;
+    }
+
+    .ui.action.input > input {
+        border-radius: 0.33333333rem 0.33333333rem 0 0 !important;
+        border: 1px solid rgba(34,36,38,.15) !important;
+    }
+
+    .ui.action.input > .button:last-child,
+    .ui.action.input > .buttons:last-child > .button,
+    .ui.action.input > .dropdown:last-child {
+        border-radius: 0 0 0.33333333rem 0.33333333rem !important;
+    }
+}
