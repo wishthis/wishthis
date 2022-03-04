@@ -323,11 +323,9 @@ class Page
 
         if ($options->updateAvailable && $user && 100 === $user->power) {
             $pages['system']['items'][] = array(
-                array(
-                    'url'  => '/?page=update',
-                    'text' => 'Update',
-                    'icon' => 'upload',
-                ),
+                'url'  => '/?page=update',
+                'text' => 'Update',
+                'icon' => 'upload',
             );
         }
         ?>
