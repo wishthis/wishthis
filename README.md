@@ -9,10 +9,9 @@ Join the conversation on:
 * [Discord](https://discord.gg/WrUXnpNyza)
 * [Matrix](https://matrix.to/#/#wishthis:matrix.org)
 
-## Warning
-wishthis is a work in progress and may break at any time. Do not rely on it and make sure you have backups of your data.
+Status:
 
-Use at your own risk.
+[![Deploy to wishthis.online](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-stable.yml/badge.svg?branch=stable&event=push)](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-stable.yml) [![Deploy to dev.wishthis.online](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-develop.yml/badge.svg?branch=develop&event=push)](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-develop.yml)
 
 ## Requirements
 * PHP 8
