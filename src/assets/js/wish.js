@@ -110,12 +110,12 @@ $(function () {
      * Image
      */
     $(document).on('click', '.image.preview', function() {
-        var modalImage = $('.modal.image');
+        var modalImage = $('.modal.preview');
 
         modalImage
         .modal({
             onApprove: function(buttonApprove) {
-                var formImage = modalImage.find('form.image');
+                var formImage = modalImage.find('form.preview');
                 var formData  = new URLSearchParams(new FormData(formImage[0]));
 
                 formImage.addClass('loading');

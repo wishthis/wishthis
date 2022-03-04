@@ -134,15 +134,15 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
     </div>
 </main>
 
-<!-- Image -->
-<div class="ui small modal image">
+<!-- Preview -->
+<div class="ui small modal preview">
     <div class="header">
         Image
     </div>
     <div class="content">
         <p>Define a new URL to be used as a preview.</p>
 
-        <form class="ui form image">
+        <form class="ui form preview">
             <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
 
             <div class="field">
