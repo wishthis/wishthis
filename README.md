@@ -5,13 +5,11 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
 ![Wishlists](/src/assets/img/screenshots/wishlists.png "Wishlists")
 
-Join the conversation on:
-* [Discord](https://discord.gg/WrUXnpNyza)
-* [Matrix](https://matrix.to/#/#wishthis:matrix.org)
+## Join the conversation
 
-Status:
+[![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 
-[![Deploy to wishthis.online](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-stable.yml/badge.svg?branch=stable&event=push)](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-stable.yml) [![Deploy to dev.wishthis.online](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-develop.yml/badge.svg?branch=develop&event=push)](https://github.com/grandeljay/wishthis/actions/workflows/ftp-deploy-develop.yml)
+[![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
 ## Requirements
 * PHP 8
