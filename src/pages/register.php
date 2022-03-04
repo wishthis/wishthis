@@ -55,6 +55,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     }
 
     if ($isHuman) {
+        $userRegistered = false;
+
         if (isset($_GET['password-reset'], $_GET['token'])) {
             /**
              * Password reset
@@ -100,6 +102,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     100
                                 )
                 ;');
+                $userRegistered = true;
             } else {
                 if (in_array($_POST['email'], $emails)) {
                     $page->messages[] = Page::error(
@@ -116,10 +119,32 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                         "' . sha1($_POST['password']) . '"
                                     )
                     ;');
+                    $userRegistered = true;
 
                     $page->messages[] = Page::success('Your account was successfully created.', 'Success');
                 }
             }
+        }
+
+        /**
+         * Insert default wishlist
+         */
+        if ($userRegistered) {
+            $userID       = $database->lastInsertID();
+            $wishlistName = 'My hopes and dreams';
+
+            $database
+            ->query('INSERT INTO `wishlists`
+                    (
+                        `user`,
+                        `name`,
+                        `hash`
+                    ) VALUES (
+                        ' . $userID . ',
+                        "' . $wishlistName . '",
+                        "' . sha1(time() . $userID . $wishlistName) . '"
+                    )
+            ;');
         }
     } else {
         $page->messages[] = Page::error(
