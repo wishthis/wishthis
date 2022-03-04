@@ -18,7 +18,7 @@ $page = new page(__FILE__, $pageTitle);
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $users  = $database->query('SELECT * FROM `users`;')->fetchAll();
     $emails = array_map(
-        function($user) {
+        function ($user) {
             return $user['email'];
         },
         $users
@@ -47,7 +47,11 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     }
 
     if (in_array($planet, $not_planets)) {
-        $page->messages[] = Page::warning('<strong>' . $planetName . '</strong> is not a planet but I\'ll let it slide, since only a human would make this kind of mistake.', 'Invalid planet');
+        $page->messages[] = Page::warning(
+            '<strong>' . $planetName . '</strong>
+            is not a planetbut I\'ll let it slide, since only a human would make this kind of mistake.',
+            'Invalid planet'
+        );
     }
 
     if ($isHuman) {
@@ -70,7 +74,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     `password_reset_valid_until` = NULL
                               WHERE `id`                         = ' . $user['id'] . ';');
 
-                    $page->messages[] = Page::success('Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.', 'Success');
+                    $page->messages[] = Page::success(
+                        'Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.',
+                        'Success'
+                    );
                 } else {
                     $page->messages[] = Page::error('This link has expired.', 'Failure');
                 }
@@ -95,7 +102,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 ;');
             } else {
                 if (in_array($_POST['email'], $emails)) {
-                    $page->messages[] = Page::error('An account with this email address already exists.', 'Invalid email address');
+                    $page->messages[] = Page::error(
+                        'An account with this email address already exists.',
+                        'Invalid email address'
+                    );
                 } else {
                     $database->query('INSERT INTO `users`
                                     (
@@ -112,7 +122,14 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             }
         }
     } else {
-        $page->messages[] = Page::error('<strong>' . $planetName . '</strong> is not a planet in our solar system. Read this for more information: <a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">Solar system planets: Order of the 8 (or 9) planets</a>', 'Invalid planet');
+        $page->messages[] = Page::error(
+            '<strong>' . $planetName . '</strong>
+            is not a planet in our solar system. Read this for more information:
+            <a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">
+                Solar system planets: Order of the 8 (or 9) planets
+            </a>',
+            'Invalid planet'
+        );
     }
 }
 
