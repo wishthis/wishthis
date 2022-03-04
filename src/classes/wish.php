@@ -138,22 +138,21 @@ class Wish
                 <?php } ?>
 
                 <?php if ($userIsCurrent) { ?>
-                    <div class="ui menu">
-                        <div class="ui small fluid floating dropdown labeled icon button">
-                            <i class="cog icon"></i>
-                            Options
+                    <div class="ui small labeled icon top left pointing dropdown button options">
+                        <i class="cog icon"></i>
+                        <span class="text">Options</span>
+                        <div class="menu">
 
-                            <div class="bottom menu options">
-                                <a class="item" href="/?page=wish&id=<?= $this->id ?>">
-                                    <i class="pen icon"></i>
-                                    Edit
-                                </a>
+                            <a class="item" href="/?page=wish&id=<?= $this->id ?>">
+                                <i class="pen icon"></i>
+                                Edit
+                            </a>
 
-                                <a class="item delete">
-                                    <i class="trash icon"></i>
-                                    Delete
-                                </a>
+                            <div class="item wish-delete">
+                                <i class="trash icon"></i>
+                                Delete
                             </div>
+
                         </div>
                     </div>
                 <?php } ?>

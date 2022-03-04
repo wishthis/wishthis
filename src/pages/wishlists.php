@@ -47,14 +47,24 @@ $page->navigation();
                         Share
                     </a>
 
-                    <form class="ui form wishlist-delete" method="post" style="display: inline-block;">
-                        <input type="hidden" name="wishlist_delete_id" />
+                    <div class="ui small labeled icon top left pointing dropdown button options">
+                        <i class="cog icon"></i>
+                        <span class="text">Options</span>
+                        <div class="menu">
 
-                        <button class="ui fluid small labeled red icon button disabled" type="submit">
-                            <i class="trash icon"></i>
-                            Delete
-                        </button>
-                    </form>
+                            <div class="item disabled">
+                                <i class="pen icon"></i>
+                                Rename
+                            </div>
+
+                            <div class="item wishlist-delete disabled">
+                                <i class="trash icon"></i>
+                                Delete
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

@@ -167,21 +167,6 @@ img {
     flex: 1 1 auto;
 }
 
-.ui.card .ui.menu {
-    flex: 1 1 auto;
-
-    margin: 0;
-    border: none;
-    min-height: auto;
-
-    box-shadow: none;
-}
-.ui.card .ui.menu .ui.button {
-    margin: 0;
-
-    text-align: center;
-}
-
 /**
  * Label
  */
@@ -269,4 +254,15 @@ p .ui.horizontal.label {
     .ui.action.input > .dropdown:last-child {
         border-radius: 0 0 0.33333333rem 0.33333333rem !important;
     }
+}
+
+/**
+ * Options
+ */
+.ui.dropdown.options {
+    text-align: center;
+}
+
+.ui.dropdown .menu > a.item:hover {
+	color: rgba(0,0,0,.95);
 }

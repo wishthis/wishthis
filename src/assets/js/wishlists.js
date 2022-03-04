@@ -24,8 +24,6 @@ $(function () {
                         element.dropdown('set selected', wishlists[0].value);
                     }
                 }
-
-                $('.ui.dropdown').dropdown();
             }
         });
     }
@@ -44,8 +42,6 @@ $(function () {
         progress.progress('reset');
         progress.addClass('indeterminate');
 
-        $('[name="wishlist_delete_id"]').val(wishlistValue);
-
         if (wishlistValue) {
             $_GET.wishlist = wishlistValue;
 
@@ -53,7 +49,7 @@ $(function () {
 
             $('.button.wishlist-wish-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
-            $('.wishlist-delete button').removeClass('disabled');
+            $('.wishlist-delete').removeClass('disabled');
 
             /** Update URL */
             urlParams.set('wishlist', wishlistValue);
@@ -119,6 +115,16 @@ $(function () {
             },
             0
         );
+
+        $('.ui.dropdown.options').dropdown({
+            onChange: function(value, text, choice) {
+                var dropdownOptions = $(this);
+
+                setTimeout(function() {
+                    dropdownOptions.dropdown('restore defaults', true);
+                }, 0);
+            }
+        });
     });
 
     function generateCacheCard(card) {
@@ -160,10 +166,8 @@ $(function () {
     /**
      * Delete Wishlist
      */
-    $(document).on('submit', '.wishlist-delete', function (event) {
-        event.preventDefault();
-
-        var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
+    $(document).on('click', '.wishlist-delete', function () {
+        var wishlistValue   = $('.ui.dropdown.wishlists').dropdown('get value');
 
         if (wishlistValue) {
             var modalDefault = $('.ui.modal.default');
@@ -224,7 +228,7 @@ $(function () {
     /**
      * Delete Wish
      */
-    $(document).on('click', '.menu.options .item.delete', function () {
+    $(document).on('click', '.wish-delete', function () {
         var buttonDelete = $(this);
         var card         = buttonDelete.closest('.ui.card');
         var column       = card.closest('.column');
