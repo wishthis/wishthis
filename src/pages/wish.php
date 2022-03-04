@@ -70,17 +70,19 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                         <div class="column">
                             <div class="ui header">Options</div>
 
-                            <a class="ui labeled icon button" href="<?= $wish->url ?>" target="_blank">
-                                <i class="external icon"></i>
-                                Visit
-                            </a>
+                            <div class="flex">
+                                <a class="ui labeled icon button" href="<?= $wish->url ?>" target="_blank">
+                                    <i class="external icon"></i>
+                                    Visit
+                                </a>
 
-                            <button class="ui labeled icon button autofill"
-                                    type="button"
-                            >
-                                <i class="redo icon"></i>
-                                Auto-fill
-                            </button>
+                                <button class="ui labeled icon button autofill"
+                                        type="button"
+                                >
+                                    <i class="redo icon"></i>
+                                    Auto-fill
+                                </button>
+                            </div>
                         </div>
                     </div>
 

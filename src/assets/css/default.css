@@ -65,7 +65,7 @@ img {
 }
 
 /** Image */
-.ui.card > .image > img.preview{
+.ui.card > .image > img.preview {
     height: var(--wishPreviewHeight);
     object-fit: cover;
     object-position: 50%;

@@ -1,5 +1,5 @@
 .image.preview {
-    height: var(--wishPreviewHeight);
+    height: var(--wishPreviewHeight) !important;
 
     object-fit: cover;
     object-position: 50%;
