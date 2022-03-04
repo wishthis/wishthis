@@ -185,8 +185,12 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
     </div>
     <div class="content">
         <div class="description">
-            <p>The URL you have entered does not seem quite right. Would you like to update it with the one I found?</p>
-            <p class="provider">According to <strong class="providerName">Unknown</strong>, this is the canonical (correct) URL.</p>
+            <p>
+                The URL you have entered does not seem quite right. Would you like to update it with the one I found?
+            </p>
+            <p class="provider">
+                According to <strong class="providerName">Unknown</strong>, this is the canonical (correct) URL.
+            </p>
 
             <div class="ui form urls">
                 <div class="field">
