@@ -137,8 +137,8 @@ $page->navigation();
                             <div class="field">
                                 <label>Email</label>
 
-                                <div class="ui left icon input<?= $_GET['password-reset'] ? ' disabled' : '' ?>">
-                                    <?php if ($_GET['password-reset']) { ?>
+                                <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
+                                    <?php if (isset($_GET['password-reset'])) { ?>
                                         <input type="email"
                                                name="email"
                                                placeholder="john.doe@domain.tld"
