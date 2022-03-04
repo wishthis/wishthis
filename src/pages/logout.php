@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Logout');
+$page = new Page(__FILE__, 'Logout');
 
 if (PHP_SESSION_ACTIVE === session_status()) {
     session_destroy();

@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Home');
+$page = new Page(__FILE__, 'Home');
 $page->header();
 $page->bodyStart();
 $page->navigation();

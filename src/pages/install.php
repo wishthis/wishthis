@@ -13,7 +13,7 @@ if ($options && $options->getOption('isInstalled')) {
     die();
 }
 
-$page = new page(__FILE__, 'Install');
+$page = new Page(__FILE__, 'Install');
 $page->header();
 $page->bodyStart();
 

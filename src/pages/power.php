@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new page(__FILE__, 'Insufficient power');
+$page = new Page(__FILE__, 'Insufficient power');
 $page->header();
 $page->bodyStart();
 $page->navigation();

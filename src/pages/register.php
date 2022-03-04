@@ -13,7 +13,7 @@ $passwordReset = isset($_GET['password-reset'], $_GET['token']);
 $pageTitle    = $passwordReset ? 'Reset password' : 'Register';
 $buttonSubmit = $passwordReset ? 'Reset'          : 'Register';
 
-$page = new page(__FILE__, $pageTitle);
+$page = new Page(__FILE__, $pageTitle);
 
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $users  = $database->query('SELECT * FROM `users`;')->fetchAll();

@@ -19,7 +19,7 @@ if (!$wishlist->exists) {
     die();
 }
 
-$page = new page(__FILE__, $wishlist->data['name']);
+$page = new Page(__FILE__, $wishlist->data['name']);
 $page->header();
 $page->bodyStart();
 $page->navigation();
