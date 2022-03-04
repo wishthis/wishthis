@@ -354,7 +354,7 @@ class Page
         </div>
 
         <div class="pusher">
-            <div class="ui attached menu desktop">
+            <div class="ui attached large menu desktop">
                 <div class="ui container">
                     <a class="item home" href="/?page=home">
                         <img src="/src/assets/img/logo.svg" />
