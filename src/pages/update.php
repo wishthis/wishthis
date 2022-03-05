@@ -88,6 +88,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
     /** Update version */
     $options->setOption('version', $version);
+    $options->setOption('updateAvailable', false);
 
     header('Location: /?page=home');
     die();

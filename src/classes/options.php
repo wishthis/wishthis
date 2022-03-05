@@ -12,8 +12,6 @@ namespace wishthis;
 
 class Options
 {
-    public bool $updateAvailable = false;
-
     public string $version;
 
     public function __construct(private Database $database)

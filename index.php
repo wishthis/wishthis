@@ -95,7 +95,7 @@ if ($options && !isset($_POST['install'])) {
             $version = str_replace('v', '', $tag);
 
             if (-1 === version_compare($options->version, $version)) {
-                $options->updateAvailable = true;
+                $options->setOption('updateAvailable', true);
             }
         } catch (\Github\Exception\RuntimeException $th) {
             echo wishthis\Page::warning($th->getMessage());

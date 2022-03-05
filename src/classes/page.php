@@ -321,7 +321,7 @@ class Page
 
         global $options;
 
-        if ($options->updateAvailable && $user && 100 === $user->power) {
+        if ($options->getOption('updateAvailable') && $user && 100 === $user->power) {
             $pages['system']['items'][] = array(
                 'url'  => '/?page=update',
                 'text' => 'Update',
