@@ -65,6 +65,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
         break;
 
+    case 'PUT':
+        parse_str(file_get_contents("php://input"), $_PUT);
+
+        $database
+        ->query('UPDATE `wishlists`
+                    SET `name` = "' . $_PUT['wishlist_title'] . '"
+                  WHERE `id`   = ' . $_PUT['wishlist_id'] . '
+        ;');
+
+        break;
+
     case 'DELETE':
         parse_str(file_get_contents("php://input"), $_DELETE);
 

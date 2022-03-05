@@ -52,7 +52,7 @@ $page->navigation();
                         <span class="text">Options</span>
                         <div class="menu">
 
-                            <div class="item disabled">
+                            <div class="item wishlist-rename disabled">
                                 <i class="pen icon"></i>
                                 Rename
                             </div>
@@ -129,6 +129,33 @@ $page->navigation();
             Create
         </div>
         <div class="ui deny button cancel">
+            Cancel
+        </div>
+    </div>
+</div>
+
+<!-- Wishlist: Rename -->
+<div class="ui tiny modal wishlist-rename">
+    <div class="header">
+        Rename wishlist
+    </div>
+    <div class="content">
+        <p>How would you like to name this wishlist?</p>
+
+        <form class="ui form wishlist-rename">
+            <input type="hidden" name="wishlist_id" />
+
+            <div class="field">
+                <label>Title</label>
+                <input type="text" name="wishlist_title" maxlength="128" />
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui approve primary button">
+            Rename
+        </div>
+        <div class="ui deny button">
             Cancel
         </div>
     </div>

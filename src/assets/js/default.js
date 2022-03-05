@@ -136,6 +136,12 @@ function handleFetchResponse(response) {
     }
 }
 
+function handleFetchCatch(error) {
+    console.log(error);
+
+    return error;
+}
+
 function showError(error) {
     error = error.replace('<br />', '');
 

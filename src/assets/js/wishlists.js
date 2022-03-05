@@ -49,6 +49,7 @@ $(function () {
 
             $('.button.wishlist-wish-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
+            $('.wishlist-rename').removeClass('disabled');
             $('.wishlist-delete').removeClass('disabled');
 
             /** Update URL */
@@ -66,7 +67,8 @@ $(function () {
         } else {
             $('.button.wishlist-wish-add').addClass('disabled');
             $('.button.wishlist-share').addClass('disabled');
-            $('.wishlist-delete button').addClass('disabled');
+            $('.wishlist-rename').addClass('disabled');
+            $('.wishlist-delete').addClass('disabled');
         }
 
         /**
@@ -150,9 +152,7 @@ $(function () {
         .then(function(response) {
             card.replaceWith(response.html);
         })
-        .catch(function(error) {
-            console.log(error);
-        })
+        .catch(handleFetchCatch)
         .finally(function() {
             card.attr('data-cache', 'true');
             card.removeClass('loading');
@@ -164,10 +164,58 @@ $(function () {
     }
 
     /**
+     * Rename Wishlist
+     */
+    $(document).on('click', '.options .wishlist-rename', function() {
+        var modalRename   = $('.modal.wishlist-rename');
+        var formRename    = modalRename.find('.form.wishlist-rename');
+        var inputID       = modalRename.find('[name="wishlist_id"]');
+        var inputTitle    = modalRename.find('[name="wishlist_title"]');
+
+        var wishlistID    = $('.ui.dropdown.wishlists').dropdown('get value');
+        var wishlistTitle = $('.ui.dropdown.wishlists').dropdown('get text');
+
+        inputID.val(wishlistID);
+
+        inputTitle.val(wishlistTitle);
+        inputTitle.attr('placeholder', wishlistTitle);
+
+        modalRename
+        .modal({
+            onApprove: function(buttonApprove) {
+                buttonApprove.addClass('loading disabled');
+
+                var formData = new URLSearchParams(new FormData(formRename[0]));
+
+                fetch('/src/api/wishlists.php', {
+                    method: 'PUT',
+                    body:   formData
+                })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    wishlistsRefresh();
+
+                    modalRename.modal('hide');
+
+                    $('body').toast({ message: 'Wishlist successfully renamed.' });
+                })
+                .catch(handleFetchCatch)
+                .finally(function() {
+                    buttonApprove.removeClass('loading disabled');
+                });
+
+                return false;
+            }
+        })
+        .modal('show');
+    });
+
+    /**
      * Delete Wishlist
      */
-    $(document).on('click', '.wishlist-delete', function () {
-        var wishlistValue   = $('.ui.dropdown.wishlists').dropdown('get value');
+    $(document).on('click', '.options .wishlist-delete', function () {
+        var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
 
         if (wishlistValue) {
             var modalDefault = $('.ui.modal.default');
@@ -316,9 +364,7 @@ $(function () {
 
                     buttonAdd.removeClass('loading');
                 })
-                .catch(function(error) {
-                    console.log(error);
-                });
+                .catch(handleFetchCatch);
 
                 return false;
             }

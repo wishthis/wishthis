@@ -101,9 +101,7 @@ $(function () {
                         formWish.removeClass('loading');
                     }
                 })
-                .catch(function(error) {
-                    console.log(error);
-                });
+                .catch(handleFetchCatch);
             }
         })
         .modal('show');
