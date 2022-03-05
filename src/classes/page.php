@@ -474,7 +474,7 @@ class Page
     public function bodyEnd(): void
     {
         ?>
-        </div><!-- Pusher -->
+        </div><!-- .pusher -->
 
         </body>
         </html>
