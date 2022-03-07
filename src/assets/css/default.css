@@ -181,7 +181,7 @@ p .ui.horizontal.label {
  */
 .flex {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
 }
 @media (max-width: 767px) {
     .flex {
