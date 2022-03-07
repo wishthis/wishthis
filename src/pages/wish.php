@@ -22,6 +22,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
               WHERE `id`          = ' . trim($_POST['wish_id']) . ';');
 
     $wish             = new Wish($_GET['id'], false);
+    $page             = new Page(__FILE__, $wish->title);
     $page->messages[] = Page::success('Wish successfully updated.', 'Success');
 }
 
