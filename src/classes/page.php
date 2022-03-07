@@ -260,17 +260,6 @@ class Page
         $user = new User();
 
         $pages = array(
-            'wishlists' => array(
-                'text'      => 'Wishlists',
-                'alignment' => 'left',
-                'items'     => array(
-                    array(
-                        'url'  => '/?page=wishlists',
-                        'text' => 'My lists',
-                        'icon' => 'list',
-                    )
-                ),
-            ),
             'system'    => array(
                 'text'      => 'System',
                 'icon'      => 'wrench',
@@ -284,6 +273,20 @@ class Page
                 'items'     => array(),
             ),
         );
+
+        if ($user && $user->isLoggedIn()) {
+            $pages['wishlists'] = array(
+                'text'      => 'Wishlists',
+                'alignment' => 'left',
+                'items'     => array(
+                    array(
+                        'url'  => '/?page=wishlists',
+                        'text' => 'My lists',
+                        'icon' => 'list',
+                    )
+                ),
+            );
+        }
 
         if ($user && $user->isLoggedIn()) {
             if (100 === $user->power) {
