@@ -222,7 +222,7 @@ class Page
             $scriptFomantic = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
             ?>
-            <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>'"></script>
+            <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>"></script>
             <?php
 
             /** Default */
