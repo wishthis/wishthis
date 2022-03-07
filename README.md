@@ -1,6 +1,6 @@
 # wishthis
 
-wishthis is a simple, intuitive and modern platform to create, manage and view
+wishthis is a simple, intuitive and modern wishlist platform to create, manage and view
 your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
 ![Wishlists](/src/assets/img/screenshots/wishlists.png "Wishlists")

@@ -21,7 +21,7 @@ $page->navigation();
         <div class="ui segment">
             <h2 class="ui header">Welcome to wishthis</h2>
             <p>
-                wishthis is a simple, intuitive and modern platform to create,
+                wishthis is a simple, intuitive and modern wishlist platform to create,
                 manage and view your wishes for any kind of occasion.
             </p>
 
