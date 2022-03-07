@@ -20,7 +20,7 @@ class URL
         $pretty_url = '';
 
         foreach ($htaccess as $index => $line) {
-            $parts = explode(chr(32), $line);
+            $parts = explode(chr(32), trim($line));
 
             if (count($parts) >= 2) {
                 switch ($parts[0]) {
