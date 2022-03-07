@@ -302,15 +302,27 @@ class Page
                 'icon' => 'sign out alternate',
             );
         } else {
-            $pages['account']['items'][] = array(
-                'url'  => '/?page=login',
-                'text' => 'Login',
-                'icon' => 'sign in alternate',
+            $pages['login'] = array(
+                'text'      => 'Login',
+                'alignment' => 'right',
+                'items'     => array(
+                    array(
+                        'url'  => '/?page=login',
+                        'text' => 'Login',
+                        'icon' => 'sign in alternate',
+                    )
+                ),
             );
-            $pages['account']['items'][] = array(
-                'url'  => '/?page=register',
-                'text' => 'Register',
-                'icon' => 'user plus alternate',
+            $pages['register'] = array(
+                'text'      => 'Register',
+                'alignment' => 'right',
+                'items'     => array(
+                    array(
+                        'url'  => '/?page=register',
+                        'text' => 'Register',
+                        'icon' => 'user plus alternate',
+                    )
+                ),
             );
         }
 
