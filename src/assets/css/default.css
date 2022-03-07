@@ -113,7 +113,7 @@ img {
     overflow: hidden;
 }
 .ui.card > .content > .description {
-    max-height: calc(3em * var(--lineHeight));
+    max-height: calc(6em * var(--lineHeight));
     overflow: hidden;
 }
 @media (hover: hover) {
