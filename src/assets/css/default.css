@@ -156,10 +156,11 @@ img {
         opacity: 0;
         margin-bottom: 0;
     }
-}
-.ui.card:hover > .extra.buttons,
-.ui.cards > .card:hover > .extra.buttons {
-    opacity: 1;
+
+    .ui.card:hover > .extra.buttons,
+    .ui.cards > .card:hover > .extra.buttons {
+        opacity: 1;
+    }
 }
 
 .ui.card > .extra.buttons > .button,
