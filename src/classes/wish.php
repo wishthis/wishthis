@@ -159,7 +159,9 @@ class Wish
                 <?php } ?>
 
                 <?php if ($this->url) { ?>
-                    <a class="ui small labeled icon button<?= $userIsCurrent ? ' primary' : '' ?>" href="<?= $this->url ?>" target="_blank">
+                    <a class="ui small labeled icon button<?= $userIsCurrent ? ' primary' : '' ?>"
+                       href="<?= $this->url ?>" target="_blank"
+                    >
                         <i class="external icon"></i>
                         Visit
                     </a>
