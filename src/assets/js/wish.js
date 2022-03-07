@@ -11,10 +11,12 @@ $(function () {
         var modalAutoFill = $('.modal.auto-fill');
         var modalValidate = $('.modal.validate');
 
-        var formWish = $('.form.wish');
+        var formWish     = $('.form.wish');
+        var imagePreview = $('img.preview');
 
         var inputTitle       = $('[name="wish_title"]');
         var inputDescription = $('[name="wish_description"]');
+        var inputImage       = $('[name="wish_image"]');
         var inputURL         = $('[name="wish_url"]');
 
         modalAutoFill
@@ -51,6 +53,14 @@ $(function () {
                      */
                      if (info.description) {
                         inputDescription.val(info.description);
+                    }
+
+                    /**
+                     * Image
+                     */
+                    if (info.image) {
+                        inputImage.val(info.image);
+                        imagePreview.attr('src', info.image);
                     }
 
                     /**
@@ -119,29 +129,16 @@ $(function () {
 
         modalImage
         .modal({
-            onApprove: function(buttonApprove) {
-                var formImage = modalImage.find('form.preview');
-                var formData  = new URLSearchParams(new FormData(formImage[0]));
+            onApprove: function() {
+                var newImageURL = modalImage.find('[name="wish_image"]').val();
 
-                formImage.addClass('loading');
+                $('img.preview').attr('src', newImageURL);
+                $('.form.wish [name="wish_image"]').val(newImageURL);
 
-                fetch('/src/api/wishes.php', {
-                    method: 'PUT',
-                    body:   formData
-                })
-                .then(handleFetchError)
-                .then(handleFetchResponse)
-                .then(function(response) {
-                    var elementImage = $('.form.wish img.preview');
-                    elementImage.attr('src', response.wish_url);
-
-                    formImage.removeClass('loading');
-                    modalImage.modal('hide');
-
-                    $('body').toast({ message: 'Wish image successfully updated.' });
+                $('body').toast({
+                    class:   'primary',
+                    message: 'Don\'t forget to save your changes.'
                 });
-
-                return false;
             }
         })
         .modal('show');

@@ -16,7 +16,8 @@ $page = new Page(__FILE__, $wish->title);
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $wish_id          = $_POST['wish_id'];
     $wish_title       = trim($_POST['wish_title']);
-    $wish_description = trim($_POST['wish_description']);
+    $wish_description = $_POST['wish_description'] ?: 'NULL';
+    $wish_image       = trim($_POST['wish_image']);
     $wish_url         = trim($_POST['wish_url']);
     $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
 
@@ -24,6 +25,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     ->query('UPDATE `wishes`
                 SET `title`       = "' . $wish_title . '",
                     `description` = "' . $wish_description . '",
+                    `image`       = "' . $wish_image . '",
                     `url`         = "' . $wish_url . '",
                     `priority`    = ' . $wish_priority . '
               WHERE `id`          = ' . $wish_id . ';');
@@ -96,7 +98,8 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
         <div class="ui segment">
             <form class="ui form wish" method="POST">
-                <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>">
+                <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
+                <input type="hidden" name="wish_image" />
 
                 <div class="ui two column grid">
 
@@ -183,14 +186,12 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
     <div class="content">
         <p>Define a new URL to be used as a preview.</p>
 
-        <form class="ui form preview">
-            <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
-
+        <div class="ui form preview">
             <div class="field">
                 <label>URL</label>
-                <input class="current" type="url" name="wish_url" />
+                <input class="current" type="url" name="wish_image" />
             </div>
-        </form>
+        </div>
     </div>
     <div class="actions">
         <div class="ui primary approve button">

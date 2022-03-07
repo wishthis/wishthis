@@ -98,16 +98,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ;');
 
             $response['success'] = true;
-        } elseif (isset($_PUT['wish_id'], $_PUT['wish_url'])) {
-            /**
-             * Update Wish Image
-             */
-            $database
-            ->query('UPDATE `wishes`
-                        SET `image` = "' . $_PUT['wish_url'] . '"
-                      WHERE `id`    = ' . $_PUT['wish_id'] . ';');
-
-            $response['wish_url'] = $_PUT['wish_url'];
         }
         break;
 

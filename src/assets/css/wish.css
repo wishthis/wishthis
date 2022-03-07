@@ -4,5 +4,6 @@
     object-fit: cover;
     object-position: 50%;
 
+    background-color: #fff;
     cursor: pointer;
 }
