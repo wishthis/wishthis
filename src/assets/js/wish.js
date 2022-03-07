@@ -147,4 +147,9 @@ $(function () {
         .modal('show');
     });
 
+    /**
+     * Priority
+     */
+    $('.dropdown.priority').dropdown();
+
 });

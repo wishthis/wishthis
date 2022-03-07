@@ -14,12 +14,19 @@ $wish = new Wish($_GET['id'], false);
 $page = new Page(__FILE__, $wish->title);
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
+    $wish_id          = $_POST['wish_id'];
+    $wish_title       = trim($_POST['wish_title']);
+    $wish_description = trim($_POST['wish_description']);
+    $wish_url         = trim($_POST['wish_url']);
+    $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
+
     $database
     ->query('UPDATE `wishes`
-                SET `title`       = "' . trim($_POST['wish_title']) . '",
-                    `description` = "' . trim($_POST['wish_description']) . '",
-                    `url`         = "' . trim($_POST['wish_url']) . '"
-              WHERE `id`          = ' . trim($_POST['wish_id']) . ';');
+                SET `title`       = "' . $wish_title . '",
+                    `description` = "' . $wish_description . '",
+                    `url`         = "' . $wish_url . '",
+                    `priority`    = ' . $wish_priority . '
+              WHERE `id`          = ' . $wish_id . ';');
 
     $wish             = new Wish($_GET['id'], false);
     $page             = new Page(__FILE__, $wish->title);
@@ -57,6 +64,36 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
         <?= $page->messages() ?>
 
+        <div class="ui grid">
+            <div class="row">
+                <div class="sixteen wide column">
+
+                    <?php if ($wish->image) { ?>
+                        <img class="ui fluid rounded image preview" src="<?= $wish->image ?>" />
+                    <?php } ?>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="sixteen wide column">
+
+                    <a class="ui labeled icon button" href="<?= $wish->url ?>" target="_blank">
+                        <i class="external icon"></i>
+                        Visit
+                    </a>
+
+                    <button class="ui labeled icon button auto-fill disabled"
+                            type="button"
+                    >
+                        <i class="redo icon"></i>
+                        Auto-fill
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
         <div class="ui segment">
             <form class="ui form wish" method="POST">
                 <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>">
@@ -64,32 +101,6 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                 <div class="ui two column grid">
 
                     <div class="stackable row">
-                        <div class="column">
-                            <?php if ($wish->image) { ?>
-                                <img class="ui fluid rounded image preview" src="<?= $wish->image ?>" />
-                            <?php } ?>
-                        </div>
-
-                        <div class="column">
-                            <div class="ui header">Options</div>
-
-                            <div class="flex">
-                                <a class="ui labeled icon button" href="<?= $wish->url ?>" target="_blank">
-                                    <i class="external icon"></i>
-                                    Visit
-                                </a>
-
-                                <button class="ui labeled icon button auto-fill disabled"
-                                        type="button"
-                                >
-                                    <i class="redo icon"></i>
-                                    Auto-fill
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="one column row">
                         <div class="column">
 
                             <div class="field">
@@ -107,10 +118,15 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
                             <div class="field">
                                 <label>Description</label>
+
                                 <textarea name="wish_description"
                                           placeholder="<?= $wish->description ?>"
                                 ><?= $wish->description ?></textarea>
                             </div>
+
+                        </div>
+
+                        <div class="column">
 
                             <div class="field">
                                 <label>URL</label>
@@ -122,6 +138,28 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                                        maxlength="255"
                                 />
                             </div>
+
+                            <div class="field">
+                                <label>Priority</label>
+
+                                <select class="ui selection clearable dropdown priority"
+                                        name="wish_priority"
+                                >
+                                    <?php foreach (Wish::$priorities as $priority => $item) { ?>
+                                        <?php if ($wish->priority === $priority) { ?>
+                                            <option value="<?= $priority ?>" selected><?= $item['name'] ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?= $priority ?>"><?= $item['name'] ?></option>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="stackable row">
+                        <div class="sixteen wide column">
 
                             <input class="ui primary button" type="submit" value="Save" />
                             <input class="ui button" type="reset" value="Reset" />

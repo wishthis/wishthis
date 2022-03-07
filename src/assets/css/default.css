@@ -267,3 +267,10 @@ p .ui.horizontal.label {
 .ui.dropdown .menu > a.item:hover {
 	color: rgba(0,0,0,.95);
 }
+
+/**
+ * Ribbon
+ */
+.ui.ribbon.label {
+	z-index: 2;
+}

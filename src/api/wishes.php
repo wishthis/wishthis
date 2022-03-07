@@ -57,12 +57,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                 `wishlist`,
                                 `title`,
                                 `description`,
-                                `url`
+                                `url`,
+                                `priority`
                              ) VALUES ('
                                 . $_POST['wishlist_id'] . ',
                                 "' . trim($_POST['wish_title']) . '",
                                 "' . trim($_POST['wish_description']) . '",
-                                "' . trim($_POST['wish_url']) . '"
+                                "' . trim($_POST['wish_url']) . '",
+                                ' . trim($_POST['wish_priority']) . '
                              )
             ;');
 

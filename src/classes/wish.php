@@ -10,6 +10,27 @@ namespace wishthis;
 
 class Wish
 {
+    /**
+     * Static
+     */
+    public static array $priorities = array(
+        ''  => array(
+            'name'  => 'Default',
+            'color' => '',
+        ),
+        '1' => array(
+            'name'  => 'Nice to have',
+            'color' => 'black',
+        ),
+        '3' => array(
+            'name'  => 'Must have',
+            'color' => 'orange',
+        ),
+    );
+
+    /**
+     * Non-Static
+     */
     private EmbedCache $cache;
 
     public int $id;
@@ -18,6 +39,7 @@ class Wish
     public ?string $description;
     public ?string $image;
     public ?string $url;
+    public ?int $priority;
     public ?string $status;
 
     public \stdClass $info;
@@ -82,6 +104,12 @@ class Wish
 
         <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $exists ?>">
             <div class="image">
+                <?php if ($this->priority && isset(Wish::$priorities[$this->priority])) { ?>
+                    <div class="ui small <?= Wish::$priorities[$this->priority]['color'] ?> right ribbon label">
+                        <?= Wish::$priorities[$this->priority]['name'] ?>
+                    </div>
+                <?php } ?>
+
                 <?php if ($this->image) { ?>
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                 <?php } ?>
