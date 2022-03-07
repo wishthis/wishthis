@@ -32,36 +32,34 @@ $page->navigation();
                             <option value="">Loading your wishlists...</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="ui divider"></div>
+                    <div class="flex buttons">
+                        <a class="ui small labeled icon primary button wishlist-wish-add disabled">
+                            <i class="add icon"></i>
+                            Add a wish
+                        </a>
 
-                <div class="flex buttons">
-                    <a class="ui small labeled icon button wishlist-wish-add disabled">
-                        <i class="add icon"></i>
-                        Add a wish
-                    </a>
+                        <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
+                            <i class="share icon"></i>
+                            Share
+                        </a>
 
-                    <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
-                        <i class="share icon"></i>
-                        Share
-                    </a>
+                        <div class="ui small labeled icon top left pointing dropdown button options">
+                            <i class="cog icon"></i>
+                            <span class="text">Options</span>
+                            <div class="menu">
 
-                    <div class="ui small labeled icon top left pointing dropdown button options">
-                        <i class="cog icon"></i>
-                        <span class="text">Options</span>
-                        <div class="menu">
+                                <div class="item wishlist-rename disabled">
+                                    <i class="pen icon"></i>
+                                    Rename
+                                </div>
 
-                            <div class="item wishlist-rename disabled">
-                                <i class="pen icon"></i>
-                                Rename
+                                <div class="item wishlist-delete disabled">
+                                    <i class="trash icon"></i>
+                                    Delete
+                                </div>
+
                             </div>
-
-                            <div class="item wishlist-delete disabled">
-                                <i class="trash icon"></i>
-                                Delete
-                            </div>
-
                         </div>
                     </div>
 
