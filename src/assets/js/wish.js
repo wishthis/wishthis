@@ -96,7 +96,10 @@ $(function () {
                         })
                         .modal('show');
                     } else {
-                        $('body').toast({ message: 'Wish information updated.' });
+                        $('body').toast({
+                            class:   'primary',
+                            message: 'Don\'t forget to save your changes.'
+                        });
 
                         formWish.removeClass('loading');
                     }
