@@ -11,7 +11,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org/?label=Matrix&color=purple)](https://matrix.to/#/#wishthis:matrix.org)
 
 ## Requirements
-* PHP 8
+* PHP 8.1
 
 ## Installation
 1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server

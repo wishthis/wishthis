@@ -8,6 +8,16 @@ namespace wishthis;
 
 use wishthis\{User, URL};
 
+enum Navigation: int
+{
+    case Wishlists = 1;
+    case System    = 2;
+    case Settings  = 3;
+    case Account   = 4;
+    case Login     = 5;
+    case Register  = 6;
+}
+
 class Page
 {
     /**
@@ -260,14 +270,21 @@ class Page
     {
         $user = new User();
 
+        $wishlists = Navigation::Wishlists->value;
+        $system    = Navigation::System->value;
+        $settings  = Navigation::Settings->value;
+        $account   = Navigation::Account->value;
+        $login     = Navigation::Login->value;
+        $register  = Navigation::Register->value;
+
         $pages = array(
-            'system'    => array(
+            $system => array(
                 'text'      => 'System',
                 'icon'      => 'wrench',
                 'alignment' => 'right',
                 'items'     => array(),
             ),
-            'account'   => array(
+            $account => array(
                 'text'      => 'Account',
                 'icon'      => 'user circle',
                 'alignment' => 'right',
@@ -275,8 +292,8 @@ class Page
             ),
         );
 
-        if ($user && $user->isLoggedIn()) {
-            $pages['wishlists'] = array(
+        if ($user->isLoggedIn()) {
+            $pages[$wishlists] = array(
                 'text'      => 'Wishlists',
                 'alignment' => 'left',
                 'items'     => array(
@@ -289,21 +306,21 @@ class Page
             );
         }
 
-        if ($user && $user->isLoggedIn()) {
+        if ($user->isLoggedIn()) {
             if (100 === $user->power) {
-                $pages['account']['items'][] = array(
+                $pages[$account]['items'][] = array(
                     'url'  => '/?page=login-as',
                     'text' => 'Login as',
                     'icon' => 'sign out alternate',
                 );
             }
-            $pages['account']['items'][] = array(
+            $pages[$account]['items'][] = array(
                 'url'  => '/?page=logout',
                 'text' => 'Logout',
                 'icon' => 'sign out alternate',
             );
         } else {
-            $pages['login'] = array(
+            $pages[$login] = array(
                 'text'      => 'Login',
                 'alignment' => 'right',
                 'items'     => array(
@@ -314,7 +331,7 @@ class Page
                     )
                 ),
             );
-            $pages['register'] = array(
+            $pages[$register] = array(
                 'text'      => 'Register',
                 'alignment' => 'right',
                 'items'     => array(
@@ -327,23 +344,25 @@ class Page
             );
         }
 
+        global $options;
+
+        if ($options->getOption('updateAvailable') && $user && 100 === $user->power) {
+            $pages[$system]['items'][] = array(
+                'url'  => '/?page=update',
+                'text' => 'Update',
+                'icon' => 'upload',
+            );
+        }
+
         if (100 === $user->power) {
-            $pages['system']['items'][] = array(
+            $pages[$system]['items'][] = array(
                 'url'  => '/?page=settings',
                 'text' => 'Settings',
                 'icon' => 'cog',
             );
         }
 
-        global $options;
-
-        if ($options->getOption('updateAvailable') && $user && 100 === $user->power) {
-            $pages['system']['items'][] = array(
-                'url'  => '/?page=update',
-                'text' => 'Update',
-                'icon' => 'upload',
-            );
-        }
+        ksort($pages);
         ?>
 
         <div class="ui attached stackable vertical menu sidebar">
