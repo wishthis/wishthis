@@ -52,6 +52,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
+            $wishlist_id      = $_POST['wishlist_id'];
+            $wish_title       = trim($_POST['wish_title']);
+            $wish_description = $_POST['wish_description'] ?: 'NULL';
+            $wish_url         = trim($_POST['wish_url']);
+            $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
+
             $database->query('INSERT INTO `wishes`
                              (
                                 `wishlist`,
@@ -60,11 +66,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                 `url`,
                                 `priority`
                              ) VALUES ('
-                                . $_POST['wishlist_id'] . ',
-                                "' . trim($_POST['wish_title']) . '",
-                                "' . trim($_POST['wish_description']) . '",
-                                "' . trim($_POST['wish_url']) . '",
-                                ' . trim($_POST['wish_priority']) . '
+                                . $wishlist_id . ',
+                                "' . $wish_title . '",
+                                "' . $wish_description . '",
+                                "' . $wish_url . '",
+                                ' . $wish_priority . '
                              )
             ;');
 
