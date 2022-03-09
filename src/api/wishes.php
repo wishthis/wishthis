@@ -54,7 +54,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $wishlist_id      = $_POST['wishlist_id'];
             $wish_title       = trim($_POST['wish_title']);
-            $wish_description = $_POST['wish_description'] ?: 'NULL';
+            $wish_description = $_POST['wish_description'] ?: '';
             $wish_url         = trim($_POST['wish_url']);
             $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
 

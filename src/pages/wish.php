@@ -16,7 +16,7 @@ $page = new Page(__FILE__, $wish->title);
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $wish_id          = $_POST['wish_id'];
     $wish_title       = trim($_POST['wish_title']);
-    $wish_description = $_POST['wish_description'] ?: 'NULL';
+    $wish_description = $_POST['wish_description'] ?: '';
     $wish_image       = trim($_POST['wish_image']);
     $wish_url         = trim($_POST['wish_url']);
     $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
