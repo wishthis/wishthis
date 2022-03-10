@@ -99,7 +99,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         <div class="ui segment">
             <form class="ui form wish" method="POST">
                 <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
-                <input type="hidden" name="wish_image" />
+                <input type="hidden" name="wish_image" value="<?= $wish->image ?>" />
 
                 <div class="ui two column grid">
 
