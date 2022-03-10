@@ -23,7 +23,7 @@ class Wish
             'color' => 'black',
         ),
         '3' => array(
-            'name'  => 'Must have',
+            'name'  => 'Would love it',
             'color' => 'orange',
         ),
     );
