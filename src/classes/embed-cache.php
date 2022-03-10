@@ -81,7 +81,7 @@ class EmbedCache
                 $info_simplified->favicon       = (string) $info->favicon;
                 $info_simplified->feeds         = (array)  $info->feeds;
                 $info_simplified->icon          = (string) $info->icon;
-                $info_simplified->image         = $info->image ? (string) $info->image : $this->noImage;
+                $info_simplified->image         = $info->image ? (string) $info->image : null;
                 $info_simplified->keywords      = (array)  $info->keywords;
                 $info_simplified->language      = (string) $info->language;
                 $info_simplified->languages     = (array)  $info->languages;
