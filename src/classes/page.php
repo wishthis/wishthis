@@ -124,7 +124,11 @@ class Page
             'register',
             'install'
         );
-        if (!isset($_SESSION['user']) && isset($_GET['page']) && !in_array($_GET['page'], $disableRedirect)) {
+        if (
+               !isset($_SESSION['user'])
+            && isset($_GET['page'])
+            && !in_array($_GET['page'], $disableRedirect)
+        ) {
             header('Location: /?page=login');
             die();
         }

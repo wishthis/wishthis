@@ -54,7 +54,23 @@ if (
 /**
  * Session
  */
+$sessionLifetime = 2592000; // 1 Month
+
+session_set_cookie_params($sessionLifetime, '/');
 session_start();
+
+/** Refresh lifetime */
+$session = session_get_cookie_params();
+
+setcookie(
+    session_name(),
+    session_id(),
+    time() + $sessionLifetime,
+    $session['path'],
+    $session['domain'],
+    $session['secure'],
+    $session['httponly']
+);
 
 /**
  * API
