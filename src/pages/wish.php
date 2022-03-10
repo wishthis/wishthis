@@ -11,7 +11,7 @@ use wishthis\{Page, Wish};
 $userIsAuthenticated = false;
 
 $wish = new Wish($_GET['id'], false);
-$page = new Page(__FILE__, $wish->title);
+$page = new Page(__FILE__, $wish->getTitle());
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $wish_id          = $_POST['wish_id'];
@@ -31,7 +31,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
               WHERE `id`          = ' . $wish_id . ';');
 
     $wish             = new Wish($_GET['id'], false);
-    $page             = new Page(__FILE__, $wish->title);
+    $page             = new Page(__FILE__, $wish->getTitle());
     $page->messages[] = Page::success('Wish successfully updated.', 'Success');
 }
 

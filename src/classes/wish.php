@@ -212,4 +212,14 @@ class Wish
 
         return $html;
     }
+
+    public function getTitle(): string
+    {
+        $title = $this->title
+              ?: $this->description
+              ?: $this->url
+              ?: $this->id;
+
+        return $title;
+    }
 }
