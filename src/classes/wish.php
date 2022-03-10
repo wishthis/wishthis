@@ -19,12 +19,29 @@ class Wish
             'color' => '',
         ),
         '1' => array(
-            'name'  => 'Nice to have',
+            'name'  => 'Desirous',
             'color' => 'black',
         ),
+        '2' => array(
+            'name'  => 'Keen',
+            'color' => 'grey',
+        ),
         '3' => array(
-            'name'  => 'Would love it',
+            'name'  => 'Longing',
+            'color' => 'brown',
+        ),
+
+        '4' => array(
+            'name'  => 'Impatient',
+            'color' => 'yellow',
+        ),
+        '5' => array(
+            'name'  => 'Urgent',
             'color' => 'orange',
+        ),
+        '6' => array(
+            'name'  => 'Anxious',
+            'color' => 'red',
         ),
     );
 
