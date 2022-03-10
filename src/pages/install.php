@@ -111,9 +111,12 @@ switch ($step) {
         break;
 
     case 3:
+        $database->query('SET foreign_key_checks = 0;');
+
         /**
          * Users
          */
+        $database->query('DROP TABLE IF EXISTS `users`;');
         $database->query('CREATE TABLE `users` (
             `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
             `email`                      VARCHAR(64)  NOT NULL UNIQUE,
@@ -128,6 +131,7 @@ switch ($step) {
         /**
          * Wishlists
          */
+        $database->query('DROP TABLE IF EXISTS `wishlists`;');
         $database->query('CREATE TABLE `wishlists` (
             `id`   INT          PRIMARY KEY AUTO_INCREMENT,
             `user` INT          NOT NULL,
@@ -142,6 +146,7 @@ switch ($step) {
         /**
          * Wishes
          */
+        $database->query('DROP TABLE IF EXISTS `wishes`;');
         $database->query('CREATE TABLE `wishes` (
             `id`          INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `wishlist`    INT          NOT NULL,
@@ -149,7 +154,7 @@ switch ($step) {
             `description` TEXT         NULL DEFAULT NULL,
             `image`       VARCHAR(255) NULL DEFAULT NULL,
             `url`         VARCHAR(255) NULL DEFAULT NULL,
-            `priority`    TINEINT(1)   NULL DEFAULT NULL,
+            `priority`    TINYINT(1)   NULL DEFAULT NULL,
             `status`      VARCHAR(32)  NULL DEFAULT NULL,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
@@ -160,6 +165,7 @@ switch ($step) {
         /**
          * Options
          */
+        $database->query('DROP TABLE IF EXISTS `options`;');
         $database->query('CREATE TABLE `options` (
             `id`    INT          PRIMARY KEY AUTO_INCREMENT,
             `key`   VARCHAR(64)  NOT NULL UNIQUE,
@@ -171,6 +177,22 @@ switch ($step) {
             ("isInstalled", true),
             ("version", "' . VERSION . '")
         ;');
+
+        /**
+         * Sessions
+         */
+        $database->query('DROP TABLE IF EXISTS `sessions`;');
+        $database->query('CREATE TABLE `sessions` (
+            `id`      INT         PRIMARY KEY AUTO_INCREMENT,
+            `user`    INT         NOT NULL,
+            `session` VARCHAR(32) NOT NULL,
+            FOREIGN KEY (`user`)
+                REFERENCES `users` (`id`)
+                ON DELETE CASCADE
+        );');
+        $database->query('CREATE INDEX `idx_user` ON `sessions` (`user`);');
+
+        $database->query('SET foreign_key_checks = 1;');
         ?>
         <main>
             <div class="ui hidden divider"></div>

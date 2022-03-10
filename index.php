@@ -66,7 +66,7 @@ if (isset($api)) {
 /**
  * Install
  */
-if (!$options) {
+if (!$options || !$options->getOption('isInstalled')) {
     $page = 'install';
 }
 
@@ -84,7 +84,7 @@ if ($options) {
  */
 use Github\Client;
 
-if ($options && !isset($_POST['install'])) {
+if ($options && $options->getOption('isInstalled')) {
     $updateLastChecked = $options->getOption('updateLastChecked');
 
     if (!$updateLastChecked || time() - $updateLastChecked >= 86400) {
