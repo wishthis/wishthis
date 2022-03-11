@@ -144,7 +144,9 @@ class Page
         /**
          * Redirect
          */
-        if (isset($options) && !$options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
+        global $options;
+
+        if ($options && $options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
             $url         = new URL($_SERVER['QUERY_STRING']);
             $redirect_to = $url->getPretty();
 
