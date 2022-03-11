@@ -144,7 +144,7 @@ class Page
         /**
          * Redirect
          */
-        if (!isset($_POST['install']) && isset($_SERVER['QUERY_STRING'])) {
+        if (isset($options) && !$options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
             $url         = new URL($_SERVER['QUERY_STRING']);
             $redirect_to = $url->getPretty();
 
