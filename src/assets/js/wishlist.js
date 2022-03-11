@@ -22,57 +22,57 @@ $(function() {
                     class: 'deny'
                 }
             ],
+            autoShow: true,
             onApprove: function() {
                 window.close();
             },
             onDeny: function() {
                 $('.wishlist-own').slideUp();
             }
-        })
-        .modal('show');
+        });
     }
 
     /**
      * Commit to Wish
      */
     $(document).on('click', '.ui.button.commit', function() {
-    var button = $(this);
-    var card   = button.closest('.ui.card');
-    var column = card.closest('.column');
+        var button = $(this);
+        var card   = button.closest('.ui.card');
+        var column = card.closest('.column');
 
-    $('body')
-    .modal({
-        title:    'Really commit?',
-        content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore.',
-        class:    'tiny',
-        actions:  [
-            {
-                text: 'Yes, commit',
-                class: 'approve primary'
-            },
-            {
-                text: 'Cancel',
-                class: ''
+        $('body')
+        .modal({
+            title:    'Really commit?',
+            content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore.',
+            class:    'tiny',
+            actions:  [
+                {
+                    text: 'Yes, commit',
+                    class: 'approve primary'
+                },
+                {
+                    text: 'Cancel',
+                    class: ''
+                }
+            ],
+            autoShow : true,
+            onApprove: function() {
+                /**
+                 * Update wish status
+                 */
+                button.api({
+                    action: 'update wish status',
+                    method: 'PUT',
+                    data: {
+                        wish_id: card.data('id'),
+                        wish_status: 'unavailable'
+                    },
+                    on: 'now',
+                    onSuccess: function(response, element, xhr) {
+                        column.fadeOut();
+                    },
+                });
             }
-        ],
-        onApprove: function() {
-            /**
-             * Update wish status
-             */
-            button.api({
-                action: 'update wish status',
-                method: 'PUT',
-                data: {
-                    wish_id: card.data('id'),
-                    wish_status: 'unavailable'
-                },
-                on: 'now',
-                onSuccess: function(response, element, xhr) {
-                    column.fadeOut();
-                },
-            });
-        }
-    })
-    .modal('show');
-});
+        });
+    });
 });

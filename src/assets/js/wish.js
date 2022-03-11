@@ -21,7 +21,8 @@ $(function () {
 
         modalAutoFill
         .modal({
-            onApprove: function(buttonApprove) {
+            autoShow : true,
+            onApprove: function() {
                 formWish.addClass('loading');
 
                 fetch('/src/api/wishes.php?wish_url=' + inputURL.val(), {
@@ -74,6 +75,7 @@ $(function () {
 
                         elementModalFetch
                         .modal({
+                            autoShow: true,
                             onApprove: function (buttonFetch) {
                                 var formData = new URLSearchParams();
                                 formData.append('wish_url_current', inputURL.val());
@@ -103,8 +105,7 @@ $(function () {
                             onHide: function() {
                                 formWish.removeClass('loading');
                             }
-                        })
-                        .modal('show');
+                        });
                     } else {
                         $('body').toast({
                             class:   'primary',
@@ -116,8 +117,7 @@ $(function () {
                 })
                 .catch(handleFetchCatch);
             }
-        })
-        .modal('show');
+        });
 
     });
 
@@ -129,6 +129,7 @@ $(function () {
 
         modalImage
         .modal({
+            autoShow:  true,
             onApprove: function() {
                 var newImageURL = modalImage.find('[name="wish_image"]').val();
 
@@ -140,8 +141,7 @@ $(function () {
                     message: 'Don\'t forget to save your changes.'
                 });
             }
-        })
-        .modal('show');
+        });
     });
 
     /**

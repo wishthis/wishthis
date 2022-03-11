@@ -182,6 +182,7 @@ $(function () {
 
         modalRename
         .modal({
+            autoShow:  true,
             onApprove: function(buttonApprove) {
                 buttonApprove.addClass('loading disabled');
 
@@ -207,8 +208,7 @@ $(function () {
 
                 return false;
             }
-        })
-        .modal('show');
+        });
     });
 
     /**
@@ -235,6 +235,7 @@ $(function () {
                         class: 'deny'
                     },
                 ],
+                autoShow : true,
                 onApprove: function (buttonApprove) {
                     buttonApprove.addClass('loading');
 
@@ -268,8 +269,7 @@ $(function () {
                      */
                     return false;
                 }
-            })
-            .modal('show');
+            });
         }
     });
 
@@ -296,6 +296,7 @@ $(function () {
                     text: 'Cancel'
                 }
             ],
+            autoShow: true,
             onApprove: function (buttonApprove) {
                 buttonApprove.addClass('loading');
 
@@ -328,8 +329,7 @@ $(function () {
                  */
                 return false;
             }
-        })
-        .modal('show');
+        });
     });
 
     /**
@@ -341,6 +341,7 @@ $(function () {
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
         .modal({
+            autoShow : true,
             onApprove: function (buttonAdd) {
                 buttonAdd.addClass('loading');
 
@@ -368,8 +369,7 @@ $(function () {
 
                 return false;
             }
-        })
-        .modal('show');
+        });
     });
 
     /**
@@ -381,6 +381,7 @@ $(function () {
 
         modalWishlistCreate
         .modal({
+            autoShow: true,
             onApprove: function (buttonCreate) {
                 const formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
 
@@ -410,8 +411,7 @@ $(function () {
 
                 return false;
             }
-        })
-        .modal('show');
+        });
     });
 
 });

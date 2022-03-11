@@ -55,17 +55,17 @@ $(function() {
 
         $('body')
         .modal({
-            title:    'Failure',
-            content:  response,
-            class:    '',
-            actions:  [
+            title   : 'Failure',
+            content : response,
+            class   : '',
+            actions : [
                 {
                     text: 'Thanks for nothing',
                     class: 'primary'
                 }
-            ]
-        })
-        .modal('show');
+            ],
+            autoShow: true
+        });
     }
     $.fn.api.settings.onError = function(response, element, xhr) {
         if ('string' === typeof response) {
@@ -74,17 +74,17 @@ $(function() {
 
         $('body')
         .modal({
-            title:    'Error',
-            content:  response,
-            class:    '',
-            actions:  [
+            title   : 'Error',
+            content : response,
+            class   : '',
+            actions : [
                 {
                     text: 'Thanks for nothing',
                     class: 'primary'
                 }
-            ]
-        })
-        .modal('show');
+            ],
+            autoShow: true
+        });
     }
     /** */
 
@@ -147,15 +147,15 @@ function showError(error) {
 
     $('body')
         .modal({
-            title:    'Error',
-            content:  error,
-            class:    '',
-            actions:  [
+            title   : 'Error',
+            content : error,
+            class   : '',
+            actions : [
                 {
                     text: 'Thanks for nothing',
                     class: 'primary'
                 }
-            ]
-        })
-        .modal('show');
+            ],
+            autoShow: true
+        });
 }
