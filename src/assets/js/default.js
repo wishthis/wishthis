@@ -125,14 +125,19 @@ function handleFetchResponse(response) {
     var isJSON = response.headers.get('content-type')?.includes('application/json');
 
     if (isText) {
-        return response.text()
-        .then(function(text) {
+        return response.text().then(function(text) {
             if (text.toLowerCase().includes('error') || text.toLowerCase().includes('exception')) {
                 showError(text);
             }
         })
     } else if (isJSON) {
-        return response.json();
+        return response.json().then(function(json) {
+            if (json.warning) {
+                showWarning(json.warning)
+            }
+
+            return json;
+        });
     }
 }
 
@@ -157,5 +162,23 @@ function showError(error) {
                 }
             ],
             autoShow: true
+        });
+}
+
+function showWarning(warning) {
+    warning = warning.replace('<br />', '');
+
+    $('body')
+        .modal({
+            title   : 'Warning',
+            content : warning,
+            class   : '',
+            actions : [
+                {
+                    text: 'Understood',
+                    class: 'primary'
+                }
+            ],
+            autoShow: true,
         });
 }
