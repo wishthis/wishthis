@@ -86,8 +86,11 @@ img {
 
 .ui.card > .image > img.favicon + span.provider {
     padding-left: 3em;
-
-    z-index: 2;
+}
+@media (hover: hover) {
+    .ui.card > .image > img.favicon + span.provider {
+        z-index: 2;
+    }
 }
 
 /** Provider name */
