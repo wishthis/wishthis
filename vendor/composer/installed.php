@@ -5,9 +5,9 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f40c3e31b5280f42d16fa45065b322ba1d9344e3',
+        'reference' => '7bf6747ebdfc139d44c7411b7473c333569398fe',
         'name' => '__root__',
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         '__root__' => array(
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f40c3e31b5280f42d16fa45065b322ba1d9344e3',
+            'reference' => '7bf6747ebdfc139d44c7411b7473c333569398fe',
             'dev_requirement' => false,
         ),
         'clue/stream-filter' => array(
@@ -37,22 +37,13 @@
             'reference' => '4c679186f2aca4ab6a0f1b0b9cf9252decb44d0b',
             'dev_requirement' => false,
         ),
-        'dealerdirect/phpcodesniffer-composer-installer' => array(
-            'pretty_version' => 'v0.7.2',
-            'version' => '0.7.2.0',
-            'type' => 'composer-plugin',
-            'install_path' => __DIR__ . '/../dealerdirect/phpcodesniffer-composer-installer',
-            'aliases' => array(),
-            'reference' => '1c968e542d8843d7cd71de3c5c9c3ff3ad71a1db',
-            'dev_requirement' => true,
-        ),
         'embed/embed' => array(
-            'pretty_version' => 'v4.4.2',
-            'version' => '4.4.2.0',
+            'pretty_version' => 'v4.4.3',
+            'version' => '4.4.3.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../embed/embed',
             'aliases' => array(),
-            'reference' => '84631fa16f2a669de66218774a20b6c1c5f9ba03',
+            'reference' => '2ac32581a8617c3bbe593e3d7799ca9db6974471',
             'dev_requirement' => false,
         ),
         'grandel/include-directory' => array(
@@ -296,15 +287,6 @@
             'reference' => '120b605dfeb996808c31b6477290a714d356e822',
             'dev_requirement' => false,
         ),
-        'squizlabs/php_codesniffer' => array(
-            'pretty_version' => '3.6.2',
-            'version' => '3.6.2.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
-            'aliases' => array(),
-            'reference' => '5e4e71592f69da17871dba6e80dd51bce74a351a',
-            'dev_requirement' => true,
-        ),
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'v3.0.0',
             'version' => '3.0.0.0',
@@ -324,12 +306,12 @@
             'dev_requirement' => false,
         ),
         'symfony/polyfill-php80' => array(
-            'pretty_version' => 'v1.24.0',
-            'version' => '1.24.0.0',
+            'pretty_version' => 'v1.25.0',
+            'version' => '1.25.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
             'aliases' => array(),
-            'reference' => '57b712b08eddb97c762a8caa32c84e037892d2e9',
+            'reference' => '4407588e0d3f1f52efb65fbe92babe41f37fe50c',
             'dev_requirement' => false,
         ),
         'symfony/process' => array(

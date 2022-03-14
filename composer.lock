@@ -150,16 +150,16 @@
         },
         {
             "name": "embed/embed",
-            "version": "v4.4.2",
+            "version": "v4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/Embed.git",
-                "reference": "84631fa16f2a669de66218774a20b6c1c5f9ba03"
+                "reference": "2ac32581a8617c3bbe593e3d7799ca9db6974471"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/84631fa16f2a669de66218774a20b6c1c5f9ba03",
-                "reference": "84631fa16f2a669de66218774a20b6c1c5f9ba03",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/2ac32581a8617c3bbe593e3d7799ca9db6974471",
+                "reference": "2ac32581a8617c3bbe593e3d7799ca9db6974471",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/oscarotero/Embed/issues",
-                "source": "https://github.com/oscarotero/Embed/tree/v4.4.2"
+                "source": "https://github.com/oscarotero/Embed/tree/v4.4.3"
             },
             "funding": [
                 {
@@ -235,7 +235,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-02-13T16:03:59+00:00"
+            "time": "2022-03-13T01:27:51+00:00"
         },
         {
             "name": "grandel/include-directory",
@@ -1943,16 +1943,16 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9"
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/57b712b08eddb97c762a8caa32c84e037892d2e9",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/4407588e0d3f1f52efb65fbe92babe41f37fe50c",
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c",
                 "shasum": ""
             },
             "require": {
@@ -2006,7 +2006,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -2022,7 +2022,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T13:58:33+00:00"
+            "time": "2022-03-04T08:16:47+00:00"
         },
         {
             "name": "symfony/process",

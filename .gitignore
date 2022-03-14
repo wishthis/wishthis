@@ -1,5 +1,6 @@
 /src/cache/*
 
+/vendor/bin
 /vendor/squizlabs/php_codesniffer
 /vendor/dealerdirect/phpcodesniffer-composer-installer
 
@@ -11,6 +12,7 @@
 /node_modules/needle
 /node_modules/prr
 /node_modules/sax
+/node_modules/@octokit
 
 /.vscode
 /src/config/config.php
