@@ -30,6 +30,7 @@ return array(
     'Grandel\\' => array($vendorDir . '/grandel/include-directory/src'),
     'Github\\' => array($vendorDir . '/knplabs/github-api/lib/Github'),
     'Embed\\' => array($vendorDir . '/embed/embed/src'),
+    'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => array($vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
     'Clue\\StreamFilter\\' => array($vendorDir . '/clue/stream-filter/src'),
 );

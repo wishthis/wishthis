@@ -82,6 +82,10 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             'Embed\\' => 6,
         ),
+        'D' => 
+        array (
+            'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
+        ),
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
@@ -187,6 +191,10 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'Embed\\' => 
         array (
             0 => __DIR__ . '/..' . '/embed/embed/src',
+        ),
+        'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
         'Composer\\CaBundle\\' => 
         array (
