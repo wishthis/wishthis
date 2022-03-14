@@ -258,7 +258,13 @@ class Page
                 <script defer src="/<?= $scriptPage ?>?m=<?= $scriptPageModified ?>"></script>
                 <?php
             }
+
+            /** plausible */
             ?>
+            <script defer
+                    data-domain="<?= $_SERVER['HTTP_HOST'] ?>"
+                    src="https://plausible.io/js/plausible.js">
+            </script>
 
             <title><?= $this->title ?> - wishthis</title>
         </head>
