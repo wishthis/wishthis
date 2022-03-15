@@ -115,8 +115,7 @@ $page->navigation();
                     <label>Name</label>
                     <input type="text"
                            name="wishlist-name"
-                           placeholder="<?= getCurrentSeason() ?>"
-                           value="<?= getCurrentSeason() ?>"
+                           data-default="<?= getCurrentSeason() ?>"
                     />
                 </div>
             </form>

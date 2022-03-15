@@ -399,6 +399,10 @@ $(function () {
      $(document).on('click', '.button.wishlist-create', function () {
         var modalWishlistCreate = $('.ui.modal.wishlist-create');
         var formWishlistCreate  = modalWishlistCreate.find('.ui.form');
+        var inputWishlistName   = formWishlistCreate.find('[name="wishlist-name"]');
+
+        inputWishlistName.attr('placeholder', inputWishlistName.data('default'));
+        inputWishlistName.val(inputWishlistName.data('default'));
 
         modalWishlistCreate
         .modal({
