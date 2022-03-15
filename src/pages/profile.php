@@ -41,7 +41,7 @@ $page->navigation();
                 </div>
 
                 <div class="field">
-                    <label>Date</label>
+                    <label>Birthdate</label>
 
                     <div class="ui calendar">
                         <div class="ui input left icon">
