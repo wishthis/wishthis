@@ -12,9 +12,6 @@ namespace wishthis;
 
 class User
 {
-    public int $id;
-    public int $power = 0;
-
     public function __construct(int $id = -1)
     {
         if (-1 === $id) {
@@ -36,7 +33,9 @@ class User
                   WHERE `id` = ' . $this->id . ';')
         ->fetch();
 
-        $this->power = $user['power'];
+        foreach ($user as $key => $value) {
+            $this->$key = $value;
+        }
     }
 
     /**

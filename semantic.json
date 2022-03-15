@@ -47,6 +47,8 @@
     "toast",
     "form",
     "menu",
+    "calendar",
+    "popup",
     "message",
 
     "api",

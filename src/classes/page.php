@@ -319,6 +319,11 @@ class Page
         }
 
         if ($user->isLoggedIn()) {
+            $pages[$account]['items'][] = array(
+                'url'  => '/?page=profile',
+                'text' => 'Profile',
+                'icon' => 'user circle alternate',
+            );
             if (100 === $user->power) {
                 $pages[$account]['items'][] = array(
                     'url'  => '/?page=login-as',
