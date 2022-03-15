@@ -164,6 +164,27 @@ $(function () {
     }
 
     /**
+     * Share Wishlist
+     */
+    $(document).on('click', '.button.wishlist-share', function(event) {
+        event.preventDefault();
+
+        var wishlist_href = window.location.origin + $(event.currentTarget).attr('href');
+
+
+        navigator.clipboard.writeText(wishlist_href).then(function() {
+            $('body').toast({ message: 'Link copied to clipboard.' });
+        }, function() {
+            $('body').toast({
+                class    : 'error',
+                title    : 'Error',
+                message  : 'Unable to copy to clipboard. There is likely a permission issue.'
+            });
+        });
+
+    });
+
+    /**
      * Rename Wishlist
      */
     $(document).on('click', '.options .wishlist-rename', function() {
