@@ -10,8 +10,9 @@ $(function() {
         fields: {
             'user-email': 'email',
             match: {
-                identifier  : 'user-password-repeat',
-                rules: [
+                identifier : 'user-password-repeat',
+                depends    : 'user-password',
+                rules      : [
                     {
                         type   : 'match[user-password]',
                         prompt : 'Password must match.'

@@ -30,13 +30,13 @@ $page->navigation();
                     <div class="field">
                         <label>Password</label>
 
-                        <input type="password" name="user-password" />
+                        <input type="password" name="user-password" autocomplete="new-password" />
                     </div>
 
                     <div class="field">
                         <label>Password (repeat)</label>
 
-                        <input type="password" name="user-password-repeat" />
+                        <input type="password" name="user-password-repeat" autocomplete="new-password" />
                     </div>
                 </div>
 
