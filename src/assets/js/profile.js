@@ -2,7 +2,6 @@ $(function() {
     $('.ui.calendar').calendar({
         type          : 'date',
         firstDayOfWeek: 1,
-        initialDate   : '01.01.1990',
         startMode     : 'year'
     });
 
