@@ -136,7 +136,7 @@ class Page
         /**
          * Power
          */
-        if ($user && $user->power < $this->power) {
+        if (isset($user->power) && $user->power < $this->power) {
             header('Location: /?page=power&required=' . $this->power);
             die();
         }
@@ -363,7 +363,7 @@ class Page
 
         global $options;
 
-        if ($options->getOption('updateAvailable') && $user && 100 === $user->power) {
+        if ($options->getOption('updateAvailable') && isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
                 'url'  => '/?page=update',
                 'text' => 'Update',
@@ -371,7 +371,7 @@ class Page
             );
         }
 
-        if (100 === $user->power) {
+        if (isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
                 'url'  => '/?page=settings',
                 'text' => 'Settings',
