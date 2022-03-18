@@ -25,7 +25,7 @@ $page->navigation();
                 manage and view your wishes for any kind of occasion.
             </p>
 
-            <div class="ui four column doubling stackable grid">
+            <div class="ui four column doubling stackable centered grid">
                 <?php if ($user->isLoggedIn()) { ?>
                     <div class="column">
                         <a class="ui fluid primary button" href="/?page=wishlists">Create a wishlist</a>
@@ -42,7 +42,9 @@ $page->navigation();
                     </div>
                 <?php } ?>
             </div>
+        </div>
 
+        <div class="ui segment">
             <h2 class="ui header">Use case</h2>
             <p>
                 Your birthday is coming up and you just created a wishlist with
@@ -55,9 +57,37 @@ $page->navigation();
         </div>
 
         <div class="ui segment">
-            <h2 class="ui header">Statistics</h2>
-            <p>Join the others and get started now!</p>
+            <h2 class="ui header">Why wishthis?</h2>
+            <p>
+                wishthis is free and open source software.
+                With free I don't just mean, you don't have to pay money to use it,
+                but you are also not paying with your personal information and behaviour.
 
+                Not only can anybody
+                <a href="https://github.com/grandeljay/wishthis"
+                   title="wishthis source code"
+                   target="_blank"
+                >view and verify its code</a>,
+                I also encourage you to do so.
+            </p>
+
+            <p>As a non-commercial project it remains</p>
+            <div class="ui list">
+                <div class="item">
+                    <i class="green check icon"></i>
+                    <div class="content">free of advertisements,</div>
+                </div>
+                <div class="item">
+                    <i class="green check icon"></i>
+                    <div class="content">without tracking, and</div>
+                </div>
+                <div class="item">
+                    <i class="green check icon"></i>
+                    <div class="content">open for feedback and suggestions.</div>
+                </div>
+            </div>
+
+            <h3>Join the others and get started now!</h3>
             <div class="ui stackable statistics">
 
                 <div class="statistic" id="wishes">
@@ -84,4 +114,3 @@ $page->navigation();
 <?php
 $page->footer();
 $page->bodyEnd();
-?>
