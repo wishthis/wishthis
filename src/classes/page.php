@@ -309,13 +309,13 @@ class Page
 
         $pages = array(
             $system => array(
-                'text'      => 'System',
+                'text'      => __('System'),
                 'icon'      => 'wrench',
                 'alignment' => 'right',
                 'items'     => array(),
             ),
             $account => array(
-                'text'      => 'Account',
+                'text'      => __('Account'),
                 'icon'      => 'user circle',
                 'alignment' => 'right',
                 'items'     => array(),
@@ -324,12 +324,12 @@ class Page
 
         if ($user->isLoggedIn()) {
             $pages[$wishlists] = array(
-                'text'      => 'Wishlists',
+                'text'      => __('Wishlists'),
                 'alignment' => 'left',
                 'items'     => array(
                     array(
+                        'text' => __('My lists'),
                         'url'  => '/?page=wishlists',
-                        'text' => 'My lists',
                         'icon' => 'list',
                     )
                 ),
@@ -338,41 +338,41 @@ class Page
 
         if ($user->isLoggedIn()) {
             $pages[$account]['items'][] = array(
+                'text' => __('Profile'),
                 'url'  => '/?page=profile',
-                'text' => 'Profile',
                 'icon' => 'user circle alternate',
             );
             if (100 === $user->power) {
                 $pages[$account]['items'][] = array(
+                    'text' => __('Login as'),
                     'url'  => '/?page=login-as',
-                    'text' => 'Login as',
                     'icon' => 'sign out alternate',
                 );
             }
             $pages[$account]['items'][] = array(
+                'text' => __('Logout'),
                 'url'  => '/?page=logout',
-                'text' => 'Logout',
                 'icon' => 'sign out alternate',
             );
         } else {
             $pages[$login] = array(
-                'text'      => 'Login',
+                'text'      => __('Login'),
                 'alignment' => 'right',
                 'items'     => array(
                     array(
+                        'text' => __('Login'),
                         'url'  => '/?page=login',
-                        'text' => 'Login',
                         'icon' => 'sign in alternate',
                     )
                 ),
             );
             $pages[$register] = array(
-                'text'      => 'Register',
+                'text'      => __('Register'),
                 'alignment' => 'right',
                 'items'     => array(
                     array(
+                        'text' => __('Register'),
                         'url'  => '/?page=register',
-                        'text' => 'Register',
                         'icon' => 'user plus alternate',
                     )
                 ),
@@ -383,16 +383,16 @@ class Page
 
         if ($options->getOption('updateAvailable') && isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
+                'text' => __('Update'),
                 'url'  => '/?page=update',
-                'text' => 'Update',
                 'icon' => 'upload',
             );
         }
 
         if (isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
+                'text' => __('Settings'),
                 'url'  => '/?page=settings',
-                'text' => 'Settings',
                 'icon' => 'cog',
             );
         }
@@ -404,7 +404,7 @@ class Page
             <div class="ui container">
 
                 <a class="item home" href="/?page=home">
-                    <img src="/src/assets/img/logo.svg" alt="wishthis logo" />
+                    <img src="/src/assets/img/logo.svg" alt="<?= __('wishthis logo') ?>" />
                 </a>
 
                 <?php foreach ($pages as $page) { ?>
