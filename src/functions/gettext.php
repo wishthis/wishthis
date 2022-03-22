@@ -12,6 +12,10 @@ function __(string $text)
 {
     global $page;
 
+    if (!isset($page->language)) {
+        return $text;
+    }
+
     /**
      * Use file
      */
