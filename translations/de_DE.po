@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 14:11+0100\n"
-"PO-Revision-Date: 2022-03-22 14:12+0100\n"
+"POT-Creation-Date: 2022-03-22 16:20+0100\n"
+"PO-Revision-Date: 2022-03-22 16:20+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -15,54 +15,163 @@ msgstr ""
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:301
+#: classes/page.php:235
+msgid "No wishlist selected."
+msgstr "Keine Wunschliste ausgewählt."
+
+#: classes/page.php:237
+msgid "Thanks for nothing"
+msgstr "Danke für nichts"
+
+#: classes/page.php:238
+msgid "Understood"
+msgstr "Verstanden"
+
+#: classes/page.php:239 pages/install.php:202 pages/login-as.php:38
+#: pages/register.php:123 pages/wish.php:35
+msgid "Success"
+msgstr "Erfolg"
+
+#: classes/page.php:241
+msgid "Close this tab"
+msgstr "Diesen Tab schließen"
+
+#: classes/page.php:242
+msgid "Show wishlist anyway"
+msgstr "Wunschliste trotzdem anzeigen"
+
+#: classes/page.php:243 classes/page.php:252
+msgid "Really delete?"
+msgstr "Wirklich löschen?"
+
+#: classes/page.php:244
+#, php-format
+msgid "Do you really want to delete the wishlist %s?"
+msgstr "Willst du die Wunschliste %s wirklich löschen?"
+
+#: classes/page.php:245 classes/page.php:254
+msgid "Yes, delete"
+msgstr "Ja, löschen"
+
+#: classes/page.php:246 classes/page.php:255
+msgid "No, keep"
+msgstr "Nein, behalten"
+
+#: classes/page.php:248
+msgid "Really commit?"
+msgstr "Wirklich verpflichten?"
+
+#: classes/page.php:249
+msgid ""
+"Would you really like to commit to this purchase? It will no longer appear "
+"in the wishlist for others anymore."
+msgstr ""
+"Willst du dich wirklich zu diesem Kauf verpflichten? Er wird dann nicht mehr "
+"auf der Wunschliste für andere erscheinen."
+
+#: classes/page.php:250
+msgid "Yes, commit"
+msgstr "Ja, verpflichten"
+
+#: classes/page.php:251 pages/wishlists.php:126 pages/wishlists.php:153
+#: pages/wishlists.php:195
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: classes/page.php:253
+msgid "Would you really like to delete to this wish? It will be gone forever."
+msgstr "Willst du diesen Wunsch wirklich löschen? Er wird für immer weg sein."
+
+#: classes/page.php:257
+msgid "Password must match."
+msgstr "Passwort muss übereinstimmen."
+
+#: classes/page.php:259
+msgid "Wishlist successfully renamed."
+msgstr "Wunschliste erfolgreich umbenannt."
+
+#: classes/page.php:260
+msgid "Wishlist successfully deleted."
+msgstr "Wunschliste erfolgreich gelöscht."
+
+#: classes/page.php:262
+msgid "Wish successfully created."
+msgstr "Wunsch erfolgreich erstellt."
+
+#: classes/page.php:263
+msgid "Wish successfully added."
+msgstr "Wunsch erfolgreich hinzugefügt."
+
+#: classes/page.php:264
+msgid "Wish information updated."
+msgstr "Wunsch Informationen aktualisiert."
+
+#: classes/page.php:266
+msgid "Wish successfully deleted."
+msgstr "Wunsch erfolgreich gelöscht."
+
+#: classes/page.php:268 pages/login-as.php:40
+msgid "Error"
+msgstr "Fehler"
+
+#: classes/page.php:269
+msgid "Unable to copy to clipboard. There is likely a permission issue."
+msgstr ""
+"Es kann nicht in die Zwischenablage kopiert werden. Wahrscheinlich gibt es "
+"ein Berechtigungsproblem."
+
+#: classes/page.php:270
+msgid "Link copied to clipboard."
+msgstr "Link in die Zwischenablage kopiert."
+
+#: classes/page.php:339
 msgid "System"
 msgstr "System"
 
-#: classes/page.php:307
+#: classes/page.php:345
 msgid "Account"
 msgstr "Konto"
 
-#: classes/page.php:316 pages/home.php:81
+#: classes/page.php:354 pages/home.php:81
 msgid "Wishlists"
 msgstr "Wunschlisten"
 
-#: classes/page.php:320 pages/wishlists.php:11
+#: classes/page.php:358 pages/wishlists.php:11
 msgid "My lists"
 msgstr "Meine Listen"
 
-#: classes/page.php:330 pages/profile.php:11
+#: classes/page.php:368 pages/profile.php:11
 msgid "Profile"
 msgstr "Profil"
 
-#: classes/page.php:336 pages/login-as.php:11
+#: classes/page.php:374 pages/login-as.php:11
 msgid "Login as"
 msgstr "Anmelden als"
 
-#: classes/page.php:342 pages/logout.php:11
+#: classes/page.php:380 pages/logout.php:11
 msgid "Logout"
 msgstr "Abmelden"
 
-#: classes/page.php:348 classes/page.php:352 pages/home.php:38
+#: classes/page.php:386 classes/page.php:390 pages/home.php:38
 #: pages/login-as.php:52 pages/login.php:11 pages/login.php:128
 #: pages/register.php:223
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:359 classes/page.php:363 pages/install.php:203
+#: classes/page.php:397 classes/page.php:401 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
 
-#: classes/page.php:375 pages/update.php:11
+#: classes/page.php:413 pages/update.php:11
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: classes/page.php:383 pages/settings.php:11
+#: classes/page.php:421 pages/settings.php:11
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: classes/page.php:396
+#: classes/page.php:434
 msgid "wishthis logo"
 msgstr "wishthis Logo"
 
@@ -221,11 +330,6 @@ msgstr "Weiter"
 msgid "Click Continue to test the database connection."
 msgstr "Klicken Sie auf Weiter, um die Datenbankverbindung zu testen."
 
-#: pages/install.php:202 pages/login-as.php:38 pages/register.php:123
-#: pages/wish.php:35
-msgid "Success"
-msgstr "Erfolg"
-
 #: pages/login-as.php:38
 #, php-format
 msgid "Successfully logged in as %s."
@@ -234,10 +338,6 @@ msgstr "Erfolgreich als %s eingeloggt."
 #: pages/login-as.php:40
 msgid "User not found!"
 msgstr "Benutzer nicht gefunden!"
-
-#: pages/login-as.php:40
-msgid "Error"
-msgstr "Fehler"
 
 #: pages/login-as.php:48 pages/login.php:111 pages/profile.php:28
 #: pages/register.php:175
@@ -679,10 +779,6 @@ msgstr ""
 #: pages/wishlists.php:123
 msgid "Create"
 msgstr "Erstellen"
-
-#: pages/wishlists.php:126 pages/wishlists.php:153 pages/wishlists.php:195
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: pages/wishlists.php:134
 msgid "Rename wishlist"
