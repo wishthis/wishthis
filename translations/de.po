@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 16:20+0100\n"
-"PO-Revision-Date: 2022-03-22 16:22+0100\n"
+"POT-Creation-Date: 2022-03-22 16:40+0100\n"
+"PO-Revision-Date: 2022-03-22 16:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -124,54 +124,154 @@ msgstr ""
 msgid "Link copied to clipboard."
 msgstr "Link in die Zwischenablage kopiert."
 
-#: classes/page.php:339
+#: classes/page.php:272
+msgid "{name} must have a value"
+msgstr "{name} muss einen Wert haben"
+
+#: classes/page.php:273
+msgid "{name} must be checked"
+msgstr "{name} muss ausgewählt sein"
+
+#: classes/page.php:274
+msgid "{name} must be a valid e-mail"
+msgstr "{name} muss eine gültige E-Mail sein"
+
+#: classes/page.php:275
+msgid "{name} must be a valid url"
+msgstr "{name} muss eine gültige url sein"
+
+#: classes/page.php:276
+msgid "{name} is not formatted correctly"
+msgstr "{name} ist nicht richtig formatiert"
+
+#: classes/page.php:277
+msgid "{name} must be an integer"
+msgstr "{name} muss eine ganze Zahl sein"
+
+#: classes/page.php:278
+msgid "{name} must be a decimal number"
+msgstr "{name} muss eine Dezimalzahl sein"
+
+#: classes/page.php:279
+msgid "{name} must be set to a number"
+msgstr "{name} muss auf eine Zahl gesetzt werden"
+
+#: classes/page.php:280
+msgid "{name} must be '{ruleValue}'"
+msgstr "{name} muss '{ruleValue}' sein"
+
+#: classes/page.php:281
+msgid "{name} must be exactly '{ruleValue}'"
+msgstr "{name} muss genau '{ruleValue}' sein"
+
+#: classes/page.php:282
+msgid "{name} cannot be set to '{ruleValue}'"
+msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
+
+#: classes/page.php:283
+msgid "{name} cannot be set to exactly '{ruleValue}'"
+msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
+
+#: classes/page.php:284
+msgid "{name} cannot contain '{ruleValue}'"
+msgstr "{name} kann nicht '{ruleValue}' enthalten"
+
+#: classes/page.php:285
+msgid "{name} cannot contain exactly '{ruleValue}'"
+msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
+
+#: classes/page.php:286
+msgid "{name} must contain '{ruleValue}'"
+msgstr "{name} muss '{ruleValue}' enthalten"
+
+#: classes/page.php:287
+msgid "{name} must contain exactly '{ruleValue}'"
+msgstr "{name} muss genau '{ruleValue}' enthalten"
+
+#: classes/page.php:288 classes/page.php:289
+msgid "{name} must be at least {ruleValue} characters"
+msgstr "{name} muss mindestens {ruleValue} Zeichen umfassen"
+
+#: classes/page.php:290
+msgid "{name} must be exactly {ruleValue} characters"
+msgstr "{name} muss genau {ruleValue} Zeichen sein"
+
+#: classes/page.php:291
+msgid "{name} cannot be longer than {ruleValue} characters"
+msgstr "{name} kann nicht länger sein als {ruleValue} Zeichen"
+
+#: classes/page.php:292
+msgid "{name} must match {ruleValue} field"
+msgstr "{name} muss mit dem Feld {ruleValue} übereinstimmen"
+
+#: classes/page.php:293
+msgid "{name} must have a different value than {ruleValue} field"
+msgstr "{name} muss einen anderen Wert haben als das Feld {ruleValue}"
+
+#: classes/page.php:294
+msgid "{name} must be a valid credit card number"
+msgstr "{name} muss eine gültige Kreditkartennummer sein"
+
+#: classes/page.php:295
+msgid "{name} must have at least {ruleValue} choices"
+msgstr "{name} muss mindestens {ruleValue} Auswahlmöglichkeiten haben"
+
+#: classes/page.php:296
+msgid "{name} must have exactly {ruleValue} choices"
+msgstr "{name} muss genau {ruleValue} Auswahlmöglichkeiten haben"
+
+#: classes/page.php:297
+msgid "{name} must have {ruleValue} or less choices"
+msgstr "{name} muss {ruleValue} oder weniger Auswahlmöglichkeiten haben"
+
+#: classes/page.php:366
 msgid "System"
 msgstr "System"
 
-#: classes/page.php:345
+#: classes/page.php:372
 msgid "Account"
 msgstr "Konto"
 
-#: classes/page.php:354 pages/home.php:81
+#: classes/page.php:381 pages/home.php:81
 msgid "Wishlists"
 msgstr "Wunschlisten"
 
-#: classes/page.php:358 pages/wishlists.php:11
+#: classes/page.php:385 pages/wishlists.php:11
 msgid "My lists"
 msgstr "Meine Listen"
 
-#: classes/page.php:368 pages/profile.php:11
+#: classes/page.php:395 pages/profile.php:11
 msgid "Profile"
 msgstr "Profil"
 
-#: classes/page.php:374 pages/login-as.php:11
+#: classes/page.php:401 pages/login-as.php:11
 msgid "Login as"
 msgstr "Anmelden als"
 
-#: classes/page.php:380 pages/logout.php:11
+#: classes/page.php:407 pages/logout.php:11
 msgid "Logout"
 msgstr "Abmelden"
 
-#: classes/page.php:386 classes/page.php:390 pages/home.php:38
+#: classes/page.php:413 classes/page.php:417 pages/home.php:38
 #: pages/login-as.php:52 pages/login.php:11 pages/login.php:128
 #: pages/register.php:223
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:397 classes/page.php:401 pages/install.php:203
+#: classes/page.php:424 classes/page.php:428 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
 
-#: classes/page.php:413 pages/update.php:11
+#: classes/page.php:440 pages/update.php:11
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: classes/page.php:421 pages/settings.php:11
+#: classes/page.php:448 pages/settings.php:11
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: classes/page.php:434
+#: classes/page.php:461
 msgid "wishthis logo"
 msgstr "wishthis Logo"
 
