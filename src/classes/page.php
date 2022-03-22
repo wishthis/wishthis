@@ -157,20 +157,9 @@ class Page
         }
 
         /**
-         * Determine Locale
+         * Locale
          */
-        $userLocale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        $locales    = array_filter(
-            array_map(
-                function ($value) {
-                    if ('po' === pathinfo($value, PATHINFO_EXTENSION)) {
-                        return pathinfo($value, PATHINFO_FILENAME);
-                    }
-                },
-                scandir(ROOT . '/translations')
-            )
-        );
-        $locale     = \Locale::lookup($locales, $userLocale, false, 'en');
+        global $locale;
 
         $this->language = $locale;
     }
