@@ -96,6 +96,36 @@ $(function() {
     $.fn.toast.settings.showIcon       = true;
     $.fn.toast.settings.title          = text.modal_success_title;
 
+    /** Form Prompts */
+    $.fn.form.settings.prompt = {
+        empty                : text.form_prompt.empty,
+        checked              : text.form_prompt.checked,
+        email                : text.form_prompt.email,
+        url                  : text.form_prompt.url,
+        regExp               : text.form_prompt.regExp,
+        integer              : text.form_prompt.integer,
+        decimal              : text.form_prompt.decimal,
+        number               : text.form_prompt.number,
+        is                   : text.form_prompt.is,
+        isExactly            : text.form_prompt.isExactly,
+        not                  : text.form_prompt.not,
+        notExactly           : text.form_prompt.notExactly,
+        contain              : text.form_prompt.contain,
+        containExactly       : text.form_prompt.containExactly,
+        doesntContain        : text.form_prompt.doesntContain,
+        doesntContainExactly : text.form_prompt.doesntContainExactly,
+        minLength            : text.form_prompt.minLength,
+        length               : text.form_prompt.length,
+        exactLength          : text.form_prompt.exactLength,
+        maxLength            : text.form_prompt.maxLength,
+        match                : text.form_prompt.match,
+        different            : text.form_prompt.different,
+        creditCard           : text.form_prompt.creditCard,
+        minCount             : text.form_prompt.minCount,
+        exactCount           : text.form_prompt.exactCount,
+        maxCount             : text.form_prompt.maxCount,
+    };
+
     /**
      * Menu
      */
