@@ -33,25 +33,25 @@ $(function() {
     }
 
     /**
-     * Commit to Wish
+     * Fulfill wish
      */
-    $(document).on('click', '.ui.button.commit', function() {
+    $(document).on('click', '.ui.button.fulfill', function() {
         var button = $(this);
         var card   = button.closest('.ui.card');
         var column = card.closest('.column');
 
         $('body')
         .modal({
-            title   : text.modal_wish_commit_title,
-            content : text.modal_wish_commit,
+            title   : text.modal_wish_fulfill_title,
+            content : text.modal_wish_fulfill,
             class   : 'tiny',
             actions : [
                 {
-                    text : text.modal_wish_commit_approve,
+                    text : text.modal_wish_fulfill_approve,
                     class: 'approve primary'
                 },
                 {
-                    text : text.modal_wish_commit_deny,
+                    text : text.modal_wish_fulfill_deny,
                     class: ''
                 }
             ],

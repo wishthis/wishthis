@@ -53,7 +53,7 @@ $page->navigation();
                 <h2 class="ui header"><?= __('What to do?') ?></h2>
                 <p><?= sprintf(
                     __('If you found something you would like to buy, click the %s button and it will become unavailable for others.'),
-                    '<span class="ui primary tiny horizontal label"><i class="shopping cart icon"></i> ' . __('Commit') . '</span>'
+                    '<span class="ui primary tiny horizontal label"><i class="shopping cart icon"></i> ' . __('Fulfill wish') . '</span>'
                 ) ?></p>
             </div>
         </div>
