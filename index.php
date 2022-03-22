@@ -73,13 +73,6 @@ setcookie(
 );
 
 /**
- * API
- */
-if (isset($api)) {
-    return;
-}
-
-/**
  * Language
  */
 /** Determine Locale */
@@ -103,6 +96,18 @@ $translations        = null;
 if (file_exists($translationFilepath)) {
     $loader       = new \Gettext\Loader\PoLoader();
     $translations = $loader->loadFile($translationFilepath);
+}
+
+/**
+ * Wish
+ */
+wishthis\Wish::initialize();
+
+/**
+ * API
+ */
+if (isset($api)) {
+    return;
 }
 
 /**

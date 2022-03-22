@@ -13,20 +13,25 @@ class Wish
     /**
      * Static
      */
-    public static array $priorities = array(
-        ''  => array(
-            'name'  => 'Default',
-            'color' => '',
-        ),
-        '1' => array(
-            'name'  => 'Nice to have',
-            'color' => 'black',
-        ),
-        '3' => array(
-            'name'  => 'Would love it',
-            'color' => 'orange',
-        ),
-    );
+    public static array $priorities;
+
+    public static function initialize()
+    {
+        self::$priorities = array(
+            ''  => array(
+                'name'  => __('Default'),
+                'color' => '',
+            ),
+            '1' => array(
+                'name'  => __('Nice to have'),
+                'color' => 'black',
+            ),
+            '3' => array(
+                'name'  => __('Would love it'),
+                'color' => 'orange',
+            ),
+        );
+    }
 
     /**
      * Non-Static
