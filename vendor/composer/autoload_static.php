@@ -77,6 +77,8 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
             'GuzzleHttp\\' => 11,
             'Grandel\\' => 8,
             'Github\\' => 7,
+            'Gettext\\Languages\\' => 18,
+            'Gettext\\' => 8,
         ),
         'E' => 
         array (
@@ -187,6 +189,14 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'Github\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/github-api/lib/Github',
+        ),
+        'Gettext\\Languages\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gettext/languages/src',
+        ),
+        'Gettext\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gettext/gettext/src',
         ),
         'Embed\\' => 
         array (
