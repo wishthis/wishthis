@@ -11,12 +11,16 @@ use Gettext\Generator\MoGenerator;
 
 function __(string $text)
 {
-    $userLocale          = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-    $translationFilepath = ROOT . '/translations/' . $userLocale . '.po';
+    global $page;
+
+    /**
+     * Use file
+     */
+    $translationFilepath = ROOT . '/translations/' . $page->language . '.po';
 
     if (file_exists($translationFilepath)) {
         $loader       = new PoLoader();
-        $translations = $loader->loadFile(ROOT . '/translations/de_DE.po');
+        $translations = $loader->loadFile($translationFilepath);
         $translation  = $translations->find(null, $text);
 
         if ($translation) {

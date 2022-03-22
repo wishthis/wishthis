@@ -155,6 +155,24 @@ class Page
                 die();
             }
         }
+
+        /**
+         * Determine Locale
+         */
+        $userLocale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $locales    = array_filter(
+            array_map(
+                function ($value) {
+                    if ('po' === pathinfo($value, PATHINFO_EXTENSION)) {
+                        return pathinfo($value, PATHINFO_FILENAME);
+                    }
+                },
+                scandir(ROOT . '/translations')
+            )
+        );
+        $locale     = \Locale::lookup($locales, $userLocale, true, 'en');
+
+        $this->language = $locale;
     }
 
     public function header(): void
