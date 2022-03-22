@@ -7,18 +7,18 @@ $(function() {
     if ($('.wishlist-own').length) {
         $('body')
         .modal({
-            title:    $('.wishlist-own .header').text(),
-            content:  $('.wishlist-own .text').html(),
-            class:    '',
+            title   : $('.wishlist-own .header').text(),
+            content : $('.wishlist-own .text').html(),
+            class   : '',
             blurring: true,
             closable: false,
-            actions:  [
+            actions : [
                 {
-                    text: 'Close this tab',
+                    text : text.modal_wishlist_warning_approve,
                     class: 'approve primary'
                 },
                 {
-                    text: 'Show wishlist anyway',
+                    text : text.modal_wishlist_warning_deny,
                     class: 'deny'
                 }
             ],
@@ -42,16 +42,16 @@ $(function() {
 
         $('body')
         .modal({
-            title:    'Really commit?',
-            content:  'Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore.',
-            class:    'tiny',
-            actions:  [
+            title   : text.modal_wish_commit_title,
+            content : text.modal_wish_commit,
+            class   : 'tiny',
+            actions : [
                 {
-                    text: 'Yes, commit',
+                    text : text.modal_wish_commit_approve,
                     class: 'approve primary'
                 },
                 {
-                    text: 'Cancel',
+                    text : text.modal_wish_commit_deny,
                     class: ''
                 }
             ],

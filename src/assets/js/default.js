@@ -36,8 +36,8 @@ $(function() {
     }
     $.fn.api.settings.onSuccess = function(response, element, xhr) {
         element.dropdown({
-            values: response.results,
-            placeholder: 'No wishlist selected.'
+            values     : response.results,
+            placeholder: text.wishlist_no_selection
         })
 
         if ($_GET.wishlist) {
@@ -60,7 +60,7 @@ $(function() {
             class   : '',
             actions : [
                 {
-                    text: 'Thanks for nothing',
+                    text : text.modal_failure_approve,
                     class: 'primary'
                 }
             ],
@@ -79,7 +79,7 @@ $(function() {
             class   : '',
             actions : [
                 {
-                    text: 'Thanks for nothing',
+                    text : text.modal_failure_approve,
                     class: 'primary'
                 }
             ],
@@ -94,7 +94,7 @@ $(function() {
     $.fn.toast.settings.showProgress   = 'bottom';
     $.fn.toast.settings.class          = 'success';
     $.fn.toast.settings.showIcon       = true;
-    $.fn.toast.settings.title          = 'Success';
+    $.fn.toast.settings.title          = text.modal_success_title;
 
     /**
      * Menu
@@ -157,7 +157,7 @@ function showError(error) {
             class   : '',
             actions : [
                 {
-                    text: 'Thanks for nothing',
+                    text : text.modal_failure_approve,
                     class: 'primary'
                 }
             ],
@@ -175,7 +175,7 @@ function showWarning(warning) {
             class   : '',
             actions : [
                 {
-                    text: 'Understood',
+                    text : text.modal_warning_approve,
                     class: 'primary'
                 }
             ],

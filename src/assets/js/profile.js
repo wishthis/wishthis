@@ -14,7 +14,7 @@ $(function() {
                 rules      : [
                     {
                         type   : 'match[user-password]',
-                        prompt : 'Password must match.'
+                        prompt : text.form_profile_password
                     }
                 ]
             },

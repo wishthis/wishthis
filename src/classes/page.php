@@ -231,6 +231,44 @@ class Page
             ?>
             <script type="text/javascript">
                 var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+                var text  = {
+                    wishlist_no_selection         : '<?= __('No wishlist selected.') ?>',
+
+                    modal_failure_approve         : '<?= __('Thanks for nothing') ?>',
+                    modal_warning_approve         : '<?= __('Understood') ?>',
+                    modal_success_title           : '<?= __('Success') ?>',
+
+                    modal_wishlist_warning_approve: '<?= __('Close this tab') ?>',
+                    modal_wishlist_warning_deny   : '<?= __('Show wishlist anyway') ?>',
+                    modal_wishlist_delete_title   : '<?= __('Really delete?') ?>',
+                    modal_wishlist_delete         : '<?= sprintf(__('Do you really want to delete the wishlist %s?'), '<strong>WISHLIST_NAME</strong>') ?>',
+                    modal_wishlist_delete_approve : '<?= __('Yes, delete') ?>',
+                    modal_wishlist_delete_deny    : '<?= __('No, keep') ?>',
+
+                    modal_wish_commit_title       : '<?= __('Really commit?') ?>',
+                    modal_wish_commit             : '<?= __('Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore.') ?>',
+                    modal_wish_commit_approve     : '<?= __('Yes, commit') ?>',
+                    modal_wish_commit_deny        : '<?= __('Cancel') ?>',
+                    modal_wish_delete_title       : '<?= __('Really delete?') ?>',
+                    modal_wish_delete             : '<?= __('Would you really like to delete to this wish? It will be gone forever.') ?>',
+                    modal_wish_delete_approve     : '<?= __('Yes, delete') ?>',
+                    modal_wish_delete_deny        : '<?= __('No, keep') ?>',
+
+                    form_profile_password         : '<?= __('Password must match.') ?>',
+
+                    toast_wishlist_rename         : '<?= __('Wishlist successfully renamed.') ?>',
+                    toast_wishlist_delete         : '<?= __('Wishlist successfully deleted.') ?>',
+
+                    toast_wish_create             : '<?= __('Wish successfully created.') ?>',
+                    toast_wish_add                : '<?= __('Wish successfully added.') ?>',
+                    toast_wish_update             : '<?= __('Wish information updated.') ?>',
+                    toast_wish_save               : '<?= __(addslashes('Don\'t forget to save your changes.')) ?>',
+                    toast_wish_delete             : '<?= __('Wish successfully deleted.') ?>',
+
+                    toast_clipboard_error_title   : '<?= __('Error') ?>',
+                    toast_clipboard_error         : '<?= __('Unable to copy to clipboard. There is likely a permission issue.') ?>',
+                    toast_clipboard_success       : '<?= __('Link copied to clipboard.') ?>',
+                };
             </script>
             <?php
 

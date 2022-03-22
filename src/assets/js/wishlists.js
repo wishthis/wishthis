@@ -6,15 +6,15 @@ $(function () {
 
     function wishlistsRefresh() {
         $('.ui.dropdown.wishlists').api({
-            action: 'get wishlists',
-            method: 'GET',
-            on: 'now',
+            action   : 'get wishlists',
+            method   : 'GET',
+            on       : 'now',
             onSuccess: function (response, element, xhr) {
                 wishlists = response.results;
 
                 element.dropdown({
-                    values: wishlists,
-                    placeholder: 'No wishlist selected.'
+                    values     : wishlists,
+                    placeholder: text.wishlist_no_selection
                 })
 
                 if ($_GET.wishlist) {
@@ -173,12 +173,12 @@ $(function () {
 
 
         navigator.clipboard.writeText(wishlist_href).then(function() {
-            $('body').toast({ message: 'Link copied to clipboard.' });
+            $('body').toast({ message: text.toast_clipboard_success });
         }, function() {
             $('body').toast({
-                class    : 'error',
-                title    : 'Error',
-                message  : 'Unable to copy to clipboard. There is likely a permission issue.'
+                class   : 'error',
+                title   : text.toast_clipboard_error_title,
+                message : text.toast_clipboard_error
             });
         });
 
@@ -220,7 +220,7 @@ $(function () {
 
                     modalRename.modal('hide');
 
-                    $('body').toast({ message: 'Wishlist successfully renamed.' });
+                    $('body').toast({ message: text.toast_wishlist_rename });
                 })
                 .catch(handleFetchCatch)
                 .finally(function() {
@@ -243,16 +243,16 @@ $(function () {
 
             modalDefault
             .modal({
-                title: 'Really delete?',
-                class: 'tiny',
-                content: 'Do you really want to delete the wishlist <strong>' + $('.ui.dropdown.wishlists').dropdown('get text') + '</strong>?',
-                actions: [
+                title    : text.modal_wishlist_delete_title,
+                class    : 'tiny',
+                content  : text.modal_wishlist_delete.replace('WISHLIST_NAME', $('.ui.dropdown.wishlists').dropdown('get text')),
+                actions  : [
                     {
-                        text: 'Yes, delete',
+                        text : text.modal_wishlist_delete_approve,
                         class: 'approve red'
                     },
                     {
-                        text: 'No, keep',
+                        text : text.modal_wishlist_delete_deny,
                         class: 'deny'
                     },
                 ],
@@ -274,7 +274,7 @@ $(function () {
 
                             urlParams.delete('wishlist');
 
-                            $('body').toast({ message: 'Wishlist successfully deleted.' });
+                            $('body').toast({ message:text.toast_wishlist_delete });
 
                             wishlistsRefresh();
 
@@ -305,19 +305,19 @@ $(function () {
 
         modalDefault
         .modal({
-            title: 'Really delete?',
-            content: '<p>Would you really like to delete to this wish? It will be gone forever.</p>',
-            class: 'tiny',
-            actions: [
+            title    : text.modal_wish_delete_title,
+            content  : text.modal_wish_delete,
+            class    : 'tiny',
+            actions  : [
                 {
-                    text: 'Yes, delete',
+                    text : text.modal_wish_delete_approve,
                     class: 'approve primary'
                 },
                 {
-                    text: 'Cancel'
+                    text: text.modal_wish_delete_deny
                 }
             ],
-            autoShow: true,
+            autoShow : true,
             onApprove: function (buttonApprove) {
                 buttonApprove.addClass('loading');
 
@@ -334,7 +334,7 @@ $(function () {
                     onSuccess: function () {
                         column.fadeOut();
 
-                        $('body').toast({ message: 'Wish successfully deleted.' });
+                        $('body').toast({ message: text.toast_wish_delete });
 
                         wishlistsRefresh();
 
@@ -377,7 +377,7 @@ $(function () {
                 .then(handleFetchResponse)
                 .then(function(response) {
                     if (response.success) {
-                        $('body').toast({ message: 'Wish successfully added.' });
+                        $('body').toast({ message: text.toast_wish_add });
 
                         wishlistsRefresh();
 
@@ -424,7 +424,7 @@ $(function () {
 
                         urlParams.set('wishlist', response.data.lastInsertId);
 
-                        $('body').toast({ message: 'Wishlist successfully created.' });
+                        $('body').toast({ message: text.toast_wish_create });
 
                         wishlistsRefresh();
                     }

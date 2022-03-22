@@ -85,7 +85,7 @@ $(function () {
 
                                 fetch('/src/api/wishes.php', {
                                     method: 'PUT',
-                                    body: formData
+                                    body  : formData
                                 })
                                 .then(response => response.json())
                                 .then(response => {
@@ -94,7 +94,7 @@ $(function () {
 
                                         elementModalFetch.modal('hide');
 
-                                        $('body').toast({ message: 'Wish information updated.' });
+                                        $('body').toast({ message: text.toast_wish_update });
                                     }
 
                                     buttonFetch.removeClass('loading');
@@ -108,8 +108,8 @@ $(function () {
                         });
                     } else {
                         $('body').toast({
-                            class:   'primary',
-                            message: 'Don\'t forget to save your changes.'
+                            class  :   'primary',
+                            message: text.toast_wish_save
                         });
 
                         formWish.removeClass('loading');
@@ -137,8 +137,8 @@ $(function () {
                 $('.form.wish [name="wish_image"]').val(newImageURL);
 
                 $('body').toast({
-                    class:   'primary',
-                    message: 'Don\'t forget to save your changes.'
+                    class  : 'primary',
+                    message: text.toast_wish_save
                 });
             }
         });
