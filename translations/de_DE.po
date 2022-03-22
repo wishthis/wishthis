@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 13:26+0100\n"
-"PO-Revision-Date: 2022-03-22 13:29+0100\n"
+"POT-Creation-Date: 2022-03-22 14:11+0100\n"
+"PO-Revision-Date: 2022-03-22 14:12+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -15,56 +15,68 @@ msgstr ""
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:312
+#: classes/page.php:301
 msgid "System"
 msgstr "System"
 
-#: classes/page.php:318
+#: classes/page.php:307
 msgid "Account"
 msgstr "Konto"
 
-#: classes/page.php:327 pages/home.php:81
+#: classes/page.php:316 pages/home.php:81
 msgid "Wishlists"
 msgstr "Wunschlisten"
 
-#: classes/page.php:331 pages/wishlists.php:11
+#: classes/page.php:320 pages/wishlists.php:11
 msgid "My lists"
 msgstr "Meine Listen"
 
-#: classes/page.php:341 pages/profile.php:11
+#: classes/page.php:330 pages/profile.php:11
 msgid "Profile"
 msgstr "Profil"
 
-#: classes/page.php:347 pages/login-as.php:11
+#: classes/page.php:336 pages/login-as.php:11
 msgid "Login as"
 msgstr "Anmelden als"
 
-#: classes/page.php:353 pages/logout.php:11
+#: classes/page.php:342 pages/logout.php:11
 msgid "Logout"
 msgstr "Abmelden"
 
-#: classes/page.php:359 classes/page.php:363 pages/home.php:38
+#: classes/page.php:348 classes/page.php:352 pages/home.php:38
 #: pages/login-as.php:52 pages/login.php:11 pages/login.php:128
 #: pages/register.php:223
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:370 classes/page.php:374 pages/install.php:203
+#: classes/page.php:359 classes/page.php:363 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
 
-#: classes/page.php:386 pages/update.php:11
+#: classes/page.php:375 pages/update.php:11
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: classes/page.php:394 pages/settings.php:11
+#: classes/page.php:383 pages/settings.php:11
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: classes/page.php:407
+#: classes/page.php:396
 msgid "wishthis logo"
 msgstr "wishthis Logo"
+
+#: classes/wish.php:22
+msgid "Default"
+msgstr "Standard"
+
+#: classes/wish.php:26
+msgid "Nice to have"
+msgstr "Schön zu haben"
+
+#: classes/wish.php:30
+msgid "Would love it"
+msgstr "Würde es lieben"
 
 #: pages/home.php:11
 msgid "Home"
