@@ -170,7 +170,7 @@ class Page
                 scandir(ROOT . '/translations')
             )
         );
-        $locale     = \Locale::lookup($locales, $userLocale, true, 'en');
+        $locale     = \Locale::lookup($locales, $userLocale, false, 'en');
 
         $this->language = $locale;
     }
