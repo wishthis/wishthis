@@ -8,7 +8,7 @@
 
 use wishthis\{Page, Email};
 
-$page = new Page(__FILE__, 'Login');
+$page = new Page(__FILE__, __('Login'));
 
 /**
  * Login
@@ -33,8 +33,8 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
         $_SESSION['user'] = $user;
     } else {
         $page->messages[] = Page::error(
-            'I could not find a user with the credential combination you provided.',
-            'Invalid credentials'
+            __('No user could be found with the credentials you provided.'),
+            __('Invalid credentials'),
         );
     }
 }
@@ -79,12 +79,12 @@ if (isset($_POST['reset'], $_POST['email'])) {
             $mjml
         );
 
-        $emailReset = new Email($_POST['email'], 'Password reset link', $mjml);
+        $emailReset = new Email($_POST['email'], __('Password reset link'), $mjml);
         $emailReset->send();
 
         $page->messages[] = Page::info(
-            'If I can find a match for this email address, a password reset link will be sent to it.',
-            'Info'
+            __('If a match can be found for this email address, a password reset link will be sent to it.'),
+            __('Info')
         );
     }
 }
@@ -104,11 +104,11 @@ $page->navigation();
 
                 <div class="row">
                     <div class="column">
-                        <h2 class="ui header">Credentials</h2>
+                        <h2 class="ui header"><?= __('Credentials') ?></h2>
 
                         <form class="ui form login" method="post">
                             <div class="field">
-                                <label>Email</label>
+                                <label><?= __('Email') ?></label>
 
                                 <div class="ui left icon input">
                                     <input type="email" name="email" placeholder="john.doe@domain.tld" />
@@ -117,7 +117,7 @@ $page->navigation();
                             </div>
 
                             <div class="field">
-                                <label>Password</label>
+                                <label><?= __('Password') ?></label>
 
                                 <div class="ui left icon input">
                                     <input type="password" name="password" />
@@ -125,23 +125,16 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <input class="ui primary button" type="submit" name="login" value="Login" />
-                            <a class="ui tertiary button" href="/?page=register">Register</a>
+                            <input class="ui primary button" type="submit" name="login" value="<?= __('Login') ?>" />
+                            <a class="ui tertiary button" href="/?page=register"><?= __('Register') ?></a>
                         </form>
                     </div>
 
                     <div class="column">
-                        <h2 class="ui header">Forgot password?</h2>
+                        <h2 class="ui header"><?= __('Forgot password?') ?></h2>
 
-                        <p>
-                            Consider using a password manager.
-                            It will save all your passwords and allow you to access them with one master password.
-                            Never forget a password ever again.
-                        </p>
-                        <p>
-                            <a href="https://bitwarden.com/" target="_blank">Bitwarden</a>
-                            is the most trusted open source password manager.
-                        </p>
+                        <p><?= __('Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again.') ?></p>
+                        <p><?= sprintf('%sBitwarden%s is the most trusted open source password manager.', '<a href="https://bitwarden.com/" target="_blank">', '</a>') ?></p>
 
                         <?php if ($options->getOption('mjml_api_key') && $options->getOption('mjml_api_secret')) { ?>
                             <p>
@@ -156,7 +149,7 @@ $page->navigation();
                                             <input class="ui primary button"
                                                 type="submit"
                                                 name="reset"
-                                                value="Send email"
+                                                value="<?= __('Send email') ?>"
                                             />
                                         </div>
 
@@ -164,7 +157,7 @@ $page->navigation();
                                 </form>
                             </p>
 
-                            <p>Please note that you have to enter the email address, you have registered with.</p>
+                            <p><?= __('Please note that you have to enter the email address, you have registered with.') ?></p>
                         <?php } ?>
                     </div>
                 </div>

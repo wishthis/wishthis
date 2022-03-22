@@ -13,8 +13,8 @@ $wishlist = new Wishlist($_GET['wishlist']);
 if (!$wishlist->exists) {
     http_response_code(404);
     ?>
-    <h1>Not found</h1>
-    <p>The requested Wishlist was not found and likely deleted by its creator.</p>
+    <h1><?= __('Not found') ?></h1>
+    <p><?= __('The requested Wishlist was not found and likely deleted by its creator.') ?></p>
     <?php
     die();
 }
@@ -38,17 +38,11 @@ $page->navigation();
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
                     <div class="header">
-                        Careful
+                        <?= __('Careful') ?>
                     </div>
                     <div class="text">
-                        <p>
-                            You are viewing your own wishlist!
-                            You will be able to see which wishes have already been bought for you.
-                            Don't you want to be surprised?
-                        </p>
-                        <p>
-                            It's probably best to just close this tab.
-                        </p>
+                        <p><?= __('You are viewing your own wishlist! You will be able to see which wishes have already been bought for you. Don\'t you want to be surprised?') ?></p>
+                        <p><?= __('It\'s probably best to just close this tab.') ?></p>
                     </div>
                 </div>
             </div>
@@ -56,19 +50,15 @@ $page->navigation();
 
         <div class="ui horizontal stackable segments">
             <div class="ui segment">
-                <h2 class="ui header">What to do?</h2>
-                <p>
-                    If you found something you would like to buy,
-                    click the
-                    <span class="ui primary tiny horizontal label">
-                        <i class="shopping cart icon"></i> Commit
-                    </span>
-                    button and it will become unavailable for others.
-                </p>
+                <h2 class="ui header"><?= __('What to do?') ?></h2>
+                <p><?= sprintf(
+                    __('If you found something you would like to buy, click the %s button and it will become unavailable for others.'),
+                    '<span class="ui primary tiny horizontal label"><i class="shopping cart icon"></i> ' . __('Commit') . '</span>'
+                ) ?></p>
             </div>
         </div>
 
-        <h2 class="ui header">Wishes</h2>
+        <h2 class="ui header"><?= __('Wishes') ?></h2>
 
         <div class="wishlist-cards">
             <?php

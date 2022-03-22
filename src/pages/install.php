@@ -13,7 +13,7 @@ if ($options && $options->getOption('isInstalled')) {
     die();
 }
 
-$page = new Page(__FILE__, 'Install');
+$page = new Page(__FILE__, __('Install'));
 $page->header();
 $page->bodyStart();
 
@@ -27,36 +27,36 @@ switch ($step) {
             <div class="ui hidden divider"></div>
             <div class="ui container">
                 <div class="ui segment">
-                    <h1 class="ui header">Install</h1>
-                    <h2 class="ui header">Step <?= $step ?></h2>
-                    <p>Welcome to the wishthis installer.</p>
-                    <p>wishthis needs a database to function properly. Please enter your credentials.</p>
+                    <h1 class="ui header"><?= $page->title ?></h1>
+                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+                    <p><?= __('Welcome to the wishthis installer.') ?></p>
+                    <p><?= __('wishthis needs a database to function properly. Please enter your credentials.') ?></p>
 
                     <form class="ui form" action="/?page=install" method="post">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
                         <div class="field">
-                            <label>Host</label>
+                            <label><?= __('Host') ?></label>
                             <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
                         </div>
 
                         <div class="field">
-                            <label>Name</label>
+                            <label><?= __('Name') ?></label>
                             <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
                         </div>
 
                         <div class="field">
-                            <label>Username</label>
+                            <label><?= __('Username') ?></label>
                             <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
                         </div>
 
                         <div class="field">
-                            <label>Password</label>
+                            <label><?= __('Password') ?></label>
                             <input type="text" name="DATABASE_PASSWORD" />
                         </div>
 
-                        <input class="ui primary button" type="submit" value="Continue" />
+                        <input class="ui primary button" type="submit" value="<?= __('Continue') ?>" />
                     </form>
                 </div>
             </div>
@@ -94,15 +94,15 @@ switch ($step) {
             <div class="ui hidden divider"></div>
             <div class="ui container">
                 <div class="ui segment">
-                    <h1 class="ui header">Install</h1>
-                    <h2 class="ui header">Step <?= $step ?></h2>
-                    <p>Click Continue to test the database connection.</p>
+                    <h1 class="ui header"><?= $page->title ?></h1>
+                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+                    <p><?= __('Click Continue to test the database connection.') ?></p>
 
                     <form class="ui form" action="?page=install" method="post">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
-                        <input class="ui primary button" type="submit" value="Continue" />
+                        <input class="ui primary button" type="submit" value="<?= __('Continue') ?>" />
                     </form>
                 </div>
             </div>
@@ -198,8 +198,8 @@ switch ($step) {
             <div class="ui hidden divider"></div>
             <div class="ui container">
                 <div class="ui segment">
-                    <h1 class="ui header">Success</h1>
-                    <p><a class="ui primary button" href="/?page=register">Register</a></p>
+                    <h1 class="ui header"><?= __('Success') ?></h1>
+                    <p><a class="ui primary button" href="/?page=register"><?= __('Register') ?></a></p>
                 </div>
             </div>
         </main>

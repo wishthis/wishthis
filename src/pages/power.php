@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new Page(__FILE__, 'Insufficient power');
+$page = new Page(__FILE__, __('Insufficient power'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -19,14 +19,8 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui segment">
-            <h2 class="ui header">Restricted access</h2>
-            <p>
-                You do not have enough power to view this page.
-                You need
-                <strong><?= $_GET['required'] ?></strong>
-                to see this page, but only have
-                <strong><?= $user->power ?></strong>.
-            </p>
+            <h2 class="ui header"><?= __('Restricted access') ?></h2>
+            <p><?= sprintf(__('You do not have enough power to view this page. You need %s to see this page, but only have %s.'), '<strong>' . $_GET['required'] . '</strong>', '<strong>' . $user->power . '</strong>') ?></p>
         </div>
     </div>
 </main>

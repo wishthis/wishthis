@@ -8,7 +8,7 @@
 
 use wishthis\Page;
 
-$page = new Page(__FILE__, 'Login as', 100);
+$page = new Page(__FILE__, __('Login as'), 100);
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
@@ -35,9 +35,9 @@ $page->navigation();
         <?php
         if (isset($success)) {
             if ($success) {
-                echo Page::success('Successfully logged in as ' . $_SESSION['user']['email'] . '.', 'Success');
+                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']['email']), __('Success'));
             } else {
-                echo Page::error('User not found!', 'Error');
+                echo Page::error(__('User not found!'), __('Error'));
             }
         }
         ?>
@@ -45,11 +45,11 @@ $page->navigation();
         <div class="ui segment">
             <form class="ui form" method="post">
                 <div class="field">
-                    <label>Email</label>
+                    <label><?= __('Email') ?></label>
                     <input type="email" name="email" placeholder="john.doe@domain.tld" />
                 </div>
 
-                <input class="ui primary button" type="submit" value="Login" />
+                <input class="ui primary button" type="submit" value="<?= __('Login') ?>" />
             </form>
         </div>
     </div>

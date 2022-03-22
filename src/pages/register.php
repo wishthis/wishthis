@@ -10,8 +10,8 @@ use wishthis\Page;
 
 $passwordReset = isset($_GET['password-reset'], $_GET['token']);
 
-$pageTitle    = $passwordReset ? 'Reset password' : 'Register';
-$buttonSubmit = $passwordReset ? 'Reset'          : 'Register';
+$pageTitle    = $passwordReset ? __('Reset password') : __('Register');
+$buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
 
 $page = new Page(__FILE__, $pageTitle);
 
@@ -48,9 +48,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
 
     if (in_array($planet, $not_planets)) {
         $page->messages[] = Page::warning(
-            '<strong>' . $planetName . '</strong>
-            is not a planetbut I\'ll let it slide, since only a human would make this kind of mistake.',
-            'Invalid planet'
+            sprintf(__('%s is not a planet but I\'ll let it slide, since only a human would make this kind of mistake.'), '<strong>' . $planetName . '</strong>'),
+            __('Invalid planet')
         );
     }
 
@@ -81,10 +80,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         'Success'
                     );
                 } else {
-                    $page->messages[] = Page::error('This link has expired.', 'Failure');
+                    $page->messages[] = Page::error(__('This link has expired.'), __('Failure'));
                 }
             } else {
-                $page->messages[] = Page::error('This link seems invalid.', 'Failure');
+                $page->messages[] = Page::error(__('This link seems invalid.'), __('Failure'));
             }
         } else {
             /**
@@ -106,8 +105,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             } else {
                 if (in_array($_POST['email'], $emails)) {
                     $page->messages[] = Page::error(
-                        'An account with this email address already exists.',
-                        'Invalid email address'
+                        __('An account with this email address already exists.'),
+                        __('Invalid email address')
                     );
                 } else {
                     $database->query('INSERT INTO `users`
@@ -121,7 +120,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     ;');
                     $userRegistered = true;
 
-                    $page->messages[] = Page::success('Your account was successfully created.', 'Success');
+                    $page->messages[] = Page::success(__('Your account was successfully created.'), __('Success'));
                 }
             }
         }
@@ -131,7 +130,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          */
         if ($userRegistered) {
             $userID       = $database->lastInsertID();
-            $wishlistName = 'My hopes and dreams';
+            $wishlistName = __('My hopes and dreams');
 
             $database
             ->query('INSERT INTO `wishlists`
@@ -148,12 +147,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
         }
     } else {
         $page->messages[] = Page::error(
-            '<strong>' . $planetName . '</strong>
-            is not a planet in our solar system. Read this for more information:
-            <a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">
-                Solar system planets: Order of the 8 (or 9) planets
-            </a>.',
-            'Invalid planet'
+            sprintf(__('%s is not a planet in our solar system. Read this for more information: %s.'), '<strong>' . $planetName . '</strong>', '<a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">Solar system planets: Order of the 8 (or 9) planets</a>'),
+            __('Invalid planet')
         );
     }
 }
@@ -174,10 +169,10 @@ $page->navigation();
 
                     <div class=" row">
                         <div class="column">
-                            <h2 class="ui header">Account details</h2>
+                            <h2 class="ui header"><?= __('Account details') ?></h2>
 
                             <div class="field">
-                                <label>Email</label>
+                                <label><?= __('Email') ?></label>
 
                                 <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
                                     <?php if (isset($_GET['password-reset'])) { ?>
@@ -195,7 +190,7 @@ $page->navigation();
                             </div>
 
                             <div class="field">
-                                <label>Password</label>
+                                <label><?= __('Password') ?></label>
 
                                 <div class="ui left icon input">
                                     <input type="password" name="password" />
@@ -205,21 +200,18 @@ $page->navigation();
                         </div>
 
                         <div class="column">
-                            <h2 class="ui header">Authentication</h2>
-                            <p>
-                                Prove you are a Human, Lizard-person or Zuck-like creature.
-                                Please name a planet from our solar system.
-                            </p>
+                            <h2 class="ui header"><?= __('Authentication') ?></h2>
+                            <p><?= __('Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system.') ?></p>
 
                             <div class="field">
-                                <label>Planet</label>
+                                <label><?= __('Planet') ?></label>
 
                                 <div class="ui left icon input">
                                     <input type="text" name="planet" />
                                     <i class="globe icon"></i>
                                 </div>
                             </div>
-                            <p>Robots are obivously from another solar system so this will keep them at bay.</p>
+                            <p><?= __('Robots are obivously from another solar system so this will keep them at bay.') ?></p>
                         </div>
                     </div>
 
@@ -228,7 +220,7 @@ $page->navigation();
                             <div class="ui error message"></div>
 
                             <input class="ui primary button" type="submit" value="<?= $buttonSubmit ?>" />
-                            <a class="ui tertiary button" href="/?page=login">Login</a>
+                            <a class="ui tertiary button" href="/?page=login"><?= __('Login') ?></a>
                         </div>
                     </div>
 

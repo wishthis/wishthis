@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User};
 
-$page = new Page(__FILE__, 'Update', 100);
+$page = new Page(__FILE__, __('Update'), 100);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -100,27 +100,27 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui segment">
-            <h2 class="ui header">New version detected</h2>
-            <p>An update is available. If you are brave, please click the button to start the self updater.</p>
+            <h2 class="ui header"><?= __('New version detected') ?></h2>
+            <p><?= __('An update is available. If you are brave, please click the button to start the self updater.') ?></p>
             <div class="ui icon warning message">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
                     <div class="header">
-                        Use at own risk
+                        <?= __('Use at own risk') ?>
                     </div>
-                    <p>Be sure to make backups before proceeding.</p>
+                    <p><?= __('Be sure to make backups before proceeding.') ?></p>
                 </div>
             </div>
             <form class="ui form" method="post">
                 <button class="ui orange button" type="submit">
                     <i class="upload icon"></i>
-                    Update to v<?= $version ?>
+                    <?= sprintf(__('Update to %s'), 'v' . $version) ?>
                 </button>
             </form>
         </div>
 
         <div class="ui segment">
-            <h2 class="ui header">Changes</h2>
+            <h2 class="ui header"><?= __('Changes') ?></h2>
 
             <?= str_replace(PHP_EOL, '<br>', $release['body']) ?>
         </div>

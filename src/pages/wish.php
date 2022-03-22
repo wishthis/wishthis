@@ -32,7 +32,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
 
     $wish             = new Wish($_GET['id'], false);
     $page             = new Page(__FILE__, $wish->getTitle());
-    $page->messages[] = Page::success('Wish successfully updated.', 'Success');
+    $page->messages[] = Page::success(__('Wish successfully updated.'), __('Success'));
 }
 
 $wishlists = $user->getWishlists($wish->wishlist);
@@ -47,8 +47,8 @@ foreach ($wishlists as $wishlist) {
 if (!$userIsAuthenticated) {
     http_response_code(404);
     ?>
-    <h1>Not found</h1>
-    <p>The requested Wish was not found.</p>
+    <h1><?= __('Not found') ?></h1>
+    <p><?= __('The requested Wish was not found.') ?></p>
     <?php
     die();
 }
@@ -82,14 +82,14 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 
                     <a class="ui small labeled icon button" href="<?= $wish->url ?>" target="_blank">
                         <i class="external icon"></i>
-                        Visit
+                        <?= __('Visit') ?>
                     </a>
 
                     <button class="ui small labeled icon button auto-fill disabled"
                             type="button"
                     >
                         <i class="redo icon"></i>
-                        Auto-fill
+                        <?= __('Auto-fill') ?>
                     </button>
 
                 </div>
@@ -107,7 +107,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                         <div class="column">
 
                             <div class="field">
-                                <label>Title</label>
+                                <label><?= __('Title') ?></label>
 
                                 <div class="ui input">
                                     <input type="text"
@@ -120,7 +120,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                             </div>
 
                             <div class="field">
-                                <label>Description</label>
+                                <label><?= __('Description') ?></label>
 
                                 <textarea name="wish_description"
                                           placeholder="<?= $wish->description ?>"
@@ -132,7 +132,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                         <div class="column">
 
                             <div class="field">
-                                <label>URL</label>
+                                <label><?= __('URL') ?></label>
 
                                 <input type="url"
                                        name="wish_url"
@@ -143,7 +143,7 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                             </div>
 
                             <div class="field">
-                                <label>Priority</label>
+                                <label><?= __('Priority') ?></label>
 
                                 <select class="ui selection clearable dropdown priority"
                                         name="wish_priority"
@@ -164,9 +164,9 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                     <div class="stackable row">
                         <div class="sixteen wide column">
 
-                            <input class="ui small primary button" type="submit" value="Save" />
-                            <input class="ui small button" type="reset" value="Reset" />
-                            <a class="ui small secondary button" href="<?= $referer ?>">Back</a>
+                            <input class="ui small primary button" type="submit" value="<?= __('Save') ?>" />
+                            <input class="ui small button" type="reset" value="<?= __('Reset') ?>" />
+                            <a class="ui small secondary button" href="<?= $referer ?>"><?= __('Back') ?></a>
 
                         </div>
                     </div>
@@ -181,24 +181,24 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 <!-- Preview -->
 <div class="ui small modal preview">
     <div class="header">
-        Image
+        <?= __('Image') ?>
     </div>
     <div class="content">
-        <p>Define a new URL to be used as a preview.</p>
+        <p><?= __('Define a new URL to be used as a preview.') ?></p>
 
         <div class="ui form preview">
             <div class="field">
-                <label>URL</label>
+                <label><?= __('URL') ?></label>
                 <input class="current" type="url" name="wish_image" />
             </div>
         </div>
     </div>
     <div class="actions">
         <div class="ui primary approve button">
-            Save
+            <?= __('Save') ?>
         </div>
         <div class="ui deny button">
-            Discard
+            <?= __('Discard') ?>
         </div>
     </div>
 </div>
@@ -206,18 +206,18 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 <!-- Auto-fill -->
 <div class="ui small modal auto-fill">
     <div class="header">
-        Warning
+        <?= __('Warning') ?>
     </div>
     <div class="content">
-        <p>This action will potentially overwrite all fields in this wish.</p>
-        <p>Would you like to continue?</p>
+        <p><?= __('This action will potentially overwrite all fields in this wish.') ?></p>
+        <p><?= __('Would you like to continue?') ?></p>
     </div>
     <div class="actions">
         <div class="ui primary approve button">
-            Yes, overwrite
+            <?= __('Yes, overwrite') ?>
         </div>
         <div class="ui deny button">
-            No
+            <?= __('No') ?>
         </div>
     </div>
 </div>
@@ -225,25 +225,21 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
 <!-- Validate -->
 <div class="ui small modal validate">
     <div class="header">
-        URL mismatch
+        <?= __('URL mismatch') ?>
     </div>
     <div class="content">
         <div class="description">
-            <p>
-                The URL you have entered does not seem quite right. Would you like to update it with the one I found?
-            </p>
-            <p class="provider">
-                According to <strong class="providerName">Unknown</strong>, this is the canonical (correct) URL.
-            </p>
+            <p><?= __('The URL you have entered does not seem quite right. Would you like to update it with the one I found?') ?></p>
+            <p class="provider"><?= sprintf(__('According to %s, this is the canonical (correct) URL.'), '<strong class="providerName">Unknown</strong>') ?></p>
 
             <div class="ui form urls">
                 <div class="field">
-                    <label>Current</label>
+                    <label><?= __('Current') ?></label>
                     <input class="current" type="url" readonly />
                 </div>
 
                 <div class="field">
-                    <label>Proposed</label>
+                    <label><?= __('Proposed') ?></label>
                     <input class="proposed" type="url" />
                 </div>
             </div>
@@ -251,10 +247,10 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
     </div>
     <div class="actions">
         <div class="ui primary approve button">
-            Yes, update
+            <?= __('Yes, update') ?>
         </div>
         <div class="ui deny button">
-            No, leave it
+            <?= __('No, leave it') ?>
         </div>
     </div>
 </div>
