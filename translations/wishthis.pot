@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 10:58+0100\n"
+"POT-Creation-Date: 2022-03-22 13:30+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: classes/page.php:370 classes/page.php:374 pages/install.php:202
+#: classes/page.php:370 classes/page.php:374 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr ""
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:31
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:35
 #: pages/register.php:193
 msgid "Password"
 msgstr ""
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Click Continue to test the database connection."
 msgstr ""
 
-#: pages/install.php:201 pages/login-as.php:38 pages/register.php:123
+#: pages/install.php:202 pages/login-as.php:38 pages/register.php:123
 #: pages/wish.php:35
 msgid "Success"
 msgstr ""
@@ -200,7 +200,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:24
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:28
 #: pages/register.php:175
 msgid "Email"
 msgstr ""
@@ -266,19 +266,19 @@ msgstr ""
 msgid "You do not have enough power to view this page. You need %s to see this page, but only have %s."
 msgstr ""
 
-#: pages/profile.php:37
+#: pages/profile.php:41
 msgid "Password (repeat)"
 msgstr ""
 
-#: pages/profile.php:44
+#: pages/profile.php:48
 msgid "Birthdate"
 msgstr ""
 
-#: pages/profile.php:49
+#: pages/profile.php:53
 msgid "Pick a date"
 msgstr ""
 
-#: pages/profile.php:56 pages/settings.php:50 pages/wish.php:167
+#: pages/profile.php:60 pages/settings.php:50 pages/wish.php:167
 #: pages/wish.php:198
 msgid "Save"
 msgstr ""

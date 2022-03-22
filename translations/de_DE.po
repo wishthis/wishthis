@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 10:58+0100\n"
-"PO-Revision-Date: 2022-03-22 11:23+0100\n"
+"POT-Creation-Date: 2022-03-22 13:26+0100\n"
+"PO-Revision-Date: 2022-03-22 13:29+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -49,7 +49,7 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:370 classes/page.php:374 pages/install.php:202
+#: classes/page.php:370 classes/page.php:374 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
@@ -196,7 +196,7 @@ msgstr "Name"
 msgid "Username"
 msgstr "Benutzername"
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:31
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:35
 #: pages/register.php:193
 msgid "Password"
 msgstr "Passwort"
@@ -209,7 +209,7 @@ msgstr "Weiter"
 msgid "Click Continue to test the database connection."
 msgstr "Klicken Sie auf Weiter, um die Datenbankverbindung zu testen."
 
-#: pages/install.php:201 pages/login-as.php:38 pages/register.php:123
+#: pages/install.php:202 pages/login-as.php:38 pages/register.php:123
 #: pages/wish.php:35
 msgid "Success"
 msgstr "Erfolg"
@@ -227,7 +227,7 @@ msgstr "Benutzer nicht gefunden!"
 msgid "Error"
 msgstr "Fehler"
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:24
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:28
 #: pages/register.php:175
 msgid "Email"
 msgstr "E-Mail"
@@ -313,19 +313,19 @@ msgstr ""
 "Du hast nicht genug Kraft, um diese Seite zu sehen. Du brauchst %s, um diese "
 "Seite zu sehen, hast aber nur %s."
 
-#: pages/profile.php:37
+#: pages/profile.php:41
 msgid "Password (repeat)"
 msgstr "Passwort (Wiederholung)"
 
-#: pages/profile.php:44
+#: pages/profile.php:48
 msgid "Birthdate"
 msgstr "Geburtsdatum"
 
-#: pages/profile.php:49
+#: pages/profile.php:53
 msgid "Pick a date"
 msgstr "Wähle ein Datum"
 
-#: pages/profile.php:56 pages/settings.php:50 pages/wish.php:167
+#: pages/profile.php:60 pages/settings.php:50 pages/wish.php:167
 #: pages/wish.php:198
 msgid "Save"
 msgstr "Speichern"
@@ -563,7 +563,7 @@ msgstr "Aktuell"
 
 #: pages/wish.php:242
 msgid "Proposed"
-msgstr "Vorgeschlagen "
+msgstr "Vorgeschlagen"
 
 #: pages/wish.php:250
 msgid "Yes, update"
@@ -647,7 +647,7 @@ msgstr "Optionen"
 
 #: pages/wishlists.php:54 pages/wishlists.php:150
 msgid "Rename"
-msgstr "Umbenennen "
+msgstr "Umbenennen"
 
 #: pages/wishlists.php:59
 msgid "Delete"
