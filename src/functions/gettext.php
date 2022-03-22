@@ -7,7 +7,6 @@
  */
 
 use Gettext\Loader\PoLoader;
-use Gettext\Generator\MoGenerator;
 
 function __(string $text)
 {
