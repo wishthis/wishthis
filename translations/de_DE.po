@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 08:45+0100\n"
-"PO-Revision-Date: 2022-03-22 08:48+0100\n"
+"POT-Creation-Date: 2022-03-22 09:26+0100\n"
+"PO-Revision-Date: 2022-03-22 09:30+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -18,3 +18,100 @@ msgstr ""
 #: pages/home.php:22
 msgid "Welcome to wishthis"
 msgstr "Willkommen zu wishthis"
+
+#: pages/home.php:23
+msgid ""
+"wishthis is a simple, intuitive and modern wishlist platform to create, "
+"manage and view your wishes for any kind of occasion."
+msgstr ""
+"wishthis ist eine einfache, intuitive und moderne Wunschlisten-Plattform zum "
+"erstellen, verwalten und anzeigen Deiner Wünsche für jede Art von Anlass."
+
+#: pages/home.php:28
+msgid "Create a wishlist"
+msgstr "Wunschliste erstellen"
+
+#: pages/home.php:31
+msgid "View your wishlists"
+msgstr "Wunschlisten ansehen"
+
+#: pages/home.php:35
+msgid "Register now"
+msgstr "Registrieren"
+
+#: pages/home.php:38
+msgid "Login"
+msgstr "Anmelden"
+
+#: pages/home.php:45
+msgid "Use case"
+msgstr "Use case"
+
+#: pages/home.php:46
+msgid ""
+"Your birthday is coming up and you just created a wishlist with all the cool "
+"stuff you want. Your friends and family want to make sure you get something "
+"you are happy with so you send them your wishlist link and if anybody "
+"decides to gift something to you, they simply commit to the wish and it will "
+"disappear for everybody else."
+msgstr ""
+"Dein Geburtstag steht vor der Tür und du hast gerade eine Wunschliste mit "
+"all den coolen Sachen erstellt, die du dir wünschst. Deine Freunde und deine "
+"Familie wollen sichergehen, dass du etwas bekommst, mit dem du glücklich "
+"bist. Also schickst du ihnen den Link zu deiner Wunschliste, und wenn sich "
+"jemand entscheidet, dir etwas zu schenken, verpflichtet er sich einfach, den "
+"Wunsch zu erfüllen, und er verschwindet für alle anderen."
+
+#: pages/home.php:50
+msgid "Why wishthis?"
+msgstr "Warum wishthis?"
+
+#: pages/home.php:51
+#, php-format
+msgid ""
+"wishthis is free and open source software. With free I don't just mean, you "
+"don't have to pay money to use it, but you are also not paying with your "
+"personal information and behaviour. Not only can anybody %sview and verify "
+"its code%s, I also encourage you to do so."
+msgstr ""
+"wishthis ist eine freie und quelloffene Software. Mit frei meine ich nicht "
+"nur, dass Du kein Geld für die Nutzung bezahlen musst, sondern auch, dass Du "
+"nicht mit Deinen persönlichen Daten und Verhalten bezahlen musst. Nicht nur "
+"kann jeder %sden Quelltext%s ansehen und überprüfen, ich ermutige Dich auch, "
+"dies zu tun."
+
+#: pages/home.php:53
+msgid "As a non-commercial project it remains"
+msgstr "Als nicht-kommerzielles Projekt bleibt es"
+
+#: pages/home.php:57
+msgid "free of advertisements,"
+msgstr "frei von Werbung,"
+
+#: pages/home.php:61
+msgid "without tracking, and"
+msgstr "ohne Tracking, und"
+
+#: pages/home.php:65
+msgid "open for feedback and suggestions."
+msgstr "offen für Feedback und Vorschläge."
+
+#: pages/home.php:69
+msgid "Join the others and get started now!"
+msgstr "Schließ dich den anderen an und fang jetzt an!"
+
+#: pages/home.php:73 pages/home.php:78 pages/home.php:83
+msgid "N. A."
+msgstr "k. A."
+
+#: pages/home.php:74
+msgid "Wishes"
+msgstr "Wünsche"
+
+#: pages/home.php:79
+msgid "Wishlists"
+msgstr "Wunschlisten"
+
+#: pages/home.php:84
+msgid "Registered users"
+msgstr "Registrierte Benutzer"
