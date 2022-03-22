@@ -19,7 +19,7 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui segment">
-            <h2 class="ui header">Welcome to wishthis</h2>
+            <h2 class="ui header"><?= __('Welcome to wishthis') ?></h2>
             <p>
                 wishthis is a simple, intuitive and modern wishlist platform to create,
                 manage and view your wishes for any kind of occasion.
