@@ -1,14 +1,19 @@
+# 
+# Translators:
+# Jay Trees, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-23 13:32+0100\n"
-"PO-Revision-Date: 2022-03-23 13:32+0100\n"
-"Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"Language-Team: \n"
-"Language: de_DE\n"
+"POT-Creation-Date: 2022-03-23 16:08+0100\n"
+"PO-Revision-Date: 2022-03-23 12:47+0000\n"
+"Last-Translator: Jay Trees, 2022\n"
+"Language-Team: German (https://www.transifex.com/wishthis/teams/134148/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
@@ -107,10 +112,6 @@ msgstr "Wunsch erfolgreich hinzugefügt."
 msgid "Wish information updated."
 msgstr "Wunsch Informationen aktualisiert."
 
-#: classes/page.php:265
-msgid "Don't forget to save your changes."
-msgstr "Vergiss nicht, deine Änderungen zu speichern."
-
 #: classes/page.php:266
 msgid "Wish successfully deleted."
 msgstr "Wunsch erfolgreich gelöscht."
@@ -127,7 +128,7 @@ msgstr ""
 
 #: classes/page.php:270
 msgid "Link copied to clipboard."
-msgstr "Link in die Zwischenablage kopiert."
+msgstr "Link wurde in die Zwischenablage kopiert."
 
 #: classes/page.php:272
 msgid "{name} must have a value"
@@ -160,38 +161,6 @@ msgstr "{name} muss eine Dezimalzahl sein"
 #: classes/page.php:279
 msgid "{name} must be set to a number"
 msgstr "{name} muss auf eine Zahl gesetzt werden"
-
-#: classes/page.php:280
-msgid "{name} must be '{ruleValue}'"
-msgstr "{name} muss '{ruleValue}' sein"
-
-#: classes/page.php:281
-msgid "{name} must be exactly '{ruleValue}'"
-msgstr "{name} muss genau '{ruleValue}' sein"
-
-#: classes/page.php:282
-msgid "{name} cannot be set to '{ruleValue}'"
-msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
-
-#: classes/page.php:283
-msgid "{name} cannot be set to exactly '{ruleValue}'"
-msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
-
-#: classes/page.php:284
-msgid "{name} cannot contain '{ruleValue}'"
-msgstr "{name} kann nicht '{ruleValue}' enthalten"
-
-#: classes/page.php:285
-msgid "{name} cannot contain exactly '{ruleValue}'"
-msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
-
-#: classes/page.php:286
-msgid "{name} must contain '{ruleValue}'"
-msgstr "{name} muss '{ruleValue}' enthalten"
-
-#: classes/page.php:287
-msgid "{name} must contain exactly '{ruleValue}'"
-msgstr "{name} muss genau '{ruleValue}' enthalten"
 
 #: classes/page.php:288 classes/page.php:289
 msgid "{name} must be at least {ruleValue} characters"
@@ -282,6 +251,18 @@ msgstr "Einstellungen"
 msgid "wishthis logo"
 msgstr "wishthis Logo"
 
+#: classes/page.php:592
+msgid "Contribute"
+msgstr "Beitragen"
+
+#: classes/page.php:598 classes/page.php:601
+msgid "GitHub repository"
+msgstr "GitHub-Repository"
+
+#: classes/page.php:607 classes/page.php:610
+msgid "Translate"
+msgstr "Übersetzen"
+
 #: classes/wish.php:22
 msgid "Default"
 msgstr "Standard"
@@ -316,6 +297,18 @@ msgstr "Bearbeiten"
 msgid "Delete"
 msgstr "Löschen"
 
+#: functions/getWishlistNameSuggestion.php:31
+msgid "Birthday"
+msgstr "Geburtstag"
+
+#: functions/getWishlistNameSuggestion.php:33
+msgid "Easter"
+msgstr "Ostern"
+
+#: functions/getWishlistNameSuggestion.php:35
+msgid "Christmas"
+msgstr "Weihnachten"
+
 #: pages/home.php:11
 msgid "Home"
 msgstr "Home"
@@ -329,8 +322,8 @@ msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
 msgstr ""
-"wishthis ist eine einfache, intuitive und moderne Wunschlisten-Plattform zum "
-"erstellen, verwalten und anzeigen Deiner Wünsche für jede Art von Anlass."
+"wishthis ist eine einfache, intuitive und moderne Wunschlisten-Plattform zum"
+" erstellen, verwalten und anzeigen Deiner Wünsche für jede Art von Anlass."
 
 #: pages/home.php:30 pages/home.php:32 pages/wishlists.php:81
 #: pages/wishlists.php:84 pages/wishlists.php:113
@@ -351,14 +344,14 @@ msgstr "Use case"
 
 #: pages/home.php:66
 msgid ""
-"Your birthday is coming up and you just created a wishlist with all the cool "
-"stuff you want. Your friends and family want to make sure you get something "
-"you are happy with so you send them your wishlist link and if anybody "
+"Your birthday is coming up and you just created a wishlist with all the cool"
+" stuff you want. Your friends and family want to make sure you get something"
+" you are happy with so you send them your wishlist link and if anybody "
 "decides to fulfill one of your wishes, it will disappear for everybody else."
 msgstr ""
 "Dein Geburtstag steht vor der Tür und du hast gerade eine Wunschliste mit "
-"all den coolen Sachen erstellt, die du dir wünschst. Deine Freunde und deine "
-"Familie wollen sichergehen, dass du etwas bekommst, mit dem du glücklich "
+"all den coolen Sachen erstellt, die du dir wünschst. Deine Freunde und deine"
+" Familie wollen sichergehen, dass du etwas bekommst, mit dem du glücklich "
 "bist. Also schickst du ihnen den Link zu deiner Wunschliste und wenn sich "
 "jemand entscheidet, einen deiner Wünsche zu erfüllen, wird er für alle "
 "anderen verschwinden."
@@ -376,10 +369,10 @@ msgid ""
 "its code%s, I also encourage you to do so."
 msgstr ""
 "wishthis ist eine freie und quelloffene Software. Mit frei meine ich nicht "
-"nur, dass Du kein Geld für die Nutzung bezahlen musst, sondern auch, dass Du "
-"nicht mit Deinen persönlichen Daten und Verhalten bezahlen musst. Nicht nur "
-"kann jeder %sden Quelltext%s ansehen und überprüfen, ich ermutige Dich auch, "
-"dies zu tun."
+"nur, dass du kein Geld für die Nutzung bezahlen musst, sondern auch, dass du"
+" nicht mit deinen persönlichen Daten und Verhalten bezahlen musst. Nicht nur"
+" kann jeder %sden Quelltext%s ansehen und überprüfen, ich ermutige dich "
+"auch, dies zu tun."
 
 #: pages/home.php:75
 msgid "As a non-commercial project it remains"
@@ -431,8 +424,8 @@ msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
 msgstr ""
-"wishthis benötigt eine Datenbank, um richtig zu funktionieren. Bitte geben "
-"Sie Ihre Anmeldedaten ein."
+"wishthis braucht eine Datenbank, um richtig zu funktionieren. Bitte gib "
+"deine Anmeldedaten ein."
 
 #: pages/install.php:40
 msgid "Host"
@@ -458,12 +451,12 @@ msgstr "Weiter"
 
 #: pages/install.php:103
 msgid "Click Continue to test the database connection."
-msgstr "Klicken Sie auf Weiter, um die Datenbankverbindung zu testen."
+msgstr "Klicke auf Weiter, um die Datenbankverbindung zu testen."
 
 #: pages/login-as.php:38
 #, php-format
 msgid "Successfully logged in as %s."
-msgstr "Erfolgreich als %s eingeloggt."
+msgstr "Erfolgreich als %s angemeldet."
 
 #: pages/login-as.php:40
 msgid "User not found!"
@@ -493,8 +486,8 @@ msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
 msgstr ""
-"Wenn eine Übereinstimmung für diese E-Mail-Adresse gefunden wird, wird ein "
-"Link zum Zurücksetzen des Passworts an diese Adresse gesendet."
+"Wenn eine Übereinstimmung für diese E-Mail-Adresse gefunden werden kann, "
+"wird ein Link zum Zurücksetzen des Passworts an diese Adresse geschickt."
 
 #: pages/login.php:87
 msgid "Info"
@@ -510,13 +503,13 @@ msgstr "Passwort vergessen?"
 
 #: pages/login.php:146
 msgid ""
-"Consider using a password manager. It will save all your passwords and allow "
-"you to access them with one master password. Never forget a password ever "
+"Consider using a password manager. It will save all your passwords and allow"
+" you to access them with one master password. Never forget a password ever "
 "again."
 msgstr ""
 "Erwäge die Verwendung eines Passwortmanagers. Er speichert alle deine "
-"Passwörter und ermöglicht es dir, mit einem einzigen Master-Passwort auf sie "
-"zuzugreifen. Vergiss nie wieder ein Passwort."
+"Passwörter und ermöglicht es dir, mit einem einzigen Master-Passwort auf sie"
+" zuzugreifen. Vergiss nie wieder ein Passwort."
 
 #: pages/login.php:162 pages/login.php:163
 msgid "Send email"
@@ -552,8 +545,8 @@ msgid ""
 "You do not have enough power to view this page. You need %s to see this "
 "page, but only have %s."
 msgstr ""
-"Du hast nicht genug Kraft, um diese Seite zu sehen. Du brauchst %s, um diese "
-"Seite zu sehen, hast aber nur %s."
+"Du hast nicht genug Stärke, um diese Seite zu sehen. Du brauchst %s, um "
+"diese Seite zu sehen, hast aber nur %s."
 
 #: pages/profile.php:79
 msgid "Password (repeat)"
@@ -624,8 +617,8 @@ msgstr "sonne"
 #: pages/register.php:51
 #, php-format
 msgid ""
-"%s is not a planet but I'll let it slide, since only a human would make this "
-"kind of mistake."
+"%s is not a planet but I'll let it slide, since only a human would make this"
+" kind of mistake."
 msgstr ""
 "%s ist kein Planet, aber ich lasse es durchgehen, denn nur ein Mensch würde "
 "so einen Fehler machen."
@@ -672,7 +665,7 @@ msgstr ""
 
 #: pages/register.php:172
 msgid "Account details"
-msgstr "Konto Details"
+msgstr "Kontodetails"
 
 #: pages/register.php:203
 msgid "Authentication"
@@ -692,7 +685,8 @@ msgstr "Planet"
 
 #: pages/register.php:214
 msgid ""
-"Robots are obivously from another solar system so this will keep them at bay."
+"Robots are obivously from another solar system so this will keep them at "
+"bay."
 msgstr ""
 "Roboter kommen offensichtlich aus einem anderen Sonnensystem, also wird sie "
 "das in Schach halten."
@@ -707,8 +701,8 @@ msgid ""
 "MJML is required for sending emails. Visit %shttps://mjml.io/api%s to "
 "request API access."
 msgstr ""
-"MJML ist für den Versand von E-Mails erforderlich. Besuche %shttps://mjml.io/"
-"api%s, um API-Zugang zu beantragen."
+"MJML ist für den Versand von E-Mails erforderlich. Besuche "
+"%shttps://mjml.io/api%s, um API-Zugang zu beantragen."
 
 #: pages/settings.php:30
 msgid "API"
@@ -732,7 +726,7 @@ msgid ""
 "the self updater."
 msgstr ""
 "Ein Update ist verfügbar. Wenn du mutig bist, klicke bitte auf die "
-"Schaltfläche, um den Self-Updater zu starten."
+"Schaltfläche, um den Selbst-Updater zu starten."
 
 #: pages/update.php:109
 msgid "Use at own risk"
@@ -761,7 +755,7 @@ msgstr "Nicht gefunden"
 
 #: pages/wish.php:51
 msgid "The requested Wish was not found."
-msgstr "Der angeforderte Wunsch wurde nicht gefunden."
+msgstr "Der angefragte Wunsch wurde nicht gefunden."
 
 #: pages/wish.php:94 pages/wish.php:97
 msgid "Auto-fill"
@@ -805,7 +799,8 @@ msgstr "Warnung"
 
 #: pages/wish.php:230
 msgid "This action will potentially overwrite all fields in this wish."
-msgstr "Diese Aktion überschreibt möglicherweise alle Felder in diesem Wunsch."
+msgstr ""
+"Diese Aktion überschreibt möglicherweise alle Felder in diesem Wunsch."
 
 #: pages/wish.php:231
 msgid "Would you like to continue?"
@@ -825,8 +820,8 @@ msgstr "URL-Unstimmigkeit"
 
 #: pages/wish.php:250
 msgid ""
-"The URL you have entered does not seem quite right. Would you like to update "
-"it with the one I found?"
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
 msgstr ""
 "Die URL, die du eingegeben hast, scheint nicht ganz richtig zu sein. "
 "Möchtest du sie mit der aktualisieren, die ich gefunden habe?"
@@ -853,10 +848,11 @@ msgid "No, leave it"
 msgstr "Nein, lass es"
 
 #: pages/wishlist.php:17
-msgid "The requested Wishlist was not found and likely deleted by its creator."
+msgid ""
+"The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
-"Die angeforderte Wishlist wurde nicht gefunden und wahrscheinlich von ihrem "
-"Ersteller gelöscht."
+"Die angefragte Wunschliste wurde nicht gefunden und wahrscheinlich von ihrem"
+" Ersteller gelöscht."
 
 #: pages/wishlist.php:41
 msgid "Careful"
@@ -864,11 +860,11 @@ msgstr "Vorsicht"
 
 #: pages/wishlist.php:44
 msgid ""
-"You are viewing your own wishlist! You will be able to see which wishes have "
-"already been bought for you. Don't you want to be surprised?"
+"You are viewing your own wishlist! You will be able to see which wishes have"
+" already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
-"Du siehst gerade deinen eigenen Wunschzettel! Dort kannst du sehen, welche "
-"Wünsche bereits für dich gekauft worden sind. Willst du dich nicht "
+"Du siehst gerade deine eigene Wunschliste! Dort kannst du sehen, welche "
+"Wünsche bereits für dich erfüllt worden sind. Willst du dich nicht "
 "überraschen lassen?"
 
 #: pages/wishlist.php:45
@@ -906,7 +902,7 @@ msgstr "Wunschliste"
 
 #: pages/wishlists.php:32
 msgid "Loading your wishlists..."
-msgstr "Lade deine Wunschliste..."
+msgstr "Lade deine Wunschlisten..."
 
 #: pages/wishlists.php:38 pages/wishlists.php:41 pages/wishlists.php:170
 msgid "Add a wish"
@@ -947,18 +943,9 @@ msgstr "Wie würdest du diese Wunschliste gerne nennen?"
 #: pages/wishlists.php:174
 msgid "Fill out any or all of the below fields to add your new wish."
 msgstr ""
-"Fülle eines oder alle der unten stehenden Felder aus, um deinen neuen Wunsch "
-"hinzuzufügen."
+"Fülle eines oder alle der unten stehenden Felder aus, um deinen neuen Wunsch"
+" hinzuzufügen."
 
 #: pages/wishlists.php:200 pages/wishlists.php:201
 msgid "Add"
 msgstr "Hinzufügen"
-
-#~ msgid "Really commit?"
-#~ msgstr "Wirklich verpflichten?"
-
-#~ msgid "Yes, commit"
-#~ msgstr "Ja, verpflichten"
-
-#~ msgid "Commit"
-#~ msgstr "Verpflichten"
