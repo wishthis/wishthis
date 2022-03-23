@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 17:59+0100\n"
-"PO-Revision-Date: 2022-03-22 18:02+0100\n"
+"POT-Creation-Date: 2022-03-23 10:50+0100\n"
+"PO-Revision-Date: 2022-03-23 10:52+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -27,7 +27,7 @@ msgstr "Danke für nichts"
 msgid "Understood"
 msgstr "Verstanden"
 
-#: classes/page.php:239 pages/install.php:201 pages/login-as.php:38
+#: classes/page.php:239 pages/install.php:202 pages/login-as.php:38
 #: pages/register.php:123 pages/wish.php:35
 msgid "Success"
 msgstr "Erfolg"
@@ -83,8 +83,8 @@ msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr "Willst du diesen Wunsch wirklich löschen? Er wird für immer weg sein."
 
 #: classes/page.php:257
-msgid "Password must match."
-msgstr "Passwort muss übereinstimmen."
+msgid "Passwords must match."
+msgstr "Passwörter müssen übereinstimmen."
 
 #: classes/page.php:259
 msgid "Wishlist successfully renamed."
@@ -105,6 +105,10 @@ msgstr "Wunsch erfolgreich hinzugefügt."
 #: classes/page.php:264
 msgid "Wish information updated."
 msgstr "Wunsch Informationen aktualisiert."
+
+#: classes/page.php:265
+msgid "Don't forget to save your changes."
+msgstr "Vergiss nicht, deine Änderungen zu speichern."
 
 #: classes/page.php:266
 msgid "Wish successfully deleted."
@@ -155,6 +159,38 @@ msgstr "{name} muss eine Dezimalzahl sein"
 #: classes/page.php:279
 msgid "{name} must be set to a number"
 msgstr "{name} muss auf eine Zahl gesetzt werden"
+
+#: classes/page.php:280
+msgid "{name} must be '{ruleValue}'"
+msgstr "{name} muss '{ruleValue}' sein"
+
+#: classes/page.php:281
+msgid "{name} must be exactly '{ruleValue}'"
+msgstr "{name} muss genau '{ruleValue}' sein"
+
+#: classes/page.php:282
+msgid "{name} cannot be set to '{ruleValue}'"
+msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
+
+#: classes/page.php:283
+msgid "{name} cannot be set to exactly '{ruleValue}'"
+msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
+
+#: classes/page.php:284
+msgid "{name} cannot contain '{ruleValue}'"
+msgstr "{name} kann nicht '{ruleValue}' enthalten"
+
+#: classes/page.php:285
+msgid "{name} cannot contain exactly '{ruleValue}'"
+msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
+
+#: classes/page.php:286
+msgid "{name} must contain '{ruleValue}'"
+msgstr "{name} muss '{ruleValue}' enthalten"
+
+#: classes/page.php:287
+msgid "{name} must contain exactly '{ruleValue}'"
+msgstr "{name} muss genau '{ruleValue}' enthalten"
 
 #: classes/page.php:288 classes/page.php:289
 msgid "{name} must be at least {ruleValue} characters"
@@ -208,7 +244,7 @@ msgstr "Wunschlisten"
 msgid "My lists"
 msgstr "Meine Listen"
 
-#: classes/page.php:395 pages/profile.php:11
+#: classes/page.php:395 pages/profile.php:51
 msgid "Profile"
 msgstr "Profil"
 
@@ -226,7 +262,7 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:424 classes/page.php:428 pages/install.php:202
+#: classes/page.php:424 classes/page.php:428 pages/install.php:203
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
@@ -404,7 +440,7 @@ msgstr "Name"
 msgid "Username"
 msgstr "Benutzername"
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:31
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:73
 #: pages/register.php:193
 msgid "Password"
 msgstr "Passwort"
@@ -426,7 +462,7 @@ msgstr "Erfolgreich als %s eingeloggt."
 msgid "User not found!"
 msgstr "Benutzer nicht gefunden!"
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:24
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:66
 #: pages/register.php:175
 msgid "Email"
 msgstr "E-Mail"
@@ -512,19 +548,19 @@ msgstr ""
 "Du hast nicht genug Kraft, um diese Seite zu sehen. Du brauchst %s, um diese "
 "Seite zu sehen, hast aber nur %s."
 
-#: pages/profile.php:37
+#: pages/profile.php:79
 msgid "Password (repeat)"
 msgstr "Passwort (Wiederholung)"
 
-#: pages/profile.php:44
+#: pages/profile.php:86
 msgid "Birthdate"
 msgstr "Geburtsdatum"
 
-#: pages/profile.php:49
+#: pages/profile.php:93
 msgid "Pick a date"
 msgstr "Wähle ein Datum"
 
-#: pages/profile.php:56 pages/settings.php:50 pages/wish.php:167
+#: pages/profile.php:102 pages/settings.php:50 pages/wish.php:167
 #: pages/wish.php:198
 msgid "Save"
 msgstr "Speichern"
@@ -536,6 +572,46 @@ msgstr "Passwort zurücksetzen"
 #: pages/register.php:14 pages/wish.php:168
 msgid "Reset"
 msgstr "Zurücksetzen"
+
+#: pages/register.php:31
+msgid "mercury"
+msgstr "merkur"
+
+#: pages/register.php:32
+msgid "venus"
+msgstr "venus"
+
+#: pages/register.php:33
+msgid "earth"
+msgstr "erde"
+
+#: pages/register.php:34
+msgid "mars"
+msgstr "mars"
+
+#: pages/register.php:35
+msgid "jupiter"
+msgstr "jupiter"
+
+#: pages/register.php:36
+msgid "saturn"
+msgstr "saturn"
+
+#: pages/register.php:37
+msgid "uranus"
+msgstr "uranus"
+
+#: pages/register.php:38
+msgid "neptune"
+msgstr "neptun"
+
+#: pages/register.php:41
+msgid "pluto"
+msgstr "pluto"
+
+#: pages/register.php:42
+msgid "sun"
+msgstr "sonne"
 
 #: pages/register.php:51
 #, php-format
@@ -874,30 +950,6 @@ msgstr "Hinzufügen"
 
 #~ msgid "Yes, commit"
 #~ msgstr "Ja, verpflichten"
-
-#~ msgid "{name} must be '{ruleValue}'"
-#~ msgstr "{name} muss '{ruleValue}' sein"
-
-#~ msgid "{name} must be exactly '{ruleValue}'"
-#~ msgstr "{name} muss genau '{ruleValue}' sein"
-
-#~ msgid "{name} cannot be set to '{ruleValue}'"
-#~ msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
-
-#~ msgid "{name} cannot be set to exactly '{ruleValue}'"
-#~ msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
-
-#~ msgid "{name} cannot contain '{ruleValue}'"
-#~ msgstr "{name} kann nicht '{ruleValue}' enthalten"
-
-#~ msgid "{name} cannot contain exactly '{ruleValue}'"
-#~ msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
-
-#~ msgid "{name} must contain '{ruleValue}'"
-#~ msgstr "{name} muss '{ruleValue}' enthalten"
-
-#~ msgid "{name} must contain exactly '{ruleValue}'"
-#~ msgstr "{name} muss genau '{ruleValue}' enthalten"
 
 #~ msgid "Commit"
 #~ msgstr "Verpflichten"
