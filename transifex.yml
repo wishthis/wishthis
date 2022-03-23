@@ -1,0 +1,7 @@
+git:
+  filters:
+  - filter_type: file
+    file_format: PO
+    source_file: translations/wishthis.pot
+    source_language: en
+    translation_files_expression: 'translations/<lang>.po'
