@@ -19,9 +19,14 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 1. Follow the instructions of the installer
 
 ## Contributing
+
+### As a translator
+https://www.transifex.com/wishthis/wishthis/
+
+### As a developer
 Install dependencies
 
-### Composer
+#### Composer
 Use one of the following commands.
 
 | Command                     | Description                         |
@@ -29,7 +34,7 @@ Use one of the following commands.
 | `composer install`          | Install all dependencies.           |
 | `composer install --no-dev` | Install only required dependencies. |
 
-### NPM
+#### NPM
 Use one of the following commands.
 
 | Command                                       | Description                         |
@@ -37,7 +42,7 @@ Use one of the following commands.
 | `npm install`                                 | Install all dependencies.           |
 | `npm install --only=production --no-optional` | Install only required dependencies. |
 
-### Theme changes
+#### Theme changes
 ```
 cd semantic
 ```
