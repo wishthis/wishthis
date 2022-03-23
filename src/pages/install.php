@@ -124,7 +124,8 @@ switch ($step) {
             `password_reset_token`       VARCHAR(128) NULL DEFAULT NULL,
             `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
             `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
-            `power`                      INT          NOT NULL DEFAULT 0
+            `power`                      INT          NOT NULL DEFAULT 0,
+            `birthdate`                  DATE         NULL DEFAULT NULL
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
