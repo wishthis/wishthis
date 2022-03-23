@@ -16,9 +16,9 @@ function __(string $text)
         $translation = $translations->find(null, $text);
 
         if ($translation) {
-            return $translation->getTranslation();
+            return addslashes($translation->getTranslation());
         }
     }
 
-    return $text;
+    return addslashes($text);
 }
