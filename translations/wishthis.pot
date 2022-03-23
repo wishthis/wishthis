@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-23 15:12+0100\n"
+"POT-Creation-Date: 2022-03-23 16:08+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -771,7 +771,7 @@ msgid "Careful"
 msgstr ""
 
 #: pages/wishlist.php:44
-msgid "You are viewing your own wishlist! You will be able to see which wishes have already been bought for you. Don't you want to be surprised?"
+msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
 
 #: pages/wishlist.php:45
