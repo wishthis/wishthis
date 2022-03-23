@@ -8,7 +8,6 @@ $(function() {
     $('.ui.form').form({
         fields: {
             'user-email'    : 'email',
-            'user-password' : ['minLength[8]'],
             match           : {
                 identifier : 'user-password-repeat',
                 depends    : 'user-password',
