@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-23 13:31+0100\n"
+"POT-Creation-Date: 2022-03-23 15:12+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -104,10 +104,6 @@ msgstr ""
 msgid "Wish information updated."
 msgstr ""
 
-#: classes/page.php:265
-msgid "Don't forget to save your changes."
-msgstr ""
-
 #: classes/page.php:266
 msgid "Wish successfully deleted."
 msgstr ""
@@ -154,38 +150,6 @@ msgstr ""
 
 #: classes/page.php:279
 msgid "{name} must be set to a number"
-msgstr ""
-
-#: classes/page.php:280
-msgid "{name} must be '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:281
-msgid "{name} must be exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:282
-msgid "{name} cannot be set to '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:283
-msgid "{name} cannot be set to exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:284
-msgid "{name} cannot contain '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:285
-msgid "{name} cannot contain exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:286
-msgid "{name} must contain '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:287
-msgid "{name} must contain exactly '{ruleValue}'"
 msgstr ""
 
 #: classes/page.php:288 classes/page.php:289
@@ -277,6 +241,18 @@ msgstr ""
 msgid "wishthis logo"
 msgstr ""
 
+#: classes/page.php:592
+msgid "Contribute"
+msgstr ""
+
+#: classes/page.php:598 classes/page.php:601
+msgid "GitHub repository"
+msgstr ""
+
+#: classes/page.php:607 classes/page.php:610
+msgid "Translate"
+msgstr ""
+
 #: classes/wish.php:22
 msgid "Default"
 msgstr ""
@@ -309,6 +285,18 @@ msgstr ""
 
 #: classes/wish.php:193 pages/wishlists.php:64 pages/wishlists.php:66
 msgid "Delete"
+msgstr ""
+
+#: functions/getWishlistNameSuggestion.php:31
+msgid "Birthday"
+msgstr ""
+
+#: functions/getWishlistNameSuggestion.php:33
+msgid "Easter"
+msgstr ""
+
+#: functions/getWishlistNameSuggestion.php:35
+msgid "Christmas"
 msgstr ""
 
 #: pages/home.php:11
