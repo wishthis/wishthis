@@ -254,7 +254,7 @@ class Page
                     modal_wish_delete_approve : '<?= __('Yes, delete') ?>',
                     modal_wish_delete_deny    : '<?= __('No, keep') ?>',
 
-                    form_profile_password : '<?= __('Password must match.') ?>',
+                    form_profile_password : '<?= __('Passwords must match.') ?>',
 
                     toast_wishlist_rename : '<?= __('Wishlist successfully renamed.') ?>',
                     toast_wishlist_delete : '<?= __('Wishlist successfully deleted.') ?>',
