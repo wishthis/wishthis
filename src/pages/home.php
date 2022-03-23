@@ -43,7 +43,7 @@ $page->navigation();
 
         <div class="ui segment">
             <h2 class="ui header"><?= __('Use case') ?></h2>
-            <p><?= __('Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to gift something to you, they simply commit to the wish and it will disappear for everybody else.') ?></p>
+            <p><?= __('Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfill one of your wishes, it will disappear for everybody else.') ?></p>
         </div>
 
         <div class="ui segment">

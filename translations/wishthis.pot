@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 16:40+0100\n"
+"POT-Creation-Date: 2022-03-22 17:59+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Understood"
 msgstr ""
 
-#: classes/page.php:239 pages/install.php:202 pages/login-as.php:38
+#: classes/page.php:239 pages/install.php:201 pages/login-as.php:38
 #: pages/register.php:123 pages/wish.php:35
 msgid "Success"
 msgstr ""
@@ -59,15 +59,15 @@ msgid "No, keep"
 msgstr ""
 
 #: classes/page.php:248
-msgid "Really commit?"
+msgid "Really fulfill wish?"
 msgstr ""
 
 #: classes/page.php:249
-msgid "Would you really like to commit to this purchase? It will no longer appear in the wishlist for others anymore."
+msgid "Would you really like to fulfill this wish? It will no longer appear in the wishlist for others anymore."
 msgstr ""
 
 #: classes/page.php:250
-msgid "Yes, commit"
+msgid "Yes, fulfill wish"
 msgstr ""
 
 #: classes/page.php:251 pages/wishlists.php:126 pages/wishlists.php:153
@@ -151,38 +151,6 @@ msgstr ""
 msgid "{name} must be set to a number"
 msgstr ""
 
-#: classes/page.php:280
-msgid "{name} must be '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:281
-msgid "{name} must be exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:282
-msgid "{name} cannot be set to '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:283
-msgid "{name} cannot be set to exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:284
-msgid "{name} cannot contain '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:285
-msgid "{name} cannot contain exactly '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:286
-msgid "{name} must contain '{ruleValue}'"
-msgstr ""
-
-#: classes/page.php:287
-msgid "{name} must contain exactly '{ruleValue}'"
-msgstr ""
-
 #: classes/page.php:288 classes/page.php:289
 msgid "{name} must be at least {ruleValue} characters"
 msgstr ""
@@ -253,7 +221,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: classes/page.php:424 classes/page.php:428 pages/install.php:203
+#: classes/page.php:424 classes/page.php:428 pages/install.php:202
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr ""
@@ -280,6 +248,26 @@ msgstr ""
 
 #: classes/wish.php:30
 msgid "Would love it"
+msgstr ""
+
+#: classes/wish.php:162 pages/wishlist.php:56
+msgid "Fulfill wish"
+msgstr ""
+
+#: classes/wish.php:171 pages/wish.php:85
+msgid "Visit"
+msgstr ""
+
+#: classes/wish.php:178 pages/wishlists.php:49
+msgid "Options"
+msgstr ""
+
+#: classes/wish.php:183
+msgid "Edit"
+msgstr ""
+
+#: classes/wish.php:188 pages/wishlists.php:59
+msgid "Delete"
 msgstr ""
 
 #: pages/home.php:11
@@ -311,7 +299,7 @@ msgid "Use case"
 msgstr ""
 
 #: pages/home.php:46
-msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to gift something to you, they simply commit to the wish and it will disappear for everybody else."
+msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfill one of your wishes, it will disappear for everybody else."
 msgstr ""
 
 #: pages/home.php:50
@@ -384,7 +372,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:35
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:31
 #: pages/register.php:193
 msgid "Password"
 msgstr ""
@@ -406,7 +394,7 @@ msgstr ""
 msgid "User not found!"
 msgstr ""
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:28
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:24
 #: pages/register.php:175
 msgid "Email"
 msgstr ""
@@ -472,19 +460,19 @@ msgstr ""
 msgid "You do not have enough power to view this page. You need %s to see this page, but only have %s."
 msgstr ""
 
-#: pages/profile.php:41
+#: pages/profile.php:37
 msgid "Password (repeat)"
 msgstr ""
 
-#: pages/profile.php:48
+#: pages/profile.php:44
 msgid "Birthdate"
 msgstr ""
 
-#: pages/profile.php:53
+#: pages/profile.php:49
 msgid "Pick a date"
 msgstr ""
 
-#: pages/profile.php:60 pages/settings.php:50 pages/wish.php:167
+#: pages/profile.php:56 pages/settings.php:50 pages/wish.php:167
 #: pages/wish.php:198
 msgid "Save"
 msgstr ""
@@ -617,10 +605,6 @@ msgstr ""
 msgid "The requested Wish was not found."
 msgstr ""
 
-#: pages/wish.php:85
-msgid "Visit"
-msgstr ""
-
 #: pages/wish.php:92
 msgid "Auto-fill"
 msgstr ""
@@ -731,10 +715,6 @@ msgstr ""
 msgid "If you found something you would like to buy, click the %s button and it will become unavailable for others."
 msgstr ""
 
-#: pages/wishlist.php:56
-msgid "Commit"
-msgstr ""
-
 #: pages/wishlists.php:19
 msgid "Here you can view and edit all of your wishlists."
 msgstr ""
@@ -763,16 +743,8 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: pages/wishlists.php:49
-msgid "Options"
-msgstr ""
-
 #: pages/wishlists.php:54 pages/wishlists.php:150
 msgid "Rename"
-msgstr ""
-
-#: pages/wishlists.php:59
-msgid "Delete"
 msgstr ""
 
 #: pages/wishlists.php:70

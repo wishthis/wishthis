@@ -157,9 +157,9 @@ class Wish
 
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
-                    <a class="ui small primary labeled icon button commit">
+                    <a class="ui small primary labeled icon button fulfill">
                         <i class="shopping cart icon"></i>
-                        Commit
+                        <?= __('Fulfill wish') ?>
                     </a>
                 <?php } ?>
 
@@ -168,24 +168,24 @@ class Wish
                        href="<?= $this->url ?>" target="_blank"
                     >
                         <i class="external icon"></i>
-                        Visit
+                        <?= __('Visit') ?>
                     </a>
                 <?php } ?>
 
                 <?php if ($userIsCurrent) { ?>
                     <div class="ui small labeled icon top left pointing dropdown button options">
                         <i class="cog icon"></i>
-                        <span class="text">Options</span>
+                        <span class="text"><?= __('Options') ?></span>
                         <div class="menu">
 
                             <a class="item" href="/?page=wish&id=<?= $this->id ?>">
                                 <i class="pen icon"></i>
-                                Edit
+                                <?= __('Edit') ?>
                             </a>
 
                             <div class="item wish-delete">
                                 <i class="trash icon"></i>
-                                Delete
+                                <?= __('Delete') ?>
                             </div>
 
                         </div>

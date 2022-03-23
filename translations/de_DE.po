@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-22 16:40+0100\n"
-"PO-Revision-Date: 2022-03-22 16:45+0100\n"
+"POT-Creation-Date: 2022-03-22 17:59+0100\n"
+"PO-Revision-Date: 2022-03-22 18:02+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -27,7 +27,7 @@ msgstr "Danke für nichts"
 msgid "Understood"
 msgstr "Verstanden"
 
-#: classes/page.php:239 pages/install.php:202 pages/login-as.php:38
+#: classes/page.php:239 pages/install.php:201 pages/login-as.php:38
 #: pages/register.php:123 pages/wish.php:35
 msgid "Success"
 msgstr "Erfolg"
@@ -58,20 +58,20 @@ msgid "No, keep"
 msgstr "Nein, behalten"
 
 #: classes/page.php:248
-msgid "Really commit?"
-msgstr "Wirklich verpflichten?"
+msgid "Really fulfill wish?"
+msgstr "Wunsch wirklich erfüllen?"
 
 #: classes/page.php:249
 msgid ""
-"Would you really like to commit to this purchase? It will no longer appear "
-"in the wishlist for others anymore."
+"Would you really like to fulfill this wish? It will no longer appear in the "
+"wishlist for others anymore."
 msgstr ""
-"Willst du dich wirklich zu diesem Kauf verpflichten? Er wird dann nicht mehr "
-"auf der Wunschliste für andere erscheinen."
+"Möchtest du diesen Wunsch wirklich erfüllen? Er wird dann nicht mehr in der "
+"Wunschliste für andere erscheinen."
 
 #: classes/page.php:250
-msgid "Yes, commit"
-msgstr "Ja, verpflichten"
+msgid "Yes, fulfill wish"
+msgstr "Ja, Wunsch erfüllen"
 
 #: classes/page.php:251 pages/wishlists.php:126 pages/wishlists.php:153
 #: pages/wishlists.php:195
@@ -156,38 +156,6 @@ msgstr "{name} muss eine Dezimalzahl sein"
 msgid "{name} must be set to a number"
 msgstr "{name} muss auf eine Zahl gesetzt werden"
 
-#: classes/page.php:280
-msgid "{name} must be '{ruleValue}'"
-msgstr "{name} muss '{ruleValue}' sein"
-
-#: classes/page.php:281
-msgid "{name} must be exactly '{ruleValue}'"
-msgstr "{name} muss genau '{ruleValue}' sein"
-
-#: classes/page.php:282
-msgid "{name} cannot be set to '{ruleValue}'"
-msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
-
-#: classes/page.php:283
-msgid "{name} cannot be set to exactly '{ruleValue}'"
-msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
-
-#: classes/page.php:284
-msgid "{name} cannot contain '{ruleValue}'"
-msgstr "{name} kann nicht '{ruleValue}' enthalten"
-
-#: classes/page.php:285
-msgid "{name} cannot contain exactly '{ruleValue}'"
-msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
-
-#: classes/page.php:286
-msgid "{name} must contain '{ruleValue}'"
-msgstr "{name} muss '{ruleValue}' enthalten"
-
-#: classes/page.php:287
-msgid "{name} must contain exactly '{ruleValue}'"
-msgstr "{name} muss genau '{ruleValue}' enthalten"
-
 #: classes/page.php:288 classes/page.php:289
 msgid "{name} must be at least {ruleValue} characters"
 msgstr "{name} muss mindestens {ruleValue} Zeichen umfassen"
@@ -258,7 +226,7 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-#: classes/page.php:424 classes/page.php:428 pages/install.php:203
+#: classes/page.php:424 classes/page.php:428 pages/install.php:202
 #: pages/login.php:129 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrieren"
@@ -286,6 +254,26 @@ msgstr "Schön zu haben"
 #: classes/wish.php:30
 msgid "Would love it"
 msgstr "Würde es lieben"
+
+#: classes/wish.php:162 pages/wishlist.php:56
+msgid "Fulfill wish"
+msgstr "Wunsch erfüllen"
+
+#: classes/wish.php:171 pages/wish.php:85
+msgid "Visit"
+msgstr "Besuchen"
+
+#: classes/wish.php:178 pages/wishlists.php:49
+msgid "Options"
+msgstr "Optionen"
+
+#: classes/wish.php:183
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: classes/wish.php:188 pages/wishlists.php:59
+msgid "Delete"
+msgstr "Löschen"
 
 #: pages/home.php:11
 msgid "Home"
@@ -324,15 +312,14 @@ msgid ""
 "Your birthday is coming up and you just created a wishlist with all the cool "
 "stuff you want. Your friends and family want to make sure you get something "
 "you are happy with so you send them your wishlist link and if anybody "
-"decides to gift something to you, they simply commit to the wish and it will "
-"disappear for everybody else."
+"decides to fulfill one of your wishes, it will disappear for everybody else."
 msgstr ""
 "Dein Geburtstag steht vor der Tür und du hast gerade eine Wunschliste mit "
 "all den coolen Sachen erstellt, die du dir wünschst. Deine Freunde und deine "
 "Familie wollen sichergehen, dass du etwas bekommst, mit dem du glücklich "
-"bist. Also schickst du ihnen den Link zu deiner Wunschliste, und wenn sich "
-"jemand entscheidet, dir etwas zu schenken, verpflichtet er sich einfach, den "
-"Wunsch zu erfüllen, und er verschwindet für alle anderen."
+"bist. Also schickst du ihnen den Link zu deiner Wunschliste und wenn sich "
+"jemand entscheidet, einen deiner Wünsche zu erfüllen, wird er für alle "
+"anderen verschwinden."
 
 #: pages/home.php:50
 msgid "Why wishthis?"
@@ -417,7 +404,7 @@ msgstr "Name"
 msgid "Username"
 msgstr "Benutzername"
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:35
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:31
 #: pages/register.php:193
 msgid "Password"
 msgstr "Passwort"
@@ -439,7 +426,7 @@ msgstr "Erfolgreich als %s eingeloggt."
 msgid "User not found!"
 msgstr "Benutzer nicht gefunden!"
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:28
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:24
 #: pages/register.php:175
 msgid "Email"
 msgstr "E-Mail"
@@ -525,19 +512,19 @@ msgstr ""
 "Du hast nicht genug Kraft, um diese Seite zu sehen. Du brauchst %s, um diese "
 "Seite zu sehen, hast aber nur %s."
 
-#: pages/profile.php:41
+#: pages/profile.php:37
 msgid "Password (repeat)"
 msgstr "Passwort (Wiederholung)"
 
-#: pages/profile.php:48
+#: pages/profile.php:44
 msgid "Birthdate"
 msgstr "Geburtsdatum"
 
-#: pages/profile.php:53
+#: pages/profile.php:49
 msgid "Pick a date"
 msgstr "Wähle ein Datum"
 
-#: pages/profile.php:60 pages/settings.php:50 pages/wish.php:167
+#: pages/profile.php:56 pages/settings.php:50 pages/wish.php:167
 #: pages/wish.php:198
 msgid "Save"
 msgstr "Speichern"
@@ -692,10 +679,6 @@ msgstr "Nicht gefunden"
 msgid "The requested Wish was not found."
 msgstr "Der angeforderte Wunsch wurde nicht gefunden."
 
-#: pages/wish.php:85
-msgid "Visit"
-msgstr "Besuchen"
-
 #: pages/wish.php:92
 msgid "Auto-fill"
 msgstr "Automatisch ausfüllen"
@@ -821,10 +804,6 @@ msgstr ""
 "Wenn du etwas gefunden hast, das du gerne kaufen möchtest, klicke auf die "
 "Schaltfläche %s und es wird für andere nicht mehr verfügbar sein."
 
-#: pages/wishlist.php:56
-msgid "Commit"
-msgstr "Verpflichten"
-
 #: pages/wishlists.php:19
 msgid "Here you can view and edit all of your wishlists."
 msgstr "Hier kannst du alle deine Wunschlisten einsehen und bearbeiten."
@@ -853,17 +832,9 @@ msgstr "Wunsch hinzufügen"
 msgid "Share"
 msgstr "Teilen"
 
-#: pages/wishlists.php:49
-msgid "Options"
-msgstr "Optionen"
-
 #: pages/wishlists.php:54 pages/wishlists.php:150
 msgid "Rename"
 msgstr "Umbenennen"
-
-#: pages/wishlists.php:59
-msgid "Delete"
-msgstr "Löschen"
 
 #: pages/wishlists.php:70
 msgid "General options."
@@ -897,3 +868,36 @@ msgstr ""
 #: pages/wishlists.php:192
 msgid "Add"
 msgstr "Hinzufügen"
+
+#~ msgid "Really commit?"
+#~ msgstr "Wirklich verpflichten?"
+
+#~ msgid "Yes, commit"
+#~ msgstr "Ja, verpflichten"
+
+#~ msgid "{name} must be '{ruleValue}'"
+#~ msgstr "{name} muss '{ruleValue}' sein"
+
+#~ msgid "{name} must be exactly '{ruleValue}'"
+#~ msgstr "{name} muss genau '{ruleValue}' sein"
+
+#~ msgid "{name} cannot be set to '{ruleValue}'"
+#~ msgstr "{name} kann nicht auf '{ruleValue}' gesetzt werden"
+
+#~ msgid "{name} cannot be set to exactly '{ruleValue}'"
+#~ msgstr "{name} kann nicht genau auf '{ruleValue}' gesetzt werden"
+
+#~ msgid "{name} cannot contain '{ruleValue}'"
+#~ msgstr "{name} kann nicht '{ruleValue}' enthalten"
+
+#~ msgid "{name} cannot contain exactly '{ruleValue}'"
+#~ msgstr "{name} kann nicht genau '{ruleValue}' enthalten"
+
+#~ msgid "{name} must contain '{ruleValue}'"
+#~ msgstr "{name} muss '{ruleValue}' enthalten"
+
+#~ msgid "{name} must contain exactly '{ruleValue}'"
+#~ msgstr "{name} muss genau '{ruleValue}' enthalten"
+
+#~ msgid "Commit"
+#~ msgstr "Verpflichten"

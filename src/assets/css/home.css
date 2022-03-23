@@ -4,3 +4,8 @@
 .ui.statistics::after {
     display: none;
 }
+
+.ui.statistic > .value,
+.ui.statistics .statistic > .value {
+	font-variant-numeric: lining-nums;
+}
