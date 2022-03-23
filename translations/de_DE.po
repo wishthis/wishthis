@@ -1,7 +1,7 @@
-# 
+#
 # Translators:
 # Jay Trees, 2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
