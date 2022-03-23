@@ -160,7 +160,7 @@ class Wish
                     <a class="ui small primary labeled icon button fulfill"
                        title="<?= __('Fulfill wish') ?>"
                     >
-                        <i class="shopping cart icon"></i>
+                        <i class="gift icon"></i>
                         <?= __('Fulfill wish') ?>
                     </a>
                 <?php } ?>
