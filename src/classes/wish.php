@@ -101,13 +101,13 @@ class Wish
         $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $ofUser;
 
         if ($this->url) {
-            $exists = $this->cache->exists() || !$this->url ? 'true' : 'false';
+            $generateCache = $this->cache->generateCache() || !$this->url ? 'true' : 'false';
         } else {
-            $exists = 'true';
+            $generateCache = 'true';
         }
         ?>
 
-        <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $exists ?>">
+        <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $generateCache ?>">
             <div class="image">
                 <?php if ($this->priority && isset(Wish::$priorities[$this->priority])) { ?>
                     <div class="ui small <?= Wish::$priorities[$this->priority]['color'] ?> right ribbon label">

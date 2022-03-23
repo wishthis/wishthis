@@ -38,10 +38,8 @@ class EmbedCache
     public function get(bool $generateCache = false): \stdClass
     {
         $info   = null;
-        $maxAge = 2592000; // 30 days
-        $age    = file_exists($this->getFilepath()) ? time() - filemtime($this->getFilepath()) : $maxAge;
 
-        if ($this->exists() && $age <= $maxAge && false === $generateCache) {
+        if ($this->generateCache() && false === $generateCache) {
             $info = json_decode(file_get_contents($this->getFilepath()));
         } else {
             /**
@@ -114,5 +112,21 @@ class EmbedCache
     public function exists(): bool
     {
         return file_exists($this->getFilepath());
+    }
+
+    public function age(): int
+    {
+        return time() - filemtime($this->getFilepath());
+    }
+
+    public function maxAge(): int
+    {
+        return 2592000; // 30 days
+    }
+
+    public function generateCache(): bool
+    {
+        return !$this->exists()
+            || ($this->exists() && $this->age() <= $this->maxAge());
     }
 }

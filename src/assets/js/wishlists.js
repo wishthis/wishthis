@@ -104,7 +104,7 @@ $(function () {
                 var cards = $('.ui.card[data-cache="false"]');
 
                 cards.each(function (index, card) {
-                    generateCacheCard(card);
+                    generateCacheCard($(card));
 
                     if (index >= 0) {
                         return false;
@@ -130,9 +130,7 @@ $(function () {
     });
 
     function generateCacheCard(card) {
-        card = $(card);
-
-        var href    = card.find('.content [href]').prop('href');
+        var href = card.find('.content [href]').prop('href');
 
         if (!href) {
             return;
@@ -144,17 +142,16 @@ $(function () {
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
         var wishlist_user = wishlists[wishlistIndex].user;
 
-        fetch('/src/api/wishes.php?wish_id=' + card.data('id') + '&wishlist_user=' + wishlist_user, {
+        fetch('/src/api/wishes.php?wish_id=' + card.attr('data-id') + '&wishlist_user=' + wishlist_user, {
             method: 'GET'
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            card.replaceWith(response.html);
+            card.replaceWith(response.html.replace('data-cache="false"', 'data-cache="true"'));
         })
         .catch(handleFetchCatch)
         .finally(function() {
-            card.attr('data-cache', 'true');
             card.removeClass('loading');
 
             progress.progress('increment');
