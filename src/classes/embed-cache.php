@@ -39,7 +39,7 @@ class EmbedCache
     {
         $info   = null;
 
-        if ($this->generateCache() && false === $generateCache) {
+        if (!$this->generateCache() && false === $generateCache) {
             $info = json_decode(file_get_contents($this->getFilepath()));
         } else {
             /**
