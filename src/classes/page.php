@@ -568,23 +568,46 @@ class Page
         ?>
         <div class="ui hidden divider"></div>
         <div class="ui inverted vertical footer segment">
-            <div class="ui center aligned container">
+            <div class="ui container">
                 <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="sixteen wide column">
+                    <div class="eight wide column">
                         <h4 class="ui inverted header">wishthis</h4>
 
                         <div class="ui inverted link list">
-                            <?php
-                            global $options;
+                            <div class="item">
+                                <i class="code branch icon"></i>
+                                <div class="content">
+                                    <?php
+                                    global $options;
 
-                            echo 'v' . $options->version;
-                            ?>
+                                    echo 'v' . $options->version;
+                                    ?>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="eight wide column">
+                        <h4 class="ui inverted header"><?= __('Contribute') ?></h4>
 
                         <div class="ui inverted link list">
-                            <a class="item" href="https://github.com/grandeljay/wishthis" target="_blank">
-                                <i class="big github icon"></i>
+                            <a class="item"
+                               href="https://github.com/grandeljay/wishthis"
+                               target="_blank"
+                               title="<?= __('GitHub repository') ?>"
+                            >
+                                <i class="github icon"></i>
+                                <div class="content"><?= __('GitHub repository') ?></div>
+                            </a>
+
+                            <a class="item"
+                               href="https://www.transifex.com/wishthis/wishthis/"
+                               target="_blank"
+                               title="<?= __('Translate') ?>"
+                            >
+                                <i class="language icon"></i>
+                                <div class="content"><?= __('Translate') ?></div>
                             </a>
                         </div>
                     </div>

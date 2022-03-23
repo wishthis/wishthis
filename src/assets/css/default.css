@@ -220,6 +220,7 @@ p .ui.horizontal.label {
 .ui.vertical.menu .footer .item > i.icon,
 .ui.vertical.menu .footer .item > i.icons {
     float: none;
+    margin: 0;
 }
 
 @media (max-width: 767px) {
