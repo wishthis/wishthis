@@ -121,7 +121,7 @@ $page->navigation();
                     <label><?= __('Name') ?></label>
                     <input type="text"
                            name="wishlist-name"
-                           data-default="<?= getCurrentSeason() ?>"
+                           data-default="<?= getWishlistNameSuggestion() ?>"
                     />
                 </div>
             </form>
