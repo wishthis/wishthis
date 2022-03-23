@@ -61,14 +61,14 @@ $(function() {
                  * Update wish status
                  */
                 button.api({
-                    action: 'update wish status',
-                    method: 'PUT',
-                    data: {
-                        wish_id: card.data('id'),
-                        wish_status: 'unavailable'
+                    action    : 'update wish status',
+                    method    : 'PUT',
+                    data      : {
+                        wish_id     : card.attr('data-id'),
+                        wish_status : 'unavailable'
                     },
-                    on: 'now',
-                    onSuccess: function(response, element, xhr) {
+                    on        : 'now',
+                    onSuccess : function(response, element, xhr) {
                         column.fadeOut();
                     },
                 });

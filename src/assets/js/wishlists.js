@@ -99,7 +99,7 @@ $(function () {
         }
 
         var timerInterval = 1200;
-        var timerCache = setTimeout(
+        var timerCache    = setTimeout(
             function generateCacheCards() {
                 var cards = $('.ui.card[data-cache="false"]');
 
@@ -322,13 +322,13 @@ $(function () {
                  * Delete wish
                  */
                 buttonDelete.api({
-                    action: 'delete wish',
-                    method: 'DELETE',
-                    data: {
-                        wish_id: card.data('id'),
+                    action    : 'delete wish',
+                    method    : 'DELETE',
+                    data      : {
+                        wish_id: card.attr('data-id'),
                     },
-                    on: 'now',
-                    onSuccess: function () {
+                    on        : 'now',
+                    onSuccess : function () {
                         column.fadeOut();
 
                         $('body').toast({ message: text.toast_wish_delete });
@@ -398,8 +398,8 @@ $(function () {
         var formWishlistCreate  = modalWishlistCreate.find('.ui.form');
         var inputWishlistName   = formWishlistCreate.find('[name="wishlist-name"]');
 
-        inputWishlistName.attr('placeholder', inputWishlistName.data('default'));
-        inputWishlistName.val(inputWishlistName.data('default'));
+        inputWishlistName.attr('placeholder', inputWishlistName.attr('data-default'));
+        inputWishlistName.val(inputWishlistName.attr('data-default'));
 
         modalWishlistCreate
         .modal({
