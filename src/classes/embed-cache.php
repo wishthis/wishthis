@@ -127,6 +127,6 @@ class EmbedCache
     public function generateCache(): bool
     {
         return !$this->exists()
-            || ($this->exists() && $this->age() <= $this->maxAge());
+            || ($this->exists() && $this->age() > $this->maxAge());
     }
 }

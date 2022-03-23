@@ -83,7 +83,7 @@ $(function () {
         /**
          * Generate cache
          */
-        var cards = $('.ui.card[data-cache="false"]');
+        var cards = $('.ui.card[data-cache="true"]');
 
         if (cards.length > 0) {
             progress.slideDown();
@@ -101,7 +101,7 @@ $(function () {
         var timerInterval = 1200;
         var timerCache    = setTimeout(
             function generateCacheCards() {
-                var cards = $('.ui.card[data-cache="false"]');
+                var cards = $('.ui.card[data-cache="true"]');
 
                 cards.each(function (index, card) {
                     generateCacheCard($(card));
@@ -137,7 +137,7 @@ $(function () {
         }
 
         card.addClass('loading');
-        card.attr('data-cache', true);
+        card.attr('data-cache', false);
 
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
         var wishlist_user = wishlists[wishlistIndex].user;
@@ -148,7 +148,7 @@ $(function () {
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            card.replaceWith(response.html.replace('data-cache="false"', 'data-cache="true"'));
+            card.replaceWith(response.html.replace('data-cache="true"', 'data-cache="false"'));
         })
         .catch(handleFetchCatch)
         .finally(function() {
