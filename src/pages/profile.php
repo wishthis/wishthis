@@ -11,6 +11,8 @@ use wishthis\{Page, User};
 if (isset($_POST['user-id'])) {
     $set = array();
 
+    $loginRequired = false;
+
     if (!empty($_POST['user-email'])) {
         $set[] = '`email` = "' . $_POST['user-email'] . '"';
     }
@@ -19,8 +21,14 @@ if (isset($_POST['user-id'])) {
         $set[] = '`password` = "' . User::generatePassword($_POST['user-password']) . '"';
     }
 
-    if (!empty($_POST['user-birthdate'])) {
-        $set[] = '`birthdate` = "' . date('Y-m-d', strtotime($_POST['user-birthdate'])) . '"';
+    if ($_POST['user-birthdate']) {
+        $user->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
+
+        $set[] = '`birthdate` = "' . $user->birthdate . '"';
+    } else {
+        $user->birthdate = null;
+
+        $set[] = '`birthdate` = NULL';
     }
 
     $database
@@ -28,9 +36,16 @@ if (isset($_POST['user-id'])) {
                 SET ' . implode(',', $set) . '
               WHERE `id`        = ' . $_POST['user-id']);
 
-    session_destroy();
-    header('Location: /?page=home');
-    die();
+
+    if ($_POST['user-email'] !== $_SESSION['user']['email']) {
+        $loginRequired = true;
+    }
+
+    if ($loginRequired) {
+        session_destroy();
+        header('Location: /?page=profile');
+        die();
+    }
 }
 
 $page = new Page(__FILE__, __('Profile'));
