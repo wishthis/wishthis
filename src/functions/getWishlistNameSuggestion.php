@@ -28,11 +28,11 @@ function getWishlistNameSuggestion(): string
     }
 
     if ($startOfBirthdate && $now <= $startOfBirthdate) {
-        $name = 'Birthday';
+        $name = __('Birthday');
     } elseif ($now <= $startOfEaster) {
-        $name = 'Easter';
+        $name = __('Easter');
     } elseif ($now <= $startOfChristmas) {
-        $name = 'Christmas';
+        $name = __('Christmas');
     }
 
     return $name;
