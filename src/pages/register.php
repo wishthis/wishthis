@@ -28,18 +28,18 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $planet     = strtolower($_POST['planet']);
     $planetName = strtoupper($planet[0]) . substr($planet, 1);
     $planets    = array(
-        'mercury',
-        'venus',
-        'earth',
-        'mars',
-        'jupiter',
-        'saturn',
-        'uranus',
-        'neptune',
+        __('mercury'),
+        __('venus'),
+        __('earth'),
+        __('mars'),
+        __('jupiter'),
+        __('saturn'),
+        __('uranus'),
+        __('neptune'),
     );
     $not_planets = array(
-        'pluto',
-        'sun'
+        __('pluto'),
+        __('sun'),
     );
 
     if (in_array($planet, array_merge($planets, $not_planets))) {
