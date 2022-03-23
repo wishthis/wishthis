@@ -56,7 +56,11 @@ switch ($step) {
                             <input type="text" name="DATABASE_PASSWORD" />
                         </div>
 
-                        <input class="ui primary button" type="submit" value="<?= __('Continue') ?>" />
+                        <input class="ui primary button"
+                               type="submit"
+                               value="<?= __('Continue') ?>"
+                               title="<?= __('Continue') ?>"
+                        />
                     </form>
                 </div>
             </div>
@@ -102,7 +106,11 @@ switch ($step) {
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
-                        <input class="ui primary button" type="submit" value="<?= __('Continue') ?>" />
+                        <input class="ui primary button"
+                               type="submit"
+                               value="<?= __('Continue') ?>"
+                               title="<?= __('Continue') ?>"
+                        />
                     </form>
                 </div>
             </div>
@@ -200,7 +208,14 @@ switch ($step) {
             <div class="ui container">
                 <div class="ui segment">
                     <h1 class="ui header"><?= __('Success') ?></h1>
-                    <p><a class="ui primary button" href="/?page=register"><?= __('Register') ?></a></p>
+                    <p>
+                        <a class="ui primary button"
+                           href="/?page=register"
+                           title="<?= __('Register') ?>"
+                        >
+                            <?= __('Register') ?>
+                        </a>
+                    </p>
                 </div>
             </div>
         </main>

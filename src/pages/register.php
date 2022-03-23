@@ -219,8 +219,17 @@ $page->navigation();
                         <div class="column">
                             <div class="ui error message"></div>
 
-                            <input class="ui primary button" type="submit" value="<?= $buttonSubmit ?>" />
-                            <a class="ui tertiary button" href="/?page=login"><?= __('Login') ?></a>
+                            <input class="ui primary button"
+                                   type="submit"
+                                   value="<?= $buttonSubmit ?>"
+                                   title="<?= $buttonSubmit ?>"
+                            />
+                            <a class="ui tertiary button"
+                               href="/?page=login"
+                               title="<?= __('Login') ?>"
+                            >
+                                <?= __('Login') ?>
+                            </a>
                         </div>
                     </div>
 

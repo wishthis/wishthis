@@ -25,17 +25,37 @@ $page->navigation();
             <div class="ui four column doubling stackable centered grid">
                 <?php if ($user->isLoggedIn()) { ?>
                     <div class="column">
-                        <a class="ui fluid primary button" href="/?page=wishlists"><?= __('Create a wishlist') ?></a>
+                        <a class="ui fluid primary button"
+                           href="/?page=wishlists"
+                           title="<?= __('Create a wishlist') ?>"
+                        >
+                            <?= __('Create a wishlist') ?>
+                        </a>
                     </div>
                     <div class="column">
-                        <a class="ui fluid button" href="/?page=wishlists"><?= __('View your wishlists') ?></a>
+                        <a class="ui fluid button"
+                           href="/?page=wishlists"
+                           title="<?= __('View your wishlists') ?>"
+                        >
+                            <?= __('View your wishlists') ?>
+                        </a>
                     </div>
                 <?php } else { ?>
                     <div class="column">
-                        <a class="ui fluid primary button" href="/?page=register"><?= __('Register now') ?></a>
+                        <a class="ui fluid primary button"
+                           href="/?page=register"
+                           title="<?= __('Register now') ?>"
+                        >
+                            <?= __('Register now') ?>
+                        </a>
                     </div>
                     <div class="column">
-                        <a class="ui fluid button" href="/?page=login"><?= __('Login') ?></a>
+                        <a class="ui fluid button"
+                           href="/?page=login"
+                           title="<?= __('Login') ?>"
+                        >
+                            <?= __('Login') ?>
+                        </a>
                     </div>
                 <?php } ?>
             </div>

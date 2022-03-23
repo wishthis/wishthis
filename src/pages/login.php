@@ -125,8 +125,18 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <input class="ui primary button" type="submit" name="login" value="<?= __('Login') ?>" />
-                            <a class="ui tertiary button" href="/?page=register"><?= __('Register') ?></a>
+                            <input class="ui primary button"
+                                   type="submit"
+                                   name="login"
+                                   value="<?= __('Login') ?>"
+                                   title="<?= __('Login') ?>"
+                            />
+                            <a class="ui tertiary button"
+                               href="/?page=register"
+                               title="<?= __('Register') ?>"
+                            >
+                                <?= __('Register') ?>
+                            </a>
                         </form>
                     </div>
 
@@ -150,6 +160,7 @@ $page->navigation();
                                                 type="submit"
                                                 name="reset"
                                                 value="<?= __('Send email') ?>"
+                                                title="<?= __('Send email') ?>"
                                             />
                                         </div>
 

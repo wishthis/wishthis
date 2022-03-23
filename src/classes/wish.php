@@ -157,7 +157,9 @@ class Wish
 
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
-                    <a class="ui small primary labeled icon button fulfill">
+                    <a class="ui small primary labeled icon button fulfill"
+                       title="<?= __('Fulfill wish') ?>"
+                    >
                         <i class="shopping cart icon"></i>
                         <?= __('Fulfill wish') ?>
                     </a>
@@ -166,6 +168,7 @@ class Wish
                 <?php if ($this->url) { ?>
                     <a class="ui small labeled icon button<?= $userIsCurrent ? ' primary' : '' ?>"
                        href="<?= $this->url ?>" target="_blank"
+                       title="<?= __('Visit') ?>"
                     >
                         <i class="external icon"></i>
                         <?= __('Visit') ?>
@@ -173,7 +176,9 @@ class Wish
                 <?php } ?>
 
                 <?php if ($userIsCurrent) { ?>
-                    <div class="ui small labeled icon top left pointing dropdown button options">
+                    <div class="ui small labeled icon top left pointing dropdown button options"
+                         title="<?= __('Options') ?>"
+                    >
                         <i class="cog icon"></i>
                         <span class="text"><?= __('Options') ?></span>
                         <div class="menu">

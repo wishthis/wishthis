@@ -34,27 +34,34 @@ $page->navigation();
                     </div>
 
                     <div class="flex buttons">
-                        <a class="ui small labeled icon primary button wishlist-wish-add disabled">
+                        <a class="ui small labeled icon primary button wishlist-wish-add disabled"
+                           title="<?= __('Add a wish') ?>"
+                        >
                             <i class="add icon"></i>
                             <?= __('Add a wish') ?>
                         </a>
 
-                        <a class="ui small labeled icon button wishlist-share disabled" target="_blank">
+                        <a class="ui small labeled icon button wishlist-share disabled"
+                           target="_blank"
+                           title="<?= __('Share') ?>"
+                        >
                             <i class="share icon"></i>
                             <?= __('Share') ?>
                         </a>
 
-                        <div class="ui small labeled icon top left pointing dropdown button options">
+                        <div class="ui small labeled icon top left pointing dropdown button options"
+                             title="<?= __('Options') ?>"
+                        >
                             <i class="cog icon"></i>
                             <span class="text"><?= __('Options') ?></span>
                             <div class="menu">
 
-                                <div class="item wishlist-rename disabled">
+                                <div class="item wishlist-rename disabled" title="<?= __('Rename') ?>">
                                     <i class="pen icon"></i>
                                     <?= __('Rename') ?>
                                 </div>
 
-                                <div class="item wishlist-delete disabled">
+                                <div class="item wishlist-delete disabled" title="<?= __('Delete') ?>">
                                     <i class="trash icon"></i>
                                     <?= __('Delete') ?>
                                 </div>
@@ -70,7 +77,9 @@ $page->navigation();
                 <p><?= __('General options.') ?></p>
 
                 <div class="flex buttons">
-                    <a class="ui small labeled icon button wishlist-create">
+                    <a class="ui small labeled icon button wishlist-create"
+                       title="<?= __('Create a wishlist') ?>"
+                    >
                         <i class="add icon"></i>
                         <?= __('Create a wishlist') ?>
                     </a>
@@ -119,10 +128,10 @@ $page->navigation();
         </div>
     </div>
     <div class="actions">
-        <div class="ui approve primary button create">
+        <div class="ui approve primary button create" title="<?= __('Create') ?>">
             <?= __('Create') ?>
         </div>
-        <div class="ui deny button cancel">
+        <div class="ui deny button cancel" title="<?= __('Cancel') ?>">
             <?= __('Cancel') ?>
         </div>
     </div>
@@ -146,10 +155,10 @@ $page->navigation();
         </form>
     </div>
     <div class="actions">
-        <div class="ui approve primary button">
+        <div class="ui approve primary button" title="<?= __('Rename') ?>">
             <?= __('Rename') ?>
         </div>
-        <div class="ui deny button">
+        <div class="ui deny button" title="<?= __('Cancel') ?>">
             <?= __('Cancel') ?>
         </div>
     </div>
@@ -188,10 +197,10 @@ $page->navigation();
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button">
+        <div class="ui primary approve button" title="<?= __('Add') ?>">
             <?= __('Add') ?>
         </div>
-        <div class="ui deny button">
+        <div class="ui deny button" title="<?= __('Cancel') ?>">
             <?= __('Cancel') ?>
         </div>
     </div>

@@ -99,7 +99,11 @@ $page->navigation();
 
                 <div class="ui error message"></div>
 
-                <input class="ui primary button" type="submit" value="<?= __('Save') ?>" />
+                <input class="ui primary button"
+                       type="submit"
+                       value="<?= __('Save') ?>"
+                       title="<?= __('Save') ?>"
+                />
             </form>
         </div>
     </div>

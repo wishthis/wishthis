@@ -47,7 +47,12 @@ if (isset($_POST['mjml_api'], $_POST['api_key'], $_POST['api_secret'])) {
                     />
                 </div>
 
-                <input class="ui primary button" type="submit" name="mjml_api" value="<?= __('Save') ?>" />
+                <input class="ui primary button"
+                       type="submit"
+                       name="mjml_api"
+                       value="<?= __('Save') ?>"
+                       title="<?= __('Save') ?>"
+                />
             </form>
         </div>
     </div>

@@ -80,13 +80,18 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
             <div class="row">
                 <div class="sixteen wide column">
 
-                    <a class="ui small labeled icon button" href="<?= $wish->url ?>" target="_blank">
+                    <a class="ui small labeled icon button"
+                       href="<?= $wish->url ?>"
+                       target="_blank"
+                       title="<?= __('Visit') ?>"
+                    >
                         <i class="external icon"></i>
                         <?= __('Visit') ?>
                     </a>
 
                     <button class="ui small labeled icon button auto-fill disabled"
                             type="button"
+                            title="<?= __('Auto-fill') ?>"
                     >
                         <i class="redo icon"></i>
                         <?= __('Auto-fill') ?>
@@ -164,9 +169,22 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                     <div class="stackable row">
                         <div class="sixteen wide column">
 
-                            <input class="ui small primary button" type="submit" value="<?= __('Save') ?>" />
-                            <input class="ui small button" type="reset" value="<?= __('Reset') ?>" />
-                            <a class="ui small secondary button" href="<?= $referer ?>"><?= __('Back') ?></a>
+                            <input class="ui small primary button"
+                                   type="submit"
+                                   value="<?= __('Save') ?>"
+                                   title="<?= __('Save') ?>"
+                            />
+                            <input class="ui small button"
+                                   type="reset"
+                                   value="<?= __('Reset') ?>"
+                                   title="<?= __('Reset') ?>"
+                            />
+                            <a class="ui small secondary button"
+                               href="<?= $referer ?>"
+                               title="<?= __('Back') ?>"
+                            >
+                                <?= __('Back') ?>
+                            </a>
 
                         </div>
                     </div>
@@ -194,10 +212,10 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button">
+        <div class="ui primary approve button" title="<?= __('Save') ?>">
             <?= __('Save') ?>
         </div>
-        <div class="ui deny button">
+        <div class="ui deny button" title="<?= __('Discard') ?>">
             <?= __('Discard') ?>
         </div>
     </div>
@@ -213,10 +231,10 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         <p><?= __('Would you like to continue?') ?></p>
     </div>
     <div class="actions">
-        <div class="ui primary approve button">
+        <div class="ui primary approve button" title="<?= __('Yes, overwrite') ?>">
             <?= __('Yes, overwrite') ?>
         </div>
-        <div class="ui deny button">
+        <div class="ui deny button" title="<?= __('No') ?>">
             <?= __('No') ?>
         </div>
     </div>
@@ -246,10 +264,10 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
         </div>
     </div>
     <div class="actions">
-        <div class="ui primary approve button">
+        <div class="ui primary approve button" title="<?= __('Yes, update') ?>">
             <?= __('Yes, update') ?>
         </div>
-        <div class="ui deny button">
+        <div class="ui deny button" title="<?= __('No, leave it') ?>">
             <?= __('No, leave it') ?>
         </div>
     </div>

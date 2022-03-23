@@ -112,7 +112,10 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
                 </div>
             </div>
             <form class="ui form" method="post">
-                <button class="ui orange button" type="submit">
+                <button class="ui orange button"
+                        type="submit"
+                        title="<?= sprintf(__('Update to %s'), 'v' . $version) ?>"
+                >
                     <i class="upload icon"></i>
                     <?= sprintf(__('Update to %s'), 'v' . $version) ?>
                 </button>

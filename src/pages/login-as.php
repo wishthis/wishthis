@@ -49,7 +49,11 @@ $page->navigation();
                     <input type="email" name="email" placeholder="john.doe@domain.tld" />
                 </div>
 
-                <input class="ui primary button" type="submit" value="<?= __('Login') ?>" />
+                <input class="ui primary button"
+                       type="submit"
+                       value="<?= __('Login') ?>"
+                       title="<?= __('Login') ?>"
+                />
             </form>
         </div>
     </div>
