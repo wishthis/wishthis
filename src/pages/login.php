@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, Email};
+use wishthis\{Page, Email, User};
 
 $page = new Page(__FILE__, __('Login'));
 
@@ -15,7 +15,7 @@ $page = new Page(__FILE__, __('Login'));
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     $email    = $_POST['email'];
-    $password = sha1($_POST['password']);
+    $password = User::generatePassword($_POST['password']);
 
     $database->query('UPDATE `users`
                          SET `last_login` = NOW()

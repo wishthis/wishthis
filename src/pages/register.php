@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\Page;
+use wishthis\{Page, User};
 
 $passwordReset = isset($_GET['password-reset'], $_GET['token']);
 
@@ -70,7 +70,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 if (time() > $user['password_reset_valid_until']) {
                     $database
                     ->query('UPDATE `users`
-                                SET `password`                   = "' . sha1($_POST['password']) . '",
+                                SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
                               WHERE `id`                         = ' . $user['id'] . ';');
@@ -97,7 +97,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     `power`
                                 ) VALUES (
                                     "' . $_POST['email'] . '",
-                                    "' . sha1($_POST['password']) . '",
+                                    "' . User::generatePassword($_POST['password']) . '",
                                     100
                                 )
                 ;');
@@ -115,7 +115,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                         `password`
                                     ) VALUES (
                                         "' . $_POST['email'] . '",
-                                        "' . sha1($_POST['password']) . '"
+                                        "' . User::generatePassword($_POST['password']) . '"
                                     )
                     ;');
                     $userRegistered = true;

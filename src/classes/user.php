@@ -12,6 +12,17 @@ namespace wishthis;
 
 class User
 {
+    /**
+     * Static
+     */
+    public static function generatePassword(string $plainPassword): string
+    {
+        return sha1($plainPassword);
+    }
+
+    /**
+     * Non-Static
+     */
     public function __construct(int $id = -1)
     {
         if (-1 === $id) {
