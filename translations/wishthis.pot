@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-25 10:43+0100\n"
+"POT-Creation-Date: 2022-03-25 13:55+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -133,7 +133,7 @@ msgid "{name} must be a valid e-mail"
 msgstr ""
 
 #: classes/page.php:275
-msgid "{name} must be a valid url"
+msgid "{name} must be a valid URL"
 msgstr ""
 
 #: classes/page.php:276
@@ -417,7 +417,7 @@ msgid "Continue"
 msgstr ""
 
 #: pages/install.php:103
-msgid "Click Continue to test the database connection."
+msgid "Click continue to test the database connection."
 msgstr ""
 
 #: pages/login-as.php:38
@@ -526,43 +526,43 @@ msgid "Reset"
 msgstr ""
 
 #: pages/register.php:31
-msgid "mercury"
+msgid "Mercury"
 msgstr ""
 
 #: pages/register.php:32
-msgid "venus"
+msgid "Venus"
 msgstr ""
 
 #: pages/register.php:33
-msgid "earth"
+msgid "Earth"
 msgstr ""
 
 #: pages/register.php:34
-msgid "mars"
+msgid "Mars"
 msgstr ""
 
 #: pages/register.php:35
-msgid "jupiter"
+msgid "Jupiter"
 msgstr ""
 
 #: pages/register.php:36
-msgid "saturn"
+msgid "Saturn"
 msgstr ""
 
 #: pages/register.php:37
-msgid "uranus"
+msgid "Uranus"
 msgstr ""
 
 #: pages/register.php:38
-msgid "neptune"
+msgid "Neptune"
 msgstr ""
 
 #: pages/register.php:41
-msgid "pluto"
+msgid "Pluto"
 msgstr ""
 
 #: pages/register.php:42
-msgid "sun"
+msgid "Sun"
 msgstr ""
 
 #: pages/register.php:51
@@ -624,7 +624,7 @@ msgid "Planet"
 msgstr ""
 
 #: pages/register.php:214
-msgid "Robots are obivously from another solar system so this will keep them at bay."
+msgid "Robots are obviously from another solar system so this will keep them at bay."
 msgstr ""
 
 #: pages/settings.php:27
@@ -633,7 +633,7 @@ msgstr ""
 
 #: pages/settings.php:28
 #, php-format
-msgid "MJML is required for sending emails. Visit %shttps://mjml.io/api%s to request API access."
+msgid "MJML is required for sending emails. Visit %s to request API access."
 msgstr ""
 
 #: pages/settings.php:30
