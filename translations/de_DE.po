@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-25 10:43+0100\n"
+"POT-Creation-Date: 2022-03-25 13:55+0100\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
 "Last-Translator: Jay Trees, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/wishthis/teams/134148/de_DE/)\n"
@@ -143,8 +143,8 @@ msgid "{name} must be a valid e-mail"
 msgstr "{name} muss eine gültige E-Mail sein"
 
 #: classes/page.php:275
-msgid "{name} must be a valid url"
-msgstr "{name} muss eine gültige url sein"
+msgid "{name} must be a valid URL"
+msgstr "{name} muss eine gültige URL sein"
 
 #: classes/page.php:276
 msgid "{name} is not formatted correctly"
@@ -454,7 +454,7 @@ msgid "Continue"
 msgstr "Weiter"
 
 #: pages/install.php:103
-msgid "Click Continue to test the database connection."
+msgid "Click continue to test the database connection."
 msgstr "Klicke auf Weiter, um die Datenbankverbindung zu testen."
 
 #: pages/login-as.php:38
@@ -583,44 +583,44 @@ msgid "Reset"
 msgstr "Zurücksetzen"
 
 #: pages/register.php:31
-msgid "mercury"
-msgstr "merkur"
+msgid "Mercury"
+msgstr "Merkur"
 
 #: pages/register.php:32
-msgid "venus"
-msgstr "venus"
+msgid "Venus"
+msgstr "Venus"
 
 #: pages/register.php:33
-msgid "earth"
-msgstr "erde"
+msgid "Earth"
+msgstr "Erde"
 
 #: pages/register.php:34
-msgid "mars"
-msgstr "mars"
+msgid "Mars"
+msgstr "Mars"
 
 #: pages/register.php:35
-msgid "jupiter"
-msgstr "jupiter"
+msgid "Jupiter"
+msgstr "Jupiter"
 
 #: pages/register.php:36
-msgid "saturn"
-msgstr "saturn"
+msgid "Saturn"
+msgstr "Saturn"
 
 #: pages/register.php:37
-msgid "uranus"
-msgstr "uranus"
+msgid "Uranus"
+msgstr "Uranus"
 
 #: pages/register.php:38
-msgid "neptune"
-msgstr "neptun"
+msgid "Neptune"
+msgstr "Neptun"
 
 #: pages/register.php:41
-msgid "pluto"
-msgstr "pluto"
+msgid "Pluto"
+msgstr "Pluto"
 
 #: pages/register.php:42
-msgid "sun"
-msgstr "sonne"
+msgid "Sun"
+msgstr "Sonne"
 
 #: pages/register.php:51
 #, php-format
@@ -693,7 +693,7 @@ msgstr "Planet"
 
 #: pages/register.php:214
 msgid ""
-"Robots are obivously from another solar system so this will keep them at "
+"Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
 "Roboter kommen offensichtlich aus einem anderen Sonnensystem, also wird sie "
@@ -705,12 +705,10 @@ msgstr "MJML"
 
 #: pages/settings.php:28
 #, php-format
-msgid ""
-"MJML is required for sending emails. Visit %shttps://mjml.io/api%s to "
-"request API access."
+msgid "MJML is required for sending emails. Visit %s to request API access."
 msgstr ""
-"MJML ist für den Versand von E-Mails erforderlich. Besuche "
-"%shttps://mjml.io/api%s, um API-Zugang zu beantragen."
+"MJML ist für den Versand von E-Mails erforderlich. Besuche %s, um API-Zugang"
+" zu beantragen."
 
 #: pages/settings.php:30
 msgid "API"
