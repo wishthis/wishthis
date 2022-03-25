@@ -103,7 +103,7 @@ class Wish
         if ($this->url) {
             $generateCache = $this->cache->generateCache() || !$this->url ? 'true' : 'false';
         } else {
-            $generateCache = 'true';
+            $generateCache = 'false';
         }
         ?>
 
