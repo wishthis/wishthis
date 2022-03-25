@@ -8,7 +8,7 @@
 
 define('VERSION', '0.4.0');
 define('ROOT', __DIR__);
-define('DEFAULT_LOCALE', 'en');
+define('DEFAULT_LOCALE', 'en_GB');
 
 /**
  * Include
