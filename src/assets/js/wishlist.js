@@ -33,25 +33,25 @@ $(function() {
     }
 
     /**
-     * Fulfill wish
+     * fulfil wish
      */
-    $(document).on('click', '.ui.button.fulfill', function() {
+    $(document).on('click', '.ui.button.fulfil', function() {
         var button = $(this);
         var card   = button.closest('.ui.card');
         var column = card.closest('.column');
 
         $('body')
         .modal({
-            title   : text.modal_wish_fulfill_title,
-            content : text.modal_wish_fulfill,
+            title   : text.modal_wish_fulfil_title,
+            content : text.modal_wish_fulfil,
             class   : 'tiny',
             actions : [
                 {
-                    text : text.modal_wish_fulfill_approve,
+                    text : text.modal_wish_fulfil_approve,
                     class: 'approve primary'
                 },
                 {
-                    text : text.modal_wish_fulfill_deny,
+                    text : text.modal_wish_fulfil_deny,
                     class: ''
                 }
             ],

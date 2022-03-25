@@ -41,7 +41,7 @@ $page->navigation();
                         <?= __('Careful') ?>
                     </div>
                     <div class="text">
-                        <p><?= __('You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don\'t you want to be surprised?') ?></p>
+                        <p><?= __('You are viewing your own wishlist! You will be able to see which wishes have already been fulfiled for you. Don\'t you want to be surprised?') ?></p>
                         <p><?= __('It\'s probably best to just close this tab.') ?></p>
                     </div>
                 </div>
@@ -52,8 +52,8 @@ $page->navigation();
             <div class="ui segment">
                 <h2 class="ui header"><?= __('What to do?') ?></h2>
                 <p><?= sprintf(
-                    __('If you found a wish you would like to fulfill, click the %s button and it will become unavailable for others.'),
-                    '<span class="ui primary tiny horizontal label"><i class="gift icon"></i> ' . __('Fulfill wish') . '</span>'
+                    __('If you found a wish you would like to fulfil, click the %s button and it will become unavailable for others.'),
+                    '<span class="ui primary tiny horizontal label"><i class="gift icon"></i> ' . __('fulfil wish') . '</span>'
                 ) ?></p>
             </div>
         </div>
