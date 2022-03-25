@@ -36,8 +36,8 @@
 .ui.grid {
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+  margin-left: -0.5625rem;
+  margin-right: -0.5625rem;
 }
 .ui.relaxed.grid {
   margin-left: -1.5rem;
@@ -64,13 +64,13 @@
   position: relative;
   display: inline-block;
   width: 6.25%;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.5625rem;
+  padding-right: 0.5625rem;
   vertical-align: top;
 }
 .ui.grid > * {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.5625rem;
+  padding-right: 0.5625rem;
 }
 
 /*-------------------
@@ -148,7 +148,7 @@
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  margin: 0.5rem 0.5rem;
+  margin: 0.5rem 0.5625rem;
 }
 .ui.grid .column + .ui.vertical.divider {
   height: calc(50% - 0.5rem);
@@ -1092,9 +1092,9 @@
   content: "";
   top: 0;
   left: 0;
-  width: calc(100% - 1rem);
+  width: calc(100% - 1.125rem);
   height: 1px;
-  margin: 0 0.5rem;
+  margin: 0 0.5625rem;
   -webkit-box-shadow: 0 -1px 0 0 rgba(34, 36, 38, 0.15);
           box-shadow: 0 -1px 0 0 rgba(34, 36, 38, 0.15);
 }
@@ -1810,7 +1810,7 @@
     margin: 0 0 !important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5625rem;
   }
   .ui.stackable.grid:not(.vertically) > .row {
     margin: 0;
@@ -1827,8 +1827,8 @@
 /* Don't pad inside segment or nested grid */
   .ui.grid .ui.stackable.grid,
   .ui.segment:not(.vertical) .ui.stackable.page.grid {
-    margin-left: -0.5rem !important;
-    margin-right: -0.5rem !important;
+    margin-left: -0.5625rem !important;
+    margin-right: -0.5625rem !important;
   }
   
 /* Divided Stackable */
@@ -1999,16 +1999,16 @@
   -----------------*/
 
 .ui.ui.ui.compact.grid {
-  margin: -0.25rem;
+  margin: -0.28125rem;
 }
 .ui.ui.ui.compact.grid > .column:not(.row),
 .ui.ui.ui.compact.grid > .row > .column {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: 0.28125rem;
+  padding-right: 0.28125rem;
 }
 .ui.ui.ui.compact.grid > * {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  padding-left: 0.28125rem;
+  padding-right: 0.28125rem;
 }
 
 /* Row */
@@ -2040,16 +2040,16 @@
   -----------------*/
 
 .ui.ui.ui[class*="very compact"].grid {
-  margin: -0.125rem;
+  margin: -0.140625rem;
 }
 .ui.ui.ui[class*="very compact"].grid > .column:not(.row),
 .ui.ui.ui[class*="very compact"].grid > .row > .column {
-  padding-left: 0.125rem;
-  padding-right: 0.125rem;
+  padding-left: 0.140625rem;
+  padding-right: 0.140625rem;
 }
 .ui.ui.ui[class*="very compact"].grid > * {
-  padding-left: 0.125rem;
-  padding-right: 0.125rem;
+  padding-left: 0.140625rem;
+  padding-right: 0.140625rem;
 }
 
 /* Row */
