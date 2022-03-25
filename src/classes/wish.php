@@ -23,12 +23,16 @@ class Wish
                 'color' => '',
             ),
             '1' => array(
-                'name'  => __('Nice to have'),
+                'name'  => __('Unsure about it'),
                 'color' => 'black',
+            ),
+            '2' => array(
+                'name'  => __('Nice to have'),
+                'color' => 'grey',
             ),
             '3' => array(
                 'name'  => __('Would love it'),
-                'color' => 'orange',
+                'color' => 'brown',
             ),
         );
     }
