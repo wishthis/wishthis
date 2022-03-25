@@ -145,12 +145,6 @@ class Wish
                     </div>
                 <?php } ?>
 
-                <?php if (isset($this->info->keywords)) { ?>
-                    <div class="meta">
-                        <?= implode(', ', $this->info->keywords) ?>
-                    </div>
-                <?php } ?>
-
                 <?php if ($this->description) { ?>
                     <div class="description">
                         <?= $this->description ?>
