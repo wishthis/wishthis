@@ -108,7 +108,11 @@ $page->navigation();
                             <option value="<?= DEFAULT_LOCALE ?>"><?= \Locale::getDisplayName(DEFAULT_LOCALE, $user->locale) ?></option>
 
                             <?php foreach ($locales as $locale) { ?>
-                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                <?php if ($locale === $user->locale) { ?>
+                                    <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                <?php } else { ?>
+                                    <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                <?php } ?>
                             <?php } ?>
                         </select>
                     </div>
