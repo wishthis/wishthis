@@ -16,7 +16,7 @@ class URL
 
     public function getPretty(): string
     {
-        $htaccess    = explode(PHP_EOL, file_get_contents(ROOT . '/.htaccess'));
+        $htaccess   = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
         $pretty_url = '';
 
         foreach ($htaccess as $index => $line) {
