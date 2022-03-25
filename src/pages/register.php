@@ -211,7 +211,7 @@ $page->navigation();
                                     <i class="globe icon"></i>
                                 </div>
                             </div>
-                            <p><?= __('Robots are obivously from another solar system so this will keep them at bay.') ?></p>
+                            <p><?= __('Robots are obviously from another solar system so this will keep them at bay.') ?></p>
                         </div>
                     </div>
 
