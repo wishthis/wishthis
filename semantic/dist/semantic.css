@@ -8244,7 +8244,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   transition: box-shadow 0.1s ease, transform 0.1s ease;
   transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
   z-index: '';
-  word-wrap: break-word;
+  word-wrap: anywhere;
 }
 
 .ui.card {

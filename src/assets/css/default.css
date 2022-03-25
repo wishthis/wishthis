@@ -150,9 +150,6 @@ img {
     transition: 0.4s ease opacity;
 
     display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
     background-color: inherit;
     z-index: 2;
