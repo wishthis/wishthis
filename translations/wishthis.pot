@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-23 16:08+0100\n"
+"POT-Creation-Date: 2022-03-25 10:43+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Understood"
 msgstr ""
 
-#: classes/page.php:239 pages/install.php:210 pages/login-as.php:38
+#: classes/page.php:239 pages/install.php:211 pages/login-as.php:38
 #: pages/register.php:123 pages/wish.php:35
 msgid "Success"
 msgstr ""
@@ -204,7 +204,7 @@ msgstr ""
 msgid "My lists"
 msgstr ""
 
-#: classes/page.php:395 pages/profile.php:51
+#: classes/page.php:395 pages/profile.php:54
 msgid "Profile"
 msgstr ""
 
@@ -223,8 +223,8 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: classes/page.php:424 classes/page.php:428 pages/install.php:214
-#: pages/install.php:216 pages/login.php:136 pages/login.php:138
+#: classes/page.php:424 classes/page.php:428 pages/install.php:215
+#: pages/install.php:217 pages/login.php:136 pages/login.php:138
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr ""
@@ -258,32 +258,36 @@ msgid "Default"
 msgstr ""
 
 #: classes/wish.php:26
-msgid "Nice to have"
+msgid "Unsure about it"
 msgstr ""
 
 #: classes/wish.php:30
+msgid "Nice to have"
+msgstr ""
+
+#: classes/wish.php:34
 msgid "Would love it"
 msgstr ""
 
-#: classes/wish.php:161 classes/wish.php:164 pages/wishlist.php:56
+#: classes/wish.php:165 classes/wish.php:168 pages/wishlist.php:56
 msgid "Fulfill wish"
 msgstr ""
 
-#: classes/wish.php:171 classes/wish.php:174 pages/wish.php:86
+#: classes/wish.php:175 classes/wish.php:178 pages/wish.php:86
 #: pages/wish.php:89
 msgid "Visit"
 msgstr ""
 
-#: classes/wish.php:180 classes/wish.php:183 pages/wishlists.php:53
+#: classes/wish.php:184 classes/wish.php:187 pages/wishlists.php:53
 #: pages/wishlists.php:56
 msgid "Options"
 msgstr ""
 
-#: classes/wish.php:188
+#: classes/wish.php:192
 msgid "Edit"
 msgstr ""
 
-#: classes/wish.php:193 pages/wishlists.php:64 pages/wishlists.php:66
+#: classes/wish.php:197 pages/wishlists.php:64 pages/wishlists.php:66
 msgid "Delete"
 msgstr ""
 
@@ -402,7 +406,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: pages/install.php:55 pages/login.php:120 pages/profile.php:73
+#: pages/install.php:55 pages/login.php:120 pages/profile.php:76
 #: pages/register.php:193
 msgid "Password"
 msgstr ""
@@ -425,7 +429,7 @@ msgstr ""
 msgid "User not found!"
 msgstr ""
 
-#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:66
+#: pages/login-as.php:48 pages/login.php:111 pages/profile.php:69
 #: pages/register.php:175
 msgid "Email"
 msgstr ""
@@ -491,19 +495,23 @@ msgstr ""
 msgid "You do not have enough power to view this page. You need %s to see this page, but only have %s."
 msgstr ""
 
-#: pages/profile.php:79
+#: pages/profile.php:82
 msgid "Password (repeat)"
 msgstr ""
 
-#: pages/profile.php:86
+#: pages/profile.php:90
 msgid "Birthdate"
 msgstr ""
 
-#: pages/profile.php:93
+#: pages/profile.php:97
 msgid "Pick a date"
 msgstr ""
 
-#: pages/profile.php:104 pages/profile.php:105 pages/settings.php:53
+#: pages/profile.php:105
+msgid "Language"
+msgstr ""
+
+#: pages/profile.php:125 pages/profile.php:126 pages/settings.php:53
 #: pages/settings.php:54 pages/wish.php:174 pages/wish.php:175
 #: pages/wish.php:215 pages/wish.php:216
 msgid "Save"
