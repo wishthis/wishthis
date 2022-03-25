@@ -108,8 +108,9 @@ $(function () {
                         });
                     } else {
                         $('body').toast({
-                            class  :   'primary',
-                            message: text.toast_wish_save
+                            class         : 'primary',
+                            classProgress : 'yellow',
+                            message       : text.toast_wish_save
                         });
 
                         formWish.removeClass('loading');
