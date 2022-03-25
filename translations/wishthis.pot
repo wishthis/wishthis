@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-25 13:55+0100\n"
+"POT-Creation-Date: 2022-03-25 14:57+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -59,15 +59,15 @@ msgid "No, keep"
 msgstr ""
 
 #: classes/page.php:248
-msgid "Really fulfill wish?"
+msgid "Really fulfil wish?"
 msgstr ""
 
 #: classes/page.php:249
-msgid "Would you really like to fulfill this wish? It will no longer appear in the wishlist for others anymore."
+msgid "Would you really like to fulfil this wish? It will no longer appear in the wishlist for others anymore."
 msgstr ""
 
 #: classes/page.php:250
-msgid "Yes, fulfill wish"
+msgid "Yes, fulfil wish"
 msgstr ""
 
 #: classes/page.php:251 pages/wishlists.php:134 pages/wishlists.php:135
@@ -102,6 +102,10 @@ msgstr ""
 
 #: classes/page.php:264
 msgid "Wish information updated."
+msgstr ""
+
+#: classes/page.php:265
+msgid "Don't forget to save your changes."
 msgstr ""
 
 #: classes/page.php:266
@@ -150,6 +154,38 @@ msgstr ""
 
 #: classes/page.php:279
 msgid "{name} must be set to a number"
+msgstr ""
+
+#: classes/page.php:280
+msgid "{name} must be \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:281
+msgid "{name} must be exactly \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:282
+msgid "{name} cannot be set to \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:283
+msgid "{name} cannot be set to exactly \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:284
+msgid "{name} cannot contain \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:285
+msgid "{name} cannot contain exactly \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:286
+msgid "{name} must contain \"{ruleValue}\""
+msgstr ""
+
+#: classes/page.php:287
+msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr ""
 
 #: classes/page.php:288 classes/page.php:289
@@ -269,25 +305,25 @@ msgstr ""
 msgid "Would love it"
 msgstr ""
 
-#: classes/wish.php:165 classes/wish.php:168 pages/wishlist.php:56
-msgid "Fulfill wish"
+#: classes/wish.php:159 classes/wish.php:162 pages/wishlist.php:56
+msgid "fulfil wish"
 msgstr ""
 
-#: classes/wish.php:175 classes/wish.php:178 pages/wish.php:86
+#: classes/wish.php:169 classes/wish.php:172 pages/wish.php:86
 #: pages/wish.php:89
 msgid "Visit"
 msgstr ""
 
-#: classes/wish.php:184 classes/wish.php:187 pages/wishlists.php:53
+#: classes/wish.php:178 classes/wish.php:181 pages/wishlists.php:53
 #: pages/wishlists.php:56
 msgid "Options"
 msgstr ""
 
-#: classes/wish.php:192
+#: classes/wish.php:186
 msgid "Edit"
 msgstr ""
 
-#: classes/wish.php:197 pages/wishlists.php:64 pages/wishlists.php:66
+#: classes/wish.php:191 pages/wishlists.php:64 pages/wishlists.php:66
 msgid "Delete"
 msgstr ""
 
@@ -333,7 +369,7 @@ msgid "Use case"
 msgstr ""
 
 #: pages/home.php:66
-msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfill one of your wishes, it will disappear for everybody else."
+msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfil one of your wishes, it will disappear for everybody else."
 msgstr ""
 
 #: pages/home.php:70
@@ -779,7 +815,7 @@ msgid "Careful"
 msgstr ""
 
 #: pages/wishlist.php:44
-msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don't you want to be surprised?"
+msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfiled for you. Don't you want to be surprised?"
 msgstr ""
 
 #: pages/wishlist.php:45
@@ -792,7 +828,7 @@ msgstr ""
 
 #: pages/wishlist.php:55
 #, php-format
-msgid "If you found a wish you would like to fulfill, click the %s button and it will become unavailable for others."
+msgid "If you found a wish you would like to fulfil, click the %s button and it will become unavailable for others."
 msgstr ""
 
 #: pages/wishlists.php:19
