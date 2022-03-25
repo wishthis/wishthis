@@ -10,5 +10,10 @@
 			"email": "github.jay@grandel.anonaddy.me"
 		},
 		"git.ignoreLimitWarning": true
+	},
+	"extensions": {
+		"recommendations": [
+			"TheJltres.fomantic-ui-snippets"
+		]
 	}
 }
