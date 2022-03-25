@@ -100,7 +100,7 @@ switch ($step) {
                 <div class="ui segment">
                     <h1 class="ui header"><?= $page->title ?></h1>
                     <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
-                    <p><?= __('Click Continue to test the database connection.') ?></p>
+                    <p><?= __('Click continue to test the database connection.') ?></p>
 
                     <form class="ui form" action="?page=install" method="post">
                         <input type="hidden" name="install" value="true" />
