@@ -272,7 +272,7 @@ class Page
                     form_prompt_empty                : '<?= __('{name} must have a value') ?>',
                     form_prompt_checked              : '<?= __('{name} must be checked') ?>',
                     form_prompt_email                : '<?= __('{name} must be a valid e-mail') ?>',
-                    form_prompt_url                  : '<?= __('{name} must be a valid url') ?>',
+                    form_prompt_url                  : '<?= __('{name} must be a valid URL') ?>',
                     form_prompt_regExp               : '<?= __('{name} is not formatted correctly') ?>',
                     form_prompt_integer              : '<?= __('{name} must be an integer') ?>',
                     form_prompt_decimal              : '<?= __('{name} must be a decimal number') ?>',
