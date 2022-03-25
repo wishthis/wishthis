@@ -100,7 +100,7 @@ class Page
     /**
      * Non-Static
      */
-    public string $language = 'en';
+    public string $language = DEFAULT_LOCALE;
     public array $messages  = array();
 
     /**

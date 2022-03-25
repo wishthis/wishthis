@@ -23,6 +23,8 @@ class User
     /**
      * Non-Static
      */
+    public int $power = 0;
+
     public function __construct(int $id = -1)
     {
         if (-1 === $id) {
@@ -32,6 +34,8 @@ class User
         } else {
             $this->id = $id;
         }
+
+        $this->locale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
         if (!isset($this->id)) {
             return null;

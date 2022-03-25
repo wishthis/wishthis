@@ -31,6 +31,8 @@ if (isset($_POST['user-id'])) {
         $set[] = '`birthdate` = NULL';
     }
 
+    $set[] = '`locale` = "' . $_POST['user-locale'] . '"';
+
     $database
     ->query('UPDATE `users`
                 SET ' . implode(',', $set) . '
@@ -43,9 +45,10 @@ if (isset($_POST['user-id'])) {
 
     if ($loginRequired) {
         session_destroy();
-        header('Location: /?page=profile');
-        die();
     }
+
+    header('Location: /?page=profile');
+    die();
 }
 
 $page = new Page(__FILE__, __('Profile'));
@@ -82,18 +85,32 @@ $page->navigation();
                     </div>
                 </div>
 
-                <div class="field">
-                    <label><?= __('Birthdate') ?></label>
+                <div class="two fields">
+                    <div class="field">
+                        <label><?= __('Birthdate') ?></label>
 
-                    <div class="ui calendar">
-                        <div class="ui input left icon">
-                            <i class="calendar icon"></i>
-                            <input type="text"
-                                   name="user-birthdate"
-                                   placeholder="<?= __('Pick a date') ?>"
-                                   value="<?= $user->birthdate ?>"
-                            />
+                        <div class="ui calendar">
+                            <div class="ui input left icon">
+                                <i class="calendar icon"></i>
+                                <input type="text"
+                                    name="user-birthdate"
+                                    placeholder="<?= __('Pick a date') ?>"
+                                    value="<?= $user->birthdate ?>"
+                                />
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="field">
+                        <label><?= __('Language') ?></label>
+
+                        <select class="ui search dropdown" name="user-locale">
+                            <option value="<?= DEFAULT_LOCALE ?>"><?= \Locale::getDisplayName(DEFAULT_LOCALE, $user->locale) ?></option>
+
+                            <?php foreach ($locales as $locale) { ?>
+                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 

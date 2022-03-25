@@ -20,4 +20,6 @@ $(function() {
             },
         }
     });
+
+    $('.ui.dropdown').dropdown();
 });

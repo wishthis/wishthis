@@ -8,6 +8,7 @@
 
 define('VERSION', '0.4.0');
 define('ROOT', __DIR__);
+define('DEFAULT_LOCALE', 'en');
 
 /**
  * Include
@@ -73,11 +74,19 @@ setcookie(
 );
 
 /**
+ * User
+ */
+if ($options) {
+    $user = new wishthis\User();
+}
+
+/**
  * Language
  */
+\Locale::setDefault(DEFAULT_LOCALE);
+
 /** Determine Locale */
-$userLocale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-$locales    = array_filter(
+$locales = array_filter(
     array_map(
         function ($value) {
             if ('po' === pathinfo($value, PATHINFO_EXTENSION)) {
@@ -87,7 +96,7 @@ $locales    = array_filter(
         scandir(ROOT . '/translations')
     )
 );
-$locale     = \Locale::lookup($locales, $userLocale, false, 'en');
+$locale  = \Locale::lookup($locales, $user->locale, false, DEFAULT_LOCALE);
 
 /** Load Translation */
 $translationFilepath = ROOT . '/translations/' . $locale . '.po';
@@ -115,13 +124,6 @@ if (isset($api)) {
  */
 if (!$options || !$options->getOption('isInstalled')) {
     $page = 'install';
-}
-
-/**
- * User
- */
-if ($options) {
-    $user = new wishthis\User();
 }
 
 /**

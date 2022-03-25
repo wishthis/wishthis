@@ -129,11 +129,12 @@ switch ($step) {
             `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
             `email`                      VARCHAR(64)  NOT NULL UNIQUE,
             `password`                   VARCHAR(128) NOT NULL,
-            `password_reset_token`       VARCHAR(128) NULL DEFAULT NULL,
+            `password_reset_token`       VARCHAR(128) NULL     DEFAULT NULL,
             `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
             `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
             `power`                      INT          NOT NULL DEFAULT 0,
-            `birthdate`                  DATE         NULL DEFAULT NULL
+            `birthdate`                  DATE         NULL     DEFAULT NULL,
+            `locale`                     VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '"
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
