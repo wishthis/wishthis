@@ -262,7 +262,7 @@ class Page
                     toast_wish_create : '<?= __('Wish successfully created.') ?>',
                     toast_wish_add    : '<?= __('Wish successfully added.') ?>',
                     toast_wish_update : '<?= __('Wish information updated.') ?>',
-                    toast_wish_save   : '<?= __(addslashes('Don\'t forget to save your changes.')) ?>',
+                    toast_wish_save   : '<?= __("Don't forget to save your changes.") ?>',
                     toast_wish_delete : '<?= __('Wish successfully deleted.') ?>',
 
                     toast_clipboard_error_title : '<?= __('Error') ?>',
