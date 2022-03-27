@@ -8,54 +8,10 @@
 
 use wishthis\{Page, User};
 
-$page = new Page(__FILE__, __('Update'), 100);
-$page->header();
-$page->bodyStart();
-$page->navigation();
-
 /**
  * Update
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-    /**
-     * Files
-     */
-    $zip_filename = __DIR__ . '/' . $tag . '.zip';
-
-    /** Download */
-    file_put_contents(
-        $zip_filename,
-        file_get_contents('https://github.com/grandeljay/wishthis/archive/refs/tags/' . $tag . '.zip')
-    );
-
-    /** Decompress */
-    $zip = new ZipArchive();
-
-    if ($zip->open($zip_filename)) {
-        $zip->extractTo(__DIR__);
-        $zip->close();
-
-        $directory_wishthis_github = __DIR__ . '/wishthis-' . $version;
-
-        foreach (scandir($directory_wishthis_github) as $filename) {
-            if (in_array($filename, array('.', '..', 'config'))) {
-                continue;
-            }
-
-            $filepath = __DIR__ . '/' . $filename;
-            $filepath_github = $directory_wishthis_github . '/' . $filename;
-
-            if (is_dir($filepath) && is_dir($filepath_github)) {
-                delete_directory($filepath);
-            }
-
-            rename($filepath_github, $filepath);
-        }
-    }
-
-    /** Delete */
-    unlink($zip_filename);
-
     /**
      * Database
      */
@@ -87,12 +43,17 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     }
 
     /** Update version */
-    $options->setOption('version', $version);
+    $options->setOption('version', VERSION);
     $options->setOption('updateAvailable', false);
 
     header('Location: /?page=home');
     die();
 }
+
+$page = new Page(__FILE__, __('Update'), 100);
+$page->header();
+$page->bodyStart();
+$page->navigation();
 ?>
 
 <main>
@@ -100,32 +61,18 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui segment">
-            <h2 class="ui header"><?= __('New version detected') ?></h2>
-            <p><?= __('An update is available. If you are brave, please click the button to start the self updater.') ?></p>
-            <div class="ui icon warning message">
-                <i class="exclamation triangle icon"></i>
-                <div class="content">
-                    <div class="header">
-                        <?= __('Use at own risk') ?>
-                    </div>
-                    <p><?= __('Be sure to make backups before proceeding.') ?></p>
-                </div>
-            </div>
+            <h2 class="ui header"><?= __('Database migration') ?></h2>
+            <p><?= __('Thank you for updating withthis! To complete this update, some changes are required to the database structure.') ?></p>
+
             <form class="ui form" method="post">
                 <button class="ui orange button"
                         type="submit"
-                        title="<?= sprintf(__('Update to %s'), 'v' . $version) ?>"
+                        title="<?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"
                 >
                     <i class="upload icon"></i>
-                    <?= sprintf(__('Update to %s'), 'v' . $version) ?>
+                    <?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>
                 </button>
             </form>
-        </div>
-
-        <div class="ui segment">
-            <h2 class="ui header"><?= __('Changes') ?></h2>
-
-            <?= str_replace(PHP_EOL, '<br>', $release['body']) ?>
         </div>
     </div>
 </main>

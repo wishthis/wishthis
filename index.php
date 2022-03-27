@@ -127,30 +127,17 @@ if (!$options || !$options->getOption('isInstalled')) {
 }
 
 /**
- * Update
- *
- * Check for update every 24 hours.
+ * Database Update
  */
-use Github\Client;
-
 if ($options && $options->getOption('isInstalled')) {
-    $updateLastChecked = $options->getOption('updateLastChecked');
+    if (-1 === version_compare($options->version, VERSION)) {
+        $options->setOption('updateAvailable', true);
 
-    if (!$updateLastChecked || time() - $updateLastChecked >= 86400) {
-        try {
-            $client  = new Client();
-            $release = $client->api('repo')->releases()->latest('grandeljay', 'wishthis');
-            $tag     = $release['tag_name'];
-            $version = str_replace('v', '', $tag);
-
-            if (-1 === version_compare($options->version, $version)) {
-                $options->setOption('updateAvailable', true);
-            }
-        } catch (\Github\Exception\RuntimeException $th) {
-            echo wishthis\Page::warning($th->getMessage());
+        if (isset($user->power) && 100 === $user->power) {
+            $page = 'update';
+        } else {
+            $page = 'maintenance';
         }
-
-        $options->setOption('updateLastChecked', time());
     }
 }
 

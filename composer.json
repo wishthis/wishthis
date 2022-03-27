@@ -6,7 +6,6 @@
         "embed/embed": "^4.3",
         "laminas/laminas-diactoros": "^2.8",
         "grandel/include-directory": "^0.2.2",
-        "knplabs/github-api": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "http-interop/http-factory-guzzle": "^1.0",
         "qferr/mjml-php": "^1.1",

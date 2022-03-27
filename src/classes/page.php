@@ -433,16 +433,6 @@ class Page
             );
         }
 
-        global $options;
-
-        if ($options->getOption('updateAvailable') && isset($user->power) && 100 === $user->power) {
-            $pages[$system]['items'][] = array(
-                'text' => __('Update'),
-                'url'  => '/?page=update',
-                'icon' => 'upload',
-            );
-        }
-
         if (isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
                 'text' => __('Settings'),

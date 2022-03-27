@@ -8,9 +8,11 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '09fc349b549513bf7f4291502426f919' => __DIR__ . '/..' . '/embed/embed/src/functions.php',
         '07d7f1a47144818725fd8d91a907ac57' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/create_uploaded_file.php',
         'da94ac5d3ca7d2dbab84ce561ce72bfd' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/marshal_headers_from_sapi.php',
         '3d97c8dcdfba8cb85d3b34f116bb248b' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/marshal_method_from_sapi.php',
@@ -27,10 +29,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'cc8e14526dc240491e17a838cb78508c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/normalize_server.legacy.php',
         '786bf90caabc9e09b6ad4cc5ca8f0e30' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/normalize_uploaded_files.legacy.php',
         '751a5a3f463e4be759be31748b61737c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
-        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '09fc349b549513bf7f4291502426f919' => __DIR__ . '/..' . '/embed/embed/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -38,7 +36,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Component\\Process\\' => 26,
-            'Symfony\\Component\\OptionsResolver\\' => 34,
         ),
         'Q' => 
         array (
@@ -48,7 +45,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
-            'Psr\\Cache\\' => 10,
         ),
         'M' => 
         array (
@@ -60,14 +56,7 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         ),
         'H' => 
         array (
-            'Http\\Promise\\' => 13,
-            'Http\\Message\\MultipartStream\\' => 29,
-            'Http\\Message\\' => 13,
             'Http\\Factory\\Guzzle\\' => 20,
-            'Http\\Discovery\\' => 15,
-            'Http\\Client\\Common\\Plugin\\' => 26,
-            'Http\\Client\\Common\\' => 19,
-            'Http\\Client\\' => 12,
             'HtmlParser\\' => 11,
         ),
         'G' => 
@@ -76,7 +65,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'Grandel\\' => 8,
-            'Github\\' => 7,
             'Gettext\\Languages\\' => 18,
             'Gettext\\' => 8,
         ),
@@ -91,7 +79,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
-            'Clue\\StreamFilter\\' => 18,
         ),
     );
 
@@ -103,10 +90,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'Symfony\\Component\\Process\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-        'Symfony\\Component\\OptionsResolver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
         'Qferrer\\' => 
         array (
@@ -121,10 +104,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
-        'Psr\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/cache/src',
-        ),
         'ML\\JsonLD\\' => 
         array (
             0 => __DIR__ . '/..' . '/ml/json-ld',
@@ -133,38 +112,9 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-diactoros/src',
         ),
-        'Http\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/promise/src',
-        ),
-        'Http\\Message\\MultipartStream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
-        ),
-        'Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/message/src',
-            1 => __DIR__ . '/..' . '/php-http/message-factory/src',
-        ),
         'Http\\Factory\\Guzzle\\' => 
         array (
             0 => __DIR__ . '/..' . '/http-interop/http-factory-guzzle/src',
-        ),
-        'Http\\Discovery\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/discovery/src',
-        ),
-        'Http\\Client\\Common\\Plugin\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/cache-plugin/src',
-        ),
-        'Http\\Client\\Common\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/client-common/src',
-        ),
-        'Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/httplug/src',
         ),
         'HtmlParser\\' => 
         array (
@@ -186,10 +136,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             0 => __DIR__ . '/..' . '/grandel/include-directory/src',
         ),
-        'Github\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/knplabs/github-api/lib/Github',
-        ),
         'Gettext\\Languages\\' => 
         array (
             0 => __DIR__ . '/..' . '/gettext/languages/src',
@@ -209,10 +155,6 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'Composer\\CaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
-        ),
-        'Clue\\StreamFilter\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/clue/stream-filter/src',
         ),
     );
 
