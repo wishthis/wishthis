@@ -20,8 +20,9 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 ## Installation
 
 ### Git (recommended)
-1. Clone `https://github.com/grandeljay/wishthis.git`
-1. checkout the `stable` branch
+```
+git clone -b stable https://github.com/grandeljay/wishthis.git
+```
 
 Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.
 
