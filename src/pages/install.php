@@ -9,8 +9,7 @@
 use wishthis\{Page, Database};
 
 if ($options && $options->getOption('isInstalled')) {
-    header('Location: /?page=home');
-    die();
+    redirect('/?page=home');
 }
 
 $page = new Page(__FILE__, __('Install'));

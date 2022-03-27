@@ -40,8 +40,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
 }
 
 if (isset($_SESSION['user'])) {
-    header('Location: /?page=home');
-    die();
+    redirect('/?page=home');
 }
 
 /**

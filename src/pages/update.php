@@ -46,8 +46,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $options->setOption('version', VERSION);
     $options->setOption('updateAvailable', false);
 
-    header('Location: /?page=home');
-    die();
+    redirect('/?page=home');
 }
 
 $page = new Page(__FILE__, __('Update'), 100);

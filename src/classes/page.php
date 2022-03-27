@@ -129,16 +129,14 @@ class Page
             && isset($_GET['page'])
             && !in_array($_GET['page'], $disableRedirect)
         ) {
-            header('Location: /?page=login');
-            die();
+            redirect('/?page=login');
         }
 
         /**
          * Power
          */
         if (isset($user->power) && $user->power < $this->power) {
-            header('Location: /?page=power&required=' . $this->power);
-            die();
+            redirect('/?page=power&required=' . $this->power);
         }
 
         /**
@@ -150,9 +148,8 @@ class Page
             $url         = new URL($_SERVER['QUERY_STRING']);
             $redirect_to = $url->getPretty();
 
-            if ($redirect_to && $redirect_to !== $_SERVER['REQUEST_URI']) {
-                header('Location: ' . $redirect_to);
-                die();
+            if ($redirect_to) {
+                redirect($redirect_to);
             }
         }
 

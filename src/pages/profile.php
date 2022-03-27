@@ -47,8 +47,7 @@ if (isset($_POST['user-id'])) {
         session_destroy();
     }
 
-    header('Location: /?page=profile');
-    die();
+    redirect('/?page=profile');
 }
 
 $page = new Page(__FILE__, __('Profile'));
