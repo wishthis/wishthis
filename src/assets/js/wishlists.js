@@ -273,9 +273,11 @@ $(function () {
 
                             $('body').toast({ message:text.toast_wishlist_delete });
 
-                            wishlistsRefresh();
-
                             modalDefault.modal('hide');
+
+                            setTimeout(() => {
+                                wishlistsRefresh();
+                            }, 200);
                         }
                     });
 
@@ -333,9 +335,11 @@ $(function () {
 
                         $('body').toast({ message: text.toast_wish_delete });
 
-                        wishlistsRefresh();
-
                         modalDefault.modal('hide');
+
+                        setTimeout(() => {
+                            wishlistsRefresh();
+                        }, 200);
                     },
                 });
 
