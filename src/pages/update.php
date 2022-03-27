@@ -15,32 +15,13 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     /**
      * Database
      */
-    /** Current version is below 0.2.0 */
-    if (-1 === version_compare($options->version, '0.2.0')) {
+
+    /** 0.5.0 *//*
+    if (-1 === version_compare($options->version, '0.5.0')) {
         $database->query('ALTER TABLE `users`
-                                  ADD `last_login` DATETIME NOT NULL DEFAULT NOW() AFTER `password`,
-                                  ADD `power`      BOOLEAN  NOT NULL DEFAULT 0     AFTER `last_login`
-        ;');
-        $database->query('UPDATE `users`
-                             SET `power` = 100
-                           WHERE `id` = ' . $user->id .
-        ';');
-        $database->query('ALTER TABLE `users` ADD INDEX(`password`);');
-
-        $database->query('ALTER TABLE `wishlists`
-                                  ADD `hash`      VARCHAR(128) NOT NULL AFTER `name`
-        ;');
-        $database->query('ALTER TABLE `wishlists` ADD INDEX(`hash`);');
-
-        $database->query('INSERT INTO `options` (`key`, `value`) VALUES ("version", "' . $version . '");');
-    }
-
-    /** Current version is below 0.3.0 */
-    if (-1 === version_compare($options->version, '0.3.0')) {
-        $database->query('ALTER TABLE `wishes`
                                   ADD `status`   VARCHAR(32) NOT NULL AFTER `url`
         ;');
-    }
+    }*/
 
     /** Update version */
     $options->setOption('version', VERSION);
