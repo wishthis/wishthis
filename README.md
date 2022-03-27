@@ -18,8 +18,18 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 * PHP 8.1
 
 ## Installation
+
+### Git (recommended)
+1. Clone `https://github.com/grandeljay/wishthis.git`
+1. checkout the `stable` branch
+
+Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.
+
+### Manual
 1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server
 1. Follow the instructions of the installer
+
+Note: You will have to manually update wishthis by replace all files with the changes from the `stable` branch.
 
 ## Contributing
 
