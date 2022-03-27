@@ -116,18 +116,19 @@ class Page
         /**
          * Session
          */
-        global $user;
+        global $user, $options;
 
-        $disableRedirect = array(
+        $ignorePower = array(
             'home',
             'login',
             'register',
-            'install'
+            'install',
+            'maintenance',
         );
         if (
                !isset($_SESSION['user'])
             && isset($_GET['page'])
-            && !in_array($_GET['page'], $disableRedirect)
+            && !in_array($_GET['page'], $ignorePower)
         ) {
             redirect('/?page=login');
         }
@@ -140,10 +141,26 @@ class Page
         }
 
         /**
+         * Update
+         */
+        $ignoreUpdateRedirect = array(
+            'maintenance',
+            'login',
+            'logout',
+            'update',
+        );
+
+        if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
+            if (100 === $user->power) {
+                redirect('/?page=update');
+            } else {
+                redirect('/?page=maintenance');
+            }
+        }
+
+        /**
          * Redirect
          */
-        global $options;
-
         if ($options && $options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
             $url         = new URL($_SERVER['QUERY_STRING']);
             $redirect_to = $url->getPretty();

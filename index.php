@@ -132,12 +132,6 @@ if (!$options || !$options->getOption('isInstalled')) {
 if ($options && $options->getOption('isInstalled')) {
     if (-1 === version_compare($options->version, VERSION)) {
         $options->setOption('updateAvailable', true);
-
-        if (isset($user->power) && 100 === $user->power) {
-            $page = 'update';
-        } else {
-            $page = 'maintenance';
-        }
     }
 }
 
