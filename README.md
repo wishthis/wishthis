@@ -1,3 +1,5 @@
+![wishthis logo](/src/assets/img/logo-readme.svg "wishthis logo")
+
 # wishthis
 
 wishthis is a simple, intuitive and modern wishlist platform to create, manage and view
