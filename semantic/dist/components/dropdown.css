@@ -61,7 +61,7 @@
   border-radius: 0.33333333rem;
   -webkit-transition: opacity 0.1s ease;
   transition: opacity 0.1s ease;
-  z-index: 11;
+  z-index: 103;
   will-change: transform, opacity;
 }
 .ui.dropdown .menu > * {
@@ -951,7 +951,7 @@ select.ui.dropdown {
   color: rgba(0, 0, 0, 0.95);
   -webkit-box-shadow: none;
           box-shadow: none;
-  z-index: 12;
+  z-index: 104;
 }
 
 /*--------------------
@@ -963,7 +963,7 @@ select.ui.dropdown {
 .ui.dropdown .menu > .item:hover {
   background: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
-  z-index: 13;
+  z-index: 105;
 }
 
 /*--------------------
