@@ -27,10 +27,9 @@ git clone -b stable https://github.com/grandeljay/wishthis.git
 Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.
 
 ### Manual
-1. Download the latest [release](https://github.com/grandeljay/wishthis/releases) and upload all files to your server
-1. Follow the instructions of the installer
+Download the code using the [stable branch](https://github.com/grandeljay/wishthis/tree/stable) and upload it to your server.
 
-Note: You will have to manually update wishthis by replace all files with the changes from the `stable` branch.
+Note: You will have to manually update wishthis by replacing all files with the changes from the `stable` branch.
 
 ## Contributing
 
