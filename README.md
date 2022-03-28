@@ -1,6 +1,6 @@
 ![wishthis logo](/src/assets/img/logo-readme.svg "wishthis logo")
 
-# wishthis
+# Make a wish
 
 wishthis is a simple, intuitive and modern wishlist platform to create, manage and view
 your wishes for any kind of occasion ([demo](https://wishthis.online)).
