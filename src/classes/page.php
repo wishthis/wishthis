@@ -259,7 +259,7 @@ class Page
                     modal_wishlist_delete_approve  : '<?= __('Yes, delete') ?>',
                     modal_wishlist_delete_deny     : '<?= __('No, keep') ?>',
 
-                    modal_wish_fulfil_title   : '<?= __('Really fulfil wish?') ?>',
+                    modal_wish_fulfil_title   : '<?= __('Fulfil wish') ?>',
                     modal_wish_fulfil         : '<?= __('Would you really like to fulfil this wish? It will no longer appear in the wishlist for others anymore.') ?>',
                     modal_wish_fulfil_approve : '<?= __('Yes, fulfil wish') ?>',
                     modal_wish_fulfil_deny    : '<?= __('Cancel') ?>',
