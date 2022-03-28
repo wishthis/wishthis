@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-28 08:17+0200\n"
+"POT-Creation-Date: 2022-03-28 10:19+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -58,8 +58,9 @@ msgstr ""
 msgid "No, keep"
 msgstr ""
 
-#: classes/page.php:262
-msgid "Really fulfil wish?"
+#: classes/page.php:262 classes/wish.php:159 classes/wish.php:162
+#: pages/wishlist.php:56
+msgid "Fulfil wish"
 msgstr ""
 
 #: classes/page.php:263
@@ -232,11 +233,12 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: classes/page.php:395 pages/home.php:113
+#: classes/page.php:395 pages/home.php:105
 msgid "Wishlists"
 msgstr ""
 
-#: classes/page.php:399 pages/wishlists.php:11
+#: classes/page.php:399 pages/home.php:33 pages/home.php:35
+#: pages/wishlists.php:11
 msgid "My lists"
 msgstr ""
 
@@ -252,8 +254,8 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: classes/page.php:427 classes/page.php:431 pages/home.php:58
-#: pages/home.php:60 pages/login-as.php:54 pages/login-as.php:55
+#: classes/page.php:427 classes/page.php:431 pages/home.php:50
+#: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
@@ -301,10 +303,6 @@ msgstr ""
 msgid "Would love it"
 msgstr ""
 
-#: classes/wish.php:159 classes/wish.php:162 pages/wishlist.php:56
-msgid "fulfil wish"
-msgstr ""
-
 #: classes/wish.php:169 classes/wish.php:172 pages/wish.php:86
 #: pages/wish.php:89
 msgid "Visit"
@@ -347,69 +345,60 @@ msgstr ""
 msgid "wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion."
 msgstr ""
 
-#: pages/home.php:33 pages/home.php:35 pages/wishlists.php:81
-#: pages/wishlists.php:84 pages/wishlists.php:113
-msgid "Create a wishlist"
-msgstr ""
-
-#: pages/home.php:41 pages/home.php:43
-msgid "View your wishlists"
-msgstr ""
-
-#: pages/home.php:50 pages/home.php:52
+#: pages/home.php:42 pages/home.php:44
 msgid "Register now"
 msgstr ""
 
-#: pages/home.php:68
+#: pages/home.php:60
 msgid "Use case"
 msgstr ""
 
-#: pages/home.php:70
+#: pages/home.php:62
 msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfil one of your wishes, it will disappear for everybody else."
 msgstr ""
 
-#: pages/home.php:74
+#: pages/home.php:66
 msgid "Why wishthis?"
 msgstr ""
 
-#: pages/home.php:77
+#: pages/home.php:69
 #, php-format
 msgid "wishthis is free and open source software. With free I don't just mean, you don't have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so."
 msgstr ""
 
-#: pages/home.php:80
+#: pages/home.php:72
 msgid "As a non-commercial project it remains"
 msgstr ""
 
-#: pages/home.php:84
+#: pages/home.php:76
 msgid "free of advertisements,"
 msgstr ""
 
-#: pages/home.php:88
+#: pages/home.php:80
 msgid "without tracking, and"
 msgstr ""
 
-#: pages/home.php:92
+#: pages/home.php:84
 msgid "open for feedback and suggestions."
 msgstr ""
 
-#: pages/home.php:100
+#: pages/home.php:92
 msgid "Statistics"
 msgstr ""
 
-#: pages/home.php:102
+#: pages/home.php:94
 msgid "Join the others and get started now!"
 msgstr ""
 
-#: pages/home.php:107 pages/home.php:112 pages/home.php:117
+#: pages/home.php:99 pages/home.php:104 pages/home.php:109
 msgid "N. A."
 msgstr ""
 
-#: pages/home.php:108 pages/wishlist.php:61 pages/wishlists.php:91
+#: pages/home.php:100 pages/wishlist.php:61 pages/wishlists.php:91
 msgid "Wishes"
 msgstr ""
 
-#: pages/home.php:118
+#: pages/home.php:110
 msgid "Registered users"
 msgstr ""
 
@@ -870,6 +859,10 @@ msgstr ""
 
 #: pages/wishlists.php:77
 msgid "General options."
+msgstr ""
+
+#: pages/wishlists.php:81 pages/wishlists.php:84 pages/wishlists.php:113
+msgid "Create a wishlist"
 msgstr ""
 
 #: pages/wishlists.php:117
