@@ -33,7 +33,7 @@ $(function() {
     }
 
     /**
-     * fulfil wish
+     * Fulfil wish
      */
     $(document).on('click', '.ui.button.fulfil', function() {
         var button = $(this);

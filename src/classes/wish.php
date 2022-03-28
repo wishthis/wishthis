@@ -156,10 +156,10 @@ class Wish
             <div class="extra content buttons">
                 <?php if (!$userIsCurrent) { ?>
                     <a class="ui small primary labeled icon button fulfil"
-                       title="<?= __('fulfil wish') ?>"
+                       title="<?= __('Fulfil wish') ?>"
                     >
                         <i class="gift icon"></i>
-                        <?= __('fulfil wish') ?>
+                        <?= __('Fulfil wish') ?>
                     </a>
                 <?php } ?>
 
