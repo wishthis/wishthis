@@ -30,17 +30,9 @@ $page->navigation();
                             <div class="column">
                                 <a class="ui fluid primary button"
                                 href="/?page=wishlists"
-                                title="<?= __('Create a wishlist') ?>"
+                                title="<?= __('My lists') ?>"
                                 >
-                                    <?= __('Create a wishlist') ?>
-                                </a>
-                            </div>
-                            <div class="column">
-                                <a class="ui fluid button"
-                                href="/?page=wishlists"
-                                title="<?= __('View your wishlists') ?>"
-                                >
-                                    <?= __('View your wishlists') ?>
+                                    <?= __('My lists') ?>
                                 </a>
                             </div>
                         <?php } else { ?>
