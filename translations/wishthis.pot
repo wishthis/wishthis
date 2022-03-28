@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-03-27 11:26+0200\n"
+"POT-Creation-Date: 2022-03-28 08:17+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -17,55 +17,46 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: classes/page.php:249
-#, fuzzy
 msgid "No wishlist selected."
-msgstr "Keine Wunschliste ausgewählt."
+msgstr ""
 
 #: classes/page.php:251
-#, fuzzy
 msgid "Thanks for nothing"
-msgstr "Danke für nichts"
+msgstr ""
 
 #: classes/page.php:252
-#, fuzzy
 msgid "Understood"
-msgstr "Verstanden"
+msgstr ""
 
 #: classes/page.php:253 pages/install.php:210 pages/login-as.php:38
 #: pages/register.php:123 pages/wish.php:35
-#, fuzzy
 msgid "Success"
-msgstr "Erfolg"
+msgstr ""
 
 #: classes/page.php:255
-#, fuzzy
 msgid "Close this tab"
-msgstr "Diesen Tab schließen"
+msgstr ""
 
 #: classes/page.php:256
-#, fuzzy
 msgid "Show wishlist anyway"
-msgstr "Wunschliste trotzdem anzeigen"
+msgstr ""
 
 #: classes/page.php:257 classes/page.php:266
-#, fuzzy
 msgid "Really delete?"
-msgstr "Wirklich löschen?"
+msgstr ""
 
 #: classes/page.php:258
-#, fuzzy, php-format
+#, php-format
 msgid "Do you really want to delete the wishlist %s?"
-msgstr "Willst du die Wunschliste %s wirklich löschen?"
+msgstr ""
 
 #: classes/page.php:259 classes/page.php:268
-#, fuzzy
 msgid "Yes, delete"
-msgstr "Ja, löschen"
+msgstr ""
 
 #: classes/page.php:260 classes/page.php:269
-#, fuzzy
 msgid "No, keep"
-msgstr "Nein, behalten"
+msgstr ""
 
 #: classes/page.php:262
 msgid "Really fulfil wish?"
@@ -82,117 +73,96 @@ msgstr ""
 #: classes/page.php:265 pages/wishlists.php:134 pages/wishlists.php:135
 #: pages/wishlists.php:161 pages/wishlists.php:162 pages/wishlists.php:203
 #: pages/wishlists.php:204
-#, fuzzy
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr ""
 
 #: classes/page.php:267
-#, fuzzy
 msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "Willst du diesen Wunsch wirklich löschen? Er wird für immer weg sein."
+msgstr ""
 
 #: classes/page.php:271
 msgid "Passwords must match."
 msgstr ""
 
 #: classes/page.php:273
-#, fuzzy
 msgid "Wishlist successfully renamed."
-msgstr "Wunschliste erfolgreich umbenannt."
+msgstr ""
 
 #: classes/page.php:274
-#, fuzzy
 msgid "Wishlist successfully deleted."
-msgstr "Wunschliste erfolgreich gelöscht."
+msgstr ""
 
 #: classes/page.php:276
-#, fuzzy
 msgid "Wish successfully created."
-msgstr "Wunsch erfolgreich erstellt."
+msgstr ""
 
 #: classes/page.php:277
-#, fuzzy
 msgid "Wish successfully added."
-msgstr "Wunsch erfolgreich hinzugefügt."
+msgstr ""
 
 #: classes/page.php:278
-#, fuzzy
 msgid "Wish information updated."
-msgstr "Wunsch Informationen aktualisiert."
+msgstr ""
 
 #: classes/page.php:279
 msgid "Don't forget to save your changes."
 msgstr ""
 
 #: classes/page.php:280
-#, fuzzy
 msgid "Wish successfully deleted."
-msgstr "Wunsch erfolgreich gelöscht."
+msgstr ""
 
 #: classes/page.php:282 pages/login-as.php:40
-#, fuzzy
 msgid "Error"
-msgstr "Fehler"
+msgstr ""
 
 #: classes/page.php:283
-#, fuzzy
 msgid "Unable to copy to clipboard. There is likely a permission issue."
-msgstr "Es kann nicht in die Zwischenablage kopiert werden. Wahrscheinlich gibt es ein Berechtigungsproblem."
+msgstr ""
 
 #: classes/page.php:284
-#, fuzzy
 msgid "Link copied to clipboard."
-msgstr "Link in die Zwischenablage kopiert."
+msgstr ""
 
 #: classes/page.php:286
-#, fuzzy
 msgid "{name} must have a value"
-msgstr "{name} muss einen Wert haben"
+msgstr ""
 
 #: classes/page.php:287
-#, fuzzy
 msgid "{name} must be checked"
-msgstr "{name} muss ausgewählt sein"
+msgstr ""
 
 #: classes/page.php:288
-#, fuzzy
 msgid "{name} must be a valid e-mail"
-msgstr "{name} muss eine gültige E-Mail sein"
+msgstr ""
 
 #: classes/page.php:289
-#, fuzzy
 msgid "{name} must be a valid URL"
-msgstr "{name} muss eine gültige url sein"
+msgstr ""
 
 #: classes/page.php:290
-#, fuzzy
 msgid "{name} is not formatted correctly"
-msgstr "{name} ist nicht richtig formatiert"
+msgstr ""
 
 #: classes/page.php:291
-#, fuzzy
 msgid "{name} must be an integer"
-msgstr "{name} muss eine ganze Zahl sein"
+msgstr ""
 
 #: classes/page.php:292
-#, fuzzy
 msgid "{name} must be a decimal number"
-msgstr "{name} muss eine Dezimalzahl sein"
+msgstr ""
 
 #: classes/page.php:293
-#, fuzzy
 msgid "{name} must be set to a number"
-msgstr "{name} muss auf eine Zahl gesetzt werden"
+msgstr ""
 
 #: classes/page.php:294
-#, fuzzy
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} muss mit dem Feld {ruleValue} übereinstimmen"
+msgstr ""
 
 #: classes/page.php:295
-#, fuzzy
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} muss genau {ruleValue} Zeichen sein"
+msgstr ""
 
 #: classes/page.php:296
 msgid "{name} cannot be set to \"{ruleValue}\""
@@ -219,109 +189,89 @@ msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr ""
 
 #: classes/page.php:302 classes/page.php:303
-#, fuzzy
 msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} muss mindestens {ruleValue} Zeichen umfassen"
+msgstr ""
 
 #: classes/page.php:304
-#, fuzzy
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} muss genau {ruleValue} Zeichen sein"
+msgstr ""
 
 #: classes/page.php:305
-#, fuzzy
 msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} kann nicht länger sein als {ruleValue} Zeichen"
+msgstr ""
 
 #: classes/page.php:306
-#, fuzzy
 msgid "{name} must match {ruleValue} field"
-msgstr "{name} muss mit dem Feld {ruleValue} übereinstimmen"
+msgstr ""
 
 #: classes/page.php:307
-#, fuzzy
 msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} muss einen anderen Wert haben als das Feld {ruleValue}"
+msgstr ""
 
 #: classes/page.php:308
-#, fuzzy
 msgid "{name} must be a valid credit card number"
-msgstr "{name} muss eine gültige Kreditkartennummer sein"
+msgstr ""
 
 #: classes/page.php:309
-#, fuzzy
 msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} muss mindestens {ruleValue} Auswahlmöglichkeiten haben"
+msgstr ""
 
 #: classes/page.php:310
-#, fuzzy
 msgid "{name} must have exactly {ruleValue} choices"
-msgstr "{name} muss genau {ruleValue} Auswahlmöglichkeiten haben"
+msgstr ""
 
 #: classes/page.php:311
-#, fuzzy
 msgid "{name} must have {ruleValue} or less choices"
-msgstr "{name} muss {ruleValue} oder weniger Auswahlmöglichkeiten haben"
+msgstr ""
 
 #: classes/page.php:380
-#, fuzzy
 msgid "System"
-msgstr "System"
+msgstr ""
 
 #: classes/page.php:386
-#, fuzzy
 msgid "Account"
-msgstr "Konto"
+msgstr ""
 
 #: classes/page.php:395 pages/home.php:113
-#, fuzzy
 msgid "Wishlists"
-msgstr "Wunschlisten"
+msgstr ""
 
 #: classes/page.php:399 pages/wishlists.php:11
-#, fuzzy
 msgid "My lists"
-msgstr "Meine Listen"
+msgstr ""
 
 #: classes/page.php:409 pages/profile.php:53
-#, fuzzy
 msgid "Profile"
-msgstr "Profil"
+msgstr ""
 
 #: classes/page.php:415 pages/login-as.php:11
-#, fuzzy
 msgid "Login as"
-msgstr "Anmelden als"
+msgstr ""
 
 #: classes/page.php:421 pages/logout.php:11
-#, fuzzy
 msgid "Logout"
-msgstr "Abmelden"
+msgstr ""
 
 #: classes/page.php:427 classes/page.php:431 pages/home.php:58
 #: pages/home.php:60 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
-#, fuzzy
 msgid "Login"
-msgstr "Anmelden"
+msgstr ""
 
 #: classes/page.php:438 classes/page.php:442 pages/install.php:214
 #: pages/install.php:216 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
-#, fuzzy
 msgid "Register"
-msgstr "Registrieren"
+msgstr ""
 
 #: classes/page.php:452 pages/settings.php:11
-#, fuzzy
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr ""
 
 #: classes/page.php:465
-#, fuzzy
 msgid "wishthis logo"
-msgstr "wishthis Logo"
+msgstr ""
 
 #: classes/page.php:596
 msgid "Contribute"
@@ -336,23 +286,20 @@ msgid "Translate"
 msgstr ""
 
 #: classes/wish.php:22
-#, fuzzy
 msgid "Default"
-msgstr "Standard"
+msgstr ""
 
 #: classes/wish.php:26
 msgid "Unsure about it"
 msgstr ""
 
 #: classes/wish.php:30
-#, fuzzy
 msgid "Nice to have"
-msgstr "Schön zu haben"
+msgstr ""
 
 #: classes/wish.php:34
-#, fuzzy
 msgid "Would love it"
-msgstr "Würde es lieben"
+msgstr ""
 
 #: classes/wish.php:159 classes/wish.php:162 pages/wishlist.php:56
 msgid "fulfil wish"
@@ -360,25 +307,21 @@ msgstr ""
 
 #: classes/wish.php:169 classes/wish.php:172 pages/wish.php:86
 #: pages/wish.php:89
-#, fuzzy
 msgid "Visit"
-msgstr "Besuchen"
+msgstr ""
 
 #: classes/wish.php:178 classes/wish.php:181 pages/wishlists.php:53
 #: pages/wishlists.php:56
-#, fuzzy
 msgid "Options"
-msgstr "Optionen"
+msgstr ""
 
 #: classes/wish.php:186
-#, fuzzy
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr ""
 
 #: classes/wish.php:191 pages/wishlists.php:64 pages/wishlists.php:66
-#, fuzzy
 msgid "Delete"
-msgstr "Löschen"
+msgstr ""
 
 #: functions/getWishlistNameSuggestion.php:31
 msgid "Birthday"
@@ -393,226 +336,187 @@ msgid "Christmas"
 msgstr ""
 
 #: pages/home.php:11
-#, fuzzy
 msgid "Home"
-msgstr "Home"
+msgstr ""
 
 #: pages/home.php:24
-#, fuzzy
 msgid "Welcome to wishthis"
-msgstr "Willkommen zu wishthis"
+msgstr ""
 
 #: pages/home.php:26
-#, fuzzy
 msgid "wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion."
-msgstr "wishthis ist eine einfache, intuitive und moderne Wunschlisten-Plattform zum erstellen, verwalten und anzeigen Deiner Wünsche für jede Art von Anlass."
+msgstr ""
 
 #: pages/home.php:33 pages/home.php:35 pages/wishlists.php:81
 #: pages/wishlists.php:84 pages/wishlists.php:113
-#, fuzzy
 msgid "Create a wishlist"
-msgstr "Wunschliste erstellen"
+msgstr ""
 
 #: pages/home.php:41 pages/home.php:43
-#, fuzzy
 msgid "View your wishlists"
-msgstr "Wunschlisten ansehen"
+msgstr ""
 
 #: pages/home.php:50 pages/home.php:52
-#, fuzzy
 msgid "Register now"
-msgstr "Registrieren"
+msgstr ""
 
 #: pages/home.php:68
-#, fuzzy
 msgid "Use case"
-msgstr "Use case"
+msgstr ""
 
 #: pages/home.php:70
 msgid "Your birthday is coming up and you just created a wishlist with all the cool stuff you want. Your friends and family want to make sure you get something you are happy with so you send them your wishlist link and if anybody decides to fulfil one of your wishes, it will disappear for everybody else."
 msgstr ""
 
 #: pages/home.php:74
-#, fuzzy
 msgid "Why wishthis?"
-msgstr "Warum wishthis?"
+msgstr ""
 
 #: pages/home.php:77
-#, fuzzy, php-format
+#, php-format
 msgid "wishthis is free and open source software. With free I don't just mean, you don't have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so."
-msgstr "wishthis ist eine freie und quelloffene Software. Mit frei meine ich nicht nur, dass Du kein Geld für die Nutzung bezahlen musst, sondern auch, dass Du nicht mit Deinen persönlichen Daten und Verhalten bezahlen musst. Nicht nur kann jeder %sden Quelltext%s ansehen und überprüfen, ich ermutige Dich auch, dies zu tun."
+msgstr ""
 
 #: pages/home.php:80
-#, fuzzy
 msgid "As a non-commercial project it remains"
-msgstr "Als nicht-kommerzielles Projekt bleibt es"
+msgstr ""
 
 #: pages/home.php:84
-#, fuzzy
 msgid "free of advertisements,"
-msgstr "frei von Werbung,"
+msgstr ""
 
 #: pages/home.php:88
-#, fuzzy
 msgid "without tracking, and"
-msgstr "ohne Tracking, und"
+msgstr ""
 
 #: pages/home.php:92
-#, fuzzy
 msgid "open for feedback and suggestions."
-msgstr "offen für Feedback und Vorschläge."
+msgstr ""
 
 #: pages/home.php:100
 msgid "Statistics"
 msgstr ""
 
 #: pages/home.php:102
-#, fuzzy
 msgid "Join the others and get started now!"
-msgstr "Schließ dich den anderen an und fang jetzt an!"
+msgstr ""
 
 #: pages/home.php:107 pages/home.php:112 pages/home.php:117
-#, fuzzy
 msgid "N. A."
-msgstr "k. A."
+msgstr ""
 
 #: pages/home.php:108 pages/wishlist.php:61 pages/wishlists.php:91
-#, fuzzy
 msgid "Wishes"
-msgstr "Wünsche"
+msgstr ""
 
 #: pages/home.php:118
-#, fuzzy
 msgid "Registered users"
-msgstr "Registrierte Benutzer"
+msgstr ""
 
 #: pages/install.php:15
-#, fuzzy
 msgid "Install"
-msgstr "Installieren"
+msgstr ""
 
 #: pages/install.php:30 pages/install.php:101
-#, fuzzy, php-format
+#, php-format
 msgid "Step %d"
-msgstr "Schritt %d"
+msgstr ""
 
 #: pages/install.php:31
-#, fuzzy
 msgid "Welcome to the wishthis installer."
-msgstr "Willkommen zum wishthis Installer."
+msgstr ""
 
 #: pages/install.php:32
-#, fuzzy
 msgid "wishthis needs a database to function properly. Please enter your credentials."
-msgstr "wishthis benötigt eine Datenbank, um richtig zu funktionieren. Bitte geben Sie Ihre Anmeldedaten ein."
+msgstr ""
 
 #: pages/install.php:39
-#, fuzzy
 msgid "Host"
-msgstr "Host"
+msgstr ""
 
 #: pages/install.php:44 pages/wishlists.php:121
-#, fuzzy
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #: pages/install.php:49
-#, fuzzy
 msgid "Username"
-msgstr "Benutzername"
+msgstr ""
 
 #: pages/install.php:54 pages/login.php:119 pages/profile.php:75
 #: pages/register.php:193
-#, fuzzy
 msgid "Password"
-msgstr "Passwort"
+msgstr ""
 
 #: pages/install.php:60 pages/install.php:61 pages/install.php:110
 #: pages/install.php:111
-#, fuzzy
 msgid "Continue"
-msgstr "Weiter"
+msgstr ""
 
 #: pages/install.php:102
-#, fuzzy
 msgid "Click continue to test the database connection."
-msgstr "Klicken Sie auf Weiter, um die Datenbankverbindung zu testen."
+msgstr ""
 
 #: pages/login-as.php:38
-#, fuzzy, php-format
+#, php-format
 msgid "Successfully logged in as %s."
-msgstr "Erfolgreich als %s eingeloggt."
+msgstr ""
 
 #: pages/login-as.php:40
-#, fuzzy
 msgid "User not found!"
-msgstr "Benutzer nicht gefunden!"
+msgstr ""
 
 #: pages/login-as.php:48 pages/login.php:110 pages/profile.php:68
 #: pages/register.php:175
-#, fuzzy
 msgid "Email"
-msgstr "E-Mail"
+msgstr ""
 
 #: pages/login.php:36
-#, fuzzy
 msgid "No user could be found with the credentials you provided."
-msgstr "Es konnte kein Benutzer mit den von dir angegebenen Anmeldedaten gefunden werden."
+msgstr ""
 
 #: pages/login.php:37
-#, fuzzy
 msgid "Invalid credentials"
-msgstr "Ungültige Zugangsdaten"
+msgstr ""
 
 #: pages/login.php:81
-#, fuzzy
 msgid "Password reset link"
-msgstr "Passwort zurücksetzen Link"
+msgstr ""
 
 #: pages/login.php:85
-#, fuzzy
 msgid "If a match can be found for this email address, a password reset link will be sent to it."
-msgstr "Wenn eine Übereinstimmung für diese E-Mail-Adresse gefunden wird, wird ein Link zum Zurücksetzen des Passworts an diese Adresse gesendet."
+msgstr ""
 
 #: pages/login.php:86
-#, fuzzy
 msgid "Info"
-msgstr "Info"
+msgstr ""
 
 #: pages/login.php:106
-#, fuzzy
 msgid "Credentials"
-msgstr "Zugangsdaten"
+msgstr ""
 
 #: pages/login.php:143
-#, fuzzy
 msgid "Forgot password?"
-msgstr "Passwort vergessen?"
+msgstr ""
 
 #: pages/login.php:145
-#, fuzzy
 msgid "Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again."
-msgstr "Erwäge die Verwendung eines Passwortmanagers. Er speichert alle deine Passwörter und ermöglicht es dir, mit einem einzigen Master-Passwort auf sie zuzugreifen. Vergiss nie wieder ein Passwort."
+msgstr ""
 
 #: pages/login.php:161 pages/login.php:162
-#, fuzzy
 msgid "Send email"
-msgstr "E-Mail senden"
+msgstr ""
 
 #: pages/login.php:170
-#, fuzzy
 msgid "Please note that you have to enter the email address, you have registered with."
-msgstr "Bitte beachte, dass du die E-Mail-Adresse angeben musst, mit der du dich registriert hast."
+msgstr ""
 
 #: pages/logout.php:28
-#, fuzzy
 msgid "Goodbye"
-msgstr "Auf Wiedersehen"
+msgstr ""
 
 #: pages/logout.php:29
-#, fuzzy
 msgid "You have been logged out."
-msgstr "Du wurdest abgemeldet."
+msgstr ""
 
 #: pages/maintenance.php:11
 msgid "Maintenance"
@@ -627,34 +531,29 @@ msgid "Due to maintenance, wishthis is temporarily not available. Please check b
 msgstr ""
 
 #: pages/power.php:11
-#, fuzzy
 msgid "Insufficient power"
-msgstr "Unzureichende Stärke"
+msgstr ""
 
 #: pages/power.php:22
-#, fuzzy
 msgid "Restricted access"
-msgstr "Zugangsbeschränkung"
+msgstr ""
 
 #: pages/power.php:23
-#, fuzzy, php-format
+#, php-format
 msgid "You do not have enough power to view this page. You need %s to see this page, but only have %s."
-msgstr "Du hast nicht genug Kraft, um diese Seite zu sehen. Du brauchst %s, um diese Seite zu sehen, hast aber nur %s."
+msgstr ""
 
 #: pages/profile.php:81
-#, fuzzy
 msgid "Password (repeat)"
-msgstr "Passwort (Wiederholung)"
+msgstr ""
 
 #: pages/profile.php:89
-#, fuzzy
 msgid "Birthdate"
-msgstr "Geburtsdatum"
+msgstr ""
 
 #: pages/profile.php:96
-#, fuzzy
 msgid "Pick a date"
-msgstr "Wähle ein Datum"
+msgstr ""
 
 #: pages/profile.php:104
 msgid "Language"
@@ -663,19 +562,16 @@ msgstr ""
 #: pages/profile.php:126 pages/profile.php:127 pages/settings.php:53
 #: pages/settings.php:54 pages/wish.php:174 pages/wish.php:175
 #: pages/wish.php:215 pages/wish.php:216
-#, fuzzy
 msgid "Save"
-msgstr "Speichern"
+msgstr ""
 
 #: pages/register.php:13
-#, fuzzy
 msgid "Reset password"
-msgstr "Passwort zurücksetzen"
+msgstr ""
 
 #: pages/register.php:14 pages/wish.php:179 pages/wish.php:180
-#, fuzzy
 msgid "Reset"
-msgstr "Zurücksetzen"
+msgstr ""
 
 #: pages/register.php:31
 msgid "Mercury"
@@ -718,83 +614,70 @@ msgid "Sun"
 msgstr ""
 
 #: pages/register.php:51
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not a planet but I'll let it slide, since only a human would make this kind of mistake."
-msgstr "%s ist kein Planet, aber ich lasse es durchgehen, denn nur ein Mensch würde so einen Fehler machen."
+msgstr ""
 
 #: pages/register.php:52 pages/register.php:151
-#, fuzzy
 msgid "Invalid planet"
-msgstr "Ungültiger Planet"
+msgstr ""
 
 #: pages/register.php:83
-#, fuzzy
 msgid "This link has expired."
-msgstr "Dieser Link ist abgelaufen."
+msgstr ""
 
 #: pages/register.php:83 pages/register.php:86
-#, fuzzy
 msgid "Failure"
-msgstr "Fehlgeschlagen"
+msgstr ""
 
 #: pages/register.php:86
-#, fuzzy
 msgid "This link seems invalid."
-msgstr "Dieser Link scheint ungültig zu sein."
+msgstr ""
 
 #: pages/register.php:108
-#, fuzzy
 msgid "An account with this email address already exists."
-msgstr "Es existiert bereits ein Konto mit dieser E-Mail-Adresse."
+msgstr ""
 
 #: pages/register.php:109
-#, fuzzy
 msgid "Invalid email address"
-msgstr "Ungültige E-Mail Adresse"
+msgstr ""
 
 #: pages/register.php:123
-#, fuzzy
 msgid "Your account was successfully created."
-msgstr "Dein Konto wurde erfolgreich erstellt."
+msgstr ""
 
 #: pages/register.php:133
-#, fuzzy
 msgid "My hopes and dreams"
-msgstr "Meine Hoffnungen und Träume"
+msgstr ""
 
 #: pages/register.php:150
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not a planet in our solar system. Read this for more information: %s."
-msgstr "%s ist kein Planet in unserem Sonnensystem. Lies dies für weitere Informationen: %s."
+msgstr ""
 
 #: pages/register.php:172
-#, fuzzy
 msgid "Account details"
-msgstr "Konto Details"
+msgstr ""
 
 #: pages/register.php:203
-#, fuzzy
 msgid "Authentication"
-msgstr "Authentifizierung"
+msgstr ""
 
 #: pages/register.php:204
-#, fuzzy
 msgid "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system."
-msgstr "Beweise, dass du ein Mensch, Echsenmensch oder ein Zuck-ähnliches Wesen bist. Bitte nenne einen Planeten aus unserem Sonnensystem."
+msgstr ""
 
 #: pages/register.php:207
-#, fuzzy
 msgid "Planet"
-msgstr "Planet"
+msgstr ""
 
 #: pages/register.php:214
 msgid "Robots are obviously from another solar system so this will keep them at bay."
 msgstr ""
 
 #: pages/settings.php:27
-#, fuzzy
 msgid "MJML"
-msgstr "MJML"
+msgstr ""
 
 #: pages/settings.php:28
 #, php-format
@@ -802,24 +685,20 @@ msgid "MJML is required for sending emails. Visit %s to request API access."
 msgstr ""
 
 #: pages/settings.php:30
-#, fuzzy
 msgid "API"
-msgstr "API"
+msgstr ""
 
 #: pages/settings.php:33
-#, fuzzy
 msgid "Key"
-msgstr "Schlüssel"
+msgstr ""
 
 #: pages/settings.php:42
-#, fuzzy
 msgid "Secret"
-msgstr "Geheimnis"
+msgstr ""
 
 #: pages/update.php:33
-#, fuzzy
 msgid "Update"
-msgstr "Aktualisieren"
+msgstr ""
 
 #: pages/update.php:44
 msgid "Database migration"
@@ -835,147 +714,121 @@ msgid "Migrate to %s"
 msgstr ""
 
 #: pages/wish.php:35
-#, fuzzy
 msgid "Wish successfully updated."
-msgstr "Wunsch erfolgreich aktualisiert."
+msgstr ""
 
 #: pages/wish.php:50 pages/wishlist.php:16
-#, fuzzy
 msgid "Not found"
-msgstr "Nicht gefunden"
+msgstr ""
 
 #: pages/wish.php:51
-#, fuzzy
 msgid "The requested Wish was not found."
-msgstr "Der angeforderte Wunsch wurde nicht gefunden."
+msgstr ""
 
 #: pages/wish.php:94 pages/wish.php:97
-#, fuzzy
 msgid "Auto-fill"
-msgstr "Automatisch ausfüllen"
+msgstr ""
 
 #: pages/wish.php:115 pages/wishlists.php:152 pages/wishlists.php:180
-#, fuzzy
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: pages/wish.php:128 pages/wishlists.php:185
-#, fuzzy
 msgid "Description"
-msgstr "Beschreibung"
+msgstr ""
 
 #: pages/wish.php:140 pages/wish.php:209 pages/wishlists.php:190
-#, fuzzy
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: pages/wish.php:151
-#, fuzzy
 msgid "Priority"
-msgstr "Priorität"
+msgstr ""
 
 #: pages/wish.php:184 pages/wish.php:186
-#, fuzzy
 msgid "Back"
-msgstr "Zurück"
+msgstr ""
 
 #: pages/wish.php:202
-#, fuzzy
 msgid "Image"
-msgstr "Bild"
+msgstr ""
 
 #: pages/wish.php:205
-#, fuzzy
 msgid "Define a new URL to be used as a preview."
-msgstr "Definiere eine neue URL, die als Vorschau verwendet werden soll."
+msgstr ""
 
 #: pages/wish.php:218 pages/wish.php:219
-#, fuzzy
 msgid "Discard"
-msgstr "Verwerfen"
+msgstr ""
 
 #: pages/wish.php:227
-#, fuzzy
 msgid "Warning"
-msgstr "Warnung"
+msgstr ""
 
 #: pages/wish.php:230
-#, fuzzy
 msgid "This action will potentially overwrite all fields in this wish."
-msgstr "Diese Aktion überschreibt möglicherweise alle Felder in diesem Wunsch."
+msgstr ""
 
 #: pages/wish.php:231
-#, fuzzy
 msgid "Would you like to continue?"
-msgstr "Willst du fortfahren?"
+msgstr ""
 
 #: pages/wish.php:234 pages/wish.php:235
-#, fuzzy
 msgid "Yes, overwrite"
-msgstr "Ja, überschreiben"
+msgstr ""
 
 #: pages/wish.php:237 pages/wish.php:238
 msgid "No"
 msgstr ""
 
 #: pages/wish.php:246
-#, fuzzy
 msgid "URL mismatch"
-msgstr "URL-Unstimmigkeit"
+msgstr ""
 
 #: pages/wish.php:250
-#, fuzzy
 msgid "The URL you have entered does not seem quite right. Would you like to update it with the one I found?"
-msgstr "Die URL, die du eingegeben hast, scheint nicht ganz richtig zu sein. Möchtest du sie mit der aktualisieren, die ich gefunden habe?"
+msgstr ""
 
 #: pages/wish.php:251
-#, fuzzy, php-format
+#, php-format
 msgid "According to %s, this is the canonical (correct) URL."
-msgstr "Laut %s ist dies die kanonische (korrekte) URL."
+msgstr ""
 
 #: pages/wish.php:255
-#, fuzzy
 msgid "Current"
-msgstr "Aktuell"
+msgstr ""
 
 #: pages/wish.php:260
-#, fuzzy
 msgid "Proposed"
-msgstr "Vorgeschlagen"
+msgstr ""
 
 #: pages/wish.php:267 pages/wish.php:268
-#, fuzzy
 msgid "Yes, update"
-msgstr "Ja, aktualisieren"
+msgstr ""
 
 #: pages/wish.php:270 pages/wish.php:271
-#, fuzzy
 msgid "No, leave it"
-msgstr "Nein, lass es"
+msgstr ""
 
 #: pages/wishlist.php:17
-#, fuzzy
 msgid "The requested Wishlist was not found and likely deleted by its creator."
-msgstr "Die angeforderte Wishlist wurde nicht gefunden und wahrscheinlich von ihrem Ersteller gelöscht."
+msgstr ""
 
 #: pages/wishlist.php:41
-#, fuzzy
 msgid "Careful"
-msgstr "Vorsicht"
+msgstr ""
 
 #: pages/wishlist.php:44
 msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfiled for you. Don't you want to be surprised?"
 msgstr ""
 
 #: pages/wishlist.php:45
-#, fuzzy
 msgid "It's probably best to just close this tab."
-msgstr "Es ist wahrscheinlich am besten, diesen Tab einfach zu schließen."
+msgstr ""
 
 #: pages/wishlist.php:53
-#, fuzzy
 msgid "What to do?"
-msgstr "Was ist zu tun?"
+msgstr ""
 
 #: pages/wishlist.php:55
 #, php-format
@@ -983,77 +836,62 @@ msgid "If you found a wish you would like to fulfil, click the %s button and it 
 msgstr ""
 
 #: pages/wishlists.php:19
-#, fuzzy
 msgid "Here you can view and edit all of your wishlists."
-msgstr "Hier kannst du alle deine Wunschlisten einsehen und bearbeiten."
+msgstr ""
 
 #: pages/wishlists.php:21
-#, fuzzy
 msgid "View"
-msgstr "Ansehen"
+msgstr ""
 
 #: pages/wishlists.php:26
-#, fuzzy
 msgid "Please select a wishlist to view."
-msgstr "Bitte wähle eine Wunschliste aus, um sie anzusehen."
+msgstr ""
 
 #: pages/wishlists.php:30
-#, fuzzy
 msgid "Wishlist"
-msgstr "Wunschliste"
+msgstr ""
 
 #: pages/wishlists.php:32
-#, fuzzy
 msgid "Loading your wishlists..."
-msgstr "Lade deine Wunschliste..."
+msgstr ""
 
 #: pages/wishlists.php:38 pages/wishlists.php:41 pages/wishlists.php:170
-#, fuzzy
 msgid "Add a wish"
-msgstr "Wunsch hinzufügen"
+msgstr ""
 
 #: pages/wishlists.php:46 pages/wishlists.php:49
-#, fuzzy
 msgid "Share"
-msgstr "Teilen"
+msgstr ""
 
 #: pages/wishlists.php:59 pages/wishlists.php:61 pages/wishlists.php:158
 #: pages/wishlists.php:159
-#, fuzzy
 msgid "Rename"
-msgstr "Umbenennen"
+msgstr ""
 
 #: pages/wishlists.php:77
-#, fuzzy
 msgid "General options."
-msgstr "Allgemeine Optionen."
+msgstr ""
 
 #: pages/wishlists.php:117
-#, fuzzy
 msgid "Choose a new name for your wishlist. Here's a suggestion to get you started."
-msgstr "Wähle einen neuen Namen für deine Wunschliste. Hier ist ein Vorschlag für dich, damit du loslegen kannst."
+msgstr ""
 
 #: pages/wishlists.php:131 pages/wishlists.php:132
-#, fuzzy
 msgid "Create"
-msgstr "Erstellen"
+msgstr ""
 
 #: pages/wishlists.php:143
-#, fuzzy
 msgid "Rename wishlist"
-msgstr "Wunschliste umbenennen"
+msgstr ""
 
 #: pages/wishlists.php:146
-#, fuzzy
 msgid "How would you like to name this wishlist?"
-msgstr "Wie würdest du diese Wunschliste gerne nennen?"
+msgstr ""
 
 #: pages/wishlists.php:174
-#, fuzzy
 msgid "Fill out any or all of the below fields to add your new wish."
-msgstr "Fülle eines oder alle der unten stehenden Felder aus, um deinen neuen Wunsch hinzuzufügen."
+msgstr ""
 
 #: pages/wishlists.php:200 pages/wishlists.php:201
-#, fuzzy
 msgid "Add"
-msgstr "Hinzufügen"
+msgstr ""
