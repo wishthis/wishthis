@@ -23,6 +23,12 @@ img {
     position: sticky;
     top: 100%;
 }
+@media (min-width: 768px) {
+    .ui.footer {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+}
 
 /**
  * Progress
