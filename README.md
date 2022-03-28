@@ -16,11 +16,9 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
 ## Available in 3 different locales
-|      | Locale                            |
-| ---- | --------------------------------- |
-| :de: | German, Germany (Germany)         |
-| :gb: | English, English (United Kingdom) |
-| :us: | English (United States)           |
+:gb: English (United Kingdom),
+:us: English (United States),
+:de: German  (Germany)
 
 ## Requirements
 * Apache or Nginx (pretty URLs don't work on Nginx)
