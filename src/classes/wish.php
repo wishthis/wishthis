@@ -18,21 +18,17 @@ class Wish
     public static function initialize()
     {
         self::$priorities = array(
-            ''  => array(
-                'name'  => __('Default'),
-                'color' => '',
-            ),
             '1' => array(
                 'name'  => __('Unsure about it'),
-                'color' => 'black',
+                'color' => 'teal',
             ),
             '2' => array(
                 'name'  => __('Nice to have'),
-                'color' => 'grey',
+                'color' => 'olive',
             ),
             '3' => array(
                 'name'  => __('Would love it'),
-                'color' => 'brown',
+                'color' => 'yellow',
             ),
         );
     }
