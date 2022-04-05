@@ -41,7 +41,7 @@ $page->navigation();
                         <?= __('Careful') ?>
                     </div>
                     <div class="text">
-                        <p><?= __('You are viewing your own wishlist! You will be able to see which wishes have already been fulfiled for you. Don\'t you want to be surprised?') ?></p>
+                        <p><?= __('You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don\'t you want to be surprised?') ?></p>
                         <p><?= __('It\'s probably best to just close this tab.') ?></p>
                     </div>
                 </div>
