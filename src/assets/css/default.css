@@ -279,3 +279,10 @@ p .ui.horizontal.label {
 .ui.dropdown .menu > a.item:hover {
 	color: rgba(0,0,0,.95);
 }
+
+/**
+ * Filter
+ */
+.ui.basic.white.button {
+    background-color: #fff;
+}

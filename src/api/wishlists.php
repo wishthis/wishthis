@@ -40,7 +40,34 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'GET':
-        if (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
+        if (isset($_GET['wishlist'], $_GET['priority'])) {
+            /**
+             * Get wishlist cards
+             */
+            $wishlist = new Wishlist($_GET['wishlist']);
+            $options  = array();
+            $where    = array(
+                'wishlist' => '`wishlist` = ' . $wishlist->id,
+                'priority' => '`priority` = ' . $_GET['priority'],
+            );
+
+            if (-1 == $_GET['priority']) {
+                unset($where['priority']);
+            }
+
+            if (empty($_GET['priority'])) {
+                $where['priority'] = '`priority` IS NULL';
+            }
+
+            $options = array(
+                'WHERE' => implode(' AND ', $where),
+            );
+
+            $response['results'] = $wishlist->getCards($options);
+        } elseif (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
+            /**
+             * Get user wishlists
+             */
             $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
 
             $wishlists = $user->getWishlists();

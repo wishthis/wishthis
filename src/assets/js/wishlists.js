@@ -62,6 +62,10 @@ $(function () {
             .then(handleFetchResponse)
             .then(function(response) {
                 window.history.pushState({}, '', response.data.url);
+
+                $('.ui.dropdown.filter.priority')
+                .dropdown('restore default value')
+                .dropdown('restore default text');
             });
         } else {
             $('.button.wishlist-wish-add').addClass('disabled');
@@ -434,6 +438,44 @@ $(function () {
                 return false;
             }
         });
+    });
+
+    /**
+     * Filter wishes
+     */
+    $('.ui.dropdown.filter.priority')
+    .dropdown({
+        match          : 'text',
+        fullTextSearch : true,
+        onChange       : function() {
+            $(this).addClass('disabled loading');
+
+            var wishlist_id = $('.dropdown.wishlists').dropdown('get value');
+
+            if (!Number.isInteger(parseInt(wishlist_id))) {
+                $(this).removeClass('disabled loading');
+                return false;
+            }
+
+            var paramater = new URLSearchParams({
+                wishlist : wishlist_id,
+                priority : $(this).dropdown('get value'),
+            });
+
+            fetch('/src/api/wishlists.php?' + paramater, {
+                method : 'GET',
+            })
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(response) {
+                var html = response.results ? response.results : '';
+
+                $('.wishlist-cards').html(html);
+            })
+            .finally(() => {
+                $(this).removeClass('disabled loading');
+            });
+        }
     });
 
 });

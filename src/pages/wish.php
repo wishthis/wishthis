@@ -19,7 +19,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $wish_description = $_POST['wish_description'] ?: '';
     $wish_image       = trim($_POST['wish_image']);
     $wish_url         = trim($_POST['wish_url']);
-    $wish_priority    = $_POST['wish_priority'] ?: 'NULL';
+    $wish_priority    = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
 
     $database
     ->query('UPDATE `wishes`
@@ -153,6 +153,8 @@ $referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
                                 <select class="ui selection clearable dropdown priority"
                                         name="wish_priority"
                                 >
+                                    <option value=""><?= __('Select priority') ?></option>
+
                                     <?php foreach (Wish::$priorities as $priority => $item) { ?>
                                         <?php if ($wish->priority === $priority) { ?>
                                             <option value="<?= $priority ?>" selected><?= $item['name'] ?></option>
