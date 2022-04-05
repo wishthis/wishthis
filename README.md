@@ -5,26 +5,26 @@
 wishthis is a simple, intuitive and modern wishlist platform to create, manage and view
 your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
-## Screenshots
+## :desktop_computer: Screenshots
 | Home                                                 | Wishlists                                                           |
 | ---------------------------------------------------- | ------------------------------------------------------------------- |
 | ![Home](/src/assets/img/screenshots/home.png "Home") | ![Wishlists](/src/assets/img/screenshots/wishlists.png "Wishlists") |
 
-## Join the conversation
+## :family_man_man_boy: Join the conversation
 
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
-## Available in 3 different locales
+## :earth_africa: Available in 3 different locales
 :gb: English (United Kingdom),
 :us: English (United States),
 :de: German  (Germany)
 
-## Requirements
+## :heavy_check_mark: Requirements
 * Apache or Nginx (pretty URLs don't work on Nginx)
 * PHP 8.1
 
-## Installation
+## :hammer: Installation
 
 ### Git (recommended)
 ```
@@ -38,7 +38,7 @@ Download the code using the [stable branch](https://github.com/grandeljay/wishth
 
 Note: You will have to manually update wishthis by replacing all files with the changes from the `stable` branch.
 
-## Contributing
+## :trophy: Contributing
 
 ### As a translator
 https://www.transifex.com/wishthis/wishthis/
@@ -79,3 +79,5 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | Language | Style |
 | -------- | ----- |
 | PHP      | PSR-12 |
+
+## :construction: Roadmap
