@@ -81,3 +81,9 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
+| Item | Status |
+| ---- | ------ |
+| Folders / Subcategories for wishlists | Under consideration |
+| Combined wishes                       | Under consideration |
+| Price field for wishes                | Planned             |
+| Changelog                             | Planned             |
