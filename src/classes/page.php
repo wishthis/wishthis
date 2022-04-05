@@ -248,6 +248,8 @@ class Page
                 var text  = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
+                    modal_error_title     : '<?= __('Error') ?>',
+                    modal_failure_title   : '<?= __('Failure') ?>',
                     modal_failure_approve : '<?= __('Thanks for nothing') ?>',
                     modal_warning_approve : '<?= __('Understood') ?>',
                     modal_success_title   : '<?= __('Success') ?>',

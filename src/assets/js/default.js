@@ -55,7 +55,7 @@ $(function() {
 
         $('body')
         .modal({
-            title   : 'Failure',
+            title   : text.modal_failure_title,
             content : response,
             class   : '',
             actions : [
@@ -74,7 +74,7 @@ $(function() {
 
         $('body')
         .modal({
-            title   : 'Error',
+            title   : text.modal_error_title,
             content : response,
             class   : '',
             actions : [
