@@ -73,8 +73,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                              )
             ;');
 
-            $response['success'] = true;
-            $response['data']    = array(
+            $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
             );
         }
@@ -91,8 +90,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                  SET `status` = "' . $_PUT['wish_status'] . '"
                                WHERE `id` = ' . $_PUT['wish_id'] . '
             ;');
-
-            $response['success'] = true;
         } elseif (isset($_PUT['wish_url_current'], $_PUT['wish_url_proposed'])) {
             /**
              * Update Wish URL
@@ -101,8 +98,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                  SET `url` = "' . $_PUT['wish_url_proposed'] . '"
                                WHERE `url` = "' . $_PUT['wish_url_current'] . '"
             ;');
-
-            $response['success'] = true;
         }
         break;
 
@@ -113,8 +108,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $database->query('DELETE FROM `wishes`
                                     WHERE `id` = ' . $_DELETE['wish_id'] . '
             ;');
-
-            $response['success'] = true;
         }
         break;
 }

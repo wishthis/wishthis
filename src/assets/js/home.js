@@ -5,25 +5,24 @@ $(function() {
     fetch('/src/api/statistics.php?table=all', {
         method: 'GET'
     })
-    .then(response => response.json())
-    .then(response => {
-        if (response.success) {
-            showStatistic(
-                $('#wishes .value'),
-                response.data.wishes.count,
-                0
-            );
-            showStatistic(
-                $('#wishlists .value'),
-                response.data.wishlists.count,
-                0
-            );
-            showStatistic(
-                $('#users .value'),
-                response.data.users.count,
-                0
-            );
-        }
+    .then(handleFetchError)
+    .then(handleFetchResponse)
+    .then(function(response) {
+        showStatistic(
+            $('#wishes .value'),
+            response.data.wishes.count,
+            0
+        );
+        showStatistic(
+            $('#wishlists .value'),
+            response.data.wishlists.count,
+            0
+        );
+        showStatistic(
+            $('#users .value'),
+            response.data.users.count,
+            0
+        );
     });
 });
 

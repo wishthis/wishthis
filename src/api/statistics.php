@@ -7,9 +7,7 @@
  */
 
 $api      = true;
-$response = array(
-    'success' => false,
-);
+$response = array();
 
 ob_start();
 
@@ -35,16 +33,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                     $response['data'][$table] = $count;
                 }
-
-                $response['success'] = true;
             } else {
                 $count = $database
                 ->query('SELECT COUNT(`id`) AS "count"
                            FROM `' . $_GET['table'] . '`;')
                 ->fetch();
 
-                $response['data']    = $count;
-                $response['success'] = true;
+                $response['data'] = $count;
             }
         }
         break;

@@ -9,9 +9,7 @@
 use wishthis\{User, Wishlist};
 
 $api      = true;
-$response = array(
-    'success' => false,
-);
+$response = array();
 
 ob_start();
 
@@ -35,8 +33,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 )
             ;');
 
-            $response['success'] = true;
-            $response['data']    = array(
+            $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
             );
         }
@@ -49,12 +46,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wishlists = $user->getWishlists();
             $wishlists = array_map(
                 function ($dataWishlist) {
-                    $data = $dataWishlist;
-                    // $newFormat['name'] = $wishlist['name'];
+                    /**
+                     * Format wishlists to fit FUI dropdown
+                     */
+                    $data          = $dataWishlist;
                     $data['value'] = $dataWishlist['id'];
-                    $data['text'] = $dataWishlist['name'];
+                    $data['text']  = $dataWishlist['name'];
 
-                    $wishlist = new Wishlist($dataWishlist['id']);
+                    $wishlist      = new Wishlist($dataWishlist['id']);
                     $data['cards'] = $wishlist->getCards();
 
                     return $data;
@@ -63,7 +62,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             );
 
             $response['results'] = $wishlists;
-            $response['success'] = true;
         }
         break;
 
@@ -85,7 +83,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             WHERE `id` = ' . $_DELETE['wishlistID'] . '
         ;');
 
-        $response['success'] = true;
         break;
 }
 

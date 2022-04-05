@@ -81,24 +81,4 @@ class User
 
         return $wishlists;
     }
-
-    /**
-     * Returns a list of wishes for a given wishlist.
-     *
-     * @param  int   $wishlist
-     *
-     * @return array
-     */
-    public function getWishes(int $wishlist): array
-    {
-        global $database;
-
-        $wishes = $database
-        ->query('SELECT *
-                   FROM `wishes`
-                  WHERE `wishlist` = ' . $wishlist . ';')
-        ->fetchAll();
-
-        return $wishes;
-    }
 }

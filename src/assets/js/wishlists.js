@@ -13,8 +13,8 @@ $(function () {
                 wishlists = response.results;
 
                 element.dropdown({
-                    values     : wishlists,
-                    placeholder: text.wishlist_no_selection
+                    values      : wishlists,
+                    placeholder : text.wishlist_no_selection
                 })
 
                 if ($_GET.wishlist) {
@@ -58,11 +58,10 @@ $(function () {
             fetch('/src/api/url.php?url=' + btoa(urlParams.toString()), {
                 method: 'GET'
             })
-            .then(response => response.json())
-            .then(response => {
-                if (response.success) {
-                    window.history.pushState({}, '', response.data.url);
-                }
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(response) {
+                window.history.pushState({}, '', response.data.url);
             });
         } else {
             $('.button.wishlist-wish-add').addClass('disabled');
@@ -156,7 +155,7 @@ $(function () {
 
             progress.progress('increment');
 
-            $('.ui.dropdown').dropdown();
+            $('.ui.dropdown.options').dropdown();
         });
     }
 
@@ -377,13 +376,11 @@ $(function () {
                 .then(handleFetchError)
                 .then(handleFetchResponse)
                 .then(function(response) {
-                    if (response.success) {
-                        $('body').toast({ message: text.toast_wish_add });
+                    $('body').toast({ message: text.toast_wish_add });
 
-                        wishlistsRefresh();
+                    wishlistsRefresh();
 
-                        modalWishlistWishAdd.modal('hide');
-                    }
+                    modalWishlistWishAdd.modal('hide');
 
                     buttonAdd.removeClass('loading');
                 })
@@ -418,17 +415,16 @@ $(function () {
                     method: 'POST',
                     body:   formData
                 })
-                .then(response => response.json())
-                .then(response => {
-                    if(response.success) {
-                        modalWishlistCreate.modal('hide');
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    modalWishlistCreate.modal('hide');
 
-                        urlParams.set('wishlist', response.data.lastInsertId);
+                    urlParams.set('wishlist', response.data.lastInsertId);
 
-                        $('body').toast({ message: text.toast_wish_create });
+                    $('body').toast({ message: text.toast_wish_create });
 
-                        wishlistsRefresh();
-                    }
+                    wishlistsRefresh();
                 })
                 .finally(() => {
                     formWishlistCreate.removeClass('loading');

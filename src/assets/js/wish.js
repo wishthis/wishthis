@@ -87,15 +87,14 @@ $(function () {
                                     method: 'PUT',
                                     body  : formData
                                 })
-                                .then(response => response.json())
-                                .then(response => {
-                                    if (response.success) {
-                                        inputURL.val(info.url);
+                                .then(handleFetchError)
+                                .then(handleFetchResponse)
+                                .then(function(response) {
+                                    inputURL.val(info.url);
 
-                                        elementModalFetch.modal('hide');
+                                    elementModalFetch.modal('hide');
 
-                                        $('body').toast({ message: text.toast_wish_update });
-                                    }
+                                    $('body').toast({ message: text.toast_wish_update });
 
                                     buttonFetch.removeClass('loading');
                                 });

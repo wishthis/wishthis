@@ -9,9 +9,7 @@
 use wishthis\URL;
 
 $api      = true;
-$response = array(
-    'success' => false,
-);
+$response = array();
 
 ob_start();
 
@@ -22,10 +20,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['url'])) {
             $url = new URL(base64_decode($_GET['url']));
 
-            $response['data']    = array(
+            $response['data'] = array(
                 'url' => $url->getPretty()
             );
-            $response['success'] = true;
         }
         break;
 }

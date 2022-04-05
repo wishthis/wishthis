@@ -10,10 +10,6 @@ namespace wishthis;
 
 class Wishlist
 {
-    private int $id;
-    private string $hash;
-
-    public array $data;
     public array $wishes = array();
 
     public bool $exists = false;
@@ -34,17 +30,18 @@ class Wishlist
         /**
          * Get Wishlist
          */
-        $result = $database
+        $columns = $database
         ->query('SELECT *
                    FROM `wishlists`
                   WHERE `' . $column . '` = ' . $id_or_hash . ';')
         ->fetch();
 
-        $this->data = $result ? $result : array();
+        foreach ($columns as $key => $value) {
+            $this->$key = $value;
+        }
 
         /** Exists */
-        if (isset($this->data['id'])) {
-            $this->id     = $this->data['id'];
+        if (isset($this->id)) {
             $this->exists = true;
         } else {
             return;
@@ -53,15 +50,28 @@ class Wishlist
         /**
          * Get Wishes
          */
+        $this->wishes = $this->getWishes();
+    }
+
+    private function getWishes($sql = array()): array
+    {
+        global $database;
+
+        $SELECT = isset($sql['SELECT']) ? $sql['SELECT'] : '*';
+        $FROM   = isset($sql['FROM'])   ? $sql['FROM']   : '`wishes`';
+        $WHERE  = isset($sql['WHERE'])  ? $sql['WHERE']  : '`wishlist` = ' . $this->id;
+
         $this->wishes = $database
-        ->query('SELECT *
-                   FROM `wishes`
-                  WHERE `wishlist` = ' . $this->id . ';')
+        ->query('SELECT ' . $SELECT . '
+                   FROM ' . $FROM . '
+                  WHERE ' . $WHERE . ';')
         ->fetchAll();
 
         foreach ($this->wishes as &$wish) {
             $wish = new Wish($wish, false);
         }
+
+        return $this->wishes;
     }
 
     public function getCards($options = array()): string
@@ -71,24 +81,18 @@ class Wishlist
         /**
          * Options
          */
-        $exclude = isset($options['exclude']) ? $options['exclude'] : array();
-
-        if ($exclude) {
-            $wishes = array_filter($this->wishes, function ($wish) use ($exclude) {
-                return !in_array($wish->status, $exclude);
-            });
-        } else {
-            $wishes = $this->wishes;
+        if (!empty($options)) {
+            $this->wishes = $this->getWishes($options);
         }
 
         /**
          * Cards
          */
-        if (!empty($wishes)) { ?>
+        if (!empty($this->wishes)) { ?>
             <div class="ui three column doubling stackable grid">
-                <?php foreach ($wishes as $wish) { ?>
+                <?php foreach ($this->wishes as $wish) { ?>
                     <div class="column">
-                        <?= $wish->getCard($this->data['user']) ?>
+                        <?= $wish->getCard($this->user) ?>
                     </div>
                 <?php } ?>
             </div>

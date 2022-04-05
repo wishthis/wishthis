@@ -19,7 +19,7 @@ if (!$wishlist->exists) {
     die();
 }
 
-$page = new Page(__FILE__, $wishlist->data['name']);
+$page = new Page(__FILE__, $wishlist->name);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -33,7 +33,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if (isset($user->id) && $user->id === intval($wishlist->data['user']) && !empty($wishlist->wishes)) { ?>
+        if (isset($user->id) && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -48,7 +48,7 @@ $page->navigation();
             </div>
         <?php } ?>
 
-        <div class="ui horizontal stackable segments">
+        <div class="ui segments">
             <div class="ui segment">
                 <h2 class="ui header"><?= __('What to do?') ?></h2>
                 <p><?= sprintf(
@@ -64,7 +64,7 @@ $page->navigation();
             <?php
             echo $wishlist->getCards(
                 array(
-                    'exclude' => array('unavailable'),
+                    'WHERE' => '`wishlist` = ' . $wishlist->id . ' AND (`status` != "unavailable" OR `status` IS NULL)',
                 )
             );
             ?>

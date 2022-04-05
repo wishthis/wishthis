@@ -29,7 +29,7 @@ $(function() {
         return response;
     }
     $.fn.api.settings.successTest = function(response) {
-        return response.status == 'OK' || response.success || false;
+        return response.status == 'OK' || response.results || response.success || false;
     }
     $.fn.api.settings.onComplete = function(response, element, xhr) {
         element.removeClass('loading');
