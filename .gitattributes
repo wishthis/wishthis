@@ -1,4 +1,2 @@
-text eol=lf
-
 Force LF endings
-*.php eol=lf
+* text eol=lf
