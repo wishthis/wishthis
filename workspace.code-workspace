@@ -9,7 +9,10 @@
 			"name": "Jay Trees",
 			"email": "github.jay@grandel.anonaddy.me"
 		},
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"files.exclude": {
+			"**/translations": true
+		}
 	},
 	"extensions": {
 		"recommendations": [
