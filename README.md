@@ -83,7 +83,9 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 ## :construction: Roadmap
 | Item | Status |
 | ---- | ------ |
-| Folders / Subcategories for wishlists | Under consideration |
-| Combined wishes                       | Under consideration |
-| Price field for wishes                | Planned             |
-| Changelog                             | Planned             |
+| Folders / Subcategories for wishlists      | Under consideration |
+| Combined wishes                            | Under consideration |
+| Price field for wishes                     | Planned             |
+| Changelog                                  | Planned             |
+| Save / bookmark wishlists from other users | Planned             |
+| Activity feed and friends                  | Under consideration |
