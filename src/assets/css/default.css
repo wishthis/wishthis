@@ -1,6 +1,6 @@
 :root {
     --lineHeight: 1.4285;
-    --wishPreviewHeight: 25vh;
+    --wishPreviewHeight: min(25vh, 224px);
 }
 
 img {
