@@ -311,6 +311,8 @@ class Page
                     form_prompt_minCount             : '<?= __('{name} must have at least {ruleValue} choices') ?>',
                     form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
                     form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
+
+                    button_wishlist_saved : '<?= __('Saved') ?>',
                 };
             </script>
             <?php

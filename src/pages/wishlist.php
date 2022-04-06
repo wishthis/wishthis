@@ -29,6 +29,13 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
+        <?php if ($user->isLoggedIn() && $user->id !== intval($wishlist->user)) { ?>
+            <button class="ui white small basic labeled icon button save">
+                <i class="heart icon"></i>
+                <span><?= __('Save list') ?></span>
+            </button>
+        <?php } ?>
+
         <?php
         /**
          * Warn the wishlist creator

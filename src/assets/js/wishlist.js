@@ -75,4 +75,17 @@ $(function() {
             }
         });
     });
+
+    /**
+     * Save wishlist
+     */
+    $(document).on('click', '.button.save', function() {
+        $(this).addClass('disabled loading');
+
+        setTimeout(() => {
+            $(this).find('.icon').addClass('red');
+            $(this).find('span').text(text.button_wishlist_saved);
+            $(this).removeClass('disabled loading');
+        }, 400);
+    });
 });
