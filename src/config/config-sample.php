@@ -12,3 +12,11 @@ define('DATABASE_USER', 'root');
 define('DATABASE_PASSWORD', '');
 
 define('ENV_IS_DEV', false);
+
+define(
+    'CHANNELS',
+    array(
+        'stable'            => 'wishthis.online',
+        'release-candidate' => 'rc.wishthis.online',
+    )
+);
