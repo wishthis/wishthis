@@ -40,6 +40,13 @@ Note: You will have to manually update wishthis by replacing all files with the 
 
 ## :trophy: Contributing
 
+### As a tester
+In the wishthis plattform, navigate to:
+1. Account -> Profile
+1. Preferences
+
+And set your channel to "Release candidate". Make sure to give feedback!
+
 ### As a translator
 https://www.transifex.com/wishthis/wishthis/
 
