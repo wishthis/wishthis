@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-07 15:50+0200\n"
+"POT-Creation-Date: 2022-04-07 16:18+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
-"X-Poedit-KeywordsList: __\n"
+"X-Poedit-KeywordsList: __;_n:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: classes/page.php:189
@@ -677,10 +677,12 @@ msgstr ""
 msgid "If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis user base have tested the next release candidate."
 msgstr ""
 
-#: pages/profile.php:320
+#: pages/profile.php:326
 #, php-format
-msgid "%d more subscriber(s) needed"
-msgstr ""
+msgid "%d more subscriber needed"
+msgid_plural "%d more subscribers needed"
+msgstr[0] ""
+msgstr[1] ""
 
 #: pages/register.php:13
 msgid "Reset password"
