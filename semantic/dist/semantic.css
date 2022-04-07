@@ -38184,6 +38184,12 @@ Floated Menu / Item
   border-right: 1px solid #D4D4D5;
 }
 
+@media only screen and (max-width: 767.98px) {
+  .stackable .ui.vertical.pointing.menu .item::after {
+    display: none;
+  }
+}
+
 .ui.pointing.menu .ui.dropdown .menu .item:after,
 .ui.vertical.pointing.menu .ui.dropdown .menu .item:after {
   display: none;
@@ -40403,6 +40409,90 @@ Floated Menu / Item
 
 /*******************************
         Site Overrides
+*******************************/
+/*!
+ * # Fomantic-UI 2.8.8 - Tab
+ * http://github.com/fomantic/Fomantic-UI/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+           UI Tabs
+*******************************/
+
+.ui.tab {
+  display: none;
+}
+
+/*******************************
+             States
+*******************************/
+
+/*--------------------
+       Active
+---------------------*/
+
+.ui.tab.active,
+.ui.tab.open {
+  display: block;
+}
+
+/*--------------------
+         Loading
+  ---------------------*/
+
+.ui.tab.loading {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  min-height: 250px;
+}
+
+.ui.tab.loading * {
+  position: relative !important;
+  left: -10000px !important;
+}
+
+.ui.tab.loading:before,
+.ui.tab.loading.segment:before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -1.25em 0 0 -1.25em;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 500rem;
+  border: 0.2em solid rgba(0, 0, 0, 0.1);
+}
+
+.ui.tab.loading:after,
+.ui.tab.loading.segment:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  margin: -1.25em 0 0 -1.25em;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation: loader 0.6s infinite linear;
+  animation: loader 0.6s infinite linear;
+  border: 0.2em solid #767676;
+  border-radius: 500rem;
+  -webkit-box-shadow: 0 0 0 1px transparent;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+/*******************************
+         Tab Overrides
+*******************************/
+
+/*******************************
+        User Overrides
 *******************************/
 /*!
  * # Fomantic-UI 2.8.8 - Transition

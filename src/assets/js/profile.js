@@ -1,4 +1,6 @@
 $(function() {
+    $('.menu.profile .item').tab();
+
     $('.ui.calendar').calendar({
         type           : 'date',
         firstDayOfWeek : 1,

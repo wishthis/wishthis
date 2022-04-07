@@ -51,6 +51,7 @@
     "popup",
     "message",
     "list",
+    "tab",
 
     "api",
     "transition"

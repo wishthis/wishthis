@@ -1969,6 +1969,11 @@ Floated Menu / Item
   border-top: 1px solid #D4D4D5;
   border-right: 1px solid #D4D4D5;
 }
+@media only screen and (max-width: 767.98px) {
+  .stackable .ui.vertical.pointing.menu .item::after {
+    display: none;
+  }
+}
 .ui.pointing.menu .ui.dropdown .menu .item:after,
 .ui.vertical.pointing.menu .ui.dropdown .menu .item:after {
   display: none;

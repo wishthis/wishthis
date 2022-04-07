@@ -8,29 +8,50 @@
 
 use wishthis\{Page, User};
 
+$page = new Page(__FILE__, __('Update'), 100);
+
 /**
  * Update
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-    /**
-     * Database
-     */
+    $versions_directory = ROOT . '/src/update';
+    $versions_contents  = scandir($versions_directory);
+    $versions           = array();
 
-    /** 0.5.0 *//*
-    if (-1 === version_compare($options->version, '0.5.0')) {
-        $database->query('ALTER TABLE `users`
-                                  ADD `status`   VARCHAR(32) NOT NULL AFTER `url`
-        ;');
-    }*/
+    foreach ($versions_contents as $filename) {
+        $filepath = $versions_directory . '/' . $filename;
+        $pathinfo = pathinfo($filepath);
+
+        if ('sql' === $pathinfo['extension']) {
+            $versions[] = array(
+                'version'  => str_replace('-', '.', $pathinfo['filename']),
+                'filepath' => $filepath,
+            );
+        }
+    }
+
+    foreach ($versions as $version) {
+        if (-1 !== version_compare(VERSION, $version['version'])) {
+            $sql = file_get_contents($version['filepath']);
+
+            if ($sql) {
+                $database->query($sql);
+
+                $page->messages[] = Page::info(
+                    sprintf(
+                        __('Database successfully migrated to %s.'),
+                        'v' . $version['version']
+                    )
+                );
+            }
+        }
+    }
 
     /** Update version */
     $options->setOption('version', VERSION);
     $options->setOption('updateAvailable', false);
-
-    redirect('/?page=home');
 }
 
-$page = new Page(__FILE__, __('Update'), 100);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -39,6 +60,8 @@ $page->navigation();
 <main>
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
+
+        <?= $page->messages() ?>
 
         <div class="ui segment">
             <h2 class="ui header"><?= __('Database migration') ?></h2>
