@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-05 10:02+0200\n"
+"POT-Creation-Date: 2022-04-07 16:33+0200\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
 "Last-Translator: Jay Trees, 2022\n"
 "Language-Team: English (United States) (https://www.transifex.com/wishthis/teams/134148/en_US/)\n"
@@ -17,65 +17,78 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
-"X-Poedit-KeywordsList: __\n"
+"X-Poedit-KeywordsList: __;_n:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:249
+#: classes/page.php:189
+msgid ""
+"This is the development environment of wishthis. The database will reset "
+"every day at around 00:00."
+msgstr ""
+"This is the development environment of wishthis. The database will reset "
+"every day at around 00:00."
+
+#: classes/page.php:190
+msgid "Development environment"
+msgstr "Development environment"
+
+#: classes/page.php:272
 msgid "No wishlist selected."
 msgstr "No wishlist selected."
 
-#: classes/page.php:251 classes/page.php:284 pages/login-as.php:40
+#: classes/page.php:274 classes/page.php:307 pages/login-as.php:40
 msgid "Error"
 msgstr "Error"
 
-#: classes/page.php:252 pages/register.php:83 pages/register.php:86
+#: classes/page.php:275 pages/register.php:83 pages/register.php:86
 msgid "Failure"
 msgstr "Failure"
 
-#: classes/page.php:253
+#: classes/page.php:276
 msgid "Thanks for nothing"
 msgstr "Thanks for nothing"
 
-#: classes/page.php:254
+#: classes/page.php:277
 msgid "Understood"
 msgstr "Understood"
 
-#: classes/page.php:255 pages/install.php:210 pages/login-as.php:38
-#: pages/register.php:123 pages/wish.php:35
+#: classes/page.php:278 pages/install.php:214 pages/login-as.php:38
+#: pages/profile.php:60 pages/profile.php:103 pages/register.php:123
+#: pages/wish.php:35
 msgid "Success"
 msgstr "Success"
 
-#: classes/page.php:257
+#: classes/page.php:280
 msgid "Close this tab"
 msgstr "Close this tab"
 
-#: classes/page.php:258
+#: classes/page.php:281
 msgid "Show wishlist anyway"
 msgstr "Show wishlist anyway"
 
-#: classes/page.php:259 classes/page.php:268
+#: classes/page.php:282 classes/page.php:291
 msgid "Really delete?"
 msgstr "Really delete?"
 
-#: classes/page.php:260
+#: classes/page.php:283
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
 msgstr "Do you really want to delete the wishlist %s?"
 
-#: classes/page.php:261 classes/page.php:270
+#: classes/page.php:284 classes/page.php:293
 msgid "Yes, delete"
 msgstr "Yes, delete"
 
-#: classes/page.php:262 classes/page.php:271
+#: classes/page.php:285 classes/page.php:294
 msgid "No, keep"
 msgstr "No, keep"
 
-#: classes/page.php:264 classes/wish.php:155 classes/wish.php:158
-#: pages/wishlist.php:56
+#: classes/page.php:287 classes/wish.php:159 classes/wish.php:162
+#: pages/wishlist.php:51
 msgid "Fulfil wish"
 msgstr "Fulfill wish"
 
-#: classes/page.php:265
+#: classes/page.php:288
 msgid ""
 "Would you really like to fulfil this wish? It will no longer appear in the "
 "wishlist for others anymore."
@@ -83,222 +96,242 @@ msgstr ""
 "Would you really like to fulfill this wish? It will no longer appear in the "
 "wishlist for others anymore."
 
-#: classes/page.php:266
+#: classes/page.php:289
 msgid "Yes, fulfil wish"
 msgstr "Yes, fulfill wish"
 
-#: classes/page.php:267 pages/wishlists.php:177 pages/wishlists.php:178
-#: pages/wishlists.php:204 pages/wishlists.php:205 pages/wishlists.php:246
-#: pages/wishlists.php:247
+#: classes/page.php:290 pages/wishlists.php:136 pages/wishlists.php:137
+#: pages/wishlists.php:163 pages/wishlists.php:164 pages/wishlists.php:205
+#: pages/wishlists.php:206
 msgid "Cancel"
 msgstr "Cancel"
 
-#: classes/page.php:269
+#: classes/page.php:292
 msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr ""
 "Would you really like to delete to this wish? It will be gone forever."
 
-#: classes/page.php:273
+#: classes/page.php:296
 msgid "Passwords must match."
 msgstr "Passwords must match."
 
-#: classes/page.php:275
+#: classes/page.php:298
 msgid "Wishlist successfully renamed."
 msgstr "Wishlist successfully renamed."
 
-#: classes/page.php:276
+#: classes/page.php:299
 msgid "Wishlist successfully deleted."
 msgstr "Wishlist successfully deleted."
 
-#: classes/page.php:278
+#: classes/page.php:301
 msgid "Wish successfully created."
 msgstr "Wish successfully created."
 
-#: classes/page.php:279
+#: classes/page.php:302
 msgid "Wish successfully added."
 msgstr "Wish successfully added."
 
-#: classes/page.php:280
+#: classes/page.php:303
 msgid "Wish information updated."
 msgstr "Wish information updated."
 
-#: classes/page.php:281
+#: classes/page.php:304
 msgid "Don't forget to save your changes."
 msgstr "Don't forget to save your changes."
 
-#: classes/page.php:282
+#: classes/page.php:305
 msgid "Wish successfully deleted."
 msgstr "Wish successfully deleted."
 
-#: classes/page.php:285
+#: classes/page.php:308
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr "Unable to copy to clipboard. There is likely a permission issue."
 
-#: classes/page.php:286
+#: classes/page.php:309
 msgid "Link copied to clipboard."
 msgstr "Link copied to clipboard."
 
-#: classes/page.php:288
+#: classes/page.php:311
 msgid "{name} must have a value"
 msgstr "{name} must have a value"
 
-#: classes/page.php:289
+#: classes/page.php:312
 msgid "{name} must be checked"
 msgstr "{name} must be checked"
 
-#: classes/page.php:290
+#: classes/page.php:313
 msgid "{name} must be a valid e-mail"
 msgstr "{name} must be a valid e-mail"
 
-#: classes/page.php:291
+#: classes/page.php:314
 msgid "{name} must be a valid URL"
 msgstr "{name} must be a valid URL"
 
-#: classes/page.php:292
+#: classes/page.php:315
 msgid "{name} is not formatted correctly"
 msgstr "{name} is not formatted correctly"
 
-#: classes/page.php:293
+#: classes/page.php:316
 msgid "{name} must be an integer"
 msgstr "{name} must be an integer"
 
-#: classes/page.php:294
+#: classes/page.php:317
 msgid "{name} must be a decimal number"
 msgstr "{name} must be a decimal number"
 
-#: classes/page.php:295
+#: classes/page.php:318
 msgid "{name} must be set to a number"
 msgstr "{name} must be set to a number"
 
-#: classes/page.php:296
+#: classes/page.php:319
 msgid "{name} must be \"{ruleValue}\""
 msgstr "{name} must be \"{ruleValue}\""
 
-#: classes/page.php:297
+#: classes/page.php:320
 msgid "{name} must be exactly \"{ruleValue}\""
 msgstr "{name} must be exactly \"{ruleValue}\""
 
-#: classes/page.php:298
+#: classes/page.php:321
 msgid "{name} cannot be set to \"{ruleValue}\""
 msgstr "{name} cannot be set to \"{ruleValue}\""
 
-#: classes/page.php:299
+#: classes/page.php:322
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
 msgstr "{name} cannot be set to exactly \"{ruleValue}\""
 
-#: classes/page.php:300
+#: classes/page.php:323
 msgid "{name} cannot contain \"{ruleValue}\""
 msgstr "{name} cannot contain \"{ruleValue}\""
 
-#: classes/page.php:301
+#: classes/page.php:324
 msgid "{name} cannot contain exactly \"{ruleValue}\""
 msgstr "{name} cannot contain exactly \"{ruleValue}\""
 
-#: classes/page.php:302
+#: classes/page.php:325
 msgid "{name} must contain \"{ruleValue}\""
 msgstr "{name} must contain \"{ruleValue}\""
 
-#: classes/page.php:303
+#: classes/page.php:326
 msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr "{name} must contain exactly \"{ruleValue}\""
 
-#: classes/page.php:304 classes/page.php:305
+#: classes/page.php:327 classes/page.php:328
 msgid "{name} must be at least {ruleValue} characters"
 msgstr "{name} must be at least {ruleValue} characters"
 
-#: classes/page.php:306
+#: classes/page.php:329
 msgid "{name} must be exactly {ruleValue} characters"
 msgstr "{name} must be exactly {ruleValue} characters"
 
-#: classes/page.php:307
+#: classes/page.php:330
 msgid "{name} cannot be longer than {ruleValue} characters"
 msgstr "{name} cannot be longer than {ruleValue} characters"
 
-#: classes/page.php:308
+#: classes/page.php:331
 msgid "{name} must match {ruleValue} field"
 msgstr "{name} must match {ruleValue} field"
 
-#: classes/page.php:309
+#: classes/page.php:332
 msgid "{name} must have a different value than {ruleValue} field"
 msgstr "{name} must have a different value than {ruleValue} field"
 
-#: classes/page.php:310
+#: classes/page.php:333
 msgid "{name} must be a valid credit card number"
 msgstr "{name} must be a valid credit card number"
 
-#: classes/page.php:311
+#: classes/page.php:334
 msgid "{name} must have at least {ruleValue} choices"
 msgstr "{name} must have at least {ruleValue} choices"
 
-#: classes/page.php:312
+#: classes/page.php:335
 msgid "{name} must have exactly {ruleValue} choices"
 msgstr "{name} must have exactly {ruleValue} choices"
 
-#: classes/page.php:313
+#: classes/page.php:336
 msgid "{name} must have {ruleValue} or less choices"
 msgstr "{name} must have {ruleValue} or less choices"
 
-#: classes/page.php:382
+#: classes/page.php:405
 msgid "System"
 msgstr "System"
 
-#: classes/page.php:388
+#: classes/page.php:411
 msgid "Account"
 msgstr "Account"
 
-#: classes/page.php:397 pages/home.php:105
+#: classes/page.php:420 pages/home.php:105
 msgid "Wishlists"
 msgstr "Wishlists"
 
-#: classes/page.php:401 pages/home.php:33 pages/home.php:35
+#: classes/page.php:424 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "My lists"
 
-#: classes/page.php:411 pages/profile.php:53
+#: classes/page.php:434 pages/profile.php:11
 msgid "Profile"
 msgstr "Profile"
 
-#: classes/page.php:417 pages/login-as.php:11
+#: classes/page.php:440 pages/login-as.php:11
 msgid "Login as"
 msgstr "Login as"
 
-#: classes/page.php:423 pages/logout.php:11
+#: classes/page.php:446 pages/logout.php:11
 msgid "Logout"
 msgstr "Logout"
 
-#: classes/page.php:429 classes/page.php:433 pages/home.php:50
+#: classes/page.php:452 classes/page.php:456 pages/home.php:50
 #: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
 msgstr "Login"
 
-#: classes/page.php:440 classes/page.php:444 pages/install.php:214
-#: pages/install.php:216 pages/login.php:135 pages/login.php:137
+#: classes/page.php:463 classes/page.php:467 pages/install.php:218
+#: pages/install.php:220 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Register"
 
-#: classes/page.php:454 pages/settings.php:11
+#: classes/page.php:477 pages/settings.php:11
 msgid "Settings"
 msgstr "Settings"
 
-#: classes/page.php:467
+#: classes/page.php:490
 msgid "wishthis logo"
 msgstr "wishthis logo"
 
-#: classes/page.php:598
+#: classes/page.php:621
 msgid "Contribute"
 msgstr "Contribute"
 
-#: classes/page.php:604 classes/page.php:607
+#: classes/page.php:627 classes/page.php:630
 msgid "GitHub repository"
 msgstr "GitHub repository"
 
-#: classes/page.php:613 classes/page.php:616
+#: classes/page.php:636 classes/page.php:639
 msgid "Translate"
 msgstr "Translate"
+
+#: classes/page.php:675
+#, php-format
+msgid "%s not found"
+msgstr "%s not found"
+
+#: classes/page.php:685
+msgid ""
+"The requested Wishlist was not found and likely deleted by its creator."
+msgstr ""
+"The requested Wishlist was not found and likely deleted by its creator."
+
+#: classes/page.php:689
+msgid "The requested Wish was not found."
+msgstr "The requested Wish was not found."
+
+#: classes/page.php:693
+#, php-format
+msgid "The requested %s was not found."
+msgstr "The requested %s was not found."
 
 #: classes/wish.php:22
 msgid "Unsure about it"
@@ -312,23 +345,39 @@ msgstr "Nice to have"
 msgid "Would love it"
 msgstr "Would love it"
 
-#: classes/wish.php:165 classes/wish.php:168 pages/wish.php:86
-#: pages/wish.php:89
+#: classes/wish.php:169 classes/wish.php:172 pages/wish.php:81
+#: pages/wish.php:84
 msgid "Visit"
 msgstr "Visit"
 
-#: classes/wish.php:174 classes/wish.php:177 pages/wishlists.php:53
+#: classes/wish.php:178 classes/wish.php:181 pages/wishlists.php:53
 #: pages/wishlists.php:56
 msgid "Options"
 msgstr "Options"
 
-#: classes/wish.php:182
+#: classes/wish.php:186
 msgid "Edit"
 msgstr "Edit"
 
-#: classes/wish.php:187 pages/wishlists.php:64 pages/wishlists.php:66
+#: classes/wish.php:191 pages/wishlists.php:64 pages/wishlists.php:66
 msgid "Delete"
 msgstr "Delete"
+
+#: classes/wish.php:209
+msgid "Wish not found"
+msgstr "Wish not found"
+
+#: classes/wishlist.php:114
+msgid "Wishlist not found"
+msgstr "Wishlist not found"
+
+#: config/config-sample.php:22 config/config.php:22
+msgid "Stable"
+msgstr "Stable"
+
+#: config/config-sample.php:27 config/config.php:27
+msgid "Release candidate"
+msgstr "Release candidate"
 
 #: functions/getWishlistNameSuggestion.php:31
 msgid "Birthday"
@@ -423,7 +472,7 @@ msgstr "Join the others and get started now!"
 msgid "N. A."
 msgstr "N. A."
 
-#: pages/home.php:100 pages/wishlist.php:61 pages/wishlists.php:91
+#: pages/home.php:100 pages/wishlist.php:56 pages/wishlists.php:91
 msgid "Wishes"
 msgstr "Wishes"
 
@@ -456,7 +505,7 @@ msgstr ""
 msgid "Host"
 msgstr "Host"
 
-#: pages/install.php:44 pages/wishlists.php:164
+#: pages/install.php:44 pages/wishlists.php:123
 msgid "Name"
 msgstr "Name"
 
@@ -464,8 +513,8 @@ msgstr "Name"
 msgid "Username"
 msgstr "Username"
 
-#: pages/install.php:54 pages/login.php:119 pages/profile.php:75
-#: pages/register.php:193
+#: pages/install.php:54 pages/login.php:119 pages/profile.php:127
+#: pages/profile.php:202 pages/profile.php:211 pages/register.php:193
 msgid "Password"
 msgstr "Password"
 
@@ -487,8 +536,8 @@ msgstr "Successfully logged in as %s."
 msgid "User not found!"
 msgstr "User not found!"
 
-#: pages/login-as.php:48 pages/login.php:110 pages/profile.php:68
-#: pages/register.php:175
+#: pages/login-as.php:48 pages/login.php:110 pages/profile.php:34
+#: pages/profile.php:168 pages/register.php:175
 msgid "Email"
 msgstr "Email"
 
@@ -570,6 +619,26 @@ msgstr ""
 "Due to maintenance, wishthis is temporarily not available. Please check back"
 " again in a minute."
 
+#: pages/parts/wishlist-filter.php:18
+msgid "Filter priorities"
+msgstr "Filter priorities"
+
+#: pages/parts/wishlist-filter.php:23
+msgid "Search priorities"
+msgstr "Search priorities"
+
+#: pages/parts/wishlist-filter.php:30
+msgid "Priorities"
+msgstr "Priorities"
+
+#: pages/parts/wishlist-filter.php:36
+msgid "All priorities"
+msgstr "All priorities"
+
+#: pages/parts/wishlist-filter.php:41
+msgid "No priority"
+msgstr "No priority"
+
 #: pages/power.php:11
 msgid "Insufficient power"
 msgstr "Insufficient power"
@@ -587,33 +656,121 @@ msgstr ""
 "You do not have enough power to view this page. You need %s to see this "
 "page, but only have %s."
 
-#: pages/profile.php:81
-msgid "Password (repeat)"
-msgstr "Password (repeat)"
+#: pages/profile.php:19 pages/profile.php:148
+msgid "First name"
+msgstr "First name"
 
-#: pages/profile.php:89
-msgid "Birthdate"
-msgstr "Birthdate"
+#: pages/profile.php:24 pages/profile.php:154
+msgid "Last name"
+msgstr "Last name"
 
-#: pages/profile.php:96
-msgid "Pick a date"
-msgstr "Pick a date"
+#: pages/profile.php:29 pages/profile.php:160
+msgid "Nickname"
+msgstr "Nickname"
 
-#: pages/profile.php:104
+#: pages/profile.php:39 pages/profile.php:245
 msgid "Language"
 msgstr "Language"
 
-#: pages/profile.php:126 pages/profile.php:127 pages/settings.php:53
-#: pages/settings.php:54 pages/wish.php:176 pages/wish.php:177
-#: pages/wish.php:217 pages/wish.php:218
+#: pages/profile.php:44 pages/profile.php:264 pages/profile.php:309
+msgid "Channel"
+msgstr "Channel"
+
+#: pages/profile.php:57
+#, php-format
+msgid "%s successfully updated!"
+msgstr "%s successfully updated!"
+
+#: pages/profile.php:102
+msgid "It is required for you to login again."
+msgstr "It is required for you to login again."
+
+#: pages/profile.php:123 pages/profile.php:139
+msgid "Personal"
+msgstr "Personal"
+
+#: pages/profile.php:124
+msgid "Information regarding yourself"
+msgstr "Information regarding yourself"
+
+#: pages/profile.php:128
+msgid "Change your password"
+msgstr "Change your password"
+
+#: pages/profile.php:131 pages/profile.php:236
+msgid "Preferences"
+msgstr "Preferences"
+
+#: pages/profile.php:132
+msgid "Improve your wishthis experience"
+msgstr "Improve your wishthis experience"
+
+#: pages/profile.php:174
+msgid "Birthdate"
+msgstr "Birthdate"
+
+#: pages/profile.php:181
+msgid "Pick a date"
+msgstr "Pick a date"
+
+#: pages/profile.php:193 pages/profile.php:194 pages/profile.php:227
+#: pages/profile.php:228 pages/profile.php:285 pages/profile.php:286
+#: pages/settings.php:53 pages/settings.php:54 pages/wish.php:171
+#: pages/wish.php:172 pages/wish.php:212 pages/wish.php:213
 msgid "Save"
 msgstr "Save"
+
+#: pages/profile.php:217
+msgid "Password (repeat)"
+msgstr "Password (repeat)"
+
+#: pages/profile.php:267
+msgid "Select channel"
+msgstr "Select channel"
+
+#: pages/profile.php:312
+msgid ""
+"In order to improve the user experience of wishthis, newer versions are "
+"published after an extensive testing period."
+msgstr ""
+"In order to improve the user experience of wishthis, newer versions are "
+"published after an extensive testing period."
+
+#: pages/profile.php:313
+msgid ""
+"Subscribing to the Stable channel ensures you have the highest possible "
+"stability while using wishthis, minimizing the amount of errors you may "
+"encounter (if any)."
+msgstr ""
+"Subscribing to the Stable channel ensures you have the highest possible "
+"stability while using wishthis, minimizing the amount of errors you may "
+"encounter (if any)."
+
+#: pages/profile.php:314
+#, php-format
+msgid ""
+"If you want to speed up the release of newer versions, consider subscribing "
+"to the Release candidate of wishthis. A newer version is not published "
+"unless at least 5% of the wishthis user base have tested the next release "
+"candidate."
+msgstr ""
+"If you want to speed up the release of newer versions, consider subscribing "
+"to the Release candidate of wishthis. A newer version is not published "
+"unless at least 5% of the wishthis user base have tested the next release "
+"candidate."
+
+#: pages/profile.php:326
+#, php-format
+msgid "%d more subscriber needed"
+msgid_plural "%d more subscribers needed"
+msgstr[0] "%d more subscriber needed"
+msgstr[1] "%d more subscribers needed"
 
 #: pages/register.php:13
 msgid "Reset password"
 msgstr "Reset password"
 
-#: pages/register.php:14 pages/wish.php:181 pages/wish.php:182
+#: pages/register.php:14 pages/wish.php:176 pages/wish.php:177
 msgid "Reset"
 msgstr "Reset"
 
@@ -750,23 +907,28 @@ msgstr "Key"
 msgid "Secret"
 msgstr "Secret"
 
-#: pages/update.php:33
+#: pages/update.php:11
 msgid "Update"
 msgstr "Update"
 
-#: pages/update.php:44
+#: pages/update.php:42
+#, php-format
+msgid "Database successfully migrated to %s."
+msgstr "Database successfully migrated to %s."
+
+#: pages/update.php:67
 msgid "Database migration"
 msgstr "Database migration"
 
-#: pages/update.php:45
+#: pages/update.php:68
 msgid ""
-"Thank you for updating withthis! To complete this update, some changes are "
+"Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
 msgstr ""
-"Thank you for updating withthis! To complete this update, some changes are "
+"Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
 
-#: pages/update.php:50 pages/update.php:53
+#: pages/update.php:73 pages/update.php:76
 #, php-format
 msgid "Migrate to %s"
 msgstr "Migrate to %s"
@@ -775,79 +937,71 @@ msgstr "Migrate to %s"
 msgid "Wish successfully updated."
 msgstr "Wish successfully updated."
 
-#: pages/wish.php:50 pages/wishlist.php:16
-msgid "Not found"
-msgstr "Not found"
-
-#: pages/wish.php:51
-msgid "The requested Wish was not found."
-msgstr "The requested Wish was not found."
-
-#: pages/wish.php:94 pages/wish.php:97
+#: pages/wish.php:89 pages/wish.php:92
 msgid "Auto-fill"
 msgstr "Auto-fill"
 
-#: pages/wish.php:115 pages/wishlists.php:195 pages/wishlists.php:223
+#: pages/wish.php:110 pages/wishlists.php:154 pages/wishlists.php:182
 msgid "Title"
 msgstr "Title"
 
-#: pages/wish.php:128 pages/wishlists.php:228
+#: pages/wish.php:123 pages/wishlists.php:187
 msgid "Description"
 msgstr "Description"
 
-#: pages/wish.php:140 pages/wish.php:211 pages/wishlists.php:233
+#: pages/wish.php:135 pages/wish.php:206 pages/wishlists.php:192
 msgid "URL"
 msgstr "URL"
 
-#: pages/wish.php:151
+#: pages/wish.php:146
 msgid "Priority"
 msgstr "Priority"
 
-#: pages/wish.php:156
+#: pages/wish.php:151
 msgid "Select priority"
 msgstr "Select priority"
 
-#: pages/wish.php:186 pages/wish.php:188
+#: pages/wish.php:181 pages/wish.php:183
 msgid "Back"
 msgstr "Back"
 
-#: pages/wish.php:204
+#: pages/wish.php:199
 msgid "Image"
 msgstr "Image"
 
-#: pages/wish.php:207
+#: pages/wish.php:202
 msgid "Define a new URL to be used as a preview."
 msgstr "Define a new URL to be used as a preview."
 
-#: pages/wish.php:220 pages/wish.php:221
+#: pages/wish.php:215 pages/wish.php:216
 msgid "Discard"
 msgstr "Discard"
 
-#: pages/wish.php:229
+#: pages/wish.php:224
 msgid "Warning"
 msgstr "Warning"
 
-#: pages/wish.php:232
+#: pages/wish.php:227
 msgid "This action will potentially overwrite all fields in this wish."
 msgstr "This action will potentially overwrite all fields in this wish."
 
-#: pages/wish.php:233
+#: pages/wish.php:228
 msgid "Would you like to continue?"
 msgstr "Would you like to continue?"
 
-#: pages/wish.php:236 pages/wish.php:237
+#: pages/wish.php:231 pages/wish.php:232
 msgid "Yes, overwrite"
 msgstr "Yes, overwrite"
 
-#: pages/wish.php:239 pages/wish.php:240
+#: pages/wish.php:234 pages/wish.php:235
 msgid "No"
 msgstr "No"
 
-#: pages/wish.php:248
+#: pages/wish.php:243
 msgid "URL mismatch"
 msgstr "URL mismatch"
 
-#: pages/wish.php:252
+#: pages/wish.php:247
 msgid ""
 "The URL you have entered does not seem quite right. Would you like to update"
 " it with the one I found?"
@@ -855,54 +1009,48 @@ msgstr ""
 "The URL you have entered does not seem quite right. Would you like to update"
 " it with the one I found?"
 
-#: pages/wish.php:253
+#: pages/wish.php:248
 #, php-format
 msgid "According to %s, this is the canonical (correct) URL."
 msgstr "According to %s, this is the canonical (correct) URL."
 
-#: pages/wish.php:257
+#: pages/wish.php:252
 msgid "Current"
 msgstr "Current"
 
-#: pages/wish.php:262
+#: pages/wish.php:257
 msgid "Proposed"
 msgstr "Proposed"
 
-#: pages/wish.php:269 pages/wish.php:270
+#: pages/wish.php:264 pages/wish.php:265
 msgid "Yes, update"
 msgstr "Yes, update"
 
-#: pages/wish.php:272 pages/wish.php:273
+#: pages/wish.php:267 pages/wish.php:268
 msgid "No, leave it"
 msgstr "No, leave it"
 
-#: pages/wishlist.php:17
-msgid ""
-"The requested Wishlist was not found and likely deleted by its creator."
-msgstr ""
-"The requested Wishlist was not found and likely deleted by its creator."
-
-#: pages/wishlist.php:41
+#: pages/wishlist.php:36
 msgid "Careful"
 msgstr "Careful"
 
-#: pages/wishlist.php:44
+#: pages/wishlist.php:39
 msgid ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
-" already been fulfiled for you. Don't you want to be surprised?"
+" already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
 " already been fulfilled for you. Don't you want to be surprised?"
 
-#: pages/wishlist.php:45
+#: pages/wishlist.php:40
 msgid "It's probably best to just close this tab."
 msgstr "It's probably best to just close this tab."
 
-#: pages/wishlist.php:53
+#: pages/wishlist.php:48
 msgid "What to do?"
 msgstr "What to do?"
 
-#: pages/wishlist.php:55
+#: pages/wishlist.php:50
 #, php-format
 msgid ""
 "If you found a wish you would like to fulfil, click the %s button and it "
@@ -931,7 +1079,7 @@ msgstr "Wishlist"
 msgid "Loading your wishlists..."
 msgstr "Loading your wishlists..."
 
-#: pages/wishlists.php:38 pages/wishlists.php:41 pages/wishlists.php:213
+#: pages/wishlists.php:38 pages/wishlists.php:41 pages/wishlists.php:172
 msgid "Add a wish"
 msgstr "Add a wish"
 
@@ -939,8 +1087,8 @@ msgstr "Add a wish"
 msgid "Share"
 msgstr "Share"
 
-#: pages/wishlists.php:59 pages/wishlists.php:61 pages/wishlists.php:201
-#: pages/wishlists.php:202
+#: pages/wishlists.php:59 pages/wishlists.php:61 pages/wishlists.php:160
+#: pages/wishlists.php:161
 msgid "Rename"
 msgstr "Rename"
 
@@ -948,52 +1096,32 @@ msgstr "Rename"
 msgid "General options."
 msgstr "General options."
 
-#: pages/wishlists.php:81 pages/wishlists.php:84 pages/wishlists.php:156
+#: pages/wishlists.php:81 pages/wishlists.php:84 pages/wishlists.php:115
 msgid "Create a wishlist"
 msgstr "Create a wishlist"
 
-#: pages/wishlists.php:104
-msgid "Filter priorities"
-msgstr "Filter priorities"
-
-#: pages/wishlists.php:109
-msgid "Search priorities"
-msgstr "Search priorities"
-
-#: pages/wishlists.php:116
-msgid "Priorities"
-msgstr "Priorities"
-
-#: pages/wishlists.php:122
-msgid "All priorities"
-msgstr "All priorities"
-
-#: pages/wishlists.php:127
-msgid "No priority"
-msgstr "No priority"
-
-#: pages/wishlists.php:160
+#: pages/wishlists.php:119
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
 msgstr ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
 
-#: pages/wishlists.php:174 pages/wishlists.php:175
+#: pages/wishlists.php:133 pages/wishlists.php:134
 msgid "Create"
 msgstr "Create"
 
-#: pages/wishlists.php:186
+#: pages/wishlists.php:145
 msgid "Rename wishlist"
 msgstr "Rename wishlist"
 
-#: pages/wishlists.php:189
+#: pages/wishlists.php:148
 msgid "How would you like to name this wishlist?"
 msgstr "How would you like to name this wishlist?"
 
-#: pages/wishlists.php:217
+#: pages/wishlists.php:176
 msgid "Fill out any or all of the below fields to add your new wish."
 msgstr "Fill out any or all of the below fields to add your new wish."
 
-#: pages/wishlists.php:243 pages/wishlists.php:244
+#: pages/wishlists.php:202 pages/wishlists.php:203
 msgid "Add"
 msgstr "Add"
