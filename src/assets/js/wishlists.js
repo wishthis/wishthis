@@ -43,7 +43,7 @@ $(function () {
         progress.addClass('indeterminate');
 
         if (wishlistValue) {
-            $_GET.wishlist = wishlistValue;
+            $_GET.id = wishlistValue;
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
@@ -274,7 +274,7 @@ $(function () {
 
                             wishlists.dropdown('clear');
 
-                            urlParams.delete('wishlist');
+                            urlParams.delete('id');
 
                             $('body').toast({ message:text.toast_wishlist_delete });
 
@@ -426,7 +426,7 @@ $(function () {
                 .then(function(response) {
                     modalWishlistCreate.modal('hide');
 
-                    urlParams.set('wishlist', response.data.lastInsertId);
+                    urlParams.set('id', response.data.lastInsertId);
 
                     $('body').toast({ message: text.toast_wish_create });
 
