@@ -186,7 +186,7 @@ class Page
             && 'dev.wishthis.online' === $_SERVER['HTTP_HOST']
         ) {
             $this->messages[] = self::info(
-                __('This is the development environment of wishthis. The databse will reset every day at around 00:00.'),
+                __('This is the development environment of wishthis. The database will reset every day at around 00:00.'),
                 __('Development environment')
             );
         }
