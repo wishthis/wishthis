@@ -86,12 +86,12 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item | Status |
-| ---- | ------ |
-| Folders / Subcategories for wishlists      | Under consideration |
-| Combined wishes                            | Under consideration |
-| Price field for wishes                     | Planned             |
+| Item                                       | Status              |
+| ------------------------------------------ | ------------------- |
 | Changelog                                  | Planned             |
+| Price field for wishes                     | Planned             |
 | Save / bookmark wishlists from other users | Planned             |
 | Activity feed and friends                  | Under consideration |
+| Combined wishes                            | Under consideration |
+| Folders / Subcategories for wishlists      | Under consideration |
 | Synchronise Steam wishlist                 | Under consideration |
