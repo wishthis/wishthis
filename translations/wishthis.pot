@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-07 12:11+0200\n"
+"POT-Creation-Date: 2022-04-07 12:50+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -565,7 +565,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: pages/profile.php:44 pages/profile.php:264 pages/profile.php:310
+#: pages/profile.php:44 pages/profile.php:264 pages/profile.php:309
 msgid "Channel"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgid "Preferences"
 msgstr ""
 
 #: pages/profile.php:132
-msgid "Improve your withthis experience"
+msgid "Improve your wishthis experience"
 msgstr ""
 
 #: pages/profile.php:174
@@ -631,7 +631,7 @@ msgstr ""
 
 #: pages/profile.php:314
 #, php-format
-msgid "If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis userbase have tested the next release candidate."
+msgid "If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis user base have tested the next release candidate."
 msgstr ""
 
 #: pages/profile.php:320
@@ -780,7 +780,7 @@ msgid "Database migration"
 msgstr ""
 
 #: pages/update.php:68
-msgid "Thank you for updating withthis! To complete this update, some changes are required to the database structure."
+msgid "Thank you for updating wishthis! To complete this update, some changes are required to the database structure."
 msgstr ""
 
 #: pages/update.php:73 pages/update.php:76
