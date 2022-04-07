@@ -101,6 +101,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                   WHERE `id`   = ' . $_PUT['wishlist_id'] . '
         ;');
 
+        $response['success'] = true;
         break;
 
     case 'DELETE':
