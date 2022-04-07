@@ -133,7 +133,10 @@ switch ($step) {
             `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
             `power`                      INT          NOT NULL DEFAULT 0,
             `birthdate`                  DATE         NULL     DEFAULT NULL,
-            `locale`                     VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '"
+            `locale`                     VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
+            `name_first`                 VARCHAR(32)  NULL     DEFAULT NULL,
+            `name_last`                  VARCHAR(32)  NULL     DEFAULT NULL,
+            `name_nick`                  VARCHAR(32)  NULL     DEFAULT NULL
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
