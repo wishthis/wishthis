@@ -31,7 +31,7 @@ $(function() {
     });
     $('.ui.progress').progress();
 
-    var isPWA = window.matchMedia('(display-mode: standalone)').matches;
+    var isPWA = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
 
     if (isPWA) {
         $('.ui.dropdown.channel').dropdown('set selected', 'stable');
