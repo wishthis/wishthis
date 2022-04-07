@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-define('VERSION', '0.5.0');
+define('VERSION', '0.6.0');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
 
