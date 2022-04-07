@@ -682,7 +682,11 @@ class Page
                     case 404:
                         switch ($className) {
                             case 'Wishlist':
-                                echo '<p>' . sprintf(__('The requested %s was not found and likely deleted by its creator.'), $className) . '</p>';
+                                echo '<p>' . __('The requested Wishlist was not found and likely deleted by its creator.') . '</p>';
+                                break;
+
+                            case 'Wish':
+                                echo '<p>' . __('The requested Wish was not found.') . '</p>';
                                 break;
 
                             default:
