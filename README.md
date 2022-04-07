@@ -80,11 +80,11 @@ And then one of the following commands:
 
 For more information see: https://fomantic-ui.com/introduction/build-tools.html
 
-## Style
+#### Code style
 
 ### PHP
-| Language | Style |
-| -------- | ----- |
+| Language | Style  |
+| -------- | ------ |
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
