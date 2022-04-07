@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-function __(string $text)
+function __(string $text): string
 {
     global $translations;
 
@@ -21,4 +21,9 @@ function __(string $text)
     }
 
     return htmlentities($text);
+}
+
+function _n(string $singular, string $plural, int $amount): string
+{
+    return 1 === $amount ? __($singular) : __($plural);
 }

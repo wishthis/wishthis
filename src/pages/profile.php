@@ -317,7 +317,20 @@ $page->navigation();
                                 <div class="bar">
                                     <div class="progress"></div>
                                 </div>
-                                <div class="label"><?= sprintf(__('%d more subscriber(s) needed'), $count_users_5 - $count_users_rc) ?></div>
+                                <div class="label">
+                                    <?php
+                                    $count_users_needed = $count_users_5 - $count_users_rc;
+
+                                    printf(
+                                        _n(
+                                            '%d more subscriber needed',
+                                            '%d more subscribers needed',
+                                            $count_users_needed
+                                        ),
+                                        $count_users_needed
+                                    )
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     <?php } ?>
