@@ -9,8 +9,10 @@ $(function() {
 
     $('.ui.form').form({
         fields: {
-            'user-email'    : 'email',
-            match           : {
+            'user-email'           : 'email',
+            'user-password'        : ['minLength[8]', 'empty'],
+            'user-password-repeat' : ['minLength[8]', 'empty'],
+            match                  : {
                 identifier : 'user-password-repeat',
                 depends    : 'user-password',
                 rules      : [
@@ -19,7 +21,7 @@ $(function() {
                         prompt : text.form_profile_password
                     }
                 ]
-            },
+            }
         }
     });
 
