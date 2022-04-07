@@ -120,15 +120,15 @@ $page->navigation();
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
                     <div class="item" data-tab="personal">
-                        <h4 class="ui header"><?= __('Personal') ?></h4>
+                        <div class="ui small header"><?= __('Personal') ?></div>
                         <p><?= __('Information regarding yourself') ?></p>
                     </div>
                     <div class="item" data-tab="password">
-                        <h4 class="ui header"><?= __('Password') ?></h4>
+                        <div class="ui small header"><?= __('Password') ?></div>
                         <p><?= __('Change your password') ?></p>
                     </div>
                     <div class="item" data-tab="preferences">
-                        <h4 class="ui header"><?= __('Preferences') ?></h4>
+                        <div class="ui small header"><?= __('Preferences') ?></div>
                         <p><?= __('Improve your withthis experience') ?></p>
                     </div>
                 </div>
@@ -136,8 +136,9 @@ $page->navigation();
 
             <div class="twelve wide stretched column">
                 <div class="ui tab" data-tab="personal">
-                    <div class="ui segment">
+                    <h2 class="ui header"><?= __('Personal') ?></h2>
 
+                    <div class="ui segment">
                         <form class="ui form" method="POST">
                             <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="personal" />
@@ -198,8 +199,9 @@ $page->navigation();
                 </div>
 
                 <div class="ui tab" data-tab="password">
-                    <div class="ui segment">
+                    <h2 class="ui header"><?= __('Password') ?></h2>
 
+                    <div class="ui segment">
                         <form class="ui form" method="POST">
                             <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="password" />
@@ -231,8 +233,9 @@ $page->navigation();
                 </div>
 
                 <div class="ui tab" data-tab="preferences">
-                    <div class="ui segment">
+                    <h2 class="ui header"><?= __('Preferences') ?></h2>
 
+                    <div class="ui segment">
                         <form class="ui form" method="POST">
                             <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="preferences" />
@@ -285,6 +288,40 @@ $page->navigation();
                         </form>
 
                     </div>
+
+                    <?php
+                    $count_users   = $database
+                    ->query('SELECT COUNT(`id`)
+                                FROM `users`;')
+                    ->fetch();
+                    $count_users   = reset($count_users);
+                    $count_users_5 = max(1, round($count_users * 0.05, 0));
+
+                    $count_users_rc = $database
+                    ->query('SELECT COUNT(`id`)
+                                FROM `users`
+                                WHERE `channel` = "release-candidate";')
+                    ->fetch();
+                    $count_users_rc = reset($count_users_rc);
+                    ?>
+
+                    <?php if ($count_users_rc < $count_users_5) { ?>
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Channel') ?></h3>
+
+                            <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
+                            <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
+                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis userbase have tested the next release candidate.') ?></p>
+
+                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_5 ?>">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label"><?= sprintf(__('%d more subscriber(s) needed'), $count_users_5 - $count_users_rc) ?></div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
                 </div>
 
             </div>

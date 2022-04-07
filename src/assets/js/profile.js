@@ -29,4 +29,5 @@ $(function() {
     $('.ui.dropdown.locale').dropdown({
         sortSelect : 'natural',
     });
+    $('.ui.progress').progress();
 });
