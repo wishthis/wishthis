@@ -17,8 +17,8 @@ $(function () {
                     placeholder : text.wishlist_no_selection
                 })
 
-                if ($_GET.wishlist) {
-                    element.dropdown('set selected', $_GET.wishlist);
+                if ($_GET.id) {
+                    element.dropdown('set selected', $_GET.id);
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -53,9 +53,11 @@ $(function () {
             $('.wishlist-delete').removeClass('disabled');
 
             /** Update URL */
-            urlParams.set('wishlist', wishlistValue);
+            urlParams.set('id', wishlistValue);
 
-            fetch('/src/api/url.php?url=' + btoa(urlParams.toString()), {
+            console.log(wishlistValue);
+
+            fetch('/src/api/url.php?url=' + window.btoa(urlParams.toString()), {
                 method: 'GET'
             })
             .then(handleFetchError)

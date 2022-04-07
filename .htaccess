@@ -8,7 +8,7 @@
   RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&id=$2 [QSA,L]
 
   # Wishlists
-  RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&wishlist=$2 [QSA,L]
+  RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&id=$2 [QSA,L]
 
   # Wishlist
   RewriteRule ^wishlist/([a-z0-9]+)$ /?wishlist=$1 [QSA,L]

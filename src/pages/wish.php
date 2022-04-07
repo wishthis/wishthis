@@ -56,7 +56,7 @@ $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
+$referer = '/?page=wishlists&id=' . $wish->wishlist;
 ?>
 
 <main>
