@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-07 16:18+0200\n"
+"POT-Creation-Date: 2022-04-07 16:33+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -306,11 +306,14 @@ msgid "%s not found"
 msgstr ""
 
 #: classes/page.php:685
-#, php-format
-msgid "The requested %s was not found and likely deleted by its creator."
+msgid "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 
 #: classes/page.php:689
+msgid "The requested Wish was not found."
+msgstr ""
+
+#: classes/page.php:693
 #, php-format
 msgid "The requested %s was not found."
 msgstr ""
