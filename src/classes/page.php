@@ -657,6 +657,50 @@ class Page
         <?php
     }
 
+    public function errorDocument(int $statusCode, object $objectNotFound): void
+    {
+        http_response_code($statusCode);
+
+        $this->header();
+        $this->bodyStart();
+        $this->navigation();
+
+        $class     = new \ReflectionClass($objectNotFound);
+        $className = $class->getShortName();
+        ?>
+        <main>
+            <div class="ui container">
+                <h1 class="ui header">
+                    <?= $statusCode ?>
+                    <div class="sub header"><?= sprintf(__('%s not found'), $className) ?></div>
+                </h1>
+
+                <?= $this->messages() ?>
+
+                <?php
+                switch ($statusCode) {
+                    case 404:
+                        switch ($className) {
+                            case 'Wishlist':
+                                echo '<p>' . sprintf(__('The requested %s was not found and likely deleted by its creator.'), $className) . '</p>';
+                                break;
+
+                            default:
+                                echo '<p>' . sprintf(__('The requested %s was not found.'), $className) . '</p>';
+                                break;
+                        }
+                        break;
+                }
+                ?>
+            </div>
+        </main>
+        <?php
+        $this->footer();
+        $this->bodyEnd();
+
+        die();
+    }
+
     public function messages(): string
     {
         $html = '';

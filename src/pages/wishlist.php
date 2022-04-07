@@ -9,17 +9,12 @@
 use wishthis\{Page, User, Wishlist};
 
 $wishlist = new Wishlist($_GET['wishlist']);
+$page     = new Page(__FILE__, $wishlist->getTitle());
 
 if (!$wishlist->exists) {
-    http_response_code(404);
-    ?>
-    <h1><?= __('Not found') ?></h1>
-    <p><?= __('The requested Wishlist was not found and likely deleted by its creator.') ?></p>
-    <?php
-    die();
+    $page->errorDocument(404, $wishlist);
 }
 
-$page = new Page(__FILE__, $wishlist->name);
 $page->header();
 $page->bodyStart();
 $page->navigation();

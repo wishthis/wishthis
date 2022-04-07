@@ -35,6 +35,10 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $page->messages[] = Page::success(__('Wish successfully updated.'), __('Success'));
 }
 
+if (!$userIsAuthenticated || !$wish->exists) {
+    $page->errorDocument(404, $wish);
+}
+
 $wishlists = $user->getWishlists($wish->wishlist);
 
 foreach ($wishlists as $wishlist) {
@@ -42,15 +46,6 @@ foreach ($wishlists as $wishlist) {
         $userIsAuthenticated = true;
         break;
     }
-}
-
-if (!$userIsAuthenticated) {
-    http_response_code(404);
-    ?>
-    <h1><?= __('Not found') ?></h1>
-    <p><?= __('The requested Wish was not found.') ?></p>
-    <?php
-    die();
 }
 
 $page->header();

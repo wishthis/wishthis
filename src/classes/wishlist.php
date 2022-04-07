@@ -36,13 +36,12 @@ class Wishlist
                   WHERE `' . $column . '` = ' . $id_or_hash . ';')
         ->fetch();
 
-        foreach ($columns as $key => $value) {
-            $this->$key = $value;
-        }
-
-        /** Exists */
-        if (isset($this->id)) {
+        if ($columns) {
             $this->exists = true;
+
+            foreach ($columns as $key => $value) {
+                $this->$key = $value;
+            }
         } else {
             return;
         }
@@ -108,5 +107,16 @@ class Wishlist
         $html = ob_get_clean();
 
         return $html;
+    }
+
+    public function getTitle(): string
+    {
+        $title = __('Wishlist not found');
+
+        if ($this->exists) {
+            $title = $this->name;
+        }
+
+        return $title;
     }
 }
