@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-07 15:45+0200\n"
+"POT-Creation-Date: 2022-04-07 15:50+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: classes/page.php:189
-msgid "This is the development environment of wishthis. The databse will reset every day at around 00:00."
+msgid "This is the development environment of wishthis. The database will reset every day at around 00:00."
 msgstr ""
 
 #: classes/page.php:190
