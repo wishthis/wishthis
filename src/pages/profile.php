@@ -38,6 +38,11 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'key'    => 'user-locale',
             'label'  => __('Language'),
         ),
+        array(
+            'column' => 'channel',
+            'key'    => 'user-channel',
+            'label'  => __('Channel'),
+        ),
     );
     $loginRequired   = false;
 
@@ -83,10 +88,12 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $loginRequired = true;
     }
 
-    $database
-    ->query('UPDATE `users`
-                SET ' . implode(',', $set) . '
-              WHERE `id`        = ' . $_POST['user-id']);
+    if ($set) {
+        $database
+        ->query('UPDATE `users`
+                    SET ' . implode(',', $set) . '
+                  WHERE `id` = ' . $_POST['user-id']);
+    }
 
     if ($loginRequired) {
         session_destroy();
@@ -234,7 +241,7 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('Language') ?></label>
 
-                                    <select class="ui search dropdown" name="user-locale">
+                                    <select class="ui search dropdown locale" name="user-locale">
                                         <?php if (!in_array('en', $locales)) { ?>
                                             <option value="<?= 'en' ?>"><?= \Locale::getDisplayName('en', $user->locale) ?></option>
                                         <?php } ?>
@@ -248,6 +255,24 @@ $page->navigation();
                                         <?php } ?>
                                     </select>
                                 </div>
+
+                                <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
+                                    <div class="field">
+                                        <label><?= __('Channel') ?></label>
+
+                                        <select class="ui search clearable dropdown" name="user-channel">
+                                            <option value=""><?= __('Select channel') ?></option>
+
+                                            <?php foreach (CHANNELS as $channel) { ?>
+                                                <?php if ($channel['branch'] === $user->channel) { ?>
+                                                    <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                <?php } ?>
                             </div>
 
                             <div class="ui error message"></div>

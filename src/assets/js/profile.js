@@ -23,7 +23,8 @@ $(function() {
         }
     });
 
-    $('.ui.dropdown').dropdown({
+    $('.ui.dropdown').dropdown();
+    $('.ui.dropdown.locale').dropdown({
         sortSelect : 'natural',
     });
 });

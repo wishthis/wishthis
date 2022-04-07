@@ -136,7 +136,8 @@ switch ($step) {
             `locale`                     VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
             `name_first`                 VARCHAR(32)  NULL     DEFAULT NULL,
             `name_last`                  VARCHAR(32)  NULL     DEFAULT NULL,
-            `name_nick`                  VARCHAR(32)  NULL     DEFAULT NULL
+            `name_nick`                  VARCHAR(32)  NULL     DEFAULT NULL,
+            `channel`                    VARCHAR(24)  NULL     DEFAULT NULL
         );');
         $database->query('CREATE INDEX `idx_password` ON `users` (`password`);');
 
