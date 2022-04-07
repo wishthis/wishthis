@@ -176,6 +176,20 @@ class Page
         global $locale;
 
         $this->language = $locale;
+
+        /**
+         * Development environment notice
+         */
+        if (
+               defined('ENV_IS_DEV')
+            && true === ENV_IS_DEV
+            && 'dev.wishthis.online' === $_SERVER['HTTP_HOST']
+        ) {
+            $this->messages[] = self::info(
+                __('This is the development environment of wishthis. The databse will reset every day at around 00:00.'),
+                __('Development environment')
+            );
+        }
     }
 
     public function header(): void
