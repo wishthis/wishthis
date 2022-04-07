@@ -60,7 +60,9 @@ $page->navigation();
 
         <h2 class="ui header"><?= __('Wishes') ?></h2>
 
-        <div class="wishlist-cards">
+        <?php include 'parts/wishlist-filter.php' ?>
+
+        <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>">
             <?php
             echo $wishlist->getCards(
                 array(
