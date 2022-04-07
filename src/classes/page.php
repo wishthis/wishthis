@@ -204,6 +204,16 @@ class Page
 
             <link rel="manifest" href="manifest.json" />
 
+            <?php
+            if (defined('CHANNELS') && is_array(CHANNELS)) {
+                $channels = CHANNELS;
+                $stable   = reset($channels);
+                ?>
+                <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
+                <?php
+            }
+            ?>
+
             <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/favicon/favicon-16x16.png" />
