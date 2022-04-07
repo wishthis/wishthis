@@ -110,6 +110,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             WHERE `id` = ' . $_DELETE['wishlistID'] . '
         ;');
 
+        $response['success'] = true;
         break;
 }
 

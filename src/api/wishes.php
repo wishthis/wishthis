@@ -109,6 +109,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                                     WHERE `id` = ' . $_DELETE['wish_id'] . '
             ;');
         }
+
+        $response['success'] = true;
         break;
 }
 
