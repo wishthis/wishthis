@@ -81,8 +81,6 @@ And then one of the following commands:
 For more information see: https://fomantic-ui.com/introduction/build-tools.html
 
 #### Code style
-
-### PHP
 | Language | Style  |
 | -------- | ------ |
 | PHP      | PSR-12 |
