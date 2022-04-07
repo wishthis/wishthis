@@ -24,8 +24,8 @@ class Response implements ResponseInterface
 {
     use MessageTrait;
 
-    const MIN_STATUS_CODE_VALUE = 100;
-    const MAX_STATUS_CODE_VALUE = 599;
+    public const MIN_STATUS_CODE_VALUE = 100;
+    public const MAX_STATUS_CODE_VALUE = 599;
 
     /**
      * Map of standard HTTP status code/reason phrases
@@ -75,14 +75,14 @@ class Response implements ResponseInterface
         410 => 'Gone',
         411 => 'Length Required',
         412 => 'Precondition Failed',
-        413 => 'Payload Too Large',
+        413 => 'Content Too Large',
         414 => 'URI Too Long',
         415 => 'Unsupported Media Type',
         416 => 'Range Not Satisfiable',
         417 => 'Expectation Failed',
         418 => 'I\'m a teapot',
         421 => 'Misdirected Request',
-        422 => 'Unprocessable Entity',
+        422 => 'Unprocessable Content',
         423 => 'Locked',
         424 => 'Failed Dependency',
         425 => 'Too Early',
@@ -103,7 +103,7 @@ class Response implements ResponseInterface
         506 => 'Variant Also Negotiates',
         507 => 'Insufficient Storage',
         508 => 'Loop Detected',
-        510 => 'Not Extended',
+        510 => 'Not Extended (OBSOLETED)',
         511 => 'Network Authentication Required',
         599 => 'Network Connect Timeout Error',
     ];
