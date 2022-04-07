@@ -130,8 +130,8 @@
 }
 .ui.calendar:not(.disabled) .calendar:focus .ui.table tbody tr td.focus,
 .ui.calendar:not(.disabled) .calendar.active .ui.table tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
-          box-shadow: inset 0 0 0 1px #85B7D9;
+  -webkit-box-shadow: inset 0 0 0 1px #6435C9;
+          box-shadow: inset 0 0 0 1px #6435C9;
 }
 .ui.inverted.calendar .ui.table.inverted tr td.range {
   background: rgba(255, 255, 255, 0.08);
@@ -141,8 +141,8 @@
 }
 .ui.inverted.calendar:not(.disabled) .calendar:focus .ui.table.inverted tbody tr td.focus,
 .ui.inverted.calendar:not(.disabled) .calendar.active .ui.table.inverted tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
-          box-shadow: inset 0 0 0 1px #85B7D9;
+  -webkit-box-shadow: inset 0 0 0 1px #6435C9;
+          box-shadow: inset 0 0 0 1px #6435C9;
 }
 .ui.inverted.calendar .ui.inverted.table tr .disabled {
   color: rgba(225, 225, 225, 0.3);

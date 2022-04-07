@@ -99,7 +99,7 @@
 --------------------*/
 
 /* Used on inputs, textarea etc */
-@focusedFormBorderColor: #85B7D9;
+@focusedFormBorderColor: @primaryColor;
 
 /* Used on dropdowns, other larger blocks */
 @focusedFormMutedBorderColor: #96C8DA;
