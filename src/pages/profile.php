@@ -306,9 +306,9 @@ $page->navigation();
                     ?>
 
                     <?php if ($count_users_rc < $count_users_5) { ?>
-                        <div class="ui segment">
-                            <h3 class="ui header"><?= __('Channel') ?></h3>
+                        <h3 class="ui header"><?= __('Channel') ?></h3>
 
+                        <div class="ui segment">
                             <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
                             <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
                             <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis userbase have tested the next release candidate.') ?></p>
