@@ -89,3 +89,4 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | Changelog                                  | Planned             |
 | Save / bookmark wishlists from other users | Planned             |
 | Activity feed and friends                  | Under consideration |
+| Synchronise Steam wishlist                 | Under consideration |
