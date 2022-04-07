@@ -28,7 +28,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
 ### Git (recommended)
 ```
-git clone -b stable https://github.com/grandeljay/wishthis.git
+git clone -b stable https://github.com/grandeljay/wishthis.git .
 ```
 
 Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.

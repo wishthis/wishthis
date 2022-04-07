@@ -3,5 +3,5 @@ git:
   - filter_type: file
     file_format: PO
     source_file: translations/wishthis.pot
-    source_language: en
+    source_language: en_GB
     translation_files_expression: 'translations/<lang>.po'

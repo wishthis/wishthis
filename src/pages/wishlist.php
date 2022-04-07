@@ -33,7 +33,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if (isset($user->id) && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
+        if ($user->isLoggedIn() && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
