@@ -260,10 +260,14 @@ $page->navigation();
                                 </div>
 
                                 <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
+                                    <script type="text/javascript">
+                                        var CHANNELS = <?= json_encode(CHANNELS) ?>;
+                                    </script>
+
                                     <div class="field">
                                         <label><?= __('Channel') ?></label>
 
-                                        <select class="ui search clearable dropdown" name="user-channel">
+                                        <select class="ui search clearable dropdown channel" name="user-channel">
                                             <option value=""><?= __('Select channel') ?></option>
 
                                             <?php foreach (CHANNELS as $channel) { ?>
