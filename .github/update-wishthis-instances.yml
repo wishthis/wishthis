@@ -1,0 +1,18 @@
+name: Update wishthis instances
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: git pull
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: git pull
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+        env:
+          CI: true
