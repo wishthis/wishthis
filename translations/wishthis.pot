@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-08 09:09+0200\n"
+"POT-Creation-Date: 2022-04-08 09:11+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -258,82 +258,87 @@ msgctxt "Calendar"
 msgid "PM"
 msgstr ""
 
-#: classes/page.php:410
+#: classes/page.php:343
+msgctxt "Calendar"
+msgid "Week"
+msgstr ""
+
+#: classes/page.php:411
 msgid "System"
 msgstr ""
 
-#: classes/page.php:416
+#: classes/page.php:417
 msgid "Account"
 msgstr ""
 
-#: classes/page.php:425 pages/home.php:105
+#: classes/page.php:426 pages/home.php:105
 msgid "Wishlists"
 msgstr ""
 
-#: classes/page.php:429 pages/home.php:33 pages/home.php:35
+#: classes/page.php:430 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr ""
 
-#: classes/page.php:439 pages/profile.php:11
+#: classes/page.php:440 pages/profile.php:11
 msgid "Profile"
 msgstr ""
 
-#: classes/page.php:445 pages/login-as.php:11
+#: classes/page.php:446 pages/login-as.php:11
 msgid "Login as"
 msgstr ""
 
-#: classes/page.php:451 pages/logout.php:11
+#: classes/page.php:452 pages/logout.php:11
 msgid "Logout"
 msgstr ""
 
-#: classes/page.php:457 classes/page.php:461 pages/home.php:50
+#: classes/page.php:458 classes/page.php:462 pages/home.php:50
 #: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
 msgstr ""
 
-#: classes/page.php:468 classes/page.php:472 pages/install.php:218
+#: classes/page.php:469 classes/page.php:473 pages/install.php:218
 #: pages/install.php:220 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr ""
 
-#: classes/page.php:482 pages/settings.php:11
+#: classes/page.php:483 pages/settings.php:11
 msgid "Settings"
 msgstr ""
 
-#: classes/page.php:495
+#: classes/page.php:496
 msgid "wishthis logo"
 msgstr ""
 
-#: classes/page.php:626
+#: classes/page.php:627
 msgid "Contribute"
 msgstr ""
 
-#: classes/page.php:632 classes/page.php:635
+#: classes/page.php:633 classes/page.php:636
 msgid "GitHub repository"
 msgstr ""
 
-#: classes/page.php:641 classes/page.php:644
+#: classes/page.php:642 classes/page.php:645
 msgid "Translate"
 msgstr ""
 
-#: classes/page.php:680
+#: classes/page.php:681
 #, php-format
 msgid "%s not found"
 msgstr ""
 
-#: classes/page.php:690
+#: classes/page.php:691
 msgid "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 
-#: classes/page.php:694
+#: classes/page.php:695
 msgid "The requested Wish was not found."
 msgstr ""
 
-#: classes/page.php:698
+#: classes/page.php:699
 #, php-format
 msgid "The requested %s was not found."
 msgstr ""
