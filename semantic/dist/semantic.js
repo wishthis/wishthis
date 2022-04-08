@@ -503,6 +503,1779 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
+ * # Fomantic-UI 2.8.8 - Calendar
+ * http://github.com/fomantic/Fomantic-UI/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ($, window, document, undefined) {
+
+'use strict';
+
+$.isFunction = $.isFunction || function(obj) {
+  return typeof obj === "function" && typeof obj.nodeType !== "number";
+};
+
+window = (typeof window != 'undefined' && window.Math == Math)
+  ? window
+  : (typeof self != 'undefined' && self.Math == Math)
+    ? self
+    : Function('return this')()
+;
+
+$.fn.calendar = function(parameters) {
+  var
+    $allModules    = $(this),
+
+    moduleSelector = $allModules.selector || '',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+    returnedValue,
+    timeGapTable = {
+      '5': {'row': 4, 'column': 3 },
+      '10': {'row': 3, 'column': 2 },
+      '15': {'row': 2, 'column': 2 },
+      '20': {'row': 3, 'column': 1 },
+      '30': {'row': 2, 'column': 1 }
+    },
+    numberText = ['','one','two','three','four','five','six','seven','eight']
+  ;
+
+  $allModules
+    .each(function () {
+      var
+        settings = ( $.isPlainObject(parameters) )
+          ? $.extend(true, {}, $.fn.calendar.settings, parameters)
+          : $.extend({}, $.fn.calendar.settings),
+
+        className = settings.className,
+        namespace = settings.namespace,
+        selector = settings.selector,
+        formatter = settings.formatter,
+        parser = settings.parser,
+        metadata = settings.metadata,
+        timeGap = timeGapTable[settings.minTimeGap],
+        error = settings.error,
+
+        eventNamespace = '.' + namespace,
+        moduleNamespace = 'module-' + namespace,
+
+        $module = $(this),
+        $input = $module.find(selector.input),
+        $container = $module.find(selector.popup),
+        $activator = $module.find(selector.activator),
+
+        element = this,
+        instance = $module.data(moduleNamespace),
+
+        isTouch,
+        isTouchDown = false,
+        isInverted = $module.hasClass(className.inverted),
+        focusDateUsedForRange = false,
+        selectionComplete = false,
+        classObserver,
+        module
+      ;
+
+      module = {
+
+        initialize: function () {
+          module.debug('Initializing calendar for', element, $module);
+
+          isTouch = module.get.isTouch();
+          module.setup.config();
+          module.setup.popup();
+          module.setup.inline();
+          module.setup.input();
+          module.setup.date();
+          module.create.calendar();
+
+          module.bind.events();
+          module.observeChanges();
+          module.instantiate();
+        },
+
+        instantiate: function () {
+          module.verbose('Storing instance of calendar');
+          instance = module;
+          $module.data(moduleNamespace, instance);
+        },
+
+        destroy: function () {
+          module.verbose('Destroying previous calendar for', element);
+          $module.removeData(moduleNamespace);
+          module.unbind.events();
+          module.disconnect.classObserver();
+        },
+
+        setup: {
+          config: function () {
+            if (module.get.minDate() !== null) {
+              module.set.minDate($module.data(metadata.minDate));
+            }
+            if (module.get.maxDate() !== null) {
+              module.set.maxDate($module.data(metadata.maxDate));
+            }
+            module.setting('type', module.get.type());
+            module.setting('on', settings.on || ($input.length ? 'focus' : 'click'));
+          },
+          popup: function () {
+            if (settings.inline) {
+              return;
+            }
+            if (!$activator.length) {
+              $activator = $module.children().first();
+              if (!$activator.length) {
+                return;
+              }
+            }
+            if ($.fn.popup === undefined) {
+              module.error(error.popup);
+              return;
+            }
+            if (!$container.length) {
+              //prepend the popup element to the activator's parent so that it has less chance of messing with
+              //the styling (eg input action button needs to be the last child to have correct border radius)
+              var $activatorParent = $activator.parent(),
+                  domPositionFunction = $activatorParent.closest(selector.append).length !== 0 ? 'appendTo' : 'prependTo';
+              $container = $('<div/>').addClass(className.popup)[domPositionFunction]($activatorParent);
+            }
+            $container.addClass(className.calendar);
+            if(isInverted){
+              $container.addClass(className.inverted);
+            }
+            var onVisible = function () {
+              module.refreshTooltips();
+              return settings.onVisible.apply($container, arguments);
+            };
+            var onHidden = settings.onHidden;
+            if (!$input.length) {
+              //no input, $container has to handle focus/blur
+              $container.attr('tabindex', '0');
+              onVisible = function () {
+                module.refreshTooltips();
+                module.focus();
+                return settings.onVisible.apply($container, arguments);
+              };
+              onHidden = function () {
+                module.blur();
+                return settings.onHidden.apply($container, arguments);
+              };
+            }
+            var onShow = function () {
+              //reset the focus date onShow
+              module.set.focusDate(module.get.date());
+              module.set.mode(module.get.validatedMode(settings.startMode));
+              return settings.onShow.apply($container, arguments);
+            };
+            var on = module.setting('on');
+            var options = $.extend({}, settings.popupOptions, {
+              popup: $container,
+              on: on,
+              hoverable: on === 'hover',
+              closable: on === 'click',
+              onShow: onShow,
+              onVisible: onVisible,
+              onHide: settings.onHide,
+              onHidden: onHidden
+            });
+            module.popup(options);
+          },
+          inline: function () {
+            if ($activator.length && !settings.inline) {
+              return;
+            }
+            settings.inline = true;
+            $container = $('<div/>').addClass(className.calendar).appendTo($module);
+            if (!$input.length) {
+              $container.attr('tabindex', '0');
+            }
+          },
+          input: function () {
+            if (settings.touchReadonly && $input.length && isTouch) {
+              $input.prop('readonly', true);
+            }
+            module.check.disabled();
+          },
+          date: function () {
+            var date;
+            if (settings.initialDate) {
+              date = parser.date(settings.initialDate, settings);
+            } else if ($module.data(metadata.date) !== undefined) {
+              date = parser.date($module.data(metadata.date), settings);
+            } else if ($input.length) {
+              date = parser.date($input.val(), settings);
+            }
+            module.set.date(date, settings.formatInput, false);
+            module.set.mode(module.get.mode(), false);
+          }
+        },
+
+        trigger: {
+          change: function() {
+            var
+                inputElement = $input[0]
+            ;
+            if(inputElement) {
+              var events = document.createEvent('HTMLEvents');
+              module.verbose('Triggering native change event');
+              events.initEvent('change', true, false);
+              inputElement.dispatchEvent(events);
+            }
+          }
+        },
+
+        create: {
+          calendar: function () {
+            var i, r, c, p, row, cell, pageGrid;
+
+            var
+              mode = module.get.mode(),
+              today = new Date(),
+              date = module.get.date(),
+              focusDate = module.get.focusDate(),
+              display = module.helper.dateInRange(focusDate || date || settings.initialDate || today)
+            ;
+
+            if (!focusDate) {
+              focusDate = display;
+              module.set.focusDate(focusDate, false, false);
+            }
+
+            var
+              isYear = mode === 'year',
+              isMonth = mode === 'month',
+              isDay = mode === 'day',
+              isHour = mode === 'hour',
+              isMinute = mode === 'minute',
+              isTimeOnly = settings.type === 'time'
+            ;
+
+            var multiMonth = Math.max(settings.multiMonth, 1);
+            var monthOffset = !isDay ? 0 : module.get.monthOffset();
+
+            var
+              minute = display.getMinutes(),
+              hour = display.getHours(),
+              day = display.getDate(),
+              startMonth = display.getMonth() + monthOffset,
+              year = display.getFullYear()
+            ;
+
+            var columns = isDay ? settings.showWeekNumbers ? 8 : 7 : isHour ? 4 : timeGap['column'];
+            var rows = isDay || isHour ? 6 : timeGap['row'];
+            var pages = isDay ? multiMonth : 1;
+
+            var container = $container;
+            var tooltipPosition = container.hasClass("left") ? "right center" : "left center";
+            container.empty();
+            if (pages > 1) {
+              pageGrid = $('<div/>').addClass(className.grid).appendTo(container);
+            }
+
+            for (p = 0; p < pages; p++) {
+              if (pages > 1) {
+                var pageColumn = $('<div/>').addClass(className.column).appendTo(pageGrid);
+                container = pageColumn;
+              }
+
+              var month = startMonth + p;
+              var firstMonthDayColumn = (new Date(year, month, 1).getDay() - settings.firstDayOfWeek % 7 + 7) % 7;
+              if (!settings.constantHeight && isDay) {
+                var requiredCells = new Date(year, month + 1, 0).getDate() + firstMonthDayColumn;
+                rows = Math.ceil(requiredCells / 7);
+              }
+
+              var
+                yearChange = isYear ? 10 : isMonth ? 1 : 0,
+                monthChange = isDay ? 1 : 0,
+                dayChange = isHour || isMinute ? 1 : 0,
+                prevNextDay = isHour || isMinute ? day : 1,
+                prevDate = new Date(year - yearChange, month - monthChange, prevNextDay - dayChange, hour),
+                nextDate = new Date(year + yearChange, month + monthChange, prevNextDay + dayChange, hour),
+                prevLast = isYear ? new Date(Math.ceil(year / 10) * 10 - 9, 0, 0) :
+                  isMonth ? new Date(year, 0, 0) : isDay ? new Date(year, month, 0) : new Date(year, month, day, -1),
+                nextFirst = isYear ? new Date(Math.ceil(year / 10) * 10 + 1, 0, 1) :
+                  isMonth ? new Date(year + 1, 0, 1) : isDay ? new Date(year, month + 1, 1) : new Date(year, month, day + 1)
+              ;
+
+              var tempMode = mode;
+              if (isDay && settings.showWeekNumbers){
+                tempMode += ' andweek';
+              }
+              var table = $('<table/>').addClass(className.table).addClass(tempMode).addClass(numberText[columns] + ' column').appendTo(container);
+              if(isInverted){
+                table.addClass(className.inverted);
+              }
+              var textColumns = columns;
+              //no header for time-only mode
+              if (!isTimeOnly) {
+                var thead = $('<thead/>').appendTo(table);
+
+                row = $('<tr/>').appendTo(thead);
+                cell = $('<th/>').attr('colspan', '' + columns).appendTo(row);
+
+                var headerDate = isYear || isMonth ? new Date(year, 0, 1) :
+                  isDay ? new Date(year, month, 1) : new Date(year, month, day, hour, minute);
+                var headerText = $('<span/>').addClass(className.link).appendTo(cell);
+                headerText.text(formatter.header(headerDate, mode, settings));
+                var newMode = isMonth ? (settings.disableYear ? 'day' : 'year') :
+                  isDay ? (settings.disableMonth ? 'year' : 'month') : 'day';
+                headerText.data(metadata.mode, newMode);
+
+                if (p === 0) {
+                  var prev = $('<span/>').addClass(className.prev).appendTo(cell);
+                  prev.data(metadata.focusDate, prevDate);
+                  prev.toggleClass(className.disabledCell, !module.helper.isDateInRange(prevLast, mode));
+                  $('<i/>').addClass(className.prevIcon).appendTo(prev);
+                }
+
+                if (p === pages - 1) {
+                  var next = $('<span/>').addClass(className.next).appendTo(cell);
+                  next.data(metadata.focusDate, nextDate);
+                  next.toggleClass(className.disabledCell, !module.helper.isDateInRange(nextFirst, mode));
+                  $('<i/>').addClass(className.nextIcon).appendTo(next);
+                }
+                if (isDay) {
+                  row = $('<tr/>').appendTo(thead);
+                  if(settings.showWeekNumbers) {
+                      cell = $('<th/>').appendTo(row);
+                      cell.text(settings.text.weekNo);
+                      cell.addClass(className.weekCell);
+                      textColumns--;
+                  }
+                  for (i = 0; i < textColumns; i++) {
+                    cell = $('<th/>').appendTo(row);
+                    cell.text(formatter.dayColumnHeader((i + settings.firstDayOfWeek) % 7, settings));
+                  }
+                }
+              }
+
+              var tbody = $('<tbody/>').appendTo(table);
+              i = isYear ? Math.ceil(year / 10) * 10 - 9 : isDay ? 1 - firstMonthDayColumn : 0;
+              for (r = 0; r < rows; r++) {
+                row = $('<tr/>').appendTo(tbody);
+                if(isDay && settings.showWeekNumbers){
+                    cell = $('<th/>').appendTo(row);
+                    cell.text(module.get.weekOfYear(year,month,i+1-settings.firstDayOfWeek));
+                    cell.addClass(className.weekCell);
+                }
+                for (c = 0; c < textColumns; c++, i++) {
+                  var cellDate = isYear ? new Date(i, month, 1, hour, minute) :
+                    isMonth ? new Date(year, i, 1, hour, minute) : isDay ? new Date(year, month, i, hour, minute) :
+                      isHour ? new Date(year, month, day, i) : new Date(year, month, day, hour, i * settings.minTimeGap);
+                  var cellText = isYear ? i :
+                    isMonth ? settings.text.monthsShort[i] : isDay ? cellDate.getDate() :
+                      formatter.time(cellDate, settings, true);
+                  cell = $('<td/>').addClass(className.cell).appendTo(row);
+                  cell.text(cellText);
+                  cell.data(metadata.date, cellDate);
+                  var adjacent = isDay && cellDate.getMonth() !== ((month + 12) % 12);
+                  var disabled = (!settings.selectAdjacentDays && adjacent) || !module.helper.isDateInRange(cellDate, mode) || settings.isDisabled(cellDate, mode) || module.helper.isDisabled(cellDate, mode) || !module.helper.isEnabled(cellDate, mode);
+                  var eventDate;
+                  if (disabled) {
+                    var disabledDate = module.helper.findDayAsObject(cellDate, mode, settings.disabledDates);
+                    if (disabledDate !== null && disabledDate[metadata.message]) {
+                      cell.attr("data-tooltip", disabledDate[metadata.message]);
+                      cell.attr("data-position", disabledDate[metadata.position] || tooltipPosition);
+                      if(disabledDate[metadata.inverted] || (isInverted && disabledDate[metadata.inverted] === undefined)) {
+                        cell.attr("data-inverted", '');
+                      }
+                      if(disabledDate[metadata.variation]) {
+                        cell.attr("data-variation", disabledDate[metadata.variation]);
+                      }
+                    }
+                  } else {
+                    eventDate = module.helper.findDayAsObject(cellDate, mode, settings.eventDates);
+                    if (eventDate !== null) {
+                      cell.addClass(eventDate[metadata.class] || settings.eventClass);
+                      if (eventDate[metadata.message]) {
+                        cell.attr("data-tooltip", eventDate[metadata.message]);
+                        cell.attr("data-position", eventDate[metadata.position] || tooltipPosition);
+                        if(eventDate[metadata.inverted] || (isInverted && eventDate[metadata.inverted] === undefined)) {
+                          cell.attr("data-inverted", '');
+                        }
+                        if(eventDate[metadata.variation]) {
+                          cell.attr("data-variation", eventDate[metadata.variation]);
+                        }
+                      }
+                    }
+                  }
+                  var active = module.helper.dateEqual(cellDate, date, mode);
+                  var isToday = module.helper.dateEqual(cellDate, today, mode);
+                  cell.toggleClass(className.adjacentCell, adjacent && !eventDate);
+                  cell.toggleClass(className.disabledCell, disabled);
+                  cell.toggleClass(className.activeCell, active && !(adjacent && disabled));
+                  if (!isHour && !isMinute) {
+                    cell.toggleClass(className.todayCell, !adjacent && isToday);
+                  }
+
+                  // Allow for external modifications of each cell
+                  var cellOptions = {
+                    mode: mode,
+                    adjacent: adjacent,
+                    disabled: disabled,
+                    active: active,
+                    today: isToday
+                  };
+                  formatter.cell(cell, cellDate, cellOptions);
+
+                  if (module.helper.dateEqual(cellDate, focusDate, mode)) {
+                    //ensure that the focus date is exactly equal to the cell date
+                    //so that, if selected, the correct value is set
+                    module.set.focusDate(cellDate, false, false);
+                  }
+                }
+              }
+
+              if (settings.today) {
+                var todayRow = $('<tr/>').appendTo(tbody);
+                var todayButton = $('<td/>').attr('colspan', '' + columns).addClass(className.today).appendTo(todayRow);
+                todayButton.text(formatter.today(settings));
+                todayButton.data(metadata.date, today);
+              }
+
+              module.update.focus(false, table);
+
+              if(settings.inline){
+                module.refreshTooltips();
+              }
+            }
+          }
+        },
+
+        update: {
+          focus: function (updateRange, container) {
+            container = container || $container;
+            var mode = module.get.mode();
+            var date = module.get.date();
+            var focusDate = module.get.focusDate();
+            var startDate = module.get.startDate();
+            var endDate = module.get.endDate();
+            var rangeDate = (updateRange ? focusDate : null) || date || (!isTouch ? focusDate : null);
+
+            container.find('td').each(function () {
+              var cell = $(this);
+              var cellDate = cell.data(metadata.date);
+              if (!cellDate) {
+                return;
+              }
+              var disabled = cell.hasClass(className.disabledCell);
+              var active = cell.hasClass(className.activeCell);
+              var adjacent = cell.hasClass(className.adjacentCell);
+              var focused = module.helper.dateEqual(cellDate, focusDate, mode);
+              var inRange = !rangeDate ? false :
+                ((!!startDate && module.helper.isDateInRange(cellDate, mode, startDate, rangeDate)) ||
+                (!!endDate && module.helper.isDateInRange(cellDate, mode, rangeDate, endDate)));
+              cell.toggleClass(className.focusCell, focused && (!isTouch || isTouchDown) && (!adjacent || (settings.selectAdjacentDays && adjacent)) && !disabled);
+
+              if (module.helper.isTodayButton(cell)) {
+                return;
+              }
+              cell.toggleClass(className.rangeCell, inRange && !active && !disabled);
+            });
+          }
+        },
+
+        refresh: function () {
+          module.create.calendar();
+        },
+
+        refreshTooltips: function() {
+          var winWidth = $(window).width();
+          $container.find('td[data-position]').each(function () {
+            var cell = $(this);
+            var tooltipWidth = window.getComputedStyle(cell[0], ':after').width.replace(/[^0-9\.]/g,'');
+            var tooltipPosition = cell.attr('data-position');
+            // use a fallback width of 250 (calendar width) for IE/Edge (which return "auto")
+            var calcPosition = (winWidth - cell.width() - (parseInt(tooltipWidth,10) || 250)) > cell.offset().left ? 'right' : 'left';
+            if(tooltipPosition.indexOf(calcPosition) === -1) {
+              cell.attr('data-position',tooltipPosition.replace(/(left|right)/,calcPosition));
+            }
+           });
+        },
+
+        bind: {
+          events: function () {
+            module.debug('Binding events');
+            $container.on('mousedown' + eventNamespace, module.event.mousedown);
+            $container.on('touchstart' + eventNamespace, module.event.mousedown);
+            $container.on('mouseup' + eventNamespace, module.event.mouseup);
+            $container.on('touchend' + eventNamespace, module.event.mouseup);
+            $container.on('mouseover' + eventNamespace, module.event.mouseover);
+            if ($input.length) {
+              $input.on('input' + eventNamespace, module.event.inputChange);
+              $input.on('focus' + eventNamespace, module.event.inputFocus);
+              $input.on('blur' + eventNamespace, module.event.inputBlur);
+              $input.on('keydown' + eventNamespace, module.event.keydown);
+            } else {
+              $container.on('keydown' + eventNamespace, module.event.keydown);
+            }
+          }
+        },
+
+        unbind: {
+          events: function () {
+            module.debug('Unbinding events');
+            $container.off(eventNamespace);
+            if ($input.length) {
+              $input.off(eventNamespace);
+            }
+          }
+        },
+
+        event: {
+          mouseover: function (event) {
+            var target = $(event.target);
+            var date = target.data(metadata.date);
+            var mousedown = event.buttons === 1;
+            if (date) {
+              module.set.focusDate(date, false, true, mousedown);
+            }
+          },
+          mousedown: function (event) {
+            if ($input.length) {
+              //prevent the mousedown on the calendar causing the input to lose focus
+              event.preventDefault();
+            }
+            isTouchDown = event.type.indexOf('touch') >= 0;
+            var target = $(event.target);
+            var date = target.data(metadata.date);
+            if (date) {
+              module.set.focusDate(date, false, true, true);
+            }
+          },
+          mouseup: function (event) {
+            //ensure input has focus so that it receives keydown events for calendar navigation
+            module.focus();
+            event.preventDefault();
+            event.stopPropagation();
+            isTouchDown = false;
+            var target = $(event.target);
+            if (target.hasClass("disabled")) {
+              return;
+            }
+            var parent = target.parent();
+            if (parent.data(metadata.date) || parent.data(metadata.focusDate) || parent.data(metadata.mode)) {
+              //clicked on a child element, switch to parent (used when clicking directly on prev/next <i> icon element)
+              target = parent;
+            }
+            var date = target.data(metadata.date);
+            var focusDate = target.data(metadata.focusDate);
+            var mode = target.data(metadata.mode);
+            if (date && settings.onSelect.call(element, date, module.get.mode()) !== false) {
+              var forceSet = target.hasClass(className.today);
+              module.selectDate(date, forceSet);
+            }
+            else if (focusDate) {
+              module.set.focusDate(focusDate);
+            }
+            else if (mode) {
+              module.set.mode(mode);
+            }
+          },
+          keydown: function (event) {
+            var keyCode = event.which;
+            if (keyCode === 27 || keyCode === 9) {
+              //esc || tab
+              module.popup('hide');
+            }
+
+            if (module.popup('is visible')) {
+              if (keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40) {
+                //arrow keys
+                var mode = module.get.mode();
+                var bigIncrement = mode === 'day' ? 7 : mode === 'hour' ? 4 : mode === 'minute' ? timeGap['column'] : 3;
+                var increment = keyCode === 37 ? -1 : keyCode === 38 ? -bigIncrement : keyCode == 39 ? 1 : bigIncrement;
+                increment *= mode === 'minute' ? settings.minTimeGap : 1;
+                var focusDate = module.get.focusDate() || module.get.date() || new Date();
+                var year = focusDate.getFullYear() + (mode === 'year' ? increment : 0);
+                var month = focusDate.getMonth() + (mode === 'month' ? increment : 0);
+                var day = focusDate.getDate() + (mode === 'day' ? increment : 0);
+                var hour = focusDate.getHours() + (mode === 'hour' ? increment : 0);
+                var minute = focusDate.getMinutes() + (mode === 'minute' ? increment : 0);
+                var newFocusDate = new Date(year, month, day, hour, minute);
+                if (settings.type === 'time') {
+                  newFocusDate = module.helper.mergeDateTime(focusDate, newFocusDate);
+                }
+                if (module.helper.isDateInRange(newFocusDate, mode)) {
+                  module.set.focusDate(newFocusDate);
+                }
+              } else if (keyCode === 13) {
+                //enter
+                var mode = module.get.mode();
+                var date = module.get.focusDate();
+                if (date && !settings.isDisabled(date, mode) && !module.helper.isDisabled(date, mode) && module.helper.isEnabled(date, mode)) {
+                  module.selectDate(date);
+                }
+                //disable form submission:
+                event.preventDefault();
+                event.stopPropagation();
+              }
+            }
+
+            if (keyCode === 38 || keyCode === 40) {
+              //arrow-up || arrow-down
+              event.preventDefault(); //don't scroll
+              module.popup('show');
+            }
+          },
+          inputChange: function () {
+            var val = $input.val();
+            var date = parser.date(val, settings);
+            module.set.date(date, false);
+          },
+          inputFocus: function () {
+            $container.addClass(className.active);
+          },
+          inputBlur: function () {
+            $container.removeClass(className.active);
+            if (settings.formatInput) {
+              var date = module.get.date();
+              var text = formatter.datetime(date, settings);
+              $input.val(text);
+            }
+            if(selectionComplete){
+              module.trigger.change();
+              selectionComplete = false;
+            }
+          },
+          class: {
+            mutation: function(mutations) {
+              mutations.forEach(function(mutation) {
+                if(mutation.attributeName === "class") {
+                  module.check.disabled();
+                }
+              });
+            }
+          }
+        },
+
+        observeChanges: function() {
+          if('MutationObserver' in window) {
+            classObserver  = new MutationObserver(module.event.class.mutation);
+            module.debug('Setting up mutation observer', classObserver);
+            module.observe.class();
+          }
+        },
+
+        disconnect: {
+          classObserver: function() {
+            if($input.length && classObserver) {
+              classObserver.disconnect();
+            }
+          }
+        },
+
+        observe: {
+          class: function() {
+            if($input.length && classObserver) {
+              classObserver.observe($module[0], {
+                attributes : true
+              });
+            }
+          }
+        },
+
+        is: {
+          disabled: function() {
+            return $module.hasClass(className.disabled);
+          }
+        },
+
+        check: {
+          disabled: function(){
+            $input.attr('tabindex',module.is.disabled() ? -1 : 0);
+          }
+        },
+
+        get: {
+          weekOfYear: function(weekYear,weekMonth,weekDay) {
+              // adapted from http://www.merlyn.demon.co.uk/weekcalc.htm
+              var ms1d = 864e5, // milliseconds in a day
+                  ms7d = 7 * ms1d; // milliseconds in a week
+
+              return function() { // return a closure so constants get calculated only once
+                  var DC3 = Date.UTC(weekYear, weekMonth, weekDay + 3) / ms1d, // an Absolute Day Number
+                      AWN = Math.floor(DC3 / 7), // an Absolute Week Number
+                      Wyr = new Date(AWN * ms7d).getUTCFullYear();
+
+                  return AWN - Math.floor(Date.UTC(Wyr, 0, 7) / ms7d) + 1;
+              }();
+          },
+          date: function () {
+            return module.helper.sanitiseDate($module.data(metadata.date)) || null;
+          },
+          inputDate: function() {
+            return $input.val();
+          },
+          focusDate: function () {
+            return $module.data(metadata.focusDate) || null;
+          },
+          startDate: function () {
+            var startModule = module.get.calendarModule(settings.startCalendar);
+            return (startModule ? startModule.get.date() : $module.data(metadata.startDate)) || null;
+          },
+          endDate: function () {
+            var endModule = module.get.calendarModule(settings.endCalendar);
+            return (endModule ? endModule.get.date() : $module.data(metadata.endDate)) || null;
+          },
+          minDate: function() {
+            return $module.data(metadata.minDate) || null;
+          },
+          maxDate: function() {
+            return $module.data(metadata.maxDate) || null;
+          },
+          monthOffset: function () {
+            return $module.data(metadata.monthOffset) || 0;
+          },
+          mode: function () {
+            //only returns valid modes for the current settings
+            var mode = $module.data(metadata.mode) || settings.startMode;
+            return module.get.validatedMode(mode);
+          },
+          validatedMode: function(mode){
+            var validModes = module.get.validModes();
+            if ($.inArray(mode, validModes) >= 0) {
+              return mode;
+            }
+            return settings.type === 'time' ? 'hour' :
+              settings.type === 'month' ? 'month' :
+                settings.type === 'year' ? 'year' : 'day';
+          },
+          type: function() {
+            return $module.data(metadata.type) || settings.type;
+          },
+          validModes: function () {
+            var validModes = [];
+            if (settings.type !== 'time') {
+              if (!settings.disableYear || settings.type === 'year') {
+                validModes.push('year');
+              }
+              if (!(settings.disableMonth || settings.type === 'year') || settings.type === 'month') {
+                validModes.push('month');
+              }
+              if (settings.type.indexOf('date') >= 0) {
+                validModes.push('day');
+              }
+            }
+            if (settings.type.indexOf('time') >= 0) {
+              validModes.push('hour');
+              if (!settings.disableMinute) {
+                validModes.push('minute');
+              }
+            }
+            return validModes;
+          },
+          isTouch: function () {
+            try {
+              document.createEvent('TouchEvent');
+              return true;
+            }
+            catch (e) {
+              return false;
+            }
+          },
+          calendarModule: function (selector) {
+            if (!selector) {
+              return null;
+            }
+            if (!(selector instanceof $)) {
+              selector = $(selector).first();
+            }
+            //assume range related calendars are using the same namespace
+            return selector.data(moduleNamespace);
+          }
+        },
+
+        set: {
+          date: function (date, updateInput, fireChange) {
+            updateInput = updateInput !== false;
+            fireChange = fireChange !== false;
+            date = module.helper.sanitiseDate(date);
+            date = module.helper.dateInRange(date);
+
+            var mode = module.get.mode();
+            var text = formatter.datetime(date, settings);
+
+            if (fireChange && settings.onBeforeChange.call(element, date, text, mode) === false) {
+              return false;
+            }
+
+            module.set.focusDate(date);
+
+            if (settings.isDisabled(date, mode)) {
+              return false;
+            }
+
+            var endDate = module.get.endDate();
+            if (!!endDate && !!date && date > endDate) {
+              //selected date is greater than end date in range, so clear end date
+              module.set.endDate(undefined);
+            }
+            module.set.dataKeyValue(metadata.date, date);
+
+            if (updateInput && $input.length) {
+              $input.val(text);
+            }
+
+            if (fireChange) {
+              settings.onChange.call(element, date, text, mode);
+            }
+          },
+          startDate: function (date, refreshCalendar) {
+            date = module.helper.sanitiseDate(date);
+            var startModule = module.get.calendarModule(settings.startCalendar);
+            if (startModule) {
+              startModule.set.date(date);
+            }
+            module.set.dataKeyValue(metadata.startDate, date, refreshCalendar);
+          },
+          endDate: function (date, refreshCalendar) {
+            date = module.helper.sanitiseDate(date);
+            var endModule = module.get.calendarModule(settings.endCalendar);
+            if (endModule) {
+              endModule.set.date(date);
+            }
+            module.set.dataKeyValue(metadata.endDate, date, refreshCalendar);
+          },
+          focusDate: function (date, refreshCalendar, updateFocus, updateRange) {
+            date = module.helper.sanitiseDate(date);
+            date = module.helper.dateInRange(date);
+            var isDay = module.get.mode() === 'day';
+            var oldFocusDate = module.get.focusDate();
+            if (isDay && date && oldFocusDate) {
+              var yearDelta = date.getFullYear() - oldFocusDate.getFullYear();
+              var monthDelta = yearDelta * 12 + date.getMonth() - oldFocusDate.getMonth();
+              if (monthDelta) {
+                var monthOffset = module.get.monthOffset() - monthDelta;
+                module.set.monthOffset(monthOffset, false);
+              }
+            }
+            var changed = module.set.dataKeyValue(metadata.focusDate, date, !!date && refreshCalendar);
+            updateFocus = (updateFocus !== false && changed && refreshCalendar === false) || focusDateUsedForRange != updateRange;
+            focusDateUsedForRange = updateRange;
+            if (updateFocus) {
+              module.update.focus(updateRange);
+            }
+          },
+          minDate: function (date) {
+            date = module.helper.sanitiseDate(date);
+            if (settings.maxDate !== null && settings.maxDate <= date) {
+              module.verbose('Unable to set minDate variable bigger that maxDate variable', date, settings.maxDate);
+            } else {
+              module.setting('minDate', date);
+              module.set.dataKeyValue(metadata.minDate, date);
+            }
+          },
+          maxDate: function (date) {
+            date = module.helper.sanitiseDate(date);
+            if (settings.minDate !== null && settings.minDate >= date) {
+              module.verbose('Unable to set maxDate variable lower that minDate variable', date, settings.minDate);
+            } else {
+              module.setting('maxDate', date);
+              module.set.dataKeyValue(metadata.maxDate, date);
+            }
+          },
+          monthOffset: function (monthOffset, refreshCalendar) {
+            var multiMonth = Math.max(settings.multiMonth, 1);
+            monthOffset = Math.max(1 - multiMonth, Math.min(0, monthOffset));
+            module.set.dataKeyValue(metadata.monthOffset, monthOffset, refreshCalendar);
+          },
+          mode: function (mode, refreshCalendar) {
+            module.set.dataKeyValue(metadata.mode, mode, refreshCalendar);
+          },
+          dataKeyValue: function (key, value, refreshCalendar) {
+            var oldValue = $module.data(key);
+            var equal = oldValue === value || (oldValue <= value && oldValue >= value); //equality test for dates and string objects
+            if (value) {
+              $module.data(key, value);
+            } else {
+              $module.removeData(key);
+            }
+            refreshCalendar = refreshCalendar !== false && !equal;
+            if (refreshCalendar) {
+              module.refresh();
+            }
+            return !equal;
+          }
+        },
+
+        selectDate: function (date, forceSet) {
+          module.verbose('New date selection', date);
+          var mode = module.get.mode();
+          var complete = forceSet || mode === 'minute' ||
+            (settings.disableMinute && mode === 'hour') ||
+            (settings.type === 'date' && mode === 'day') ||
+            (settings.type === 'month' && mode === 'month') ||
+            (settings.type === 'year' && mode === 'year');
+          if (complete) {
+            var canceled = module.set.date(date) === false;
+            if (!canceled) {
+              selectionComplete = true;
+              if(settings.closable) {
+                module.popup('hide');
+                //if this is a range calendar, focus the container or input. This will open the popup from its event listeners.
+                var endModule = module.get.calendarModule(settings.endCalendar);
+                if (endModule) {
+                  if (endModule.setting('on') !== 'focus') {
+                    endModule.popup('show');
+                  }
+                  endModule.focus();
+                }
+              }
+            }
+          } else {
+            var newMode = mode === 'year' ? (!settings.disableMonth ? 'month' : 'day') :
+              mode === 'month' ? 'day' : mode === 'day' ? 'hour' : 'minute';
+            module.set.mode(newMode);
+            if (mode === 'hour' || (mode === 'day' && module.get.date())) {
+              //the user has chosen enough to consider a valid date/time has been chosen
+              module.set.date(date, true, false);
+            } else {
+              module.set.focusDate(date);
+            }
+          }
+        },
+
+        changeDate: function (date) {
+          module.set.date(date);
+        },
+
+        clear: function () {
+          module.set.date(undefined);
+        },
+
+        popup: function () {
+          return $activator.popup.apply($activator, arguments);
+        },
+
+        focus: function () {
+          if ($input.length) {
+            $input.focus();
+          } else {
+            $container.focus();
+          }
+        },
+        blur: function () {
+          if ($input.length) {
+            $input.blur();
+          } else {
+            $container.blur();
+          }
+        },
+
+        helper: {
+          isDisabled: function(date, mode) {
+            return (mode === 'day' || mode === 'month' || mode === 'year') && ((mode === 'day' && settings.disabledDaysOfWeek.indexOf(date.getDay()) !== -1) || settings.disabledDates.some(function(d){
+              if(typeof d === 'string') {
+                d = module.helper.sanitiseDate(d);
+              }
+              if (d instanceof Date) {
+                return module.helper.dateEqual(date, d, mode);
+              }
+              if (d !== null && typeof d === 'object') {
+                if (d[metadata.year]) {
+                  if (typeof d[metadata.year] === 'number') {
+                    return date.getFullYear() == d[metadata.year];
+                  } else if (Array.isArray(d[metadata.year])) {
+                    return d[metadata.year].indexOf(date.getFullYear()) > -1;
+                  }
+                } else if (d[metadata.month]) {
+                  if (typeof d[metadata.month] === 'number') {
+                    return date.getMonth() == d[metadata.month];
+                  } else if (Array.isArray(d[metadata.month])) {
+                    return d[metadata.month].indexOf(date.getMonth()) > -1;
+                  } else if (d[metadata.month] instanceof Date) {
+                    var sdate = module.helper.sanitiseDate(d[metadata.month]);
+                    return (date.getMonth() == sdate.getMonth()) && (date.getFullYear() == sdate.getFullYear())
+                  }
+                } else if (d[metadata.date] && mode === 'day') {
+                  if (d[metadata.date] instanceof Date) {
+                    return module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode);
+                  } else if (Array.isArray(d[metadata.date])) {
+                    return d[metadata.date].some(function(idate) {
+                      return module.helper.dateEqual(date, idate, mode);
+                    });
+                  }
+                }
+              }
+            }));
+          },
+          isEnabled: function(date, mode) {
+            if (mode === 'day') {
+              return settings.enabledDates.length === 0 || settings.enabledDates.some(function(d){
+                if(typeof d === 'string') {
+                  d = module.helper.sanitiseDate(d);
+                }
+                if (d instanceof Date) {
+                  return module.helper.dateEqual(date, d, mode);
+                }
+                if (d !== null && typeof d === 'object' && d[metadata.date]) {
+                  return module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode);
+                }
+              });
+            } else {
+              return true;
+            }
+          },
+          findDayAsObject: function(date, mode, dates) {
+            if (mode === 'day' || mode === 'month' || mode === 'year') {
+              var d;
+              for (var i = 0; i < dates.length; i++) {
+                d = dates[i];
+                if(typeof d === 'string') {
+                  d = module.helper.sanitiseDate(d);
+                }
+                if (d instanceof Date && module.helper.dateEqual(date, d, mode)) {
+                  var dateObject = {};
+                  dateObject[metadata.date] = d;
+                  return dateObject;
+                }
+                else if (d !== null && typeof d === 'object') {
+                  if (d[metadata.year]) {
+                    if (typeof d[metadata.year] === 'number' && date.getFullYear() == d[metadata.year]) {
+                      return d;
+                    } else if (Array.isArray(d[metadata.year])) {
+                      if (d[metadata.year].indexOf(date.getFullYear()) > -1) {
+                        return d;
+                      }
+                    }
+                  } else if (d[metadata.month]) {
+                    if (typeof d[metadata.month] === 'number' && date.getMonth() == d[metadata.month]) {
+                      return d;
+                    } else if (Array.isArray(d[metadata.month])) {
+                      if (d[metadata.month].indexOf(date.getMonth()) > -1) {
+                        return d;
+                      }
+                    } else if (d[metadata.month] instanceof Date) {
+                      var sdate = module.helper.sanitiseDate(d[metadata.month]);
+                      if ((date.getMonth() == sdate.getMonth()) && (date.getFullYear() == sdate.getFullYear())) {
+                        return d;
+                      }
+                    }
+                  } else if (d[metadata.date] && mode === 'day') {
+                    if (d[metadata.date] instanceof Date && module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode)) {
+                      return d;
+                    } else if (Array.isArray(d[metadata.date])) {
+                      if(d[metadata.date].some(function(idate) { return module.helper.dateEqual(date, idate, mode); })) {
+                        return d;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            return null;
+          },
+          sanitiseDate: function (date) {
+            if (!(date instanceof Date)) {
+              date = parser.date('' + date, settings);
+            }
+            if (!date || isNaN(date.getTime())) {
+              return null;
+            }
+            return date;
+          },
+          dateDiff: function (date1, date2, mode) {
+            mode = mode || 'day';
+            var isTimeOnly = settings.type === 'time';
+            var isYear = mode === 'year';
+            var isYearOrMonth = isYear || mode === 'month';
+            var isMinute = mode === 'minute';
+            var isHourOrMinute = isMinute || mode === 'hour';
+            //only care about a minute accuracy of settings.minTimeGap
+            date1 = new Date(
+              isTimeOnly ? 2000 : date1.getFullYear(),
+              isTimeOnly ? 0 : isYear ? 0 : date1.getMonth(),
+              isTimeOnly ? 1 : isYearOrMonth ? 1 : date1.getDate(),
+              !isHourOrMinute ? 0 : date1.getHours(),
+              !isMinute ? 0 : settings.minTimeGap * Math.floor(date1.getMinutes() / settings.minTimeGap));
+            date2 = new Date(
+              isTimeOnly ? 2000 : date2.getFullYear(),
+              isTimeOnly ? 0 : isYear ? 0 : date2.getMonth(),
+              isTimeOnly ? 1 : isYearOrMonth ? 1 : date2.getDate(),
+              !isHourOrMinute ? 0 : date2.getHours(),
+              !isMinute ? 0 : settings.minTimeGap * Math.floor(date2.getMinutes() / settings.minTimeGap));
+            return date2.getTime() - date1.getTime();
+          },
+          dateEqual: function (date1, date2, mode) {
+            return !!date1 && !!date2 && module.helper.dateDiff(date1, date2, mode) === 0;
+          },
+          isDateInRange: function (date, mode, minDate, maxDate) {
+            if (!minDate && !maxDate) {
+              var startDate = module.get.startDate();
+              minDate = startDate && settings.minDate ? new Date(Math.max(startDate, settings.minDate)) : startDate || settings.minDate;
+              maxDate = settings.maxDate;
+            }
+            minDate = minDate && new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate(), minDate.getHours(), settings.minTimeGap * Math.ceil(minDate.getMinutes() / settings.minTimeGap));
+            return !(!date ||
+            (minDate && module.helper.dateDiff(date, minDate, mode) > 0) ||
+            (maxDate && module.helper.dateDiff(maxDate, date, mode) > 0));
+          },
+          dateInRange: function (date, minDate, maxDate) {
+            if (!minDate && !maxDate) {
+              var startDate = module.get.startDate();
+              minDate = startDate && settings.minDate ? new Date(Math.max(startDate, settings.minDate)) : startDate || settings.minDate;
+              maxDate = settings.maxDate;
+            }
+            minDate = minDate && new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate(), minDate.getHours(), settings.minTimeGap * Math.ceil(minDate.getMinutes() / settings.minTimeGap));
+            var isTimeOnly = settings.type === 'time';
+            return !date ? date :
+              (minDate && module.helper.dateDiff(date, minDate, 'minute') > 0) ?
+                (isTimeOnly ? module.helper.mergeDateTime(date, minDate) : minDate) :
+                (maxDate && module.helper.dateDiff(maxDate, date, 'minute') > 0) ?
+                  (isTimeOnly ? module.helper.mergeDateTime(date, maxDate) : maxDate) :
+                  date;
+          },
+          mergeDateTime: function (date, time) {
+            return (!date || !time) ? time :
+              new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes());
+          },
+          isTodayButton: function(element) {
+            return element.text() === settings.text.today;
+          }
+        },
+
+        setting: function (name, value) {
+          module.debug('Changing setting', name, value);
+          if ($.isPlainObject(name)) {
+            $.extend(true, settings, name);
+          }
+          else if (value !== undefined) {
+            if ($.isPlainObject(settings[name])) {
+              $.extend(true, settings[name], value);
+            }
+            else {
+              settings[name] = value;
+            }
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function (name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function () {
+          if (!settings.silent && settings.debug) {
+            if (settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function () {
+          if (!settings.silent && settings.verbose && settings.debug) {
+            if (settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function () {
+          if (!settings.silent) {
+            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+            module.error.apply(console, arguments);
+          }
+        },
+        performance: {
+          log: function (message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+              ;
+            if (settings.performance) {
+              currentTime = new Date().getTime();
+              previousTime = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time = currentTime;
+              performance.push({
+                'Name': message[0],
+                'Arguments': [].slice.call(message, 1) || '',
+                'Element': element,
+                'Execution Time': executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 500);
+          },
+          display: function () {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+              ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function (index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if (moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if ((console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if (console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function (index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time'] + 'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function (query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+            ;
+          passedArguments = passedArguments || queryArguments;
+          context = element || context;
+          if (typeof query == 'string' && object !== undefined) {
+            query = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function (depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                  ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                  : query
+                ;
+              if ($.isPlainObject(object[camelCaseValue]) && (depth != maxDepth)) {
+                object = object[camelCaseValue];
+              }
+              else if (object[camelCaseValue] !== undefined) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if ($.isPlainObject(object[value]) && (depth != maxDepth)) {
+                object = object[value];
+              }
+              else if (object[value] !== undefined) {
+                found = object[value];
+                return false;
+              }
+              else {
+                module.error(error.method, query);
+                return false;
+              }
+            });
+          }
+          if ($.isFunction(found)) {
+            response = found.apply(context, passedArguments);
+          }
+          else if (found !== undefined) {
+            response = found;
+          }
+          if (Array.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if (returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if (response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if (methodInvoked) {
+        if (instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if (instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+      }
+    })
+  ;
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+    ;
+};
+
+$.fn.calendar.settings = {
+
+  name            : 'Calendar',
+  namespace       : 'calendar',
+
+  silent: false,
+  debug: false,
+  verbose: false,
+  performance: false,
+
+  type               : 'datetime', // picker type, can be 'datetime', 'date', 'time', 'month', or 'year'
+  firstDayOfWeek     : 0,          // day for first day column (0 = Sunday)
+  constantHeight     : true,       // add rows to shorter months to keep day calendar height consistent (6 rows)
+  today              : false,      // show a 'today/now' button at the bottom of the calendar
+  closable           : true,       // close the popup after selecting a date/time
+  monthFirst         : true,       // month before day when parsing/converting date from/to text
+  touchReadonly      : true,       // set input to readonly on touch devices
+  inline             : false,      // create the calendar inline instead of inside a popup
+  on                 : null,       // when to show the popup (defaults to 'focus' for input, 'click' for others)
+  initialDate        : null,       // date to display initially when no date is selected (null = now)
+  startMode          : false,      // display mode to start in, can be 'year', 'month', 'day', 'hour', 'minute' (false = 'day')
+  minDate            : null,       // minimum date/time that can be selected, dates/times before are disabled
+  maxDate            : null,       // maximum date/time that can be selected, dates/times after are disabled
+  ampm               : true,       // show am/pm in time mode
+  disableYear        : false,      // disable year selection mode
+  disableMonth       : false,      // disable month selection mode
+  disableMinute      : false,      // disable minute selection mode
+  formatInput        : true,       // format the input text upon input blur and module creation
+  startCalendar      : null,       // jquery object or selector for another calendar that represents the start date of a date range
+  endCalendar        : null,       // jquery object or selector for another calendar that represents the end date of a date range
+  multiMonth         : 1,          // show multiple months when in 'day' mode
+  minTimeGap         : 5,
+  showWeekNumbers    : null,       // show Number of Week at the very first column of a dayView
+  disabledDates      : [],         // specific day(s) which won't be selectable and contain additional information.
+  disabledDaysOfWeek : [],         // day(s) which won't be selectable(s) (0 = Sunday)
+  enabledDates       : [],         // specific day(s) which will be selectable, all other days will be disabled
+  eventDates         : [],         // specific day(s) which will be shown in a different color and using tooltips
+  centuryBreak       : 60,         // starting short year until 99 where it will be assumed to belong to the last century
+  currentCentury     : 2000,       // century to be added to 2-digit years (00 to {centuryBreak}-1)
+  selectAdjacentDays : false,     // The calendar can show dates from adjacent month. These adjacent month dates can also be made selectable.
+  // popup options ('popup', 'on', 'hoverable', and show/hide callbacks are overridden)
+  popupOptions: {
+    position: 'bottom left',
+    lastResort: 'bottom left',
+    prefer: 'opposite',
+    hideOnScroll: false
+  },
+
+  text: {
+    days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    today: 'Today',
+    now: 'Now',
+    am: 'AM',
+    pm: 'PM',
+    weekNo: 'Week'
+  },
+
+  formatter: {
+    header: function (date, mode, settings) {
+      return mode === 'year' ? settings.formatter.yearHeader(date, settings) :
+        mode === 'month' ? settings.formatter.monthHeader(date, settings) :
+          mode === 'day' ? settings.formatter.dayHeader(date, settings) :
+            mode === 'hour' ? settings.formatter.hourHeader(date, settings) :
+              settings.formatter.minuteHeader(date, settings);
+    },
+    yearHeader: function (date, settings) {
+      var decadeYear = Math.ceil(date.getFullYear() / 10) * 10;
+      return (decadeYear - 9) + ' - ' + (decadeYear + 2);
+    },
+    monthHeader: function (date, settings) {
+      return date.getFullYear();
+    },
+    dayHeader: function (date, settings) {
+      var month = settings.text.months[date.getMonth()];
+      var year = date.getFullYear();
+      return month + ' ' + year;
+    },
+    hourHeader: function (date, settings) {
+      return settings.formatter.date(date, settings);
+    },
+    minuteHeader: function (date, settings) {
+      return settings.formatter.date(date, settings);
+    },
+    dayColumnHeader: function (day, settings) {
+      return settings.text.days[day];
+    },
+    datetime: function (date, settings) {
+      if (!date) {
+        return '';
+      }
+      var day = settings.type === 'time' ? '' : settings.formatter.date(date, settings);
+      var time = settings.type.indexOf('time') < 0 ? '' : settings.formatter.time(date, settings, false);
+      var separator = settings.type === 'datetime' ? ' ' : '';
+      return day + separator + time;
+    },
+    date: function (date, settings) {
+      if (!date) {
+        return '';
+      }
+      var day = date.getDate();
+      var month = settings.text.months[date.getMonth()];
+      var year = date.getFullYear();
+      return settings.type === 'year' ? year :
+        settings.type === 'month' ? month + ' ' + year :
+        (settings.monthFirst ? month + ' ' + day : day + ' ' + month) + ', ' + year;
+    },
+    time: function (date, settings, forCalendar) {
+      if (!date) {
+        return '';
+      }
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      var ampm = '';
+      if (settings.ampm) {
+        ampm = ' ' + (hour < 12 ? settings.text.am : settings.text.pm);
+        hour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+      }
+      return hour + ':' + (minute < 10 ? '0' : '') + minute + ampm;
+    },
+    today: function (settings) {
+      return settings.type === 'date' ? settings.text.today : settings.text.now;
+    },
+    cell: function (cell, date, cellOptions) {
+    }
+  },
+
+  parser: {
+    date: function (text, settings) {
+      if (text instanceof Date) {
+        return text;
+      }
+      if (!text) {
+        return null;
+      }
+      text = String(text).trim();
+      if (text.length === 0) {
+        return null;
+      }
+      if(text.match(/^[0-9]{4}[\/\-\.][0-9]{1,2}[\/\-\.][0-9]{1,2}$/)){
+        text = text.replace(/[\/\-\.]/g,'/') + ' 00:00:00';
+      }
+      // Reverse date and month in some cases
+      text = settings.monthFirst || !text.match(/^[0-9]{1,2}[\/\-\.]/) ? text : text.replace(/[\/\-\.]/g,'/').replace(/([0-9]+)\/([0-9]+)/,'$2/$1');
+      var textDate = new Date(text);
+      var numberOnly = text.match(/^[0-9]+$/) !== null;
+      if(!numberOnly && !isNaN(textDate.getDate())) {
+        return textDate;
+      }
+      text = text.toLowerCase();
+
+      var i, j, k;
+      var minute = -1, hour = -1, day = -1, month = -1, year = -1;
+      var isAm = undefined;
+
+      var isTimeOnly = settings.type === 'time';
+      var isDateOnly = settings.type.indexOf('time') < 0;
+
+      var words = text.split(settings.regExp.dateWords), word;
+      var numbers = text.split(settings.regExp.dateNumbers), number;
+
+      var parts;
+      var monthString;
+
+      if (!isDateOnly) {
+        //am/pm
+        isAm = $.inArray(settings.text.am.toLowerCase(), words) >= 0 ? true :
+          $.inArray(settings.text.pm.toLowerCase(), words) >= 0 ? false : undefined;
+
+        //time with ':'
+        for (i = 0; i < numbers.length; i++) {
+          number = numbers[i];
+          if (number.indexOf(':') >= 0) {
+            if (hour < 0 || minute < 0) {
+              parts = number.split(':');
+              for (k = 0; k < Math.min(2, parts.length); k++) {
+                j = parseInt(parts[k]);
+                if (isNaN(j)) {
+                  j = 0;
+                }
+                if (k === 0) {
+                  hour = j % 24;
+                } else {
+                  minute = j % 60;
+                }
+              }
+            }
+            numbers.splice(i, 1);
+          }
+        }
+      }
+
+      if (!isTimeOnly) {
+        //textual month
+        for (i = 0; i < words.length; i++) {
+          word = words[i];
+          if (word.length <= 0) {
+            continue;
+          }
+          for (j = 0; j < settings.text.months.length; j++) {
+            monthString = settings.text.months[j];
+            monthString = monthString.substring(0, word.length).toLowerCase();
+            if (monthString === word) {
+              month = j + 1;
+              break;
+            }
+          }
+          if (month >= 0) {
+            break;
+          }
+        }
+
+        //year > settings.centuryBreak
+        for (i = 0; i < numbers.length; i++) {
+          j = parseInt(numbers[i]);
+          if (isNaN(j)) {
+            continue;
+          }
+          if (j >= settings.centuryBreak && i === numbers.length-1) {
+            if (j <= 99) {
+              j += settings.currentCentury - 100;
+            }
+            year = j;
+            numbers.splice(i, 1);
+            break;
+          }
+        }
+
+        //numeric month
+        if (month < 0) {
+          for (i = 0; i < numbers.length; i++) {
+            k = i > 1 || settings.monthFirst ? i : i === 1 ? 0 : 1;
+            j = parseInt(numbers[k]);
+            if (isNaN(j)) {
+              continue;
+            }
+            if (1 <= j && j <= 12) {
+              month = j;
+              numbers.splice(k, 1);
+              break;
+            }
+          }
+        }
+
+        //day
+        for (i = 0; i < numbers.length; i++) {
+          j = parseInt(numbers[i]);
+          if (isNaN(j)) {
+            continue;
+          }
+          if (1 <= j && j <= 31) {
+            day = j;
+            numbers.splice(i, 1);
+            break;
+          }
+        }
+
+        //year <= settings.centuryBreak
+        if (year < 0) {
+          for (i = numbers.length - 1; i >= 0; i--) {
+            j = parseInt(numbers[i]);
+            if (isNaN(j)) {
+              continue;
+            }
+            if (j <= 99) {
+              j += settings.currentCentury;
+            }
+            year = j;
+            numbers.splice(i, 1);
+            break;
+          }
+        }
+      }
+
+      if (!isDateOnly) {
+        //hour
+        if (hour < 0) {
+          for (i = 0; i < numbers.length; i++) {
+            j = parseInt(numbers[i]);
+            if (isNaN(j)) {
+              continue;
+            }
+            if (0 <= j && j <= 23) {
+              hour = j;
+              numbers.splice(i, 1);
+              break;
+            }
+          }
+        }
+
+        //minute
+        if (minute < 0) {
+          for (i = 0; i < numbers.length; i++) {
+            j = parseInt(numbers[i]);
+            if (isNaN(j)) {
+              continue;
+            }
+            if (0 <= j && j <= 59) {
+              minute = j;
+              numbers.splice(i, 1);
+              break;
+            }
+          }
+        }
+      }
+
+      if (minute < 0 && hour < 0 && day < 0 && month < 0 && year < 0) {
+        return null;
+      }
+
+      if (minute < 0) {
+        minute = 0;
+      }
+      if (hour < 0) {
+        hour = 0;
+      }
+      if (day < 0) {
+        day = 1;
+      }
+      if (month < 0) {
+        month = 1;
+      }
+      if (year < 0) {
+        year = new Date().getFullYear();
+      }
+
+      if (isAm !== undefined) {
+        if (isAm) {
+          if (hour === 12) {
+            hour = 0;
+          }
+        } else if (hour < 12) {
+          hour += 12;
+        }
+      }
+
+      var date = new Date(year, month - 1, day, hour, minute);
+      if (date.getMonth() !== month - 1 || date.getFullYear() !== year) {
+        //month or year don't match up, switch to last day of the month
+        date = new Date(year, month, 0, hour, minute);
+      }
+      return isNaN(date.getTime()) ? null : date;
+    }
+  },
+
+  // callback before date is changed, return false to cancel the change
+  onBeforeChange: function (date, text, mode) {
+    return true;
+  },
+
+  // callback when date changes
+  onChange: function (date, text, mode) {
+  },
+
+  // callback before show animation, return false to prevent show
+  onShow: function () {
+  },
+
+  // callback after show animation
+  onVisible: function () {
+  },
+
+  // callback before hide animation, return false to prevent hide
+  onHide: function () {
+  },
+
+  // callback after hide animation
+  onHidden: function () {
+  },
+
+  // callback before item is selected, return false to prevent selection
+  onSelect: function (date, mode) {
+  },
+
+  // is the given date disabled?
+  isDisabled: function (date, mode) {
+    return false;
+  },
+
+  selector: {
+    popup: '.ui.popup',
+    input: 'input',
+    activator: 'input',
+    append: '.inline.field,.inline.fields'
+  },
+
+  regExp: {
+    dateWords: /[^A-Za-z\u00C0-\u024F]+/g,
+    dateNumbers: /[^\d:]+/g
+  },
+
+  error: {
+    popup: 'UI Popup, a required component is not included in this page',
+    method: 'The method you called is not defined.'
+  },
+
+  className: {
+    calendar: 'calendar',
+    active: 'active',
+    popup: 'ui popup',
+    grid: 'ui equal width grid',
+    column: 'column',
+    table: 'ui celled center aligned unstackable table',
+    inverted: 'inverted',
+    prev: 'prev link',
+    next: 'next link',
+    prevIcon: 'chevron left icon',
+    nextIcon: 'chevron right icon',
+    link: 'link',
+    cell: 'link',
+    disabledCell: 'disabled',
+    weekCell: 'disabled',
+    adjacentCell: 'adjacent',
+    activeCell: 'active',
+    rangeCell: 'range',
+    focusCell: 'focus',
+    todayCell: 'today',
+    today: 'today link',
+    disabled: 'disabled'
+  },
+
+  metadata: {
+    date: 'date',
+    focusDate: 'focusDate',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    minDate: 'minDate',
+    maxDate: 'maxDate',
+    mode: 'mode',
+    type: 'type',
+    monthOffset: 'monthOffset',
+    message: 'message',
+    class: 'class',
+    inverted: 'inverted',
+    variation: 'variation',
+    position: 'position',
+    month: 'month',
+    year: 'year'
+  },
+
+  eventClass: 'blue'
+};
+
+})(jQuery, window, document);
+
+/*!
  * # Fomantic-UI 2.8.8 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
@@ -5585,6 +7358,2078 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
+ * # Fomantic-UI 2.8.8 - Form Validation
+ * http://github.com/fomantic/Fomantic-UI/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ($, window, document, undefined) {
+
+'use strict';
+
+$.isFunction = $.isFunction || function(obj) {
+  return typeof obj === "function" && typeof obj.nodeType !== "number";
+};
+
+window = (typeof window != 'undefined' && window.Math == Math)
+  ? window
+  : (typeof self != 'undefined' && self.Math == Math)
+    ? self
+    : Function('return this')()
+;
+
+$.fn.form = function(parameters) {
+  var
+    $allModules      = $(this),
+    moduleSelector   = $allModules.selector || '',
+
+    time             = new Date().getTime(),
+    performance      = [],
+
+    query            = arguments[0],
+    legacyParameters = arguments[1],
+    methodInvoked    = (typeof query == 'string'),
+    queryArguments   = [].slice.call(arguments, 1),
+    returnedValue
+  ;
+  $allModules
+    .each(function() {
+      var
+        $module     = $(this),
+        element     = this,
+
+        formErrors  = [],
+        keyHeldDown = false,
+
+        // set at run-time
+        $field,
+        $group,
+        $message,
+        $prompt,
+        $submit,
+        $clear,
+        $reset,
+
+        settings,
+        validation,
+
+        metadata,
+        selector,
+        className,
+        regExp,
+        error,
+
+        namespace,
+        moduleNamespace,
+        eventNamespace,
+
+        submitting = false,
+        dirty = false,
+        history = ['clean', 'clean'],
+
+        instance,
+        module
+      ;
+
+      module      = {
+
+        initialize: function() {
+
+          // settings grabbed at run time
+          module.get.settings();
+          if(methodInvoked) {
+            if(instance === undefined) {
+              module.instantiate();
+            }
+            module.invoke(query);
+          }
+          else {
+            if(instance !== undefined) {
+              instance.invoke('destroy');
+              module.refresh();
+            }
+            module.verbose('Initializing form validation', $module, settings);
+            module.bindEvents();
+            module.set.defaults();
+            if (settings.autoCheckRequired) {
+              module.set.autoCheck();
+            }
+            module.instantiate();
+          }
+        },
+
+        instantiate: function() {
+          module.verbose('Storing instance of module', module);
+          instance = module;
+          $module
+            .data(moduleNamespace, module)
+          ;
+        },
+
+        destroy: function() {
+          module.verbose('Destroying previous module', instance);
+          module.removeEvents();
+          $module
+            .removeData(moduleNamespace)
+          ;
+        },
+
+        refresh: function() {
+          module.verbose('Refreshing selector cache');
+          $field      = $module.find(selector.field);
+          $group      = $module.find(selector.group);
+          $message    = $module.find(selector.message);
+          $prompt     = $module.find(selector.prompt);
+
+          $submit     = $module.find(selector.submit);
+          $clear      = $module.find(selector.clear);
+          $reset      = $module.find(selector.reset);
+        },
+
+        submit: function() {
+          module.verbose('Submitting form', $module);
+          submitting = true;
+          $module.submit();
+        },
+
+        attachEvents: function(selector, action) {
+          action = action || 'submit';
+          $(selector).on('click' + eventNamespace, function(event) {
+            module[action]();
+            event.preventDefault();
+          });
+        },
+
+        bindEvents: function() {
+          module.verbose('Attaching form events');
+          $module
+            .on('submit' + eventNamespace, module.validate.form)
+            .on('blur'   + eventNamespace, selector.field, module.event.field.blur)
+            .on('click'  + eventNamespace, selector.submit, module.submit)
+            .on('click'  + eventNamespace, selector.reset, module.reset)
+            .on('click'  + eventNamespace, selector.clear, module.clear)
+          ;
+          if(settings.keyboardShortcuts) {
+            $module.on('keydown' + eventNamespace, selector.field, module.event.field.keydown);
+          }
+          $field.each(function(index, el) {
+            var
+              $input     = $(el),
+              type       = $input.prop('type'),
+              inputEvent = module.get.changeEvent(type, $input)
+            ;
+            $input.on(inputEvent + eventNamespace, module.event.field.change);
+          });
+
+          // Dirty events
+          if (settings.preventLeaving) {
+            $(window).on('beforeunload' + eventNamespace, module.event.beforeUnload);
+          }
+
+          $field.on('change click keyup keydown blur', function(e) {
+            module.determine.isDirty();
+          });
+
+          $module.on('dirty' + eventNamespace, function(e) {
+            settings.onDirty.call();
+          });
+
+          $module.on('clean' + eventNamespace, function(e) {
+            settings.onClean.call();
+          })
+        },
+
+        clear: function() {
+          $field.each(function (index, el) {
+            var
+              $field       = $(el),
+              $element     = $field.parent(),
+              $fieldGroup  = $field.closest($group),
+              $prompt      = $fieldGroup.find(selector.prompt),
+              $calendar    = $field.closest(selector.uiCalendar),
+              defaultValue = $field.data(metadata.defaultValue) || '',
+              isCheckbox   = $element.is(selector.uiCheckbox),
+              isDropdown   = $element.is(selector.uiDropdown)  && module.can.useElement('dropdown'),
+              isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
+              isErrored    = $fieldGroup.hasClass(className.error)
+            ;
+            if(isErrored) {
+              module.verbose('Resetting error on field', $fieldGroup);
+              $fieldGroup.removeClass(className.error);
+              $prompt.remove();
+            }
+            if(isDropdown) {
+              module.verbose('Resetting dropdown value', $element, defaultValue);
+              $element.dropdown('clear', true);
+            }
+            else if(isCheckbox) {
+              $field.prop('checked', false);
+            }
+            else if (isCalendar) {
+              $calendar.calendar('clear');
+            }
+            else {
+              module.verbose('Resetting field value', $field, defaultValue);
+              $field.val('');
+            }
+          });
+          module.remove.states();
+        },
+
+        reset: function() {
+          $field.each(function (index, el) {
+            var
+              $field       = $(el),
+              $element     = $field.parent(),
+              $fieldGroup  = $field.closest($group),
+              $calendar    = $field.closest(selector.uiCalendar),
+              $prompt      = $fieldGroup.find(selector.prompt),
+              defaultValue = $field.data(metadata.defaultValue),
+              isCheckbox   = $element.is(selector.uiCheckbox),
+              isDropdown   = $element.is(selector.uiDropdown)  && module.can.useElement('dropdown'),
+              isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
+              isErrored    = $fieldGroup.hasClass(className.error)
+            ;
+            if(defaultValue === undefined) {
+              return;
+            }
+            if(isErrored) {
+              module.verbose('Resetting error on field', $fieldGroup);
+              $fieldGroup.removeClass(className.error);
+              $prompt.remove();
+            }
+            if(isDropdown) {
+              module.verbose('Resetting dropdown value', $element, defaultValue);
+              $element.dropdown('restore defaults', true);
+            }
+            else if(isCheckbox) {
+              module.verbose('Resetting checkbox value', $element, defaultValue);
+              $field.prop('checked', defaultValue);
+            }
+            else if (isCalendar) {
+              $calendar.calendar('set date', defaultValue);
+            }
+            else {
+              module.verbose('Resetting field value', $field, defaultValue);
+              $field.val(defaultValue);
+            }
+          });
+          module.remove.states();
+        },
+
+        determine: {
+          isValid: function() {
+            var
+              allValid = true
+            ;
+            $.each(validation, function(fieldName, field) {
+              if( !( module.validate.field(field, fieldName, true) ) ) {
+                allValid = false;
+              }
+            });
+            return allValid;
+          },
+          isDirty: function(e) {
+            var formIsDirty = false;
+
+            $field.each(function(index, el) {
+              var
+                $el = $(el),
+                isCheckbox = ($el.filter(selector.checkbox).length > 0),
+                isDirty
+              ;
+
+              if (isCheckbox) {
+                isDirty = module.is.checkboxDirty($el);
+              } else {
+                isDirty = module.is.fieldDirty($el);
+              }
+
+              $el.data(settings.metadata.isDirty, isDirty);
+
+              formIsDirty |= isDirty;
+            });
+
+            if (formIsDirty) {
+              module.set.dirty();
+            } else {
+              module.set.clean();
+            }
+
+          }
+        },
+
+        is: {
+          bracketedRule: function(rule) {
+            return (rule.type && rule.type.match(settings.regExp.bracket));
+          },
+          // duck type rule test
+          shorthandRules: function(rules) {
+            return (typeof rules == 'string' || Array.isArray(rules));
+          },
+          empty: function($field) {
+            if(!$field || $field.length === 0) {
+              return true;
+            }
+            else if($field.is(selector.checkbox)) {
+              return !$field.is(':checked');
+            }
+            else {
+              return module.is.blank($field);
+            }
+          },
+          blank: function($field) {
+            return String($field.val()).trim() === '';
+          },
+          valid: function(field, showErrors) {
+            var
+              allValid = true
+            ;
+            if(field) {
+              module.verbose('Checking if field is valid', field);
+              return module.validate.field(validation[field], field, !!showErrors);
+            }
+            else {
+              module.verbose('Checking if form is valid');
+              $.each(validation, function(fieldName, field) {
+                if( !module.is.valid(fieldName, showErrors) ) {
+                  allValid = false;
+                }
+              });
+              return allValid;
+            }
+          },
+          dirty: function() {
+            return dirty;
+          },
+          clean: function() {
+            return !dirty;
+          },
+          fieldDirty: function($el) {
+            var initialValue = $el.data(metadata.defaultValue);
+            // Explicitly check for null/undefined here as value may be `false`, so ($el.data(dataInitialValue) || '') would not work
+            if (initialValue == null) { initialValue = ''; }
+            else if(Array.isArray(initialValue)) {
+              initialValue = initialValue.toString();
+            }
+            var currentValue = $el.val();
+            if (currentValue == null) { currentValue = ''; }
+            // multiple select values are returned as arrays which are never equal, so do string conversion first
+            else if(Array.isArray(currentValue)) {
+              currentValue = currentValue.toString();
+            }
+            // Boolean values can be encoded as "true/false" or "True/False" depending on underlying frameworks so we need a case insensitive comparison
+            var boolRegex = /^(true|false)$/i;
+            var isBoolValue = boolRegex.test(initialValue) && boolRegex.test(currentValue);
+            if (isBoolValue) {
+              var regex = new RegExp("^" + initialValue + "$", "i");
+              return !regex.test(currentValue);
+            }
+
+            return currentValue !== initialValue;
+          },
+          checkboxDirty: function($el) {
+            var initialValue = $el.data(metadata.defaultValue);
+            var currentValue = $el.is(":checked");
+
+            return initialValue !== currentValue;
+          },
+          justDirty: function() {
+            return (history[0] === 'dirty');
+          },
+          justClean: function() {
+            return (history[0] === 'clean');
+          }
+        },
+
+        removeEvents: function() {
+          $module.off(eventNamespace);
+          $field.off(eventNamespace);
+          $submit.off(eventNamespace);
+          $field.off(eventNamespace);
+        },
+
+        event: {
+          field: {
+            keydown: function(event) {
+              var
+                $field       = $(this),
+                key          = event.which,
+                isInput      = $field.is(selector.input),
+                isCheckbox   = $field.is(selector.checkbox),
+                isInDropdown = ($field.closest(selector.uiDropdown).length > 0),
+                keyCode      = {
+                  enter  : 13,
+                  escape : 27
+                }
+              ;
+              if( key == keyCode.escape) {
+                module.verbose('Escape key pressed blurring field');
+                $field[0]
+                  .blur()
+                ;
+              }
+              if(!event.ctrlKey && key == keyCode.enter && isInput && !isInDropdown && !isCheckbox) {
+                if(!keyHeldDown) {
+                  $field.one('keyup' + eventNamespace, module.event.field.keyup);
+                  module.submit();
+                  module.debug('Enter pressed on input submitting form');
+                }
+                keyHeldDown = true;
+              }
+            },
+            keyup: function() {
+              keyHeldDown = false;
+            },
+            blur: function(event) {
+              var
+                $field          = $(this),
+                $fieldGroup     = $field.closest($group),
+                validationRules = module.get.validation($field)
+              ;
+              if(validationRules && (settings.on == 'blur' || ( $fieldGroup.hasClass(className.error) && settings.revalidate) )) {
+                module.debug('Revalidating field', $field, validationRules);
+                module.validate.field( validationRules );
+                if(!settings.inline) {
+                  module.validate.form(false,true);
+                }
+              }
+            },
+            change: function(event) {
+              var
+                $field      = $(this),
+                $fieldGroup = $field.closest($group),
+                validationRules = module.get.validation($field)
+              ;
+              if(validationRules && (settings.on == 'change' || ( $fieldGroup.hasClass(className.error) && settings.revalidate) )) {
+                clearTimeout(module.timer);
+                module.timer = setTimeout(function() {
+                  module.debug('Revalidating field', $field, validationRules);
+                  module.validate.field( validationRules );
+                  if(!settings.inline) {
+                    module.validate.form(false,true);
+                  }
+                }, settings.delay);
+              }
+            }
+          },
+          beforeUnload: function(event) {
+            if (module.is.dirty() && !submitting) {
+              var event = event || window.event;
+
+              // For modern browsers
+              if (event) {
+                event.returnValue = settings.text.leavingMessage;
+              }
+
+              // For olders...
+              return settings.text.leavingMessage;
+            }
+          }
+
+        },
+
+        get: {
+          ancillaryValue: function(rule) {
+            if(!rule.type || (!rule.value && !module.is.bracketedRule(rule))) {
+              return false;
+            }
+            return (rule.value !== undefined)
+              ? rule.value
+              : rule.type.match(settings.regExp.bracket)[1] + ''
+            ;
+          },
+          ruleName: function(rule) {
+            if( module.is.bracketedRule(rule) ) {
+              return rule.type.replace(rule.type.match(settings.regExp.bracket)[0], '');
+            }
+            return rule.type;
+          },
+          changeEvent: function(type, $input) {
+            if(type == 'checkbox' || type == 'radio' || type == 'hidden' || $input.is('select')) {
+              return 'change';
+            }
+            else {
+              return module.get.inputEvent();
+            }
+          },
+          inputEvent: function() {
+            return (document.createElement('input').oninput !== undefined)
+              ? 'input'
+              : (document.createElement('input').onpropertychange !== undefined)
+                ? 'propertychange'
+                : 'keyup'
+            ;
+          },
+          fieldsFromShorthand: function(fields) {
+            var
+              fullFields = {}
+            ;
+            $.each(fields, function(name, rules) {
+              if (!Array.isArray(rules) && typeof rules === 'object') {
+                fullFields[name] = rules;
+              } else {
+                if (typeof rules == 'string') {
+                  rules = [rules];
+                }
+                fullFields[name] = {
+                  rules: []
+                };
+                $.each(rules, function (index, rule) {
+                  fullFields[name].rules.push({type: rule});
+                });
+              }
+            });
+            return fullFields;
+          },
+          prompt: function(rule, field) {
+            var
+              ruleName      = module.get.ruleName(rule),
+              ancillary     = module.get.ancillaryValue(rule),
+              $field        = module.get.field(field.identifier),
+              value         = $field.val(),
+              prompt        = $.isFunction(rule.prompt)
+                ? rule.prompt(value)
+                : rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
+              requiresValue = (prompt.search('{value}') !== -1),
+              requiresName  = (prompt.search('{name}') !== -1),
+              $label,
+              name,
+              parts,
+              suffixPrompt
+            ;
+            if(ancillary && ancillary.indexOf('..') >= 0) {
+              parts = ancillary.split('..', 2);
+              if(!rule.prompt) {
+                suffixPrompt = (
+                    parts[0] === '' ? settings.prompt.maxValue.replace(/\{ruleValue\}/g,'{max}') :
+                    parts[1] === '' ? settings.prompt.minValue.replace(/\{ruleValue\}/g,'{min}') :
+                    settings.prompt.range
+                );
+                prompt += suffixPrompt.replace(/\{name\}/g, ' ' + settings.text.and);
+              }
+              prompt = prompt.replace(/\{min\}/g, parts[0]);
+              prompt = prompt.replace(/\{max\}/g, parts[1]);
+            }
+            if(requiresValue) {
+              prompt = prompt.replace(/\{value\}/g, $field.val());
+            }
+            if(requiresName) {
+              $label = $field.closest(selector.group).find('label').eq(0);
+              name = ($label.length == 1)
+                ? $label.text()
+                : $field.prop('placeholder') || settings.text.unspecifiedField
+              ;
+              prompt = prompt.replace(/\{name\}/g, name);
+            }
+            prompt = prompt.replace(/\{identifier\}/g, field.identifier);
+            prompt = prompt.replace(/\{ruleValue\}/g, ancillary);
+            if(!rule.prompt) {
+              module.verbose('Using default validation prompt for type', prompt, ruleName);
+            }
+            return prompt;
+          },
+          settings: function() {
+            if($.isPlainObject(parameters)) {
+              var
+                keys     = Object.keys(parameters),
+                isLegacySettings = (keys.length > 0)
+                  ? (parameters[keys[0]].identifier !== undefined && parameters[keys[0]].rules !== undefined)
+                  : false
+              ;
+              if(isLegacySettings) {
+                // 1.x (ducktyped)
+                settings   = $.extend(true, {}, $.fn.form.settings, legacyParameters);
+                validation = $.extend({}, $.fn.form.settings.defaults, parameters);
+                module.error(settings.error.oldSyntax, element);
+                module.verbose('Extending settings from legacy parameters', validation, settings);
+              }
+              else {
+                // 2.x
+                if(parameters.fields) {
+                  parameters.fields = module.get.fieldsFromShorthand(parameters.fields);
+                }
+                settings   = $.extend(true, {}, $.fn.form.settings, parameters);
+                validation = $.extend({}, $.fn.form.settings.defaults, settings.fields);
+                module.verbose('Extending settings', validation, settings);
+              }
+            }
+            else {
+              settings   = $.fn.form.settings;
+              validation = $.fn.form.settings.defaults;
+              module.verbose('Using default form validation', validation, settings);
+            }
+
+            // shorthand
+            namespace       = settings.namespace;
+            metadata        = settings.metadata;
+            selector        = settings.selector;
+            className       = settings.className;
+            regExp          = settings.regExp;
+            error           = settings.error;
+            moduleNamespace = 'module-' + namespace;
+            eventNamespace  = '.' + namespace;
+
+            // grab instance
+            instance = $module.data(moduleNamespace);
+
+            // refresh selector cache
+            (instance || module).refresh();
+          },
+          field: function(identifier) {
+            module.verbose('Finding field with identifier', identifier);
+            identifier = module.escape.string(identifier);
+            var t;
+            if((t=$field.filter('#' + identifier)).length > 0 ) {
+              return t;
+            }
+            if((t=$field.filter('[name="' + identifier +'"]')).length > 0 ) {
+              return t;
+            }
+            if((t=$field.filter('[name="' + identifier +'[]"]')).length > 0 ) {
+              return t;
+            }
+            if((t=$field.filter('[data-' + metadata.validate + '="'+ identifier +'"]')).length > 0 ) {
+              return t;
+            }
+            return $('<input/>');
+          },
+          fields: function(fields) {
+            var
+              $fields = $()
+            ;
+            $.each(fields, function(index, name) {
+              $fields = $fields.add( module.get.field(name) );
+            });
+            return $fields;
+          },
+          validation: function($field) {
+            var
+              fieldValidation,
+              identifier
+            ;
+            if(!validation) {
+              return false;
+            }
+            $.each(validation, function(fieldName, field) {
+              identifier = field.identifier || fieldName;
+              $.each(module.get.field(identifier), function(index, groupField) {
+                if(groupField == $field[0]) {
+                  field.identifier = identifier;
+                  fieldValidation = field;
+                  return false;
+                }
+              });
+            });
+            return fieldValidation || false;
+          },
+          value: function (field) {
+            var
+              fields = [],
+              results
+            ;
+            fields.push(field);
+            results = module.get.values.call(element, fields);
+            return results[field];
+          },
+          values: function (fields) {
+            var
+              $fields = Array.isArray(fields)
+                ? module.get.fields(fields)
+                : $field,
+              values = {}
+            ;
+            $fields.each(function(index, field) {
+              var
+                $field       = $(field),
+                $calendar    = $field.closest(selector.uiCalendar),
+                name         = $field.prop('name'),
+                value        = $field.val(),
+                isCheckbox   = $field.is(selector.checkbox),
+                isRadio      = $field.is(selector.radio),
+                isMultiple   = (name.indexOf('[]') !== -1),
+                isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
+                isChecked    = (isCheckbox)
+                  ? $field.is(':checked')
+                  : false
+              ;
+              if(name) {
+                if(isMultiple) {
+                  name = name.replace('[]', '');
+                  if(!values[name]) {
+                    values[name] = [];
+                  }
+                  if(isCheckbox) {
+                    if(isChecked) {
+                      values[name].push(value || true);
+                    }
+                    else {
+                      values[name].push(false);
+                    }
+                  }
+                  else {
+                    values[name].push(value);
+                  }
+                }
+                else {
+                  if(isRadio) {
+                    if(values[name] === undefined || values[name] === false) {
+                      values[name] = (isChecked)
+                        ? value || true
+                        : false
+                      ;
+                    }
+                  }
+                  else if(isCheckbox) {
+                    if(isChecked) {
+                      values[name] = value || true;
+                    }
+                    else {
+                      values[name] = false;
+                    }
+                  }
+                  else if(isCalendar) {
+                    var date = $calendar.calendar('get date');
+
+                    if (date !== null) {
+                      if (settings.dateHandling == 'date') {
+                        values[name] = date;
+                      } else if(settings.dateHandling == 'input') {
+                        values[name] = $calendar.calendar('get input date')
+                      } else if (settings.dateHandling == 'formatter') {
+                        var type = $calendar.calendar('setting', 'type');
+
+                        switch(type) {
+                          case 'date':
+                          values[name] = settings.formatter.date(date);
+                          break;
+
+                          case 'datetime':
+                          values[name] = settings.formatter.datetime(date);
+                          break;
+
+                          case 'time':
+                          values[name] = settings.formatter.time(date);
+                          break;
+
+                          case 'month':
+                          values[name] = settings.formatter.month(date);
+                          break;
+
+                          case 'year':
+                          values[name] = settings.formatter.year(date);
+                          break;
+
+                          default:
+                          module.debug('Wrong calendar mode', $calendar, type);
+                          values[name] = '';
+                        }
+                      }
+                    } else {
+                      values[name] = '';
+                    }
+                  } else {
+                    values[name] = value;
+                  }
+                }
+              }
+            });
+            return values;
+          },
+          dirtyFields: function() {
+            return $field.filter(function(index, e) {
+              return $(e).data(metadata.isDirty);
+            });
+          }
+        },
+
+        has: {
+
+          field: function(identifier) {
+            module.verbose('Checking for existence of a field with identifier', identifier);
+            identifier = module.escape.string(identifier);
+            if(typeof identifier !== 'string') {
+              module.error(error.identifier, identifier);
+            }
+            if($field.filter('#' + identifier).length > 0 ) {
+              return true;
+            }
+            else if( $field.filter('[name="' + identifier +'"]').length > 0 ) {
+              return true;
+            }
+            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
+              return true;
+            }
+            return false;
+          }
+
+        },
+
+        can: {
+            useElement: function(element){
+               if ($.fn[element] !== undefined) {
+                   return true;
+               }
+               module.error(error.noElement.replace('{element}',element));
+               return false;
+            }
+        },
+
+        escape: {
+          string: function(text) {
+            text =  String(text);
+            return text.replace(regExp.escape, '\\$&');
+          }
+        },
+
+        add: {
+          // alias
+          rule: function(name, rules) {
+            module.add.field(name, rules);
+          },
+          field: function(name, rules) {
+            // Validation should have at least a standard format
+            if(validation[name] === undefined || validation[name].rules === undefined) {
+              validation[name] = {
+                rules: []
+              };
+            }
+            var
+              newValidation = {
+                rules: []
+              }
+            ;
+            if(module.is.shorthandRules(rules)) {
+              rules = Array.isArray(rules)
+                ? rules
+                : [rules]
+              ;
+              $.each(rules, function(_index, rule) {
+                newValidation.rules.push({ type: rule });
+              });
+            }
+            else {
+              newValidation.rules = rules.rules;
+            }
+            // For each new rule, check if there's not already one with the same type
+            $.each(newValidation.rules, function (_index, rule) {
+              if ($.grep(validation[name].rules, function(item){ return item.type == rule.type; }).length == 0) {
+                validation[name].rules.push(rule);
+              }
+            });
+            module.debug('Adding rules', newValidation.rules, validation);
+          },
+          fields: function(fields) {
+            validation = $.extend({}, validation, module.get.fieldsFromShorthand(fields));
+          },
+          prompt: function(identifier, errors, internal) {
+            var
+              $field       = module.get.field(identifier),
+              $fieldGroup  = $field.closest($group),
+              $prompt      = $fieldGroup.children(selector.prompt),
+              promptExists = ($prompt.length !== 0)
+            ;
+            errors = (typeof errors == 'string')
+              ? [errors]
+              : errors
+            ;
+            module.verbose('Adding field error state', identifier);
+            if(!internal) {
+              $fieldGroup
+                  .addClass(className.error)
+              ;
+            }
+            if(settings.inline) {
+              if(!promptExists) {
+                $prompt = settings.templates.prompt(errors, className.label);
+                $prompt
+                  .appendTo($fieldGroup)
+                ;
+              }
+              $prompt
+                .html(errors[0])
+              ;
+              if(!promptExists) {
+                if(settings.transition && module.can.useElement('transition') && $module.transition('is supported')) {
+                  module.verbose('Displaying error with css transition', settings.transition);
+                  $prompt.transition(settings.transition + ' in', settings.duration);
+                }
+                else {
+                  module.verbose('Displaying error with fallback javascript animation');
+                  $prompt
+                    .fadeIn(settings.duration)
+                  ;
+                }
+              }
+              else {
+                module.verbose('Inline errors are disabled, no inline error added', identifier);
+              }
+            }
+          },
+          errors: function(errors) {
+            module.debug('Adding form error messages', errors);
+            module.set.error();
+            $message
+              .html( settings.templates.error(errors) )
+            ;
+          }
+        },
+
+        remove: {
+          errors: function() {
+            module.debug('Removing form error messages');
+            $message.empty();
+          },
+          states: function() {
+            $module.removeClass(className.error).removeClass(className.success);
+            if(!settings.inline) {
+              module.remove.errors();
+            }
+            module.determine.isDirty();
+          },
+          rule: function(field, rule) {
+            var
+              rules = Array.isArray(rule)
+                ? rule
+                : [rule]
+            ;
+            if(validation[field] === undefined || !Array.isArray(validation[field].rules)) {
+              return;
+            }
+            if(rule === undefined) {
+              module.debug('Removed all rules');
+              validation[field].rules = [];
+              return;
+            }
+            $.each(validation[field].rules, function(index, rule) {
+              if(rule && rules.indexOf(rule.type) !== -1) {
+                module.debug('Removed rule', rule.type);
+                validation[field].rules.splice(index, 1);
+              }
+            });
+          },
+          field: function(field) {
+            var
+              fields = Array.isArray(field)
+                ? field
+                : [field]
+            ;
+            $.each(fields, function(index, field) {
+              module.remove.rule(field);
+            });
+          },
+          // alias
+          rules: function(field, rules) {
+            if(Array.isArray(field)) {
+              $.each(field, function(index, field) {
+                module.remove.rule(field, rules);
+              });
+            }
+            else {
+              module.remove.rule(field, rules);
+            }
+          },
+          fields: function(fields) {
+            module.remove.field(fields);
+          },
+          prompt: function(identifier) {
+            var
+              $field      = module.get.field(identifier),
+              $fieldGroup = $field.closest($group),
+              $prompt     = $fieldGroup.children(selector.prompt)
+            ;
+            $fieldGroup
+              .removeClass(className.error)
+            ;
+            if(settings.inline && $prompt.is(':visible')) {
+              module.verbose('Removing prompt for field', identifier);
+              if(settings.transition  && module.can.useElement('transition') && $module.transition('is supported')) {
+                $prompt.transition(settings.transition + ' out', settings.duration, function() {
+                  $prompt.remove();
+                });
+              }
+              else {
+                $prompt
+                  .fadeOut(settings.duration, function(){
+                    $prompt.remove();
+                  })
+                ;
+              }
+            }
+          }
+        },
+
+        set: {
+          success: function() {
+            $module
+              .removeClass(className.error)
+              .addClass(className.success)
+            ;
+          },
+          defaults: function () {
+            $field.each(function (index, el) {
+              var
+                $el        = $(el),
+                $parent    = $el.parent(),
+                isCheckbox = ($el.filter(selector.checkbox).length > 0),
+                isDropdown = $parent.is(selector.uiDropdown) && module.can.useElement('dropdown'),
+                $calendar   = $el.closest(selector.uiCalendar),
+                isCalendar  = ($calendar.length > 0  && module.can.useElement('calendar')),
+                value      = (isCheckbox)
+                  ? $el.is(':checked')
+                  : $el.val()
+              ;
+              if (isDropdown) {
+                $parent.dropdown('save defaults');
+              }
+              else if (isCalendar) {
+                $calendar.calendar('refresh');
+              }
+              $el.data(metadata.defaultValue, value);
+              $el.data(metadata.isDirty, false);
+            });
+          },
+          error: function() {
+            $module
+              .removeClass(className.success)
+              .addClass(className.error)
+            ;
+          },
+          value: function (field, value) {
+            var
+              fields = {}
+            ;
+            fields[field] = value;
+            return module.set.values.call(element, fields);
+          },
+          values: function (fields) {
+            if($.isEmptyObject(fields)) {
+              return;
+            }
+            $.each(fields, function(key, value) {
+              var
+                $field      = module.get.field(key),
+                $element    = $field.parent(),
+                $calendar   = $field.closest(selector.uiCalendar),
+                isMultiple  = Array.isArray(value),
+                isCheckbox  = $element.is(selector.uiCheckbox)  && module.can.useElement('checkbox'),
+                isDropdown  = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
+                isRadio     = ($field.is(selector.radio) && isCheckbox),
+                isCalendar  = ($calendar.length > 0  && module.can.useElement('calendar')),
+                fieldExists = ($field.length > 0),
+                $multipleField
+              ;
+              if(fieldExists) {
+                if(isMultiple && isCheckbox) {
+                  module.verbose('Selecting multiple', value, $field);
+                  $element.checkbox('uncheck');
+                  $.each(value, function(index, value) {
+                    $multipleField = $field.filter('[value="' + value + '"]');
+                    $element       = $multipleField.parent();
+                    if($multipleField.length > 0) {
+                      $element.checkbox('check');
+                    }
+                  });
+                }
+                else if(isRadio) {
+                  module.verbose('Selecting radio value', value, $field);
+                  $field.filter('[value="' + value + '"]')
+                    .parent(selector.uiCheckbox)
+                      .checkbox('check')
+                  ;
+                }
+                else if(isCheckbox) {
+                  module.verbose('Setting checkbox value', value, $element);
+                  if(value === true || value === 1) {
+                    $element.checkbox('check');
+                  }
+                  else {
+                    $element.checkbox('uncheck');
+                  }
+                }
+                else if(isDropdown) {
+                  module.verbose('Setting dropdown value', value, $element);
+                  $element.dropdown('set selected', value);
+                }
+                else if (isCalendar) {
+                  $calendar.calendar('set date',value);
+                }
+                else {
+                  module.verbose('Setting field value', value, $field);
+                  $field.val(value);
+                }
+              }
+            });
+          },
+          dirty: function() {
+            module.verbose('Setting state dirty');
+            dirty = true;
+            history[0] = history[1];
+            history[1] = 'dirty';
+
+            if (module.is.justClean()) {
+              $module.trigger('dirty');
+            }
+          },
+          clean: function() {
+            module.verbose('Setting state clean');
+            dirty = false;
+            history[0] = history[1];
+            history[1] = 'clean';
+
+            if (module.is.justDirty()) {
+              $module.trigger('clean');
+            }
+          },
+          asClean: function() {
+            module.set.defaults();
+            module.set.clean();
+          },
+          asDirty: function() {
+            module.set.defaults();
+            module.set.dirty();
+          },
+          autoCheck: function() {
+            module.debug('Enabling auto check on required fields');
+            $field.each(function (_index, el) {
+              var
+                $el        = $(el),
+                $elGroup   = $(el).closest($group),
+                isCheckbox = ($el.filter(selector.checkbox).length > 0),
+                isRequired = $el.prop('required') || $elGroup.hasClass(className.required) || $elGroup.parent().hasClass(className.required),
+                isDisabled = $el.is(':disabled') || $elGroup.hasClass(className.disabled) || $elGroup.parent().hasClass(className.disabled),
+                validation = module.get.validation($el),
+                hasEmptyRule = validation
+                  ? $.grep(validation.rules, function(rule) { return rule.type == "empty" }) !== 0
+                  : false,
+                identifier = validation.identifier || $el.attr('id') || $el.attr('name') || $el.data(metadata.validate)
+              ;
+              if (isRequired && !isDisabled && !hasEmptyRule && identifier !== undefined) {
+                if (isCheckbox) {
+                  module.verbose("Adding 'checked' rule on field", identifier);
+                  module.add.rule(identifier, "checked");
+                } else {
+                  module.verbose("Adding 'empty' rule on field", identifier);
+                  module.add.rule(identifier, "empty");
+                }
+              }
+            });
+          },
+          optional: function(identifier, bool) {
+            bool = (bool !== false);
+            $.each(validation, function(fieldName, field) {
+              if (identifier == fieldName || identifier == field.identifier) {
+                field.optional = bool;
+              }
+            });
+          }
+        },
+
+        validate: {
+
+          form: function(event, ignoreCallbacks) {
+            var values = module.get.values();
+
+            // input keydown event will fire submit repeatedly by browser default
+            if(keyHeldDown) {
+              return false;
+            }
+
+            // reset errors
+            formErrors = [];
+            if( module.determine.isValid() ) {
+              module.debug('Form has no validation errors, submitting');
+              module.set.success();
+              if(!settings.inline) {
+                module.remove.errors();
+              }
+              if(ignoreCallbacks !== true) {
+                return settings.onSuccess.call(element, event, values);
+              }
+            }
+            else {
+              module.debug('Form has errors');
+              submitting = false;
+              module.set.error();
+              if(!settings.inline) {
+                module.add.errors(formErrors);
+              }
+              // prevent ajax submit
+              if(event && $module.data('moduleApi') !== undefined) {
+                event.stopImmediatePropagation();
+              }
+              if(settings.errorFocus) {
+                var focusElement, hasTabIndex = true;
+                if (typeof settings.errorFocus === 'string') {
+                  focusElement = $(settings.errorFocus);
+                  hasTabIndex = focusElement.is('[tabindex]');
+                  // to be able to focus/scroll into non input elements we need a tabindex
+                  if (!hasTabIndex) {
+                    focusElement.attr('tabindex',-1);
+                  }
+                } else {
+                  focusElement = $group.filter('.' + className.error).first().find(selector.field);
+                }
+                focusElement.focus();
+                // only remove tabindex if it was dynamically created above
+                if (!hasTabIndex){
+                  focusElement.removeAttr('tabindex');
+                }
+              }
+              if(ignoreCallbacks !== true) {
+                return settings.onFailure.call(element, formErrors, values);
+              }
+            }
+          },
+
+          // takes a validation object and returns whether field passes validation
+          field: function(field, fieldName, showErrors) {
+            showErrors = (showErrors !== undefined)
+              ? showErrors
+              : true
+            ;
+            if(typeof field == 'string') {
+              module.verbose('Validating field', field);
+              fieldName = field;
+              field     = validation[field];
+            }
+            var
+              identifier    = field.identifier || fieldName,
+              $field        = module.get.field(identifier),
+              $dependsField = (field.depends)
+                ? module.get.field(field.depends)
+                : false,
+              fieldValid  = true,
+              fieldErrors = []
+            ;
+            if(!field.identifier) {
+              module.debug('Using field name as identifier', identifier);
+              field.identifier = identifier;
+            }
+            var isDisabled = !$field.filter(':not(:disabled)').length;
+            if(isDisabled) {
+              module.debug('Field is disabled. Skipping', identifier);
+            }
+            else if(field.optional && module.is.blank($field)){
+              module.debug('Field is optional and blank. Skipping', identifier);
+            }
+            else if(field.depends && module.is.empty($dependsField)) {
+              module.debug('Field depends on another value that is not present or empty. Skipping', $dependsField);
+            }
+            else if(field.rules !== undefined) {
+              if(showErrors) {
+                $field.closest($group).removeClass(className.error);
+              }
+              $.each(field.rules, function(index, rule) {
+                if( module.has.field(identifier)) {
+                  var invalidFields = module.validate.rule(field, rule,true) || [];
+                  if (invalidFields.length>0){
+                    module.debug('Field is invalid', identifier, rule.type);
+                    fieldErrors.push(module.get.prompt(rule, field));
+                    fieldValid = false;
+                    if(showErrors){
+                      $(invalidFields).closest($group).addClass(className.error);
+                    }
+                  }
+                }
+              });
+            }
+            if(fieldValid) {
+              if(showErrors) {
+                module.remove.prompt(identifier, fieldErrors);
+                settings.onValid.call($field);
+              }
+            }
+            else {
+              if(showErrors) {
+                formErrors = formErrors.concat(fieldErrors);
+                module.add.prompt(identifier, fieldErrors, true);
+                settings.onInvalid.call($field, fieldErrors);
+              }
+              return false;
+            }
+            return true;
+          },
+
+          // takes validation rule and returns whether field passes rule
+          rule: function(field, rule, internal) {
+            var
+              $field       = module.get.field(field.identifier),
+              ancillary    = module.get.ancillaryValue(rule),
+              ruleName     = module.get.ruleName(rule),
+              ruleFunction = settings.rules[ruleName],
+              invalidFields = [],
+              isCheckbox = $field.is(selector.checkbox),
+              isValid = function(field){
+                var value = (isCheckbox ? $(field).filter(':checked').val() : $(field).val());
+                // cast to string avoiding encoding special values
+                value = (value === undefined || value === '' || value === null)
+                    ? ''
+                    : (settings.shouldTrim && rule.shouldTrim !== false) || rule.shouldTrim ? String(value + '').trim() : String(value + '')
+                ;
+                return ruleFunction.call(field, value, ancillary, $module);
+              }
+            ;
+            if( !$.isFunction(ruleFunction) ) {
+              module.error(error.noRule, ruleName);
+              return;
+            }
+            if(isCheckbox) {
+              if (!isValid($field)) {
+                invalidFields = $field;
+              }
+            } else {
+              $.each($field, function (index, field) {
+                if (!isValid(field)) {
+                  invalidFields.push(field);
+                }
+              });
+            }
+            return internal ? invalidFields : !(invalidFields.length>0);
+          }
+        },
+
+        setting: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(!settings.silent && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(!settings.silent && settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          if(!settings.silent) {
+            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+            module.error.apply(console, arguments);
+          }
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 500);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if($allModules.length > 1) {
+              title += ' ' + '(' + $allModules.length + ')';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                return false;
+              }
+            });
+          }
+          if( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if(Array.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+      module.initialize();
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.form.settings = {
+
+  name              : 'Form',
+  namespace         : 'form',
+
+  debug             : false,
+  verbose           : false,
+  performance       : true,
+
+  fields            : false,
+
+  keyboardShortcuts : true,
+  on                : 'submit',
+  inline            : false,
+
+  delay             : 200,
+  revalidate        : true,
+  shouldTrim        : true,
+
+  transition        : 'scale',
+  duration          : 200,
+
+  autoCheckRequired : false,
+  preventLeaving    : false,
+  errorFocus        : false,
+  dateHandling      : 'date', // 'date', 'input', 'formatter'
+
+  onValid           : function() {},
+  onInvalid         : function() {},
+  onSuccess         : function() { return true; },
+  onFailure         : function() { return false; },
+  onDirty           : function() {},
+  onClean           : function() {},
+
+  metadata : {
+    defaultValue : 'default',
+    validate     : 'validate',
+    isDirty      : 'isDirty'
+  },
+
+  regExp: {
+    htmlID  : /^[a-zA-Z][\w:.-]*$/g,
+    bracket : /\[(.*)\]/i,
+    decimal : /^\d+\.?\d*$/,
+    email   : /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i,
+    escape  : /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|:,=@]/g,
+    flags   : /^\/(.*)\/(.*)?/,
+    integer : /^\-?\d+$/,
+    number  : /^\-?\d*(\.\d+)?$/,
+    url     : /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i
+  },
+
+  text: {
+    and              : 'and',
+    unspecifiedRule  : 'Please enter a valid value',
+    unspecifiedField : 'This field',
+    leavingMessage   : 'There are unsaved changes on this page which will be discarded if you continue.'
+  },
+
+  prompt: {
+    range                : '{name} must be in a range from {min} to {max}',
+    maxValue             : '{name} must have a maximum value of {ruleValue}',
+    minValue             : '{name} must have a minimum value of {ruleValue}',
+    empty                : '{name} must have a value',
+    checked              : '{name} must be checked',
+    email                : '{name} must be a valid e-mail',
+    url                  : '{name} must be a valid url',
+    regExp               : '{name} is not formatted correctly',
+    integer              : '{name} must be an integer',
+    decimal              : '{name} must be a decimal number',
+    number               : '{name} must be set to a number',
+    is                   : '{name} must be "{ruleValue}"',
+    isExactly            : '{name} must be exactly "{ruleValue}"',
+    not                  : '{name} cannot be set to "{ruleValue}"',
+    notExactly           : '{name} cannot be set to exactly "{ruleValue}"',
+    contain              : '{name} must contain "{ruleValue}"',
+    containExactly       : '{name} must contain exactly "{ruleValue}"',
+    doesntContain        : '{name} cannot contain  "{ruleValue}"',
+    doesntContainExactly : '{name} cannot contain exactly "{ruleValue}"',
+    minLength            : '{name} must be at least {ruleValue} characters',
+    length               : '{name} must be at least {ruleValue} characters',
+    exactLength          : '{name} must be exactly {ruleValue} characters',
+    maxLength            : '{name} cannot be longer than {ruleValue} characters',
+    match                : '{name} must match {ruleValue} field',
+    different            : '{name} must have a different value than {ruleValue} field',
+    creditCard           : '{name} must be a valid credit card number',
+    minCount             : '{name} must have at least {ruleValue} choices',
+    exactCount           : '{name} must have exactly {ruleValue} choices',
+    maxCount             : '{name} must have {ruleValue} or less choices'
+  },
+
+  selector : {
+    checkbox   : 'input[type="checkbox"], input[type="radio"]',
+    clear      : '.clear',
+    field      : 'input:not(.search):not([type="file"]), textarea, select',
+    group      : '.field',
+    input      : 'input:not([type="file"])',
+    message    : '.error.message',
+    prompt     : '.prompt.label',
+    radio      : 'input[type="radio"]',
+    reset      : '.reset:not([type="reset"])',
+    submit     : '.submit:not([type="submit"])',
+    uiCheckbox : '.ui.checkbox',
+    uiDropdown : '.ui.dropdown',
+    uiCalendar : '.ui.calendar'
+  },
+
+  className : {
+    error    : 'error',
+    label    : 'ui basic red pointing prompt label',
+    pressed  : 'down',
+    success  : 'success',
+    required : 'required',
+    disabled : 'disabled'
+  },
+
+  error: {
+    identifier : 'You must specify a string identifier for each field',
+    method     : 'The method you called is not defined.',
+    noRule     : 'There is no rule matching the one you specified',
+    oldSyntax  : 'Starting in 2.0 forms now only take a single settings object. Validation settings converted to new syntax automatically.',
+    noElement  : 'This module requires ui {element}'
+  },
+
+  templates: {
+
+    // template that produces error message
+    error: function(errors) {
+      var
+        html = '<ul class="list">'
+      ;
+      $.each(errors, function(index, value) {
+        html += '<li>' + value + '</li>';
+      });
+      html += '</ul>';
+      return $(html);
+    },
+
+    // template that produces label
+    prompt: function(errors, labelClasses) {
+      return $('<div/>')
+        .addClass(labelClasses)
+        .html(errors[0])
+      ;
+    }
+  },
+
+  formatter: {
+    date: function(date) {
+      return Intl.DateTimeFormat('en-GB').format(date);
+    },
+    datetime: function(date) {
+      return Intl.DateTimeFormat('en-GB', {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(date);
+    },
+    time: function(date) {
+      return Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(date);
+    },
+    month: function(date) {
+      return Intl.DateTimeFormat('en-GB', {
+        month: '2-digit',
+        year: 'numeric'
+      }).format(date);
+    },
+    year: function(date) {
+      return Intl.DateTimeFormat('en-GB', {
+        year: 'numeric'
+      }).format(date);
+    }
+  },
+
+  rules: {
+
+    // is not empty or blank string
+    empty: function(value) {
+      return !(value === undefined || '' === value || Array.isArray(value) && value.length === 0);
+    },
+
+    // checkbox checked
+    checked: function() {
+      return ($(this).filter(':checked').length > 0);
+    },
+
+    // is most likely an email
+    email: function(value){
+      return $.fn.form.settings.regExp.email.test(value);
+    },
+
+    // value is most likely url
+    url: function(value) {
+      return $.fn.form.settings.regExp.url.test(value);
+    },
+
+    // matches specified regExp
+    regExp: function(value, regExp) {
+      if(regExp instanceof RegExp) {
+        return value.match(regExp);
+      }
+      var
+        regExpParts = regExp.match($.fn.form.settings.regExp.flags),
+        flags
+      ;
+      // regular expression specified as /baz/gi (flags)
+      if(regExpParts) {
+        regExp = (regExpParts.length >= 2)
+          ? regExpParts[1]
+          : regExp
+        ;
+        flags = (regExpParts.length >= 3)
+          ? regExpParts[2]
+          : ''
+        ;
+      }
+      return value.match( new RegExp(regExp, flags) );
+    },
+    minValue: function(value, range) {
+      return $.fn.form.settings.rules.range(value, range+'..', 'number');
+    },
+    maxValue: function(value, range) {
+      return $.fn.form.settings.rules.range(value, '..'+range, 'number');
+    },
+    // is valid integer or matches range
+    integer: function(value, range) {
+      return $.fn.form.settings.rules.range(value, range, 'integer');
+    },
+    range: function(value, range, regExp) {
+      if(typeof regExp == "string") {
+        regExp = $.fn.form.settings.regExp[regExp];
+      }
+      if(!(regExp instanceof RegExp)) {
+        regExp = $.fn.form.settings.regExp.integer;
+      }
+      var
+        min,
+        max,
+        parts
+      ;
+      if( !range || ['', '..'].indexOf(range) !== -1) {
+        // do nothing
+      }
+      else if(range.indexOf('..') == -1) {
+        if(regExp.test(range)) {
+          min = max = range - 0;
+        }
+      }
+      else {
+        parts = range.split('..', 2);
+        if(regExp.test(parts[0])) {
+          min = parts[0] - 0;
+        }
+        if(regExp.test(parts[1])) {
+          max = parts[1] - 0;
+        }
+      }
+      return (
+        regExp.test(value) &&
+        (min === undefined || value >= min) &&
+        (max === undefined || value <= max)
+      );
+    },
+
+    // is valid number (with decimal)
+    decimal: function(value, range) {
+      return $.fn.form.settings.rules.range(value, range, 'decimal');
+    },
+
+    // is valid number
+    number: function(value, range) {
+      return $.fn.form.settings.rules.range(value, range, 'number');
+    },
+
+    // is value (case insensitive)
+    is: function(value, text) {
+      text = (typeof text == 'string')
+        ? text.toLowerCase()
+        : text
+      ;
+      value = (typeof value == 'string')
+        ? value.toLowerCase()
+        : value
+      ;
+      return (value == text);
+    },
+
+    // is value
+    isExactly: function(value, text) {
+      return (value == text);
+    },
+
+    // value is not another value (case insensitive)
+    not: function(value, notValue) {
+      value = (typeof value == 'string')
+        ? value.toLowerCase()
+        : value
+      ;
+      notValue = (typeof notValue == 'string')
+        ? notValue.toLowerCase()
+        : notValue
+      ;
+      return (value != notValue);
+    },
+
+    // value is not another value (case sensitive)
+    notExactly: function(value, notValue) {
+      return (value != notValue);
+    },
+
+    // value contains text (insensitive)
+    contains: function(value, text) {
+      // escape regex characters
+      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
+      return (value.search( new RegExp(text, 'i') ) !== -1);
+    },
+
+    // value contains text (case sensitive)
+    containsExactly: function(value, text) {
+      // escape regex characters
+      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
+      return (value.search( new RegExp(text) ) !== -1);
+    },
+
+    // value contains text (insensitive)
+    doesntContain: function(value, text) {
+      // escape regex characters
+      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
+      return (value.search( new RegExp(text, 'i') ) === -1);
+    },
+
+    // value contains text (case sensitive)
+    doesntContainExactly: function(value, text) {
+      // escape regex characters
+      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
+      return (value.search( new RegExp(text) ) === -1);
+    },
+
+    // is at least string length
+    minLength: function(value, requiredLength) {
+      return (value !== undefined)
+        ? (value.length >= requiredLength)
+        : false
+      ;
+    },
+
+    // see rls notes for 2.0.6 (this is a duplicate of minLength)
+    length: function(value, requiredLength) {
+      return (value !== undefined)
+        ? (value.length >= requiredLength)
+        : false
+      ;
+    },
+
+    // is exactly length
+    exactLength: function(value, requiredLength) {
+      return (value !== undefined)
+        ? (value.length == requiredLength)
+        : false
+      ;
+    },
+
+    // is less than length
+    maxLength: function(value, maxLength) {
+      return (value !== undefined)
+        ? (value.length <= maxLength)
+        : false
+      ;
+    },
+
+    // matches another field
+    match: function(value, identifier, $module) {
+      var
+        matchingValue,
+        matchingElement
+      ;
+      if((matchingElement = $module.find('[data-validate="'+ identifier +'"]')).length > 0 ) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('#' + identifier)).length > 0) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('[name="' + identifier +'"]')).length > 0) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('[name="' + identifier +'[]"]')).length > 0 ) {
+        matchingValue = matchingElement;
+      }
+      return (matchingValue !== undefined)
+        ? ( value.toString() == matchingValue.toString() )
+        : false
+      ;
+    },
+
+    // different than another field
+    different: function(value, identifier, $module) {
+      // use either id or name of field
+      var
+        matchingValue,
+        matchingElement
+      ;
+      if((matchingElement = $module.find('[data-validate="'+ identifier +'"]')).length > 0 ) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('#' + identifier)).length > 0) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('[name="' + identifier +'"]')).length > 0) {
+        matchingValue = matchingElement.val();
+      }
+      else if((matchingElement = $module.find('[name="' + identifier +'[]"]')).length > 0 ) {
+        matchingValue = matchingElement;
+      }
+      return (matchingValue !== undefined)
+        ? ( value.toString() !== matchingValue.toString() )
+        : false
+      ;
+    },
+
+    creditCard: function(cardNumber, cardTypes) {
+      var
+        cards = {
+          visa: {
+            pattern : /^4/,
+            length  : [16]
+          },
+          amex: {
+            pattern : /^3[47]/,
+            length  : [15]
+          },
+          mastercard: {
+            pattern : /^5[1-5]/,
+            length  : [16]
+          },
+          discover: {
+            pattern : /^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)/,
+            length  : [16]
+          },
+          unionPay: {
+            pattern : /^(62|88)/,
+            length  : [16, 17, 18, 19]
+          },
+          jcb: {
+            pattern : /^35(2[89]|[3-8][0-9])/,
+            length  : [16]
+          },
+          maestro: {
+            pattern : /^(5018|5020|5038|6304|6759|676[1-3])/,
+            length  : [12, 13, 14, 15, 16, 17, 18, 19]
+          },
+          dinersClub: {
+            pattern : /^(30[0-5]|^36)/,
+            length  : [14]
+          },
+          laser: {
+            pattern : /^(6304|670[69]|6771)/,
+            length  : [16, 17, 18, 19]
+          },
+          visaElectron: {
+            pattern : /^(4026|417500|4508|4844|491(3|7))/,
+            length  : [16]
+          }
+        },
+        valid         = {},
+        validCard     = false,
+        requiredTypes = (typeof cardTypes == 'string')
+          ? cardTypes.split(',')
+          : false,
+        unionPay,
+        validation
+      ;
+
+      if(typeof cardNumber !== 'string' || cardNumber.length === 0) {
+        return;
+      }
+
+      // allow dashes and spaces in card
+      cardNumber = cardNumber.replace(/[\s\-]/g, '');
+
+      // verify card types
+      if(requiredTypes) {
+        $.each(requiredTypes, function(index, type){
+          // verify each card type
+          validation = cards[type];
+          if(validation) {
+            valid = {
+              length  : ($.inArray(cardNumber.length, validation.length) !== -1),
+              pattern : (cardNumber.search(validation.pattern) !== -1)
+            };
+            if(valid.length && valid.pattern) {
+              validCard = true;
+            }
+          }
+        });
+
+        if(!validCard) {
+          return false;
+        }
+      }
+
+      // skip luhn for UnionPay
+      unionPay = {
+        number  : ($.inArray(cardNumber.length, cards.unionPay.length) !== -1),
+        pattern : (cardNumber.search(cards.unionPay.pattern) !== -1)
+      };
+      if(unionPay.number && unionPay.pattern) {
+        return true;
+      }
+
+      // verify luhn, adapted from  <https://gist.github.com/2134376>
+      var
+        length        = cardNumber.length,
+        multiple      = 0,
+        producedValue = [
+          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+          [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
+        ],
+        sum           = 0
+      ;
+      while (length--) {
+        sum += producedValue[multiple][parseInt(cardNumber.charAt(length), 10)];
+        multiple ^= 1;
+      }
+      return (sum % 10 === 0 && sum > 0);
+    },
+
+    minCount: function(value, minCount) {
+      if(minCount == 0) {
+        return true;
+      }
+      if(minCount == 1) {
+        return (value !== '');
+      }
+      return (value.split(',').length >= minCount);
+    },
+
+    exactCount: function(value, exactCount) {
+      if(exactCount == 0) {
+        return (value === '');
+      }
+      if(exactCount == 1) {
+        return (value !== '' && value.search(',') === -1);
+      }
+      return (value.split(',').length == exactCount);
+    },
+
+    maxCount: function(value, maxCount) {
+      if(maxCount == 0) {
+        return false;
+      }
+      if(maxCount == 1) {
+        return (value.search(',') === -1);
+      }
+      return (value.split(',').length <= maxCount);
+    }
+  }
+
+};
+
+})( jQuery, window, document );
+
+/*!
  * # Fomantic-UI 2.8.8 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
@@ -7034,6 +10879,1548 @@ $.fn.modal.settings.templates = {
     }
   }
 }
+
+})( jQuery, window, document );
+
+/*!
+ * # Fomantic-UI 2.8.8 - Popup
+ * http://github.com/fomantic/Fomantic-UI/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ($, window, document, undefined) {
+
+'use strict';
+
+$.isFunction = $.isFunction || function(obj) {
+  return typeof obj === "function" && typeof obj.nodeType !== "number";
+};
+
+window = (typeof window != 'undefined' && window.Math == Math)
+  ? window
+  : (typeof self != 'undefined' && self.Math == Math)
+    ? self
+    : Function('return this')()
+;
+
+$.fn.popup = function(parameters) {
+  var
+    $allModules    = $(this),
+    $document      = $(document),
+    $window        = $(window),
+    $body          = $('body'),
+
+    moduleSelector = $allModules.selector || '',
+
+    clickEvent      = ('ontouchstart' in document.documentElement)
+        ? 'touchstart'
+        : 'click',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+
+    returnedValue
+  ;
+  $allModules
+    .each(function() {
+      var
+        settings        = ( $.isPlainObject(parameters) )
+          ? $.extend(true, {}, $.fn.popup.settings, parameters)
+          : $.extend({}, $.fn.popup.settings),
+
+        selector           = settings.selector,
+        className          = settings.className,
+        error              = settings.error,
+        metadata           = settings.metadata,
+        namespace          = settings.namespace,
+
+        eventNamespace     = '.' + settings.namespace,
+        moduleNamespace    = 'module-' + namespace,
+
+        $module            = $(this),
+        $context           = $(settings.context),
+        $scrollContext     = $(settings.scrollContext),
+        $boundary          = $(settings.boundary),
+        $target            = (settings.target)
+          ? $(settings.target)
+          : $module,
+
+        $popup,
+        $offsetParent,
+
+        searchDepth        = 0,
+        triedPositions     = false,
+        openedWithTouch    = false,
+
+        element            = this,
+        instance           = $module.data(moduleNamespace),
+
+        documentObserver,
+        elementNamespace,
+        id,
+        module
+      ;
+
+      module = {
+
+        // binds events
+        initialize: function() {
+          module.debug('Initializing', $module);
+          module.createID();
+          module.bind.events();
+          if(!module.exists() && settings.preserve) {
+            module.create();
+          }
+          if(settings.observeChanges) {
+            module.observeChanges();
+          }
+          module.instantiate();
+        },
+
+        instantiate: function() {
+          module.verbose('Storing instance', module);
+          instance = module;
+          $module
+            .data(moduleNamespace, instance)
+          ;
+        },
+
+        observeChanges: function() {
+          if('MutationObserver' in window) {
+            documentObserver = new MutationObserver(module.event.documentChanged);
+            documentObserver.observe(document, {
+              childList : true,
+              subtree   : true
+            });
+            module.debug('Setting up mutation observer', documentObserver);
+          }
+        },
+
+        refresh: function() {
+          if(settings.popup) {
+            $popup = $(settings.popup).eq(0);
+          }
+          else {
+            if(settings.inline) {
+              $popup = $target.nextAll(selector.popup).eq(0);
+              settings.popup = $popup;
+            }
+          }
+          if(settings.popup) {
+            $popup.addClass(className.loading);
+            $offsetParent = module.get.offsetParent();
+            $popup.removeClass(className.loading);
+            if(settings.movePopup && module.has.popup() && module.get.offsetParent($popup)[0] !== $offsetParent[0]) {
+              module.debug('Moving popup to the same offset parent as target');
+              $popup
+                .detach()
+                .appendTo($offsetParent)
+              ;
+            }
+          }
+          else {
+            $offsetParent = (settings.inline)
+              ? module.get.offsetParent($target)
+              : module.has.popup()
+                ? module.get.offsetParent($popup)
+                : $body
+            ;
+          }
+          if( $offsetParent.is('html') && $offsetParent[0] !== $body[0] ) {
+            module.debug('Setting page as offset parent');
+            $offsetParent = $body;
+          }
+          if( module.get.variation() ) {
+            module.set.variation();
+          }
+        },
+
+        reposition: function() {
+          module.refresh();
+          module.set.position();
+        },
+
+        destroy: function() {
+          module.debug('Destroying previous module');
+          if(documentObserver) {
+            documentObserver.disconnect();
+          }
+          // remove element only if was created dynamically
+          if($popup && !settings.preserve) {
+            module.removePopup();
+          }
+          // clear all timeouts
+          clearTimeout(module.hideTimer);
+          clearTimeout(module.showTimer);
+          // remove events
+          module.unbind.close();
+          module.unbind.events();
+          $module
+            .removeData(moduleNamespace)
+          ;
+        },
+
+        event: {
+          start:  function(event) {
+            var
+              delay = ($.isPlainObject(settings.delay))
+                ? settings.delay.show
+                : settings.delay
+            ;
+            clearTimeout(module.hideTimer);
+            if(!openedWithTouch || (openedWithTouch && settings.addTouchEvents) ) {
+              module.showTimer = setTimeout(module.show, delay);
+            }
+          },
+          end:  function() {
+            var
+              delay = ($.isPlainObject(settings.delay))
+                ? settings.delay.hide
+                : settings.delay
+            ;
+            clearTimeout(module.showTimer);
+            module.hideTimer = setTimeout(module.hide, delay);
+          },
+          touchstart: function(event) {
+            openedWithTouch = true;
+            if(settings.addTouchEvents) {
+              module.show();
+            }
+          },
+          resize: function() {
+            if( module.is.visible() ) {
+              module.set.position();
+            }
+          },
+          documentChanged: function(mutations) {
+            [].forEach.call(mutations, function(mutation) {
+              if(mutation.removedNodes) {
+                [].forEach.call(mutation.removedNodes, function(node) {
+                  if(node == element || $(node).find(element).length > 0) {
+                    module.debug('Element removed from DOM, tearing down events');
+                    module.destroy();
+                  }
+                });
+              }
+            });
+          },
+          hideGracefully: function(event) {
+            var
+              $target = $(event.target),
+              isInDOM = $.contains(document.documentElement, event.target),
+              inPopup = ($target.closest(selector.popup).length > 0)
+            ;
+            // don't close on clicks inside popup
+            if(event && !inPopup && isInDOM) {
+              module.debug('Click occurred outside popup hiding popup');
+              module.hide();
+            }
+            else {
+              module.debug('Click was inside popup, keeping popup open');
+            }
+          }
+        },
+
+        // generates popup html from metadata
+        create: function() {
+          var
+            html      = module.get.html(),
+            title     = module.get.title(),
+            content   = module.get.content()
+          ;
+
+          if(html || content || title) {
+            module.debug('Creating pop-up html');
+            if(!html) {
+              html = settings.templates.popup({
+                title   : title,
+                content : content
+              });
+            }
+            $popup = $('<div/>')
+              .addClass(className.popup)
+              .data(metadata.activator, $module)
+              .html(html)
+            ;
+            if(settings.inline) {
+              module.verbose('Inserting popup element inline', $popup);
+              $popup
+                .insertAfter($module)
+              ;
+            }
+            else {
+              module.verbose('Appending popup element to body', $popup);
+              $popup
+                .appendTo( $context )
+              ;
+            }
+            module.refresh();
+            module.set.variation();
+
+            if(settings.hoverable) {
+              module.bind.popup();
+            }
+            settings.onCreate.call($popup, element);
+          }
+          else if(settings.popup) {
+            $(settings.popup).data(metadata.activator, $module);
+            module.verbose('Used popup specified in settings');
+            module.refresh();
+            if(settings.hoverable) {
+              module.bind.popup();
+            }
+          }
+          else if($target.next(selector.popup).length !== 0) {
+            module.verbose('Pre-existing popup found');
+            settings.inline = true;
+            settings.popup  = $target.next(selector.popup).data(metadata.activator, $module);
+            module.refresh();
+            if(settings.hoverable) {
+              module.bind.popup();
+            }
+          }
+          else {
+            module.debug('No content specified skipping display', element);
+          }
+        },
+
+        createID: function() {
+          id = (Math.random().toString(16) + '000000000').substr(2, 8);
+          elementNamespace = '.' + id;
+          module.verbose('Creating unique id for element', id);
+        },
+
+        // determines popup state
+        toggle: function() {
+          module.debug('Toggling pop-up');
+          if( module.is.hidden() ) {
+            module.debug('Popup is hidden, showing pop-up');
+            module.unbind.close();
+            module.show();
+          }
+          else {
+            module.debug('Popup is visible, hiding pop-up');
+            module.hide();
+          }
+        },
+
+        show: function(callback) {
+          callback = callback || function(){};
+          module.debug('Showing pop-up', settings.transition);
+          if(module.is.hidden() && !( module.is.active() && module.is.dropdown()) ) {
+            if( !module.exists() ) {
+              module.create();
+            }
+            if(settings.onShow.call($popup, element) === false) {
+              module.debug('onShow callback returned false, cancelling popup animation');
+              return;
+            }
+            else if(!settings.preserve && !settings.popup) {
+              module.refresh();
+            }
+            if( $popup && module.set.position() ) {
+              module.save.conditions();
+              if(settings.exclusive) {
+                module.hideAll();
+              }
+              module.animate.show(callback);
+            }
+          }
+        },
+
+
+        hide: function(callback) {
+          callback = callback || function(){};
+          if( module.is.visible() || module.is.animating() ) {
+            if(settings.onHide.call($popup, element) === false) {
+              module.debug('onHide callback returned false, cancelling popup animation');
+              return;
+            }
+            module.remove.visible();
+            module.unbind.close();
+            module.restore.conditions();
+            module.animate.hide(callback);
+          }
+        },
+
+        hideAll: function() {
+          $(selector.popup)
+            .filter('.' + className.popupVisible)
+            .each(function() {
+              $(this)
+                .data(metadata.activator)
+                  .popup('hide')
+              ;
+            })
+          ;
+        },
+        exists: function() {
+          if(!$popup) {
+            return false;
+          }
+          if(settings.inline || settings.popup) {
+            return ( module.has.popup() );
+          }
+          else {
+            return ( $popup.closest($context).length >= 1 )
+              ? true
+              : false
+            ;
+          }
+        },
+
+        removePopup: function() {
+          if( module.has.popup() && !settings.popup) {
+            module.debug('Removing popup', $popup);
+            $popup.remove();
+            $popup = undefined;
+            settings.onRemove.call($popup, element);
+          }
+        },
+
+        save: {
+          conditions: function() {
+            module.cache = {
+              title: $module.attr('title')
+            };
+            if (module.cache.title) {
+              $module.removeAttr('title');
+            }
+            module.verbose('Saving original attributes', module.cache.title);
+          }
+        },
+        restore: {
+          conditions: function() {
+            if(module.cache && module.cache.title) {
+              $module.attr('title', module.cache.title);
+              module.verbose('Restoring original attributes', module.cache.title);
+            }
+            return true;
+          }
+        },
+        supports: {
+          svg: function() {
+            return (typeof SVGGraphicsElement !== 'undefined');
+          }
+        },
+        animate: {
+          show: function(callback) {
+            callback = $.isFunction(callback) ? callback : function(){};
+            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
+              module.set.visible();
+              $popup
+                .transition({
+                  animation  : (settings.transition.showMethod || settings.transition) + ' in',
+                  queue      : false,
+                  debug      : settings.debug,
+                  verbose    : settings.verbose,
+                  duration   : settings.transition.showDuration || settings.duration,
+                  onComplete : function() {
+                    module.bind.close();
+                    callback.call($popup, element);
+                    settings.onVisible.call($popup, element);
+                  }
+                })
+              ;
+            }
+            else {
+              module.error(error.noTransition);
+            }
+          },
+          hide: function(callback) {
+            callback = $.isFunction(callback) ? callback : function(){};
+            module.debug('Hiding pop-up');
+            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
+              $popup
+                .transition({
+                  animation  : (settings.transition.hideMethod || settings.transition) + ' out',
+                  queue      : false,
+                  duration   : settings.transition.hideDuration || settings.duration,
+                  debug      : settings.debug,
+                  verbose    : settings.verbose,
+                  onComplete : function() {
+                    module.reset();
+                    callback.call($popup, element);
+                    settings.onHidden.call($popup, element);
+                  }
+                })
+              ;
+            }
+            else {
+              module.error(error.noTransition);
+            }
+          }
+        },
+
+        change: {
+          content: function(html) {
+            $popup.html(html);
+          }
+        },
+
+        get: {
+          html: function() {
+            $module.removeData(metadata.html);
+            return $module.data(metadata.html) || settings.html;
+          },
+          title: function() {
+            $module.removeData(metadata.title);
+            return $module.data(metadata.title) || settings.title;
+          },
+          content: function() {
+            $module.removeData(metadata.content);
+            return $module.data(metadata.content) || settings.content || $module.attr('title');
+          },
+          variation: function() {
+            $module.removeData(metadata.variation);
+            return $module.data(metadata.variation) || settings.variation;
+          },
+          popup: function() {
+            return $popup;
+          },
+          popupOffset: function() {
+            return $popup.offset();
+          },
+          calculations: function() {
+            var
+              $popupOffsetParent = module.get.offsetParent($popup),
+              targetElement      = $target[0],
+              isWindow           = ($boundary[0] == window),
+              targetOffset       = $target.offset(),
+              parentOffset       = settings.inline || (settings.popup && settings.movePopup)
+                ? $target.offsetParent().offset()
+                : { top: 0, left: 0 },
+              screenPosition = (isWindow)
+                ? { top: 0, left: 0 }
+                : $boundary.offset(),
+              calculations   = {},
+              scroll = (isWindow)
+                ? { top: $window.scrollTop(), left: $window.scrollLeft() }
+                : { top: 0, left: 0},
+              screen
+            ;
+            calculations = {
+              // element which is launching popup
+              target : {
+                element : $target[0],
+                width   : $target.outerWidth(),
+                height  : $target.outerHeight(),
+                top     : targetOffset.top - parentOffset.top,
+                left    : targetOffset.left - parentOffset.left,
+                margin  : {}
+              },
+              // popup itself
+              popup : {
+                width  : $popup.outerWidth(),
+                height : $popup.outerHeight()
+              },
+              // offset container (or 3d context)
+              parent : {
+                width  : $offsetParent.outerWidth(),
+                height : $offsetParent.outerHeight()
+              },
+              // screen boundaries
+              screen : {
+                top  : screenPosition.top,
+                left : screenPosition.left,
+                scroll: {
+                  top  : scroll.top,
+                  left : scroll.left
+                },
+                width  : $boundary.width(),
+                height : $boundary.height()
+              }
+            };
+
+            // if popup offset context is not same as target, then adjust calculations
+            if($popupOffsetParent.get(0) !== $offsetParent.get(0)) {
+              var
+                popupOffset        = $popupOffsetParent.offset()
+              ;
+              calculations.target.top -= popupOffset.top;
+              calculations.target.left -= popupOffset.left;
+              calculations.parent.width = $popupOffsetParent.outerWidth();
+              calculations.parent.height = $popupOffsetParent.outerHeight();
+            }
+
+            // add in container calcs if fluid
+            if( settings.setFluidWidth && module.is.fluid() ) {
+              calculations.container = {
+                width: $popup.parent().outerWidth()
+              };
+              calculations.popup.width = calculations.container.width;
+            }
+
+            // add in margins if inline
+            calculations.target.margin.top = (settings.inline)
+              ? parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-top'), 10)
+              : 0
+            ;
+            calculations.target.margin.left = (settings.inline)
+              ? module.is.rtl()
+                ? parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-right'), 10)
+                : parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-left'), 10)
+              : 0
+            ;
+            // calculate screen boundaries
+            screen = calculations.screen;
+            calculations.boundary = {
+              top    : screen.top + screen.scroll.top,
+              bottom : screen.top + screen.scroll.top + screen.height,
+              left   : screen.left + screen.scroll.left,
+              right  : screen.left + screen.scroll.left + screen.width
+            };
+            return calculations;
+          },
+          id: function() {
+            return id;
+          },
+          startEvent: function() {
+            if(settings.on == 'hover') {
+              return 'mouseenter';
+            }
+            else if(settings.on == 'focus') {
+              return 'focus';
+            }
+            return false;
+          },
+          scrollEvent: function() {
+            return 'scroll';
+          },
+          endEvent: function() {
+            if(settings.on == 'hover') {
+              return 'mouseleave';
+            }
+            else if(settings.on == 'focus') {
+              return 'blur';
+            }
+            return false;
+          },
+          distanceFromBoundary: function(offset, calculations) {
+            var
+              distanceFromBoundary = {},
+              popup,
+              boundary
+            ;
+            calculations = calculations || module.get.calculations();
+
+            // shorthand
+            popup        = calculations.popup;
+            boundary     = calculations.boundary;
+
+            if(offset) {
+              distanceFromBoundary = {
+                top    : (offset.top - boundary.top),
+                left   : (offset.left - boundary.left),
+                right  : (boundary.right - (offset.left + popup.width) ),
+                bottom : (boundary.bottom - (offset.top + popup.height) )
+              };
+              module.verbose('Distance from boundaries determined', offset, distanceFromBoundary);
+            }
+            return distanceFromBoundary;
+          },
+          offsetParent: function($element) {
+            var
+              element = ($element !== undefined)
+                ? $element[0]
+                : $target[0],
+              parentNode = element.parentNode,
+              $node    = $(parentNode)
+            ;
+            if(parentNode) {
+              var
+                is2D     = ($node.css('transform') === 'none'),
+                isStatic = ($node.css('position') === 'static'),
+                isBody   = $node.is('body')
+              ;
+              while(parentNode && !isBody && isStatic && is2D) {
+                parentNode = parentNode.parentNode;
+                $node    = $(parentNode);
+                is2D     = ($node.css('transform') === 'none');
+                isStatic = ($node.css('position') === 'static');
+                isBody   = $node.is('body');
+              }
+            }
+            return ($node && $node.length > 0)
+              ? $node
+              : $()
+            ;
+          },
+          positions: function() {
+            return {
+              'top left'      : false,
+              'top center'    : false,
+              'top right'     : false,
+              'bottom left'   : false,
+              'bottom center' : false,
+              'bottom right'  : false,
+              'left center'   : false,
+              'right center'  : false
+            };
+          },
+          nextPosition: function(position) {
+            var
+              positions          = position.split(' '),
+              verticalPosition   = positions[0],
+              horizontalPosition = positions[1],
+              opposite = {
+                top    : 'bottom',
+                bottom : 'top',
+                left   : 'right',
+                right  : 'left'
+              },
+              adjacent = {
+                left   : 'center',
+                center : 'right',
+                right  : 'left'
+              },
+              backup = {
+                'top left'      : 'top center',
+                'top center'    : 'top right',
+                'top right'     : 'right center',
+                'right center'  : 'bottom right',
+                'bottom right'  : 'bottom center',
+                'bottom center' : 'bottom left',
+                'bottom left'   : 'left center',
+                'left center'   : 'top left'
+              },
+              adjacentsAvailable = (verticalPosition == 'top' || verticalPosition == 'bottom'),
+              oppositeTried = false,
+              adjacentTried = false,
+              nextPosition  = false
+            ;
+            if(!triedPositions) {
+              module.verbose('All available positions available');
+              triedPositions = module.get.positions();
+            }
+
+            module.debug('Recording last position tried', position);
+            triedPositions[position] = true;
+
+            if(settings.prefer === 'opposite') {
+              nextPosition  = [opposite[verticalPosition], horizontalPosition];
+              nextPosition  = nextPosition.join(' ');
+              oppositeTried = (triedPositions[nextPosition] === true);
+              module.debug('Trying opposite strategy', nextPosition);
+            }
+            if((settings.prefer === 'adjacent') && adjacentsAvailable ) {
+              nextPosition  = [verticalPosition, adjacent[horizontalPosition]];
+              nextPosition  = nextPosition.join(' ');
+              adjacentTried = (triedPositions[nextPosition] === true);
+              module.debug('Trying adjacent strategy', nextPosition);
+            }
+            if(adjacentTried || oppositeTried) {
+              module.debug('Using backup position', nextPosition);
+              nextPosition = backup[position];
+            }
+            return nextPosition;
+          }
+        },
+
+        set: {
+          position: function(position, calculations) {
+
+            // exit conditions
+            if($target.length === 0 || $popup.length === 0) {
+              module.error(error.notFound);
+              return;
+            }
+            var
+              offset,
+              distanceAway,
+              target,
+              popup,
+              parent,
+              positioning,
+              popupOffset,
+              distanceFromBoundary
+            ;
+
+            calculations = calculations || module.get.calculations();
+            position     = position     || $module.data(metadata.position) || settings.position;
+
+            offset       = $module.data(metadata.offset) || settings.offset;
+            distanceAway = settings.distanceAway;
+
+            // shorthand
+            target = calculations.target;
+            popup  = calculations.popup;
+            parent = calculations.parent;
+
+            if(module.should.centerArrow(calculations)) {
+              module.verbose('Adjusting offset to center arrow on small target element');
+              if(position == 'top left' || position == 'bottom left') {
+                offset += (target.width / 2);
+                offset -= settings.arrowPixelsFromEdge;
+              }
+              if(position == 'top right' || position == 'bottom right') {
+                offset -= (target.width / 2);
+                offset += settings.arrowPixelsFromEdge;
+              }
+            }
+
+            if(target.width === 0 && target.height === 0 && !module.is.svg(target.element)) {
+              module.debug('Popup target is hidden, no action taken');
+              return false;
+            }
+
+            if(settings.inline) {
+              module.debug('Adding margin to calculation', target.margin);
+              if(position == 'left center' || position == 'right center') {
+                offset       +=  target.margin.top;
+                distanceAway += -target.margin.left;
+              }
+              else if (position == 'top left' || position == 'top center' || position == 'top right') {
+                offset       += target.margin.left;
+                distanceAway -= target.margin.top;
+              }
+              else {
+                offset       += target.margin.left;
+                distanceAway += target.margin.top;
+              }
+            }
+
+            module.debug('Determining popup position from calculations', position, calculations);
+
+            if (module.is.rtl()) {
+              position = position.replace(/left|right/g, function (match) {
+                return (match == 'left')
+                  ? 'right'
+                  : 'left'
+                ;
+              });
+              module.debug('RTL: Popup position updated', position);
+            }
+
+            // if last attempt use specified last resort position
+            if(searchDepth == settings.maxSearchDepth && typeof settings.lastResort === 'string') {
+              position = settings.lastResort;
+            }
+
+            switch (position) {
+              case 'top left':
+                positioning = {
+                  top    : 'auto',
+                  bottom : parent.height - target.top + distanceAway,
+                  left   : target.left + offset,
+                  right  : 'auto'
+                };
+              break;
+              case 'top center':
+                positioning = {
+                  bottom : parent.height - target.top + distanceAway,
+                  left   : target.left + (target.width / 2) - (popup.width / 2) + offset,
+                  top    : 'auto',
+                  right  : 'auto'
+                };
+              break;
+              case 'top right':
+                positioning = {
+                  bottom :  parent.height - target.top + distanceAway,
+                  right  :  parent.width - target.left - target.width - offset,
+                  top    : 'auto',
+                  left   : 'auto'
+                };
+              break;
+              case 'left center':
+                positioning = {
+                  top    : target.top + (target.height / 2) - (popup.height / 2) + offset,
+                  right  : parent.width - target.left + distanceAway,
+                  left   : 'auto',
+                  bottom : 'auto'
+                };
+              break;
+              case 'right center':
+                positioning = {
+                  top    : target.top + (target.height / 2) - (popup.height / 2) + offset,
+                  left   : target.left + target.width + distanceAway,
+                  bottom : 'auto',
+                  right  : 'auto'
+                };
+              break;
+              case 'bottom left':
+                positioning = {
+                  top    : target.top + target.height + distanceAway,
+                  left   : target.left + offset,
+                  bottom : 'auto',
+                  right  : 'auto'
+                };
+              break;
+              case 'bottom center':
+                positioning = {
+                  top    : target.top + target.height + distanceAway,
+                  left   : target.left + (target.width / 2) - (popup.width / 2) + offset,
+                  bottom : 'auto',
+                  right  : 'auto'
+                };
+              break;
+              case 'bottom right':
+                positioning = {
+                  top    : target.top + target.height + distanceAway,
+                  right  : parent.width - target.left  - target.width - offset,
+                  left   : 'auto',
+                  bottom : 'auto'
+                };
+              break;
+            }
+            if(positioning === undefined) {
+              module.error(error.invalidPosition, position);
+            }
+
+            module.debug('Calculated popup positioning values', positioning);
+
+            // tentatively place on stage
+            $popup
+              .css(positioning)
+              .removeClass(className.position)
+              .addClass(position)
+              .addClass(className.loading)
+            ;
+
+            popupOffset = module.get.popupOffset();
+
+            // see if any boundaries are surpassed with this tentative position
+            distanceFromBoundary = module.get.distanceFromBoundary(popupOffset, calculations);
+
+            if(!settings.forcePosition && module.is.offstage(distanceFromBoundary, position) ) {
+              module.debug('Position is outside viewport', position);
+              if(searchDepth < settings.maxSearchDepth) {
+                searchDepth++;
+                position = module.get.nextPosition(position);
+                module.debug('Trying new position', position);
+                return ($popup)
+                  ? module.set.position(position, calculations)
+                  : false
+                ;
+              }
+              else {
+                if(settings.lastResort) {
+                  module.debug('No position found, showing with last position');
+                }
+                else {
+                  module.debug('Popup could not find a position to display', $popup);
+                  module.error(error.cannotPlace, element);
+                  module.remove.attempts();
+                  module.remove.loading();
+                  module.reset();
+                  settings.onUnplaceable.call($popup, element);
+                  return false;
+                }
+              }
+            }
+            module.debug('Position is on stage', position);
+            module.remove.attempts();
+            module.remove.loading();
+            if( settings.setFluidWidth && module.is.fluid() ) {
+              module.set.fluidWidth(calculations);
+            }
+            return true;
+          },
+
+          fluidWidth: function(calculations) {
+            calculations = calculations || module.get.calculations();
+            module.debug('Automatically setting element width to parent width', calculations.parent.width);
+            $popup.css('width', calculations.container.width);
+          },
+
+          variation: function(variation) {
+            variation = variation || module.get.variation();
+            if(variation && module.has.popup() ) {
+              module.verbose('Adding variation to popup', variation);
+              $popup.addClass(variation);
+            }
+          },
+
+          visible: function() {
+            $module.addClass(className.visible);
+          }
+        },
+
+        remove: {
+          loading: function() {
+            $popup.removeClass(className.loading);
+          },
+          variation: function(variation) {
+            variation = variation || module.get.variation();
+            if(variation) {
+              module.verbose('Removing variation', variation);
+              $popup.removeClass(variation);
+            }
+          },
+          visible: function() {
+            $module.removeClass(className.visible);
+          },
+          attempts: function() {
+            module.verbose('Resetting all searched positions');
+            searchDepth    = 0;
+            triedPositions = false;
+          }
+        },
+
+        bind: {
+          events: function() {
+            module.debug('Binding popup events to module');
+            if(settings.on == 'click') {
+              $module
+                .on(clickEvent + eventNamespace, module.toggle)
+              ;
+            }
+            if(settings.on == 'hover') {
+              $module
+                .on('touchstart' + eventNamespace, module.event.touchstart)
+              ;
+            }
+            if( module.get.startEvent() ) {
+              $module
+                .on(module.get.startEvent() + eventNamespace, module.event.start)
+                .on(module.get.endEvent() + eventNamespace, module.event.end)
+              ;
+            }
+            if(settings.target) {
+              module.debug('Target set to element', $target);
+            }
+            $window.on('resize' + elementNamespace, module.event.resize);
+          },
+          popup: function() {
+            module.verbose('Allowing hover events on popup to prevent closing');
+            if( $popup && module.has.popup() ) {
+              $popup
+                .on('mouseenter' + eventNamespace, module.event.start)
+                .on('mouseleave' + eventNamespace, module.event.end)
+              ;
+            }
+          },
+          close: function() {
+            if(settings.hideOnScroll === true || (settings.hideOnScroll == 'auto' && settings.on != 'click')) {
+              module.bind.closeOnScroll();
+            }
+            if(module.is.closable()) {
+              module.bind.clickaway();
+            }
+            else if(settings.on == 'hover' && openedWithTouch) {
+              module.bind.touchClose();
+            }
+          },
+          closeOnScroll: function() {
+            module.verbose('Binding scroll close event to document');
+            $scrollContext
+              .one(module.get.scrollEvent() + elementNamespace, module.event.hideGracefully)
+            ;
+          },
+          touchClose: function() {
+            module.verbose('Binding popup touchclose event to document');
+            $document
+              .on('touchstart' + elementNamespace, function(event) {
+                module.verbose('Touched away from popup');
+                module.event.hideGracefully.call(element, event);
+              })
+            ;
+          },
+          clickaway: function() {
+            module.verbose('Binding popup close event to document');
+            $document
+              .on(clickEvent + elementNamespace, function(event) {
+                module.verbose('Clicked away from popup');
+                module.event.hideGracefully.call(element, event);
+              })
+            ;
+          }
+        },
+
+        unbind: {
+          events: function() {
+            $window
+              .off(elementNamespace)
+            ;
+            $module
+              .off(eventNamespace)
+            ;
+          },
+          close: function() {
+            $document
+              .off(elementNamespace)
+            ;
+            $scrollContext
+              .off(elementNamespace)
+            ;
+          },
+        },
+
+        has: {
+          popup: function() {
+            return ($popup && $popup.length > 0);
+          }
+        },
+
+        should: {
+          centerArrow: function(calculations) {
+            return !module.is.basic() && calculations.target.width <= (settings.arrowPixelsFromEdge * 2);
+          },
+        },
+
+        is: {
+          closable: function() {
+            if(settings.closable == 'auto') {
+              if(settings.on == 'hover') {
+                return false;
+              }
+              return true;
+            }
+            return settings.closable;
+          },
+          offstage: function(distanceFromBoundary, position) {
+            var
+              offstage = []
+            ;
+            // return boundaries that have been surpassed
+            $.each(distanceFromBoundary, function(direction, distance) {
+              if(distance < -settings.jitter) {
+                module.debug('Position exceeds allowable distance from edge', direction, distance, position);
+                offstage.push(direction);
+              }
+            });
+            if(offstage.length > 0) {
+              return true;
+            }
+            else {
+              return false;
+            }
+          },
+          svg: function(element) {
+            return module.supports.svg() && (element instanceof SVGGraphicsElement);
+          },
+          basic: function() {
+            return $module.hasClass(className.basic);
+          },
+          active: function() {
+            return $module.hasClass(className.active);
+          },
+          animating: function() {
+            return ($popup !== undefined && $popup.hasClass(className.animating) );
+          },
+          fluid: function() {
+            return ($popup !== undefined && $popup.hasClass(className.fluid));
+          },
+          visible: function() {
+            return ($popup !== undefined && $popup.hasClass(className.popupVisible));
+          },
+          dropdown: function() {
+            return $module.hasClass(className.dropdown);
+          },
+          hidden: function() {
+            return !module.is.visible();
+          },
+          rtl: function () {
+            return $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl';
+          }
+        },
+
+        reset: function() {
+          module.remove.visible();
+          if(settings.preserve) {
+            if($.fn.transition !== undefined) {
+              $popup
+                .transition('remove transition')
+              ;
+            }
+          }
+          else {
+            module.removePopup();
+          }
+        },
+
+        setting: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(!settings.silent && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(!settings.silent && settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          if(!settings.silent) {
+            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+            module.error.apply(console, arguments);
+          }
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 500);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if(Array.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if(methodInvoked) {
+        if(instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if(instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+      }
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.popup.settings = {
+
+  name           : 'Popup',
+
+  // module settings
+  silent         : false,
+  debug          : false,
+  verbose        : false,
+  performance    : true,
+  namespace      : 'popup',
+
+  // whether it should use dom mutation observers
+  observeChanges : true,
+
+  // callback only when element added to dom
+  onCreate       : function(){},
+
+  // callback before element removed from dom
+  onRemove       : function(){},
+
+  // callback before show animation
+  onShow         : function(){},
+
+  // callback after show animation
+  onVisible      : function(){},
+
+  // callback before hide animation
+  onHide         : function(){},
+
+  // callback when popup cannot be positioned in visible screen
+  onUnplaceable  : function(){},
+
+  // callback after hide animation
+  onHidden       : function(){},
+
+  // when to show popup
+  on             : 'hover',
+
+  // element to use to determine if popup is out of boundary
+  boundary       : window,
+
+  // whether to add touchstart events when using hover
+  addTouchEvents : true,
+
+  // default position relative to element
+  position       : 'top left',
+
+  // if given position should be used regardless if popup fits
+  forcePosition  : false,
+
+  // name of variation to use
+  variation      : '',
+
+  // whether popup should be moved to context
+  movePopup      : true,
+
+  // element which popup should be relative to
+  target         : false,
+
+  // jq selector or element that should be used as popup
+  popup          : false,
+
+  // popup should remain inline next to activator
+  inline         : false,
+
+  // popup should be removed from page on hide
+  preserve       : false,
+
+  // popup should not close when being hovered on
+  hoverable      : false,
+
+  // explicitly set content
+  content        : false,
+
+  // explicitly set html
+  html           : false,
+
+  // explicitly set title
+  title          : false,
+
+  // whether automatically close on clickaway when on click
+  closable       : true,
+
+  // automatically hide on scroll
+  hideOnScroll   : 'auto',
+
+  // hide other popups on show
+  exclusive      : false,
+
+  // context to attach popups
+  context        : 'body',
+
+  // context for binding scroll events
+  scrollContext  : window,
+
+  // position to prefer when calculating new position
+  prefer         : 'opposite',
+
+  // specify position to appear even if it doesn't fit
+  lastResort     : false,
+
+  // number of pixels from edge of popup to pointing arrow center (used from centering)
+  arrowPixelsFromEdge: 20,
+
+  // delay used to prevent accidental refiring of animations due to user error
+  delay : {
+    show : 50,
+    hide : 70
+  },
+
+  // whether fluid variation should assign width explicitly
+  setFluidWidth  : true,
+
+  // transition settings
+  duration       : 200,
+  transition     : 'scale',
+
+  // distance away from activating element in px
+  distanceAway   : 0,
+
+  // number of pixels an element is allowed to be "offstage" for a position to be chosen (allows for rounding)
+  jitter         : 2,
+
+  // offset on aligning axis from calculated position
+  offset         : 0,
+
+  // maximum times to look for a position before failing (9 positions total)
+  maxSearchDepth : 15,
+
+  error: {
+    invalidPosition : 'The position you specified is not a valid position',
+    cannotPlace     : 'Popup does not fit within the boundaries of the viewport',
+    method          : 'The method you called is not defined.',
+    noTransition    : 'This module requires ui transitions <https://github.com/Semantic-Org/UI-Transition>',
+    notFound        : 'The target or popup you specified does not exist on the page'
+  },
+
+  metadata: {
+    activator : 'activator',
+    content   : 'content',
+    html      : 'html',
+    offset    : 'offset',
+    position  : 'position',
+    title     : 'title',
+    variation : 'variation'
+  },
+
+  className   : {
+    active       : 'active',
+    basic        : 'basic',
+    animating    : 'animating',
+    dropdown     : 'dropdown',
+    fluid        : 'fluid',
+    loading      : 'loading',
+    popup        : 'ui popup',
+    position     : 'top left center bottom right',
+    visible      : 'visible',
+    popupVisible : 'visible'
+  },
+
+  selector    : {
+    popup    : '.ui.popup'
+  },
+
+  templates: {
+    escape: function(string) {
+      var
+        badChars     = /[<>"'`]/g,
+        shouldEscape = /[&<>"'`]/,
+        escape       = {
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#x27;",
+          "`": "&#x60;"
+        },
+        escapedChar  = function(chr) {
+          return escape[chr];
+        }
+      ;
+      if(shouldEscape.test(string)) {
+        string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+        return string.replace(badChars, escapedChar);
+      }
+      return string;
+    },
+    popup: function(text) {
+      var
+        html   = '',
+        escape = $.fn.popup.settings.templates.escape
+      ;
+      if(typeof text !== undefined) {
+        if(typeof text.title !== undefined && text.title) {
+          text.title = escape(text.title);
+          html += '<div class="header">' + text.title + '</div>';
+        }
+        if(typeof text.content !== undefined && text.content) {
+          text.content = escape(text.content);
+          html += '<div class="content">' + text.content + '</div>';
+        }
+      }
+      return html;
+    }
+  }
+
+};
+
 
 })( jQuery, window, document );
 
@@ -9109,6286 +14496,6 @@ $.fn.sidebar.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.8.8 - Toast
- * http://github.com/fomantic/Fomantic-UI/
- *
- *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-;(function ($, window, document, undefined) {
-
-'use strict';
-
-$.isFunction = $.isFunction || function(obj) {
-  return typeof obj === "function" && typeof obj.nodeType !== "number";
-};
-
-window = (typeof window != 'undefined' && window.Math == Math)
-  ? window
-  : (typeof self != 'undefined' && self.Math == Math)
-    ? self
-    : Function('return this')()
-;
-
-$.fn.toast = function(parameters) {
-  var
-    $allModules    = $(this),
-    moduleSelector = $allModules.selector || '',
-
-    time           = new Date().getTime(),
-    performance    = [],
-
-    query          = arguments[0],
-    methodInvoked  = (typeof query == 'string'),
-    queryArguments = [].slice.call(arguments, 1),
-    returnedValue
-  ;
-  $allModules
-    .each(function() {
-      var
-        settings          = ( $.isPlainObject(parameters) )
-          ? $.extend(true, {}, $.fn.toast.settings, parameters)
-          : $.extend({}, $.fn.toast.settings),
-
-        className        = settings.className,
-        selector         = settings.selector,
-        error            = settings.error,
-        namespace        = settings.namespace,
-        fields           = settings.fields,
-
-        eventNamespace   = '.' + namespace,
-        moduleNamespace  = namespace + '-module',
-
-        $module          = $(this),
-        $toastBox,
-        $toast,
-        $actions,
-        $progress,
-        $progressBar,
-        $animationObject,
-        $close,
-        $context         = (settings.context)
-          ? $(settings.context)
-          : $('body'),
-
-        isToastComponent = $module.hasClass('toast') || $module.hasClass('message') || $module.hasClass('card'),
-
-        element          = this,
-        instance         = isToastComponent ? $module.data(moduleNamespace) : undefined,
-
-        module
-      ;
-      module = {
-
-        initialize: function() {
-          module.verbose('Initializing element');
-          if (!module.has.container()) {
-            module.create.container();
-          }
-          if(isToastComponent || settings.message !== '' || settings.title !== '' || module.get.iconClass() !== '' || settings.showImage || module.has.configActions()) {
-            if(typeof settings.showProgress !== 'string' || [className.top,className.bottom].indexOf(settings.showProgress) === -1 ) {
-              settings.showProgress = false;
-            }
-            module.create.toast();
-            if(settings.closeOnClick && (settings.closeIcon || $($toast).find(selector.input).length > 0 || module.has.configActions())){
-              settings.closeOnClick = false;
-            }
-            if(!settings.closeOnClick) {
-              $toastBox.addClass(className.unclickable);
-            }
-            module.bind.events();
-          }
-          module.instantiate();
-          if($toastBox) {
-            module.show();
-          }
-        },
-
-        instantiate: function() {
-          module.verbose('Storing instance of toast');
-          instance = module;
-          $module
-              .data(moduleNamespace, instance)
-          ;
-        },
-
-        destroy: function() {
-          if($toastBox) {
-            module.debug('Removing toast', $toastBox);
-            module.unbind.events();
-            $toastBox.remove();
-            $toastBox = undefined;
-            $toast = undefined;
-            $animationObject = undefined;
-            settings.onRemove.call($toastBox, element);
-            $progress = undefined;
-            $progressBar = undefined;
-            $close = undefined;
-          }
-          $module
-            .removeData(moduleNamespace)
-          ;
-        },
-
-        show: function(callback) {
-          callback = callback || function(){};
-          module.debug('Showing toast');
-          if(settings.onShow.call($toastBox, element) === false) {
-            module.debug('onShow callback returned false, cancelling toast animation');
-            return;
-          }
-          module.animate.show(callback);
-        },
-
-        close: function(callback) {
-          callback = callback || function(){};
-          module.remove.visible();
-          module.unbind.events();
-          module.animate.close(callback);
-
-        },
-
-        create: {
-          container: function() {
-            module.verbose('Creating container');
-            $context.append($('<div/>',{class: settings.position + ' ' + className.container + ' ' +(settings.horizontal ? className.horizontal : '')}));
-          },
-          toast: function() {
-            $toastBox = $('<div/>', {class: className.box});
-            var iconClass = module.get.iconClass();
-            if (!isToastComponent) {
-              module.verbose('Creating toast');
-              $toast = $('<div/>');
-              var $content = $('<div/>', {class: className.content});
-              if (iconClass !== '') {
-                $toast.append($('<i/>', {class: iconClass + ' ' + className.icon}));
-              }
-
-              if (settings.showImage) {
-                $toast.append($('<img>', {
-                  class: className.image + ' ' + settings.classImage,
-                  src: settings.showImage
-                }));
-              }
-              if (settings.title !== '') {
-                $content.append($('<div/>', {
-                  class: className.title,
-                  text: settings.title
-                }));
-              }
-
-              $content.append($('<div/>', {class: className.message, html: module.helpers.escape(settings.message, settings.preserveHTML)}));
-
-              $toast
-                .addClass(settings.class + ' ' + className.toast)
-                .append($content)
-              ;
-              $toast.css('opacity', settings.opacity);
-              if (settings.closeIcon) {
-                $close = $('<i/>', {class: className.close + ' ' + (typeof settings.closeIcon === 'string' ? settings.closeIcon : '')});
-                if($close.hasClass(className.left)) {
-                  $toast.prepend($close);
-                } else {
-                  $toast.append($close);
-                }
-              }
-            } else {
-              $toast = settings.cloneModule ? $module.clone().removeAttr('id') : $module;
-              $close = $toast.find('> i'+module.helpers.toClass(className.close));
-              settings.closeIcon = ($close.length > 0);
-              if (iconClass !== '') {
-                $toast.find(selector.icon).attr('class',iconClass + ' ' + className.icon);
-              }
-              if (settings.showImage) {
-                $toast.find(selector.image).attr('src',settings.showImage);
-              }
-              if (settings.title !== '') {
-                $toast.find(selector.title).html(module.helpers.escape(settings.title, settings.preserveHTML));
-              }
-              if (settings.message !== '') {
-                $toast.find(selector.message).html(module.helpers.escape(settings.message, settings.preserveHTML));
-              }
-            }
-            if ($toast.hasClass(className.compact)) {
-              settings.compact = true;
-            }
-            if ($toast.hasClass('card')) {
-              settings.compact = false;
-            }
-            $actions = $toast.find('.actions');
-            if (module.has.configActions()) {
-              if ($actions.length === 0) {
-                $actions = $('<div/>', {class: className.actions + ' ' + (settings.classActions || '')}).appendTo($toast);
-              }
-              if($toast.hasClass('card') && !$actions.hasClass(className.attached)) {
-                $actions.addClass(className.extraContent);
-                if($actions.hasClass(className.vertical)) {
-                  $actions.removeClass(className.vertical);
-                  module.error(error.verticalCard);
-                }
-              }
-              settings.actions.forEach(function (el) {
-                var icon = el[fields.icon] ? '<i class="' + module.helpers.deQuote(el[fields.icon]) + ' icon"></i>' : '',
-                  text = module.helpers.escape(el[fields.text] || '', settings.preserveHTML),
-                  cls = module.helpers.deQuote(el[fields.class] || ''),
-                  click = el[fields.click] && $.isFunction(el[fields.click]) ? el[fields.click] : function () {};
-                $actions.append($('<button/>', {
-                  html: icon + text,
-                  class: className.button + ' ' + cls,
-                  click: function () {
-                    if (click.call(element, $module) === false) {
-                      return;
-                    }
-                    module.close();
-                  }
-                }));
-              });
-            }
-            if ($actions && $actions.hasClass(className.vertical)) {
-                $toast.addClass(className.vertical);
-            }
-            if($actions.length > 0 && !$actions.hasClass(className.attached)) {
-              if ($actions && (!$actions.hasClass(className.basic) || $actions.hasClass(className.left))) {
-                $toast.addClass(className.actions);
-              }
-            }
-            if(settings.displayTime === 'auto'){
-              settings.displayTime = Math.max(settings.minDisplayTime, $toast.text().split(" ").length / settings.wordsPerMinute * 60000);
-            }
-            $toastBox.append($toast);
-
-            if($actions.length > 0 && $actions.hasClass(className.attached)) {
-              $actions.addClass(className.buttons);
-              $actions.detach();
-              $toast.addClass(className.attached);
-              if (!$actions.hasClass(className.vertical)) {
-                if ($actions.hasClass(className.top)) {
-                  $toastBox.prepend($actions);
-                  $toast.addClass(className.bottom);
-                } else {
-                  $toastBox.append($actions);
-                  $toast.addClass(className.top);
-                }
-              } else {
-                $toast.wrap(
-                  $('<div/>',{
-                    class:className.vertical + ' ' +
-                          className.attached + ' ' +
-                          (settings.compact ? className.compact : '')
-                  })
-                );
-                if($actions.hasClass(className.left)) {
-                  $toast.addClass(className.left).parent().addClass(className.left).prepend($actions);
-                } else {
-                  $toast.parent().append($actions);
-                }
-              }
-            }
-            if($module !== $toast) {
-              $module = $toast;
-              element = $toast[0];
-            }
-            if(settings.displayTime > 0) {
-              var progressingClass = className.progressing+' '+(settings.pauseOnHover ? className.pausable:'');
-              if (!!settings.showProgress) {
-                $progress = $('<div/>', {
-                  class: className.progress + ' ' + (settings.classProgress || settings.class),
-                  'data-percent': ''
-                });
-                if(!settings.classProgress) {
-                  if ($toast.hasClass('toast') && !$toast.hasClass(className.inverted)) {
-                    $progress.addClass(className.inverted);
-                  } else {
-                    $progress.removeClass(className.inverted);
-                  }
-                }
-                $progressBar = $('<div/>', {class: 'bar '+(settings.progressUp ? 'up ' : 'down ')+progressingClass});
-                $progress
-                    .addClass(settings.showProgress)
-                    .append($progressBar);
-                if ($progress.hasClass(className.top)) {
-                  $toastBox.prepend($progress);
-                } else {
-                  $toastBox.append($progress);
-                }
-                $progressBar.css('animation-duration', settings.displayTime / 1000 + 's');
-              }
-              $animationObject = $('<span/>',{class:'wait '+progressingClass});
-              $animationObject.css('animation-duration', settings.displayTime / 1000 + 's');
-              $animationObject.appendTo($toast);
-            }
-            if (settings.compact) {
-              $toastBox.addClass(className.compact);
-              $toast.addClass(className.compact);
-              if($progress) {
-                $progress.addClass(className.compact);
-              }
-            }
-            if (settings.newestOnTop) {
-              $toastBox.prependTo(module.get.container());
-            }
-            else {
-              $toastBox.appendTo(module.get.container());
-            }
-          }
-        },
-
-        bind: {
-          events: function() {
-            module.debug('Binding events to toast');
-            if(settings.closeOnClick || settings.closeIcon) {
-              (settings.closeIcon ? $close : $toast)
-                  .on('click' + eventNamespace, module.event.click)
-              ;
-            }
-            if($animationObject) {
-              $animationObject.on('animationend' + eventNamespace, module.close);
-            }
-            $toastBox
-              .on('click' + eventNamespace, selector.approve, module.event.approve)
-              .on('click' + eventNamespace, selector.deny, module.event.deny)
-            ;
-          }
-        },
-
-        unbind: {
-          events: function() {
-            module.debug('Unbinding events to toast');
-            if(settings.closeOnClick || settings.closeIcon) {
-              (settings.closeIcon ? $close : $toast)
-                  .off('click' + eventNamespace)
-              ;
-            }
-            if($animationObject) {
-              $animationObject.off('animationend' + eventNamespace);
-            }
-            $toastBox
-              .off('click' + eventNamespace)
-            ;
-          }
-        },
-
-        animate: {
-          show: function(callback) {
-            callback = $.isFunction(callback) ? callback : function(){};
-            if(settings.transition && module.can.useElement('transition') && $module.transition('is supported')) {
-              module.set.visible();
-              $toastBox
-                .transition({
-                  animation  : settings.transition.showMethod + ' in',
-                  queue      : false,
-                  debug      : settings.debug,
-                  verbose    : settings.verbose,
-                  duration   : settings.transition.showDuration,
-                  onComplete : function() {
-                    callback.call($toastBox, element);
-                    settings.onVisible.call($toastBox, element);
-                  }
-                })
-              ;
-            }
-          },
-          close: function(callback) {
-            callback = $.isFunction(callback) ? callback : function(){};
-            module.debug('Closing toast');
-            if(settings.onHide.call($toastBox, element) === false) {
-              module.debug('onHide callback returned false, cancelling toast animation');
-              return;
-            }
-            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
-              $toastBox
-                .transition({
-                  animation  : settings.transition.hideMethod + ' out',
-                  queue      : false,
-                  duration   : settings.transition.hideDuration,
-                  debug      : settings.debug,
-                  verbose    : settings.verbose,
-                  interval   : 50,
-
-                  onBeforeHide: function(callback){
-                      callback = $.isFunction(callback)?callback : function(){};
-                      if(settings.transition.closeEasing !== ''){
-                          if($toastBox) {
-                            $toastBox.css('opacity', 0);
-                            $toastBox.wrap('<div/>').parent().hide(settings.transition.closeDuration, settings.transition.closeEasing, function () {
-                              if ($toastBox) {
-                                $toastBox.parent().remove();
-                                callback.call($toastBox);
-                              }
-                            });
-                          }
-                      } else {
-                        callback.call($toastBox);
-                      }
-                  },
-                  onComplete : function() {
-                    callback.call($toastBox, element);
-                    settings.onHidden.call($toastBox, element);
-                    module.destroy();
-                  }
-                })
-              ;
-            }
-            else {
-              module.error(error.noTransition);
-            }
-          },
-          pause: function() {
-            $animationObject.css('animationPlayState','paused');
-            if($progressBar) {
-              $progressBar.css('animationPlayState', 'paused');
-            }
-          },
-          continue: function() {
-            $animationObject.css('animationPlayState','running');
-            if($progressBar) {
-              $progressBar.css('animationPlayState', 'running');
-            }
-          }
-        },
-
-        has: {
-          container: function() {
-            module.verbose('Determining if there is already a container');
-            return ($context.find(module.helpers.toClass(settings.position) + selector.container + (settings.horizontal ? module.helpers.toClass(className.horizontal) : '')).length > 0);
-          },
-          toast: function(){
-            return !!module.get.toast();
-          },
-          toasts: function(){
-            return module.get.toasts().length > 0;
-          },
-          configActions: function () {
-            return Array.isArray(settings.actions) && settings.actions.length > 0;
-          }
-        },
-
-        get: {
-          container: function() {
-            return ($context.find(module.helpers.toClass(settings.position) + selector.container)[0]);
-          },
-          toastBox: function() {
-            return $toastBox || null;
-          },
-          toast: function() {
-            return $toast || null;
-          },
-          toasts: function() {
-            return $(module.get.container()).find(selector.box);
-          },
-          iconClass: function() {
-            return typeof settings.showIcon === 'string' ? settings.showIcon : settings.showIcon && settings.icons[settings.class] ? settings.icons[settings.class] : '';
-          },
-          remainingTime: function() {
-            return $animationObject ? $animationObject.css('opacity') * settings.displayTime : 0;
-          }
-        },
-
-        set: {
-          visible: function() {
-            $toast.addClass(className.visible);
-          }
-        },
-
-        remove: {
-          visible: function() {
-            $toast.removeClass(className.visible);
-          }
-        },
-
-        event: {
-          click: function(event) {
-            if($(event.target).closest('a').length === 0) {
-              settings.onClick.call($toastBox, element);
-              module.close();
-            }
-          },
-          approve: function() {
-            if(settings.onApprove.call(element, $module) === false) {
-              module.verbose('Approve callback returned false cancelling close');
-              return;
-            }
-            module.close();
-          },
-          deny: function() {
-            if(settings.onDeny.call(element, $module) === false) {
-              module.verbose('Deny callback returned false cancelling close');
-              return;
-            }
-            module.close();
-          }
-        },
-
-        helpers: {
-          toClass: function(selector) {
-            var
-              classes = selector.split(' '),
-              result = ''
-            ;
-
-            classes.forEach(function (element) {
-              result += '.' + element;
-            });
-
-            return result;
-          },
-          deQuote: function(string) {
-            return String(string).replace(/"/g,"");
-          },
-          escape: function(string, preserveHTML) {
-            if (preserveHTML){
-              return string;
-            }
-            var
-              badChars     = /[<>"'`]/g,
-              shouldEscape = /[&<>"'`]/,
-              escape       = {
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#x27;",
-                "`": "&#x60;"
-              },
-              escapedChar  = function(chr) {
-                return escape[chr];
-              }
-            ;
-            if(shouldEscape.test(string)) {
-              string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
-              return string.replace(badChars, escapedChar);
-            }
-            return string;
-          }
-        },
-
-        can: {
-          useElement: function(element){
-            if ($.fn[element] !== undefined) {
-              return true;
-            }
-            module.error(error.noElement.replace('{element}',element));
-            return false;
-          }
-        },
-
-        setting: function(name, value) {
-          module.debug('Changing setting', name, value);
-          if( $.isPlainObject(name) ) {
-            $.extend(true, settings, name);
-          }
-          else if(value !== undefined) {
-            if($.isPlainObject(settings[name])) {
-              $.extend(true, settings[name], value);
-            }
-            else {
-              settings[name] = value;
-            }
-          }
-          else {
-            return settings[name];
-          }
-        },
-        internal: function(name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, module, name);
-          }
-          else if(value !== undefined) {
-            module[name] = value;
-          }
-          else {
-            return module[name];
-          }
-        },
-        debug: function() {
-          if(!settings.silent && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.debug.apply(console, arguments);
-            }
-          }
-        },
-        verbose: function() {
-          if(!settings.silent && settings.verbose && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.verbose.apply(console, arguments);
-            }
-          }
-        },
-        error: function() {
-          if(!settings.silent) {
-            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
-            module.error.apply(console, arguments);
-          }
-        },
-        performance: {
-          log: function(message) {
-            var
-              currentTime,
-              executionTime,
-              previousTime
-            ;
-            if(settings.performance) {
-              currentTime   = new Date().getTime();
-              previousTime  = time || currentTime;
-              executionTime = currentTime - previousTime;
-              time          = currentTime;
-              performance.push({
-                'Name'           : message[0],
-                'Arguments'      : [].slice.call(message, 1) || '',
-                'Element'        : element,
-                'Execution Time' : executionTime
-              });
-            }
-            clearTimeout(module.performance.timer);
-            module.performance.timer = setTimeout(module.performance.display, 500);
-          },
-          display: function() {
-            var
-              title = settings.name + ':',
-              totalTime = 0
-            ;
-            time = false;
-            clearTimeout(module.performance.timer);
-            $.each(performance, function(index, data) {
-              totalTime += data['Execution Time'];
-            });
-            title += ' ' + totalTime + 'ms';
-            if(moduleSelector) {
-              title += ' \'' + moduleSelector + '\'';
-            }
-            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
-              console.groupCollapsed(title);
-              if(console.table) {
-                console.table(performance);
-              }
-              else {
-                $.each(performance, function(index, data) {
-                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
-                });
-              }
-              console.groupEnd();
-            }
-            performance = [];
-          }
-        },
-        invoke: function(query, passedArguments, context) {
-          var
-            object = instance,
-            maxDepth,
-            found,
-            response
-          ;
-          passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
-          if(typeof query == 'string' && object !== undefined) {
-            query    = query.split(/[\. ]/);
-            maxDepth = query.length - 1;
-            $.each(query, function(depth, value) {
-              var camelCaseValue = (depth != maxDepth)
-                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
-                : query
-              ;
-              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
-                object = object[camelCaseValue];
-              }
-              else if( object[camelCaseValue] !== undefined ) {
-                found = object[camelCaseValue];
-                return false;
-              }
-              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
-                object = object[value];
-              }
-              else if( object[value] !== undefined ) {
-                found = object[value];
-                return false;
-              }
-              else {
-                module.error(error.method, query);
-                return false;
-              }
-            });
-          }
-          if ( $.isFunction( found ) ) {
-            response = found.apply(context, passedArguments);
-          }
-          else if(found !== undefined) {
-            response = found;
-          }
-          if(Array.isArray(returnedValue)) {
-            returnedValue.push(response);
-          }
-          else if(returnedValue !== undefined) {
-            returnedValue = [returnedValue, response];
-          }
-          else if(response !== undefined) {
-            returnedValue = response;
-          }
-          return found;
-        }
-      };
-
-      if(methodInvoked) {
-        if(instance === undefined) {
-          module.initialize();
-        }
-        module.invoke(query);
-      }
-      else {
-        if(instance !== undefined) {
-          instance.invoke('destroy');
-        }
-        module.initialize();
-        returnedValue = $module;
-      }
-    })
-  ;
-
-  return (returnedValue !== undefined)
-    ? returnedValue
-    : this
-  ;
-};
-
-$.fn.toast.settings = {
-
-  name           : 'Toast',
-  namespace      : 'toast',
-
-  silent         : false,
-  debug          : false,
-  verbose        : false,
-  performance    : true,
-
-  context        : 'body',
-
-  position       : 'top right',
-  horizontal     : false,
-  class          : 'neutral',
-  classProgress  : false,
-  classActions   : false,
-  classImage     : 'mini',
-
-  title          : '',
-  message        : '',
-  displayTime    : 3000, // set to zero to require manually dismissal, otherwise hides on its own
-  minDisplayTime : 1000, // minimum displaytime in case displayTime is set to 'auto'
-  wordsPerMinute : 120,
-  showIcon       : false,
-  newestOnTop    : false,
-  showProgress   : false,
-  pauseOnHover   : true,
-  progressUp     : false, //if true, the bar will start at 0% and increase to 100%
-  opacity        : 1,
-  compact        : true,
-  closeIcon      : false,
-  closeOnClick   : true,
-  cloneModule    : true,
-  actions        : false,
-  preserveHTML   : true,
-  showImage      : false,
-
-  // transition settings
-  transition     : {
-    showMethod   : 'scale',
-    showDuration : 500,
-    hideMethod   : 'scale',
-    hideDuration : 500,
-    closeEasing  : 'easeOutCubic',  //Set to empty string to stack the closed toast area immediately (old behaviour)
-    closeDuration: 500
-  },
-
-  error: {
-    method       : 'The method you called is not defined.',
-    noElement    : 'This module requires ui {element}',
-    verticalCard : 'Vertical but not attached actions are not supported for card layout'
-  },
-
-  className      : {
-    container    : 'ui toast-container',
-    box          : 'floating toast-box',
-    progress     : 'ui attached active progress',
-    toast        : 'ui toast',
-    icon         : 'centered icon',
-    visible      : 'visible',
-    content      : 'content',
-    title        : 'ui header',
-    message      : 'message',
-    actions      : 'actions',
-    extraContent : 'extra content',
-    button       : 'ui button',
-    buttons      : 'ui buttons',
-    close        : 'close icon',
-    image        : 'ui image',
-    vertical     : 'vertical',
-    horizontal   : 'horizontal',
-    attached     : 'attached',
-    inverted     : 'inverted',
-    compact      : 'compact',
-    pausable     : 'pausable',
-    progressing  : 'progressing',
-    top          : 'top',
-    bottom       : 'bottom',
-    left         : 'left',
-    basic        : 'basic',
-    unclickable  : 'unclickable'
-  },
-
-  icons          : {
-    info         : 'info',
-    success      : 'checkmark',
-    warning      : 'warning',
-    error        : 'times'
-  },
-
-  selector       : {
-    container    : '.ui.toast-container',
-    box          : '.toast-box',
-    toast        : '.ui.toast',
-    title        : '.header',
-    message      : '.message:not(.ui)',
-    image        : '> img.image, > .image > img',
-    icon         : '> i.icon',
-    input        : 'input:not([type="hidden"]), textarea, select, button, .ui.button, ui.dropdown',
-    approve      : '.actions .positive, .actions .approve, .actions .ok',
-    deny         : '.actions .negative, .actions .deny, .actions .cancel'
-  },
-
-  fields         : {
-    class        : 'class',
-    text         : 'text',
-    icon         : 'icon',
-    click        : 'click'
-  },
-
-  // callbacks
-  onShow         : function(){},
-  onVisible      : function(){},
-  onClick        : function(){},
-  onHide         : function(){},
-  onHidden       : function(){},
-  onRemove       : function(){},
-  onApprove      : function(){},
-  onDeny         : function(){}
-};
-
-$.extend( $.easing, {
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t/=d) < (1/2.75)) {
-            return c*(7.5625*t*t) + b;
-        } else if (t < (2/2.75)) {
-            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
-        } else if (t < (2.5/2.75)) {
-            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
-        } else {
-            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
-        }
-    },
-    easeOutCubic: function (t) {
-      return (--t)*t*t+1;
-    }
-});
-
-
-})( jQuery, window, document );
-
-/*!
- * # Fomantic-UI 2.8.8 - Form Validation
- * http://github.com/fomantic/Fomantic-UI/
- *
- *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-;(function ($, window, document, undefined) {
-
-'use strict';
-
-$.isFunction = $.isFunction || function(obj) {
-  return typeof obj === "function" && typeof obj.nodeType !== "number";
-};
-
-window = (typeof window != 'undefined' && window.Math == Math)
-  ? window
-  : (typeof self != 'undefined' && self.Math == Math)
-    ? self
-    : Function('return this')()
-;
-
-$.fn.form = function(parameters) {
-  var
-    $allModules      = $(this),
-    moduleSelector   = $allModules.selector || '',
-
-    time             = new Date().getTime(),
-    performance      = [],
-
-    query            = arguments[0],
-    legacyParameters = arguments[1],
-    methodInvoked    = (typeof query == 'string'),
-    queryArguments   = [].slice.call(arguments, 1),
-    returnedValue
-  ;
-  $allModules
-    .each(function() {
-      var
-        $module     = $(this),
-        element     = this,
-
-        formErrors  = [],
-        keyHeldDown = false,
-
-        // set at run-time
-        $field,
-        $group,
-        $message,
-        $prompt,
-        $submit,
-        $clear,
-        $reset,
-
-        settings,
-        validation,
-
-        metadata,
-        selector,
-        className,
-        regExp,
-        error,
-
-        namespace,
-        moduleNamespace,
-        eventNamespace,
-
-        submitting = false,
-        dirty = false,
-        history = ['clean', 'clean'],
-
-        instance,
-        module
-      ;
-
-      module      = {
-
-        initialize: function() {
-
-          // settings grabbed at run time
-          module.get.settings();
-          if(methodInvoked) {
-            if(instance === undefined) {
-              module.instantiate();
-            }
-            module.invoke(query);
-          }
-          else {
-            if(instance !== undefined) {
-              instance.invoke('destroy');
-              module.refresh();
-            }
-            module.verbose('Initializing form validation', $module, settings);
-            module.bindEvents();
-            module.set.defaults();
-            if (settings.autoCheckRequired) {
-              module.set.autoCheck();
-            }
-            module.instantiate();
-          }
-        },
-
-        instantiate: function() {
-          module.verbose('Storing instance of module', module);
-          instance = module;
-          $module
-            .data(moduleNamespace, module)
-          ;
-        },
-
-        destroy: function() {
-          module.verbose('Destroying previous module', instance);
-          module.removeEvents();
-          $module
-            .removeData(moduleNamespace)
-          ;
-        },
-
-        refresh: function() {
-          module.verbose('Refreshing selector cache');
-          $field      = $module.find(selector.field);
-          $group      = $module.find(selector.group);
-          $message    = $module.find(selector.message);
-          $prompt     = $module.find(selector.prompt);
-
-          $submit     = $module.find(selector.submit);
-          $clear      = $module.find(selector.clear);
-          $reset      = $module.find(selector.reset);
-        },
-
-        submit: function() {
-          module.verbose('Submitting form', $module);
-          submitting = true;
-          $module.submit();
-        },
-
-        attachEvents: function(selector, action) {
-          action = action || 'submit';
-          $(selector).on('click' + eventNamespace, function(event) {
-            module[action]();
-            event.preventDefault();
-          });
-        },
-
-        bindEvents: function() {
-          module.verbose('Attaching form events');
-          $module
-            .on('submit' + eventNamespace, module.validate.form)
-            .on('blur'   + eventNamespace, selector.field, module.event.field.blur)
-            .on('click'  + eventNamespace, selector.submit, module.submit)
-            .on('click'  + eventNamespace, selector.reset, module.reset)
-            .on('click'  + eventNamespace, selector.clear, module.clear)
-          ;
-          if(settings.keyboardShortcuts) {
-            $module.on('keydown' + eventNamespace, selector.field, module.event.field.keydown);
-          }
-          $field.each(function(index, el) {
-            var
-              $input     = $(el),
-              type       = $input.prop('type'),
-              inputEvent = module.get.changeEvent(type, $input)
-            ;
-            $input.on(inputEvent + eventNamespace, module.event.field.change);
-          });
-
-          // Dirty events
-          if (settings.preventLeaving) {
-            $(window).on('beforeunload' + eventNamespace, module.event.beforeUnload);
-          }
-
-          $field.on('change click keyup keydown blur', function(e) {
-            module.determine.isDirty();
-          });
-
-          $module.on('dirty' + eventNamespace, function(e) {
-            settings.onDirty.call();
-          });
-
-          $module.on('clean' + eventNamespace, function(e) {
-            settings.onClean.call();
-          })
-        },
-
-        clear: function() {
-          $field.each(function (index, el) {
-            var
-              $field       = $(el),
-              $element     = $field.parent(),
-              $fieldGroup  = $field.closest($group),
-              $prompt      = $fieldGroup.find(selector.prompt),
-              $calendar    = $field.closest(selector.uiCalendar),
-              defaultValue = $field.data(metadata.defaultValue) || '',
-              isCheckbox   = $element.is(selector.uiCheckbox),
-              isDropdown   = $element.is(selector.uiDropdown)  && module.can.useElement('dropdown'),
-              isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
-              isErrored    = $fieldGroup.hasClass(className.error)
-            ;
-            if(isErrored) {
-              module.verbose('Resetting error on field', $fieldGroup);
-              $fieldGroup.removeClass(className.error);
-              $prompt.remove();
-            }
-            if(isDropdown) {
-              module.verbose('Resetting dropdown value', $element, defaultValue);
-              $element.dropdown('clear', true);
-            }
-            else if(isCheckbox) {
-              $field.prop('checked', false);
-            }
-            else if (isCalendar) {
-              $calendar.calendar('clear');
-            }
-            else {
-              module.verbose('Resetting field value', $field, defaultValue);
-              $field.val('');
-            }
-          });
-          module.remove.states();
-        },
-
-        reset: function() {
-          $field.each(function (index, el) {
-            var
-              $field       = $(el),
-              $element     = $field.parent(),
-              $fieldGroup  = $field.closest($group),
-              $calendar    = $field.closest(selector.uiCalendar),
-              $prompt      = $fieldGroup.find(selector.prompt),
-              defaultValue = $field.data(metadata.defaultValue),
-              isCheckbox   = $element.is(selector.uiCheckbox),
-              isDropdown   = $element.is(selector.uiDropdown)  && module.can.useElement('dropdown'),
-              isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
-              isErrored    = $fieldGroup.hasClass(className.error)
-            ;
-            if(defaultValue === undefined) {
-              return;
-            }
-            if(isErrored) {
-              module.verbose('Resetting error on field', $fieldGroup);
-              $fieldGroup.removeClass(className.error);
-              $prompt.remove();
-            }
-            if(isDropdown) {
-              module.verbose('Resetting dropdown value', $element, defaultValue);
-              $element.dropdown('restore defaults', true);
-            }
-            else if(isCheckbox) {
-              module.verbose('Resetting checkbox value', $element, defaultValue);
-              $field.prop('checked', defaultValue);
-            }
-            else if (isCalendar) {
-              $calendar.calendar('set date', defaultValue);
-            }
-            else {
-              module.verbose('Resetting field value', $field, defaultValue);
-              $field.val(defaultValue);
-            }
-          });
-          module.remove.states();
-        },
-
-        determine: {
-          isValid: function() {
-            var
-              allValid = true
-            ;
-            $.each(validation, function(fieldName, field) {
-              if( !( module.validate.field(field, fieldName, true) ) ) {
-                allValid = false;
-              }
-            });
-            return allValid;
-          },
-          isDirty: function(e) {
-            var formIsDirty = false;
-
-            $field.each(function(index, el) {
-              var
-                $el = $(el),
-                isCheckbox = ($el.filter(selector.checkbox).length > 0),
-                isDirty
-              ;
-
-              if (isCheckbox) {
-                isDirty = module.is.checkboxDirty($el);
-              } else {
-                isDirty = module.is.fieldDirty($el);
-              }
-
-              $el.data(settings.metadata.isDirty, isDirty);
-
-              formIsDirty |= isDirty;
-            });
-
-            if (formIsDirty) {
-              module.set.dirty();
-            } else {
-              module.set.clean();
-            }
-
-          }
-        },
-
-        is: {
-          bracketedRule: function(rule) {
-            return (rule.type && rule.type.match(settings.regExp.bracket));
-          },
-          // duck type rule test
-          shorthandRules: function(rules) {
-            return (typeof rules == 'string' || Array.isArray(rules));
-          },
-          empty: function($field) {
-            if(!$field || $field.length === 0) {
-              return true;
-            }
-            else if($field.is(selector.checkbox)) {
-              return !$field.is(':checked');
-            }
-            else {
-              return module.is.blank($field);
-            }
-          },
-          blank: function($field) {
-            return String($field.val()).trim() === '';
-          },
-          valid: function(field, showErrors) {
-            var
-              allValid = true
-            ;
-            if(field) {
-              module.verbose('Checking if field is valid', field);
-              return module.validate.field(validation[field], field, !!showErrors);
-            }
-            else {
-              module.verbose('Checking if form is valid');
-              $.each(validation, function(fieldName, field) {
-                if( !module.is.valid(fieldName, showErrors) ) {
-                  allValid = false;
-                }
-              });
-              return allValid;
-            }
-          },
-          dirty: function() {
-            return dirty;
-          },
-          clean: function() {
-            return !dirty;
-          },
-          fieldDirty: function($el) {
-            var initialValue = $el.data(metadata.defaultValue);
-            // Explicitly check for null/undefined here as value may be `false`, so ($el.data(dataInitialValue) || '') would not work
-            if (initialValue == null) { initialValue = ''; }
-            else if(Array.isArray(initialValue)) {
-              initialValue = initialValue.toString();
-            }
-            var currentValue = $el.val();
-            if (currentValue == null) { currentValue = ''; }
-            // multiple select values are returned as arrays which are never equal, so do string conversion first
-            else if(Array.isArray(currentValue)) {
-              currentValue = currentValue.toString();
-            }
-            // Boolean values can be encoded as "true/false" or "True/False" depending on underlying frameworks so we need a case insensitive comparison
-            var boolRegex = /^(true|false)$/i;
-            var isBoolValue = boolRegex.test(initialValue) && boolRegex.test(currentValue);
-            if (isBoolValue) {
-              var regex = new RegExp("^" + initialValue + "$", "i");
-              return !regex.test(currentValue);
-            }
-
-            return currentValue !== initialValue;
-          },
-          checkboxDirty: function($el) {
-            var initialValue = $el.data(metadata.defaultValue);
-            var currentValue = $el.is(":checked");
-
-            return initialValue !== currentValue;
-          },
-          justDirty: function() {
-            return (history[0] === 'dirty');
-          },
-          justClean: function() {
-            return (history[0] === 'clean');
-          }
-        },
-
-        removeEvents: function() {
-          $module.off(eventNamespace);
-          $field.off(eventNamespace);
-          $submit.off(eventNamespace);
-          $field.off(eventNamespace);
-        },
-
-        event: {
-          field: {
-            keydown: function(event) {
-              var
-                $field       = $(this),
-                key          = event.which,
-                isInput      = $field.is(selector.input),
-                isCheckbox   = $field.is(selector.checkbox),
-                isInDropdown = ($field.closest(selector.uiDropdown).length > 0),
-                keyCode      = {
-                  enter  : 13,
-                  escape : 27
-                }
-              ;
-              if( key == keyCode.escape) {
-                module.verbose('Escape key pressed blurring field');
-                $field[0]
-                  .blur()
-                ;
-              }
-              if(!event.ctrlKey && key == keyCode.enter && isInput && !isInDropdown && !isCheckbox) {
-                if(!keyHeldDown) {
-                  $field.one('keyup' + eventNamespace, module.event.field.keyup);
-                  module.submit();
-                  module.debug('Enter pressed on input submitting form');
-                }
-                keyHeldDown = true;
-              }
-            },
-            keyup: function() {
-              keyHeldDown = false;
-            },
-            blur: function(event) {
-              var
-                $field          = $(this),
-                $fieldGroup     = $field.closest($group),
-                validationRules = module.get.validation($field)
-              ;
-              if(validationRules && (settings.on == 'blur' || ( $fieldGroup.hasClass(className.error) && settings.revalidate) )) {
-                module.debug('Revalidating field', $field, validationRules);
-                module.validate.field( validationRules );
-                if(!settings.inline) {
-                  module.validate.form(false,true);
-                }
-              }
-            },
-            change: function(event) {
-              var
-                $field      = $(this),
-                $fieldGroup = $field.closest($group),
-                validationRules = module.get.validation($field)
-              ;
-              if(validationRules && (settings.on == 'change' || ( $fieldGroup.hasClass(className.error) && settings.revalidate) )) {
-                clearTimeout(module.timer);
-                module.timer = setTimeout(function() {
-                  module.debug('Revalidating field', $field, validationRules);
-                  module.validate.field( validationRules );
-                  if(!settings.inline) {
-                    module.validate.form(false,true);
-                  }
-                }, settings.delay);
-              }
-            }
-          },
-          beforeUnload: function(event) {
-            if (module.is.dirty() && !submitting) {
-              var event = event || window.event;
-
-              // For modern browsers
-              if (event) {
-                event.returnValue = settings.text.leavingMessage;
-              }
-
-              // For olders...
-              return settings.text.leavingMessage;
-            }
-          }
-
-        },
-
-        get: {
-          ancillaryValue: function(rule) {
-            if(!rule.type || (!rule.value && !module.is.bracketedRule(rule))) {
-              return false;
-            }
-            return (rule.value !== undefined)
-              ? rule.value
-              : rule.type.match(settings.regExp.bracket)[1] + ''
-            ;
-          },
-          ruleName: function(rule) {
-            if( module.is.bracketedRule(rule) ) {
-              return rule.type.replace(rule.type.match(settings.regExp.bracket)[0], '');
-            }
-            return rule.type;
-          },
-          changeEvent: function(type, $input) {
-            if(type == 'checkbox' || type == 'radio' || type == 'hidden' || $input.is('select')) {
-              return 'change';
-            }
-            else {
-              return module.get.inputEvent();
-            }
-          },
-          inputEvent: function() {
-            return (document.createElement('input').oninput !== undefined)
-              ? 'input'
-              : (document.createElement('input').onpropertychange !== undefined)
-                ? 'propertychange'
-                : 'keyup'
-            ;
-          },
-          fieldsFromShorthand: function(fields) {
-            var
-              fullFields = {}
-            ;
-            $.each(fields, function(name, rules) {
-              if (!Array.isArray(rules) && typeof rules === 'object') {
-                fullFields[name] = rules;
-              } else {
-                if (typeof rules == 'string') {
-                  rules = [rules];
-                }
-                fullFields[name] = {
-                  rules: []
-                };
-                $.each(rules, function (index, rule) {
-                  fullFields[name].rules.push({type: rule});
-                });
-              }
-            });
-            return fullFields;
-          },
-          prompt: function(rule, field) {
-            var
-              ruleName      = module.get.ruleName(rule),
-              ancillary     = module.get.ancillaryValue(rule),
-              $field        = module.get.field(field.identifier),
-              value         = $field.val(),
-              prompt        = $.isFunction(rule.prompt)
-                ? rule.prompt(value)
-                : rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
-              requiresValue = (prompt.search('{value}') !== -1),
-              requiresName  = (prompt.search('{name}') !== -1),
-              $label,
-              name,
-              parts,
-              suffixPrompt
-            ;
-            if(ancillary && ancillary.indexOf('..') >= 0) {
-              parts = ancillary.split('..', 2);
-              if(!rule.prompt) {
-                suffixPrompt = (
-                    parts[0] === '' ? settings.prompt.maxValue.replace(/\{ruleValue\}/g,'{max}') :
-                    parts[1] === '' ? settings.prompt.minValue.replace(/\{ruleValue\}/g,'{min}') :
-                    settings.prompt.range
-                );
-                prompt += suffixPrompt.replace(/\{name\}/g, ' ' + settings.text.and);
-              }
-              prompt = prompt.replace(/\{min\}/g, parts[0]);
-              prompt = prompt.replace(/\{max\}/g, parts[1]);
-            }
-            if(requiresValue) {
-              prompt = prompt.replace(/\{value\}/g, $field.val());
-            }
-            if(requiresName) {
-              $label = $field.closest(selector.group).find('label').eq(0);
-              name = ($label.length == 1)
-                ? $label.text()
-                : $field.prop('placeholder') || settings.text.unspecifiedField
-              ;
-              prompt = prompt.replace(/\{name\}/g, name);
-            }
-            prompt = prompt.replace(/\{identifier\}/g, field.identifier);
-            prompt = prompt.replace(/\{ruleValue\}/g, ancillary);
-            if(!rule.prompt) {
-              module.verbose('Using default validation prompt for type', prompt, ruleName);
-            }
-            return prompt;
-          },
-          settings: function() {
-            if($.isPlainObject(parameters)) {
-              var
-                keys     = Object.keys(parameters),
-                isLegacySettings = (keys.length > 0)
-                  ? (parameters[keys[0]].identifier !== undefined && parameters[keys[0]].rules !== undefined)
-                  : false
-              ;
-              if(isLegacySettings) {
-                // 1.x (ducktyped)
-                settings   = $.extend(true, {}, $.fn.form.settings, legacyParameters);
-                validation = $.extend({}, $.fn.form.settings.defaults, parameters);
-                module.error(settings.error.oldSyntax, element);
-                module.verbose('Extending settings from legacy parameters', validation, settings);
-              }
-              else {
-                // 2.x
-                if(parameters.fields) {
-                  parameters.fields = module.get.fieldsFromShorthand(parameters.fields);
-                }
-                settings   = $.extend(true, {}, $.fn.form.settings, parameters);
-                validation = $.extend({}, $.fn.form.settings.defaults, settings.fields);
-                module.verbose('Extending settings', validation, settings);
-              }
-            }
-            else {
-              settings   = $.fn.form.settings;
-              validation = $.fn.form.settings.defaults;
-              module.verbose('Using default form validation', validation, settings);
-            }
-
-            // shorthand
-            namespace       = settings.namespace;
-            metadata        = settings.metadata;
-            selector        = settings.selector;
-            className       = settings.className;
-            regExp          = settings.regExp;
-            error           = settings.error;
-            moduleNamespace = 'module-' + namespace;
-            eventNamespace  = '.' + namespace;
-
-            // grab instance
-            instance = $module.data(moduleNamespace);
-
-            // refresh selector cache
-            (instance || module).refresh();
-          },
-          field: function(identifier) {
-            module.verbose('Finding field with identifier', identifier);
-            identifier = module.escape.string(identifier);
-            var t;
-            if((t=$field.filter('#' + identifier)).length > 0 ) {
-              return t;
-            }
-            if((t=$field.filter('[name="' + identifier +'"]')).length > 0 ) {
-              return t;
-            }
-            if((t=$field.filter('[name="' + identifier +'[]"]')).length > 0 ) {
-              return t;
-            }
-            if((t=$field.filter('[data-' + metadata.validate + '="'+ identifier +'"]')).length > 0 ) {
-              return t;
-            }
-            return $('<input/>');
-          },
-          fields: function(fields) {
-            var
-              $fields = $()
-            ;
-            $.each(fields, function(index, name) {
-              $fields = $fields.add( module.get.field(name) );
-            });
-            return $fields;
-          },
-          validation: function($field) {
-            var
-              fieldValidation,
-              identifier
-            ;
-            if(!validation) {
-              return false;
-            }
-            $.each(validation, function(fieldName, field) {
-              identifier = field.identifier || fieldName;
-              $.each(module.get.field(identifier), function(index, groupField) {
-                if(groupField == $field[0]) {
-                  field.identifier = identifier;
-                  fieldValidation = field;
-                  return false;
-                }
-              });
-            });
-            return fieldValidation || false;
-          },
-          value: function (field) {
-            var
-              fields = [],
-              results
-            ;
-            fields.push(field);
-            results = module.get.values.call(element, fields);
-            return results[field];
-          },
-          values: function (fields) {
-            var
-              $fields = Array.isArray(fields)
-                ? module.get.fields(fields)
-                : $field,
-              values = {}
-            ;
-            $fields.each(function(index, field) {
-              var
-                $field       = $(field),
-                $calendar    = $field.closest(selector.uiCalendar),
-                name         = $field.prop('name'),
-                value        = $field.val(),
-                isCheckbox   = $field.is(selector.checkbox),
-                isRadio      = $field.is(selector.radio),
-                isMultiple   = (name.indexOf('[]') !== -1),
-                isCalendar   = ($calendar.length > 0  && module.can.useElement('calendar')),
-                isChecked    = (isCheckbox)
-                  ? $field.is(':checked')
-                  : false
-              ;
-              if(name) {
-                if(isMultiple) {
-                  name = name.replace('[]', '');
-                  if(!values[name]) {
-                    values[name] = [];
-                  }
-                  if(isCheckbox) {
-                    if(isChecked) {
-                      values[name].push(value || true);
-                    }
-                    else {
-                      values[name].push(false);
-                    }
-                  }
-                  else {
-                    values[name].push(value);
-                  }
-                }
-                else {
-                  if(isRadio) {
-                    if(values[name] === undefined || values[name] === false) {
-                      values[name] = (isChecked)
-                        ? value || true
-                        : false
-                      ;
-                    }
-                  }
-                  else if(isCheckbox) {
-                    if(isChecked) {
-                      values[name] = value || true;
-                    }
-                    else {
-                      values[name] = false;
-                    }
-                  }
-                  else if(isCalendar) {
-                    var date = $calendar.calendar('get date');
-
-                    if (date !== null) {
-                      if (settings.dateHandling == 'date') {
-                        values[name] = date;
-                      } else if(settings.dateHandling == 'input') {
-                        values[name] = $calendar.calendar('get input date')
-                      } else if (settings.dateHandling == 'formatter') {
-                        var type = $calendar.calendar('setting', 'type');
-
-                        switch(type) {
-                          case 'date':
-                          values[name] = settings.formatter.date(date);
-                          break;
-
-                          case 'datetime':
-                          values[name] = settings.formatter.datetime(date);
-                          break;
-
-                          case 'time':
-                          values[name] = settings.formatter.time(date);
-                          break;
-
-                          case 'month':
-                          values[name] = settings.formatter.month(date);
-                          break;
-
-                          case 'year':
-                          values[name] = settings.formatter.year(date);
-                          break;
-
-                          default:
-                          module.debug('Wrong calendar mode', $calendar, type);
-                          values[name] = '';
-                        }
-                      }
-                    } else {
-                      values[name] = '';
-                    }
-                  } else {
-                    values[name] = value;
-                  }
-                }
-              }
-            });
-            return values;
-          },
-          dirtyFields: function() {
-            return $field.filter(function(index, e) {
-              return $(e).data(metadata.isDirty);
-            });
-          }
-        },
-
-        has: {
-
-          field: function(identifier) {
-            module.verbose('Checking for existence of a field with identifier', identifier);
-            identifier = module.escape.string(identifier);
-            if(typeof identifier !== 'string') {
-              module.error(error.identifier, identifier);
-            }
-            if($field.filter('#' + identifier).length > 0 ) {
-              return true;
-            }
-            else if( $field.filter('[name="' + identifier +'"]').length > 0 ) {
-              return true;
-            }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
-              return true;
-            }
-            return false;
-          }
-
-        },
-
-        can: {
-            useElement: function(element){
-               if ($.fn[element] !== undefined) {
-                   return true;
-               }
-               module.error(error.noElement.replace('{element}',element));
-               return false;
-            }
-        },
-
-        escape: {
-          string: function(text) {
-            text =  String(text);
-            return text.replace(regExp.escape, '\\$&');
-          }
-        },
-
-        add: {
-          // alias
-          rule: function(name, rules) {
-            module.add.field(name, rules);
-          },
-          field: function(name, rules) {
-            // Validation should have at least a standard format
-            if(validation[name] === undefined || validation[name].rules === undefined) {
-              validation[name] = {
-                rules: []
-              };
-            }
-            var
-              newValidation = {
-                rules: []
-              }
-            ;
-            if(module.is.shorthandRules(rules)) {
-              rules = Array.isArray(rules)
-                ? rules
-                : [rules]
-              ;
-              $.each(rules, function(_index, rule) {
-                newValidation.rules.push({ type: rule });
-              });
-            }
-            else {
-              newValidation.rules = rules.rules;
-            }
-            // For each new rule, check if there's not already one with the same type
-            $.each(newValidation.rules, function (_index, rule) {
-              if ($.grep(validation[name].rules, function(item){ return item.type == rule.type; }).length == 0) {
-                validation[name].rules.push(rule);
-              }
-            });
-            module.debug('Adding rules', newValidation.rules, validation);
-          },
-          fields: function(fields) {
-            validation = $.extend({}, validation, module.get.fieldsFromShorthand(fields));
-          },
-          prompt: function(identifier, errors, internal) {
-            var
-              $field       = module.get.field(identifier),
-              $fieldGroup  = $field.closest($group),
-              $prompt      = $fieldGroup.children(selector.prompt),
-              promptExists = ($prompt.length !== 0)
-            ;
-            errors = (typeof errors == 'string')
-              ? [errors]
-              : errors
-            ;
-            module.verbose('Adding field error state', identifier);
-            if(!internal) {
-              $fieldGroup
-                  .addClass(className.error)
-              ;
-            }
-            if(settings.inline) {
-              if(!promptExists) {
-                $prompt = settings.templates.prompt(errors, className.label);
-                $prompt
-                  .appendTo($fieldGroup)
-                ;
-              }
-              $prompt
-                .html(errors[0])
-              ;
-              if(!promptExists) {
-                if(settings.transition && module.can.useElement('transition') && $module.transition('is supported')) {
-                  module.verbose('Displaying error with css transition', settings.transition);
-                  $prompt.transition(settings.transition + ' in', settings.duration);
-                }
-                else {
-                  module.verbose('Displaying error with fallback javascript animation');
-                  $prompt
-                    .fadeIn(settings.duration)
-                  ;
-                }
-              }
-              else {
-                module.verbose('Inline errors are disabled, no inline error added', identifier);
-              }
-            }
-          },
-          errors: function(errors) {
-            module.debug('Adding form error messages', errors);
-            module.set.error();
-            $message
-              .html( settings.templates.error(errors) )
-            ;
-          }
-        },
-
-        remove: {
-          errors: function() {
-            module.debug('Removing form error messages');
-            $message.empty();
-          },
-          states: function() {
-            $module.removeClass(className.error).removeClass(className.success);
-            if(!settings.inline) {
-              module.remove.errors();
-            }
-            module.determine.isDirty();
-          },
-          rule: function(field, rule) {
-            var
-              rules = Array.isArray(rule)
-                ? rule
-                : [rule]
-            ;
-            if(validation[field] === undefined || !Array.isArray(validation[field].rules)) {
-              return;
-            }
-            if(rule === undefined) {
-              module.debug('Removed all rules');
-              validation[field].rules = [];
-              return;
-            }
-            $.each(validation[field].rules, function(index, rule) {
-              if(rule && rules.indexOf(rule.type) !== -1) {
-                module.debug('Removed rule', rule.type);
-                validation[field].rules.splice(index, 1);
-              }
-            });
-          },
-          field: function(field) {
-            var
-              fields = Array.isArray(field)
-                ? field
-                : [field]
-            ;
-            $.each(fields, function(index, field) {
-              module.remove.rule(field);
-            });
-          },
-          // alias
-          rules: function(field, rules) {
-            if(Array.isArray(field)) {
-              $.each(field, function(index, field) {
-                module.remove.rule(field, rules);
-              });
-            }
-            else {
-              module.remove.rule(field, rules);
-            }
-          },
-          fields: function(fields) {
-            module.remove.field(fields);
-          },
-          prompt: function(identifier) {
-            var
-              $field      = module.get.field(identifier),
-              $fieldGroup = $field.closest($group),
-              $prompt     = $fieldGroup.children(selector.prompt)
-            ;
-            $fieldGroup
-              .removeClass(className.error)
-            ;
-            if(settings.inline && $prompt.is(':visible')) {
-              module.verbose('Removing prompt for field', identifier);
-              if(settings.transition  && module.can.useElement('transition') && $module.transition('is supported')) {
-                $prompt.transition(settings.transition + ' out', settings.duration, function() {
-                  $prompt.remove();
-                });
-              }
-              else {
-                $prompt
-                  .fadeOut(settings.duration, function(){
-                    $prompt.remove();
-                  })
-                ;
-              }
-            }
-          }
-        },
-
-        set: {
-          success: function() {
-            $module
-              .removeClass(className.error)
-              .addClass(className.success)
-            ;
-          },
-          defaults: function () {
-            $field.each(function (index, el) {
-              var
-                $el        = $(el),
-                $parent    = $el.parent(),
-                isCheckbox = ($el.filter(selector.checkbox).length > 0),
-                isDropdown = $parent.is(selector.uiDropdown) && module.can.useElement('dropdown'),
-                $calendar   = $el.closest(selector.uiCalendar),
-                isCalendar  = ($calendar.length > 0  && module.can.useElement('calendar')),
-                value      = (isCheckbox)
-                  ? $el.is(':checked')
-                  : $el.val()
-              ;
-              if (isDropdown) {
-                $parent.dropdown('save defaults');
-              }
-              else if (isCalendar) {
-                $calendar.calendar('refresh');
-              }
-              $el.data(metadata.defaultValue, value);
-              $el.data(metadata.isDirty, false);
-            });
-          },
-          error: function() {
-            $module
-              .removeClass(className.success)
-              .addClass(className.error)
-            ;
-          },
-          value: function (field, value) {
-            var
-              fields = {}
-            ;
-            fields[field] = value;
-            return module.set.values.call(element, fields);
-          },
-          values: function (fields) {
-            if($.isEmptyObject(fields)) {
-              return;
-            }
-            $.each(fields, function(key, value) {
-              var
-                $field      = module.get.field(key),
-                $element    = $field.parent(),
-                $calendar   = $field.closest(selector.uiCalendar),
-                isMultiple  = Array.isArray(value),
-                isCheckbox  = $element.is(selector.uiCheckbox)  && module.can.useElement('checkbox'),
-                isDropdown  = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
-                isRadio     = ($field.is(selector.radio) && isCheckbox),
-                isCalendar  = ($calendar.length > 0  && module.can.useElement('calendar')),
-                fieldExists = ($field.length > 0),
-                $multipleField
-              ;
-              if(fieldExists) {
-                if(isMultiple && isCheckbox) {
-                  module.verbose('Selecting multiple', value, $field);
-                  $element.checkbox('uncheck');
-                  $.each(value, function(index, value) {
-                    $multipleField = $field.filter('[value="' + value + '"]');
-                    $element       = $multipleField.parent();
-                    if($multipleField.length > 0) {
-                      $element.checkbox('check');
-                    }
-                  });
-                }
-                else if(isRadio) {
-                  module.verbose('Selecting radio value', value, $field);
-                  $field.filter('[value="' + value + '"]')
-                    .parent(selector.uiCheckbox)
-                      .checkbox('check')
-                  ;
-                }
-                else if(isCheckbox) {
-                  module.verbose('Setting checkbox value', value, $element);
-                  if(value === true || value === 1) {
-                    $element.checkbox('check');
-                  }
-                  else {
-                    $element.checkbox('uncheck');
-                  }
-                }
-                else if(isDropdown) {
-                  module.verbose('Setting dropdown value', value, $element);
-                  $element.dropdown('set selected', value);
-                }
-                else if (isCalendar) {
-                  $calendar.calendar('set date',value);
-                }
-                else {
-                  module.verbose('Setting field value', value, $field);
-                  $field.val(value);
-                }
-              }
-            });
-          },
-          dirty: function() {
-            module.verbose('Setting state dirty');
-            dirty = true;
-            history[0] = history[1];
-            history[1] = 'dirty';
-
-            if (module.is.justClean()) {
-              $module.trigger('dirty');
-            }
-          },
-          clean: function() {
-            module.verbose('Setting state clean');
-            dirty = false;
-            history[0] = history[1];
-            history[1] = 'clean';
-
-            if (module.is.justDirty()) {
-              $module.trigger('clean');
-            }
-          },
-          asClean: function() {
-            module.set.defaults();
-            module.set.clean();
-          },
-          asDirty: function() {
-            module.set.defaults();
-            module.set.dirty();
-          },
-          autoCheck: function() {
-            module.debug('Enabling auto check on required fields');
-            $field.each(function (_index, el) {
-              var
-                $el        = $(el),
-                $elGroup   = $(el).closest($group),
-                isCheckbox = ($el.filter(selector.checkbox).length > 0),
-                isRequired = $el.prop('required') || $elGroup.hasClass(className.required) || $elGroup.parent().hasClass(className.required),
-                isDisabled = $el.is(':disabled') || $elGroup.hasClass(className.disabled) || $elGroup.parent().hasClass(className.disabled),
-                validation = module.get.validation($el),
-                hasEmptyRule = validation
-                  ? $.grep(validation.rules, function(rule) { return rule.type == "empty" }) !== 0
-                  : false,
-                identifier = validation.identifier || $el.attr('id') || $el.attr('name') || $el.data(metadata.validate)
-              ;
-              if (isRequired && !isDisabled && !hasEmptyRule && identifier !== undefined) {
-                if (isCheckbox) {
-                  module.verbose("Adding 'checked' rule on field", identifier);
-                  module.add.rule(identifier, "checked");
-                } else {
-                  module.verbose("Adding 'empty' rule on field", identifier);
-                  module.add.rule(identifier, "empty");
-                }
-              }
-            });
-          },
-          optional: function(identifier, bool) {
-            bool = (bool !== false);
-            $.each(validation, function(fieldName, field) {
-              if (identifier == fieldName || identifier == field.identifier) {
-                field.optional = bool;
-              }
-            });
-          }
-        },
-
-        validate: {
-
-          form: function(event, ignoreCallbacks) {
-            var values = module.get.values();
-
-            // input keydown event will fire submit repeatedly by browser default
-            if(keyHeldDown) {
-              return false;
-            }
-
-            // reset errors
-            formErrors = [];
-            if( module.determine.isValid() ) {
-              module.debug('Form has no validation errors, submitting');
-              module.set.success();
-              if(!settings.inline) {
-                module.remove.errors();
-              }
-              if(ignoreCallbacks !== true) {
-                return settings.onSuccess.call(element, event, values);
-              }
-            }
-            else {
-              module.debug('Form has errors');
-              submitting = false;
-              module.set.error();
-              if(!settings.inline) {
-                module.add.errors(formErrors);
-              }
-              // prevent ajax submit
-              if(event && $module.data('moduleApi') !== undefined) {
-                event.stopImmediatePropagation();
-              }
-              if(settings.errorFocus) {
-                var focusElement, hasTabIndex = true;
-                if (typeof settings.errorFocus === 'string') {
-                  focusElement = $(settings.errorFocus);
-                  hasTabIndex = focusElement.is('[tabindex]');
-                  // to be able to focus/scroll into non input elements we need a tabindex
-                  if (!hasTabIndex) {
-                    focusElement.attr('tabindex',-1);
-                  }
-                } else {
-                  focusElement = $group.filter('.' + className.error).first().find(selector.field);
-                }
-                focusElement.focus();
-                // only remove tabindex if it was dynamically created above
-                if (!hasTabIndex){
-                  focusElement.removeAttr('tabindex');
-                }
-              }
-              if(ignoreCallbacks !== true) {
-                return settings.onFailure.call(element, formErrors, values);
-              }
-            }
-          },
-
-          // takes a validation object and returns whether field passes validation
-          field: function(field, fieldName, showErrors) {
-            showErrors = (showErrors !== undefined)
-              ? showErrors
-              : true
-            ;
-            if(typeof field == 'string') {
-              module.verbose('Validating field', field);
-              fieldName = field;
-              field     = validation[field];
-            }
-            var
-              identifier    = field.identifier || fieldName,
-              $field        = module.get.field(identifier),
-              $dependsField = (field.depends)
-                ? module.get.field(field.depends)
-                : false,
-              fieldValid  = true,
-              fieldErrors = []
-            ;
-            if(!field.identifier) {
-              module.debug('Using field name as identifier', identifier);
-              field.identifier = identifier;
-            }
-            var isDisabled = !$field.filter(':not(:disabled)').length;
-            if(isDisabled) {
-              module.debug('Field is disabled. Skipping', identifier);
-            }
-            else if(field.optional && module.is.blank($field)){
-              module.debug('Field is optional and blank. Skipping', identifier);
-            }
-            else if(field.depends && module.is.empty($dependsField)) {
-              module.debug('Field depends on another value that is not present or empty. Skipping', $dependsField);
-            }
-            else if(field.rules !== undefined) {
-              if(showErrors) {
-                $field.closest($group).removeClass(className.error);
-              }
-              $.each(field.rules, function(index, rule) {
-                if( module.has.field(identifier)) {
-                  var invalidFields = module.validate.rule(field, rule,true) || [];
-                  if (invalidFields.length>0){
-                    module.debug('Field is invalid', identifier, rule.type);
-                    fieldErrors.push(module.get.prompt(rule, field));
-                    fieldValid = false;
-                    if(showErrors){
-                      $(invalidFields).closest($group).addClass(className.error);
-                    }
-                  }
-                }
-              });
-            }
-            if(fieldValid) {
-              if(showErrors) {
-                module.remove.prompt(identifier, fieldErrors);
-                settings.onValid.call($field);
-              }
-            }
-            else {
-              if(showErrors) {
-                formErrors = formErrors.concat(fieldErrors);
-                module.add.prompt(identifier, fieldErrors, true);
-                settings.onInvalid.call($field, fieldErrors);
-              }
-              return false;
-            }
-            return true;
-          },
-
-          // takes validation rule and returns whether field passes rule
-          rule: function(field, rule, internal) {
-            var
-              $field       = module.get.field(field.identifier),
-              ancillary    = module.get.ancillaryValue(rule),
-              ruleName     = module.get.ruleName(rule),
-              ruleFunction = settings.rules[ruleName],
-              invalidFields = [],
-              isCheckbox = $field.is(selector.checkbox),
-              isValid = function(field){
-                var value = (isCheckbox ? $(field).filter(':checked').val() : $(field).val());
-                // cast to string avoiding encoding special values
-                value = (value === undefined || value === '' || value === null)
-                    ? ''
-                    : (settings.shouldTrim && rule.shouldTrim !== false) || rule.shouldTrim ? String(value + '').trim() : String(value + '')
-                ;
-                return ruleFunction.call(field, value, ancillary, $module);
-              }
-            ;
-            if( !$.isFunction(ruleFunction) ) {
-              module.error(error.noRule, ruleName);
-              return;
-            }
-            if(isCheckbox) {
-              if (!isValid($field)) {
-                invalidFields = $field;
-              }
-            } else {
-              $.each($field, function (index, field) {
-                if (!isValid(field)) {
-                  invalidFields.push(field);
-                }
-              });
-            }
-            return internal ? invalidFields : !(invalidFields.length>0);
-          }
-        },
-
-        setting: function(name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, settings, name);
-          }
-          else if(value !== undefined) {
-            settings[name] = value;
-          }
-          else {
-            return settings[name];
-          }
-        },
-        internal: function(name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, module, name);
-          }
-          else if(value !== undefined) {
-            module[name] = value;
-          }
-          else {
-            return module[name];
-          }
-        },
-        debug: function() {
-          if(!settings.silent && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.debug.apply(console, arguments);
-            }
-          }
-        },
-        verbose: function() {
-          if(!settings.silent && settings.verbose && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.verbose.apply(console, arguments);
-            }
-          }
-        },
-        error: function() {
-          if(!settings.silent) {
-            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
-            module.error.apply(console, arguments);
-          }
-        },
-        performance: {
-          log: function(message) {
-            var
-              currentTime,
-              executionTime,
-              previousTime
-            ;
-            if(settings.performance) {
-              currentTime   = new Date().getTime();
-              previousTime  = time || currentTime;
-              executionTime = currentTime - previousTime;
-              time          = currentTime;
-              performance.push({
-                'Name'           : message[0],
-                'Arguments'      : [].slice.call(message, 1) || '',
-                'Element'        : element,
-                'Execution Time' : executionTime
-              });
-            }
-            clearTimeout(module.performance.timer);
-            module.performance.timer = setTimeout(module.performance.display, 500);
-          },
-          display: function() {
-            var
-              title = settings.name + ':',
-              totalTime = 0
-            ;
-            time = false;
-            clearTimeout(module.performance.timer);
-            $.each(performance, function(index, data) {
-              totalTime += data['Execution Time'];
-            });
-            title += ' ' + totalTime + 'ms';
-            if(moduleSelector) {
-              title += ' \'' + moduleSelector + '\'';
-            }
-            if($allModules.length > 1) {
-              title += ' ' + '(' + $allModules.length + ')';
-            }
-            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
-              console.groupCollapsed(title);
-              if(console.table) {
-                console.table(performance);
-              }
-              else {
-                $.each(performance, function(index, data) {
-                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
-                });
-              }
-              console.groupEnd();
-            }
-            performance = [];
-          }
-        },
-        invoke: function(query, passedArguments, context) {
-          var
-            object = instance,
-            maxDepth,
-            found,
-            response
-          ;
-          passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
-          if(typeof query == 'string' && object !== undefined) {
-            query    = query.split(/[\. ]/);
-            maxDepth = query.length - 1;
-            $.each(query, function(depth, value) {
-              var camelCaseValue = (depth != maxDepth)
-                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
-                : query
-              ;
-              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
-                object = object[camelCaseValue];
-              }
-              else if( object[camelCaseValue] !== undefined ) {
-                found = object[camelCaseValue];
-                return false;
-              }
-              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
-                object = object[value];
-              }
-              else if( object[value] !== undefined ) {
-                found = object[value];
-                return false;
-              }
-              else {
-                return false;
-              }
-            });
-          }
-          if( $.isFunction( found ) ) {
-            response = found.apply(context, passedArguments);
-          }
-          else if(found !== undefined) {
-            response = found;
-          }
-          if(Array.isArray(returnedValue)) {
-            returnedValue.push(response);
-          }
-          else if(returnedValue !== undefined) {
-            returnedValue = [returnedValue, response];
-          }
-          else if(response !== undefined) {
-            returnedValue = response;
-          }
-          return found;
-        }
-      };
-      module.initialize();
-    })
-  ;
-
-  return (returnedValue !== undefined)
-    ? returnedValue
-    : this
-  ;
-};
-
-$.fn.form.settings = {
-
-  name              : 'Form',
-  namespace         : 'form',
-
-  debug             : false,
-  verbose           : false,
-  performance       : true,
-
-  fields            : false,
-
-  keyboardShortcuts : true,
-  on                : 'submit',
-  inline            : false,
-
-  delay             : 200,
-  revalidate        : true,
-  shouldTrim        : true,
-
-  transition        : 'scale',
-  duration          : 200,
-
-  autoCheckRequired : false,
-  preventLeaving    : false,
-  errorFocus        : false,
-  dateHandling      : 'date', // 'date', 'input', 'formatter'
-
-  onValid           : function() {},
-  onInvalid         : function() {},
-  onSuccess         : function() { return true; },
-  onFailure         : function() { return false; },
-  onDirty           : function() {},
-  onClean           : function() {},
-
-  metadata : {
-    defaultValue : 'default',
-    validate     : 'validate',
-    isDirty      : 'isDirty'
-  },
-
-  regExp: {
-    htmlID  : /^[a-zA-Z][\w:.-]*$/g,
-    bracket : /\[(.*)\]/i,
-    decimal : /^\d+\.?\d*$/,
-    email   : /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i,
-    escape  : /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|:,=@]/g,
-    flags   : /^\/(.*)\/(.*)?/,
-    integer : /^\-?\d+$/,
-    number  : /^\-?\d*(\.\d+)?$/,
-    url     : /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i
-  },
-
-  text: {
-    and              : 'and',
-    unspecifiedRule  : 'Please enter a valid value',
-    unspecifiedField : 'This field',
-    leavingMessage   : 'There are unsaved changes on this page which will be discarded if you continue.'
-  },
-
-  prompt: {
-    range                : '{name} must be in a range from {min} to {max}',
-    maxValue             : '{name} must have a maximum value of {ruleValue}',
-    minValue             : '{name} must have a minimum value of {ruleValue}',
-    empty                : '{name} must have a value',
-    checked              : '{name} must be checked',
-    email                : '{name} must be a valid e-mail',
-    url                  : '{name} must be a valid url',
-    regExp               : '{name} is not formatted correctly',
-    integer              : '{name} must be an integer',
-    decimal              : '{name} must be a decimal number',
-    number               : '{name} must be set to a number',
-    is                   : '{name} must be "{ruleValue}"',
-    isExactly            : '{name} must be exactly "{ruleValue}"',
-    not                  : '{name} cannot be set to "{ruleValue}"',
-    notExactly           : '{name} cannot be set to exactly "{ruleValue}"',
-    contain              : '{name} must contain "{ruleValue}"',
-    containExactly       : '{name} must contain exactly "{ruleValue}"',
-    doesntContain        : '{name} cannot contain  "{ruleValue}"',
-    doesntContainExactly : '{name} cannot contain exactly "{ruleValue}"',
-    minLength            : '{name} must be at least {ruleValue} characters',
-    length               : '{name} must be at least {ruleValue} characters',
-    exactLength          : '{name} must be exactly {ruleValue} characters',
-    maxLength            : '{name} cannot be longer than {ruleValue} characters',
-    match                : '{name} must match {ruleValue} field',
-    different            : '{name} must have a different value than {ruleValue} field',
-    creditCard           : '{name} must be a valid credit card number',
-    minCount             : '{name} must have at least {ruleValue} choices',
-    exactCount           : '{name} must have exactly {ruleValue} choices',
-    maxCount             : '{name} must have {ruleValue} or less choices'
-  },
-
-  selector : {
-    checkbox   : 'input[type="checkbox"], input[type="radio"]',
-    clear      : '.clear',
-    field      : 'input:not(.search):not([type="file"]), textarea, select',
-    group      : '.field',
-    input      : 'input:not([type="file"])',
-    message    : '.error.message',
-    prompt     : '.prompt.label',
-    radio      : 'input[type="radio"]',
-    reset      : '.reset:not([type="reset"])',
-    submit     : '.submit:not([type="submit"])',
-    uiCheckbox : '.ui.checkbox',
-    uiDropdown : '.ui.dropdown',
-    uiCalendar : '.ui.calendar'
-  },
-
-  className : {
-    error    : 'error',
-    label    : 'ui basic red pointing prompt label',
-    pressed  : 'down',
-    success  : 'success',
-    required : 'required',
-    disabled : 'disabled'
-  },
-
-  error: {
-    identifier : 'You must specify a string identifier for each field',
-    method     : 'The method you called is not defined.',
-    noRule     : 'There is no rule matching the one you specified',
-    oldSyntax  : 'Starting in 2.0 forms now only take a single settings object. Validation settings converted to new syntax automatically.',
-    noElement  : 'This module requires ui {element}'
-  },
-
-  templates: {
-
-    // template that produces error message
-    error: function(errors) {
-      var
-        html = '<ul class="list">'
-      ;
-      $.each(errors, function(index, value) {
-        html += '<li>' + value + '</li>';
-      });
-      html += '</ul>';
-      return $(html);
-    },
-
-    // template that produces label
-    prompt: function(errors, labelClasses) {
-      return $('<div/>')
-        .addClass(labelClasses)
-        .html(errors[0])
-      ;
-    }
-  },
-
-  formatter: {
-    date: function(date) {
-      return Intl.DateTimeFormat('en-GB').format(date);
-    },
-    datetime: function(date) {
-      return Intl.DateTimeFormat('en-GB', {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }).format(date);
-    },
-    time: function(date) {
-      return Intl.DateTimeFormat('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      }).format(date);
-    },
-    month: function(date) {
-      return Intl.DateTimeFormat('en-GB', {
-        month: '2-digit',
-        year: 'numeric'
-      }).format(date);
-    },
-    year: function(date) {
-      return Intl.DateTimeFormat('en-GB', {
-        year: 'numeric'
-      }).format(date);
-    }
-  },
-
-  rules: {
-
-    // is not empty or blank string
-    empty: function(value) {
-      return !(value === undefined || '' === value || Array.isArray(value) && value.length === 0);
-    },
-
-    // checkbox checked
-    checked: function() {
-      return ($(this).filter(':checked').length > 0);
-    },
-
-    // is most likely an email
-    email: function(value){
-      return $.fn.form.settings.regExp.email.test(value);
-    },
-
-    // value is most likely url
-    url: function(value) {
-      return $.fn.form.settings.regExp.url.test(value);
-    },
-
-    // matches specified regExp
-    regExp: function(value, regExp) {
-      if(regExp instanceof RegExp) {
-        return value.match(regExp);
-      }
-      var
-        regExpParts = regExp.match($.fn.form.settings.regExp.flags),
-        flags
-      ;
-      // regular expression specified as /baz/gi (flags)
-      if(regExpParts) {
-        regExp = (regExpParts.length >= 2)
-          ? regExpParts[1]
-          : regExp
-        ;
-        flags = (regExpParts.length >= 3)
-          ? regExpParts[2]
-          : ''
-        ;
-      }
-      return value.match( new RegExp(regExp, flags) );
-    },
-    minValue: function(value, range) {
-      return $.fn.form.settings.rules.range(value, range+'..', 'number');
-    },
-    maxValue: function(value, range) {
-      return $.fn.form.settings.rules.range(value, '..'+range, 'number');
-    },
-    // is valid integer or matches range
-    integer: function(value, range) {
-      return $.fn.form.settings.rules.range(value, range, 'integer');
-    },
-    range: function(value, range, regExp) {
-      if(typeof regExp == "string") {
-        regExp = $.fn.form.settings.regExp[regExp];
-      }
-      if(!(regExp instanceof RegExp)) {
-        regExp = $.fn.form.settings.regExp.integer;
-      }
-      var
-        min,
-        max,
-        parts
-      ;
-      if( !range || ['', '..'].indexOf(range) !== -1) {
-        // do nothing
-      }
-      else if(range.indexOf('..') == -1) {
-        if(regExp.test(range)) {
-          min = max = range - 0;
-        }
-      }
-      else {
-        parts = range.split('..', 2);
-        if(regExp.test(parts[0])) {
-          min = parts[0] - 0;
-        }
-        if(regExp.test(parts[1])) {
-          max = parts[1] - 0;
-        }
-      }
-      return (
-        regExp.test(value) &&
-        (min === undefined || value >= min) &&
-        (max === undefined || value <= max)
-      );
-    },
-
-    // is valid number (with decimal)
-    decimal: function(value, range) {
-      return $.fn.form.settings.rules.range(value, range, 'decimal');
-    },
-
-    // is valid number
-    number: function(value, range) {
-      return $.fn.form.settings.rules.range(value, range, 'number');
-    },
-
-    // is value (case insensitive)
-    is: function(value, text) {
-      text = (typeof text == 'string')
-        ? text.toLowerCase()
-        : text
-      ;
-      value = (typeof value == 'string')
-        ? value.toLowerCase()
-        : value
-      ;
-      return (value == text);
-    },
-
-    // is value
-    isExactly: function(value, text) {
-      return (value == text);
-    },
-
-    // value is not another value (case insensitive)
-    not: function(value, notValue) {
-      value = (typeof value == 'string')
-        ? value.toLowerCase()
-        : value
-      ;
-      notValue = (typeof notValue == 'string')
-        ? notValue.toLowerCase()
-        : notValue
-      ;
-      return (value != notValue);
-    },
-
-    // value is not another value (case sensitive)
-    notExactly: function(value, notValue) {
-      return (value != notValue);
-    },
-
-    // value contains text (insensitive)
-    contains: function(value, text) {
-      // escape regex characters
-      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
-      return (value.search( new RegExp(text, 'i') ) !== -1);
-    },
-
-    // value contains text (case sensitive)
-    containsExactly: function(value, text) {
-      // escape regex characters
-      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
-      return (value.search( new RegExp(text) ) !== -1);
-    },
-
-    // value contains text (insensitive)
-    doesntContain: function(value, text) {
-      // escape regex characters
-      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
-      return (value.search( new RegExp(text, 'i') ) === -1);
-    },
-
-    // value contains text (case sensitive)
-    doesntContainExactly: function(value, text) {
-      // escape regex characters
-      text = text.replace($.fn.form.settings.regExp.escape, "\\$&");
-      return (value.search( new RegExp(text) ) === -1);
-    },
-
-    // is at least string length
-    minLength: function(value, requiredLength) {
-      return (value !== undefined)
-        ? (value.length >= requiredLength)
-        : false
-      ;
-    },
-
-    // see rls notes for 2.0.6 (this is a duplicate of minLength)
-    length: function(value, requiredLength) {
-      return (value !== undefined)
-        ? (value.length >= requiredLength)
-        : false
-      ;
-    },
-
-    // is exactly length
-    exactLength: function(value, requiredLength) {
-      return (value !== undefined)
-        ? (value.length == requiredLength)
-        : false
-      ;
-    },
-
-    // is less than length
-    maxLength: function(value, maxLength) {
-      return (value !== undefined)
-        ? (value.length <= maxLength)
-        : false
-      ;
-    },
-
-    // matches another field
-    match: function(value, identifier, $module) {
-      var
-        matchingValue,
-        matchingElement
-      ;
-      if((matchingElement = $module.find('[data-validate="'+ identifier +'"]')).length > 0 ) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('#' + identifier)).length > 0) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('[name="' + identifier +'"]')).length > 0) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('[name="' + identifier +'[]"]')).length > 0 ) {
-        matchingValue = matchingElement;
-      }
-      return (matchingValue !== undefined)
-        ? ( value.toString() == matchingValue.toString() )
-        : false
-      ;
-    },
-
-    // different than another field
-    different: function(value, identifier, $module) {
-      // use either id or name of field
-      var
-        matchingValue,
-        matchingElement
-      ;
-      if((matchingElement = $module.find('[data-validate="'+ identifier +'"]')).length > 0 ) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('#' + identifier)).length > 0) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('[name="' + identifier +'"]')).length > 0) {
-        matchingValue = matchingElement.val();
-      }
-      else if((matchingElement = $module.find('[name="' + identifier +'[]"]')).length > 0 ) {
-        matchingValue = matchingElement;
-      }
-      return (matchingValue !== undefined)
-        ? ( value.toString() !== matchingValue.toString() )
-        : false
-      ;
-    },
-
-    creditCard: function(cardNumber, cardTypes) {
-      var
-        cards = {
-          visa: {
-            pattern : /^4/,
-            length  : [16]
-          },
-          amex: {
-            pattern : /^3[47]/,
-            length  : [15]
-          },
-          mastercard: {
-            pattern : /^5[1-5]/,
-            length  : [16]
-          },
-          discover: {
-            pattern : /^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)/,
-            length  : [16]
-          },
-          unionPay: {
-            pattern : /^(62|88)/,
-            length  : [16, 17, 18, 19]
-          },
-          jcb: {
-            pattern : /^35(2[89]|[3-8][0-9])/,
-            length  : [16]
-          },
-          maestro: {
-            pattern : /^(5018|5020|5038|6304|6759|676[1-3])/,
-            length  : [12, 13, 14, 15, 16, 17, 18, 19]
-          },
-          dinersClub: {
-            pattern : /^(30[0-5]|^36)/,
-            length  : [14]
-          },
-          laser: {
-            pattern : /^(6304|670[69]|6771)/,
-            length  : [16, 17, 18, 19]
-          },
-          visaElectron: {
-            pattern : /^(4026|417500|4508|4844|491(3|7))/,
-            length  : [16]
-          }
-        },
-        valid         = {},
-        validCard     = false,
-        requiredTypes = (typeof cardTypes == 'string')
-          ? cardTypes.split(',')
-          : false,
-        unionPay,
-        validation
-      ;
-
-      if(typeof cardNumber !== 'string' || cardNumber.length === 0) {
-        return;
-      }
-
-      // allow dashes and spaces in card
-      cardNumber = cardNumber.replace(/[\s\-]/g, '');
-
-      // verify card types
-      if(requiredTypes) {
-        $.each(requiredTypes, function(index, type){
-          // verify each card type
-          validation = cards[type];
-          if(validation) {
-            valid = {
-              length  : ($.inArray(cardNumber.length, validation.length) !== -1),
-              pattern : (cardNumber.search(validation.pattern) !== -1)
-            };
-            if(valid.length && valid.pattern) {
-              validCard = true;
-            }
-          }
-        });
-
-        if(!validCard) {
-          return false;
-        }
-      }
-
-      // skip luhn for UnionPay
-      unionPay = {
-        number  : ($.inArray(cardNumber.length, cards.unionPay.length) !== -1),
-        pattern : (cardNumber.search(cards.unionPay.pattern) !== -1)
-      };
-      if(unionPay.number && unionPay.pattern) {
-        return true;
-      }
-
-      // verify luhn, adapted from  <https://gist.github.com/2134376>
-      var
-        length        = cardNumber.length,
-        multiple      = 0,
-        producedValue = [
-          [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-          [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
-        ],
-        sum           = 0
-      ;
-      while (length--) {
-        sum += producedValue[multiple][parseInt(cardNumber.charAt(length), 10)];
-        multiple ^= 1;
-      }
-      return (sum % 10 === 0 && sum > 0);
-    },
-
-    minCount: function(value, minCount) {
-      if(minCount == 0) {
-        return true;
-      }
-      if(minCount == 1) {
-        return (value !== '');
-      }
-      return (value.split(',').length >= minCount);
-    },
-
-    exactCount: function(value, exactCount) {
-      if(exactCount == 0) {
-        return (value === '');
-      }
-      if(exactCount == 1) {
-        return (value !== '' && value.search(',') === -1);
-      }
-      return (value.split(',').length == exactCount);
-    },
-
-    maxCount: function(value, maxCount) {
-      if(maxCount == 0) {
-        return false;
-      }
-      if(maxCount == 1) {
-        return (value.search(',') === -1);
-      }
-      return (value.split(',').length <= maxCount);
-    }
-  }
-
-};
-
-})( jQuery, window, document );
-
-/*!
- * # Fomantic-UI 2.8.8 - Calendar
- * http://github.com/fomantic/Fomantic-UI/
- *
- *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-;(function ($, window, document, undefined) {
-
-'use strict';
-
-$.isFunction = $.isFunction || function(obj) {
-  return typeof obj === "function" && typeof obj.nodeType !== "number";
-};
-
-window = (typeof window != 'undefined' && window.Math == Math)
-  ? window
-  : (typeof self != 'undefined' && self.Math == Math)
-    ? self
-    : Function('return this')()
-;
-
-$.fn.calendar = function(parameters) {
-  var
-    $allModules    = $(this),
-
-    moduleSelector = $allModules.selector || '',
-
-    time           = new Date().getTime(),
-    performance    = [],
-
-    query          = arguments[0],
-    methodInvoked  = (typeof query == 'string'),
-    queryArguments = [].slice.call(arguments, 1),
-    returnedValue,
-    timeGapTable = {
-      '5': {'row': 4, 'column': 3 },
-      '10': {'row': 3, 'column': 2 },
-      '15': {'row': 2, 'column': 2 },
-      '20': {'row': 3, 'column': 1 },
-      '30': {'row': 2, 'column': 1 }
-    },
-    numberText = ['','one','two','three','four','five','six','seven','eight']
-  ;
-
-  $allModules
-    .each(function () {
-      var
-        settings = ( $.isPlainObject(parameters) )
-          ? $.extend(true, {}, $.fn.calendar.settings, parameters)
-          : $.extend({}, $.fn.calendar.settings),
-
-        className = settings.className,
-        namespace = settings.namespace,
-        selector = settings.selector,
-        formatter = settings.formatter,
-        parser = settings.parser,
-        metadata = settings.metadata,
-        timeGap = timeGapTable[settings.minTimeGap],
-        error = settings.error,
-
-        eventNamespace = '.' + namespace,
-        moduleNamespace = 'module-' + namespace,
-
-        $module = $(this),
-        $input = $module.find(selector.input),
-        $container = $module.find(selector.popup),
-        $activator = $module.find(selector.activator),
-
-        element = this,
-        instance = $module.data(moduleNamespace),
-
-        isTouch,
-        isTouchDown = false,
-        isInverted = $module.hasClass(className.inverted),
-        focusDateUsedForRange = false,
-        selectionComplete = false,
-        classObserver,
-        module
-      ;
-
-      module = {
-
-        initialize: function () {
-          module.debug('Initializing calendar for', element, $module);
-
-          isTouch = module.get.isTouch();
-          module.setup.config();
-          module.setup.popup();
-          module.setup.inline();
-          module.setup.input();
-          module.setup.date();
-          module.create.calendar();
-
-          module.bind.events();
-          module.observeChanges();
-          module.instantiate();
-        },
-
-        instantiate: function () {
-          module.verbose('Storing instance of calendar');
-          instance = module;
-          $module.data(moduleNamespace, instance);
-        },
-
-        destroy: function () {
-          module.verbose('Destroying previous calendar for', element);
-          $module.removeData(moduleNamespace);
-          module.unbind.events();
-          module.disconnect.classObserver();
-        },
-
-        setup: {
-          config: function () {
-            if (module.get.minDate() !== null) {
-              module.set.minDate($module.data(metadata.minDate));
-            }
-            if (module.get.maxDate() !== null) {
-              module.set.maxDate($module.data(metadata.maxDate));
-            }
-            module.setting('type', module.get.type());
-            module.setting('on', settings.on || ($input.length ? 'focus' : 'click'));
-          },
-          popup: function () {
-            if (settings.inline) {
-              return;
-            }
-            if (!$activator.length) {
-              $activator = $module.children().first();
-              if (!$activator.length) {
-                return;
-              }
-            }
-            if ($.fn.popup === undefined) {
-              module.error(error.popup);
-              return;
-            }
-            if (!$container.length) {
-              //prepend the popup element to the activator's parent so that it has less chance of messing with
-              //the styling (eg input action button needs to be the last child to have correct border radius)
-              var $activatorParent = $activator.parent(),
-                  domPositionFunction = $activatorParent.closest(selector.append).length !== 0 ? 'appendTo' : 'prependTo';
-              $container = $('<div/>').addClass(className.popup)[domPositionFunction]($activatorParent);
-            }
-            $container.addClass(className.calendar);
-            if(isInverted){
-              $container.addClass(className.inverted);
-            }
-            var onVisible = function () {
-              module.refreshTooltips();
-              return settings.onVisible.apply($container, arguments);
-            };
-            var onHidden = settings.onHidden;
-            if (!$input.length) {
-              //no input, $container has to handle focus/blur
-              $container.attr('tabindex', '0');
-              onVisible = function () {
-                module.refreshTooltips();
-                module.focus();
-                return settings.onVisible.apply($container, arguments);
-              };
-              onHidden = function () {
-                module.blur();
-                return settings.onHidden.apply($container, arguments);
-              };
-            }
-            var onShow = function () {
-              //reset the focus date onShow
-              module.set.focusDate(module.get.date());
-              module.set.mode(module.get.validatedMode(settings.startMode));
-              return settings.onShow.apply($container, arguments);
-            };
-            var on = module.setting('on');
-            var options = $.extend({}, settings.popupOptions, {
-              popup: $container,
-              on: on,
-              hoverable: on === 'hover',
-              closable: on === 'click',
-              onShow: onShow,
-              onVisible: onVisible,
-              onHide: settings.onHide,
-              onHidden: onHidden
-            });
-            module.popup(options);
-          },
-          inline: function () {
-            if ($activator.length && !settings.inline) {
-              return;
-            }
-            settings.inline = true;
-            $container = $('<div/>').addClass(className.calendar).appendTo($module);
-            if (!$input.length) {
-              $container.attr('tabindex', '0');
-            }
-          },
-          input: function () {
-            if (settings.touchReadonly && $input.length && isTouch) {
-              $input.prop('readonly', true);
-            }
-            module.check.disabled();
-          },
-          date: function () {
-            var date;
-            if (settings.initialDate) {
-              date = parser.date(settings.initialDate, settings);
-            } else if ($module.data(metadata.date) !== undefined) {
-              date = parser.date($module.data(metadata.date), settings);
-            } else if ($input.length) {
-              date = parser.date($input.val(), settings);
-            }
-            module.set.date(date, settings.formatInput, false);
-            module.set.mode(module.get.mode(), false);
-          }
-        },
-
-        trigger: {
-          change: function() {
-            var
-                inputElement = $input[0]
-            ;
-            if(inputElement) {
-              var events = document.createEvent('HTMLEvents');
-              module.verbose('Triggering native change event');
-              events.initEvent('change', true, false);
-              inputElement.dispatchEvent(events);
-            }
-          }
-        },
-
-        create: {
-          calendar: function () {
-            var i, r, c, p, row, cell, pageGrid;
-
-            var
-              mode = module.get.mode(),
-              today = new Date(),
-              date = module.get.date(),
-              focusDate = module.get.focusDate(),
-              display = module.helper.dateInRange(focusDate || date || settings.initialDate || today)
-            ;
-
-            if (!focusDate) {
-              focusDate = display;
-              module.set.focusDate(focusDate, false, false);
-            }
-
-            var
-              isYear = mode === 'year',
-              isMonth = mode === 'month',
-              isDay = mode === 'day',
-              isHour = mode === 'hour',
-              isMinute = mode === 'minute',
-              isTimeOnly = settings.type === 'time'
-            ;
-
-            var multiMonth = Math.max(settings.multiMonth, 1);
-            var monthOffset = !isDay ? 0 : module.get.monthOffset();
-
-            var
-              minute = display.getMinutes(),
-              hour = display.getHours(),
-              day = display.getDate(),
-              startMonth = display.getMonth() + monthOffset,
-              year = display.getFullYear()
-            ;
-
-            var columns = isDay ? settings.showWeekNumbers ? 8 : 7 : isHour ? 4 : timeGap['column'];
-            var rows = isDay || isHour ? 6 : timeGap['row'];
-            var pages = isDay ? multiMonth : 1;
-
-            var container = $container;
-            var tooltipPosition = container.hasClass("left") ? "right center" : "left center";
-            container.empty();
-            if (pages > 1) {
-              pageGrid = $('<div/>').addClass(className.grid).appendTo(container);
-            }
-
-            for (p = 0; p < pages; p++) {
-              if (pages > 1) {
-                var pageColumn = $('<div/>').addClass(className.column).appendTo(pageGrid);
-                container = pageColumn;
-              }
-
-              var month = startMonth + p;
-              var firstMonthDayColumn = (new Date(year, month, 1).getDay() - settings.firstDayOfWeek % 7 + 7) % 7;
-              if (!settings.constantHeight && isDay) {
-                var requiredCells = new Date(year, month + 1, 0).getDate() + firstMonthDayColumn;
-                rows = Math.ceil(requiredCells / 7);
-              }
-
-              var
-                yearChange = isYear ? 10 : isMonth ? 1 : 0,
-                monthChange = isDay ? 1 : 0,
-                dayChange = isHour || isMinute ? 1 : 0,
-                prevNextDay = isHour || isMinute ? day : 1,
-                prevDate = new Date(year - yearChange, month - monthChange, prevNextDay - dayChange, hour),
-                nextDate = new Date(year + yearChange, month + monthChange, prevNextDay + dayChange, hour),
-                prevLast = isYear ? new Date(Math.ceil(year / 10) * 10 - 9, 0, 0) :
-                  isMonth ? new Date(year, 0, 0) : isDay ? new Date(year, month, 0) : new Date(year, month, day, -1),
-                nextFirst = isYear ? new Date(Math.ceil(year / 10) * 10 + 1, 0, 1) :
-                  isMonth ? new Date(year + 1, 0, 1) : isDay ? new Date(year, month + 1, 1) : new Date(year, month, day + 1)
-              ;
-
-              var tempMode = mode;
-              if (isDay && settings.showWeekNumbers){
-                tempMode += ' andweek';
-              }
-              var table = $('<table/>').addClass(className.table).addClass(tempMode).addClass(numberText[columns] + ' column').appendTo(container);
-              if(isInverted){
-                table.addClass(className.inverted);
-              }
-              var textColumns = columns;
-              //no header for time-only mode
-              if (!isTimeOnly) {
-                var thead = $('<thead/>').appendTo(table);
-
-                row = $('<tr/>').appendTo(thead);
-                cell = $('<th/>').attr('colspan', '' + columns).appendTo(row);
-
-                var headerDate = isYear || isMonth ? new Date(year, 0, 1) :
-                  isDay ? new Date(year, month, 1) : new Date(year, month, day, hour, minute);
-                var headerText = $('<span/>').addClass(className.link).appendTo(cell);
-                headerText.text(formatter.header(headerDate, mode, settings));
-                var newMode = isMonth ? (settings.disableYear ? 'day' : 'year') :
-                  isDay ? (settings.disableMonth ? 'year' : 'month') : 'day';
-                headerText.data(metadata.mode, newMode);
-
-                if (p === 0) {
-                  var prev = $('<span/>').addClass(className.prev).appendTo(cell);
-                  prev.data(metadata.focusDate, prevDate);
-                  prev.toggleClass(className.disabledCell, !module.helper.isDateInRange(prevLast, mode));
-                  $('<i/>').addClass(className.prevIcon).appendTo(prev);
-                }
-
-                if (p === pages - 1) {
-                  var next = $('<span/>').addClass(className.next).appendTo(cell);
-                  next.data(metadata.focusDate, nextDate);
-                  next.toggleClass(className.disabledCell, !module.helper.isDateInRange(nextFirst, mode));
-                  $('<i/>').addClass(className.nextIcon).appendTo(next);
-                }
-                if (isDay) {
-                  row = $('<tr/>').appendTo(thead);
-                  if(settings.showWeekNumbers) {
-                      cell = $('<th/>').appendTo(row);
-                      cell.text(settings.text.weekNo);
-                      cell.addClass(className.weekCell);
-                      textColumns--;
-                  }
-                  for (i = 0; i < textColumns; i++) {
-                    cell = $('<th/>').appendTo(row);
-                    cell.text(formatter.dayColumnHeader((i + settings.firstDayOfWeek) % 7, settings));
-                  }
-                }
-              }
-
-              var tbody = $('<tbody/>').appendTo(table);
-              i = isYear ? Math.ceil(year / 10) * 10 - 9 : isDay ? 1 - firstMonthDayColumn : 0;
-              for (r = 0; r < rows; r++) {
-                row = $('<tr/>').appendTo(tbody);
-                if(isDay && settings.showWeekNumbers){
-                    cell = $('<th/>').appendTo(row);
-                    cell.text(module.get.weekOfYear(year,month,i+1-settings.firstDayOfWeek));
-                    cell.addClass(className.weekCell);
-                }
-                for (c = 0; c < textColumns; c++, i++) {
-                  var cellDate = isYear ? new Date(i, month, 1, hour, minute) :
-                    isMonth ? new Date(year, i, 1, hour, minute) : isDay ? new Date(year, month, i, hour, minute) :
-                      isHour ? new Date(year, month, day, i) : new Date(year, month, day, hour, i * settings.minTimeGap);
-                  var cellText = isYear ? i :
-                    isMonth ? settings.text.monthsShort[i] : isDay ? cellDate.getDate() :
-                      formatter.time(cellDate, settings, true);
-                  cell = $('<td/>').addClass(className.cell).appendTo(row);
-                  cell.text(cellText);
-                  cell.data(metadata.date, cellDate);
-                  var adjacent = isDay && cellDate.getMonth() !== ((month + 12) % 12);
-                  var disabled = (!settings.selectAdjacentDays && adjacent) || !module.helper.isDateInRange(cellDate, mode) || settings.isDisabled(cellDate, mode) || module.helper.isDisabled(cellDate, mode) || !module.helper.isEnabled(cellDate, mode);
-                  var eventDate;
-                  if (disabled) {
-                    var disabledDate = module.helper.findDayAsObject(cellDate, mode, settings.disabledDates);
-                    if (disabledDate !== null && disabledDate[metadata.message]) {
-                      cell.attr("data-tooltip", disabledDate[metadata.message]);
-                      cell.attr("data-position", disabledDate[metadata.position] || tooltipPosition);
-                      if(disabledDate[metadata.inverted] || (isInverted && disabledDate[metadata.inverted] === undefined)) {
-                        cell.attr("data-inverted", '');
-                      }
-                      if(disabledDate[metadata.variation]) {
-                        cell.attr("data-variation", disabledDate[metadata.variation]);
-                      }
-                    }
-                  } else {
-                    eventDate = module.helper.findDayAsObject(cellDate, mode, settings.eventDates);
-                    if (eventDate !== null) {
-                      cell.addClass(eventDate[metadata.class] || settings.eventClass);
-                      if (eventDate[metadata.message]) {
-                        cell.attr("data-tooltip", eventDate[metadata.message]);
-                        cell.attr("data-position", eventDate[metadata.position] || tooltipPosition);
-                        if(eventDate[metadata.inverted] || (isInverted && eventDate[metadata.inverted] === undefined)) {
-                          cell.attr("data-inverted", '');
-                        }
-                        if(eventDate[metadata.variation]) {
-                          cell.attr("data-variation", eventDate[metadata.variation]);
-                        }
-                      }
-                    }
-                  }
-                  var active = module.helper.dateEqual(cellDate, date, mode);
-                  var isToday = module.helper.dateEqual(cellDate, today, mode);
-                  cell.toggleClass(className.adjacentCell, adjacent && !eventDate);
-                  cell.toggleClass(className.disabledCell, disabled);
-                  cell.toggleClass(className.activeCell, active && !(adjacent && disabled));
-                  if (!isHour && !isMinute) {
-                    cell.toggleClass(className.todayCell, !adjacent && isToday);
-                  }
-
-                  // Allow for external modifications of each cell
-                  var cellOptions = {
-                    mode: mode,
-                    adjacent: adjacent,
-                    disabled: disabled,
-                    active: active,
-                    today: isToday
-                  };
-                  formatter.cell(cell, cellDate, cellOptions);
-
-                  if (module.helper.dateEqual(cellDate, focusDate, mode)) {
-                    //ensure that the focus date is exactly equal to the cell date
-                    //so that, if selected, the correct value is set
-                    module.set.focusDate(cellDate, false, false);
-                  }
-                }
-              }
-
-              if (settings.today) {
-                var todayRow = $('<tr/>').appendTo(tbody);
-                var todayButton = $('<td/>').attr('colspan', '' + columns).addClass(className.today).appendTo(todayRow);
-                todayButton.text(formatter.today(settings));
-                todayButton.data(metadata.date, today);
-              }
-
-              module.update.focus(false, table);
-
-              if(settings.inline){
-                module.refreshTooltips();
-              }
-            }
-          }
-        },
-
-        update: {
-          focus: function (updateRange, container) {
-            container = container || $container;
-            var mode = module.get.mode();
-            var date = module.get.date();
-            var focusDate = module.get.focusDate();
-            var startDate = module.get.startDate();
-            var endDate = module.get.endDate();
-            var rangeDate = (updateRange ? focusDate : null) || date || (!isTouch ? focusDate : null);
-
-            container.find('td').each(function () {
-              var cell = $(this);
-              var cellDate = cell.data(metadata.date);
-              if (!cellDate) {
-                return;
-              }
-              var disabled = cell.hasClass(className.disabledCell);
-              var active = cell.hasClass(className.activeCell);
-              var adjacent = cell.hasClass(className.adjacentCell);
-              var focused = module.helper.dateEqual(cellDate, focusDate, mode);
-              var inRange = !rangeDate ? false :
-                ((!!startDate && module.helper.isDateInRange(cellDate, mode, startDate, rangeDate)) ||
-                (!!endDate && module.helper.isDateInRange(cellDate, mode, rangeDate, endDate)));
-              cell.toggleClass(className.focusCell, focused && (!isTouch || isTouchDown) && (!adjacent || (settings.selectAdjacentDays && adjacent)) && !disabled);
-
-              if (module.helper.isTodayButton(cell)) {
-                return;
-              }
-              cell.toggleClass(className.rangeCell, inRange && !active && !disabled);
-            });
-          }
-        },
-
-        refresh: function () {
-          module.create.calendar();
-        },
-
-        refreshTooltips: function() {
-          var winWidth = $(window).width();
-          $container.find('td[data-position]').each(function () {
-            var cell = $(this);
-            var tooltipWidth = window.getComputedStyle(cell[0], ':after').width.replace(/[^0-9\.]/g,'');
-            var tooltipPosition = cell.attr('data-position');
-            // use a fallback width of 250 (calendar width) for IE/Edge (which return "auto")
-            var calcPosition = (winWidth - cell.width() - (parseInt(tooltipWidth,10) || 250)) > cell.offset().left ? 'right' : 'left';
-            if(tooltipPosition.indexOf(calcPosition) === -1) {
-              cell.attr('data-position',tooltipPosition.replace(/(left|right)/,calcPosition));
-            }
-           });
-        },
-
-        bind: {
-          events: function () {
-            module.debug('Binding events');
-            $container.on('mousedown' + eventNamespace, module.event.mousedown);
-            $container.on('touchstart' + eventNamespace, module.event.mousedown);
-            $container.on('mouseup' + eventNamespace, module.event.mouseup);
-            $container.on('touchend' + eventNamespace, module.event.mouseup);
-            $container.on('mouseover' + eventNamespace, module.event.mouseover);
-            if ($input.length) {
-              $input.on('input' + eventNamespace, module.event.inputChange);
-              $input.on('focus' + eventNamespace, module.event.inputFocus);
-              $input.on('blur' + eventNamespace, module.event.inputBlur);
-              $input.on('keydown' + eventNamespace, module.event.keydown);
-            } else {
-              $container.on('keydown' + eventNamespace, module.event.keydown);
-            }
-          }
-        },
-
-        unbind: {
-          events: function () {
-            module.debug('Unbinding events');
-            $container.off(eventNamespace);
-            if ($input.length) {
-              $input.off(eventNamespace);
-            }
-          }
-        },
-
-        event: {
-          mouseover: function (event) {
-            var target = $(event.target);
-            var date = target.data(metadata.date);
-            var mousedown = event.buttons === 1;
-            if (date) {
-              module.set.focusDate(date, false, true, mousedown);
-            }
-          },
-          mousedown: function (event) {
-            if ($input.length) {
-              //prevent the mousedown on the calendar causing the input to lose focus
-              event.preventDefault();
-            }
-            isTouchDown = event.type.indexOf('touch') >= 0;
-            var target = $(event.target);
-            var date = target.data(metadata.date);
-            if (date) {
-              module.set.focusDate(date, false, true, true);
-            }
-          },
-          mouseup: function (event) {
-            //ensure input has focus so that it receives keydown events for calendar navigation
-            module.focus();
-            event.preventDefault();
-            event.stopPropagation();
-            isTouchDown = false;
-            var target = $(event.target);
-            if (target.hasClass("disabled")) {
-              return;
-            }
-            var parent = target.parent();
-            if (parent.data(metadata.date) || parent.data(metadata.focusDate) || parent.data(metadata.mode)) {
-              //clicked on a child element, switch to parent (used when clicking directly on prev/next <i> icon element)
-              target = parent;
-            }
-            var date = target.data(metadata.date);
-            var focusDate = target.data(metadata.focusDate);
-            var mode = target.data(metadata.mode);
-            if (date && settings.onSelect.call(element, date, module.get.mode()) !== false) {
-              var forceSet = target.hasClass(className.today);
-              module.selectDate(date, forceSet);
-            }
-            else if (focusDate) {
-              module.set.focusDate(focusDate);
-            }
-            else if (mode) {
-              module.set.mode(mode);
-            }
-          },
-          keydown: function (event) {
-            var keyCode = event.which;
-            if (keyCode === 27 || keyCode === 9) {
-              //esc || tab
-              module.popup('hide');
-            }
-
-            if (module.popup('is visible')) {
-              if (keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40) {
-                //arrow keys
-                var mode = module.get.mode();
-                var bigIncrement = mode === 'day' ? 7 : mode === 'hour' ? 4 : mode === 'minute' ? timeGap['column'] : 3;
-                var increment = keyCode === 37 ? -1 : keyCode === 38 ? -bigIncrement : keyCode == 39 ? 1 : bigIncrement;
-                increment *= mode === 'minute' ? settings.minTimeGap : 1;
-                var focusDate = module.get.focusDate() || module.get.date() || new Date();
-                var year = focusDate.getFullYear() + (mode === 'year' ? increment : 0);
-                var month = focusDate.getMonth() + (mode === 'month' ? increment : 0);
-                var day = focusDate.getDate() + (mode === 'day' ? increment : 0);
-                var hour = focusDate.getHours() + (mode === 'hour' ? increment : 0);
-                var minute = focusDate.getMinutes() + (mode === 'minute' ? increment : 0);
-                var newFocusDate = new Date(year, month, day, hour, minute);
-                if (settings.type === 'time') {
-                  newFocusDate = module.helper.mergeDateTime(focusDate, newFocusDate);
-                }
-                if (module.helper.isDateInRange(newFocusDate, mode)) {
-                  module.set.focusDate(newFocusDate);
-                }
-              } else if (keyCode === 13) {
-                //enter
-                var mode = module.get.mode();
-                var date = module.get.focusDate();
-                if (date && !settings.isDisabled(date, mode) && !module.helper.isDisabled(date, mode) && module.helper.isEnabled(date, mode)) {
-                  module.selectDate(date);
-                }
-                //disable form submission:
-                event.preventDefault();
-                event.stopPropagation();
-              }
-            }
-
-            if (keyCode === 38 || keyCode === 40) {
-              //arrow-up || arrow-down
-              event.preventDefault(); //don't scroll
-              module.popup('show');
-            }
-          },
-          inputChange: function () {
-            var val = $input.val();
-            var date = parser.date(val, settings);
-            module.set.date(date, false);
-          },
-          inputFocus: function () {
-            $container.addClass(className.active);
-          },
-          inputBlur: function () {
-            $container.removeClass(className.active);
-            if (settings.formatInput) {
-              var date = module.get.date();
-              var text = formatter.datetime(date, settings);
-              $input.val(text);
-            }
-            if(selectionComplete){
-              module.trigger.change();
-              selectionComplete = false;
-            }
-          },
-          class: {
-            mutation: function(mutations) {
-              mutations.forEach(function(mutation) {
-                if(mutation.attributeName === "class") {
-                  module.check.disabled();
-                }
-              });
-            }
-          }
-        },
-
-        observeChanges: function() {
-          if('MutationObserver' in window) {
-            classObserver  = new MutationObserver(module.event.class.mutation);
-            module.debug('Setting up mutation observer', classObserver);
-            module.observe.class();
-          }
-        },
-
-        disconnect: {
-          classObserver: function() {
-            if($input.length && classObserver) {
-              classObserver.disconnect();
-            }
-          }
-        },
-
-        observe: {
-          class: function() {
-            if($input.length && classObserver) {
-              classObserver.observe($module[0], {
-                attributes : true
-              });
-            }
-          }
-        },
-
-        is: {
-          disabled: function() {
-            return $module.hasClass(className.disabled);
-          }
-        },
-
-        check: {
-          disabled: function(){
-            $input.attr('tabindex',module.is.disabled() ? -1 : 0);
-          }
-        },
-
-        get: {
-          weekOfYear: function(weekYear,weekMonth,weekDay) {
-              // adapted from http://www.merlyn.demon.co.uk/weekcalc.htm
-              var ms1d = 864e5, // milliseconds in a day
-                  ms7d = 7 * ms1d; // milliseconds in a week
-
-              return function() { // return a closure so constants get calculated only once
-                  var DC3 = Date.UTC(weekYear, weekMonth, weekDay + 3) / ms1d, // an Absolute Day Number
-                      AWN = Math.floor(DC3 / 7), // an Absolute Week Number
-                      Wyr = new Date(AWN * ms7d).getUTCFullYear();
-
-                  return AWN - Math.floor(Date.UTC(Wyr, 0, 7) / ms7d) + 1;
-              }();
-          },
-          date: function () {
-            return module.helper.sanitiseDate($module.data(metadata.date)) || null;
-          },
-          inputDate: function() {
-            return $input.val();
-          },
-          focusDate: function () {
-            return $module.data(metadata.focusDate) || null;
-          },
-          startDate: function () {
-            var startModule = module.get.calendarModule(settings.startCalendar);
-            return (startModule ? startModule.get.date() : $module.data(metadata.startDate)) || null;
-          },
-          endDate: function () {
-            var endModule = module.get.calendarModule(settings.endCalendar);
-            return (endModule ? endModule.get.date() : $module.data(metadata.endDate)) || null;
-          },
-          minDate: function() {
-            return $module.data(metadata.minDate) || null;
-          },
-          maxDate: function() {
-            return $module.data(metadata.maxDate) || null;
-          },
-          monthOffset: function () {
-            return $module.data(metadata.monthOffset) || 0;
-          },
-          mode: function () {
-            //only returns valid modes for the current settings
-            var mode = $module.data(metadata.mode) || settings.startMode;
-            return module.get.validatedMode(mode);
-          },
-          validatedMode: function(mode){
-            var validModes = module.get.validModes();
-            if ($.inArray(mode, validModes) >= 0) {
-              return mode;
-            }
-            return settings.type === 'time' ? 'hour' :
-              settings.type === 'month' ? 'month' :
-                settings.type === 'year' ? 'year' : 'day';
-          },
-          type: function() {
-            return $module.data(metadata.type) || settings.type;
-          },
-          validModes: function () {
-            var validModes = [];
-            if (settings.type !== 'time') {
-              if (!settings.disableYear || settings.type === 'year') {
-                validModes.push('year');
-              }
-              if (!(settings.disableMonth || settings.type === 'year') || settings.type === 'month') {
-                validModes.push('month');
-              }
-              if (settings.type.indexOf('date') >= 0) {
-                validModes.push('day');
-              }
-            }
-            if (settings.type.indexOf('time') >= 0) {
-              validModes.push('hour');
-              if (!settings.disableMinute) {
-                validModes.push('minute');
-              }
-            }
-            return validModes;
-          },
-          isTouch: function () {
-            try {
-              document.createEvent('TouchEvent');
-              return true;
-            }
-            catch (e) {
-              return false;
-            }
-          },
-          calendarModule: function (selector) {
-            if (!selector) {
-              return null;
-            }
-            if (!(selector instanceof $)) {
-              selector = $(selector).first();
-            }
-            //assume range related calendars are using the same namespace
-            return selector.data(moduleNamespace);
-          }
-        },
-
-        set: {
-          date: function (date, updateInput, fireChange) {
-            updateInput = updateInput !== false;
-            fireChange = fireChange !== false;
-            date = module.helper.sanitiseDate(date);
-            date = module.helper.dateInRange(date);
-
-            var mode = module.get.mode();
-            var text = formatter.datetime(date, settings);
-
-            if (fireChange && settings.onBeforeChange.call(element, date, text, mode) === false) {
-              return false;
-            }
-
-            module.set.focusDate(date);
-
-            if (settings.isDisabled(date, mode)) {
-              return false;
-            }
-
-            var endDate = module.get.endDate();
-            if (!!endDate && !!date && date > endDate) {
-              //selected date is greater than end date in range, so clear end date
-              module.set.endDate(undefined);
-            }
-            module.set.dataKeyValue(metadata.date, date);
-
-            if (updateInput && $input.length) {
-              $input.val(text);
-            }
-
-            if (fireChange) {
-              settings.onChange.call(element, date, text, mode);
-            }
-          },
-          startDate: function (date, refreshCalendar) {
-            date = module.helper.sanitiseDate(date);
-            var startModule = module.get.calendarModule(settings.startCalendar);
-            if (startModule) {
-              startModule.set.date(date);
-            }
-            module.set.dataKeyValue(metadata.startDate, date, refreshCalendar);
-          },
-          endDate: function (date, refreshCalendar) {
-            date = module.helper.sanitiseDate(date);
-            var endModule = module.get.calendarModule(settings.endCalendar);
-            if (endModule) {
-              endModule.set.date(date);
-            }
-            module.set.dataKeyValue(metadata.endDate, date, refreshCalendar);
-          },
-          focusDate: function (date, refreshCalendar, updateFocus, updateRange) {
-            date = module.helper.sanitiseDate(date);
-            date = module.helper.dateInRange(date);
-            var isDay = module.get.mode() === 'day';
-            var oldFocusDate = module.get.focusDate();
-            if (isDay && date && oldFocusDate) {
-              var yearDelta = date.getFullYear() - oldFocusDate.getFullYear();
-              var monthDelta = yearDelta * 12 + date.getMonth() - oldFocusDate.getMonth();
-              if (monthDelta) {
-                var monthOffset = module.get.monthOffset() - monthDelta;
-                module.set.monthOffset(monthOffset, false);
-              }
-            }
-            var changed = module.set.dataKeyValue(metadata.focusDate, date, !!date && refreshCalendar);
-            updateFocus = (updateFocus !== false && changed && refreshCalendar === false) || focusDateUsedForRange != updateRange;
-            focusDateUsedForRange = updateRange;
-            if (updateFocus) {
-              module.update.focus(updateRange);
-            }
-          },
-          minDate: function (date) {
-            date = module.helper.sanitiseDate(date);
-            if (settings.maxDate !== null && settings.maxDate <= date) {
-              module.verbose('Unable to set minDate variable bigger that maxDate variable', date, settings.maxDate);
-            } else {
-              module.setting('minDate', date);
-              module.set.dataKeyValue(metadata.minDate, date);
-            }
-          },
-          maxDate: function (date) {
-            date = module.helper.sanitiseDate(date);
-            if (settings.minDate !== null && settings.minDate >= date) {
-              module.verbose('Unable to set maxDate variable lower that minDate variable', date, settings.minDate);
-            } else {
-              module.setting('maxDate', date);
-              module.set.dataKeyValue(metadata.maxDate, date);
-            }
-          },
-          monthOffset: function (monthOffset, refreshCalendar) {
-            var multiMonth = Math.max(settings.multiMonth, 1);
-            monthOffset = Math.max(1 - multiMonth, Math.min(0, monthOffset));
-            module.set.dataKeyValue(metadata.monthOffset, monthOffset, refreshCalendar);
-          },
-          mode: function (mode, refreshCalendar) {
-            module.set.dataKeyValue(metadata.mode, mode, refreshCalendar);
-          },
-          dataKeyValue: function (key, value, refreshCalendar) {
-            var oldValue = $module.data(key);
-            var equal = oldValue === value || (oldValue <= value && oldValue >= value); //equality test for dates and string objects
-            if (value) {
-              $module.data(key, value);
-            } else {
-              $module.removeData(key);
-            }
-            refreshCalendar = refreshCalendar !== false && !equal;
-            if (refreshCalendar) {
-              module.refresh();
-            }
-            return !equal;
-          }
-        },
-
-        selectDate: function (date, forceSet) {
-          module.verbose('New date selection', date);
-          var mode = module.get.mode();
-          var complete = forceSet || mode === 'minute' ||
-            (settings.disableMinute && mode === 'hour') ||
-            (settings.type === 'date' && mode === 'day') ||
-            (settings.type === 'month' && mode === 'month') ||
-            (settings.type === 'year' && mode === 'year');
-          if (complete) {
-            var canceled = module.set.date(date) === false;
-            if (!canceled) {
-              selectionComplete = true;
-              if(settings.closable) {
-                module.popup('hide');
-                //if this is a range calendar, focus the container or input. This will open the popup from its event listeners.
-                var endModule = module.get.calendarModule(settings.endCalendar);
-                if (endModule) {
-                  if (endModule.setting('on') !== 'focus') {
-                    endModule.popup('show');
-                  }
-                  endModule.focus();
-                }
-              }
-            }
-          } else {
-            var newMode = mode === 'year' ? (!settings.disableMonth ? 'month' : 'day') :
-              mode === 'month' ? 'day' : mode === 'day' ? 'hour' : 'minute';
-            module.set.mode(newMode);
-            if (mode === 'hour' || (mode === 'day' && module.get.date())) {
-              //the user has chosen enough to consider a valid date/time has been chosen
-              module.set.date(date, true, false);
-            } else {
-              module.set.focusDate(date);
-            }
-          }
-        },
-
-        changeDate: function (date) {
-          module.set.date(date);
-        },
-
-        clear: function () {
-          module.set.date(undefined);
-        },
-
-        popup: function () {
-          return $activator.popup.apply($activator, arguments);
-        },
-
-        focus: function () {
-          if ($input.length) {
-            $input.focus();
-          } else {
-            $container.focus();
-          }
-        },
-        blur: function () {
-          if ($input.length) {
-            $input.blur();
-          } else {
-            $container.blur();
-          }
-        },
-
-        helper: {
-          isDisabled: function(date, mode) {
-            return (mode === 'day' || mode === 'month' || mode === 'year') && ((mode === 'day' && settings.disabledDaysOfWeek.indexOf(date.getDay()) !== -1) || settings.disabledDates.some(function(d){
-              if(typeof d === 'string') {
-                d = module.helper.sanitiseDate(d);
-              }
-              if (d instanceof Date) {
-                return module.helper.dateEqual(date, d, mode);
-              }
-              if (d !== null && typeof d === 'object') {
-                if (d[metadata.year]) {
-                  if (typeof d[metadata.year] === 'number') {
-                    return date.getFullYear() == d[metadata.year];
-                  } else if (Array.isArray(d[metadata.year])) {
-                    return d[metadata.year].indexOf(date.getFullYear()) > -1;
-                  }
-                } else if (d[metadata.month]) {
-                  if (typeof d[metadata.month] === 'number') {
-                    return date.getMonth() == d[metadata.month];
-                  } else if (Array.isArray(d[metadata.month])) {
-                    return d[metadata.month].indexOf(date.getMonth()) > -1;
-                  } else if (d[metadata.month] instanceof Date) {
-                    var sdate = module.helper.sanitiseDate(d[metadata.month]);
-                    return (date.getMonth() == sdate.getMonth()) && (date.getFullYear() == sdate.getFullYear())
-                  }
-                } else if (d[metadata.date] && mode === 'day') {
-                  if (d[metadata.date] instanceof Date) {
-                    return module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode);
-                  } else if (Array.isArray(d[metadata.date])) {
-                    return d[metadata.date].some(function(idate) {
-                      return module.helper.dateEqual(date, idate, mode);
-                    });
-                  }
-                }
-              }
-            }));
-          },
-          isEnabled: function(date, mode) {
-            if (mode === 'day') {
-              return settings.enabledDates.length === 0 || settings.enabledDates.some(function(d){
-                if(typeof d === 'string') {
-                  d = module.helper.sanitiseDate(d);
-                }
-                if (d instanceof Date) {
-                  return module.helper.dateEqual(date, d, mode);
-                }
-                if (d !== null && typeof d === 'object' && d[metadata.date]) {
-                  return module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode);
-                }
-              });
-            } else {
-              return true;
-            }
-          },
-          findDayAsObject: function(date, mode, dates) {
-            if (mode === 'day' || mode === 'month' || mode === 'year') {
-              var d;
-              for (var i = 0; i < dates.length; i++) {
-                d = dates[i];
-                if(typeof d === 'string') {
-                  d = module.helper.sanitiseDate(d);
-                }
-                if (d instanceof Date && module.helper.dateEqual(date, d, mode)) {
-                  var dateObject = {};
-                  dateObject[metadata.date] = d;
-                  return dateObject;
-                }
-                else if (d !== null && typeof d === 'object') {
-                  if (d[metadata.year]) {
-                    if (typeof d[metadata.year] === 'number' && date.getFullYear() == d[metadata.year]) {
-                      return d;
-                    } else if (Array.isArray(d[metadata.year])) {
-                      if (d[metadata.year].indexOf(date.getFullYear()) > -1) {
-                        return d;
-                      }
-                    }
-                  } else if (d[metadata.month]) {
-                    if (typeof d[metadata.month] === 'number' && date.getMonth() == d[metadata.month]) {
-                      return d;
-                    } else if (Array.isArray(d[metadata.month])) {
-                      if (d[metadata.month].indexOf(date.getMonth()) > -1) {
-                        return d;
-                      }
-                    } else if (d[metadata.month] instanceof Date) {
-                      var sdate = module.helper.sanitiseDate(d[metadata.month]);
-                      if ((date.getMonth() == sdate.getMonth()) && (date.getFullYear() == sdate.getFullYear())) {
-                        return d;
-                      }
-                    }
-                  } else if (d[metadata.date] && mode === 'day') {
-                    if (d[metadata.date] instanceof Date && module.helper.dateEqual(date, module.helper.sanitiseDate(d[metadata.date]), mode)) {
-                      return d;
-                    } else if (Array.isArray(d[metadata.date])) {
-                      if(d[metadata.date].some(function(idate) { return module.helper.dateEqual(date, idate, mode); })) {
-                        return d;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            return null;
-          },
-          sanitiseDate: function (date) {
-            if (!(date instanceof Date)) {
-              date = parser.date('' + date, settings);
-            }
-            if (!date || isNaN(date.getTime())) {
-              return null;
-            }
-            return date;
-          },
-          dateDiff: function (date1, date2, mode) {
-            mode = mode || 'day';
-            var isTimeOnly = settings.type === 'time';
-            var isYear = mode === 'year';
-            var isYearOrMonth = isYear || mode === 'month';
-            var isMinute = mode === 'minute';
-            var isHourOrMinute = isMinute || mode === 'hour';
-            //only care about a minute accuracy of settings.minTimeGap
-            date1 = new Date(
-              isTimeOnly ? 2000 : date1.getFullYear(),
-              isTimeOnly ? 0 : isYear ? 0 : date1.getMonth(),
-              isTimeOnly ? 1 : isYearOrMonth ? 1 : date1.getDate(),
-              !isHourOrMinute ? 0 : date1.getHours(),
-              !isMinute ? 0 : settings.minTimeGap * Math.floor(date1.getMinutes() / settings.minTimeGap));
-            date2 = new Date(
-              isTimeOnly ? 2000 : date2.getFullYear(),
-              isTimeOnly ? 0 : isYear ? 0 : date2.getMonth(),
-              isTimeOnly ? 1 : isYearOrMonth ? 1 : date2.getDate(),
-              !isHourOrMinute ? 0 : date2.getHours(),
-              !isMinute ? 0 : settings.minTimeGap * Math.floor(date2.getMinutes() / settings.minTimeGap));
-            return date2.getTime() - date1.getTime();
-          },
-          dateEqual: function (date1, date2, mode) {
-            return !!date1 && !!date2 && module.helper.dateDiff(date1, date2, mode) === 0;
-          },
-          isDateInRange: function (date, mode, minDate, maxDate) {
-            if (!minDate && !maxDate) {
-              var startDate = module.get.startDate();
-              minDate = startDate && settings.minDate ? new Date(Math.max(startDate, settings.minDate)) : startDate || settings.minDate;
-              maxDate = settings.maxDate;
-            }
-            minDate = minDate && new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate(), minDate.getHours(), settings.minTimeGap * Math.ceil(minDate.getMinutes() / settings.minTimeGap));
-            return !(!date ||
-            (minDate && module.helper.dateDiff(date, minDate, mode) > 0) ||
-            (maxDate && module.helper.dateDiff(maxDate, date, mode) > 0));
-          },
-          dateInRange: function (date, minDate, maxDate) {
-            if (!minDate && !maxDate) {
-              var startDate = module.get.startDate();
-              minDate = startDate && settings.minDate ? new Date(Math.max(startDate, settings.minDate)) : startDate || settings.minDate;
-              maxDate = settings.maxDate;
-            }
-            minDate = minDate && new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate(), minDate.getHours(), settings.minTimeGap * Math.ceil(minDate.getMinutes() / settings.minTimeGap));
-            var isTimeOnly = settings.type === 'time';
-            return !date ? date :
-              (minDate && module.helper.dateDiff(date, minDate, 'minute') > 0) ?
-                (isTimeOnly ? module.helper.mergeDateTime(date, minDate) : minDate) :
-                (maxDate && module.helper.dateDiff(maxDate, date, 'minute') > 0) ?
-                  (isTimeOnly ? module.helper.mergeDateTime(date, maxDate) : maxDate) :
-                  date;
-          },
-          mergeDateTime: function (date, time) {
-            return (!date || !time) ? time :
-              new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes());
-          },
-          isTodayButton: function(element) {
-            return element.text() === settings.text.today;
-          }
-        },
-
-        setting: function (name, value) {
-          module.debug('Changing setting', name, value);
-          if ($.isPlainObject(name)) {
-            $.extend(true, settings, name);
-          }
-          else if (value !== undefined) {
-            if ($.isPlainObject(settings[name])) {
-              $.extend(true, settings[name], value);
-            }
-            else {
-              settings[name] = value;
-            }
-          }
-          else {
-            return settings[name];
-          }
-        },
-        internal: function (name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, module, name);
-          }
-          else if(value !== undefined) {
-            module[name] = value;
-          }
-          else {
-            return module[name];
-          }
-        },
-        debug: function () {
-          if (!settings.silent && settings.debug) {
-            if (settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.debug.apply(console, arguments);
-            }
-          }
-        },
-        verbose: function () {
-          if (!settings.silent && settings.verbose && settings.debug) {
-            if (settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.verbose.apply(console, arguments);
-            }
-          }
-        },
-        error: function () {
-          if (!settings.silent) {
-            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
-            module.error.apply(console, arguments);
-          }
-        },
-        performance: {
-          log: function (message) {
-            var
-              currentTime,
-              executionTime,
-              previousTime
-              ;
-            if (settings.performance) {
-              currentTime = new Date().getTime();
-              previousTime = time || currentTime;
-              executionTime = currentTime - previousTime;
-              time = currentTime;
-              performance.push({
-                'Name': message[0],
-                'Arguments': [].slice.call(message, 1) || '',
-                'Element': element,
-                'Execution Time': executionTime
-              });
-            }
-            clearTimeout(module.performance.timer);
-            module.performance.timer = setTimeout(module.performance.display, 500);
-          },
-          display: function () {
-            var
-              title = settings.name + ':',
-              totalTime = 0
-              ;
-            time = false;
-            clearTimeout(module.performance.timer);
-            $.each(performance, function (index, data) {
-              totalTime += data['Execution Time'];
-            });
-            title += ' ' + totalTime + 'ms';
-            if (moduleSelector) {
-              title += ' \'' + moduleSelector + '\'';
-            }
-            if ((console.group !== undefined || console.table !== undefined) && performance.length > 0) {
-              console.groupCollapsed(title);
-              if (console.table) {
-                console.table(performance);
-              }
-              else {
-                $.each(performance, function (index, data) {
-                  console.log(data['Name'] + ': ' + data['Execution Time'] + 'ms');
-                });
-              }
-              console.groupEnd();
-            }
-            performance = [];
-          }
-        },
-        invoke: function (query, passedArguments, context) {
-          var
-            object = instance,
-            maxDepth,
-            found,
-            response
-            ;
-          passedArguments = passedArguments || queryArguments;
-          context = element || context;
-          if (typeof query == 'string' && object !== undefined) {
-            query = query.split(/[\. ]/);
-            maxDepth = query.length - 1;
-            $.each(query, function (depth, value) {
-              var camelCaseValue = (depth != maxDepth)
-                  ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
-                  : query
-                ;
-              if ($.isPlainObject(object[camelCaseValue]) && (depth != maxDepth)) {
-                object = object[camelCaseValue];
-              }
-              else if (object[camelCaseValue] !== undefined) {
-                found = object[camelCaseValue];
-                return false;
-              }
-              else if ($.isPlainObject(object[value]) && (depth != maxDepth)) {
-                object = object[value];
-              }
-              else if (object[value] !== undefined) {
-                found = object[value];
-                return false;
-              }
-              else {
-                module.error(error.method, query);
-                return false;
-              }
-            });
-          }
-          if ($.isFunction(found)) {
-            response = found.apply(context, passedArguments);
-          }
-          else if (found !== undefined) {
-            response = found;
-          }
-          if (Array.isArray(returnedValue)) {
-            returnedValue.push(response);
-          }
-          else if (returnedValue !== undefined) {
-            returnedValue = [returnedValue, response];
-          }
-          else if (response !== undefined) {
-            returnedValue = response;
-          }
-          return found;
-        }
-      };
-
-      if (methodInvoked) {
-        if (instance === undefined) {
-          module.initialize();
-        }
-        module.invoke(query);
-      }
-      else {
-        if (instance !== undefined) {
-          instance.invoke('destroy');
-        }
-        module.initialize();
-      }
-    })
-  ;
-  return (returnedValue !== undefined)
-    ? returnedValue
-    : this
-    ;
-};
-
-$.fn.calendar.settings = {
-
-  name            : 'Calendar',
-  namespace       : 'calendar',
-
-  silent: false,
-  debug: false,
-  verbose: false,
-  performance: false,
-
-  type               : 'datetime', // picker type, can be 'datetime', 'date', 'time', 'month', or 'year'
-  firstDayOfWeek     : 0,          // day for first day column (0 = Sunday)
-  constantHeight     : true,       // add rows to shorter months to keep day calendar height consistent (6 rows)
-  today              : false,      // show a 'today/now' button at the bottom of the calendar
-  closable           : true,       // close the popup after selecting a date/time
-  monthFirst         : true,       // month before day when parsing/converting date from/to text
-  touchReadonly      : true,       // set input to readonly on touch devices
-  inline             : false,      // create the calendar inline instead of inside a popup
-  on                 : null,       // when to show the popup (defaults to 'focus' for input, 'click' for others)
-  initialDate        : null,       // date to display initially when no date is selected (null = now)
-  startMode          : false,      // display mode to start in, can be 'year', 'month', 'day', 'hour', 'minute' (false = 'day')
-  minDate            : null,       // minimum date/time that can be selected, dates/times before are disabled
-  maxDate            : null,       // maximum date/time that can be selected, dates/times after are disabled
-  ampm               : true,       // show am/pm in time mode
-  disableYear        : false,      // disable year selection mode
-  disableMonth       : false,      // disable month selection mode
-  disableMinute      : false,      // disable minute selection mode
-  formatInput        : true,       // format the input text upon input blur and module creation
-  startCalendar      : null,       // jquery object or selector for another calendar that represents the start date of a date range
-  endCalendar        : null,       // jquery object or selector for another calendar that represents the end date of a date range
-  multiMonth         : 1,          // show multiple months when in 'day' mode
-  minTimeGap         : 5,
-  showWeekNumbers    : null,       // show Number of Week at the very first column of a dayView
-  disabledDates      : [],         // specific day(s) which won't be selectable and contain additional information.
-  disabledDaysOfWeek : [],         // day(s) which won't be selectable(s) (0 = Sunday)
-  enabledDates       : [],         // specific day(s) which will be selectable, all other days will be disabled
-  eventDates         : [],         // specific day(s) which will be shown in a different color and using tooltips
-  centuryBreak       : 60,         // starting short year until 99 where it will be assumed to belong to the last century
-  currentCentury     : 2000,       // century to be added to 2-digit years (00 to {centuryBreak}-1)
-  selectAdjacentDays : false,     // The calendar can show dates from adjacent month. These adjacent month dates can also be made selectable.
-  // popup options ('popup', 'on', 'hoverable', and show/hide callbacks are overridden)
-  popupOptions: {
-    position: 'bottom left',
-    lastResort: 'bottom left',
-    prefer: 'opposite',
-    hideOnScroll: false
-  },
-
-  text: {
-    days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    today: 'Today',
-    now: 'Now',
-    am: 'AM',
-    pm: 'PM',
-    weekNo: 'Week'
-  },
-
-  formatter: {
-    header: function (date, mode, settings) {
-      return mode === 'year' ? settings.formatter.yearHeader(date, settings) :
-        mode === 'month' ? settings.formatter.monthHeader(date, settings) :
-          mode === 'day' ? settings.formatter.dayHeader(date, settings) :
-            mode === 'hour' ? settings.formatter.hourHeader(date, settings) :
-              settings.formatter.minuteHeader(date, settings);
-    },
-    yearHeader: function (date, settings) {
-      var decadeYear = Math.ceil(date.getFullYear() / 10) * 10;
-      return (decadeYear - 9) + ' - ' + (decadeYear + 2);
-    },
-    monthHeader: function (date, settings) {
-      return date.getFullYear();
-    },
-    dayHeader: function (date, settings) {
-      var month = settings.text.months[date.getMonth()];
-      var year = date.getFullYear();
-      return month + ' ' + year;
-    },
-    hourHeader: function (date, settings) {
-      return settings.formatter.date(date, settings);
-    },
-    minuteHeader: function (date, settings) {
-      return settings.formatter.date(date, settings);
-    },
-    dayColumnHeader: function (day, settings) {
-      return settings.text.days[day];
-    },
-    datetime: function (date, settings) {
-      if (!date) {
-        return '';
-      }
-      var day = settings.type === 'time' ? '' : settings.formatter.date(date, settings);
-      var time = settings.type.indexOf('time') < 0 ? '' : settings.formatter.time(date, settings, false);
-      var separator = settings.type === 'datetime' ? ' ' : '';
-      return day + separator + time;
-    },
-    date: function (date, settings) {
-      if (!date) {
-        return '';
-      }
-      var day = date.getDate();
-      var month = settings.text.months[date.getMonth()];
-      var year = date.getFullYear();
-      return settings.type === 'year' ? year :
-        settings.type === 'month' ? month + ' ' + year :
-        (settings.monthFirst ? month + ' ' + day : day + ' ' + month) + ', ' + year;
-    },
-    time: function (date, settings, forCalendar) {
-      if (!date) {
-        return '';
-      }
-      var hour = date.getHours();
-      var minute = date.getMinutes();
-      var ampm = '';
-      if (settings.ampm) {
-        ampm = ' ' + (hour < 12 ? settings.text.am : settings.text.pm);
-        hour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
-      }
-      return hour + ':' + (minute < 10 ? '0' : '') + minute + ampm;
-    },
-    today: function (settings) {
-      return settings.type === 'date' ? settings.text.today : settings.text.now;
-    },
-    cell: function (cell, date, cellOptions) {
-    }
-  },
-
-  parser: {
-    date: function (text, settings) {
-      if (text instanceof Date) {
-        return text;
-      }
-      if (!text) {
-        return null;
-      }
-      text = String(text).trim();
-      if (text.length === 0) {
-        return null;
-      }
-      if(text.match(/^[0-9]{4}[\/\-\.][0-9]{1,2}[\/\-\.][0-9]{1,2}$/)){
-        text = text.replace(/[\/\-\.]/g,'/') + ' 00:00:00';
-      }
-      // Reverse date and month in some cases
-      text = settings.monthFirst || !text.match(/^[0-9]{1,2}[\/\-\.]/) ? text : text.replace(/[\/\-\.]/g,'/').replace(/([0-9]+)\/([0-9]+)/,'$2/$1');
-      var textDate = new Date(text);
-      var numberOnly = text.match(/^[0-9]+$/) !== null;
-      if(!numberOnly && !isNaN(textDate.getDate())) {
-        return textDate;
-      }
-      text = text.toLowerCase();
-
-      var i, j, k;
-      var minute = -1, hour = -1, day = -1, month = -1, year = -1;
-      var isAm = undefined;
-
-      var isTimeOnly = settings.type === 'time';
-      var isDateOnly = settings.type.indexOf('time') < 0;
-
-      var words = text.split(settings.regExp.dateWords), word;
-      var numbers = text.split(settings.regExp.dateNumbers), number;
-
-      var parts;
-      var monthString;
-
-      if (!isDateOnly) {
-        //am/pm
-        isAm = $.inArray(settings.text.am.toLowerCase(), words) >= 0 ? true :
-          $.inArray(settings.text.pm.toLowerCase(), words) >= 0 ? false : undefined;
-
-        //time with ':'
-        for (i = 0; i < numbers.length; i++) {
-          number = numbers[i];
-          if (number.indexOf(':') >= 0) {
-            if (hour < 0 || minute < 0) {
-              parts = number.split(':');
-              for (k = 0; k < Math.min(2, parts.length); k++) {
-                j = parseInt(parts[k]);
-                if (isNaN(j)) {
-                  j = 0;
-                }
-                if (k === 0) {
-                  hour = j % 24;
-                } else {
-                  minute = j % 60;
-                }
-              }
-            }
-            numbers.splice(i, 1);
-          }
-        }
-      }
-
-      if (!isTimeOnly) {
-        //textual month
-        for (i = 0; i < words.length; i++) {
-          word = words[i];
-          if (word.length <= 0) {
-            continue;
-          }
-          for (j = 0; j < settings.text.months.length; j++) {
-            monthString = settings.text.months[j];
-            monthString = monthString.substring(0, word.length).toLowerCase();
-            if (monthString === word) {
-              month = j + 1;
-              break;
-            }
-          }
-          if (month >= 0) {
-            break;
-          }
-        }
-
-        //year > settings.centuryBreak
-        for (i = 0; i < numbers.length; i++) {
-          j = parseInt(numbers[i]);
-          if (isNaN(j)) {
-            continue;
-          }
-          if (j >= settings.centuryBreak && i === numbers.length-1) {
-            if (j <= 99) {
-              j += settings.currentCentury - 100;
-            }
-            year = j;
-            numbers.splice(i, 1);
-            break;
-          }
-        }
-
-        //numeric month
-        if (month < 0) {
-          for (i = 0; i < numbers.length; i++) {
-            k = i > 1 || settings.monthFirst ? i : i === 1 ? 0 : 1;
-            j = parseInt(numbers[k]);
-            if (isNaN(j)) {
-              continue;
-            }
-            if (1 <= j && j <= 12) {
-              month = j;
-              numbers.splice(k, 1);
-              break;
-            }
-          }
-        }
-
-        //day
-        for (i = 0; i < numbers.length; i++) {
-          j = parseInt(numbers[i]);
-          if (isNaN(j)) {
-            continue;
-          }
-          if (1 <= j && j <= 31) {
-            day = j;
-            numbers.splice(i, 1);
-            break;
-          }
-        }
-
-        //year <= settings.centuryBreak
-        if (year < 0) {
-          for (i = numbers.length - 1; i >= 0; i--) {
-            j = parseInt(numbers[i]);
-            if (isNaN(j)) {
-              continue;
-            }
-            if (j <= 99) {
-              j += settings.currentCentury;
-            }
-            year = j;
-            numbers.splice(i, 1);
-            break;
-          }
-        }
-      }
-
-      if (!isDateOnly) {
-        //hour
-        if (hour < 0) {
-          for (i = 0; i < numbers.length; i++) {
-            j = parseInt(numbers[i]);
-            if (isNaN(j)) {
-              continue;
-            }
-            if (0 <= j && j <= 23) {
-              hour = j;
-              numbers.splice(i, 1);
-              break;
-            }
-          }
-        }
-
-        //minute
-        if (minute < 0) {
-          for (i = 0; i < numbers.length; i++) {
-            j = parseInt(numbers[i]);
-            if (isNaN(j)) {
-              continue;
-            }
-            if (0 <= j && j <= 59) {
-              minute = j;
-              numbers.splice(i, 1);
-              break;
-            }
-          }
-        }
-      }
-
-      if (minute < 0 && hour < 0 && day < 0 && month < 0 && year < 0) {
-        return null;
-      }
-
-      if (minute < 0) {
-        minute = 0;
-      }
-      if (hour < 0) {
-        hour = 0;
-      }
-      if (day < 0) {
-        day = 1;
-      }
-      if (month < 0) {
-        month = 1;
-      }
-      if (year < 0) {
-        year = new Date().getFullYear();
-      }
-
-      if (isAm !== undefined) {
-        if (isAm) {
-          if (hour === 12) {
-            hour = 0;
-          }
-        } else if (hour < 12) {
-          hour += 12;
-        }
-      }
-
-      var date = new Date(year, month - 1, day, hour, minute);
-      if (date.getMonth() !== month - 1 || date.getFullYear() !== year) {
-        //month or year don't match up, switch to last day of the month
-        date = new Date(year, month, 0, hour, minute);
-      }
-      return isNaN(date.getTime()) ? null : date;
-    }
-  },
-
-  // callback before date is changed, return false to cancel the change
-  onBeforeChange: function (date, text, mode) {
-    return true;
-  },
-
-  // callback when date changes
-  onChange: function (date, text, mode) {
-  },
-
-  // callback before show animation, return false to prevent show
-  onShow: function () {
-  },
-
-  // callback after show animation
-  onVisible: function () {
-  },
-
-  // callback before hide animation, return false to prevent hide
-  onHide: function () {
-  },
-
-  // callback after hide animation
-  onHidden: function () {
-  },
-
-  // callback before item is selected, return false to prevent selection
-  onSelect: function (date, mode) {
-  },
-
-  // is the given date disabled?
-  isDisabled: function (date, mode) {
-    return false;
-  },
-
-  selector: {
-    popup: '.ui.popup',
-    input: 'input',
-    activator: 'input',
-    append: '.inline.field,.inline.fields'
-  },
-
-  regExp: {
-    dateWords: /[^A-Za-z\u00C0-\u024F]+/g,
-    dateNumbers: /[^\d:]+/g
-  },
-
-  error: {
-    popup: 'UI Popup, a required component is not included in this page',
-    method: 'The method you called is not defined.'
-  },
-
-  className: {
-    calendar: 'calendar',
-    active: 'active',
-    popup: 'ui popup',
-    grid: 'ui equal width grid',
-    column: 'column',
-    table: 'ui celled center aligned unstackable table',
-    inverted: 'inverted',
-    prev: 'prev link',
-    next: 'next link',
-    prevIcon: 'chevron left icon',
-    nextIcon: 'chevron right icon',
-    link: 'link',
-    cell: 'link',
-    disabledCell: 'disabled',
-    weekCell: 'disabled',
-    adjacentCell: 'adjacent',
-    activeCell: 'active',
-    rangeCell: 'range',
-    focusCell: 'focus',
-    todayCell: 'today',
-    today: 'today link',
-    disabled: 'disabled'
-  },
-
-  metadata: {
-    date: 'date',
-    focusDate: 'focusDate',
-    startDate: 'startDate',
-    endDate: 'endDate',
-    minDate: 'minDate',
-    maxDate: 'maxDate',
-    mode: 'mode',
-    type: 'type',
-    monthOffset: 'monthOffset',
-    message: 'message',
-    class: 'class',
-    inverted: 'inverted',
-    variation: 'variation',
-    position: 'position',
-    month: 'month',
-    year: 'year'
-  },
-
-  eventClass: 'blue'
-};
-
-})(jQuery, window, document);
-
-/*!
- * # Fomantic-UI 2.8.8 - Popup
- * http://github.com/fomantic/Fomantic-UI/
- *
- *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-;(function ($, window, document, undefined) {
-
-'use strict';
-
-$.isFunction = $.isFunction || function(obj) {
-  return typeof obj === "function" && typeof obj.nodeType !== "number";
-};
-
-window = (typeof window != 'undefined' && window.Math == Math)
-  ? window
-  : (typeof self != 'undefined' && self.Math == Math)
-    ? self
-    : Function('return this')()
-;
-
-$.fn.popup = function(parameters) {
-  var
-    $allModules    = $(this),
-    $document      = $(document),
-    $window        = $(window),
-    $body          = $('body'),
-
-    moduleSelector = $allModules.selector || '',
-
-    clickEvent      = ('ontouchstart' in document.documentElement)
-        ? 'touchstart'
-        : 'click',
-
-    time           = new Date().getTime(),
-    performance    = [],
-
-    query          = arguments[0],
-    methodInvoked  = (typeof query == 'string'),
-    queryArguments = [].slice.call(arguments, 1),
-
-    returnedValue
-  ;
-  $allModules
-    .each(function() {
-      var
-        settings        = ( $.isPlainObject(parameters) )
-          ? $.extend(true, {}, $.fn.popup.settings, parameters)
-          : $.extend({}, $.fn.popup.settings),
-
-        selector           = settings.selector,
-        className          = settings.className,
-        error              = settings.error,
-        metadata           = settings.metadata,
-        namespace          = settings.namespace,
-
-        eventNamespace     = '.' + settings.namespace,
-        moduleNamespace    = 'module-' + namespace,
-
-        $module            = $(this),
-        $context           = $(settings.context),
-        $scrollContext     = $(settings.scrollContext),
-        $boundary          = $(settings.boundary),
-        $target            = (settings.target)
-          ? $(settings.target)
-          : $module,
-
-        $popup,
-        $offsetParent,
-
-        searchDepth        = 0,
-        triedPositions     = false,
-        openedWithTouch    = false,
-
-        element            = this,
-        instance           = $module.data(moduleNamespace),
-
-        documentObserver,
-        elementNamespace,
-        id,
-        module
-      ;
-
-      module = {
-
-        // binds events
-        initialize: function() {
-          module.debug('Initializing', $module);
-          module.createID();
-          module.bind.events();
-          if(!module.exists() && settings.preserve) {
-            module.create();
-          }
-          if(settings.observeChanges) {
-            module.observeChanges();
-          }
-          module.instantiate();
-        },
-
-        instantiate: function() {
-          module.verbose('Storing instance', module);
-          instance = module;
-          $module
-            .data(moduleNamespace, instance)
-          ;
-        },
-
-        observeChanges: function() {
-          if('MutationObserver' in window) {
-            documentObserver = new MutationObserver(module.event.documentChanged);
-            documentObserver.observe(document, {
-              childList : true,
-              subtree   : true
-            });
-            module.debug('Setting up mutation observer', documentObserver);
-          }
-        },
-
-        refresh: function() {
-          if(settings.popup) {
-            $popup = $(settings.popup).eq(0);
-          }
-          else {
-            if(settings.inline) {
-              $popup = $target.nextAll(selector.popup).eq(0);
-              settings.popup = $popup;
-            }
-          }
-          if(settings.popup) {
-            $popup.addClass(className.loading);
-            $offsetParent = module.get.offsetParent();
-            $popup.removeClass(className.loading);
-            if(settings.movePopup && module.has.popup() && module.get.offsetParent($popup)[0] !== $offsetParent[0]) {
-              module.debug('Moving popup to the same offset parent as target');
-              $popup
-                .detach()
-                .appendTo($offsetParent)
-              ;
-            }
-          }
-          else {
-            $offsetParent = (settings.inline)
-              ? module.get.offsetParent($target)
-              : module.has.popup()
-                ? module.get.offsetParent($popup)
-                : $body
-            ;
-          }
-          if( $offsetParent.is('html') && $offsetParent[0] !== $body[0] ) {
-            module.debug('Setting page as offset parent');
-            $offsetParent = $body;
-          }
-          if( module.get.variation() ) {
-            module.set.variation();
-          }
-        },
-
-        reposition: function() {
-          module.refresh();
-          module.set.position();
-        },
-
-        destroy: function() {
-          module.debug('Destroying previous module');
-          if(documentObserver) {
-            documentObserver.disconnect();
-          }
-          // remove element only if was created dynamically
-          if($popup && !settings.preserve) {
-            module.removePopup();
-          }
-          // clear all timeouts
-          clearTimeout(module.hideTimer);
-          clearTimeout(module.showTimer);
-          // remove events
-          module.unbind.close();
-          module.unbind.events();
-          $module
-            .removeData(moduleNamespace)
-          ;
-        },
-
-        event: {
-          start:  function(event) {
-            var
-              delay = ($.isPlainObject(settings.delay))
-                ? settings.delay.show
-                : settings.delay
-            ;
-            clearTimeout(module.hideTimer);
-            if(!openedWithTouch || (openedWithTouch && settings.addTouchEvents) ) {
-              module.showTimer = setTimeout(module.show, delay);
-            }
-          },
-          end:  function() {
-            var
-              delay = ($.isPlainObject(settings.delay))
-                ? settings.delay.hide
-                : settings.delay
-            ;
-            clearTimeout(module.showTimer);
-            module.hideTimer = setTimeout(module.hide, delay);
-          },
-          touchstart: function(event) {
-            openedWithTouch = true;
-            if(settings.addTouchEvents) {
-              module.show();
-            }
-          },
-          resize: function() {
-            if( module.is.visible() ) {
-              module.set.position();
-            }
-          },
-          documentChanged: function(mutations) {
-            [].forEach.call(mutations, function(mutation) {
-              if(mutation.removedNodes) {
-                [].forEach.call(mutation.removedNodes, function(node) {
-                  if(node == element || $(node).find(element).length > 0) {
-                    module.debug('Element removed from DOM, tearing down events');
-                    module.destroy();
-                  }
-                });
-              }
-            });
-          },
-          hideGracefully: function(event) {
-            var
-              $target = $(event.target),
-              isInDOM = $.contains(document.documentElement, event.target),
-              inPopup = ($target.closest(selector.popup).length > 0)
-            ;
-            // don't close on clicks inside popup
-            if(event && !inPopup && isInDOM) {
-              module.debug('Click occurred outside popup hiding popup');
-              module.hide();
-            }
-            else {
-              module.debug('Click was inside popup, keeping popup open');
-            }
-          }
-        },
-
-        // generates popup html from metadata
-        create: function() {
-          var
-            html      = module.get.html(),
-            title     = module.get.title(),
-            content   = module.get.content()
-          ;
-
-          if(html || content || title) {
-            module.debug('Creating pop-up html');
-            if(!html) {
-              html = settings.templates.popup({
-                title   : title,
-                content : content
-              });
-            }
-            $popup = $('<div/>')
-              .addClass(className.popup)
-              .data(metadata.activator, $module)
-              .html(html)
-            ;
-            if(settings.inline) {
-              module.verbose('Inserting popup element inline', $popup);
-              $popup
-                .insertAfter($module)
-              ;
-            }
-            else {
-              module.verbose('Appending popup element to body', $popup);
-              $popup
-                .appendTo( $context )
-              ;
-            }
-            module.refresh();
-            module.set.variation();
-
-            if(settings.hoverable) {
-              module.bind.popup();
-            }
-            settings.onCreate.call($popup, element);
-          }
-          else if(settings.popup) {
-            $(settings.popup).data(metadata.activator, $module);
-            module.verbose('Used popup specified in settings');
-            module.refresh();
-            if(settings.hoverable) {
-              module.bind.popup();
-            }
-          }
-          else if($target.next(selector.popup).length !== 0) {
-            module.verbose('Pre-existing popup found');
-            settings.inline = true;
-            settings.popup  = $target.next(selector.popup).data(metadata.activator, $module);
-            module.refresh();
-            if(settings.hoverable) {
-              module.bind.popup();
-            }
-          }
-          else {
-            module.debug('No content specified skipping display', element);
-          }
-        },
-
-        createID: function() {
-          id = (Math.random().toString(16) + '000000000').substr(2, 8);
-          elementNamespace = '.' + id;
-          module.verbose('Creating unique id for element', id);
-        },
-
-        // determines popup state
-        toggle: function() {
-          module.debug('Toggling pop-up');
-          if( module.is.hidden() ) {
-            module.debug('Popup is hidden, showing pop-up');
-            module.unbind.close();
-            module.show();
-          }
-          else {
-            module.debug('Popup is visible, hiding pop-up');
-            module.hide();
-          }
-        },
-
-        show: function(callback) {
-          callback = callback || function(){};
-          module.debug('Showing pop-up', settings.transition);
-          if(module.is.hidden() && !( module.is.active() && module.is.dropdown()) ) {
-            if( !module.exists() ) {
-              module.create();
-            }
-            if(settings.onShow.call($popup, element) === false) {
-              module.debug('onShow callback returned false, cancelling popup animation');
-              return;
-            }
-            else if(!settings.preserve && !settings.popup) {
-              module.refresh();
-            }
-            if( $popup && module.set.position() ) {
-              module.save.conditions();
-              if(settings.exclusive) {
-                module.hideAll();
-              }
-              module.animate.show(callback);
-            }
-          }
-        },
-
-
-        hide: function(callback) {
-          callback = callback || function(){};
-          if( module.is.visible() || module.is.animating() ) {
-            if(settings.onHide.call($popup, element) === false) {
-              module.debug('onHide callback returned false, cancelling popup animation');
-              return;
-            }
-            module.remove.visible();
-            module.unbind.close();
-            module.restore.conditions();
-            module.animate.hide(callback);
-          }
-        },
-
-        hideAll: function() {
-          $(selector.popup)
-            .filter('.' + className.popupVisible)
-            .each(function() {
-              $(this)
-                .data(metadata.activator)
-                  .popup('hide')
-              ;
-            })
-          ;
-        },
-        exists: function() {
-          if(!$popup) {
-            return false;
-          }
-          if(settings.inline || settings.popup) {
-            return ( module.has.popup() );
-          }
-          else {
-            return ( $popup.closest($context).length >= 1 )
-              ? true
-              : false
-            ;
-          }
-        },
-
-        removePopup: function() {
-          if( module.has.popup() && !settings.popup) {
-            module.debug('Removing popup', $popup);
-            $popup.remove();
-            $popup = undefined;
-            settings.onRemove.call($popup, element);
-          }
-        },
-
-        save: {
-          conditions: function() {
-            module.cache = {
-              title: $module.attr('title')
-            };
-            if (module.cache.title) {
-              $module.removeAttr('title');
-            }
-            module.verbose('Saving original attributes', module.cache.title);
-          }
-        },
-        restore: {
-          conditions: function() {
-            if(module.cache && module.cache.title) {
-              $module.attr('title', module.cache.title);
-              module.verbose('Restoring original attributes', module.cache.title);
-            }
-            return true;
-          }
-        },
-        supports: {
-          svg: function() {
-            return (typeof SVGGraphicsElement !== 'undefined');
-          }
-        },
-        animate: {
-          show: function(callback) {
-            callback = $.isFunction(callback) ? callback : function(){};
-            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
-              module.set.visible();
-              $popup
-                .transition({
-                  animation  : (settings.transition.showMethod || settings.transition) + ' in',
-                  queue      : false,
-                  debug      : settings.debug,
-                  verbose    : settings.verbose,
-                  duration   : settings.transition.showDuration || settings.duration,
-                  onComplete : function() {
-                    module.bind.close();
-                    callback.call($popup, element);
-                    settings.onVisible.call($popup, element);
-                  }
-                })
-              ;
-            }
-            else {
-              module.error(error.noTransition);
-            }
-          },
-          hide: function(callback) {
-            callback = $.isFunction(callback) ? callback : function(){};
-            module.debug('Hiding pop-up');
-            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
-              $popup
-                .transition({
-                  animation  : (settings.transition.hideMethod || settings.transition) + ' out',
-                  queue      : false,
-                  duration   : settings.transition.hideDuration || settings.duration,
-                  debug      : settings.debug,
-                  verbose    : settings.verbose,
-                  onComplete : function() {
-                    module.reset();
-                    callback.call($popup, element);
-                    settings.onHidden.call($popup, element);
-                  }
-                })
-              ;
-            }
-            else {
-              module.error(error.noTransition);
-            }
-          }
-        },
-
-        change: {
-          content: function(html) {
-            $popup.html(html);
-          }
-        },
-
-        get: {
-          html: function() {
-            $module.removeData(metadata.html);
-            return $module.data(metadata.html) || settings.html;
-          },
-          title: function() {
-            $module.removeData(metadata.title);
-            return $module.data(metadata.title) || settings.title;
-          },
-          content: function() {
-            $module.removeData(metadata.content);
-            return $module.data(metadata.content) || settings.content || $module.attr('title');
-          },
-          variation: function() {
-            $module.removeData(metadata.variation);
-            return $module.data(metadata.variation) || settings.variation;
-          },
-          popup: function() {
-            return $popup;
-          },
-          popupOffset: function() {
-            return $popup.offset();
-          },
-          calculations: function() {
-            var
-              $popupOffsetParent = module.get.offsetParent($popup),
-              targetElement      = $target[0],
-              isWindow           = ($boundary[0] == window),
-              targetOffset       = $target.offset(),
-              parentOffset       = settings.inline || (settings.popup && settings.movePopup)
-                ? $target.offsetParent().offset()
-                : { top: 0, left: 0 },
-              screenPosition = (isWindow)
-                ? { top: 0, left: 0 }
-                : $boundary.offset(),
-              calculations   = {},
-              scroll = (isWindow)
-                ? { top: $window.scrollTop(), left: $window.scrollLeft() }
-                : { top: 0, left: 0},
-              screen
-            ;
-            calculations = {
-              // element which is launching popup
-              target : {
-                element : $target[0],
-                width   : $target.outerWidth(),
-                height  : $target.outerHeight(),
-                top     : targetOffset.top - parentOffset.top,
-                left    : targetOffset.left - parentOffset.left,
-                margin  : {}
-              },
-              // popup itself
-              popup : {
-                width  : $popup.outerWidth(),
-                height : $popup.outerHeight()
-              },
-              // offset container (or 3d context)
-              parent : {
-                width  : $offsetParent.outerWidth(),
-                height : $offsetParent.outerHeight()
-              },
-              // screen boundaries
-              screen : {
-                top  : screenPosition.top,
-                left : screenPosition.left,
-                scroll: {
-                  top  : scroll.top,
-                  left : scroll.left
-                },
-                width  : $boundary.width(),
-                height : $boundary.height()
-              }
-            };
-
-            // if popup offset context is not same as target, then adjust calculations
-            if($popupOffsetParent.get(0) !== $offsetParent.get(0)) {
-              var
-                popupOffset        = $popupOffsetParent.offset()
-              ;
-              calculations.target.top -= popupOffset.top;
-              calculations.target.left -= popupOffset.left;
-              calculations.parent.width = $popupOffsetParent.outerWidth();
-              calculations.parent.height = $popupOffsetParent.outerHeight();
-            }
-
-            // add in container calcs if fluid
-            if( settings.setFluidWidth && module.is.fluid() ) {
-              calculations.container = {
-                width: $popup.parent().outerWidth()
-              };
-              calculations.popup.width = calculations.container.width;
-            }
-
-            // add in margins if inline
-            calculations.target.margin.top = (settings.inline)
-              ? parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-top'), 10)
-              : 0
-            ;
-            calculations.target.margin.left = (settings.inline)
-              ? module.is.rtl()
-                ? parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-right'), 10)
-                : parseInt( window.getComputedStyle(targetElement).getPropertyValue('margin-left'), 10)
-              : 0
-            ;
-            // calculate screen boundaries
-            screen = calculations.screen;
-            calculations.boundary = {
-              top    : screen.top + screen.scroll.top,
-              bottom : screen.top + screen.scroll.top + screen.height,
-              left   : screen.left + screen.scroll.left,
-              right  : screen.left + screen.scroll.left + screen.width
-            };
-            return calculations;
-          },
-          id: function() {
-            return id;
-          },
-          startEvent: function() {
-            if(settings.on == 'hover') {
-              return 'mouseenter';
-            }
-            else if(settings.on == 'focus') {
-              return 'focus';
-            }
-            return false;
-          },
-          scrollEvent: function() {
-            return 'scroll';
-          },
-          endEvent: function() {
-            if(settings.on == 'hover') {
-              return 'mouseleave';
-            }
-            else if(settings.on == 'focus') {
-              return 'blur';
-            }
-            return false;
-          },
-          distanceFromBoundary: function(offset, calculations) {
-            var
-              distanceFromBoundary = {},
-              popup,
-              boundary
-            ;
-            calculations = calculations || module.get.calculations();
-
-            // shorthand
-            popup        = calculations.popup;
-            boundary     = calculations.boundary;
-
-            if(offset) {
-              distanceFromBoundary = {
-                top    : (offset.top - boundary.top),
-                left   : (offset.left - boundary.left),
-                right  : (boundary.right - (offset.left + popup.width) ),
-                bottom : (boundary.bottom - (offset.top + popup.height) )
-              };
-              module.verbose('Distance from boundaries determined', offset, distanceFromBoundary);
-            }
-            return distanceFromBoundary;
-          },
-          offsetParent: function($element) {
-            var
-              element = ($element !== undefined)
-                ? $element[0]
-                : $target[0],
-              parentNode = element.parentNode,
-              $node    = $(parentNode)
-            ;
-            if(parentNode) {
-              var
-                is2D     = ($node.css('transform') === 'none'),
-                isStatic = ($node.css('position') === 'static'),
-                isBody   = $node.is('body')
-              ;
-              while(parentNode && !isBody && isStatic && is2D) {
-                parentNode = parentNode.parentNode;
-                $node    = $(parentNode);
-                is2D     = ($node.css('transform') === 'none');
-                isStatic = ($node.css('position') === 'static');
-                isBody   = $node.is('body');
-              }
-            }
-            return ($node && $node.length > 0)
-              ? $node
-              : $()
-            ;
-          },
-          positions: function() {
-            return {
-              'top left'      : false,
-              'top center'    : false,
-              'top right'     : false,
-              'bottom left'   : false,
-              'bottom center' : false,
-              'bottom right'  : false,
-              'left center'   : false,
-              'right center'  : false
-            };
-          },
-          nextPosition: function(position) {
-            var
-              positions          = position.split(' '),
-              verticalPosition   = positions[0],
-              horizontalPosition = positions[1],
-              opposite = {
-                top    : 'bottom',
-                bottom : 'top',
-                left   : 'right',
-                right  : 'left'
-              },
-              adjacent = {
-                left   : 'center',
-                center : 'right',
-                right  : 'left'
-              },
-              backup = {
-                'top left'      : 'top center',
-                'top center'    : 'top right',
-                'top right'     : 'right center',
-                'right center'  : 'bottom right',
-                'bottom right'  : 'bottom center',
-                'bottom center' : 'bottom left',
-                'bottom left'   : 'left center',
-                'left center'   : 'top left'
-              },
-              adjacentsAvailable = (verticalPosition == 'top' || verticalPosition == 'bottom'),
-              oppositeTried = false,
-              adjacentTried = false,
-              nextPosition  = false
-            ;
-            if(!triedPositions) {
-              module.verbose('All available positions available');
-              triedPositions = module.get.positions();
-            }
-
-            module.debug('Recording last position tried', position);
-            triedPositions[position] = true;
-
-            if(settings.prefer === 'opposite') {
-              nextPosition  = [opposite[verticalPosition], horizontalPosition];
-              nextPosition  = nextPosition.join(' ');
-              oppositeTried = (triedPositions[nextPosition] === true);
-              module.debug('Trying opposite strategy', nextPosition);
-            }
-            if((settings.prefer === 'adjacent') && adjacentsAvailable ) {
-              nextPosition  = [verticalPosition, adjacent[horizontalPosition]];
-              nextPosition  = nextPosition.join(' ');
-              adjacentTried = (triedPositions[nextPosition] === true);
-              module.debug('Trying adjacent strategy', nextPosition);
-            }
-            if(adjacentTried || oppositeTried) {
-              module.debug('Using backup position', nextPosition);
-              nextPosition = backup[position];
-            }
-            return nextPosition;
-          }
-        },
-
-        set: {
-          position: function(position, calculations) {
-
-            // exit conditions
-            if($target.length === 0 || $popup.length === 0) {
-              module.error(error.notFound);
-              return;
-            }
-            var
-              offset,
-              distanceAway,
-              target,
-              popup,
-              parent,
-              positioning,
-              popupOffset,
-              distanceFromBoundary
-            ;
-
-            calculations = calculations || module.get.calculations();
-            position     = position     || $module.data(metadata.position) || settings.position;
-
-            offset       = $module.data(metadata.offset) || settings.offset;
-            distanceAway = settings.distanceAway;
-
-            // shorthand
-            target = calculations.target;
-            popup  = calculations.popup;
-            parent = calculations.parent;
-
-            if(module.should.centerArrow(calculations)) {
-              module.verbose('Adjusting offset to center arrow on small target element');
-              if(position == 'top left' || position == 'bottom left') {
-                offset += (target.width / 2);
-                offset -= settings.arrowPixelsFromEdge;
-              }
-              if(position == 'top right' || position == 'bottom right') {
-                offset -= (target.width / 2);
-                offset += settings.arrowPixelsFromEdge;
-              }
-            }
-
-            if(target.width === 0 && target.height === 0 && !module.is.svg(target.element)) {
-              module.debug('Popup target is hidden, no action taken');
-              return false;
-            }
-
-            if(settings.inline) {
-              module.debug('Adding margin to calculation', target.margin);
-              if(position == 'left center' || position == 'right center') {
-                offset       +=  target.margin.top;
-                distanceAway += -target.margin.left;
-              }
-              else if (position == 'top left' || position == 'top center' || position == 'top right') {
-                offset       += target.margin.left;
-                distanceAway -= target.margin.top;
-              }
-              else {
-                offset       += target.margin.left;
-                distanceAway += target.margin.top;
-              }
-            }
-
-            module.debug('Determining popup position from calculations', position, calculations);
-
-            if (module.is.rtl()) {
-              position = position.replace(/left|right/g, function (match) {
-                return (match == 'left')
-                  ? 'right'
-                  : 'left'
-                ;
-              });
-              module.debug('RTL: Popup position updated', position);
-            }
-
-            // if last attempt use specified last resort position
-            if(searchDepth == settings.maxSearchDepth && typeof settings.lastResort === 'string') {
-              position = settings.lastResort;
-            }
-
-            switch (position) {
-              case 'top left':
-                positioning = {
-                  top    : 'auto',
-                  bottom : parent.height - target.top + distanceAway,
-                  left   : target.left + offset,
-                  right  : 'auto'
-                };
-              break;
-              case 'top center':
-                positioning = {
-                  bottom : parent.height - target.top + distanceAway,
-                  left   : target.left + (target.width / 2) - (popup.width / 2) + offset,
-                  top    : 'auto',
-                  right  : 'auto'
-                };
-              break;
-              case 'top right':
-                positioning = {
-                  bottom :  parent.height - target.top + distanceAway,
-                  right  :  parent.width - target.left - target.width - offset,
-                  top    : 'auto',
-                  left   : 'auto'
-                };
-              break;
-              case 'left center':
-                positioning = {
-                  top    : target.top + (target.height / 2) - (popup.height / 2) + offset,
-                  right  : parent.width - target.left + distanceAway,
-                  left   : 'auto',
-                  bottom : 'auto'
-                };
-              break;
-              case 'right center':
-                positioning = {
-                  top    : target.top + (target.height / 2) - (popup.height / 2) + offset,
-                  left   : target.left + target.width + distanceAway,
-                  bottom : 'auto',
-                  right  : 'auto'
-                };
-              break;
-              case 'bottom left':
-                positioning = {
-                  top    : target.top + target.height + distanceAway,
-                  left   : target.left + offset,
-                  bottom : 'auto',
-                  right  : 'auto'
-                };
-              break;
-              case 'bottom center':
-                positioning = {
-                  top    : target.top + target.height + distanceAway,
-                  left   : target.left + (target.width / 2) - (popup.width / 2) + offset,
-                  bottom : 'auto',
-                  right  : 'auto'
-                };
-              break;
-              case 'bottom right':
-                positioning = {
-                  top    : target.top + target.height + distanceAway,
-                  right  : parent.width - target.left  - target.width - offset,
-                  left   : 'auto',
-                  bottom : 'auto'
-                };
-              break;
-            }
-            if(positioning === undefined) {
-              module.error(error.invalidPosition, position);
-            }
-
-            module.debug('Calculated popup positioning values', positioning);
-
-            // tentatively place on stage
-            $popup
-              .css(positioning)
-              .removeClass(className.position)
-              .addClass(position)
-              .addClass(className.loading)
-            ;
-
-            popupOffset = module.get.popupOffset();
-
-            // see if any boundaries are surpassed with this tentative position
-            distanceFromBoundary = module.get.distanceFromBoundary(popupOffset, calculations);
-
-            if(!settings.forcePosition && module.is.offstage(distanceFromBoundary, position) ) {
-              module.debug('Position is outside viewport', position);
-              if(searchDepth < settings.maxSearchDepth) {
-                searchDepth++;
-                position = module.get.nextPosition(position);
-                module.debug('Trying new position', position);
-                return ($popup)
-                  ? module.set.position(position, calculations)
-                  : false
-                ;
-              }
-              else {
-                if(settings.lastResort) {
-                  module.debug('No position found, showing with last position');
-                }
-                else {
-                  module.debug('Popup could not find a position to display', $popup);
-                  module.error(error.cannotPlace, element);
-                  module.remove.attempts();
-                  module.remove.loading();
-                  module.reset();
-                  settings.onUnplaceable.call($popup, element);
-                  return false;
-                }
-              }
-            }
-            module.debug('Position is on stage', position);
-            module.remove.attempts();
-            module.remove.loading();
-            if( settings.setFluidWidth && module.is.fluid() ) {
-              module.set.fluidWidth(calculations);
-            }
-            return true;
-          },
-
-          fluidWidth: function(calculations) {
-            calculations = calculations || module.get.calculations();
-            module.debug('Automatically setting element width to parent width', calculations.parent.width);
-            $popup.css('width', calculations.container.width);
-          },
-
-          variation: function(variation) {
-            variation = variation || module.get.variation();
-            if(variation && module.has.popup() ) {
-              module.verbose('Adding variation to popup', variation);
-              $popup.addClass(variation);
-            }
-          },
-
-          visible: function() {
-            $module.addClass(className.visible);
-          }
-        },
-
-        remove: {
-          loading: function() {
-            $popup.removeClass(className.loading);
-          },
-          variation: function(variation) {
-            variation = variation || module.get.variation();
-            if(variation) {
-              module.verbose('Removing variation', variation);
-              $popup.removeClass(variation);
-            }
-          },
-          visible: function() {
-            $module.removeClass(className.visible);
-          },
-          attempts: function() {
-            module.verbose('Resetting all searched positions');
-            searchDepth    = 0;
-            triedPositions = false;
-          }
-        },
-
-        bind: {
-          events: function() {
-            module.debug('Binding popup events to module');
-            if(settings.on == 'click') {
-              $module
-                .on(clickEvent + eventNamespace, module.toggle)
-              ;
-            }
-            if(settings.on == 'hover') {
-              $module
-                .on('touchstart' + eventNamespace, module.event.touchstart)
-              ;
-            }
-            if( module.get.startEvent() ) {
-              $module
-                .on(module.get.startEvent() + eventNamespace, module.event.start)
-                .on(module.get.endEvent() + eventNamespace, module.event.end)
-              ;
-            }
-            if(settings.target) {
-              module.debug('Target set to element', $target);
-            }
-            $window.on('resize' + elementNamespace, module.event.resize);
-          },
-          popup: function() {
-            module.verbose('Allowing hover events on popup to prevent closing');
-            if( $popup && module.has.popup() ) {
-              $popup
-                .on('mouseenter' + eventNamespace, module.event.start)
-                .on('mouseleave' + eventNamespace, module.event.end)
-              ;
-            }
-          },
-          close: function() {
-            if(settings.hideOnScroll === true || (settings.hideOnScroll == 'auto' && settings.on != 'click')) {
-              module.bind.closeOnScroll();
-            }
-            if(module.is.closable()) {
-              module.bind.clickaway();
-            }
-            else if(settings.on == 'hover' && openedWithTouch) {
-              module.bind.touchClose();
-            }
-          },
-          closeOnScroll: function() {
-            module.verbose('Binding scroll close event to document');
-            $scrollContext
-              .one(module.get.scrollEvent() + elementNamespace, module.event.hideGracefully)
-            ;
-          },
-          touchClose: function() {
-            module.verbose('Binding popup touchclose event to document');
-            $document
-              .on('touchstart' + elementNamespace, function(event) {
-                module.verbose('Touched away from popup');
-                module.event.hideGracefully.call(element, event);
-              })
-            ;
-          },
-          clickaway: function() {
-            module.verbose('Binding popup close event to document');
-            $document
-              .on(clickEvent + elementNamespace, function(event) {
-                module.verbose('Clicked away from popup');
-                module.event.hideGracefully.call(element, event);
-              })
-            ;
-          }
-        },
-
-        unbind: {
-          events: function() {
-            $window
-              .off(elementNamespace)
-            ;
-            $module
-              .off(eventNamespace)
-            ;
-          },
-          close: function() {
-            $document
-              .off(elementNamespace)
-            ;
-            $scrollContext
-              .off(elementNamespace)
-            ;
-          },
-        },
-
-        has: {
-          popup: function() {
-            return ($popup && $popup.length > 0);
-          }
-        },
-
-        should: {
-          centerArrow: function(calculations) {
-            return !module.is.basic() && calculations.target.width <= (settings.arrowPixelsFromEdge * 2);
-          },
-        },
-
-        is: {
-          closable: function() {
-            if(settings.closable == 'auto') {
-              if(settings.on == 'hover') {
-                return false;
-              }
-              return true;
-            }
-            return settings.closable;
-          },
-          offstage: function(distanceFromBoundary, position) {
-            var
-              offstage = []
-            ;
-            // return boundaries that have been surpassed
-            $.each(distanceFromBoundary, function(direction, distance) {
-              if(distance < -settings.jitter) {
-                module.debug('Position exceeds allowable distance from edge', direction, distance, position);
-                offstage.push(direction);
-              }
-            });
-            if(offstage.length > 0) {
-              return true;
-            }
-            else {
-              return false;
-            }
-          },
-          svg: function(element) {
-            return module.supports.svg() && (element instanceof SVGGraphicsElement);
-          },
-          basic: function() {
-            return $module.hasClass(className.basic);
-          },
-          active: function() {
-            return $module.hasClass(className.active);
-          },
-          animating: function() {
-            return ($popup !== undefined && $popup.hasClass(className.animating) );
-          },
-          fluid: function() {
-            return ($popup !== undefined && $popup.hasClass(className.fluid));
-          },
-          visible: function() {
-            return ($popup !== undefined && $popup.hasClass(className.popupVisible));
-          },
-          dropdown: function() {
-            return $module.hasClass(className.dropdown);
-          },
-          hidden: function() {
-            return !module.is.visible();
-          },
-          rtl: function () {
-            return $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl';
-          }
-        },
-
-        reset: function() {
-          module.remove.visible();
-          if(settings.preserve) {
-            if($.fn.transition !== undefined) {
-              $popup
-                .transition('remove transition')
-              ;
-            }
-          }
-          else {
-            module.removePopup();
-          }
-        },
-
-        setting: function(name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, settings, name);
-          }
-          else if(value !== undefined) {
-            settings[name] = value;
-          }
-          else {
-            return settings[name];
-          }
-        },
-        internal: function(name, value) {
-          if( $.isPlainObject(name) ) {
-            $.extend(true, module, name);
-          }
-          else if(value !== undefined) {
-            module[name] = value;
-          }
-          else {
-            return module[name];
-          }
-        },
-        debug: function() {
-          if(!settings.silent && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.debug.apply(console, arguments);
-            }
-          }
-        },
-        verbose: function() {
-          if(!settings.silent && settings.verbose && settings.debug) {
-            if(settings.performance) {
-              module.performance.log(arguments);
-            }
-            else {
-              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
-              module.verbose.apply(console, arguments);
-            }
-          }
-        },
-        error: function() {
-          if(!settings.silent) {
-            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
-            module.error.apply(console, arguments);
-          }
-        },
-        performance: {
-          log: function(message) {
-            var
-              currentTime,
-              executionTime,
-              previousTime
-            ;
-            if(settings.performance) {
-              currentTime   = new Date().getTime();
-              previousTime  = time || currentTime;
-              executionTime = currentTime - previousTime;
-              time          = currentTime;
-              performance.push({
-                'Name'           : message[0],
-                'Arguments'      : [].slice.call(message, 1) || '',
-                'Element'        : element,
-                'Execution Time' : executionTime
-              });
-            }
-            clearTimeout(module.performance.timer);
-            module.performance.timer = setTimeout(module.performance.display, 500);
-          },
-          display: function() {
-            var
-              title = settings.name + ':',
-              totalTime = 0
-            ;
-            time = false;
-            clearTimeout(module.performance.timer);
-            $.each(performance, function(index, data) {
-              totalTime += data['Execution Time'];
-            });
-            title += ' ' + totalTime + 'ms';
-            if(moduleSelector) {
-              title += ' \'' + moduleSelector + '\'';
-            }
-            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
-              console.groupCollapsed(title);
-              if(console.table) {
-                console.table(performance);
-              }
-              else {
-                $.each(performance, function(index, data) {
-                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
-                });
-              }
-              console.groupEnd();
-            }
-            performance = [];
-          }
-        },
-        invoke: function(query, passedArguments, context) {
-          var
-            object = instance,
-            maxDepth,
-            found,
-            response
-          ;
-          passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
-          if(typeof query == 'string' && object !== undefined) {
-            query    = query.split(/[\. ]/);
-            maxDepth = query.length - 1;
-            $.each(query, function(depth, value) {
-              var camelCaseValue = (depth != maxDepth)
-                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
-                : query
-              ;
-              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
-                object = object[camelCaseValue];
-              }
-              else if( object[camelCaseValue] !== undefined ) {
-                found = object[camelCaseValue];
-                return false;
-              }
-              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
-                object = object[value];
-              }
-              else if( object[value] !== undefined ) {
-                found = object[value];
-                return false;
-              }
-              else {
-                return false;
-              }
-            });
-          }
-          if ( $.isFunction( found ) ) {
-            response = found.apply(context, passedArguments);
-          }
-          else if(found !== undefined) {
-            response = found;
-          }
-          if(Array.isArray(returnedValue)) {
-            returnedValue.push(response);
-          }
-          else if(returnedValue !== undefined) {
-            returnedValue = [returnedValue, response];
-          }
-          else if(response !== undefined) {
-            returnedValue = response;
-          }
-          return found;
-        }
-      };
-
-      if(methodInvoked) {
-        if(instance === undefined) {
-          module.initialize();
-        }
-        module.invoke(query);
-      }
-      else {
-        if(instance !== undefined) {
-          instance.invoke('destroy');
-        }
-        module.initialize();
-      }
-    })
-  ;
-
-  return (returnedValue !== undefined)
-    ? returnedValue
-    : this
-  ;
-};
-
-$.fn.popup.settings = {
-
-  name           : 'Popup',
-
-  // module settings
-  silent         : false,
-  debug          : false,
-  verbose        : false,
-  performance    : true,
-  namespace      : 'popup',
-
-  // whether it should use dom mutation observers
-  observeChanges : true,
-
-  // callback only when element added to dom
-  onCreate       : function(){},
-
-  // callback before element removed from dom
-  onRemove       : function(){},
-
-  // callback before show animation
-  onShow         : function(){},
-
-  // callback after show animation
-  onVisible      : function(){},
-
-  // callback before hide animation
-  onHide         : function(){},
-
-  // callback when popup cannot be positioned in visible screen
-  onUnplaceable  : function(){},
-
-  // callback after hide animation
-  onHidden       : function(){},
-
-  // when to show popup
-  on             : 'hover',
-
-  // element to use to determine if popup is out of boundary
-  boundary       : window,
-
-  // whether to add touchstart events when using hover
-  addTouchEvents : true,
-
-  // default position relative to element
-  position       : 'top left',
-
-  // if given position should be used regardless if popup fits
-  forcePosition  : false,
-
-  // name of variation to use
-  variation      : '',
-
-  // whether popup should be moved to context
-  movePopup      : true,
-
-  // element which popup should be relative to
-  target         : false,
-
-  // jq selector or element that should be used as popup
-  popup          : false,
-
-  // popup should remain inline next to activator
-  inline         : false,
-
-  // popup should be removed from page on hide
-  preserve       : false,
-
-  // popup should not close when being hovered on
-  hoverable      : false,
-
-  // explicitly set content
-  content        : false,
-
-  // explicitly set html
-  html           : false,
-
-  // explicitly set title
-  title          : false,
-
-  // whether automatically close on clickaway when on click
-  closable       : true,
-
-  // automatically hide on scroll
-  hideOnScroll   : 'auto',
-
-  // hide other popups on show
-  exclusive      : false,
-
-  // context to attach popups
-  context        : 'body',
-
-  // context for binding scroll events
-  scrollContext  : window,
-
-  // position to prefer when calculating new position
-  prefer         : 'opposite',
-
-  // specify position to appear even if it doesn't fit
-  lastResort     : false,
-
-  // number of pixels from edge of popup to pointing arrow center (used from centering)
-  arrowPixelsFromEdge: 20,
-
-  // delay used to prevent accidental refiring of animations due to user error
-  delay : {
-    show : 50,
-    hide : 70
-  },
-
-  // whether fluid variation should assign width explicitly
-  setFluidWidth  : true,
-
-  // transition settings
-  duration       : 200,
-  transition     : 'scale',
-
-  // distance away from activating element in px
-  distanceAway   : 0,
-
-  // number of pixels an element is allowed to be "offstage" for a position to be chosen (allows for rounding)
-  jitter         : 2,
-
-  // offset on aligning axis from calculated position
-  offset         : 0,
-
-  // maximum times to look for a position before failing (9 positions total)
-  maxSearchDepth : 15,
-
-  error: {
-    invalidPosition : 'The position you specified is not a valid position',
-    cannotPlace     : 'Popup does not fit within the boundaries of the viewport',
-    method          : 'The method you called is not defined.',
-    noTransition    : 'This module requires ui transitions <https://github.com/Semantic-Org/UI-Transition>',
-    notFound        : 'The target or popup you specified does not exist on the page'
-  },
-
-  metadata: {
-    activator : 'activator',
-    content   : 'content',
-    html      : 'html',
-    offset    : 'offset',
-    position  : 'position',
-    title     : 'title',
-    variation : 'variation'
-  },
-
-  className   : {
-    active       : 'active',
-    basic        : 'basic',
-    animating    : 'animating',
-    dropdown     : 'dropdown',
-    fluid        : 'fluid',
-    loading      : 'loading',
-    popup        : 'ui popup',
-    position     : 'top left center bottom right',
-    visible      : 'visible',
-    popupVisible : 'visible'
-  },
-
-  selector    : {
-    popup    : '.ui.popup'
-  },
-
-  templates: {
-    escape: function(string) {
-      var
-        badChars     = /[<>"'`]/g,
-        shouldEscape = /[&<>"'`]/,
-        escape       = {
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#x27;",
-          "`": "&#x60;"
-        },
-        escapedChar  = function(chr) {
-          return escape[chr];
-        }
-      ;
-      if(shouldEscape.test(string)) {
-        string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
-        return string.replace(badChars, escapedChar);
-      }
-      return string;
-    },
-    popup: function(text) {
-      var
-        html   = '',
-        escape = $.fn.popup.settings.templates.escape
-      ;
-      if(typeof text !== undefined) {
-        if(typeof text.title !== undefined && text.title) {
-          text.title = escape(text.title);
-          html += '<div class="header">' + text.title + '</div>';
-        }
-        if(typeof text.content !== undefined && text.content) {
-          text.content = escape(text.content);
-          html += '<div class="content">' + text.content + '</div>';
-        }
-      }
-      return html;
-    }
-  }
-
-};
-
-
-})( jQuery, window, document );
-
-/*!
  * # Fomantic-UI 2.8.8 - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
@@ -16387,6 +15494,899 @@ $.fn.tab.settings = {
   }
 
 };
+
+})( jQuery, window, document );
+
+/*!
+ * # Fomantic-UI 2.8.8 - Toast
+ * http://github.com/fomantic/Fomantic-UI/
+ *
+ *
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ($, window, document, undefined) {
+
+'use strict';
+
+$.isFunction = $.isFunction || function(obj) {
+  return typeof obj === "function" && typeof obj.nodeType !== "number";
+};
+
+window = (typeof window != 'undefined' && window.Math == Math)
+  ? window
+  : (typeof self != 'undefined' && self.Math == Math)
+    ? self
+    : Function('return this')()
+;
+
+$.fn.toast = function(parameters) {
+  var
+    $allModules    = $(this),
+    moduleSelector = $allModules.selector || '',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+    returnedValue
+  ;
+  $allModules
+    .each(function() {
+      var
+        settings          = ( $.isPlainObject(parameters) )
+          ? $.extend(true, {}, $.fn.toast.settings, parameters)
+          : $.extend({}, $.fn.toast.settings),
+
+        className        = settings.className,
+        selector         = settings.selector,
+        error            = settings.error,
+        namespace        = settings.namespace,
+        fields           = settings.fields,
+
+        eventNamespace   = '.' + namespace,
+        moduleNamespace  = namespace + '-module',
+
+        $module          = $(this),
+        $toastBox,
+        $toast,
+        $actions,
+        $progress,
+        $progressBar,
+        $animationObject,
+        $close,
+        $context         = (settings.context)
+          ? $(settings.context)
+          : $('body'),
+
+        isToastComponent = $module.hasClass('toast') || $module.hasClass('message') || $module.hasClass('card'),
+
+        element          = this,
+        instance         = isToastComponent ? $module.data(moduleNamespace) : undefined,
+
+        module
+      ;
+      module = {
+
+        initialize: function() {
+          module.verbose('Initializing element');
+          if (!module.has.container()) {
+            module.create.container();
+          }
+          if(isToastComponent || settings.message !== '' || settings.title !== '' || module.get.iconClass() !== '' || settings.showImage || module.has.configActions()) {
+            if(typeof settings.showProgress !== 'string' || [className.top,className.bottom].indexOf(settings.showProgress) === -1 ) {
+              settings.showProgress = false;
+            }
+            module.create.toast();
+            if(settings.closeOnClick && (settings.closeIcon || $($toast).find(selector.input).length > 0 || module.has.configActions())){
+              settings.closeOnClick = false;
+            }
+            if(!settings.closeOnClick) {
+              $toastBox.addClass(className.unclickable);
+            }
+            module.bind.events();
+          }
+          module.instantiate();
+          if($toastBox) {
+            module.show();
+          }
+        },
+
+        instantiate: function() {
+          module.verbose('Storing instance of toast');
+          instance = module;
+          $module
+              .data(moduleNamespace, instance)
+          ;
+        },
+
+        destroy: function() {
+          if($toastBox) {
+            module.debug('Removing toast', $toastBox);
+            module.unbind.events();
+            $toastBox.remove();
+            $toastBox = undefined;
+            $toast = undefined;
+            $animationObject = undefined;
+            settings.onRemove.call($toastBox, element);
+            $progress = undefined;
+            $progressBar = undefined;
+            $close = undefined;
+          }
+          $module
+            .removeData(moduleNamespace)
+          ;
+        },
+
+        show: function(callback) {
+          callback = callback || function(){};
+          module.debug('Showing toast');
+          if(settings.onShow.call($toastBox, element) === false) {
+            module.debug('onShow callback returned false, cancelling toast animation');
+            return;
+          }
+          module.animate.show(callback);
+        },
+
+        close: function(callback) {
+          callback = callback || function(){};
+          module.remove.visible();
+          module.unbind.events();
+          module.animate.close(callback);
+
+        },
+
+        create: {
+          container: function() {
+            module.verbose('Creating container');
+            $context.append($('<div/>',{class: settings.position + ' ' + className.container + ' ' +(settings.horizontal ? className.horizontal : '')}));
+          },
+          toast: function() {
+            $toastBox = $('<div/>', {class: className.box});
+            var iconClass = module.get.iconClass();
+            if (!isToastComponent) {
+              module.verbose('Creating toast');
+              $toast = $('<div/>');
+              var $content = $('<div/>', {class: className.content});
+              if (iconClass !== '') {
+                $toast.append($('<i/>', {class: iconClass + ' ' + className.icon}));
+              }
+
+              if (settings.showImage) {
+                $toast.append($('<img>', {
+                  class: className.image + ' ' + settings.classImage,
+                  src: settings.showImage
+                }));
+              }
+              if (settings.title !== '') {
+                $content.append($('<div/>', {
+                  class: className.title,
+                  text: settings.title
+                }));
+              }
+
+              $content.append($('<div/>', {class: className.message, html: module.helpers.escape(settings.message, settings.preserveHTML)}));
+
+              $toast
+                .addClass(settings.class + ' ' + className.toast)
+                .append($content)
+              ;
+              $toast.css('opacity', settings.opacity);
+              if (settings.closeIcon) {
+                $close = $('<i/>', {class: className.close + ' ' + (typeof settings.closeIcon === 'string' ? settings.closeIcon : '')});
+                if($close.hasClass(className.left)) {
+                  $toast.prepend($close);
+                } else {
+                  $toast.append($close);
+                }
+              }
+            } else {
+              $toast = settings.cloneModule ? $module.clone().removeAttr('id') : $module;
+              $close = $toast.find('> i'+module.helpers.toClass(className.close));
+              settings.closeIcon = ($close.length > 0);
+              if (iconClass !== '') {
+                $toast.find(selector.icon).attr('class',iconClass + ' ' + className.icon);
+              }
+              if (settings.showImage) {
+                $toast.find(selector.image).attr('src',settings.showImage);
+              }
+              if (settings.title !== '') {
+                $toast.find(selector.title).html(module.helpers.escape(settings.title, settings.preserveHTML));
+              }
+              if (settings.message !== '') {
+                $toast.find(selector.message).html(module.helpers.escape(settings.message, settings.preserveHTML));
+              }
+            }
+            if ($toast.hasClass(className.compact)) {
+              settings.compact = true;
+            }
+            if ($toast.hasClass('card')) {
+              settings.compact = false;
+            }
+            $actions = $toast.find('.actions');
+            if (module.has.configActions()) {
+              if ($actions.length === 0) {
+                $actions = $('<div/>', {class: className.actions + ' ' + (settings.classActions || '')}).appendTo($toast);
+              }
+              if($toast.hasClass('card') && !$actions.hasClass(className.attached)) {
+                $actions.addClass(className.extraContent);
+                if($actions.hasClass(className.vertical)) {
+                  $actions.removeClass(className.vertical);
+                  module.error(error.verticalCard);
+                }
+              }
+              settings.actions.forEach(function (el) {
+                var icon = el[fields.icon] ? '<i class="' + module.helpers.deQuote(el[fields.icon]) + ' icon"></i>' : '',
+                  text = module.helpers.escape(el[fields.text] || '', settings.preserveHTML),
+                  cls = module.helpers.deQuote(el[fields.class] || ''),
+                  click = el[fields.click] && $.isFunction(el[fields.click]) ? el[fields.click] : function () {};
+                $actions.append($('<button/>', {
+                  html: icon + text,
+                  class: className.button + ' ' + cls,
+                  click: function () {
+                    if (click.call(element, $module) === false) {
+                      return;
+                    }
+                    module.close();
+                  }
+                }));
+              });
+            }
+            if ($actions && $actions.hasClass(className.vertical)) {
+                $toast.addClass(className.vertical);
+            }
+            if($actions.length > 0 && !$actions.hasClass(className.attached)) {
+              if ($actions && (!$actions.hasClass(className.basic) || $actions.hasClass(className.left))) {
+                $toast.addClass(className.actions);
+              }
+            }
+            if(settings.displayTime === 'auto'){
+              settings.displayTime = Math.max(settings.minDisplayTime, $toast.text().split(" ").length / settings.wordsPerMinute * 60000);
+            }
+            $toastBox.append($toast);
+
+            if($actions.length > 0 && $actions.hasClass(className.attached)) {
+              $actions.addClass(className.buttons);
+              $actions.detach();
+              $toast.addClass(className.attached);
+              if (!$actions.hasClass(className.vertical)) {
+                if ($actions.hasClass(className.top)) {
+                  $toastBox.prepend($actions);
+                  $toast.addClass(className.bottom);
+                } else {
+                  $toastBox.append($actions);
+                  $toast.addClass(className.top);
+                }
+              } else {
+                $toast.wrap(
+                  $('<div/>',{
+                    class:className.vertical + ' ' +
+                          className.attached + ' ' +
+                          (settings.compact ? className.compact : '')
+                  })
+                );
+                if($actions.hasClass(className.left)) {
+                  $toast.addClass(className.left).parent().addClass(className.left).prepend($actions);
+                } else {
+                  $toast.parent().append($actions);
+                }
+              }
+            }
+            if($module !== $toast) {
+              $module = $toast;
+              element = $toast[0];
+            }
+            if(settings.displayTime > 0) {
+              var progressingClass = className.progressing+' '+(settings.pauseOnHover ? className.pausable:'');
+              if (!!settings.showProgress) {
+                $progress = $('<div/>', {
+                  class: className.progress + ' ' + (settings.classProgress || settings.class),
+                  'data-percent': ''
+                });
+                if(!settings.classProgress) {
+                  if ($toast.hasClass('toast') && !$toast.hasClass(className.inverted)) {
+                    $progress.addClass(className.inverted);
+                  } else {
+                    $progress.removeClass(className.inverted);
+                  }
+                }
+                $progressBar = $('<div/>', {class: 'bar '+(settings.progressUp ? 'up ' : 'down ')+progressingClass});
+                $progress
+                    .addClass(settings.showProgress)
+                    .append($progressBar);
+                if ($progress.hasClass(className.top)) {
+                  $toastBox.prepend($progress);
+                } else {
+                  $toastBox.append($progress);
+                }
+                $progressBar.css('animation-duration', settings.displayTime / 1000 + 's');
+              }
+              $animationObject = $('<span/>',{class:'wait '+progressingClass});
+              $animationObject.css('animation-duration', settings.displayTime / 1000 + 's');
+              $animationObject.appendTo($toast);
+            }
+            if (settings.compact) {
+              $toastBox.addClass(className.compact);
+              $toast.addClass(className.compact);
+              if($progress) {
+                $progress.addClass(className.compact);
+              }
+            }
+            if (settings.newestOnTop) {
+              $toastBox.prependTo(module.get.container());
+            }
+            else {
+              $toastBox.appendTo(module.get.container());
+            }
+          }
+        },
+
+        bind: {
+          events: function() {
+            module.debug('Binding events to toast');
+            if(settings.closeOnClick || settings.closeIcon) {
+              (settings.closeIcon ? $close : $toast)
+                  .on('click' + eventNamespace, module.event.click)
+              ;
+            }
+            if($animationObject) {
+              $animationObject.on('animationend' + eventNamespace, module.close);
+            }
+            $toastBox
+              .on('click' + eventNamespace, selector.approve, module.event.approve)
+              .on('click' + eventNamespace, selector.deny, module.event.deny)
+            ;
+          }
+        },
+
+        unbind: {
+          events: function() {
+            module.debug('Unbinding events to toast');
+            if(settings.closeOnClick || settings.closeIcon) {
+              (settings.closeIcon ? $close : $toast)
+                  .off('click' + eventNamespace)
+              ;
+            }
+            if($animationObject) {
+              $animationObject.off('animationend' + eventNamespace);
+            }
+            $toastBox
+              .off('click' + eventNamespace)
+            ;
+          }
+        },
+
+        animate: {
+          show: function(callback) {
+            callback = $.isFunction(callback) ? callback : function(){};
+            if(settings.transition && module.can.useElement('transition') && $module.transition('is supported')) {
+              module.set.visible();
+              $toastBox
+                .transition({
+                  animation  : settings.transition.showMethod + ' in',
+                  queue      : false,
+                  debug      : settings.debug,
+                  verbose    : settings.verbose,
+                  duration   : settings.transition.showDuration,
+                  onComplete : function() {
+                    callback.call($toastBox, element);
+                    settings.onVisible.call($toastBox, element);
+                  }
+                })
+              ;
+            }
+          },
+          close: function(callback) {
+            callback = $.isFunction(callback) ? callback : function(){};
+            module.debug('Closing toast');
+            if(settings.onHide.call($toastBox, element) === false) {
+              module.debug('onHide callback returned false, cancelling toast animation');
+              return;
+            }
+            if(settings.transition && $.fn.transition !== undefined && $module.transition('is supported')) {
+              $toastBox
+                .transition({
+                  animation  : settings.transition.hideMethod + ' out',
+                  queue      : false,
+                  duration   : settings.transition.hideDuration,
+                  debug      : settings.debug,
+                  verbose    : settings.verbose,
+                  interval   : 50,
+
+                  onBeforeHide: function(callback){
+                      callback = $.isFunction(callback)?callback : function(){};
+                      if(settings.transition.closeEasing !== ''){
+                          if($toastBox) {
+                            $toastBox.css('opacity', 0);
+                            $toastBox.wrap('<div/>').parent().hide(settings.transition.closeDuration, settings.transition.closeEasing, function () {
+                              if ($toastBox) {
+                                $toastBox.parent().remove();
+                                callback.call($toastBox);
+                              }
+                            });
+                          }
+                      } else {
+                        callback.call($toastBox);
+                      }
+                  },
+                  onComplete : function() {
+                    callback.call($toastBox, element);
+                    settings.onHidden.call($toastBox, element);
+                    module.destroy();
+                  }
+                })
+              ;
+            }
+            else {
+              module.error(error.noTransition);
+            }
+          },
+          pause: function() {
+            $animationObject.css('animationPlayState','paused');
+            if($progressBar) {
+              $progressBar.css('animationPlayState', 'paused');
+            }
+          },
+          continue: function() {
+            $animationObject.css('animationPlayState','running');
+            if($progressBar) {
+              $progressBar.css('animationPlayState', 'running');
+            }
+          }
+        },
+
+        has: {
+          container: function() {
+            module.verbose('Determining if there is already a container');
+            return ($context.find(module.helpers.toClass(settings.position) + selector.container + (settings.horizontal ? module.helpers.toClass(className.horizontal) : '')).length > 0);
+          },
+          toast: function(){
+            return !!module.get.toast();
+          },
+          toasts: function(){
+            return module.get.toasts().length > 0;
+          },
+          configActions: function () {
+            return Array.isArray(settings.actions) && settings.actions.length > 0;
+          }
+        },
+
+        get: {
+          container: function() {
+            return ($context.find(module.helpers.toClass(settings.position) + selector.container)[0]);
+          },
+          toastBox: function() {
+            return $toastBox || null;
+          },
+          toast: function() {
+            return $toast || null;
+          },
+          toasts: function() {
+            return $(module.get.container()).find(selector.box);
+          },
+          iconClass: function() {
+            return typeof settings.showIcon === 'string' ? settings.showIcon : settings.showIcon && settings.icons[settings.class] ? settings.icons[settings.class] : '';
+          },
+          remainingTime: function() {
+            return $animationObject ? $animationObject.css('opacity') * settings.displayTime : 0;
+          }
+        },
+
+        set: {
+          visible: function() {
+            $toast.addClass(className.visible);
+          }
+        },
+
+        remove: {
+          visible: function() {
+            $toast.removeClass(className.visible);
+          }
+        },
+
+        event: {
+          click: function(event) {
+            if($(event.target).closest('a').length === 0) {
+              settings.onClick.call($toastBox, element);
+              module.close();
+            }
+          },
+          approve: function() {
+            if(settings.onApprove.call(element, $module) === false) {
+              module.verbose('Approve callback returned false cancelling close');
+              return;
+            }
+            module.close();
+          },
+          deny: function() {
+            if(settings.onDeny.call(element, $module) === false) {
+              module.verbose('Deny callback returned false cancelling close');
+              return;
+            }
+            module.close();
+          }
+        },
+
+        helpers: {
+          toClass: function(selector) {
+            var
+              classes = selector.split(' '),
+              result = ''
+            ;
+
+            classes.forEach(function (element) {
+              result += '.' + element;
+            });
+
+            return result;
+          },
+          deQuote: function(string) {
+            return String(string).replace(/"/g,"");
+          },
+          escape: function(string, preserveHTML) {
+            if (preserveHTML){
+              return string;
+            }
+            var
+              badChars     = /[<>"'`]/g,
+              shouldEscape = /[&<>"'`]/,
+              escape       = {
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#x27;",
+                "`": "&#x60;"
+              },
+              escapedChar  = function(chr) {
+                return escape[chr];
+              }
+            ;
+            if(shouldEscape.test(string)) {
+              string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+              return string.replace(badChars, escapedChar);
+            }
+            return string;
+          }
+        },
+
+        can: {
+          useElement: function(element){
+            if ($.fn[element] !== undefined) {
+              return true;
+            }
+            module.error(error.noElement.replace('{element}',element));
+            return false;
+          }
+        },
+
+        setting: function(name, value) {
+          module.debug('Changing setting', name, value);
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            if($.isPlainObject(settings[name])) {
+              $.extend(true, settings[name], value);
+            }
+            else {
+              settings[name] = value;
+            }
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(!settings.silent && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(!settings.silent && settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          if(!settings.silent) {
+            module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+            module.error.apply(console, arguments);
+          }
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 500);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                module.error(error.method, query);
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if(Array.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if(methodInvoked) {
+        if(instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if(instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+        returnedValue = $module;
+      }
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.toast.settings = {
+
+  name           : 'Toast',
+  namespace      : 'toast',
+
+  silent         : false,
+  debug          : false,
+  verbose        : false,
+  performance    : true,
+
+  context        : 'body',
+
+  position       : 'top right',
+  horizontal     : false,
+  class          : 'neutral',
+  classProgress  : false,
+  classActions   : false,
+  classImage     : 'mini',
+
+  title          : '',
+  message        : '',
+  displayTime    : 3000, // set to zero to require manually dismissal, otherwise hides on its own
+  minDisplayTime : 1000, // minimum displaytime in case displayTime is set to 'auto'
+  wordsPerMinute : 120,
+  showIcon       : false,
+  newestOnTop    : false,
+  showProgress   : false,
+  pauseOnHover   : true,
+  progressUp     : false, //if true, the bar will start at 0% and increase to 100%
+  opacity        : 1,
+  compact        : true,
+  closeIcon      : false,
+  closeOnClick   : true,
+  cloneModule    : true,
+  actions        : false,
+  preserveHTML   : true,
+  showImage      : false,
+
+  // transition settings
+  transition     : {
+    showMethod   : 'scale',
+    showDuration : 500,
+    hideMethod   : 'scale',
+    hideDuration : 500,
+    closeEasing  : 'easeOutCubic',  //Set to empty string to stack the closed toast area immediately (old behaviour)
+    closeDuration: 500
+  },
+
+  error: {
+    method       : 'The method you called is not defined.',
+    noElement    : 'This module requires ui {element}',
+    verticalCard : 'Vertical but not attached actions are not supported for card layout'
+  },
+
+  className      : {
+    container    : 'ui toast-container',
+    box          : 'floating toast-box',
+    progress     : 'ui attached active progress',
+    toast        : 'ui toast',
+    icon         : 'centered icon',
+    visible      : 'visible',
+    content      : 'content',
+    title        : 'ui header',
+    message      : 'message',
+    actions      : 'actions',
+    extraContent : 'extra content',
+    button       : 'ui button',
+    buttons      : 'ui buttons',
+    close        : 'close icon',
+    image        : 'ui image',
+    vertical     : 'vertical',
+    horizontal   : 'horizontal',
+    attached     : 'attached',
+    inverted     : 'inverted',
+    compact      : 'compact',
+    pausable     : 'pausable',
+    progressing  : 'progressing',
+    top          : 'top',
+    bottom       : 'bottom',
+    left         : 'left',
+    basic        : 'basic',
+    unclickable  : 'unclickable'
+  },
+
+  icons          : {
+    info         : 'info',
+    success      : 'checkmark',
+    warning      : 'warning',
+    error        : 'times'
+  },
+
+  selector       : {
+    container    : '.ui.toast-container',
+    box          : '.toast-box',
+    toast        : '.ui.toast',
+    title        : '.header',
+    message      : '.message:not(.ui)',
+    image        : '> img.image, > .image > img',
+    icon         : '> i.icon',
+    input        : 'input:not([type="hidden"]), textarea, select, button, .ui.button, ui.dropdown',
+    approve      : '.actions .positive, .actions .approve, .actions .ok',
+    deny         : '.actions .negative, .actions .deny, .actions .cancel'
+  },
+
+  fields         : {
+    class        : 'class',
+    text         : 'text',
+    icon         : 'icon',
+    click        : 'click'
+  },
+
+  // callbacks
+  onShow         : function(){},
+  onVisible      : function(){},
+  onClick        : function(){},
+  onHide         : function(){},
+  onHidden       : function(){},
+  onRemove       : function(){},
+  onApprove      : function(){},
+  onDeny         : function(){}
+};
+
+$.extend( $.easing, {
+    easeOutBounce: function (x, t, b, c, d) {
+        if ((t/=d) < (1/2.75)) {
+            return c*(7.5625*t*t) + b;
+        } else if (t < (2/2.75)) {
+            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+        } else if (t < (2.5/2.75)) {
+            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+        } else {
+            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+        }
+    },
+    easeOutCubic: function (t) {
+      return (--t)*t*t+1;
+    }
+});
+
 
 })( jQuery, window, document );
 

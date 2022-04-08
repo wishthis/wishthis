@@ -25,6 +25,39 @@ $(function() {
         }
     });
 
+    $(document).on('change', '[name="user-password"]', function() {
+        var password = $(this).val();
+
+        if (password.length > 8) {
+            $('.step.long')
+            .removeClass('disabled')
+            .addClass('completed');
+        } else {
+            $('.step.long')
+            .removeClass('completed')
+            .addClass('disabled');
+        }
+
+        var hasSpecialCharacter = false;
+
+        password.split('').forEach(character => {
+            if (character.match(/\W/)) {
+                hasSpecialCharacter = true;
+                return;
+            }
+        });
+
+        if (hasSpecialCharacter) {
+            $('.step.special')
+            .addClass('completed')
+            .removeClass('disabled');
+        } else {
+            $('.step.special')
+            .removeClass('completed')
+            .addClass('disabled');
+        }
+    });
+
     $('.ui.dropdown.channel').dropdown();
     $('.ui.dropdown.locale').dropdown({
         sortSelect : 'natural',
