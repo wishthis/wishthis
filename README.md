@@ -69,6 +69,13 @@ Use one of the following commands.
 | `npm install`                                 | Install all dependencies.           |
 | `npm install --only=production --no-optional` | Install only required dependencies. |
 
+#### Yarn
+Use one of the following commands.
+
+| Command        | Description               |
+| ---------------| ------------------------- |
+| `yarn install` | Install all dependencies. |
+
 #### Theme changes
 ```
 cd semantic
