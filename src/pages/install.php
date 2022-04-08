@@ -31,7 +31,7 @@ switch ($step) {
                     <p><?= __('Welcome to the wishthis installer.') ?></p>
                     <p><?= __('wishthis needs a database to function properly. Please enter your credentials.') ?></p>
 
-                    <form class="ui form" action="/?page=install" method="post">
+                    <form class="ui form" action="/?page=install" method="POST">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
@@ -101,7 +101,7 @@ switch ($step) {
                     <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
                     <p><?= __('Click continue to test the database connection.') ?></p>
 
-                    <form class="ui form" action="?page=install" method="post">
+                    <form class="ui form" action="?page=install" method="POST">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 

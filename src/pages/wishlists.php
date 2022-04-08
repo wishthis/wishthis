@@ -175,25 +175,11 @@ $page->navigation();
         <div class="description">
             <p><?= __('Fill out any or all of the below fields to add your new wish.') ?></p>
 
-            <form class="ui form wishlist-wish-add" method="post">
-                <input type="hidden" name="wishlist_id" />
+            <form class="ui form wishlist-wish-add" method="POST">
+                <input type="hidden" name="wishlist_id" value="<?= $_GET['id'] ?>" />
 
-                <div class="field">
-                    <label><?= __('Title') ?></label>
-                    <input type="text" name="wish_title" maxlength="128" />
-                </div>
-
-                <div class="field">
-                    <label><?= __('Description') ?></label>
-                    <textarea name="wish_description"></textarea>
-                </div>
-
-                <div class="field">
-                    <label><?= __('URL') ?></label>
-
-                    <div class="ui input url">
-                        <input type="url" name="wish_url" maxlength="255" />
-                    </div>
+                <div class="ui two column grid">
+                    <?php include 'parts/wish-add.php' ?>
                 </div>
             </form>
         </div>

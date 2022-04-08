@@ -228,6 +228,30 @@ $page->navigation();
                                 title="<?= __('Save') ?>"
                             />
                         </form>
+                    </div>
+
+                    <h3 class="ui header"><?= __('Safe password checklist') ?></h3>
+
+                    <div class="ui basic fitted segment">
+                        <div class="ui three steps">
+                            <div class="disabled step long">
+                                <i class="times icon"></i>
+                                <div class="content">
+                                    <div class="title"><?= __('Long') ?></div>
+                                    <div class="description"><?= __('Over eight characters in length.') ?></div>
+                                </div>
+                            </div>
+
+                            <div class="disabled step special">
+
+                                <i class="times icon"></i>
+                                <div class="content">
+                                    <div class="title"><?= __('Special') ?></div>
+                                    <div class="description"><?= __('Contains special characters.') ?></div>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
                 </div>
