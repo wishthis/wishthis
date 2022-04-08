@@ -194,6 +194,7 @@ class Page
 
     public function header(): void
     {
+        global $locales;
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -202,6 +203,20 @@ class Page
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+            <meta property="og:title" content="<?= $this->title ?>" />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] . '/src/assets/img/link-preview.svg' ?>" />
+
+            <meta property="og:description" content="<?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?>" />
+            <meta property="og:locale" content="<?= $this->language ?>" />
+            <meta property="og:site_name" content="wishthis" />
+
+            <?php foreach ($locales as $locale) { ?>
+                <?php if ($locale !== $this->language) { ?>
+                    <meta property="og:locale:alternate" content="<?= $locale ?>" />
+                <?php } ?>
+            <?php } ?>
+
             <link rel="manifest" href="manifest.json" />
             <?php
             if (defined('CHANNELS') && is_array(CHANNELS)) {
@@ -209,6 +224,10 @@ class Page
                 $stable   = reset($channels);
                 ?>
                 <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
+                <?php
+            } else {
+                ?>
+                <link rel="canonical" href="https://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" />
                 <?php
             }
             ?>
