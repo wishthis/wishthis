@@ -126,6 +126,64 @@ $(function() {
         maxCount             : text.form_prompt_maxCount,
     };
 
+    var options_weekday = {
+        timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        weekday  : 'short'
+    };
+    var options_months = {
+        timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        month    : 'long'
+    };
+    var options_months_short = {
+        timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        month    : 'short'
+    };
+
+    /** Calendar Text */
+    $.fn.calendar.settings.text = {
+        days        : [
+            new Date(2018, 00, 00).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 01).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 02).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 03).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 04).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 05).toLocaleString(locale, options_weekday),
+            new Date(2018, 00, 06).toLocaleString(locale, options_weekday),
+        ],
+        months      : [
+            new Date(0000, 01, 00).toLocaleString(locale, options_months),
+            new Date(0000, 02, 00).toLocaleString(locale, options_months),
+            new Date(0000, 03, 00).toLocaleString(locale, options_months),
+            new Date(0000, 04, 00).toLocaleString(locale, options_months),
+            new Date(0000, 05, 00).toLocaleString(locale, options_months),
+            new Date(0000, 06, 00).toLocaleString(locale, options_months),
+            new Date(0000, 07, 00).toLocaleString(locale, options_months),
+            new Date(0000, 08, 00).toLocaleString(locale, options_months),
+            new Date(0000, 09, 00).toLocaleString(locale, options_months),
+            new Date(0000, 10, 00).toLocaleString(locale, options_months),
+            new Date(0000, 11, 00).toLocaleString(locale, options_months),
+            new Date(0000, 12, 00).toLocaleString(locale, options_months),
+        ],
+        monthsShort : [
+            new Date(0000, 01, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 02, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 03, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 04, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 05, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 06, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 07, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 08, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 09, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 10, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 11, 00).toLocaleString(locale, options_months_short),
+            new Date(0000, 12, 00).toLocaleString(locale, options_months_short),
+        ],
+        today       : text.calendar_today,
+        now         : text.calendar_now,
+        am          : text.calendar_am,
+        pm          : text.calendar_pm,
+    };
+
     /**
      * Menu
      */
