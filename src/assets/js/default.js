@@ -40,8 +40,8 @@ $(function() {
             placeholder: text.wishlist_no_selection
         })
 
-        if ($_GET.wishlist) {
-            element.dropdown('set selected', $_GET.wishlist);
+        if ($_GET.id) {
+            element.dropdown('set selected', $_GET.id);
         } else {
             if (response.results[0]) {
                 element.dropdown('set selected', response.results[0].value);

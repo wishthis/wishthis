@@ -25,9 +25,25 @@ $(function() {
         }
     });
 
-    $('.ui.dropdown').dropdown();
+    $('.ui.dropdown.channel').dropdown();
     $('.ui.dropdown.locale').dropdown({
         sortSelect : 'natural',
     });
     $('.ui.progress').progress();
+
+    var isPWA = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+    if (isPWA) {
+        $('.ui.dropdown.channel').dropdown('set selected', 'stable');
+        $('.ui.dropdown.channel').addClass('disabled');
+        $('.ui.dropdown.channel').find('select').removeAttr('name');
+
+        if ('undefined' !== typeof CHANNELS) {
+            CHANNELS.forEach(channel => {
+                if (channel.host === location.host) {
+                    $('.ui.dropdown.channel').dropdown('set selected', channel.branch);
+                }
+            });
+        }
+    }
 });

@@ -35,7 +35,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $page->messages[] = Page::success(__('Wish successfully updated.'), __('Success'));
 }
 
-if (!$userIsAuthenticated || !$wish->exists) {
+if (!$wish->exists) {
     $page->errorDocument(404, $wish);
 }
 
@@ -48,11 +48,15 @@ foreach ($wishlists as $wishlist) {
     }
 }
 
+if (!$userIsAuthenticated) {
+    $page->errorDocument(404, $wish);
+}
+
 $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$referer = '/?page=wishlists&wishlist=' . $wish->wishlist;
+$referer = '/?page=wishlists&id=' . $wish->wishlist;
 ?>
 
 <main>
