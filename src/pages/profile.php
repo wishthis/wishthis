@@ -336,13 +336,22 @@ $page->navigation();
                     <?php
                     $user_is_active = '`last_login` >= CURDATE() - INTERVAL 30 DAY';
 
-                    $count_users   = $database
+                    $count_users = $database
                     ->query('SELECT COUNT(`id`)
                                FROM `users`
                               WHERE ' . $user_is_active . ';')
                     ->fetch();
-                    $count_users        = reset($count_users);
-                    $count_users_needed = max(1, round($count_users * 0.05, 0));
+                    $count_users = reset($count_users);
+
+                    $count_users_needed_minimum = 1;
+                    $count_users_needed_maximum = 100;
+                    $count_users_needed         = min(
+                        $count_users_needed_maximum,
+                        max(
+                            $count_users_needed_minimum,
+                            round($count_users * 0.05, 0)
+                        )
+                    );
 
                     $count_users_rc = $database
                     ->query('SELECT COUNT(`id`)
