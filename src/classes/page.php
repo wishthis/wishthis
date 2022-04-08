@@ -111,7 +111,8 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
-        $this->name = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->name        = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->description = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
 
         /**
          * Session
@@ -202,14 +203,22 @@ class Page
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="description" content="<?= $this->description ?>" />
 
             <meta property="og:title" content="<?= $this->title ?>" />
             <meta property="og:type" content="website" />
             <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] . '/src/assets/img/link-preview.svg' ?>" />
 
-            <meta property="og:description" content="<?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?>" />
+            <meta property="og:description" content="<?= $this->description ?>" />
             <meta property="og:locale" content="<?= $this->language ?>" />
             <meta property="og:site_name" content="wishthis" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:domain" content="<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta name="twitter:title" content="<?= $this->title ?>" />
+            <meta name="twitter:description" content="<?= $this->description ?>" />
+            <meta name="twitter:image" content="https://<?= $_SERVER['HTTP_HOST'] . '/src/assets/img/link-preview.svg' ?>" />
 
             <?php foreach ($locales as $locale) { ?>
                 <?php if ($locale !== $this->language) { ?>
