@@ -177,6 +177,10 @@ img {
 .ui.cards > .card > .extra.buttons > .button {
     flex: 1 1 auto;
 }
+.ui.card > .extra.buttons > :last-child,
+.ui.cards > .card > .extra.buttons > :last-child {
+    margin-right: 0;
+}
 
 /**
  * Label
