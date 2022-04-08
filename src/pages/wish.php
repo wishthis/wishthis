@@ -79,7 +79,7 @@ $referer = '/?page=wishlists&id=' . $wish->wishlist;
             <div class="row">
                 <div class="sixteen wide column">
 
-                    <a class="ui small labeled icon button"
+                    <a class="ui labeled icon button"
                        href="<?= $wish->url ?>"
                        target="_blank"
                        title="<?= __('Visit') ?>"
@@ -88,7 +88,7 @@ $referer = '/?page=wishlists&id=' . $wish->wishlist;
                         <?= __('Visit') ?>
                     </a>
 
-                    <button class="ui small labeled icon button auto-fill disabled"
+                    <button class="ui labeled icon button auto-fill disabled"
                             type="button"
                             title="<?= __('Auto-fill') ?>"
                     >
@@ -111,17 +111,17 @@ $referer = '/?page=wishlists&id=' . $wish->wishlist;
                     <div class="stackable row">
                         <div class="sixteen wide column">
 
-                            <input class="ui small primary button"
+                            <input class="ui primary button"
                                    type="submit"
                                    value="<?= __('Save') ?>"
                                    title="<?= __('Save') ?>"
                             />
-                            <input class="ui small button"
+                            <input class="ui button"
                                    type="reset"
                                    value="<?= __('Reset') ?>"
                                    title="<?= __('Reset') ?>"
                             />
-                            <a class="ui small secondary button"
+                            <a class="ui secondary button"
                                href="<?= $referer ?>"
                                title="<?= __('Back') ?>"
                             >

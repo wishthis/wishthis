@@ -14,7 +14,7 @@ $scriptPart = '/src/assets/js/parts/wishlist-filter.js';
     <div class="ui stackable grid">
         <div class="column">
 
-            <div class="ui small labeled icon basic white button floating dropdown filter priority">
+            <div class="ui labeled icon basic white button floating dropdown filter priority">
                 <input type="hidden" name="filters" />
 
                 <i class="filter icon"></i>

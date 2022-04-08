@@ -624,7 +624,7 @@ class Page
                 </div>
             </div>
 
-            <div class="ui attached large stackable menu toggle">
+            <div class="ui attached stackable menu toggle">
                 <div class="ui container">
                     <a class="item">
                         <i class="hamburger icon"></i>
