@@ -10,7 +10,7 @@ jobs:
       - name: git pull
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: git pull
+          command: ${{ secrets.SSH_COMMAND }}
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
