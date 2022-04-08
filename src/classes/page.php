@@ -267,8 +267,9 @@ class Page
              */
             ?>
             <script type="text/javascript">
-                var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
-                var text  = {
+                var locale = '<?= str_replace('_', '-', $this->language) ?>';
+                var $_GET  = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+                var text   = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
                     modal_error_title     : '<?= __('Error') ?>',
@@ -334,10 +335,14 @@ class Page
                     form_prompt_minCount             : '<?= __('{name} must have at least {ruleValue} choices') ?>',
                     form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
                     form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
+
+                    calendar_today : '<?= _x('Today', 'Calendar') ?>',
+                    calendar_now   : '<?= _x('Now', 'Calendar') ?>',
+                    calendar_am    : '<?= _x('AM', 'Calendar') ?>',
+                    calendar_pm    : '<?= _x('PM', 'Calendar') ?>',
                 };
             </script>
             <?php
-
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
