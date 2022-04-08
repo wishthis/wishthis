@@ -40,6 +40,13 @@ Note: You will have to manually update wishthis by replacing all files with the 
 
 ## :trophy: Contributing
 
+### As a tester
+In the wishthis plattform, navigate to:
+1. Account -> Profile
+1. Preferences
+
+And set your channel to "Release candidate". Make sure to give feedback!
+
 ### As a translator
 https://www.transifex.com/wishthis/wishthis/
 
@@ -62,6 +69,13 @@ Use one of the following commands.
 | `npm install`                                 | Install all dependencies.           |
 | `npm install --only=production --no-optional` | Install only required dependencies. |
 
+#### Yarn
+Use one of the following commands.
+
+| Command        | Description               |
+| ---------------| ------------------------- |
+| `yarn install` | Install all dependencies. |
+
 #### Theme changes
 ```
 cd semantic
@@ -73,19 +87,18 @@ And then one of the following commands:
 
 For more information see: https://fomantic-ui.com/introduction/build-tools.html
 
-## Style
-
-### PHP
-| Language | Style |
-| -------- | ----- |
+#### Code style
+| Language | Style  |
+| -------- | ------ |
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item | Status |
-| ---- | ------ |
-| Folders / Subcategories for wishlists      | Under consideration |
-| Combined wishes                            | Under consideration |
-| Price field for wishes                     | Planned             |
+| Item                                       | Status              |
+| ------------------------------------------ | ------------------- |
 | Changelog                                  | Planned             |
+| Price field for wishes                     | Planned             |
 | Save / bookmark wishlists from other users | Planned             |
 | Activity feed and friends                  | Under consideration |
+| Combined wishes                            | Under consideration |
+| Folders / Subcategories for wishlists      | Under consideration |
+| Synchronise Steam wishlist                 | Under consideration |

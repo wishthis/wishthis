@@ -21,9 +21,9 @@ use function ucwords;
  */
 abstract class AbstractSerializer
 {
-    const CR  = "\r";
-    const EOL = "\r\n";
-    const LF  = "\n";
+    public const CR  = "\r";
+    public const EOL = "\r\n";
+    public const LF  = "\n";
 
     /**
      * Retrieve a single line from the stream.
@@ -95,7 +95,7 @@ abstract class AbstractSerializer
                 if (! isset($headers[$currentHeader])) {
                     $headers[$currentHeader] = [];
                 }
-                $headers[$currentHeader][] = ltrim($matches['value']);
+                $headers[$currentHeader][] = trim($matches['value'], "\t ");
                 continue;
             }
 
@@ -109,7 +109,7 @@ abstract class AbstractSerializer
 
             // Append continuation to last header value found
             $value = array_pop($headers[$currentHeader]);
-            $headers[$currentHeader][] = $value . ltrim($line);
+            $headers[$currentHeader][] = $value . ' ' . trim($line, "\t ");
         }
 
         // use RelativeStream to avoid copying initial stream into memory

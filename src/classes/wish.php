@@ -49,6 +49,8 @@ class Wish
 
     public \stdClass $info;
 
+    public bool $exists = false;
+
     public function __construct(int|array $wish, bool $generateCache = false)
     {
         global $database;
@@ -68,26 +70,28 @@ class Wish
         }
 
         if ($columns) {
+            $this->exists = true;
+
             foreach ($columns as $key => $value) {
                 $this->$key = $value;
             }
-        }
 
-        $this->info = new \stdClass();
+            $this->info = new \stdClass();
 
-        if ($this->url) {
-            $this->cache = new EmbedCache($this->url);
-            $this->info  = $this->cache->get($generateCache);
-        }
-
-        foreach ($columns as $key => $value) {
-            if (empty($value) && isset($this->info->$key)) {
-                $this->$key = $this->info->$key;
+            if ($this->url) {
+                $this->cache = new EmbedCache($this->url);
+                $this->info  = $this->cache->get($generateCache);
             }
-        }
 
-        if (empty($this->image)) {
-            $this->image = '/src/assets/img/no-image.svg';
+            foreach ($columns as $key => $value) {
+                if (empty($value) && isset($this->info->$key)) {
+                    $this->$key = $this->info->$key;
+                }
+            }
+
+            if (empty($this->image)) {
+                $this->image = '/src/assets/img/no-image.svg';
+            }
         }
     }
 
@@ -202,10 +206,14 @@ class Wish
 
     public function getTitle(): string
     {
-        $title = $this->title
-              ?: $this->description
-              ?: $this->url
-              ?: $this->id;
+        $title = __('Wish not found');
+
+        if ($this->exists) {
+            $title = $this->title
+                  ?: $this->description
+                  ?: $this->url
+                  ?: $this->id;
+        }
 
         return $title;
     }

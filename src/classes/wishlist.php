@@ -36,13 +36,12 @@ class Wishlist
                   WHERE `' . $column . '` = ' . $id_or_hash . ';')
         ->fetch();
 
-        foreach ($columns as $key => $value) {
-            $this->$key = $value;
-        }
-
-        /** Exists */
-        if (isset($this->id)) {
+        if ($columns) {
             $this->exists = true;
+
+            foreach ($columns as $key => $value) {
+                $this->$key = $value;
+            }
         } else {
             return;
         }
@@ -88,25 +87,35 @@ class Wishlist
         /**
          * Cards
          */
-        if (!empty($this->wishes)) { ?>
-            <div class="ui three column doubling stackable grid">
+        ?>
+        <div class="ui three column doubling stackable grid">
+            <?php if (!empty($this->wishes)) { ?>
                 <?php foreach ($this->wishes as $wish) { ?>
                     <div class="column">
                         <?= $wish->getCard($this->user) ?>
                     </div>
                 <?php } ?>
-            </div>
-        <?php } else { ?>
-            <div class="ui container">
+            <?php } else { ?>
                 <div class="sixteen wide column">
                     <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
                 </div>
-            </div>
-            <?php
-        }
+            <?php } ?>
+        </div>
+        <?php
 
         $html = ob_get_clean();
 
         return $html;
+    }
+
+    public function getTitle(): string
+    {
+        $title = __('Wishlist not found');
+
+        if ($this->exists) {
+            $title = $this->name;
+        }
+
+        return $title;
     }
 }

@@ -137,7 +137,7 @@
 
 .ui.input.focus > input,
 .ui.input > input:focus {
-  border-color: #85B7D9;
+  border-color: #6435C9;
   background: #FFFFFF;
   color: rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: none;
@@ -425,7 +425,7 @@
   border-left-color: transparent;
 }
 .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input:focus {
-  border-left-color: #85B7D9;
+  border-left-color: #6435C9;
 }
 
 /* Regular Label on Right */
@@ -439,7 +439,7 @@
   border-bottom-left-radius: 0;
 }
 .ui[class*="right labeled"].input > input:focus {
-  border-right-color: #85B7D9 !important;
+  border-right-color: #6435C9 !important;
 }
 
 /* Corner Label */
@@ -640,10 +640,10 @@
 
 /* Input Focus */
 .ui.action.input:not([class*="left action"]) > input:focus {
-  border-right-color: #85B7D9;
+  border-right-color: #6435C9;
 }
 .ui.ui[class*="left action"].input > input:focus {
-  border-left-color: #85B7D9;
+  border-left-color: #6435C9;
 }
 
 /*--------------------

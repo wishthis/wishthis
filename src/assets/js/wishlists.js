@@ -17,8 +17,8 @@ $(function () {
                     placeholder : text.wishlist_no_selection
                 })
 
-                if ($_GET.wishlist) {
-                    element.dropdown('set selected', $_GET.wishlist);
+                if ($_GET.id) {
+                    element.dropdown('set selected', $_GET.id);
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -43,7 +43,7 @@ $(function () {
         progress.addClass('indeterminate');
 
         if (wishlistValue) {
-            $_GET.wishlist = wishlistValue;
+            $_GET.id = wishlistValue;
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
@@ -53,9 +53,11 @@ $(function () {
             $('.wishlist-delete').removeClass('disabled');
 
             /** Update URL */
-            urlParams.set('wishlist', wishlistValue);
+            urlParams.set('id', wishlistValue);
 
-            fetch('/src/api/url.php?url=' + btoa(urlParams.toString()), {
+            console.log(wishlistValue);
+
+            fetch('/src/api/url.php?url=' + window.btoa(urlParams.toString()), {
                 method: 'GET'
             })
             .then(handleFetchError)
@@ -272,7 +274,7 @@ $(function () {
 
                             wishlists.dropdown('clear');
 
-                            urlParams.delete('wishlist');
+                            urlParams.delete('id');
 
                             $('body').toast({ message:text.toast_wishlist_delete });
 
@@ -424,7 +426,7 @@ $(function () {
                 .then(function(response) {
                     modalWishlistCreate.modal('hide');
 
-                    urlParams.set('wishlist', response.data.lastInsertId);
+                    urlParams.set('id', response.data.lastInsertId);
 
                     $('body').toast({ message: text.toast_wish_create });
 
@@ -438,44 +440,6 @@ $(function () {
                 return false;
             }
         });
-    });
-
-    /**
-     * Filter wishes
-     */
-    $('.ui.dropdown.filter.priority')
-    .dropdown({
-        match          : 'text',
-        fullTextSearch : true,
-        onChange       : function() {
-            $(this).addClass('disabled loading');
-
-            var wishlist_id = $('.dropdown.wishlists').dropdown('get value');
-
-            if (!Number.isInteger(parseInt(wishlist_id))) {
-                $(this).removeClass('disabled loading');
-                return false;
-            }
-
-            var paramater = new URLSearchParams({
-                wishlist : wishlist_id,
-                priority : $(this).dropdown('get value'),
-            });
-
-            fetch('/src/api/wishlists.php?' + paramater, {
-                method : 'GET',
-            })
-            .then(handleFetchError)
-            .then(handleFetchResponse)
-            .then(function(response) {
-                var html = response.results ? response.results : '';
-
-                $('.wishlist-cards').html(html);
-            })
-            .finally(() => {
-                $(this).removeClass('disabled loading');
-            });
-        }
     });
 
 });

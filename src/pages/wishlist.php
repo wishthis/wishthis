@@ -9,17 +9,12 @@
 use wishthis\{Page, User, Wishlist};
 
 $wishlist = new Wishlist($_GET['wishlist']);
+$page     = new Page(__FILE__, $wishlist->getTitle());
 
 if (!$wishlist->exists) {
-    http_response_code(404);
-    ?>
-    <h1><?= __('Not found') ?></h1>
-    <p><?= __('The requested Wishlist was not found and likely deleted by its creator.') ?></p>
-    <?php
-    die();
+    $page->errorDocument(404, $wishlist);
 }
 
-$page = new Page(__FILE__, $wishlist->name);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -40,7 +35,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if (isset($user->id) && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
+        if ($user->isLoggedIn() && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -67,7 +62,9 @@ $page->navigation();
 
         <h2 class="ui header"><?= __('Wishes') ?></h2>
 
-        <div class="wishlist-cards">
+        <?php include 'parts/wishlist-filter.php' ?>
+
+        <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>">
             <?php
             echo $wishlist->getCards(
                 array(

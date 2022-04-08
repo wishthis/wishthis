@@ -111,7 +111,9 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
-        $this->name = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
+        $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
         /**
          * Session
@@ -176,10 +178,35 @@ class Page
         global $locale;
 
         $this->language = $locale;
+
+        /**
+         * Development environment notice
+         */
+        if (
+               defined('ENV_IS_DEV')
+            && true === ENV_IS_DEV
+            && 'dev.wishthis.online' === $_SERVER['HTTP_HOST']
+        ) {
+            $this->messages[] = self::info(
+                __('This is the development environment of wishthis. The database will reset every day at around 00:00.'),
+                __('Development environment')
+            );
+        }
+
+        /**
+         * Link preview
+         */
+        $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
+        $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
+
+        if (file_exists($screenshot_filepath)) {
+            $this->link_preview = $screenshot_url;
+        }
     }
 
     public function header(): void
     {
+        global $locales;
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -187,8 +214,43 @@ class Page
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="description" content="<?= $this->description ?>" />
+
+            <meta property="og:title" content="<?= $this->title ?>" />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="<?= $this->link_preview ?>" />
+
+            <meta property="og:description" content="<?= $this->description ?>" />
+            <meta property="og:locale" content="<?= $this->language ?>" />
+            <meta property="og:site_name" content="wishthis" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:domain" content="<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta name="twitter:title" content="<?= $this->title ?>" />
+            <meta name="twitter:description" content="<?= $this->description ?>" />
+            <meta name="twitter:image" content="<?= $this->link_preview ?>" />
+
+            <?php foreach ($locales as $locale) { ?>
+                <?php if ($locale !== $this->language) { ?>
+                    <meta property="og:locale:alternate" content="<?= $locale ?>" />
+                <?php } ?>
+            <?php } ?>
 
             <link rel="manifest" href="manifest.json" />
+            <?php
+            if (defined('CHANNELS') && is_array(CHANNELS)) {
+                $channels = CHANNELS;
+                $stable   = reset($channels);
+                ?>
+                <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
+                <?php
+            } else {
+                ?>
+                <link rel="canonical" href="https://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" />
+                <?php
+            }
+            ?>
 
             <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
             <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
@@ -244,8 +306,9 @@ class Page
              */
             ?>
             <script type="text/javascript">
-                var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
-                var text  = {
+                var locale = '<?= str_replace('_', '-', $this->language) ?>';
+                var $_GET  = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+                var text   = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
                     modal_error_title     : '<?= __('Error') ?>',
@@ -312,11 +375,16 @@ class Page
                     form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
                     form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
 
+                    calendar_today   : '<?= _x('Today', 'Calendar') ?>',
+                    calendar_now     : '<?= _x('Now', 'Calendar') ?>',
+                    calendar_am      : '<?= _x('AM', 'Calendar') ?>',
+                    calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
+                    calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
+
                     button_wishlist_saved : '<?= __('Saved') ?>',
                 };
             </script>
             <?php
-
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
@@ -634,6 +702,54 @@ class Page
         </body>
         </html>
         <?php
+    }
+
+    public function errorDocument(int $statusCode, object $objectNotFound): void
+    {
+        http_response_code($statusCode);
+
+        $this->header();
+        $this->bodyStart();
+        $this->navigation();
+
+        $class     = new \ReflectionClass($objectNotFound);
+        $className = $class->getShortName();
+        ?>
+        <main>
+            <div class="ui container">
+                <h1 class="ui header">
+                    <?= $statusCode ?>
+                    <div class="sub header"><?= sprintf(__('%s not found'), $className) ?></div>
+                </h1>
+
+                <?= $this->messages() ?>
+
+                <?php
+                switch ($statusCode) {
+                    case 404:
+                        switch ($className) {
+                            case 'Wishlist':
+                                echo '<p>' . __('The requested Wishlist was not found and likely deleted by its creator.') . '</p>';
+                                break;
+
+                            case 'Wish':
+                                echo '<p>' . __('The requested Wish was not found.') . '</p>';
+                                break;
+
+                            default:
+                                echo '<p>' . sprintf(__('The requested %s was not found.'), $className) . '</p>';
+                                break;
+                        }
+                        break;
+                }
+                ?>
+            </div>
+        </main>
+        <?php
+        $this->footer();
+        $this->bodyEnd();
+
+        die();
     }
 
     public function messages(): string
