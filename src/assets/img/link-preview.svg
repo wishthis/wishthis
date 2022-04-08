@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="1024"
-   height="1024"
-   viewBox="0 0 270.93334 270.93335"
+   width="1200"
+   height="630"
+   viewBox="0 0 317.50001 166.68751"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
@@ -27,7 +27,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.27496367"
-     inkscape:cx="240.03171"
+     inkscape:cx="141.83692"
      inkscape:cy="1087.4164"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
@@ -46,10 +46,10 @@
   <defs
      id="defs2">
     <rect
-       x="-887.38996"
+       x="-887.38995"
        y="1174.7006"
-       width="2683.9909"
-       height="891.0268"
+       width="2683.991"
+       height="891.02679"
        id="rect1289" />
     <rect
        x="-596.61987"
@@ -66,13 +66,13 @@
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square;stroke-dashoffset:7.55905;paint-order:stroke markers fill"
        id="rect867"
-       width="270.93332"
-       height="270.93332"
+       width="317.5"
+       height="166.6875"
        x="-157.69673"
        y="-48.619999" />
     <g
        id="g5155"
-       transform="translate(1.5335053,-25.077164)">
+       transform="translate(24.816839,-77.20008)">
       <g
          aria-label="wishthis"
          transform="matrix(1.2244563,0,0,1.2244563,614.78006,293.73157)"
