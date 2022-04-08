@@ -218,7 +218,7 @@ class Page
 
             <meta property="og:title" content="<?= $this->title ?>" />
             <meta property="og:type" content="website" />
-            <meta property="og:image" content="https://<?= $_SERVER['HTTP_HOST'] . '/src/assets/img/link-preview.svg' ?>" />
+            <meta property="og:image" content="<?= $this->link_preview ?>" />
 
             <meta property="og:description" content="<?= $this->description ?>" />
             <meta property="og:locale" content="<?= $this->language ?>" />
@@ -229,7 +229,7 @@ class Page
             <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?>" />
             <meta name="twitter:title" content="<?= $this->title ?>" />
             <meta name="twitter:description" content="<?= $this->description ?>" />
-            <meta name="twitter:image" content="https://<?= $_SERVER['HTTP_HOST'] . '/src/assets/img/link-preview.svg' ?>" />
+            <meta name="twitter:image" content="<?= $this->link_preview ?>" />
 
             <?php foreach ($locales as $locale) { ?>
                 <?php if ($locale !== $this->language) { ?>
