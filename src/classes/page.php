@@ -336,10 +336,11 @@ class Page
                     form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
                     form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
 
-                    calendar_today : '<?= _x('Today', 'Calendar') ?>',
-                    calendar_now   : '<?= _x('Now', 'Calendar') ?>',
-                    calendar_am    : '<?= _x('AM', 'Calendar') ?>',
-                    calendar_pm    : '<?= _x('PM', 'Calendar') ?>',
+                    calendar_today   : '<?= _x('Today', 'Calendar') ?>',
+                    calendar_now     : '<?= _x('Now', 'Calendar') ?>',
+                    calendar_am      : '<?= _x('AM', 'Calendar') ?>',
+                    calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
+                    calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
                 };
             </script>
             <?php

@@ -182,6 +182,7 @@ $(function() {
         now         : text.calendar_now,
         am          : text.calendar_am,
         pm          : text.calendar_pm,
+        weekNo      : text.calendar_week_no,
     };
 
     /**
