@@ -111,8 +111,9 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
-        $this->name        = pathinfo($filepath, PATHINFO_FILENAME);
-        $this->description = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
+        $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
+        $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
         /**
          * Session
@@ -190,6 +191,16 @@ class Page
                 __('This is the development environment of wishthis. The database will reset every day at around 00:00.'),
                 __('Development environment')
             );
+        }
+
+        /**
+         * Link preview
+         */
+        $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
+        $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
+
+        if (file_exists($screenshot)) {
+            $this->link_preview = $screenshot_url;
         }
     }
 
