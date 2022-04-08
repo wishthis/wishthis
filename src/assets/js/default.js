@@ -126,6 +126,7 @@ $(function() {
         maxCount             : text.form_prompt_maxCount,
     };
 
+    /** Calendar Text */
     var options_weekday = {
         timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
         weekday  : 'short'
@@ -139,7 +140,6 @@ $(function() {
         month    : 'short'
     };
 
-    /** Calendar Text */
     $.fn.calendar.settings.text = {
         days        : [
             new Date(2018, 00, 00).toLocaleString(locale, options_weekday),
