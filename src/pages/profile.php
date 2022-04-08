@@ -334,36 +334,40 @@ $page->navigation();
                     </div>
 
                     <?php
+                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 30 DAY';
+
                     $count_users   = $database
                     ->query('SELECT COUNT(`id`)
-                                FROM `users`;')
+                               FROM `users`
+                              WHERE ' . $user_is_active . ';')
                     ->fetch();
-                    $count_users   = reset($count_users);
-                    $count_users_5 = max(1, round($count_users * 0.05, 0));
+                    $count_users        = reset($count_users);
+                    $count_users_needed = max(1, round($count_users * 0.05, 0));
 
                     $count_users_rc = $database
                     ->query('SELECT COUNT(`id`)
-                                FROM `users`
-                                WHERE `channel` = "release-candidate";')
+                               FROM `users`
+                              WHERE ' . $user_is_active . '
+                                AND `channel` = "release-candidate";')
                     ->fetch();
                     $count_users_rc = reset($count_users_rc);
                     ?>
 
-                    <?php if ($count_users_rc < $count_users_5) { ?>
+                    <?php if ($count_users_rc < $count_users_needed) { ?>
                         <h3 class="ui header"><?= __('Channel') ?></h3>
 
                         <div class="ui segment">
                             <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
                             <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
-                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis user base have tested the next release candidate.') ?></p>
+                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested.') ?></p>
 
-                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_5 ?>">
+                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_needed ?>">
                                 <div class="bar">
                                     <div class="progress"></div>
                                 </div>
                                 <div class="label">
                                     <?php
-                                    $count_users_needed = $count_users_5 - $count_users_rc;
+                                    $count_users_needed = $count_users_needed - $count_users_rc;
 
                                     printf(
                                         _n(
