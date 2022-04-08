@@ -55,8 +55,6 @@ $(function () {
             /** Update URL */
             urlParams.set('id', wishlistValue);
 
-            console.log(wishlistValue);
-
             fetch('/src/api/url.php?url=' + window.btoa(urlParams.toString()), {
                 method: 'GET'
             })
@@ -368,8 +366,8 @@ $(function () {
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
         .modal({
-            autoShow : true,
-            onApprove: function (buttonAdd) {
+            autoShow  : true,
+            onApprove : function (buttonAdd) {
                 buttonAdd.addClass('loading');
 
                 var form     = $('.form.wishlist-wish-add');

@@ -43,7 +43,7 @@ $page->navigation();
         ?>
 
         <div class="ui segment">
-            <form class="ui form" method="post">
+            <form class="ui form" method="POST">
                 <div class="field">
                     <label><?= __('Email') ?></label>
                     <input type="email" name="email" placeholder="john.doe@domain.tld" />

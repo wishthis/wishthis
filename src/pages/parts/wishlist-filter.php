@@ -8,7 +8,7 @@ use wishthis\Wish;
 
 $scriptPart = '/src/assets/js/parts/wishlist-filter.js';
 ?>
-<script defer src="/src/assets/js/parts/wishlist-filter.js?m=<?= filemtime(ROOT . $scriptPart) ?>"></script>
+<script defer src="<?= $scriptPart ?>?m=<?= filemtime(ROOT . $scriptPart) ?>"></script>
 
 <div>
     <div class="ui stackable grid">

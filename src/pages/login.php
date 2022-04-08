@@ -105,7 +105,7 @@ $page->navigation();
                     <div class="column">
                         <h2 class="ui header"><?= __('Credentials') ?></h2>
 
-                        <form class="ui form login" method="post">
+                        <form class="ui form login" method="POST">
                             <div class="field">
                                 <label><?= __('Email') ?></label>
 
@@ -147,7 +147,7 @@ $page->navigation();
 
                         <?php if ($options->getOption('mjml_api_key') && $options->getOption('mjml_api_secret')) { ?>
                             <p>
-                                <form class="ui form reset" method="post">
+                                <form class="ui form reset" method="POST">
                                     <div class="field">
                                         <div class="ui action input">
                                             <div class="ui left icon action input">

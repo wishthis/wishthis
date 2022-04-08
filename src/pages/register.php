@@ -164,7 +164,7 @@ $page->navigation();
         <?= $page->messages() ?>
 
         <div class="ui segment">
-            <form class="ui form" method="post">
+            <form class="ui form" method="POST">
                 <div class="ui divided relaxed stackable two column grid">
 
                     <div class=" row">
