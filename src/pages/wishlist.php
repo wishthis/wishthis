@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User, Wishlist};
 
-$wishlist = new Wishlist($_GET['wishlist']);
+$wishlist = new Wishlist($_SESSION['_GET']['wishlist']);
 $page     = new Page(__FILE__, $wishlist->getTitle());
 
 if (!$wishlist->exists) {

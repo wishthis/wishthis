@@ -21,7 +21,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 :de: German  (Germany)
 
 ## :heavy_check_mark: Requirements
-* Apache or Nginx (pretty URLs don't work on Nginx)
+* Apache or Nginx
 * PHP 8.1
 
 ## :hammer: Installation

@@ -10,7 +10,7 @@ use wishthis\{Page, Wish};
 
 $userIsAuthenticated = false;
 
-$wish = new Wish($_GET['id'], false);
+$wish = new Wish($_SESSION['_GET']['id'], false);
 $page = new Page(__FILE__, $wish->getTitle());
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
@@ -30,7 +30,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
                     `priority`    = ' . $wish_priority . '
               WHERE `id`          = ' . $wish_id . ';');
 
-    $wish             = new Wish($_GET['id'], false);
+    $wish             = new Wish($_SESSION['_GET']['id'], false);
     $page             = new Page(__FILE__, $wish->getTitle());
     $page->messages[] = Page::success(__('Wish successfully updated.'), __('Success'));
 }
@@ -102,7 +102,7 @@ $referer = '/?page=wishlists&id=' . $wish->wishlist;
 
         <div class="ui segment">
             <form class="ui form wish" method="POST">
-                <input type="hidden" name="wish_id" value="<?= $_GET['id'] ?>" />
+                <input type="hidden" name="wish_id" value="<?= $_SESSION['_GET']['id'] ?>" />
                 <input type="hidden" name="wish_image" value="<?= $wish->image ?>" />
 
                 <div class="ui two column grid">

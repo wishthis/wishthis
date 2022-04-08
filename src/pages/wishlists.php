@@ -176,7 +176,7 @@ $page->navigation();
             <p><?= __('Fill out any or all of the below fields to add your new wish.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
-                <input type="hidden" name="wishlist_id" value="<?= $_GET['id'] ?>" />
+                <input type="hidden" name="wishlist_id" />
 
                 <div class="ui two column grid">
                     <?php include 'parts/wish-add.php' ?>

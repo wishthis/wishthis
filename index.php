@@ -120,6 +120,13 @@ if (isset($api)) {
 }
 
 /**
+ * Pretty URLs
+ */
+if ($_SERVER['QUERY_STRING']) {
+    $_SESSION['_GET'] = $_GET;
+}
+
+/**
  * Install
  */
 if (!$options || !$options->getOption('isInstalled')) {
@@ -138,7 +145,7 @@ if ($options && $options->getOption('isInstalled')) {
 /**
  * Wishlist
  */
-if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
+if (!isset($_SESSION['_GET']['page']) && isset($_SESSION['_GET']['wishlist'])) {
     $page = 'wishlist';
 }
 
@@ -146,7 +153,7 @@ if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
  * Page
  */
 if (!isset($page)) {
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+    $page = isset($_SESSION['_GET']['page']) ? $_SESSION['_GET']['page'] : 'home';
 }
 $pagePath = 'src/pages/' . $page . '.php';
 

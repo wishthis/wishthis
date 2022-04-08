@@ -129,8 +129,8 @@ class Page
         );
         if (
                !isset($_SESSION['user'])
-            && isset($_GET['page'])
-            && !in_array($_GET['page'], $ignorePower)
+            && isset($_SESSION['_GET']['page'])
+            && !in_array($_SESSION['_GET']['page'], $ignorePower)
         ) {
             redirect('/?page=login');
         }
@@ -164,7 +164,7 @@ class Page
          * Redirect
          */
         if ($options && $options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
-            $url         = new URL($_SERVER['QUERY_STRING']);
+            $url         = new URL(http_build_query($_SESSION['_GET']));
             $redirect_to = $url->getPretty();
 
             if ($redirect_to) {
@@ -307,7 +307,7 @@ class Page
             ?>
             <script type="text/javascript">
                 var locale = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET  = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
+                var $_GET  = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : array() ?>');
                 var text   = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
