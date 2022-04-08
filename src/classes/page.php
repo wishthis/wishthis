@@ -199,7 +199,7 @@ class Page
         $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
         $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
 
-        if (file_exists($screenshot)) {
+        if (file_exists($screenshot_filepath)) {
             $this->link_preview = $screenshot_url;
         }
     }
