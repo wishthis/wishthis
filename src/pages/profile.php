@@ -38,11 +38,6 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'key'    => 'user-locale',
             'label'  => __('Language'),
         ),
-        array(
-            'column' => 'channel',
-            'key'    => 'user-channel',
-            'label'  => __('Channel'),
-        ),
     );
     $loginRequired   = false;
 
@@ -66,6 +61,9 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $loginRequired = true;
     }
 
+    /**
+     * Personal
+     */
     if (isset($_POST['user-birthdate'])) {
         if (empty($_POST['user-birthdate'])) {
             $user->birthdate = null;
@@ -78,6 +76,9 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
+    /**
+     * Password
+     */
     if (
            !empty($_POST['user-password'])
         && !empty($_POST['user-password-repeat'])
@@ -86,6 +87,21 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $set[] = '`password` = "' . User::generatePassword($_POST['user-password']) . '"';
 
         $loginRequired = true;
+    }
+
+    /**
+     * Preferences
+     */
+    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->channel) {
+        if (empty($_POST['user-channel'])) {
+            $user->channel = null;
+
+            $set[] = '`channel` = NULL';
+        } else {
+            $user->channel = $_POST['user-channel'];
+
+            $set[] = '`channel` = "' . $user->channel . '"';
+        }
     }
 
     if ($set) {
