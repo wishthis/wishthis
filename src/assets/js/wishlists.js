@@ -374,8 +374,8 @@ $(function () {
                 var formData = new URLSearchParams(new FormData(form[0]));
 
                 fetch('/src/api/wishes.php', {
-                    method: 'POST',
-                    body:   formData
+                    method : 'POST',
+                    body   : formData
                 })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
@@ -384,8 +384,9 @@ $(function () {
 
                     wishlistsRefresh();
 
+                    form.trigger('reset');
+                    form.find('.dropdown').dropdown('restore defaults');
                     modalWishlistWishAdd.modal('hide');
-
                     buttonAdd.removeClass('loading');
                 })
                 .catch(handleFetchCatch);
