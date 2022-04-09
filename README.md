@@ -93,12 +93,15 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item                                       | Status              |
-| ------------------------------------------ | ------------------- |
-| Changelog                                  | Planned             |
-| Price field for wishes                     | Planned             |
-| Save / bookmark wishlists from other users | Planned             |
-| Activity feed and friends                  | Under consideration |
-| Combined wishes                            | Under consideration |
-| Folders / Subcategories for wishlists      | Under consideration |
-| Synchronise Steam wishlist                 | Under consideration |
+| Item                                                | Status              |
+| --------------------------------------------------- | ------------------- |
+| Changelog                                           | Planned             |
+| Option to show/notify when a wish was fulfilled     | Planned             |
+| Price field for wishes                              | Planned             |
+| Save / bookmark wishlists from other users          | Planned             |
+| Activity feed and friends                           | Under consideration |
+| Browser extension to quickly create wishes from url | Under consideration |
+| Bulk add wishes via link list                       | Under consideration |
+| Combined wishes                                     | Under consideration |
+| Folders / Subcategories for wishlists               | Under consideration |
+| Synchronise Steam wishlist                          | Under consideration |
