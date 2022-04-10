@@ -93,15 +93,18 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item                                          | Status              |
-| --------------------------------------------- | ------------------- |
-| Changelog                                     | Planned             |
-| Group wishes by store                         | Planned             |
-| Price field for wishes                        | Planned             |
-| Redirect to original target after login       | Planned             |
-| Save / bookmark wishlists from other users    | Planned             |
-| Temporary undo button after fulfilling a wish | Planned             |
-| Activity feed and friends                     | Under consideration |
-| Combined wishes                               | Under consideration |
-| Folders / Subcategories for wishlists         | Under consideration |
-| Synchronise Steam wishlist                    | Under consideration |
+| Item                                                | Status              |
+| --------------------------------------------------- | ------------------- |
+| Changelog                                           | Planned             |
+| Group wishes by store                               | Planned             |
+| Option to show/notify when a wish was fulfilled     | Planned             |
+| Price field for wishes                              | Planned             |
+| Redirect to original target after login             | Planned             |
+| Save / bookmark wishlists from other users          | Planned             |
+| Temporary undo button after fulfilling a wish       | Planned             |
+| Activity feed and friends                           | Under consideration |
+| Browser extension to quickly create wishes from url | Under consideration |
+| Bulk add wishes via link list                       | Under consideration |
+| Combined wishes                                     | Under consideration |
+| Folders / Subcategories for wishlists               | Under consideration |
+| Synchronise Steam wishlist                          | Under consideration |
