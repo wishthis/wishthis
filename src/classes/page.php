@@ -6,7 +6,7 @@
 
 namespace wishthis;
 
-use wishthis\{User, URL};
+use wishthis\{User, URL, Wish};
 
 enum Navigation: int
 {
@@ -306,13 +306,16 @@ class Page
              */
             ?>
             <script type="text/javascript">
-                var locale = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET  = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : array() ?>');
-                var text   = {
+                var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
+                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : array() ?>');
+                var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
+                var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
+                var text                    = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
                     modal_error_title     : '<?= __('Error') ?>',
                     modal_failure_title   : '<?= __('Failure') ?>',
+                    modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
                     modal_failure_approve : '<?= __('Thanks for nothing') ?>',
                     modal_warning_approve : '<?= __('Understood') ?>',
                     modal_success_title   : '<?= __('Success') ?>',

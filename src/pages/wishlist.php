@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, User, Wishlist};
+use wishthis\{Page, User, Wishlist, Wish};
 
 $wishlist = new Wishlist($_SESSION['_GET']['wishlist']);
 $page     = new Page(__FILE__, $wishlist->getTitle());
@@ -61,7 +61,12 @@ $page->navigation();
             <?php
             echo $wishlist->getCards(
                 array(
-                    'WHERE' => '`wishlist` = ' . $wishlist->id . ' AND (`status` != "unavailable" OR `status` IS NULL)',
+                    'WHERE' => '`wishlist` = ' . $wishlist->id . '
+                       AND (
+                              `status`  = ""
+                           OR `status` IS NULL
+                           OR `status`  < unix_timestamp(CURRENT_TIMESTAMP - INTERVAL ' . Wish::STATUS_TEMPORARY_MINUTES . ' MINUTE)
+                       )'
                 )
             );
             ?>

@@ -49,19 +49,25 @@ $(function() {
         }
     }
     $.fn.api.settings.onFailure = function(response, element, xhr) {
+        var content = '';
+
         if ('string' === typeof response) {
-            response = response.replace('<br />', '');
+            content = response.replace('<br />', '');
+        }
+
+        if ('' === response.warning) {
+            content = text.modal_failure_content;
         }
 
         $('body')
         .modal({
             title   : text.modal_failure_title,
-            content : response,
+            content : content,
             class   : '',
             actions : [
                 {
-                    text : text.modal_failure_approve,
-                    class: 'primary'
+                    text  : text.modal_failure_approve,
+                    class : 'primary'
                 }
             ],
             autoShow: true
@@ -184,6 +190,9 @@ $(function() {
         pm          : text.calendar_pm,
         weekNo      : text.calendar_week_no,
     };
+
+    /** Dimmer */
+    $.fn.dimmer.settings.closable = false;
 
     /**
      * Menu

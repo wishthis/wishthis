@@ -65,14 +65,34 @@ $(function() {
                     method    : 'PUT',
                     data      : {
                         wish_id     : card.attr('data-id'),
-                        wish_status : 'unavailable'
+                        wish_status : wish_status_temporary,
                     },
                     on        : 'now',
                     onSuccess : function(response, element, xhr) {
-                        column.fadeOut();
+                        card.dimmer('show');
                     },
                 });
             }
         });
     });
+
+    /** Confirm */
+    $(document).on('click', '.card .button.confirm', function() {
+        var button = $(this);
+        var card   = button.closest('.card');
+
+        button.api({
+            action    : 'update wish status',
+            method    : 'PUT',
+            data      : {
+                wish_id     : card.attr('data-id'),
+                wish_status : wish_status_unavailable,
+            },
+            on        : 'now',
+            onSuccess : function(response, element, xhr) {
+                card.fadeOut();
+            },
+        });
+    });
+
 });

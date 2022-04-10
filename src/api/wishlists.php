@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             }
 
             $options = array(
-                'WHERE' => implode(' AND ', $where),
+                'WHERE' => '(' . implode(') AND (', $where) . ')',
             );
 
             $response['results'] = $wishlist->getCards($options);
