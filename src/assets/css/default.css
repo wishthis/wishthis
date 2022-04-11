@@ -42,6 +42,7 @@ img {
  */
 .ui.card {
     --padding: 0.91666667em;
+    --buttonsHeight: calc(0.75em * 2 + 1em + 2 * var(--padding) - 2px);
 }
 
 .ui.fluid.card.stretch {
@@ -135,7 +136,8 @@ img {
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .ui.card > .content:not(.extra) {
-            transition: height 0.2s linear;
+            transition: height 0.2s linear,
+                        margin-bottom 0.2s linear;
         }
     }
     .ui.card > .content:not(.extra) {
@@ -143,7 +145,8 @@ img {
     }
 
     .ui.card:hover > .content:not(.extra) {
-        height: calc(1.5 * var(--wishPreviewHeight));
+        height: calc(1.5 * var(--wishPreviewHeight) - var(--buttonsHeight) - 4px);
+        margin-bottom: var(--buttonsHeight);
 
         overflow: auto;
     }
@@ -177,6 +180,13 @@ img {
 }
 @media (hover: hover) {
     .ui.card > .extra.buttons {
+        position: absolute;
+        top: unset;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: auto;
+
         opacity: 0;
         margin-bottom: 0;
     }
