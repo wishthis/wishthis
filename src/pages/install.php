@@ -157,6 +157,20 @@ switch ($step) {
         $database->query('CREATE INDEX `idx_hash` ON `wishlists` (`hash`);');
 
         /**
+         * Wishlists Saved
+         */
+        $database->query('DROP TABLE IF EXISTS `wishlists_saved`;');
+        $database->query('CREATE TABLE `wishlists_saved` (
+            `id`       INT PRIMARY KEY AUTO_INCREMENT,
+            `user`     INT NOT NULL,
+            `wishlist` INT NOT NULL,
+            FOREIGN KEY (`user`)
+                REFERENCES `users` (`id`)
+                ON DELETE CASCADE
+        );');
+        $database->query('CREATE INDEX `idx_wishlist` ON `wishlists_saved` (`wishlist`);');
+
+        /**
          * Wishes
          */
         $database->query('DROP TABLE IF EXISTS `wishes`;');
