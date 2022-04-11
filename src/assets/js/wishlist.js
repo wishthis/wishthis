@@ -80,13 +80,65 @@ $(function() {
      * Save wishlist
      */
     $(document).on('click', '.button.save', function() {
-        $(this).addClass('disabled loading');
+        var buttonSave = $(this);
 
-        setTimeout(() => {
-            $(this).find('.icon').addClass('red');
-            $(this).find('span').text(text.button_wishlist_saved);
-            $(this).removeClass('disabled loading');
-        }, 400);
+        buttonSave.addClass('disabled loading');
+
+        var formData = new URLSearchParams();
+        formData.append('wishlist', $('[data-wishlist]').attr('data-wishlist'));
+
+        fetch('/src/api/wishlists-saved.php', {
+            method : 'POST',
+            body   : formData
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            switch (response.action) {
+                case 'created':
+                    button_set_saved_state(buttonSave);
+                    break;
+
+                case 'deleted':
+                    button_set_default_state(buttonSave);
+                    break;
+            }
+
+            buttonSave.removeClass('disabled loading');
+        });
     });
+
+
+    /** Determine if list is saved */
+    fetch('/src/api/wishlists-saved.php', {
+        method : 'GET',
+    })
+    .then(handleFetchError)
+    .then(handleFetchResponse)
+    .then(function(response) {
+        var wishlists = response.data;
+        var buttonSave = $('.button.save');
+
+        wishlists.forEach(wishlist => {
+            if (wishlist.hash == $_GET.wishlist) {
+                button_set_saved_state(buttonSave);
+                return;
+            }
+        });
+
+        buttonSave.removeClass('disabled loading');
+    });
+
+    /** Set default state */
+    function button_set_default_state(buttonSave) {
+        buttonSave.find('.icon').removeClass('red');
+        buttonSave.find('span').text(text.button_wishlist_save);
+    }
+
+    /** Set saved state */
+    function button_set_saved_state(buttonSave) {
+        buttonSave.find('.icon').addClass('red');
+        buttonSave.find('span').text(text.button_wishlist_saved);
+    }
 
 });

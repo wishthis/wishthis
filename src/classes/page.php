@@ -380,6 +380,7 @@ class Page
                     calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
                     calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
 
+                    button_wishlist_save : '<?= __('Save') ?>',
                     button_wishlist_saved : '<?= __('Saved') ?>',
                 };
             </script>
@@ -470,7 +471,12 @@ class Page
                         'text' => __('My lists'),
                         'url'  => '/?page=wishlists',
                         'icon' => 'list',
-                    )
+                    ),
+                    array(
+                        'text' => __('Saved lists'),
+                        'url'  => '/?page=wishlists-saved',
+                        'icon' => 'heart',
+                    ),
                 ),
             );
         }
