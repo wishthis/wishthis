@@ -95,7 +95,6 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 ## :construction: Roadmap
 | Item                                                | Status              |
 | --------------------------------------------------- | ------------------- |
-| Changelog                                           | Planned             |
 | Group wishes by store                               | Planned             |
 | Option to show/notify when a wish was fulfilled     | Planned             |
 | Price field for wishes                              | Planned             |
