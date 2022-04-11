@@ -60,11 +60,15 @@ img {
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .ui.card > .image > img.preview {
-            transition: height 0.2s linear;
+            transition: height 0.2s linear, opacity 0.2s linear;
         }
     }
     .ui.card:hover > .image > img.preview {
         height: calc(1em + 3 * var(--padding));
+    }
+    .ui.card:hover > .image > img.preview[src="/src/assets/img/no-image.svg"] {
+        object-fit: contain;
+        background-color: #f9f9f9;
     }
 }
 
