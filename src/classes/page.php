@@ -307,7 +307,7 @@ class Page
             ?>
             <script type="text/javascript">
                 var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : array() ?>');
+                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var text                    = {
