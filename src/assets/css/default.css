@@ -57,10 +57,11 @@ img {
     background-color: #fff;
 }
 @media (hover: hover) {
-    .ui.card > .image > img.preview {
-        transition: height 0.2s linear;
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .image > img.preview {
+            transition: height 0.2s linear;
+        }
     }
-
     .ui.card:hover > .image > img.preview {
         height: calc(1em + 3 * var(--padding));
     }
@@ -132,9 +133,12 @@ img {
     overflow: auto;
 }
 @media (hover: hover) {
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .content:not(.extra) {
+            transition: height 0.2s linear;
+        }
+    }
     .ui.card > .content:not(.extra) {
-        transition: height 0.2s linear;
-
         overflow: hidden;
     }
 
