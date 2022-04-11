@@ -184,19 +184,29 @@ img {
 }
 @media (hover: hover) {
     .ui.card > .extra.buttons {
+        transition: opacity 0.2s ease;
+
         position: absolute;
         top: unset;
         right: 0;
-        bottom: 0;
+        bottom: calc(var(--buttonsHeight) / 2);
         left: 0;
         height: auto;
 
         opacity: 0;
         margin-bottom: 0;
     }
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .extra.buttons {
+            transition: opacity 0.2s ease,
+                        bottom 0.2s ease;
+        }
+    }
 
     .ui.card:hover > .extra.buttons {
         opacity: 1;
+
+        bottom: 0;
     }
 }
 
