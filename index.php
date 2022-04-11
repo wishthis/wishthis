@@ -122,6 +122,12 @@ if (isset($api)) {
 /**
  * Pretty URLs
  */
+$url = new \wishthis\URL($_SERVER['REQUEST_URI']);
+
+if ($url->isPretty()) {
+    $_SESSION['_GET'] = query_to_key_value_pair($url->getPermalink());
+}
+
 if ($_SERVER['QUERY_STRING']) {
     $_SESSION['_GET'] = $_GET;
 }
