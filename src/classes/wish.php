@@ -153,7 +153,7 @@ class Wish
                     <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                 <?php } ?>
 
-                <?php if (isset($this->info->providerName)) { ?>
+                <?php if (isset($this->info->providerName) && $this->info->providerName) { ?>
                     <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
             </div>
