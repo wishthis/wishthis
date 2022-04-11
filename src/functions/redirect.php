@@ -10,11 +10,27 @@ function redirect(string $target)
 {
     global $user;
 
+    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
+
+    /**
+     * Redirect user based on channel setting
+     */
+    $isHostInChannel = false;
+
+    /** Determine if host is a defined channel */
+    foreach (CHANNELS as $channel) {
+        if ($channel['host'] === $_SERVER['HTTP_HOST']) {
+            $isHostInChannel = true;
+            break;
+        }
+    }
+
+    /** Determine channel to redirect to */
     if (
            defined('CHANNELS')
         && is_array(CHANNELS)
         && isset($user->channel)
-        && '127.0.0.1' !== $_SERVER['REMOTE_ADDR']
+        && !$isDevEnvironment
     ) {
         $host = null;
 
@@ -22,6 +38,7 @@ function redirect(string $target)
             if (
                    $channel['branch'] === $user->channel
                 && $channel['host']   !== $_SERVER['HTTP_HOST']
+                && $isHostInChannel
             ) {
                 $host = $channel['host'];
                 break;

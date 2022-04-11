@@ -13,6 +13,10 @@ class Wish
     /**
      * Static
      */
+    public const STATUS_TEMPORARY         = 'temporary';
+    public const STATUS_TEMPORARY_MINUTES = 30;
+    public const STATUS_UNAVAILABLE       = 'unavailable';
+
     public static array $priorities;
 
     public static function initialize()
@@ -111,7 +115,29 @@ class Wish
         }
         ?>
 
-        <div class="ui fluid card stretch" data-id="<?= $this->id ?>" data-cache="<?= $generateCache ?>">
+        <div class="ui blurring dimmable fluid card stretch"
+             data-id="<?= $this->id ?>"
+             data-cache="<?= $generateCache ?>"
+        >
+            <div class="ui inverted dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui icon header">
+                        <i class="history icon"></i>
+                            <div class="content">
+                                <?= __('Wish temporarily fulfilled') ?>
+                                <div class="sub header"><?= sprintf(__('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %d minutes.'), self::STATUS_TEMPORARY_MINUTES) ?></div>
+                            </div>
+                        </div>
+
+                        <button class="ui positive labeled icon button confirm">
+                            <i class="check double icon"></i>
+                            <?= __('Confirm') ?>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="image">
                 <?php if ($this->priority && isset(Wish::$priorities[$this->priority])) { ?>
                     <div class="ui small <?= Wish::$priorities[$this->priority]['color'] ?> right ribbon label">
@@ -127,12 +153,10 @@ class Wish
                     <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                 <?php } ?>
 
-                <?php if (isset($this->info->providerName)) { ?>
+                <?php if (isset($this->info->providerName) && $this->info->providerName) { ?>
                     <span class="provider"><?= $this->info->providerName ?></span>
                 <?php } ?>
             </div>
-
-            <div class="overlay"></div>
 
             <div class="content">
                 <?php if ($this->title) { ?>

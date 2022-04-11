@@ -4,10 +4,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Wish
-  RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&id=$2 [QSA,L]
-
-  # Wishlists
+  # Wishlists / Wish
   RewriteRule ^([a-z\-]+)/(\d+)$ /?page=$1&id=$2 [QSA,L]
 
   # Wishlist

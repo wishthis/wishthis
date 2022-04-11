@@ -6,7 +6,7 @@
 
 namespace wishthis;
 
-use wishthis\{User, URL};
+use wishthis\{User, URL, Wish};
 
 enum Navigation: int
 {
@@ -129,8 +129,8 @@ class Page
         );
         if (
                !isset($_SESSION['user'])
-            && isset($_GET['page'])
-            && !in_array($_GET['page'], $ignorePower)
+            && isset($_SESSION['_GET']['page'])
+            && !in_array($_SESSION['_GET']['page'], $ignorePower)
         ) {
             redirect('/?page=login');
         }
@@ -163,8 +163,8 @@ class Page
         /**
          * Redirect
          */
-        if ($options && $options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
-            $url         = new URL($_SERVER['QUERY_STRING']);
+        if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
+            $url         = new URL(http_build_query($_SESSION['_GET']));
             $redirect_to = $url->getPretty();
 
             if ($redirect_to) {
@@ -306,13 +306,16 @@ class Page
              */
             ?>
             <script type="text/javascript">
-                var locale = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET  = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
-                var text   = {
+                var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
+                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
+                var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
+                var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
+                var text                    = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
                     modal_error_title     : '<?= __('Error') ?>',
                     modal_failure_title   : '<?= __('Failure') ?>',
+                    modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
                     modal_failure_approve : '<?= __('Thanks for nothing') ?>',
                     modal_warning_approve : '<?= __('Understood') ?>',
                     modal_success_title   : '<?= __('Success') ?>',
@@ -324,10 +327,6 @@ class Page
                     modal_wishlist_delete_approve  : '<?= __('Yes, delete') ?>',
                     modal_wishlist_delete_deny     : '<?= __('No, keep') ?>',
 
-                    modal_wish_fulfil_title   : '<?= __('Fulfil wish') ?>',
-                    modal_wish_fulfil         : '<?= __('Would you really like to fulfil this wish? It will no longer appear in the wishlist for others anymore.') ?>',
-                    modal_wish_fulfil_approve : '<?= __('Yes, fulfil wish') ?>',
-                    modal_wish_fulfil_deny    : '<?= __('Cancel') ?>',
                     modal_wish_delete_title   : '<?= __('Really delete?') ?>',
                     modal_wish_delete         : '<?= __('Would you really like to delete to this wish? It will be gone forever.') ?>',
                     modal_wish_delete_approve : '<?= __('Yes, delete') ?>',
@@ -626,7 +625,7 @@ class Page
                 </div>
             </div>
 
-            <div class="ui attached large stackable menu toggle">
+            <div class="ui attached stackable menu toggle">
                 <div class="ui container">
                     <a class="item">
                         <i class="hamburger icon"></i>

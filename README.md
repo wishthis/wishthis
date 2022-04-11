@@ -21,7 +21,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 :de: German  (Germany)
 
 ## :heavy_check_mark: Requirements
-* Apache or Nginx (pretty URLs don't work on Nginx)
+* Apache or Nginx
 * PHP 8.1
 
 ## :hammer: Installation
@@ -93,12 +93,17 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item                                       | Status              |
-| ------------------------------------------ | ------------------- |
-| Changelog                                  | Planned             |
-| Price field for wishes                     | Planned             |
-| Save / bookmark wishlists from other users | Planned             |
-| Activity feed and friends                  | Under consideration |
-| Combined wishes                            | Under consideration |
-| Folders / Subcategories for wishlists      | Under consideration |
-| Synchronise Steam wishlist                 | Under consideration |
+| Item                                                | Status              |
+| --------------------------------------------------- | ------------------- |
+| Group wishes by store                               | Planned             |
+| Option to show/notify when a wish was fulfilled     | Planned             |
+| Price field for wishes                              | Planned             |
+| Redirect to original target after login             | Planned             |
+| Save / bookmark wishlists from other users          | Planned             |
+| Temporary undo button after fulfilling a wish       | Planned             |
+| Activity feed and friends                           | Under consideration |
+| Browser extension to quickly create wishes from url | Under consideration |
+| Bulk add wishes via link list                       | Under consideration |
+| Combined wishes                                     | Under consideration |
+| Folders / Subcategories for wishlists               | Under consideration |
+| Synchronise Steam wishlist                          | Under consideration |

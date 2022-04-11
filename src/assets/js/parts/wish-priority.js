@@ -3,6 +3,6 @@ $(function () {
     /**
      * Priority
      */
-    $('.dropdown.priority').dropdown();
+    $('.modal .wishlist-wish-add .dropdown.priority').dropdown();
 
 });

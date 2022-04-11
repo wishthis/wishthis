@@ -90,9 +90,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Update Wish Status
              */
+            $status = $_PUT['wish_status'];
+
+            if (Wish::STATUS_TEMPORARY === $status) {
+                $status = time();
+            }
+
             $database->query('UPDATE `wishes`
-                                 SET `status` = "' . $_PUT['wish_status'] . '"
-                               WHERE `id` = ' . $_PUT['wish_id'] . '
+                                 SET `status` = "' . $status . '"
+                               WHERE `id`     = ' . $_PUT['wish_id'] . '
             ;');
 
             $response['success'] = true;

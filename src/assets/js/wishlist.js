@@ -40,39 +40,39 @@ $(function() {
         var card   = button.closest('.ui.card');
         var column = card.closest('.column');
 
-        $('body')
-        .modal({
-            title   : text.modal_wish_fulfil_title,
-            content : text.modal_wish_fulfil,
-            class   : 'tiny',
-            actions : [
-                {
-                    text : text.modal_wish_fulfil_approve,
-                    class: 'approve primary'
-                },
-                {
-                    text : text.modal_wish_fulfil_deny,
-                    class: ''
-                }
-            ],
-            autoShow : true,
-            onApprove: function() {
-                /**
-                 * Update wish status
-                 */
-                button.api({
-                    action    : 'update wish status',
-                    method    : 'PUT',
-                    data      : {
-                        wish_id     : card.attr('data-id'),
-                        wish_status : 'unavailable'
-                    },
-                    on        : 'now',
-                    onSuccess : function(response, element, xhr) {
-                        column.fadeOut();
-                    },
-                });
-            }
+        /**
+         * Update wish status
+         */
+        button.api({
+            action    : 'update wish status',
+            method    : 'PUT',
+            data      : {
+                wish_id     : card.attr('data-id'),
+                wish_status : wish_status_temporary,
+            },
+            on        : 'now',
+            onSuccess : function(response, element, xhr) {
+                card.dimmer('show');
+            },
+        });
+    });
+
+    /** Confirm */
+    $(document).on('click', '.card .button.confirm', function() {
+        var button = $(this);
+        var card   = button.closest('.card');
+
+        button.api({
+            action    : 'update wish status',
+            method    : 'PUT',
+            data      : {
+                wish_id     : card.attr('data-id'),
+                wish_status : wish_status_unavailable,
+            },
+            on        : 'now',
+            onSuccess : function(response, element, xhr) {
+                card.closest('.column').fadeOut();
+            },
         });
     });
 
@@ -88,4 +88,5 @@ $(function() {
             $(this).removeClass('disabled loading');
         }, 400);
     });
+
 });
