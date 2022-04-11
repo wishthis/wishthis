@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3ef2272400709ef0c5dc143d1fabaf31d5f681c1',
+        'reference' => '8dacc7e961dbc4e4233f2a94721f7d2db2f2f8b7',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3ef2272400709ef0c5dc143d1fabaf31d5f681c1',
+            'reference' => '8dacc7e961dbc4e4233f2a94721f7d2db2f2f8b7',
             'dev_requirement' => false,
         ),
         'composer/ca-bundle' => array(
@@ -172,8 +172,8 @@
         'psr/http-factory-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '^1.0',
             ),
         ),
         'psr/http-message' => array(
