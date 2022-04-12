@@ -1,3 +1,6 @@
+/**
+ * Saved Wishlists
+ */
 CREATE TABLE `wishlists_saved` (
              `id`       INT PRIMARY KEY AUTO_INCREMENT,
              `user`     INT NOT NULL,
@@ -8,3 +11,10 @@ CREATE TABLE `wishlists_saved` (
 );
 
 CREATE INDEX `idx_wishlist` ON `wishlists_saved` (`wishlist`);
+
+/**
+ * Wishes
+ */
+ALTER TABLE `wishes`
+ ADD COLUMN `is_purchasable` BOOLEAN NOT NULL DEFAULT FALSE
+;

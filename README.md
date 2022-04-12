@@ -96,15 +96,14 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | Item                                                | Status              |
 | --------------------------------------------------- | ------------------- |
 | Add "or similar" option to wishes                   | Planned             |
+| Combined/separate (and/or) wishes                   | Planned             |
 | Group wishes by store                               | Planned             |
 | Option to show/notify when a wish was fulfilled     | Planned             |
 | Price field for wishes                              | Planned             |
 | Redirect to original target after login             | Planned             |
 | Request more wishes on shared wishlist              | Planned             |
-| Temporary undo button after fulfilling a wish       | Planned             |
 | Activity feed and friends                           | Under consideration |
 | Browser extension to quickly create wishes from url | Under consideration |
 | Bulk add wishes via link list                       | Under consideration |
-| Combined wishes                                     | Under consideration |
 | Folders / Subcategories for wishlists               | Under consideration |
 | Synchronise Steam wishlist                          | Under consideration |

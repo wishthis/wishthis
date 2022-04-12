@@ -6,7 +6,7 @@
 
 use wishthis\Wish;
 
-$scriptPart = '/src/assets/js/parts/wish-priority.js';
+$scriptPart = '/src/assets/js/parts/wish-add.js';
 ?>
 <script defer src="<?= $scriptPart ?>?m=<?= filemtime(ROOT . $scriptPart) ?>"></script>
 
@@ -65,6 +65,21 @@ $scriptPart = '/src/assets/js/parts/wish-priority.js';
                     <?php } ?>
                 <?php } ?>
             </select>
+        </div>
+
+        <div class="grouped fields">
+            <label><?= __('Properties') ?></label>
+
+            <div class="field">
+                <div class="ui checkbox">
+
+                    <input type="checkbox"
+                           name="wish_is_purchasable"
+                           <?= isset($wish->is_purchasable) && $wish->is_purchasable ? 'checked' : '' ?>
+                    />
+                    <label><?= __('Is purchasable') ?></label>
+                </div>
+            </div>
         </div>
 
     </div>

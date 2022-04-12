@@ -14,21 +14,23 @@ $wish = new Wish($_SESSION['_GET']['id'], false);
 $page = new Page(__FILE__, $wish->getTitle());
 
 if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
-    $wish_id          = $_POST['wish_id'];
-    $wish_title       = trim($_POST['wish_title']);
-    $wish_description = $_POST['wish_description'] ?: '';
-    $wish_image       = trim($_POST['wish_image']);
-    $wish_url         = trim($_POST['wish_url']);
-    $wish_priority    = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
+    $wish_id             = $_POST['wish_id'];
+    $wish_title          = trim($_POST['wish_title']);
+    $wish_description    = $_POST['wish_description'] ?: '';
+    $wish_image          = trim($_POST['wish_image']);
+    $wish_url            = trim($_POST['wish_url']);
+    $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
+    $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
     $database
     ->query('UPDATE `wishes`
-                SET `title`       = "' . $wish_title . '",
-                    `description` = "' . $wish_description . '",
-                    `image`       = "' . $wish_image . '",
-                    `url`         = "' . $wish_url . '",
-                    `priority`    = ' . $wish_priority . '
-              WHERE `id`          = ' . $wish_id . ';');
+                SET `title`          = "' . $wish_title . '",
+                    `description`    = "' . $wish_description . '",
+                    `image`          = "' . $wish_image . '",
+                    `url`            = "' . $wish_url . '",
+                    `priority`       = ' . $wish_priority . ',
+                    `is_purchasable` = ' . $wish_is_purchasable . '
+              WHERE `id`             = ' . $wish_id . ';');
 
     $wish             = new Wish($_SESSION['_GET']['id'], false);
     $page             = new Page(__FILE__, $wish->getTitle());
