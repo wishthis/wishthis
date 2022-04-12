@@ -89,6 +89,10 @@ class User
 
         $wishlists = array();
 
+        if (!$this->isLoggedIn()) {
+            return $wishlists;
+        }
+
         $result = $database
         ->query('SELECT `ws`.`wishlist`,
                         `w`.`user`,
