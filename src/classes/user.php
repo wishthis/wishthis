@@ -35,7 +35,9 @@ class User
             $this->id = $id;
         }
 
-        $this->locale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $this->locale = \Locale::acceptFromHttp(
+            $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? DEFAULT_LOCALE
+        );
 
         if (!isset($this->id)) {
             return null;
