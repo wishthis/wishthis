@@ -18,14 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         /**
          * Get
          */
-        $wishlists = $database
-        ->query('SELECT *
-                   FROM `wishlists_saved` `ws`
-                   JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
-                  WHERE `ws`.`user` = ' . $user->id . ';')
-        ->fetchAll();
-
-        $response['data'] = $wishlists;
+        $response['data'] = $user->getSavedWishlists();
         break;
 
     case 'POST':

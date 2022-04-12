@@ -44,7 +44,8 @@ class User
         global $database;
 
         $user = $database
-        ->query('SELECT * FROM `users`
+        ->query('SELECT *
+                   FROM `users`
                   WHERE `id` = ' . $this->id . ';')
         ->fetch();
 
@@ -80,5 +81,34 @@ class User
         ->fetchAll();
 
         return $wishlists;
+    }
+
+    public function getSavedWishlists(): array
+    {
+        global $database;
+
+        $wishlists = array();
+
+        $result = $database
+        ->query('SELECT `ws`.`wishlist`,
+                        `w`.`user`,
+                        `w`.`hash`
+                   FROM `wishlists_saved` `ws`
+                   JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
+                  WHERE `ws`.`user` = ' . $this->id . ';')
+        ->fetchAll();
+
+        if ($result) {
+            $wishlists = $result;
+        }
+
+        return $wishlists;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->name_nick
+            ?: $this->name_first
+            ?: $this->email;
     }
 }

@@ -108,7 +108,6 @@ $(function() {
         });
     });
 
-
     /** Determine if list is saved */
     fetch('/src/api/wishlists-saved.php', {
         method : 'GET',
