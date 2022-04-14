@@ -37,7 +37,7 @@ class EmbedCache
 
     public function get(bool $generateCache = false): \stdClass
     {
-        $info   = null;
+        $info = null;
 
         if (!$this->generateCache() && false === $generateCache) {
             $info = json_decode(file_get_contents($this->getFilepath()));
@@ -90,6 +90,10 @@ class EmbedCache
                 $info_simplified->redirect      = (string) $info->redirect;
                 $info_simplified->title         = (string) $info->title;
                 $info_simplified->url           = (string) $info->url;
+
+                if (str_contains(pathinfo($info->favicon, PATHINFO_EXTENSION), 'ico')) {
+                    $info_simplified->favicon = 'data:image/x-icon;base64,' . base64_encode(file_get_contents($info_simplified->favicon));
+                }
 
                 try {
                 } catch (\Throwable $ex) {
