@@ -107,6 +107,9 @@ img {
 
     line-height: 1;
     user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     background-color: rgba(255, 255, 255, 0.6);
     box-shadow: 0 0 4px rgba(200, 200, 200, 0.4);
@@ -126,8 +129,9 @@ img {
     }
 
     .ui.card:hover > .image > span.provider {
-        animation: positionDelay 0.8s linear;
         display: block;
+
+        background-color: rgba(255, 255, 255, 0.8);
     }
 }
 
