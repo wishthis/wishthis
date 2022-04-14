@@ -329,3 +329,14 @@ p .ui.horizontal.label {
 .ui.basic.white.button {
     background-color: #fff;
 }
+
+/**
+ * List
+ */
+ul.ui.list li::before {
+    display: none;
+}
+
+ul.ui.list {
+	margin: 0;
+}
