@@ -145,7 +145,7 @@ class EmbedCache
 
     public function maxAge(): int
     {
-        return 1; // 30 days // 2592000
+        return 2592000; // 30 days
     }
 
     public function generateCache(): bool
