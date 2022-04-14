@@ -56,14 +56,16 @@ class Wishlist
     {
         global $database;
 
-        $SELECT = isset($sql['SELECT']) ? $sql['SELECT'] : '*';
-        $FROM   = isset($sql['FROM'])   ? $sql['FROM']   : '`wishes`';
-        $WHERE  = isset($sql['WHERE'])  ? $sql['WHERE']  : '`wishlist` = ' . $this->id;
+        $SELECT   = isset($sql['SELECT'])   ? $sql['SELECT']   : '*';
+        $FROM     = isset($sql['FROM'])     ? $sql['FROM']     : '`wishes`';
+        $WHERE    = isset($sql['WHERE'])    ? $sql['WHERE']    : '`wishlist` = ' . $this->id;
+        $ORDER_BY = isset($sql['ORDER_BY']) ? $sql['ORDER_BY'] : '`priority` DESC, `title` ASC, `url` ASC';
 
         $this->wishes = $database
         ->query('SELECT ' . $SELECT . '
                    FROM ' . $FROM . '
-                  WHERE ' . $WHERE . ';')
+                  WHERE ' . $WHERE . '
+               ORDER BY ' . $ORDER_BY . ';')
         ->fetchAll();
 
         foreach ($this->wishes as &$wish) {
@@ -87,22 +89,21 @@ class Wishlist
         /**
          * Cards
          */
-        if (!empty($this->wishes)) { ?>
-            <div class="ui three column doubling stackable grid">
+        ?>
+        <div class="ui three column doubling stackable grid">
+            <?php if (!empty($this->wishes)) { ?>
                 <?php foreach ($this->wishes as $wish) { ?>
                     <div class="column">
                         <?= $wish->getCard($this->user) ?>
                     </div>
                 <?php } ?>
-            </div>
-        <?php } else { ?>
-            <div class="ui container">
+            <?php } else { ?>
                 <div class="sixteen wide column">
                     <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
                 </div>
-            </div>
-            <?php
-        }
+            <?php } ?>
+        </div>
+        <?php
 
         $html = ob_get_clean();
 

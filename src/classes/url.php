@@ -14,10 +14,52 @@ class URL
     {
     }
 
+    public function isPretty(): bool
+    {
+        return !preg_match('/^\/\?.+?=.+?$/', $this->url);
+    }
+    public function getPermalink(): string
+    {
+        $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
+        $permalink = '';
+
+        foreach ($htaccess as $index => $line) {
+            $parts = explode(chr(32), trim($line));
+
+            if (count($parts) >= 2) {
+                switch ($parts[0]) {
+                    case 'RewriteRule':
+                        $rewriteRule  = $parts[1];
+                        $target       = $parts[2];
+
+                        $regex = str_replace('/', '\/', $rewriteRule);
+
+                        if (preg_match('/' . $regex . '/', ltrim($this->url, '/'), $matches)) {
+                            $permalink = $target;
+
+                            preg_match_all('/\$\d+/', $target, $placeholders);
+                            $placeholders = reset($placeholders);
+
+                            foreach ($placeholders as $index => $placeholder) {
+                                $permalink = str_replace($placeholder, $matches[$index + 1], $permalink);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        return $permalink;
+    }
+
     public function getPretty(): string
     {
         $htaccess   = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
         $pretty_url = '';
+
+        if (!$this->url) {
+            return '';
+        }
 
         foreach ($htaccess as $index => $line) {
             $parts = explode(chr(32), trim($line));
@@ -36,17 +78,7 @@ class URL
                             explode('&', parse_url($target, PHP_URL_QUERY))
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
-
-                        $parameters_pairs = explode('&', parse_url($this->url, PHP_URL_PATH));
-                        $parameters       = array();
-
-                        foreach ($parameters_pairs as $index => $pair) {
-                            $parts = explode('=', $pair);
-                            $key   = reset($parts);
-                            $value = end($parts);
-
-                            $parameters[$key] = $value;
-                        }
+                        $parameters  = query_to_key_value_pair($this->url);
 
                         preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
 

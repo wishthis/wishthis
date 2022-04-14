@@ -417,7 +417,7 @@ a.ui.label {
 }
 .ui[class*="right ribbon"].label:after {
   left: auto;
-  right: 0;
+  right: -1px;
   border-style: solid;
   border-width: 1.2em 1.2em 0 0;
   border-color: transparent;
@@ -429,7 +429,7 @@ a.ui.label {
 .ui.card .image > .ribbon.label {
   position: absolute;
   top: 1rem;
-  z-index: 101;
+  z-index: 1;
 }
 .ui.card .image > .ui.ribbon.label,
 .ui.image > .ui.ribbon.label {

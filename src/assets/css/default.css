@@ -40,102 +40,125 @@ img {
 /**
  * Card
  */
-.ui.fluid.card.stretch {
-    height: 100%;
+.ui.card {
+    --padding: 0.91666667em;
+    --buttonsHeight: calc(0.75em * 2 + 1em + 2 * var(--padding) - 2px);
 }
 
-/** Overlay */
-@media (hover: hover) {
-    .ui.card:hover {
-        z-index: 102;
-    }
-
-    .ui.card .overlay {
-        transition: 0.4s ease opacity;
-
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        z-index: 1;
-        opacity: 0;
-        border-radius: 0.33333333rem;
-
-        background-color: rgba(255, 255, 255, 0.6);
-        background-image: linear-gradient(180deg, #fff, transparent 6em);
-    }
-    .ui.card:hover .overlay {
-        opacity: 1;
-    }
+.ui.fluid.card.stretch {
+    height: 100%;
 }
 
 /** Image */
 .ui.card > .image > img.preview {
     height: var(--wishPreviewHeight);
+
     object-fit: cover;
     object-position: 50%;
     background-color: #fff;
 }
+@media (hover: hover) {
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .image > img.preview {
+            transition: height 0.2s linear, opacity 0.2s linear;
+        }
+    }
+    .ui.card:hover > .image > img.preview {
+        height: calc(1em + 3 * var(--padding));
+    }
+    .ui.card:hover > .image > img.preview[src="/src/assets/img/no-image.svg"] {
+        object-fit: contain;
+        background-color: #f9f9f9;
+    }
+}
+
+/** Provider */
+.ui.card > .image,
+.ui.card > .image > span.provider {
+    border-radius: .33333333rem .33333333rem 0 0;
+}
+
+.ui.card > .image > img.favicon,
+.ui.card > .image > span.provider {
+    position: absolute;
+    top: 0;
+}
 
 /** Favicon */
 .ui.card > .image > img.favicon {
-    position: absolute;
-    top: calc(0.91666667em * 1.25);
-    left: 1em;
+    padding: calc(var(--padding) * 1.5) var(--padding);
+
     height: 1.25em;
     width: auto;
 
-    z-index: 2;
+    box-sizing: content-box;
+    z-index: 1;
 }
 
 .ui.card > .image > img.favicon + span.provider {
     padding-left: 3em;
 }
-@media (hover: hover) {
-    .ui.card > .image > img.favicon + span.provider {
-        z-index: 2;
-    }
-}
 
 /** Provider name */
 .ui.card > .image > span.provider {
-    transition: 0.4s ease opacity;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: calc(0.91666667em * 1.5) 0.91666667em;
+    display: block;
+    width: 100%;
+    padding: calc(var(--padding) * 1.5) var(--padding);
 
     line-height: 1;
     user-select: none;
-    opacity: 0;
+
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 4px rgba(200, 200, 200, 0.4);
+    backdrop-filter: blur(4px);
 }
-.ui.card:hover > .image > span.provider {
-    opacity: 1;
+@supports (backdrop-filter: blur(4px)) {
+    .ui.card > .image > span.provider {
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+    }
+}
+@media (hover: hover) {
+    .ui.card > .image > span.provider {
+        transition: background-color 0.2s ease;
+
+        position: absolute;
+    }
+
+    .ui.card:hover > .image > span.provider {
+        animation: positionDelay 0.8s linear;
+        display: block;
+    }
 }
 
 /** Content */
+.ui.card > .content:not(.extra) {
+    height: calc(0.75 * var(--wishPreviewHeight));
+
+    overflow: auto;
+}
+@media (hover: hover) {
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .content:not(.extra) {
+            transition: height 0.2s linear,
+                        margin-bottom 0.2s linear;
+        }
+    }
+    .ui.card > .content:not(.extra) {
+        overflow: hidden;
+    }
+
+    .ui.card:hover > .content:not(.extra) {
+        height: calc(1.5 * var(--wishPreviewHeight) - var(--buttonsHeight) - 4px);
+        margin-bottom: var(--buttonsHeight);
+
+        overflow: auto;
+    }
+}
+
 .ui.card > .content > .header {
     max-height: calc(2 * 1.28571429em);
     overflow: hidden;
-}
-.ui.card > .content > .description {
-    max-height: calc(6em * var(--lineHeight));
-    overflow: hidden;
-}
-@media (hover: hover) {
-    .ui.card > .content:not(.extra) {
-        margin-bottom: calc(3em * var(--lineHeight));
-    }
-
-    .ui.card > .content > .description {
-        position: absolute;
-        left: 1em;
-        right: 1em;
-    }
 }
 
 .ui.card > .content > .description-fade {
@@ -151,8 +174,7 @@ img {
 }
 
 /** Buttons */
-.ui.card > .extra.buttons,
-.ui.cards > .card > .extra.buttons {
+.ui.card > .extra.buttons {
     transition: 0.4s ease opacity;
 
     display: flex;
@@ -161,21 +183,38 @@ img {
     z-index: 2;
 }
 @media (hover: hover) {
-    .ui.card > .extra.buttons,
-    .ui.cards > .card > .extra.buttons {
+    .ui.card > .extra.buttons {
+        transition: opacity 0.2s ease;
+
+        position: absolute;
+        top: unset;
+        right: 0;
+        bottom: calc(var(--buttonsHeight) / 2);
+        left: 0;
+        height: auto;
+
         opacity: 0;
         margin-bottom: 0;
     }
+    @media (prefers-reduced-motion: no-preference) {
+        .ui.card > .extra.buttons {
+            transition: opacity 0.2s ease,
+                        bottom 0.2s ease;
+        }
+    }
 
-    .ui.card:hover > .extra.buttons,
-    .ui.cards > .card:hover > .extra.buttons {
+    .ui.card:hover > .extra.buttons {
         opacity: 1;
+
+        bottom: 0;
     }
 }
 
-.ui.card > .extra.buttons > .button,
-.ui.cards > .card > .extra.buttons > .button {
+.ui.card > .extra.buttons > .button {
     flex: 1 1 auto;
+}
+.ui.card > .extra.buttons > :last-child {
+    margin-right: 0;
 }
 
 /**

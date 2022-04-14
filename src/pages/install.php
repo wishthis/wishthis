@@ -31,7 +31,7 @@ switch ($step) {
                     <p><?= __('Welcome to the wishthis installer.') ?></p>
                     <p><?= __('wishthis needs a database to function properly. Please enter your credentials.') ?></p>
 
-                    <form class="ui form" action="/?page=install" method="post">
+                    <form class="ui form" action="/?page=install" method="POST">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
@@ -101,7 +101,7 @@ switch ($step) {
                     <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
                     <p><?= __('Click continue to test the database connection.') ?></p>
 
-                    <form class="ui form" action="?page=install" method="post">
+                    <form class="ui form" action="?page=install" method="POST">
                         <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
@@ -157,18 +157,33 @@ switch ($step) {
         $database->query('CREATE INDEX `idx_hash` ON `wishlists` (`hash`);');
 
         /**
+         * Wishlists Saved
+         */
+        $database->query('DROP TABLE IF EXISTS `wishlists_saved`;');
+        $database->query('CREATE TABLE `wishlists_saved` (
+            `id`       INT PRIMARY KEY AUTO_INCREMENT,
+            `user`     INT NOT NULL,
+            `wishlist` INT NOT NULL,
+            FOREIGN KEY (`user`)
+                REFERENCES `users` (`id`)
+                ON DELETE CASCADE
+        );');
+        $database->query('CREATE INDEX `idx_wishlist` ON `wishlists_saved` (`wishlist`);');
+
+        /**
          * Wishes
          */
         $database->query('DROP TABLE IF EXISTS `wishes`;');
         $database->query('CREATE TABLE `wishes` (
-            `id`          INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `wishlist`    INT          NOT NULL,
-            `title`       VARCHAR(128) NULL DEFAULT NULL,
-            `description` TEXT         NULL DEFAULT NULL,
-            `image`       VARCHAR(255) NULL DEFAULT NULL,
-            `url`         VARCHAR(255) NULL DEFAULT NULL,
-            `priority`    TINYINT(1)   NULL DEFAULT NULL,
-            `status`      VARCHAR(32)  NULL DEFAULT NULL,
+            `id`             INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `wishlist`       INT          NOT NULL,
+            `title`          VARCHAR(128) NULL     DEFAULT NULL,
+            `description`    TEXT         NULL     DEFAULT NULL,
+            `image`          VARCHAR(255) NULL     DEFAULT NULL,
+            `url`            VARCHAR(255) NULL     DEFAULT NULL,
+            `priority`       TINYINT(1)   NULL     DEFAULT NULL,
+            `status`         VARCHAR(32)  NULL     DEFAULT NULL,
+            `is_purchasable` BOOLEAN      NOT NULL DEFAULT FALSE,
             FOREIGN KEY (`wishlist`)
                 REFERENCES `wishlists` (`id`)
                 ON DELETE CASCADE

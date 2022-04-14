@@ -21,7 +21,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 :de: German  (Germany)
 
 ## :heavy_check_mark: Requirements
-* Apache or Nginx (pretty URLs don't work on Nginx)
+* Apache or Nginx
 * PHP 8.1
 
 ## :hammer: Installation
@@ -69,6 +69,13 @@ Use one of the following commands.
 | `npm install`                                 | Install all dependencies.           |
 | `npm install --only=production --no-optional` | Install only required dependencies. |
 
+#### Yarn
+Use one of the following commands.
+
+| Command        | Description               |
+| ---------------| ------------------------- |
+| `yarn install` | Install all dependencies. |
+
 #### Theme changes
 ```
 cd semantic
@@ -86,12 +93,17 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | PHP      | PSR-12 |
 
 ## :construction: Roadmap
-| Item                                       | Status              |
-| ------------------------------------------ | ------------------- |
-| Changelog                                  | Planned             |
-| Price field for wishes                     | Planned             |
-| Save / bookmark wishlists from other users | Planned             |
-| Activity feed and friends                  | Under consideration |
-| Combined wishes                            | Under consideration |
-| Folders / Subcategories for wishlists      | Under consideration |
-| Synchronise Steam wishlist                 | Under consideration |
+| Item                                                | Status              |
+| --------------------------------------------------- | ------------------- |
+| Add "or similar" option to wishes                   | Planned             |
+| Combined/separate (and/or) wishes                   | Planned             |
+| Group wishes by store                               | Planned             |
+| Option to show/notify when a wish was fulfilled     | Planned             |
+| Price field for wishes                              | Planned             |
+| Redirect to original target after login             | Planned             |
+| Request more wishes on shared wishlist              | Planned             |
+| Activity feed and friends                           | Under consideration |
+| Browser extension to quickly create wishes from url | Under consideration |
+| Bulk add wishes via link list                       | Under consideration |
+| Folders / Subcategories for wishlists               | Under consideration |
+| Synchronise Steam wishlist                          | Under consideration |

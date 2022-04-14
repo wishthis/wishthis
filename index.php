@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-define('VERSION', '0.5.0');
+define('VERSION', '0.6.0');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
 
@@ -120,6 +120,19 @@ if (isset($api)) {
 }
 
 /**
+ * Pretty URLs
+ */
+$url = new \wishthis\URL($_SERVER['REQUEST_URI']);
+
+if ($url->isPretty()) {
+    $_SESSION['_GET'] = query_to_key_value_pair($url->getPermalink());
+}
+
+if ($_SERVER['QUERY_STRING']) {
+    $_SESSION['_GET'] = $_GET;
+}
+
+/**
  * Install
  */
 if (!$options || !$options->getOption('isInstalled')) {
@@ -129,7 +142,7 @@ if (!$options || !$options->getOption('isInstalled')) {
 /**
  * Database Update
  */
-if ($options && $options->getOption('isInstalled')) {
+if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') && ENV_IS_DEV)) {
     if (-1 === version_compare($options->version, VERSION)) {
         $options->setOption('updateAvailable', true);
     }
@@ -138,7 +151,7 @@ if ($options && $options->getOption('isInstalled')) {
 /**
  * Wishlist
  */
-if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
+if (!isset($_SESSION['_GET']['page']) && isset($_SESSION['_GET']['wishlist'])) {
     $page = 'wishlist';
 }
 
@@ -146,7 +159,7 @@ if (!isset($_GET['page']) && isset($_GET['wishlist'])) {
  * Page
  */
 if (!isset($page)) {
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+    $page = isset($_SESSION['_GET']['page']) ? $_SESSION['_GET']['page'] : 'home';
 }
 $pagePath = 'src/pages/' . $page . '.php';
 

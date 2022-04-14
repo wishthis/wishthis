@@ -27,3 +27,8 @@ function _n(string $singular, string $plural, int $amount): string
 {
     return 1 === $amount ? __($singular) : __($plural);
 }
+
+function _x(string $text, string $context): string
+{
+    return __($text);
+}

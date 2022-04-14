@@ -8,7 +8,7 @@
 
 use wishthis\{Page, User};
 
-$passwordReset = isset($_GET['password-reset'], $_GET['token']);
+$passwordReset = isset($_SESSION['_GET']['password-reset'], $_SESSION['_GET']['token']);
 
 $pageTitle    = $passwordReset ? __('Reset password') : __('Register');
 $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
@@ -56,14 +56,14 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     if ($isHuman) {
         $userRegistered = false;
 
-        if (isset($_GET['password-reset'], $_GET['token'])) {
+        if (isset($_SESSION['_GET']['password-reset'], $_SESSION['_GET']['token'])) {
             /**
              * Password reset
              */
             $user = $database
             ->query('SELECT * FROM `users`
-                      WHERE `email`                = "' . $_GET['password-reset'] . '"
-                        AND `password_reset_token` = "' . $_GET['token'] . '";')
+                      WHERE `email`                = "' . $_SESSION['_GET']['password-reset'] . '"
+                        AND `password_reset_token` = "' . $_SESSION['_GET']['token'] . '";')
             ->fetch();
 
             if ($user) {
@@ -76,7 +76,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                               WHERE `id`                         = ' . $user['id'] . ';');
 
                     $page->messages[] = Page::success(
-                        'Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.',
+                        'Password has been successfully reset for <strong>' . $_SESSION['_GET']['password-reset'] . '</strong>.',
                         'Success'
                     );
                 } else {
@@ -164,7 +164,7 @@ $page->navigation();
         <?= $page->messages() ?>
 
         <div class="ui segment">
-            <form class="ui form" method="post">
+            <form class="ui form" method="POST">
                 <div class="ui divided relaxed stackable two column grid">
 
                     <div class=" row">
@@ -174,12 +174,12 @@ $page->navigation();
                             <div class="field">
                                 <label><?= __('Email') ?></label>
 
-                                <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
-                                    <?php if (isset($_GET['password-reset'])) { ?>
+                                <div class="ui left icon input<?= isset($_SESSION['_GET']['password-reset']) ? ' disabled' : '' ?>">
+                                    <?php if (isset($_SESSION['_GET']['password-reset'])) { ?>
                                         <input type="email"
                                                name="email"
                                                placeholder="john.doe@domain.tld"
-                                               value="<?= $_GET['password-reset'] ?>"
+                                               value="<?= $_SESSION['_GET']['password-reset'] ?>"
                                                readonly
                                         />
                                     <?php } else { ?>

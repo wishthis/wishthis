@@ -31,7 +31,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     }
 
     foreach ($versions as $version) {
-        if (-1 !== version_compare(VERSION, $version['version'])) {
+        if (-1 === version_compare($options->version, $version['version'])) {
             $sql = file_get_contents($version['filepath']);
 
             if ($sql) {
@@ -67,7 +67,7 @@ $page->navigation();
             <h2 class="ui header"><?= __('Database migration') ?></h2>
             <p><?= __('Thank you for updating wishthis! To complete this update, some changes are required to the database structure.') ?></p>
 
-            <form class="ui form" method="post">
+            <form class="ui form" method="POST">
                 <button class="ui orange button"
                         type="submit"
                         title="<?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"

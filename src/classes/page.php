@@ -6,7 +6,7 @@
 
 namespace wishthis;
 
-use wishthis\{User, URL};
+use wishthis\{User, URL, Wish};
 
 enum Navigation: int
 {
@@ -111,7 +111,9 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
-        $this->name = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
+        $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
         /**
          * Session
@@ -127,8 +129,8 @@ class Page
         );
         if (
                !isset($_SESSION['user'])
-            && isset($_GET['page'])
-            && !in_array($_GET['page'], $ignorePower)
+            && isset($_SESSION['_GET']['page'])
+            && !in_array($_SESSION['_GET']['page'], $ignorePower)
         ) {
             redirect('/?page=login');
         }
@@ -161,8 +163,8 @@ class Page
         /**
          * Redirect
          */
-        if ($options && $options->getOption('isInstalled') && isset($_SERVER['QUERY_STRING'])) {
-            $url         = new URL($_SERVER['QUERY_STRING']);
+        if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
+            $url         = new URL(http_build_query($_SESSION['_GET']));
             $redirect_to = $url->getPretty();
 
             if ($redirect_to) {
@@ -190,10 +192,21 @@ class Page
                 __('Development environment')
             );
         }
+
+        /**
+         * Link preview
+         */
+        $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
+        $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
+
+        if (file_exists($screenshot_filepath)) {
+            $this->link_preview = $screenshot_url;
+        }
     }
 
     public function header(): void
     {
+        global $locales;
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -201,6 +214,28 @@ class Page
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="description" content="<?= $this->description ?>" />
+
+            <meta property="og:title" content="<?= $this->title ?>" />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="<?= $this->link_preview ?>" />
+
+            <meta property="og:description" content="<?= $this->description ?>" />
+            <meta property="og:locale" content="<?= $this->language ?>" />
+            <meta property="og:site_name" content="wishthis" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="twitter:domain" content="<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta name="twitter:title" content="<?= $this->title ?>" />
+            <meta name="twitter:description" content="<?= $this->description ?>" />
+            <meta name="twitter:image" content="<?= $this->link_preview ?>" />
+
+            <?php foreach ($locales as $locale) { ?>
+                <?php if ($locale !== $this->language) { ?>
+                    <meta property="og:locale:alternate" content="<?= $locale ?>" />
+                <?php } ?>
+            <?php } ?>
 
             <link rel="manifest" href="manifest.json" />
             <?php
@@ -209,6 +244,10 @@ class Page
                 $stable   = reset($channels);
                 ?>
                 <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
+                <?php
+            } else {
+                ?>
+                <link rel="canonical" href="https://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" />
                 <?php
             }
             ?>
@@ -267,12 +306,16 @@ class Page
              */
             ?>
             <script type="text/javascript">
-                var $_GET = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : array() ?>');
-                var text  = {
+                var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
+                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
+                var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
+                var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
+                var text                    = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 
                     modal_error_title     : '<?= __('Error') ?>',
                     modal_failure_title   : '<?= __('Failure') ?>',
+                    modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
                     modal_failure_approve : '<?= __('Thanks for nothing') ?>',
                     modal_warning_approve : '<?= __('Understood') ?>',
                     modal_success_title   : '<?= __('Success') ?>',
@@ -284,10 +327,6 @@ class Page
                     modal_wishlist_delete_approve  : '<?= __('Yes, delete') ?>',
                     modal_wishlist_delete_deny     : '<?= __('No, keep') ?>',
 
-                    modal_wish_fulfil_title   : '<?= __('Fulfil wish') ?>',
-                    modal_wish_fulfil         : '<?= __('Would you really like to fulfil this wish? It will no longer appear in the wishlist for others anymore.') ?>',
-                    modal_wish_fulfil_approve : '<?= __('Yes, fulfil wish') ?>',
-                    modal_wish_fulfil_deny    : '<?= __('Cancel') ?>',
                     modal_wish_delete_title   : '<?= __('Really delete?') ?>',
                     modal_wish_delete         : '<?= __('Would you really like to delete to this wish? It will be gone forever.') ?>',
                     modal_wish_delete_approve : '<?= __('Yes, delete') ?>',
@@ -334,10 +373,18 @@ class Page
                     form_prompt_minCount             : '<?= __('{name} must have at least {ruleValue} choices') ?>',
                     form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
                     form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
+
+                    calendar_today   : '<?= _x('Today', 'Calendar') ?>',
+                    calendar_now     : '<?= _x('Now', 'Calendar') ?>',
+                    calendar_am      : '<?= _x('AM', 'Calendar') ?>',
+                    calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
+                    calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
+
+                    button_wishlist_save : '<?= __('Save') ?>',
+                    button_wishlist_saved : '<?= __('Saved') ?>',
                 };
             </script>
             <?php
-
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
@@ -424,7 +471,12 @@ class Page
                         'text' => __('My lists'),
                         'url'  => '/?page=wishlists',
                         'icon' => 'list',
-                    )
+                    ),
+                    array(
+                        'text' => __('Saved lists'),
+                        'url'  => '/?page=wishlists-saved',
+                        'icon' => 'heart',
+                    ),
                 ),
             );
         }
@@ -579,7 +631,7 @@ class Page
                 </div>
             </div>
 
-            <div class="ui attached large stackable menu toggle">
+            <div class="ui attached stackable menu toggle">
                 <div class="ui container">
                     <a class="item">
                         <i class="hamburger icon"></i>
@@ -610,7 +662,11 @@ class Page
                                     <?php
                                     global $options;
 
-                                    echo 'v' . $options->version;
+                                    if (VERSION === $options->version) {
+                                        echo 'v' . VERSION;
+                                    } else {
+                                        echo 'v' . VERSION . ' / ' . 'v' . $options->version;
+                                    }
                                     ?>
                                 </div>
                             </div>

@@ -55,8 +55,6 @@ $(function () {
             /** Update URL */
             urlParams.set('id', wishlistValue);
 
-            console.log(wishlistValue);
-
             fetch('/src/api/url.php?url=' + window.btoa(urlParams.toString()), {
                 method: 'GET'
             })
@@ -368,16 +366,16 @@ $(function () {
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
         .modal({
-            autoShow : true,
-            onApprove: function (buttonAdd) {
+            autoShow  : true,
+            onApprove : function (buttonAdd) {
                 buttonAdd.addClass('loading');
 
                 var form     = $('.form.wishlist-wish-add');
                 var formData = new URLSearchParams(new FormData(form[0]));
 
                 fetch('/src/api/wishes.php', {
-                    method: 'POST',
-                    body:   formData
+                    method : 'POST',
+                    body   : formData
                 })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
@@ -386,8 +384,9 @@ $(function () {
 
                     wishlistsRefresh();
 
+                    form.trigger('reset');
+                    form.find('.dropdown').dropdown('restore defaults');
                     modalWishlistWishAdd.modal('hide');
-
                     buttonAdd.removeClass('loading');
                 })
                 .catch(handleFetchCatch);

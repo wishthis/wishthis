@@ -38,11 +38,6 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'key'    => 'user-locale',
             'label'  => __('Language'),
         ),
-        array(
-            'column' => 'channel',
-            'key'    => 'user-channel',
-            'label'  => __('Channel'),
-        ),
     );
     $loginRequired   = false;
 
@@ -66,6 +61,9 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $loginRequired = true;
     }
 
+    /**
+     * Personal
+     */
     if (isset($_POST['user-birthdate'])) {
         if (empty($_POST['user-birthdate'])) {
             $user->birthdate = null;
@@ -78,6 +76,9 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
+    /**
+     * Password
+     */
     if (
            !empty($_POST['user-password'])
         && !empty($_POST['user-password-repeat'])
@@ -86,6 +87,21 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $set[] = '`password` = "' . User::generatePassword($_POST['user-password']) . '"';
 
         $loginRequired = true;
+    }
+
+    /**
+     * Preferences
+     */
+    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->channel) {
+        if (empty($_POST['user-channel'])) {
+            $user->channel = null;
+
+            $set[] = '`channel` = NULL';
+        } else {
+            $user->channel = $_POST['user-channel'];
+
+            $set[] = '`channel` = "' . $user->channel . '"';
+        }
     }
 
     if ($set) {
@@ -228,6 +244,30 @@ $page->navigation();
                                 title="<?= __('Save') ?>"
                             />
                         </form>
+                    </div>
+
+                    <h3 class="ui header"><?= __('Safe password checklist') ?></h3>
+
+                    <div class="ui basic fitted segment">
+                        <div class="ui three steps">
+                            <div class="disabled step long">
+                                <i class="times icon"></i>
+                                <div class="content">
+                                    <div class="title"><?= __('Long') ?></div>
+                                    <div class="description"><?= __('Over eight characters in length.') ?></div>
+                                </div>
+                            </div>
+
+                            <div class="disabled step special">
+
+                                <i class="times icon"></i>
+                                <div class="content">
+                                    <div class="title"><?= __('Special') ?></div>
+                                    <div class="description"><?= __('Contains special characters.') ?></div>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -294,36 +334,49 @@ $page->navigation();
                     </div>
 
                     <?php
-                    $count_users   = $database
+                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 30 DAY';
+
+                    $count_users = $database
                     ->query('SELECT COUNT(`id`)
-                                FROM `users`;')
+                               FROM `users`
+                              WHERE ' . $user_is_active . ';')
                     ->fetch();
-                    $count_users   = reset($count_users);
-                    $count_users_5 = max(1, round($count_users * 0.05, 0));
+                    $count_users = reset($count_users);
+
+                    $count_users_needed_minimum = 1;
+                    $count_users_needed_maximum = 100;
+                    $count_users_needed         = min(
+                        $count_users_needed_maximum,
+                        max(
+                            $count_users_needed_minimum,
+                            round($count_users * 0.05, 0)
+                        )
+                    );
 
                     $count_users_rc = $database
                     ->query('SELECT COUNT(`id`)
-                                FROM `users`
-                                WHERE `channel` = "release-candidate";')
+                               FROM `users`
+                              WHERE ' . $user_is_active . '
+                                AND `channel` = "release-candidate";')
                     ->fetch();
                     $count_users_rc = reset($count_users_rc);
                     ?>
 
-                    <?php if ($count_users_rc < $count_users_5) { ?>
+                    <?php if ($count_users_rc < $count_users_needed) { ?>
                         <h3 class="ui header"><?= __('Channel') ?></h3>
 
                         <div class="ui segment">
                             <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
                             <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
-                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless at least 5% of the wishthis user base have tested the next release candidate.') ?></p>
+                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested.') ?></p>
 
-                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_5 ?>">
+                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_needed ?>">
                                 <div class="bar">
                                     <div class="progress"></div>
                                 </div>
                                 <div class="label">
                                     <?php
-                                    $count_users_needed = $count_users_5 - $count_users_rc;
+                                    $count_users_needed = $count_users_needed - $count_users_rc;
 
                                     printf(
                                         _n(
