@@ -429,7 +429,9 @@ a.ui.label {
 .ui.card .image > .ribbon.label {
   position: absolute;
   top: 1rem;
-  z-index: 101;
+}
+.ui.card.loading .image > .ribbon.label {
+  z-index: 100;
 }
 .ui.card .image > .ui.ribbon.label,
 .ui.image > .ui.ribbon.label {
