@@ -70,20 +70,20 @@ $page->navigation();
                     ) ?></p>
 
                     <p><?= __('As a non-commercial project it remains') ?></p>
-                    <div class="ui list">
-                        <div class="item">
-                            <i class="green check icon"></i>
+                    <ul class="ui list">
+                        <li class="item">
+                            <i class="green check icon" aria-hidden="true"></i>
                             <div class="content"><?= __('free of advertisements,') ?></div>
-                        </div>
-                        <div class="item">
-                            <i class="green check icon"></i>
+                        </li>
+                        <li class="item">
+                            <i class="green check icon" aria-hidden="true"></i>
                             <div class="content"><?= __('without tracking, and') ?></div>
-                        </div>
-                        <div class="item">
-                            <i class="green check icon"></i>
+                        </li>
+                        <li class="item">
+                            <i class="green check icon" aria-hidden="true"></i>
                             <div class="content"><?= __('open for feedback and suggestions.') ?></div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
