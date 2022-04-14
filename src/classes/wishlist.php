@@ -56,14 +56,16 @@ class Wishlist
     {
         global $database;
 
-        $SELECT = isset($sql['SELECT']) ? $sql['SELECT'] : '*';
-        $FROM   = isset($sql['FROM'])   ? $sql['FROM']   : '`wishes`';
-        $WHERE  = isset($sql['WHERE'])  ? $sql['WHERE']  : '`wishlist` = ' . $this->id;
+        $SELECT   = isset($sql['SELECT'])   ? $sql['SELECT']   : '*';
+        $FROM     = isset($sql['FROM'])     ? $sql['FROM']     : '`wishes`';
+        $WHERE    = isset($sql['WHERE'])    ? $sql['WHERE']    : '`wishlist` = ' . $this->id;
+        $ORDER_BY = isset($sql['ORDER_BY']) ? $sql['ORDER_BY'] : '`priority` DESC, `title` ASC, `url` ASC';
 
         $this->wishes = $database
         ->query('SELECT ' . $SELECT . '
                    FROM ' . $FROM . '
-                  WHERE ' . $WHERE . ';')
+                  WHERE ' . $WHERE . '
+               ORDER BY ' . $ORDER_BY . ';')
         ->fetchAll();
 
         foreach ($this->wishes as &$wish) {
