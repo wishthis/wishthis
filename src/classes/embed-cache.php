@@ -91,15 +91,35 @@ class EmbedCache
                 $info_simplified->title         = (string) $info->title;
                 $info_simplified->url           = (string) $info->url;
 
-                if (str_contains(pathinfo($info->favicon, PATHINFO_EXTENSION), 'ico')) {
-                    $info_simplified->favicon = 'data:image/x-icon;base64,' . base64_encode(file_get_contents($info_simplified->favicon));
-                }
-
                 try {
                 } catch (\Throwable $ex) {
                     $generateCache = false;
 
                     $info_simplified->description = $ex->getMessage();
+                }
+
+                if (str_contains(pathinfo($info_simplified->favicon, PATHINFO_EXTENSION), 'ico')) {
+                    $options = array(
+                        CURLOPT_AUTOREFERER    => true,
+                        CURLOPT_CONNECTTIMEOUT => 30,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HEADER         => false,
+                        CURLOPT_MAXREDIRS      => 10,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_SSL_VERIFYPEER => false,
+                        CURLOPT_TIMEOUT        => 30,
+                        CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+                    );
+
+                    $ch = curl_init($info_simplified->favicon);
+                    curl_setopt_array($ch, $options);
+
+                    $favicon = curl_exec($ch);
+                    $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                    curl_close($ch);
+
+                    $info_simplified->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
                 }
             }
 
@@ -125,7 +145,7 @@ class EmbedCache
 
     public function maxAge(): int
     {
-        return 2592000; // 30 days
+        return 1; // 30 days // 2592000
     }
 
     public function generateCache(): bool
