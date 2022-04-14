@@ -662,7 +662,11 @@ class Page
                                     <?php
                                     global $options;
 
-                                    echo 'v' . $options->version;
+                                    if (VERSION === $options->version) {
+                                        echo 'v' . VERSION;
+                                    } else {
+                                        echo 'v' . VERSION . ' / ' . 'v' . $options->version;
+                                    }
                                     ?>
                                 </div>
                             </div>
