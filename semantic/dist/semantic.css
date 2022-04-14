@@ -27708,6 +27708,7 @@ a.ui.label {
 .ui.card .image > .ribbon.label {
   position: absolute;
   top: 1rem;
+  z-index: 1;
 }
 
 .ui.card.loading .image > .ribbon.label {
