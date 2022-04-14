@@ -31,7 +31,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     }
 
     foreach ($versions as $version) {
-        if (-1 !== version_compare(VERSION, $version['version'])) {
+        if (-1 === version_compare($options->getOption('version'), $version['version'])) {
             $sql = file_get_contents($version['filepath']);
 
             if ($sql) {
