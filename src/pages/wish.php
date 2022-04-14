@@ -20,7 +20,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && count($_POST) >= 0) {
     $wish_image          = trim($_POST['wish_image']);
     $wish_url            = trim($_POST['wish_url']);
     $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
-    $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
+    $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'TRUE' : 'FALSE';
 
     $database
     ->query('UPDATE `wishes`
