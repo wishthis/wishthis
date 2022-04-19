@@ -297,6 +297,27 @@ $(function () {
     });
 
     /**
+     * Mark as Fulfilled
+     */
+    $(document).on('click', '.wish-fulfilled', function() {
+        var button = $(this);
+        var card   = button.closest('.card');
+
+        button.api({
+            action    : 'update wish status',
+            method    : 'PUT',
+            data      : {
+                wish_id     : card.attr('data-id'),
+                wish_status : wish_status_fulfilled,
+            },
+            on        : 'now',
+            onSuccess : function(response, element, xhr) {
+                card.closest('.column').fadeOut();
+            },
+        });
+    });
+
+    /**
      * Delete Wish
      */
     $(document).on('click', '.wish-delete', function () {

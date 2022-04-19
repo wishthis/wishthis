@@ -80,7 +80,8 @@ $page->navigation();
                            OR `status` IS NULL
                            OR `status`  < unix_timestamp(CURRENT_TIMESTAMP - INTERVAL ' . Wish::STATUS_TEMPORARY_MINUTES . ' MINUTE)
                        )
-                       AND (`status` != "' . Wish::STATUS_UNAVAILABLE . '" OR `status` IS NULL)'
+                       AND (`status` != "' . Wish::STATUS_UNAVAILABLE . '" OR `status` IS NULL)
+                       AND (`status` != "' . Wish::STATUS_FULFILLED . '" OR `status` IS NULL)'
                 )
             );
             ?>

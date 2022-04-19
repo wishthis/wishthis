@@ -310,6 +310,7 @@ class Page
                 var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
+                var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';
                 var text                    = {
                     wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
 

@@ -16,6 +16,7 @@ class Wish
     public const STATUS_TEMPORARY         = 'temporary';
     public const STATUS_TEMPORARY_MINUTES = 30;
     public const STATUS_UNAVAILABLE       = 'unavailable';
+    public const STATUS_FULFILLED         = 'fulfilled';
 
     public static array $priorities;
 
@@ -204,6 +205,11 @@ class Wish
                         <i class="cog icon"></i>
                         <span class="text"><?= __('Options') ?></span>
                         <div class="menu">
+
+                            <div class="item wish-fulfilled">
+                                <i class="check icon"></i>
+                                <?= __('Mark as fulfilled') ?>
+                            </div>
 
                             <a class="item" href="/?page=wish&id=<?= $this->id ?>">
                                 <i class="pen icon"></i>
