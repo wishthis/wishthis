@@ -268,7 +268,7 @@ $(function () {
                         },
                         on: 'now',
                         onSuccess: function (response, wishlists) {
-                            $('.wishlist-cards .column').fadeOut();
+                            $('.wishlist-cards .column').fadeOut(800);
 
                             wishlists.dropdown('clear');
 
@@ -312,7 +312,7 @@ $(function () {
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
-                card.closest('.column').fadeOut();
+                card.closest('.column').fadeOut(800);
             },
         });
     });
@@ -355,7 +355,7 @@ $(function () {
                     },
                     on        : 'now',
                     onSuccess : function () {
-                        column.fadeOut();
+                        column.fadeOut(800);
 
                         $('body').toast({ message: text.toast_wish_delete });
 

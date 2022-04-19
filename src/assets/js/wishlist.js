@@ -71,7 +71,7 @@ $(function() {
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
-                card.closest('.column').fadeOut();
+                card.closest('.column').fadeOut(800);
             },
         });
     });
