@@ -61,6 +61,8 @@ class Wishlist
         $WHERE    = isset($sql['WHERE'])    ? $sql['WHERE']    : '`wishlist` = ' . $this->id;
         $ORDER_BY = isset($sql['ORDER_BY']) ? $sql['ORDER_BY'] : '`priority` DESC, `title` ASC, `url` ASC';
 
+        $WHERE .= ' AND (`status` != "' . Wish::STATUS_FULFILLED . '" OR `status` IS NULL)';
+
         $this->wishes = $database
         ->query('SELECT ' . $SELECT . '
                    FROM ' . $FROM . '
