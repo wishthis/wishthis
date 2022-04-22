@@ -1,6 +1,6 @@
 :root {
     --lineHeight: 1.4285;
-    --wishPreviewHeight: min(25vh, 224px);
+    --wishPreviewHeight: min(30vh, 224px);
 }
 
 img {
@@ -123,15 +123,17 @@ img {
 }
 @media (hover: hover) {
     .ui.card > .image > span.provider {
-        transition: background-color 0.2s ease;
+        transition: opacity 0.2s linear;
 
         position: absolute;
+
+        opacity: 0;
     }
 
     .ui.card:hover > .image > span.provider {
         display: block;
 
-        background-color: rgba(255, 255, 255, 0.8);
+        opacity: 1;
     }
 }
 
