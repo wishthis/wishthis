@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template for wishlists.
+ * Template for saved wishlists.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
