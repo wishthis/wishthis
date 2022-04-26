@@ -262,7 +262,12 @@ $page->navigation();
 
                                 <i class="times icon"></i>
                                 <div class="content">
-                                    <div class="title"><?= __('Special') ?></div>
+                                    <div class="title">
+                                        <?php
+                                        /** TRANSLATORS: A special character (for a password) */
+                                        __('Special');
+                                        ?>
+                                    </div>
                                     <div class="description"><?= __('Contains special characters.') ?></div>
                                 </div>
 

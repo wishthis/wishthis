@@ -115,7 +115,15 @@ $page->navigation();
                 <div class="ui segment">
                     <h2 class="ui header"><?= __("What's new") ?></h2>
 
-                    <p><?= sprintf(__('Check out the %s for a list changes'), '<a href="/CHANGELOG.md">' . __('Changelog') . '</a> (<i class="markdown icon"></i>)') ?></p>
+                    <p>
+                        <?php
+                        printf(
+                            /** TRANSLATORS: %s: Changelog */
+                            __('Check out the %s for a list changes.'),
+                            '<a href="/CHANGELOG.md">' . __('Changelog') . '</a> (<i class="markdown icon"></i>)'
+                        );
+                        ?>
+                    </p>
                 </div>
             </div>
         </div>
