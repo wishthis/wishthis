@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-19 08:57+0200\n"
+"POT-Creation-Date: 2022-04-26 10:26+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -253,8 +253,8 @@ msgid "Week"
 msgstr ""
 
 #: classes/page.php:384 pages/profile.php:209 pages/profile.php:210
-#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:329
-#: pages/profile.php:330 pages/settings.php:53 pages/settings.php:54
+#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:334
+#: pages/profile.php:335 pages/settings.php:53 pages/settings.php:54
 #: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
 msgid "Save"
 msgstr ""
@@ -402,7 +402,7 @@ msgstr ""
 msgid "Wish not found"
 msgstr ""
 
-#: classes/wishlist.php:115
+#: classes/wishlist.php:117
 msgid "Wishlist not found"
 msgstr ""
 
@@ -495,12 +495,13 @@ msgstr ""
 msgid "What's new"
 msgstr ""
 
-#: pages/home.php:118
+#. TRANSLATORS: %s: Changelog
+#: pages/home.php:122
 #, php-format
-msgid "Check out the %s for a list changes"
+msgid "Check out the %s for a list changes."
 msgstr ""
 
-#: pages/home.php:118
+#: pages/home.php:123
 msgid "Changelog"
 msgstr ""
 
@@ -694,7 +695,7 @@ msgstr ""
 msgid "Nickname"
 msgstr ""
 
-#: pages/profile.php:39 pages/profile.php:285
+#: pages/profile.php:39 pages/profile.php:290
 msgid "Language"
 msgstr ""
 
@@ -719,7 +720,7 @@ msgstr ""
 msgid "Change your password"
 msgstr ""
 
-#: pages/profile.php:147 pages/profile.php:276
+#: pages/profile.php:147 pages/profile.php:281
 msgid "Preferences"
 msgstr ""
 
@@ -751,35 +752,36 @@ msgstr ""
 msgid "Over eight characters in length."
 msgstr ""
 
-#: pages/profile.php:265
+#. TRANSLATORS: A special character (for a password)
+#: pages/profile.php:268
 msgid "Special"
 msgstr ""
 
-#: pages/profile.php:266
+#: pages/profile.php:271
 msgid "Contains special characters."
 msgstr ""
 
-#: pages/profile.php:308 pages/profile.php:366
+#: pages/profile.php:313 pages/profile.php:371
 msgid "Channel"
 msgstr ""
 
-#: pages/profile.php:311
+#: pages/profile.php:316
 msgid "Select channel"
 msgstr ""
 
-#: pages/profile.php:369
+#: pages/profile.php:374
 msgid "In order to improve the user experience of wishthis, newer versions are published after an extensive testing period."
 msgstr ""
 
-#: pages/profile.php:370
+#: pages/profile.php:375
 msgid "Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any)."
 msgstr ""
 
-#: pages/profile.php:371
+#: pages/profile.php:376
 msgid "If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested."
 msgstr ""
 
-#: pages/profile.php:383
+#: pages/profile.php:388
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
