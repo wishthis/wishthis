@@ -8,5 +8,5 @@
 
 .ui.statistic > .value,
 .ui.statistics .statistic > .value {
-    font-variant-numeric: lining-nums;
+    font-variant-numeric: tabular-nums lining-nums slashed-zero;
 }
