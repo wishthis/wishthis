@@ -164,7 +164,7 @@ class Page
         if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
             $url = new URL(http_build_query($_SESSION['_GET']));
 
-            if ($url->isPretty()) {
+            if (false === $url->isPretty()) {
                 redirect($url->getPretty());
             }
         }

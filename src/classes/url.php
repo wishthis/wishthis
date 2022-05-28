@@ -10,13 +10,18 @@ namespace wishthis;
 
 class URL
 {
-    public function __construct(private string $url)
+    public string $url;
+
+    public function __construct(string $url)
     {
+        $this->url = urldecode($url);
     }
 
     public function isPretty(): bool
     {
-        return preg_match('/^\/\?.+?=.+?$/', $this->url);
+        $isPretty = 1 === preg_match('/^\/[a-z0-9\/]+/', $this->url);
+
+        return $isPretty;
     }
 
     public function getPermalink(): string
@@ -95,6 +100,8 @@ class URL
                                     ) {
                                         $rewriteRule = str_replace($match, $value, $rewriteRule);
 
+                                        error_log('Successfully matched ' . $match . ' with ' . $value . ' New rule is now: ' . $rewriteRule);
+
                                         $countMatches++;
                                         break;
                                     }
@@ -114,6 +121,6 @@ class URL
             }
         }
 
-        return $pretty_url ?: '?' . $this->url;
+        return $pretty_url ?: '/?' . $this->url;
     }
 }

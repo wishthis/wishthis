@@ -49,7 +49,7 @@ $(function () {
         if (wishlistValue) {
             wishlist.id = wishlistValue;
 
-            $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
+            $('.wishlist-share').attr('href', '/?page=wishlist&hash=' + wishlists[wishlistIndex].hash);
 
             $('.button.wishlist-wish-add').removeClass('disabled');
             $('.button.wishlist-share').removeClass('disabled');
@@ -65,7 +65,7 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                window.history.pushState({}, '', response.data.url);
+                window.history.replaceState(null, document.title, response.data.url);
 
                 $('.ui.dropdown.filter.priority')
                 .dropdown('restore default value')

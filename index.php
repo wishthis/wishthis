@@ -149,13 +149,6 @@ if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') &&
 }
 
 /**
- * Wishlist
- */
-if (!isset($_SESSION['_GET']['page']) && isset($_SESSION['_GET']['wishlist'])) {
-    $page = 'wishlist';
-}
-
-/**
  * Page
  */
 if (!isset($page)) {
