@@ -162,11 +162,10 @@ class Page
          * Redirect
          */
         if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
-            $url         = new URL(http_build_query($_SESSION['_GET']));
-            $redirect_to = $url->getPretty();
+            $url = new URL(http_build_query($_SESSION['_GET']));
 
-            if ($redirect_to) {
-                redirect($redirect_to);
+            if ($url->isPretty()) {
+                redirect($url->getPretty());
             }
         }
 
