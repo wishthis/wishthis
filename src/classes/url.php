@@ -16,8 +16,9 @@ class URL
 
     public function isPretty(): bool
     {
-        return !preg_match('/^\/\?.+?=.+?$/', $this->url);
+        return preg_match('/^\/\?.+?=.+?$/', $this->url);
     }
+
     public function getPermalink(): string
     {
         $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
