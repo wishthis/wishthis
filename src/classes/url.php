@@ -56,7 +56,7 @@ class URL
     public function getPretty(): string
     {
         $htaccess   = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
-        $pretty_url = $this->url;
+        $pretty_url = '';
 
         if (!$this->url) {
             return '';
@@ -114,6 +114,6 @@ class URL
             }
         }
 
-        return $pretty_url;
+        return $pretty_url ?: '?' . $this->url;
     }
 }
