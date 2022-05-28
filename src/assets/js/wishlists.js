@@ -1,4 +1,8 @@
 $(function () {
+    var wishlist = {
+        'id' : $_GET.id
+    };
+
     /**
      * Get Wishlists
      */
@@ -17,8 +21,8 @@ $(function () {
                     placeholder : text.wishlist_no_selection
                 })
 
-                if ($_GET.id) {
-                    element.dropdown('set selected', $_GET.id);
+                if (wishlist.id) {
+                    element.dropdown('set selected', wishlist.id);
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -43,7 +47,7 @@ $(function () {
         progress.addClass('indeterminate');
 
         if (wishlistValue) {
-            $_GET.id = wishlistValue;
+            wishlist.id = wishlistValue;
 
             $('.wishlist-share').attr('href', '/?wishlist=' + wishlists[wishlistIndex].hash);
 
