@@ -34,7 +34,7 @@
 @emSize   : 12pt;
 
 /* The size of page text  */
-@fontSize : 12pt;
+@fontSize : @emSize;
 
 
 /*-------------------
