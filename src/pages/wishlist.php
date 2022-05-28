@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, User, Wishlist, Wish};
+namespace wishthis;
 
 $wishlist = new Wishlist($_SESSION['_GET']['wishlist']);
 $page     = new Page(__FILE__, $wishlist->getTitle());

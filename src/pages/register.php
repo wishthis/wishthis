@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, User};
+namespace wishthis;
 
 $passwordReset = isset($_SESSION['_GET']['password-reset'], $_SESSION['_GET']['token']);
 

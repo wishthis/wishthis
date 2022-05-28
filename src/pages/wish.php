@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, Wish};
+namespace wishthis;
 
 $userIsAuthenticated = false;
 

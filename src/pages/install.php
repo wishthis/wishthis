@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, Database};
+namespace wishthis;
 
 if ($options && $options->getOption('isInstalled')) {
     redirect('/?page=home');

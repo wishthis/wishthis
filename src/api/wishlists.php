@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{User, Wishlist};
+namespace wishthis;
 
 $api      = true;
 $response = array();

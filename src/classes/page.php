@@ -6,8 +6,6 @@
 
 namespace wishthis;
 
-use wishthis\{User, URL, Wish};
-
 enum Navigation: int
 {
     case Wishlists = 1;
@@ -122,10 +120,10 @@ class Page
 
         $ignorePower = array(
             'home',
-            'login',
-            'register',
             'install',
+            'login',
             'maintenance',
+            'register',
         );
         if (
                !isset($_SESSION['user'])

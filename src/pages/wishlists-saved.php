@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, User, Wishlist};
+namespace wishthis;
 
 $page = new Page(__FILE__, __('Saved lists'));
 $page->header();

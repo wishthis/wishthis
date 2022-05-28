@@ -4,7 +4,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\Wish;
+namespace wishthis;
 
 $scriptPart = '/src/assets/js/parts/wish-add.js';
 ?>

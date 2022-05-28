@@ -6,7 +6,7 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\{Page, Email, User};
+namespace wishthis;
 
 $page = new Page(__FILE__, __('Login'));
 
