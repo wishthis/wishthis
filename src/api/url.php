@@ -21,7 +21,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $url = new URL(base64_decode($_GET['url']));
 
             $response['data'] = array(
-                'url' => $url->getPretty()
+                'url'      => $url->getPretty(),
+                'isPretty' => $url->isPretty(),
             );
         }
         break;
