@@ -88,9 +88,9 @@ And then one of the following commands:
 For more information see: https://fomantic-ui.com/introduction/build-tools.html
 
 #### Code style
-| Language | Style  |
-| -------- | ------ |
-| PHP      | PSR-12 |
+| Language | Style                       |
+| -------- | --------------------------- |
+| PHP      | Custom (PSR-12 + WordPress) |
 
 ## :construction: Roadmap
 | Item                                                | Status              |
