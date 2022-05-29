@@ -77,7 +77,6 @@ module.exports = function (callback) {
   /* Don't do end user config if SUI is a sub-module */
   if (install.isSubModule()) {
     console.info('SUI is a sub-module, skipping end-user install');
-    callback();
     return;
   }
 

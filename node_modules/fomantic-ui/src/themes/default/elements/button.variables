@@ -253,8 +253,7 @@
 /*-------------
    Tertiary
 -------------*/
-@tertiaryVerticalPadding: 0.5em;
-@tertiaryHorizontalPadding: 0.5em;
+@tertiaryLinePadding: 0.5em;
 @tertiaryLineHeight: 0.2em;
 @tertiaryTextColor: @textColor;
 @tertiaryLineColor: lighten(@tertiaryTextColor, 20%);
@@ -377,8 +376,6 @@
 
 /* Attached */
 @attachedOffset: -1px;
-@topAttachedOffset: 0;
-@bottomAttachedOffset: @attachedOffset;
 @attachedBoxShadow: 0 0 0 1px @borderColor;
 @attachedHorizontalPadding: 0.75em;
 @attachedZIndex: auto;
@@ -405,6 +402,3 @@
 /* Circular */
 @circularBorderRadius: 10em;
 @circularIconWidth: 1em;
-
-/* Spaced */
-@spacedMargin: 1em;

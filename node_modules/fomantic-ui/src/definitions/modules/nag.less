@@ -169,29 +169,28 @@ a.ui.nag {
 /*--------------
      Colors
 -------------- */
-& when not (@variationNagColors = false) {
-  each(@variationNagColors, {
-    @color: @value;
-    @c: @colors[@@color][color];
-    @l: @colors[@@color][light];
-    @isVeryDark: @colors[@@color][isVeryDark];
 
-    .ui.@{color}.nag {
-      background-color: @c;
-      & when (@isVeryDark) {
-        color: @invertedTextColor;
+each(@colors, {
+  @color: replace(@key, '@', '');
+  @c: @colors[@@color][color];
+  @l: @colors[@@color][light];
+  @isVeryDark: @colors[@@color][isVeryDark];
+
+  .ui.@{color}.nag {
+    background-color: @c;
+    & when (@isVeryDark) {
+      color: @invertedTextColor;
+    }
+  }
+  & when (@variationNagInverted) {
+    .ui.inverted.@{color}.nag {
+      background-color: @l;
+      & .title when (@isVeryDark) {
+        color: @titleColor;
       }
     }
-    & when (@variationNagInverted) {
-      .ui.inverted.@{color}.nag {
-        background-color: @l;
-        & .title when (@isVeryDark) {
-          color: @titleColor;
-        }
-      }
-    }
-  })
-}
+  }
+})
 
 & when (@variationNagGroups) {
 /*******************************

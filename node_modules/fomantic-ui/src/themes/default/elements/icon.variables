@@ -7,7 +7,6 @@
 ---------------*/
 
 /* Solid Icons */
-@importIcons: true;
 @fontName: 'icons';
 @src:
   url("@{fontPath}/@{fontName}.eot?#iefix") format('embedded-opentype'),

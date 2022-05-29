@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.61](https://github.com/medikoo/es5-ext/compare/v0.10.60...v0.10.61) (2022-04-20)
+
+### Bug Fixes
+
+- Ensure postinstall script does not error ([a0be4fd](https://github.com/medikoo/es5-ext/commit/a0be4fdacdbc3aefd6f2952b7b9215827d362bbb))
+
+### Maintenance Improvements
+
+- Bump dependencies ([d7e0a61](https://github.com/medikoo/es5-ext/commit/d7e0a612b7d895c1c7238c779feae1e39d4634c4))
+
 ### [0.10.60](https://github.com/medikoo/es5-ext/compare/v0.10.59...v0.10.60) (2022-04-07)
 
 ### Maintenance Improvements

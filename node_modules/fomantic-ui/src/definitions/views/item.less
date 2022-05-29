@@ -62,7 +62,7 @@
       Item
 ---------------*/
 
-.ui.items > .item::after {
+.ui.items > .item:after {
   display: block;
   content: ' ';
   height: 0;
@@ -78,32 +78,31 @@
 }
 
 
-& when (@variationItemImage) {
-  /*--------------
-       Images
-  ---------------*/
 
-  .ui.items > .item > .image {
-    position: relative;
-    flex: 0 0 auto;
-    display: @imageDisplay;
-    float: @imageFloat;
-    margin: @imageMargin;
-    padding: @imagePadding;
-    max-height: @imageMaxHeight;
-    align-self: @imageVerticalAlign;
-  }
-  .ui.items > .item > .image > img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: @imageBorderRadius;
-    border: @imageBorder;
-  }
+/*--------------
+     Images
+---------------*/
 
-  .ui.items > .item > .image:only-child > img {
-    border-radius: @borderRadius;
-  }
+.ui.items > .item > .image {
+  position: relative;
+  flex: 0 0 auto;
+  display: @imageDisplay;
+  float: @imageFloat;
+  margin: @imageMargin;
+  padding: @imagePadding;
+  max-height: @imageMaxHeight;
+  align-self: @imageVerticalAlign;
+}
+.ui.items > .item > .image > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: @imageBorderRadius;
+  border: @imageBorder;
+}
+
+.ui.items > .item > .image:only-child > img {
+  border-radius: @borderRadius;
 }
 
 
@@ -123,7 +122,7 @@
   border: @contentBorder;
   border-radius: @contentBorderRadius;
 }
-.ui.items > .item > .content::after {
+.ui.items > .item > .content:after {
   display: block;
   content: ' ';
   height: 0;
@@ -141,64 +140,56 @@
   padding-left: @contentImageDistance;
 }
 
-& when (@variationItemHeader) {
-  .ui.items > .item > .content > .header {
-    display: inline-block;
-    margin: @headerMargin;
-    font-family: @headerFont;
-    font-weight: @headerFontWeight;
-    color: @headerColor;
-  }
-  /* Default Header Size */
-  .ui.items > .item > .content > .header:not(.ui) {
-    font-size: @headerFontSize;
-  }
+.ui.items > .item > .content > .header {
+  display: inline-block;
+  margin: @headerMargin;
+  font-family: @headerFont;
+  font-weight: @headerFontWeight;
+  color: @headerColor;
+}
+/* Default Header Size */
+.ui.items > .item > .content > .header:not(.ui) {
+  font-size: @headerFontSize;
 }
 
-& when (@variationItemFloated) {
-  /*--------------
-       Floated
-  ---------------*/
+/*--------------
+     Floated
+---------------*/
 
-  .ui.items > .item [class*="left floated"] {
-    float: left;
-  }
-  .ui.items > .item [class*="right floated"] {
-    float: right;
-  }
+.ui.items > .item [class*="left floated"] {
+  float: left;
+}
+.ui.items > .item [class*="right floated"] {
+  float: right;
 }
 
 
-& when (@variationItemImage) {
-  /*--------------
-    Content Image
-  ---------------*/
+/*--------------
+  Content Image
+---------------*/
 
-  .ui.items > .item .content img {
-    align-self: @contentImageVerticalAlign;
-    width: @contentImageWidth;
-  }
-  .ui.items > .item img.avatar,
-  .ui.items > .item .avatar img {
-    width: @avatarSize;
-    height: @avatarSize;
-    border-radius: @avatarBorderRadius;
-  }
+.ui.items > .item .content img {
+  align-self: @contentImageVerticalAlign;
+  width: @contentImageWidth;
+}
+.ui.items > .item img.avatar,
+.ui.items > .item .avatar img {
+  width: @avatarSize;
+  height: @avatarSize;
+  border-radius: @avatarBorderRadius;
 }
 
 
-& when (@variationItemDescription) {
-  /*--------------
-     Description
-  ---------------*/
+/*--------------
+   Description
+---------------*/
 
-  .ui.items > .item > .content > .description {
-    margin-top: @descriptionDistance;
-    max-width: @descriptionMaxWidth;
-    font-size: @descriptionFontSize;
-    line-height: @descriptionLineHeight;
-    color: @descriptionColor;
-  }
+.ui.items > .item > .content > .description {
+  margin-top: @descriptionDistance;
+  max-width: @descriptionMaxWidth;
+  font-size: @descriptionFontSize;
+  line-height: @descriptionLineHeight;
+  color: @descriptionColor;
 }
 
 /*--------------
@@ -212,30 +203,26 @@
   margin-bottom: 0;
 }
 
-& when (@variationItemMeta) {
-  /*--------------
-        Meta
-  ---------------*/
+/*--------------
+      Meta
+---------------*/
 
-  .ui.items > .item .meta {
-    margin: @metaMargin;
-    font-size: @metaFontSize;
-    line-height: @metaLineHeight;
-    color: @metaColor;
-  }
-  .ui.items > .item .meta * {
-    margin-right: @metaSpacing;
-  }
-  .ui.items > .item .meta :last-child {
-    margin-right: 0;
-  }
+.ui.items > .item .meta {
+  margin: @metaMargin;
+  font-size: @metaFontSize;
+  line-height: @metaLineHeight;
+  color: @metaColor;
+}
+.ui.items > .item .meta * {
+  margin-right: @metaSpacing;
+}
+.ui.items > .item .meta :last-child {
+  margin-right: 0;
+}
 
-  & when (@variationItemFloated) {
-    .ui.items > .item .meta [class*="right floated"] {
-      margin-right: 0;
-      margin-left: @metaSpacing;
-    }
-  }
+.ui.items > .item .meta [class*="right floated"] {
+  margin-right: 0;
+  margin-left: @metaSpacing;
 }
 
 /*--------------
@@ -251,24 +238,20 @@
   color: @contentLinkHoverColor;
 }
 
-& when (@variationItemHeader) {
-  /* Header */
-  .ui.items > .item > .content > a.header {
-    color: @headerLinkColor;
-  }
-  .ui.items > .item > .content > a.header:hover {
-    color: @headerLinkHoverColor;
-  }
+/* Header */
+.ui.items > .item > .content > a.header {
+  color: @headerLinkColor;
+}
+.ui.items > .item > .content > a.header:hover {
+  color: @headerLinkHoverColor;
 }
 
-& when (@variationItemMeta) {
-  /* Meta */
-  .ui.items > .item .meta > a:not(.ui) {
-    color: @metaLinkColor;
-  }
-  .ui.items > .item .meta > a:not(.ui):hover {
-    color: @metaLinkHoverColor;
-  }
+/* Meta */
+.ui.items > .item .meta > a:not(.ui) {
+  color: @metaLinkColor;
+}
+.ui.items > .item .meta > a:not(.ui):hover {
+  color: @metaLinkHoverColor;
 }
 
 
@@ -279,76 +262,68 @@
 
 /*-----Star----- */
 
-& when (@variationItemFavorite) {
-  /* Icon */
-  .ui.items > .item > .content .favorite.icon {
-    cursor: pointer;
-    opacity: @actionOpacity;
-    transition: @actionTransition;
-  }
-  .ui.items > .item > .content .favorite.icon:hover {
-    opacity: @actionHoverOpacity;
-    color: @favoriteColor;
-  }
-  .ui.items > .item > .content .active.favorite.icon {
-    color: @favoriteActiveColor;
-  }
+/* Icon */
+.ui.items > .item > .content .favorite.icon {
+  cursor: pointer;
+  opacity: @actionOpacity;
+  transition: @actionTransition;
+}
+.ui.items > .item > .content .favorite.icon:hover {
+  opacity: @actionHoverOpacity;
+  color: @favoriteColor;
+}
+.ui.items > .item > .content .active.favorite.icon {
+  color: @favoriteActiveColor;
 }
 
-& when (@variationItemLike) {
-  /*-----Like----- */
+/*-----Like----- */
 
-  /* Icon */
-  .ui.items > .item > .content .like.icon {
-    cursor: pointer;
-    opacity: @actionOpacity;
-    transition: @actionTransition;
-  }
-  .ui.items > .item > .content .like.icon:hover {
-    opacity: @actionHoverOpacity;
-    color: @likeColor;
-  }
-  .ui.items > .item > .content .active.like.icon {
-    color: @likeActiveColor;
-  }
+/* Icon */
+.ui.items > .item > .content .like.icon {
+  cursor: pointer;
+  opacity: @actionOpacity;
+  transition: @actionTransition;
+}
+.ui.items > .item > .content .like.icon:hover {
+  opacity: @actionHoverOpacity;
+  color: @likeColor;
+}
+.ui.items > .item > .content .active.like.icon {
+  color: @likeActiveColor;
 }
 
-& when (@variationItemExtra) {
-  /*----------------
-    Extra Content
-  -----------------*/
+/*----------------
+  Extra Content
+-----------------*/
 
-  .ui.items > .item .extra {
-    display: @extraDisplay;
-    position: @extraPosition;
-    background: @extraBackground;
-    margin: @extraMargin;
-    width: @extraWidth;
-    padding: @extraPadding;
-    top: @extraTop;
-    left: @extraLeft;
-    color: @extraColor;
-    box-shadow: @extraBoxShadow;
-    transition: @extraTransition;
-    border-top: @extraDivider;
-  }
-  .ui.items > .item .extra > * {
-    margin: (@extraRowSpacing / 2) @extraHorizontalSpacing (@extraRowSpacing / 2) 0;
-  }
-  & when (@variationItemFloated) {
-    .ui.items > .item .extra > [class*="right floated"] {
-      margin: (@extraRowSpacing / 2) 0 (@extraRowSpacing / 2) @extraHorizontalSpacing;
-    }
-  }
+.ui.items > .item .extra {
+  display: @extraDisplay;
+  position: @extraPosition;
+  background: @extraBackground;
+  margin: @extraMargin;
+  width: @extraWidth;
+  padding: @extraPadding;
+  top: @extraTop;
+  left: @extraLeft;
+  color: @extraColor;
+  box-shadow: @extraBoxShadow;
+  transition: @extraTransition;
+  border-top: @extraDivider;
+}
+.ui.items > .item .extra > * {
+  margin: (@extraRowSpacing / 2) @extraHorizontalSpacing (@extraRowSpacing / 2) 0;
+}
+.ui.items > .item .extra > [class*="right floated"] {
+  margin: (@extraRowSpacing / 2) 0 (@extraRowSpacing / 2) @extraHorizontalSpacing;
+}
 
-  .ui.items > .item .extra::after {
-    display: block;
-    content: ' ';
-    height: 0;
-    clear: both;
-    overflow: hidden;
-    visibility: hidden;
-  }
+.ui.items > .item .extra:after {
+  display: block;
+  content: ' ';
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 
@@ -429,10 +404,8 @@
   .ui.relaxed.items > .item {
     margin: @relaxedItemSpacing 0;
   }
-  & when (@variationItemVeryRelaxed) {
-    .ui[class*="very relaxed"].items > .item {
-      margin: @veryRelaxedItemSpacing 0;
-    }
+  .ui[class*="very relaxed"].items > .item {
+    margin: @veryRelaxedItemSpacing 0;
   }
 }
 
@@ -461,11 +434,9 @@
       margin: 0;
       padding: @relaxedItemSpacing 0;
     }
-    & when (@variationItemVeryRelaxed) {
-      .ui[class*="very relaxed"].divided.items > .item {
-        margin: 0;
-        padding: @veryRelaxedItemSpacing 0;
-      }
+    .ui[class*="very relaxed"].divided.items > .item {
+      margin: 0;
+      padding: @veryRelaxedItemSpacing 0;
     }
   }
 }
@@ -480,11 +451,9 @@
     cursor: pointer;
   }
 
-  & when (@variationItemHeader) {
-    .ui.items a.item:hover .content .header,
-    .ui.link.items > .item:hover .content .header {
-      color: @headerLinkHoverColor;
-    }
+  .ui.items a.item:hover .content .header,
+  .ui.link.items > .item:hover .content .header {
+    color: @headerLinkHoverColor;
   }
 }
 
@@ -530,25 +499,17 @@
     background: @invertedContentBackground;
     color: @invertedContentColor;
   }
-  & when (@variationItemExtra) {
-    .ui.inverted.items > .item .extra {
-      background: @invertedExtraBackground;
-    }
+  .ui.inverted.items > .item .extra {
+    background: @invertedExtraBackground;
   }
-  & when (@variationItemHeader) {
-    .ui.inverted.items > .item > .content > .header {
-      color: @invertedHeaderColor;
-    }
+  .ui.inverted.items > .item > .content > .header {
+    color: @invertedHeaderColor;
   }
-  & when (@variationItemDescription) {
-    .ui.inverted.items > .item > .content > .description {
-      color: @invertedDescriptionColor;
-    }
+  .ui.inverted.items > .item > .content > .description {
+    color: @invertedDescriptionColor;
   }
-  & when (@variationItemMeta) {
-    .ui.inverted.items > .item .meta {
-      color: @invertedMetaColor;
-    }
+  .ui.inverted.items > .item .meta {
+    color: @invertedMetaColor;
   }
   .ui.inverted.items > .item > .content a:not(.ui) {
     color: @invertedContentLinkColor;
@@ -556,56 +517,42 @@
   .ui.inverted.items > .item > .content a:not(.ui):hover {
     color: @invertedContentLinkHoverColor;
   }
-  & when (@variationItemHeader) {
-    .ui.inverted.items > .item > .content > a.header {
-      color: @invertedHeaderLinkColor;
-    }
-    .ui.inverted.items > .item > .content > a.header:hover {
-      color: @invertedHeaderLinkHoverColor;
-    }
+  .ui.inverted.items > .item > .content > a.header {
+    color: @invertedHeaderLinkColor;
   }
-  & when (@variationItemMeta) {
-    .ui.inverted.items > .item .meta > a:not(.ui) {
-      color: @invertedMetaLinkColor;
-    }
-    .ui.inverted.items > .item .meta > a:not(.ui):hover {
-      color: @invertedMetaLinkHoverColor;
-    }
+  .ui.inverted.items > .item > .content > a.header:hover {
+    color: @invertedHeaderLinkHoverColor;
   }
-  & when (@variationItemFavorite) {
-    .ui.inverted.items > .item > .content .favorite.icon:hover {
-      color: @invertedFavoriteColor;
-    }
-    .ui.inverted.items > .item > .content .active.favorite.icon {
-      color: @invertedFavoriteActiveColor;
-    }
+  .ui.inverted.items > .item .meta > a:not(.ui) {
+    color: @invertedMetaLinkColor;
   }
-  & when (@variationItemLike) {
-    .ui.inverted.items > .item > .content .like.icon:hover {
-      color: @invertedLikeColor;
-    }
-    .ui.inverted.items > .item > .content .active.like.icon {
-      color: @invertedLikeActiveColor;
-    }
+  .ui.inverted.items > .item .meta > a:not(.ui):hover {
+    color: @invertedMetaLinkHoverColor;
   }
-  & when (@variationItemExtra) {
-    .ui.inverted.items > .item .extra {
-      color: @invertedExtraColor;
-    }
+  .ui.inverted.items > .item > .content .favorite.icon:hover {
+    color: @invertedFavoriteColor;
   }
-  & when (@variationItemHeader) {
-    .ui.inverted.items a.item:hover .content .header,
-    .ui.inverted.link.items > .item:hover .content .header {
-      color: @invertedHeaderLinkHoverColor;
-    }
+  .ui.inverted.items > .item > .content .active.favorite.icon {
+    color: @invertedFavoriteActiveColor;
   }
-  & when (@variationItemDivided) {
-    .ui.inverted.divided.items > .item {
-      border-top: @invertedDividedBorder;
-    }
-    .ui.inverted.divided.items > .item:first-child {
-      border-top: none;
-    }
+  .ui.inverted.items > .item > .content .like.icon:hover {
+    color: @invertedLikeColor;
+  }
+  .ui.inverted.items > .item > .content .active.like.icon {
+    color: @invertedLikeActiveColor;
+  }
+  .ui.inverted.items > .item .extra {
+    color: @invertedExtraColor;
+  }
+  .ui.inverted.items a.item:hover .content .header,
+  .ui.inverted.link.items > .item:hover .content .header {
+    color: @invertedHeaderLinkHoverColor;
+  }
+  .ui.inverted.divided.items > .item {
+    border-top: @invertedDividedBorder;
+  }
+  .ui.inverted.divided.items > .item:first-child {
+    border-top: none;
   }
 }
 

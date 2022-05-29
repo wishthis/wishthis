@@ -117,10 +117,8 @@ $.fn.accordion = function(parameters) {
         },
 
         event: {
-          click: function(event) {
-            if($(event.target).closest(selector.ignore).length === 0) {
-              module.toggle.call(this);
-            }
+          click: function() {
+            module.toggle.call(this);
           }
         },
 
@@ -604,7 +602,6 @@ $.fn.accordion.settings = {
     accordion : '.accordion',
     title     : '.title',
     trigger   : '.title',
-    ignore    : '.ui.dropdown',
     content   : '.content'
   }
 

@@ -212,7 +212,7 @@
     text-align: center;
     margin: @iconHeaderTopMargin 0 @iconHeaderBottomMargin;
   }
-  .ui.icon.header::after {
+  .ui.icon.header:after {
     content: '';
     display: block;
     height: 0;
@@ -223,7 +223,6 @@
   .ui.icon.header:first-child {
     margin-top: @iconHeaderFirstMargin;
   }
-  .ui.icon.header > .image.icon,
   .ui.icon.header > .icons,
   .ui.icon.header > i.icon {
     float: none;
@@ -250,18 +249,15 @@
     font-size: @squareHeaderIconSize;
   }
   & when (@variationHeaderBlock) {
-    .ui.block.icon.header > .image.icon,
     .ui.block.icon.header > .icons,
     .ui.block.icon.header > i.icon {
       margin-bottom: 0;
     }
   }
-  & when (@variationHeaderAligned) {
-    .ui.icon.header.aligned {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-    }
+  .ui.icon.header.aligned {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 }
 
@@ -310,38 +306,37 @@
 /*-------------------
        Colors
 --------------------*/
-& when not (@variationHeaderColors = false) {
-  each(@variationHeaderColors, {
-    @color: @value;
-    @c: @colors[@@color][color];
-    @l: @colors[@@color][light];
-    @h: @colors[@@color][hover];
-    @lh: @colors[@@color][lightHover];
 
-    .ui.@{color}.header {
-      color: @c;
+each(@colors, {
+  @color: replace(@key, '@', '');
+  @c: @colors[@@color][color];
+  @l: @colors[@@color][light];
+  @h: @colors[@@color][hover];
+  @lh: @colors[@@color][lightHover];
+
+  .ui.@{color}.header {
+    color: @c;
+  }
+  a.ui.@{color}.header:hover {
+    color: @h;
+  }
+  & when (@variationHeaderDividing) {
+    .ui.@{color}.dividing.header {
+      border-bottom: @dividedColoredBorderWidth solid @c;
     }
-    a.ui.@{color}.header:hover {
-      color: @h;
+  }
+  & when (@variationHeaderInverted) {
+    .ui.inverted.@{color}.header.header.header {
+      color: @l;
     }
-    & when (@variationHeaderDividing) {
-      .ui.@{color}.dividing.header {
-        border-bottom: @dividedColoredBorderWidth solid @c;
-      }
+    a.ui.inverted.@{color}.header.header.header:hover {
+      color: @lh;
     }
-    & when (@variationHeaderInverted) {
-      .ui.inverted.@{color}.header.header.header {
-        color: @l;
-      }
-      a.ui.inverted.@{color}.header.header.header:hover {
-        color: @lh;
-      }
-      .ui.inverted.@{color}.dividing.header {
-        border-bottom: @dividedColoredBorderWidth solid @l;
-      }
+    .ui.inverted.@{color}.dividing.header {
+      border-bottom: @dividedColoredBorderWidth solid @l;
     }
-  })
-}
+  }
+})
 
 & when (@variationHeaderAligned) {
   /*-------------------
@@ -364,7 +359,7 @@
   .ui.justified.header {
     text-align: justify;
   }
-  .ui.justified.header::after {
+  .ui.justified.header:after {
     display: inline-block;
     content: '';
     width: 100%;
@@ -408,10 +403,8 @@
     padding-bottom: @dividedBorderPadding;
     border-bottom: @dividedBorder;
   }
-  & when (@variationHeaderSub) {
-    .ui.dividing.header .sub.header {
-      padding-bottom: @dividedSubHeaderPadding;
-    }
+  .ui.dividing.header .sub.header {
+    padding-bottom: @dividedSubHeaderPadding;
   }
   .ui.dividing.header i.icon {
     margin-bottom: @dividedIconPadding;
@@ -461,10 +454,8 @@
     border: @attachedBorder;
     border-radius: 0;
   }
-  & when (@variationHeaderBlock) {
-    .ui.attached.block.header {
-      background: @blockBackground;
-    }
+  .ui.attached.block.header {
+    background: @blockBackground;
   }
   .ui.attached:not(.top).header {
     border-top: none;

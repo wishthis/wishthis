@@ -22,17 +22,16 @@
 /*******************************
              Icon
 *******************************/
-& when (@importIcons) {
-  @font-face {
-    font-family: 'Icons';
-    src: @fallbackSRC;
-    src: @src;
-    font-style: normal;
-    font-weight: @normal;
-    font-variant: normal;
-    text-decoration: inherit;
-    text-transform: none;
-  }
+
+@font-face {
+  font-family: 'Icons';
+  src: @fallbackSRC;
+  src: @src;
+  font-style: normal;
+  font-weight: @normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
 }
 
 i.icon {
@@ -56,7 +55,7 @@ i.icon {
   backface-visibility: hidden;
 }
 
-i.icon::before {
+i.icon:before {
   background: none !important;
 }
 
@@ -105,7 +104,6 @@ i.emphasized.icon:not(.disabled), i.emphasized.icons:not(.disabled) {
           Fitted
   --------------------*/
 
-  i.fitted.icons,
   i.fitted.icon {
     width: auto;
     margin: 0 !important;
@@ -321,31 +319,30 @@ i.emphasized.icon:not(.disabled), i.emphasized.icons:not(.disabled) {
 /*-------------------
        Colors
 --------------------*/
-& when not (@variationIconColors = false) {
-  each(@variationIconColors, {
-    @color: @value;
-    @c: @colors[@@color][color];
-    @l: @colors[@@color][light];
 
-    i.@{color}.icon.icon.icon.icon.icon {
-      color: @c;
+each(@colors, {
+  @color: replace(@key, '@', '');
+  @c: @colors[@@color][color];
+  @l: @colors[@@color][light];
+
+  i.@{color}.icon.icon.icon.icon.icon {
+    color: @c;
+  }
+  & when (@variationIconInverted) {
+    i.inverted.@{color}.icon.icon.icon.icon.icon {
+      color: @l;
     }
-    & when (@variationIconInverted) {
-      i.inverted.@{color}.icon.icon.icon.icon.icon {
-        color: @l;
-      }
-      & when (@variationIconBordered) or (@variationIconCircular) {
-        i.inverted.bordered.@{color}.icon.icon.icon.icon.icon,
-        i.inverted.circular.@{color}.icon.icon.icon.icon.icon,
-        i.inverted.bordered.@{color}.icons,
-        i.inverted.circular.@{color}.icons {
-          background-color: @c;
-          color: @white;
-        }
+    & when (@variationIconBordered) or (@variationIconCircular) {
+      i.inverted.bordered.@{color}.icon.icon.icon.icon.icon,
+      i.inverted.circular.@{color}.icon.icon.icon.icon.icon,
+      i.inverted.bordered.@{color}.icons,
+      i.inverted.circular.@{color}.icons {
+        background-color: @c;
+        color: @white;
       }
     }
-  })
-}
+  }
+})
 
 
 /*-------------------
@@ -378,10 +375,6 @@ i.icons {
     display: inline-block;
     position: relative;
     line-height: 1;
-    min-width: @width;
-    min-height: @height;
-    margin: 0 @distanceFromText 0 0;
-    text-align: center;
   }
 
   i.icons .icon {
