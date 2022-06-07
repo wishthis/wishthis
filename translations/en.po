@@ -1,19 +1,16 @@
 # 
-# Translators:
-# Jay Trees, 2022
-# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2022-04-26 10:26+0200\n"
-"PO-Revision-Date: 2022-03-23 12:47+0000\n"
-"Last-Translator: Jay Trees, 2022\n"
-"Language-Team: English (United States) (https://www.transifex.com/wishthis/teams/134148/en_US/)\n"
+"PO-Revision-Date: 2022-03-22 08:45+0100\n"
+"Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en_US\n"
+"Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
@@ -395,7 +392,7 @@ msgstr "Confirm"
 
 #: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
 msgid "Fulfil wish"
-msgstr "Fulfill wish"
+msgstr "Fulfil wish"
 
 #: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
 #: pages/wish.php:90
@@ -473,7 +470,7 @@ msgstr ""
 "Your birthday is coming up and you just created a wishlist with all the cool"
 " stuff you want. Your friends and family want to make sure you get something"
 " you are happy with so you send them your wishlist link and if anybody "
-"decides to fulfill one of your wishes, it will disappear for everybody else."
+"decides to fulfil one of your wishes, it will disappear for everybody else."
 
 #: pages/home.php:66
 msgid "Why wishthis?"
@@ -489,7 +486,7 @@ msgid ""
 msgstr ""
 "wishthis is free and open source software. With free I don't just mean, you "
 "don't have to pay money to use it, but you are also not paying with your "
-"personal information and behavior. Not only can anybody %sview and verify "
+"personal information and behaviour. Not only can anybody %sview and verify "
 "its code%s, I also encourage you to do so."
 
 #: pages/home.php:72
@@ -1143,7 +1140,7 @@ msgid ""
 "fulfilled wish here (i. e. after placing an order), to make the wish "
 "permanently unavailable for everybody else."
 msgstr ""
-"If you found a wish you would like to fulfill, click the %s button and it "
+"If you found a wish you would like to fulfil, click the %s button and it "
 "will temporarily become unavailable for others. Make sure to confirm the "
 "fulfilled wish here (i. e. after placing an order), to make the wish "
 "permanently unavailable for everybody else."
