@@ -15,10 +15,23 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
-## :earth_africa: Available in 3 different locales
-:gb: English (United Kingdom),
-:us: English (United States),
-:de: German  (Germany)
+## :earth_africa: Available in 14 different locales
+| Language   |          | Country        | Locale |
+| ---------- | -------- | -------------- | ------ |
+| Dutch      |          |                | nl     |
+| English    |          |                | en     |
+| English    | :gb:     | United Kingdom | en_GB  |
+| English    | :us:     | United States  | en_US  |
+| French     | :fr:     | France         | fr_FR  |
+| German     |          |                | de     |
+| German     | :de:     | Germany        | de_DE  |
+| Italian    |          |                | it     |
+| Polish     |          |                | pl     |
+| Portuguese |          |                | pt     |
+| Portuguese | :brazil: | Brazil         | pt_BR  |
+| Russian    |          |                | ru     |
+| Spanish    |          |                | es     |
+| Spanish    | :es:     | Spain          | es_ES  |
 
 ## :heavy_check_mark: Requirements
 * Apache or Nginx
