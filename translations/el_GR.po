@@ -1,0 +1,1224 @@
+#
+# Translators:
+# Jay Trees, 2022
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
+"POT-Creation-Date: 2022-04-26 10:26+0200\n"
+"PO-Revision-Date: 2022-03-23 12:47+0000\n"
+"Last-Translator: Jay Trees, 2022\n"
+"Language-Team: Greek (https://www.transifex.com/wishthis/teams/134148/el_GR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el_GR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/page.php:115 pages/home.php:26
+msgid ""
+"wishthis is a simple, intuitive and modern wishlist platform to create, "
+"manage and view your wishes for any kind of occasion."
+msgstr ""
+"Το wishthis είναι μια απλή, διαισθητική και σύγχρονη πλατφόρμα λίστας "
+"επιθυμιών για να δημιουργήσετε, να διαχειριστείτε και να δείτε τις επιθυμίες"
+" σας για κάθε είδους περίσταση."
+
+#: classes/page.php:191
+msgid ""
+"This is the development environment of wishthis. The database will reset "
+"every day at around 00:00."
+msgstr ""
+"Αυτό είναι το περιβάλλον ανάπτυξης του wishthis. Η βάση δεδομένων θα "
+"επαναφέρεται κάθε μέρα γύρω στις 00:00."
+
+#: classes/page.php:192
+msgid "Development environment"
+msgstr "Περιβάλλον ανάπτυξης"
+
+#: classes/page.php:315
+msgid "No wishlist selected."
+msgstr "Δεν έχει επιλεγεί λίστα επιθυμιών."
+
+#: classes/page.php:317 classes/page.php:347 pages/login-as.php:40
+msgid "Error"
+msgstr "Σφάλμα"
+
+#: classes/page.php:318 pages/register.php:83 pages/register.php:86
+msgid "Failure"
+msgstr "Αποτυχία"
+
+#: classes/page.php:319
+msgid "The server did not confirm that the action was successful."
+msgstr "Ο διακομιστής δεν επιβεβαίωσε ότι η ενέργεια ήταν επιτυχής."
+
+#: classes/page.php:320
+msgid "Thanks for nothing"
+msgstr "Ευχαριστώ για το τίποτα"
+
+#: classes/page.php:321
+msgid "Understood"
+msgstr "Κατανοητό"
+
+#: classes/page.php:322 pages/install.php:229 pages/login-as.php:38
+#: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
+#: pages/wish.php:37
+msgid "Success"
+msgstr "Επιτυχία"
+
+#: classes/page.php:324
+msgid "Close this tab"
+msgstr "Κλείστε αυτή την καρτέλα"
+
+#: classes/page.php:325
+msgid "Show wishlist anyway"
+msgstr "Εμφάνιση λίστας επιθυμιών ούτως ή άλλως"
+
+#: classes/page.php:326 classes/page.php:331
+msgid "Really delete?"
+msgstr "Πραγματικά διαγράψτε;"
+
+#: classes/page.php:327
+#, php-format
+msgid "Do you really want to delete the wishlist %s?"
+msgstr "Θέλετε πραγματικά να διαγράψετε τη λίστα επιθυμιών %s;"
+
+#: classes/page.php:328 classes/page.php:333
+msgid "Yes, delete"
+msgstr "Ναι, διαγράψτε"
+
+#: classes/page.php:329 classes/page.php:334
+msgid "No, keep"
+msgstr "Όχι, κρατήστε"
+
+#: classes/page.php:332
+msgid "Would you really like to delete to this wish? It will be gone forever."
+msgstr ""
+"Θα θέλατε πραγματικά να διαγράψετε αυτή την επιθυμία; Θα χαθεί για πάντα."
+
+#: classes/page.php:336
+msgid "Passwords must match."
+msgstr "Οι κωδικοί πρόσβασης πρέπει να ταιριάζουν."
+
+#: classes/page.php:338
+msgid "Wishlist successfully renamed."
+msgstr "Η λίστα επιθυμιών μετονομάστηκε επιτυχώς."
+
+#: classes/page.php:339
+msgid "Wishlist successfully deleted."
+msgstr "Η λίστα επιθυμιών διαγράφηκε επιτυχώς."
+
+#: classes/page.php:341
+msgid "Wish successfully created."
+msgstr "Η επιθυμία δημιουργήθηκε επιτυχώς."
+
+#: classes/page.php:342
+msgid "Wish successfully added."
+msgstr "Η επιθυμία προστέθηκε επιτυχώς."
+
+#: classes/page.php:343
+msgid "Wish information updated."
+msgstr "Ενημέρωση πληροφοριών επιθυμίας."
+
+#: classes/page.php:344
+msgid "Don't forget to save your changes."
+msgstr "Μην ξεχάσετε να αποθηκεύσετε τις αλλαγές σας."
+
+#: classes/page.php:345
+msgid "Wish successfully deleted."
+msgstr "Η επιθυμία διαγράφηκε επιτυχώς."
+
+#: classes/page.php:348
+msgid "Unable to copy to clipboard. There is likely a permission issue."
+msgstr ""
+"Αδυναμία αντιγραφής στο πρόχειρο. Πιθανόν να υπάρχει πρόβλημα δικαιωμάτων."
+
+#: classes/page.php:349
+msgid "Link copied to clipboard."
+msgstr "Αντιγραφή συνδέσμου στο πρόχειρο."
+
+#: classes/page.php:351
+msgid "{name} must have a value"
+msgstr "{name} πρέπει να έχει τιμή"
+
+#: classes/page.php:352
+msgid "{name} must be checked"
+msgstr "{name} πρέπει να ελεγχθεί"
+
+#: classes/page.php:353
+msgid "{name} must be a valid e-mail"
+msgstr "{name} πρέπει να είναι ένα έγκυρο e-mail"
+
+#: classes/page.php:354
+msgid "{name} must be a valid URL"
+msgstr "{name} πρέπει να είναι ένα έγκυρο URL"
+
+#: classes/page.php:355
+msgid "{name} is not formatted correctly"
+msgstr "{name} δεν έχει μορφοποιηθεί σωστά"
+
+#: classes/page.php:356
+msgid "{name} must be an integer"
+msgstr "{name} πρέπει να είναι ακέραιος αριθμός"
+
+#: classes/page.php:357
+msgid "{name} must be a decimal number"
+msgstr "{name} πρέπει να είναι δεκαδικός αριθμός"
+
+#: classes/page.php:358
+msgid "{name} must be set to a number"
+msgstr "{name} πρέπει να οριστεί ένας αριθμός"
+
+#: classes/page.php:359
+msgid "{name} must be \"{ruleValue}\""
+msgstr "{name} πρέπει να είναι \"{ruleValue}\""
+
+#: classes/page.php:360
+msgid "{name} must be exactly \"{ruleValue}\""
+msgstr "{name} πρέπει να είναι ακριβώς \"{ruleValue}\""
+
+#: classes/page.php:361
+msgid "{name} cannot be set to \"{ruleValue}\""
+msgstr "{name} δεν μπορεί να οριστεί σε \"{ruleValue}\""
+
+#: classes/page.php:362
+msgid "{name} cannot be set to exactly \"{ruleValue}\""
+msgstr "{name} δεν μπορεί να οριστεί ακριβώς σε \"{ruleValue}\""
+
+#: classes/page.php:363
+msgid "{name} cannot contain \"{ruleValue}\""
+msgstr "{name} δεν μπορεί να περιέχει \"{ruleValue}\""
+
+#: classes/page.php:364
+msgid "{name} cannot contain exactly \"{ruleValue}\""
+msgstr "{name} δεν μπορεί να περιέχει ακριβώς \"{ruleValue}\""
+
+#: classes/page.php:365
+msgid "{name} must contain \"{ruleValue}\""
+msgstr "{name} πρέπει να περιέχει \"{ruleValue}\""
+
+#: classes/page.php:366
+msgid "{name} must contain exactly \"{ruleValue}\""
+msgstr "{name} πρέπει να περιέχει ακριβώς \"{ruleValue}\""
+
+#: classes/page.php:367 classes/page.php:368
+msgid "{name} must be at least {ruleValue} characters"
+msgstr "{name} πρέπει να είναι τουλάχιστον {ruleValue} χαρακτήρες"
+
+#: classes/page.php:369
+msgid "{name} must be exactly {ruleValue} characters"
+msgstr "{name} πρέπει να είναι ακριβώς {ruleValue} χαρακτήρες"
+
+#: classes/page.php:370
+msgid "{name} cannot be longer than {ruleValue} characters"
+msgstr "{name} δεν μπορεί να είναι μεγαλύτερο από {ruleValue} χαρακτήρες"
+
+#: classes/page.php:371
+msgid "{name} must match {ruleValue} field"
+msgstr "{name} πρέπει να ταιριάζει με το πεδίο {ruleValue}"
+
+#: classes/page.php:372
+msgid "{name} must have a different value than {ruleValue} field"
+msgstr "{name} πρέπει να έχει διαφορετική τιμή από το πεδίο {ruleValue}"
+
+#: classes/page.php:373
+msgid "{name} must be a valid credit card number"
+msgstr "{name} πρέπει να είναι ένας έγκυρος αριθμός πιστωτικής κάρτας"
+
+#: classes/page.php:374
+msgid "{name} must have at least {ruleValue} choices"
+msgstr "{name} πρέπει να έχει τουλάχιστον {ruleValue} επιλογές"
+
+#: classes/page.php:375
+msgid "{name} must have exactly {ruleValue} choices"
+msgstr "{name} πρέπει να έχει ακριβώς {ruleValue} επιλογές"
+
+#: classes/page.php:376
+msgid "{name} must have {ruleValue} or less choices"
+msgstr "{name} πρέπει να έχει {ruleValue} ή λιγότερες επιλογές"
+
+#: classes/page.php:378
+msgctxt "Calendar"
+msgid "Today"
+msgstr "Σήμερα"
+
+#: classes/page.php:379
+msgctxt "Calendar"
+msgid "Now"
+msgstr "Τώρα"
+
+#: classes/page.php:380
+msgctxt "Calendar"
+msgid "AM"
+msgstr "AM"
+
+#: classes/page.php:381
+msgctxt "Calendar"
+msgid "PM"
+msgstr "PM"
+
+#: classes/page.php:382
+msgctxt "Calendar"
+msgid "Week"
+msgstr "Εβδομάδα"
+
+#: classes/page.php:384 pages/profile.php:209 pages/profile.php:210
+#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:334
+#: pages/profile.php:335 pages/settings.php:53 pages/settings.php:54
+#: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: classes/page.php:385
+msgid "Saved"
+msgstr "Αποθηκευμένο"
+
+#: classes/page.php:453
+msgid "System"
+msgstr "Σύστημα"
+
+#: classes/page.php:459
+msgid "Account"
+msgstr "Λογαριασμός"
+
+#: classes/page.php:468 pages/home.php:105
+msgid "Wishlists"
+msgstr "Λίστες επιθυμιών"
+
+#: classes/page.php:472 pages/home.php:33 pages/home.php:35
+#: pages/wishlists.php:11
+msgid "My lists"
+msgstr "Οι λίστες μου"
+
+#: classes/page.php:477 pages/wishlists-saved.php:11
+msgid "Saved lists"
+msgstr "Αποθηκευμένες λίστες"
+
+#: classes/page.php:487 pages/profile.php:11
+msgid "Profile"
+msgstr "Προφίλ"
+
+#: classes/page.php:493 pages/login-as.php:11
+msgid "Login as"
+msgstr "Σύνδεση ως"
+
+#: classes/page.php:499 pages/logout.php:11
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+#: classes/page.php:505 classes/page.php:509 pages/home.php:50
+#: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
+#: pages/login.php:11 pages/login.php:130 pages/login.php:131
+#: pages/register.php:229 pages/register.php:231
+msgid "Login"
+msgstr "Σύνδεση"
+
+#: classes/page.php:516 classes/page.php:520 pages/install.php:233
+#: pages/install.php:235 pages/login.php:135 pages/login.php:137
+#: pages/register.php:13 pages/register.php:14
+msgid "Register"
+msgstr "Εγγραφή"
+
+#: classes/page.php:530 pages/settings.php:11
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: classes/page.php:543
+msgid "wishthis logo"
+msgstr "λογότυπο wishthis"
+
+#: classes/page.php:678
+msgid "Contribute"
+msgstr "Συμβάλλετε"
+
+#: classes/page.php:684 classes/page.php:687
+msgid "GitHub repository"
+msgstr "Αποθετήριο GitHub"
+
+#: classes/page.php:693 classes/page.php:696
+msgid "Translate"
+msgstr "Μεταφράστε"
+
+#: classes/page.php:732
+#, php-format
+msgid "%s not found"
+msgstr "%s δεν βρέθηκε"
+
+#: classes/page.php:742
+msgid ""
+"The requested Wishlist was not found and likely deleted by its creator."
+msgstr ""
+"Η ζητούμενη λίστα επιθυμιών δεν βρέθηκε και πιθανότατα διαγράφηκε από τον "
+"δημιουργό της."
+
+#: classes/page.php:746
+msgid "The requested Wish was not found."
+msgstr "Η επιθυμία που ζητήθηκε δεν βρέθηκε."
+
+#: classes/page.php:750
+#, php-format
+msgid "The requested %s was not found."
+msgstr "Το ζητούμενο %s δεν βρέθηκε."
+
+#: classes/wish.php:27
+msgid "Unsure about it"
+msgstr "Δεν είμαι σίγουρος γι' αυτό"
+
+#: classes/wish.php:31
+msgid "Nice to have"
+msgstr "Ωραίο να έχεις"
+
+#: classes/wish.php:35
+msgid "Would love it"
+msgstr "Θα το λάτρευα"
+
+#: classes/wish.php:129
+msgid "Wish temporarily fulfilled"
+msgstr "Η επιθυμία εκπληρώθηκε προσωρινά"
+
+#: classes/wish.php:130
+#, php-format
+msgid ""
+"If this wish is a product, confirm the order was successful and mark it as "
+"fulfilled here. If you do not confirm this wish as fulfilled, it will become"
+" available again to others after %d minutes."
+msgstr ""
+"Εάν η επιθυμία αυτή είναι προϊόν, επιβεβαιώστε ότι η παραγγελία ήταν "
+"επιτυχής και σημειώστε την ως εκπληρωμένη εδώ. Εάν δεν επιβεβαιώσετε ότι "
+"αυτή η επιθυμία έχει εκπληρωθεί, θα γίνει ξανά διαθέσιμη σε άλλους μετά από "
+"%d λεπτά."
+
+#: classes/wish.php:136
+msgid "Confirm"
+msgstr "Επιβεβαίωση"
+
+#: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
+msgid "Fulfil wish"
+msgstr "Εκπλήρωση επιθυμίας"
+
+#: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
+#: pages/wish.php:90
+msgid "Visit"
+msgstr "Επισκεφθείτε το"
+
+#: classes/wish.php:203 classes/wish.php:206 pages/wishlists.php:32
+#: pages/wishlists.php:62 pages/wishlists.php:65
+msgid "Options"
+msgstr "Επιλογές"
+
+#: classes/wish.php:211
+msgid "Mark as fulfilled"
+msgstr "Σημειώστε ως εκπληρωμένο"
+
+#: classes/wish.php:216
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: classes/wish.php:221 pages/wishlists.php:73 pages/wishlists.php:75
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: classes/wish.php:239
+msgid "Wish not found"
+msgstr "Η επιθυμία δεν βρέθηκε"
+
+#: classes/wishlist.php:117
+msgid "Wishlist not found"
+msgstr "Η λίστα επιθυμιών δεν βρέθηκε"
+
+#: config/config-sample.php:22 config/config.php:22
+msgid "Stable"
+msgstr "Σταθερό"
+
+#: config/config-sample.php:27 config/config.php:27
+msgid "Release candidate"
+msgstr "Υποψήφια έκδοση"
+
+#: functions/getWishlistNameSuggestion.php:31
+msgid "Birthday"
+msgstr "Γενέθλια"
+
+#: functions/getWishlistNameSuggestion.php:33
+msgid "Easter"
+msgstr "Πάσχα"
+
+#: functions/getWishlistNameSuggestion.php:35
+msgid "Christmas"
+msgstr "Χριστούγεννα"
+
+#: pages/home.php:11
+msgid "Home"
+msgstr "Αρχική σελίδα"
+
+#: pages/home.php:24
+msgid "Welcome to wishthis"
+msgstr "Καλώς ήρθατε στο wishthis"
+
+#: pages/home.php:42 pages/home.php:44
+msgid "Register now"
+msgstr "Εγγραφείτε τώρα"
+
+#: pages/home.php:60
+msgid "Use case"
+msgstr "Περίπτωση χρήσης"
+
+#: pages/home.php:62
+msgid ""
+"Your birthday is coming up and you just created a wishlist with all the cool"
+" stuff you want. Your friends and family want to make sure you get something"
+" you are happy with so you send them your wishlist link and if anybody "
+"decides to fulfil one of your wishes, it will disappear for everybody else."
+msgstr ""
+"Πλησιάζουν τα γενέθλιά σας και μόλις δημιουργήσατε μια λίστα επιθυμιών με "
+"όλα τα ωραία πράγματα που θέλετε. Οι φίλοι και η οικογένειά σας θέλουν να "
+"σιγουρευτούν ότι θα πάρετε κάτι που θα σας ευχαριστήσει, οπότε τους στέλνετε"
+" το σύνδεσμο της λίστας επιθυμιών σας και αν κάποιος αποφασίσει να "
+"εκπληρώσει μια από τις επιθυμίες σας, αυτή θα εξαφανιστεί για όλους τους "
+"άλλους."
+
+#: pages/home.php:66
+msgid "Why wishthis?"
+msgstr "Γιατί το wishthis;"
+
+#: pages/home.php:69
+#, php-format
+msgid ""
+"wishthis is free and open source software. With free I don't just mean, you "
+"don't have to pay money to use it, but you are also not paying with your "
+"personal information and behaviour. Not only can anybody %sview and verify "
+"its code%s, I also encourage you to do so."
+msgstr ""
+"Το wishthis είναι ελεύθερο λογισμικό ανοικτού κώδικα. Με το δωρεάν δεν εννοώ"
+" απλώς ότι δεν χρειάζεται να πληρώσετε χρήματα για να το χρησιμοποιήσετε, "
+"αλλά επίσης ότι δεν πληρώνετε με τις προσωπικές σας πληροφορίες και τη "
+"συμπεριφορά σας. Όχι μόνο μπορεί οποιοσδήποτε %sνα δει και να επαληθεύσει "
+"τον κώδικά του%s, αλλά σας ενθαρρύνω επίσης να το κάνετε."
+
+#: pages/home.php:72
+msgid "As a non-commercial project it remains"
+msgstr "Ως μη εμπορικό έργο παραμένει"
+
+#: pages/home.php:76
+msgid "free of advertisements,"
+msgstr "χωρίς διαφημίσεις,"
+
+#: pages/home.php:80
+msgid "without tracking, and"
+msgstr "χωρίς εντοπισμό, και"
+
+#: pages/home.php:84
+msgid "open for feedback and suggestions."
+msgstr "ανοικτή σε σχόλια και προτάσεις."
+
+#: pages/home.php:92
+msgid "Statistics"
+msgstr "Στατιστικά στοιχεία"
+
+#: pages/home.php:94
+msgid "Join the others and get started now!"
+msgstr "Ενώστε τους άλλους και ξεκινήστε τώρα!"
+
+#: pages/home.php:99 pages/home.php:104 pages/home.php:109
+msgid "N. A."
+msgstr "N. A."
+
+#: pages/home.php:100 pages/wishlist.php:69 pages/wishlists.php:85
+msgid "Wishes"
+msgstr "Ευχές"
+
+#: pages/home.php:110
+msgid "Registered users"
+msgstr "Εγγεγραμμένοι χρήστες"
+
+#: pages/home.php:116
+msgid "What's new"
+msgstr "Τι νέο υπάρχει"
+
+#. TRANSLATORS: %s: Changelog
+#: pages/home.php:122
+#, php-format
+msgid "Check out the %s for a list changes."
+msgstr "Ελέγξτε το %s για μια λίστα αλλαγών."
+
+#: pages/home.php:123
+msgid "Changelog"
+msgstr "Changelog"
+
+#: pages/install.php:15
+msgid "Install"
+msgstr "Εγκαταστήστε το"
+
+#: pages/install.php:30 pages/install.php:101
+#, php-format
+msgid "Step %d"
+msgstr "Βήμα %d"
+
+#: pages/install.php:31
+msgid "Welcome to the wishthis installer."
+msgstr "Καλώς ήρθατε στον εγκαταστάτη του wishthis."
+
+#: pages/install.php:32
+msgid ""
+"wishthis needs a database to function properly. Please enter your "
+"credentials."
+msgstr ""
+"Το wishthis χρειάζεται μια βάση δεδομένων για να λειτουργήσει σωστά. "
+"Εισάγετε τα διαπιστευτήριά σας."
+
+#: pages/install.php:39
+msgid "Host"
+msgstr "Υποδοχής"
+
+#: pages/install.php:44 pages/wishlists.php:117
+msgid "Name"
+msgstr "Όνομα"
+
+#: pages/install.php:49
+msgid "Username"
+msgstr "Όνομα χρήστη"
+
+#: pages/install.php:54 pages/login.php:119 pages/profile.php:143
+#: pages/profile.php:218 pages/profile.php:227 pages/register.php:193
+msgid "Password"
+msgstr "Κωδικός πρόσβασης"
+
+#: pages/install.php:60 pages/install.php:61 pages/install.php:110
+#: pages/install.php:111
+msgid "Continue"
+msgstr "Συνεχίστε"
+
+#: pages/install.php:102
+msgid "Click continue to test the database connection."
+msgstr ""
+"Κάντε κλικ στο continue για να δοκιμάσετε τη σύνδεση με τη βάση δεδομένων."
+
+#: pages/login-as.php:38
+#, php-format
+msgid "Successfully logged in as %s."
+msgstr "Συνδεθήκατε επιτυχώς ως %s."
+
+#: pages/login-as.php:40
+msgid "User not found!"
+msgstr "Ο χρήστης δεν βρέθηκε!"
+
+#: pages/login-as.php:48 pages/login.php:110 pages/profile.php:34
+#: pages/profile.php:184 pages/register.php:175
+msgid "Email"
+msgstr "Ηλεκτρονικό ταχυδρομείο"
+
+#: pages/login.php:36
+msgid "No user could be found with the credentials you provided."
+msgstr "Δεν βρέθηκε χρήστης με τα διαπιστευτήρια που δώσατε."
+
+#: pages/login.php:37
+msgid "Invalid credentials"
+msgstr "Μη έγκυρα διαπιστευτήρια"
+
+#: pages/login.php:81
+msgid "Password reset link"
+msgstr "Σύνδεσμος επαναφοράς κωδικού πρόσβασης"
+
+#: pages/login.php:85
+msgid ""
+"If a match can be found for this email address, a password reset link will "
+"be sent to it."
+msgstr ""
+"Εάν βρεθεί αντιστοιχία για αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου, θα "
+"σταλεί ένας σύνδεσμος επαναφοράς κωδικού πρόσβασης."
+
+#: pages/login.php:86
+msgid "Info"
+msgstr "Πληροφορίες"
+
+#: pages/login.php:106
+msgid "Credentials"
+msgstr "Διαπιστευτήρια"
+
+#: pages/login.php:143
+msgid "Forgot password?"
+msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"
+
+#: pages/login.php:145
+msgid ""
+"Consider using a password manager. It will save all your passwords and allow"
+" you to access them with one master password. Never forget a password ever "
+"again."
+msgstr ""
+"Εξετάστε το ενδεχόμενο χρήσης ενός διαχειριστή κωδικών πρόσβασης. Θα "
+"αποθηκεύσει όλους τους κωδικούς πρόσβασής σας και θα σας επιτρέψει να έχετε "
+"πρόσβαση σε αυτούς με έναν κύριο κωδικό πρόσβασης. Μην ξεχάσετε ποτέ ξανά "
+"έναν κωδικό πρόσβασης."
+
+#: pages/login.php:161 pages/login.php:162
+msgid "Send email"
+msgstr "Στείλτε email"
+
+#: pages/login.php:170
+msgid ""
+"Please note that you have to enter the email address, you have registered "
+"with."
+msgstr ""
+"Σημειώστε ότι πρέπει να εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου με "
+"την οποία έχετε εγγραφεί."
+
+#: pages/logout.php:28
+msgid "Goodbye"
+msgstr "Αντίο"
+
+#: pages/logout.php:29
+msgid "You have been logged out."
+msgstr "Έχετε αποσυνδεθεί."
+
+#: pages/maintenance.php:11
+msgid "Maintenance"
+msgstr "Συντήρηση"
+
+#: pages/maintenance.php:22
+msgid "Temporarily unavailable"
+msgstr "Προσωρινά μη διαθέσιμο"
+
+#: pages/maintenance.php:23
+msgid ""
+"Due to maintenance, wishthis is temporarily not available. Please check back"
+" again in a minute."
+msgstr ""
+"Λόγω συντήρησης, το wishthis δεν είναι προσωρινά διαθέσιμο. Παρακαλείστε να "
+"επιστρέψετε σε ένα λεπτό."
+
+#: pages/parts/wish-add.php:17 pages/wishlists.php:148
+msgid "Title"
+msgstr "Τίτλος"
+
+#: pages/parts/wish-add.php:30
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: pages/parts/wish-add.php:42 pages/wish.php:153
+msgid "URL"
+msgstr "URL"
+
+#: pages/parts/wish-add.php:53
+msgid "Priority"
+msgstr "Προτεραιότητα"
+
+#: pages/parts/wish-add.php:58
+msgid "Select priority"
+msgstr "Επιλέξτε προτεραιότητα"
+
+#: pages/parts/wish-add.php:71
+msgid "Properties"
+msgstr "Ιδιότητες"
+
+#: pages/parts/wish-add.php:80
+msgid "Is purchasable"
+msgstr "Μπορεί να αγοραστεί"
+
+#: pages/parts/wishlist-filter.php:21
+msgid "Filter priorities"
+msgstr "Προτεραιότητες φίλτρου"
+
+#: pages/parts/wishlist-filter.php:26
+msgid "Search priorities"
+msgstr "Προτεραιότητες αναζήτησης"
+
+#: pages/parts/wishlist-filter.php:33
+msgid "Priorities"
+msgstr "Προτεραιότητες"
+
+#: pages/parts/wishlist-filter.php:39
+msgid "All priorities"
+msgstr "Όλες οι προτεραιότητες"
+
+#: pages/parts/wishlist-filter.php:44
+msgid "No priority"
+msgstr "Καμία προτεραιότητα"
+
+#: pages/power.php:11
+msgid "Insufficient power"
+msgstr "Ανεπαρκής ισχύς"
+
+#: pages/power.php:22
+msgid "Restricted access"
+msgstr "Περιορισμένη πρόσβαση"
+
+#: pages/power.php:23
+#, php-format
+msgid ""
+"You do not have enough power to view this page. You need %s to see this "
+"page, but only have %s."
+msgstr ""
+"Δεν έχετε αρκετή ισχύ για να δείτε αυτή τη σελίδα. Χρειάζεστε το %s για να "
+"δείτε αυτή τη σελίδα, αλλά έχετε μόνο το %s."
+
+#: pages/profile.php:19 pages/profile.php:164
+msgid "First name"
+msgstr "Όνομα"
+
+#: pages/profile.php:24 pages/profile.php:170
+msgid "Last name"
+msgstr "Επώνυμο"
+
+#: pages/profile.php:29 pages/profile.php:176
+msgid "Nickname"
+msgstr "Παρατσούκλι"
+
+#: pages/profile.php:39 pages/profile.php:290
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: pages/profile.php:52
+#, php-format
+msgid "%s successfully updated!"
+msgstr "%s ενημερώθηκε επιτυχώς!"
+
+#: pages/profile.php:118
+msgid "It is required for you to login again."
+msgstr "Απαιτείται για να συνδεθείτε ξανά."
+
+#: pages/profile.php:139 pages/profile.php:155
+msgid "Personal"
+msgstr "Προσωπικό"
+
+#: pages/profile.php:140
+msgid "Information regarding yourself"
+msgstr "Πληροφορίες σχετικά με τον εαυτό σας"
+
+#: pages/profile.php:144
+msgid "Change your password"
+msgstr "Αλλάξτε τον κωδικό πρόσβασής σας"
+
+#: pages/profile.php:147 pages/profile.php:281
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: pages/profile.php:148
+msgid "Improve your wishthis experience"
+msgstr "Βελτιώστε την εμπειρία σας στο wishthis"
+
+#: pages/profile.php:190
+msgid "Birthdate"
+msgstr "Ημερομηνία γέννησης"
+
+#: pages/profile.php:197
+msgid "Pick a date"
+msgstr "Διαλέξτε μια ημερομηνία"
+
+#: pages/profile.php:233
+msgid "Password (repeat)"
+msgstr "Κωδικός πρόσβασης (επανάληψη)"
+
+#: pages/profile.php:249
+msgid "Safe password checklist"
+msgstr "Λίστα ελέγχου ασφαλούς κωδικού πρόσβασης"
+
+#: pages/profile.php:256
+msgid "Long"
+msgstr "Μακρύ"
+
+#: pages/profile.php:257
+msgid "Over eight characters in length."
+msgstr "Πάνω από οκτώ χαρακτήρες σε μήκος."
+
+#. TRANSLATORS: A special character (for a password)
+#: pages/profile.php:268
+msgid "Special"
+msgstr "Ειδικό"
+
+#: pages/profile.php:271
+msgid "Contains special characters."
+msgstr "Περιέχει ειδικούς χαρακτήρες."
+
+#: pages/profile.php:313 pages/profile.php:371
+msgid "Channel"
+msgstr "Κανάλι"
+
+#: pages/profile.php:316
+msgid "Select channel"
+msgstr "Επιλογή καναλιού"
+
+#: pages/profile.php:374
+msgid ""
+"In order to improve the user experience of wishthis, newer versions are "
+"published after an extensive testing period."
+msgstr ""
+"Προκειμένου να βελτιωθεί η εμπειρία χρήσης του wishthis, οι νεότερες "
+"εκδόσεις δημοσιεύονται μετά από μια εκτεταμένη περίοδο δοκιμών."
+
+#: pages/profile.php:375
+msgid ""
+"Subscribing to the Stable channel ensures you have the highest possible "
+"stability while using wishthis, minimizing the amount of errors you may "
+"encounter (if any)."
+msgstr ""
+"Η εγγραφή στο κανάλι Stable εξασφαλίζει την υψηλότερη δυνατή σταθερότητα "
+"κατά τη χρήση του wishthis, ελαχιστοποιώντας το πλήθος των σφαλμάτων που "
+"μπορεί να αντιμετωπίσετε (αν υπάρχουν)."
+
+#: pages/profile.php:376
+msgid ""
+"If you want to speed up the release of newer versions, consider subscribing "
+"to the Release candidate of wishthis. A newer version is not published "
+"unless the next release candidate has been sufficiently tested."
+msgstr ""
+"Αν θέλετε να επιταχύνετε την κυκλοφορία των νεότερων εκδόσεων, σκεφτείτε το "
+"ενδεχόμενο να εγγραφείτε στην υποψήφια έκδοση του wishthis. Μια νεότερη "
+"έκδοση δεν δημοσιεύεται αν δεν έχει δοκιμαστεί επαρκώς η επόμενη υποψήφια "
+"έκδοση."
+
+#: pages/profile.php:388
+#, php-format
+msgid "%d more subscriber needed"
+msgid_plural "%d more subscribers needed"
+msgstr[0] "%d απαιτείται περισσότερος συνδρομητής"
+msgstr[1] "%d χρειάζονται περισσότεροι συνδρομητές"
+
+#: pages/register.php:13
+msgid "Reset password"
+msgstr "Επαναφορά κωδικού πρόσβασης"
+
+#: pages/register.php:14 pages/wish.php:123 pages/wish.php:124
+msgid "Reset"
+msgstr "Επαναφορά"
+
+#: pages/register.php:31
+msgid "Mercury"
+msgstr "Ερμής"
+
+#: pages/register.php:32
+msgid "Venus"
+msgstr "Αφροδίτη"
+
+#: pages/register.php:33
+msgid "Earth"
+msgstr "Γη"
+
+#: pages/register.php:34
+msgid "Mars"
+msgstr "Άρης"
+
+#: pages/register.php:35
+msgid "Jupiter"
+msgstr "Δίας"
+
+#: pages/register.php:36
+msgid "Saturn"
+msgstr "Κρόνος"
+
+#: pages/register.php:37
+msgid "Uranus"
+msgstr "Ουρανός"
+
+#: pages/register.php:38
+msgid "Neptune"
+msgstr "Ποσειδώνας"
+
+#: pages/register.php:41
+msgid "Pluto"
+msgstr "Πλούτωνας"
+
+#: pages/register.php:42
+msgid "Sun"
+msgstr "Ήλιος"
+
+#: pages/register.php:51
+#, php-format
+msgid ""
+"%s is not a planet but I'll let it slide, since only a human would make this"
+" kind of mistake."
+msgstr ""
+"%s δεν είναι πλανήτης, αλλά θα το αφήσω να περάσει, αφού μόνο ένας άνθρωπος "
+"θα έκανε τέτοιο λάθος."
+
+#: pages/register.php:52 pages/register.php:151
+msgid "Invalid planet"
+msgstr "Άκυρος πλανήτης"
+
+#: pages/register.php:83
+msgid "This link has expired."
+msgstr "Αυτός ο σύνδεσμος έχει λήξει."
+
+#: pages/register.php:86
+msgid "This link seems invalid."
+msgstr "Αυτός ο σύνδεσμος φαίνεται άκυρος."
+
+#: pages/register.php:108
+msgid "An account with this email address already exists."
+msgstr ""
+"Ένας λογαριασμός με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου υπάρχει ήδη."
+
+#: pages/register.php:109
+msgid "Invalid email address"
+msgstr "Μη έγκυρη διεύθυνση email"
+
+#: pages/register.php:123
+msgid "Your account was successfully created."
+msgstr "Ο λογαριασμός σας δημιουργήθηκε με επιτυχία."
+
+#: pages/register.php:133
+msgid "My hopes and dreams"
+msgstr "Οι ελπίδες και τα όνειρά μου"
+
+#: pages/register.php:150
+#, php-format
+msgid ""
+"%s is not a planet in our solar system. Read this for more information: %s."
+msgstr ""
+"%s δεν είναι πλανήτης του ηλιακού μας συστήματος. Διαβάστε αυτό για "
+"περισσότερες πληροφορίες: %s."
+
+#: pages/register.php:172
+msgid "Account details"
+msgstr "Στοιχεία λογαριασμού"
+
+#: pages/register.php:203
+msgid "Authentication"
+msgstr "Αυθεντικοποίηση"
+
+#: pages/register.php:204
+msgid ""
+"Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
+"planet from our solar system."
+msgstr ""
+"Αποδείξτε ότι είστε άνθρωπος, σαύρα ή πλάσμα που μοιάζει με Zuck. Παρακαλώ "
+"ονομάστε έναν πλανήτη από το ηλιακό μας σύστημα."
+
+#: pages/register.php:207
+msgid "Planet"
+msgstr "Πλανήτης"
+
+#: pages/register.php:214
+msgid ""
+"Robots are obviously from another solar system so this will keep them at "
+"bay."
+msgstr ""
+"Τα ρομπότ είναι προφανώς από άλλο ηλιακό σύστημα, οπότε αυτό θα τα κρατήσει "
+"μακριά."
+
+#: pages/settings.php:27
+msgid "MJML"
+msgstr "MJML"
+
+#: pages/settings.php:28
+#, php-format
+msgid "MJML is required for sending emails. Visit %s to request API access."
+msgstr ""
+"Το MJML απαιτείται για την αποστολή μηνυμάτων ηλεκτρονικού ταχυδρομείου. "
+"Επισκεφθείτε το %s για να ζητήσετε πρόσβαση στο API."
+
+#: pages/settings.php:30
+msgid "API"
+msgstr "API"
+
+#: pages/settings.php:33
+msgid "Key"
+msgstr "Βασικό"
+
+#: pages/settings.php:42
+msgid "Secret"
+msgstr "Μυστικό"
+
+#: pages/update.php:11
+msgid "Update"
+msgstr "Ενημέρωση"
+
+#: pages/update.php:42
+#, php-format
+msgid "Database successfully migrated to %s."
+msgstr "Η βάση δεδομένων μεταφέρθηκε επιτυχώς στο %s."
+
+#: pages/update.php:67
+msgid "Database migration"
+msgstr "Μετάβαση στη βάση δεδομένων"
+
+#: pages/update.php:68
+msgid ""
+"Thank you for updating wishthis! To complete this update, some changes are "
+"required to the database structure."
+msgstr ""
+"Σας ευχαριστούμε για την ενημέρωση του wishthis! Για να ολοκληρωθεί αυτή η "
+"ενημέρωση, απαιτούνται ορισμένες αλλαγές στη δομή της βάσης δεδομένων."
+
+#: pages/update.php:73 pages/update.php:76
+#, php-format
+msgid "Migrate to %s"
+msgstr "Μεταναστεύστε σε %s"
+
+#: pages/wish.php:37
+msgid "Wish successfully updated."
+msgstr "Η επιθυμία ενημερώθηκε επιτυχώς."
+
+#: pages/wish.php:95 pages/wish.php:98
+msgid "Auto-fill"
+msgstr "Αυτόματη συμπλήρωση"
+
+#: pages/wish.php:128 pages/wish.php:130
+msgid "Back"
+msgstr "Πίσω"
+
+#: pages/wish.php:146
+msgid "Image"
+msgstr "Εικόνα"
+
+#: pages/wish.php:149
+msgid "Define a new URL to be used as a preview."
+msgstr "Ορίστε μια νέα διεύθυνση URL που θα χρησιμοποιείται ως προεπισκόπηση."
+
+#: pages/wish.php:162 pages/wish.php:163
+msgid "Discard"
+msgstr "Απορρίψτε το"
+
+#: pages/wish.php:171
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#: pages/wish.php:174
+msgid "This action will potentially overwrite all fields in this wish."
+msgstr ""
+"Αυτή η ενέργεια θα αντικαταστήσει δυνητικά όλα τα πεδία αυτής της επιθυμίας."
+
+#: pages/wish.php:175
+msgid "Would you like to continue?"
+msgstr "Θα θέλατε να συνεχίσετε;"
+
+#: pages/wish.php:178 pages/wish.php:179
+msgid "Yes, overwrite"
+msgstr "Ναι, αντικατάσταση"
+
+#: pages/wish.php:181 pages/wish.php:182
+msgid "No"
+msgstr "Όχι"
+
+#: pages/wish.php:190
+msgid "URL mismatch"
+msgstr "Αναντιστοιχία URL"
+
+#: pages/wish.php:194
+msgid ""
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
+msgstr ""
+"Η διεύθυνση URL που έχετε εισάγει δεν φαίνεται να είναι σωστή. Θα θέλατε να "
+"την ενημερώσετε με αυτή που βρήκα;"
+
+#: pages/wish.php:195
+#, php-format
+msgid "According to %s, this is the canonical (correct) URL."
+msgstr "Σύμφωνα με το %s, αυτό είναι το κανονικό (σωστό) URL."
+
+#: pages/wish.php:199
+msgid "Current"
+msgstr "Τρέχον"
+
+#: pages/wish.php:204
+msgid "Proposed"
+msgstr "Προτεινόμενο"
+
+#: pages/wish.php:211 pages/wish.php:212
+msgid "Yes, update"
+msgstr "Ναι, ενημέρωση"
+
+#: pages/wish.php:214 pages/wish.php:215
+msgid "No, leave it"
+msgstr "Όχι, αφήστε το"
+
+#: pages/wishlist.php:33
+msgid "Save list"
+msgstr "Αποθήκευση λίστας"
+
+#: pages/wishlist.php:49
+msgid "Careful"
+msgstr "Προσεκτικός"
+
+#: pages/wishlist.php:52
+msgid ""
+"You are viewing your own wishlist! You will be able to see which wishes have"
+" already been fulfilled for you. Don't you want to be surprised?"
+msgstr ""
+"Βλέπετε τη δική σας λίστα επιθυμιών! Θα μπορείτε να δείτε ποιες επιθυμίες "
+"έχουν ήδη πραγματοποιηθεί για εσάς. Δεν θέλετε να εκπλαγείτε;"
+
+#: pages/wishlist.php:53
+msgid "It's probably best to just close this tab."
+msgstr "Είναι μάλλον καλύτερο να κλείσετε αυτή την καρτέλα."
+
+#: pages/wishlist.php:61
+msgid "What to do?"
+msgstr "Τι να κάνω;"
+
+#: pages/wishlist.php:63
+#, php-format
+msgid ""
+"If you found a wish you would like to fulfil, click the %s button and it "
+"will temporarily become unavailable for others. Make sure to confirm the "
+"fulfilled wish here (i. e. after placing an order), to make the wish "
+"permanently unavailable for everybody else."
+msgstr ""
+"Αν βρήκατε μια επιθυμία που θα θέλατε να εκπληρώσετε, κάντε κλικ στο κουμπί "
+"%s και θα γίνει προσωρινά μη διαθέσιμη για τους άλλους. Βεβαιωθείτε ότι "
+"έχετε επιβεβαιώσει την εκπληρωμένη επιθυμία εδώ (π.χ. μετά την τοποθέτηση "
+"μιας παραγγελίας), για να καταστήσετε την επιθυμία μόνιμα μη διαθέσιμη για "
+"όλους τους άλλους."
+
+#: pages/wishlists.php:24
+msgid "Wishlist"
+msgstr "Λίστα επιθυμιών"
+
+#: pages/wishlists.php:27
+msgid "Loading your wishlists..."
+msgstr "Φόρτωση των λιστών επιθυμιών σας..."
+
+#: pages/wishlists.php:36 pages/wishlists.php:39 pages/wishlists.php:109
+msgid "Create a wishlist"
+msgstr "Δημιουργήστε μια λίστα επιθυμιών"
+
+#: pages/wishlists.php:47 pages/wishlists.php:50 pages/wishlists.php:166
+msgid "Add a wish"
+msgstr "Προσθέστε μια ευχή"
+
+#: pages/wishlists.php:55 pages/wishlists.php:58
+msgid "Share"
+msgstr "Μοιραστείτε το"
+
+#: pages/wishlists.php:68 pages/wishlists.php:70 pages/wishlists.php:154
+#: pages/wishlists.php:155
+msgid "Rename"
+msgstr "Μετονομασία"
+
+#: pages/wishlists.php:113
+msgid ""
+"Choose a new name for your wishlist. Here's a suggestion to get you started."
+msgstr ""
+"Επιλέξτε ένα νέο όνομα για τη λίστα επιθυμιών σας. Εδώ είναι μια πρόταση για"
+" να ξεκινήσετε."
+
+#: pages/wishlists.php:127 pages/wishlists.php:128
+msgid "Create"
+msgstr "Δημιουργία"
+
+#: pages/wishlists.php:130 pages/wishlists.php:131 pages/wishlists.php:157
+#: pages/wishlists.php:158 pages/wishlists.php:185 pages/wishlists.php:186
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: pages/wishlists.php:139
+msgid "Rename wishlist"
+msgstr "Μετονομασία λίστας επιθυμιών"
+
+#: pages/wishlists.php:142
+msgid "How would you like to name this wishlist?"
+msgstr "Πώς θα θέλατε να ονομάσετε αυτή τη λίστα επιθυμιών;"
+
+#: pages/wishlists.php:170
+msgid "Fill out any or all of the below fields to add your new wish."
+msgstr ""
+"Συμπληρώστε οποιοδήποτε ή όλα τα παρακάτω πεδία για να προσθέσετε τη νέα σας"
+" επιθυμία."
+
+#: pages/wishlists.php:182 pages/wishlists.php:183
+msgid "Add"
+msgstr "Προσθέστε"
