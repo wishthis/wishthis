@@ -9,11 +9,12 @@ namespace wishthis;
 enum Navigation: int
 {
     case Wishlists = 1;
-    case System    = 2;
-    case Settings  = 3;
-    case Account   = 4;
-    case Login     = 5;
-    case Register  = 6;
+    case Blog      = 2;
+    case System    = 3;
+    case Settings  = 4;
+    case Account   = 5;
+    case Login     = 6;
+    case Register  = 7;
 }
 
 class Page
@@ -120,6 +121,7 @@ class Page
 
         $ignorePower = array(
             'home',
+            'blog',
             'install',
             'login',
             'maintenance',
@@ -439,6 +441,7 @@ class Page
         $user = new User();
 
         $wishlists = Navigation::Wishlists->value;
+        $blog      = Navigation::Blog->value;
         $system    = Navigation::System->value;
         $settings  = Navigation::Settings->value;
         $account   = Navigation::Account->value;
@@ -446,6 +449,17 @@ class Page
         $register  = Navigation::Register->value;
 
         $pages = array(
+            $pages[$blog] = array(
+                'text'      => __('Blog'),
+                'alignment' => 'left',
+                'items'     => array(
+                    array(
+                        'text' => __('Blog'),
+                        'url'  => '/?page=blog',
+                        'icon' => 'blog',
+                    ),
+                ),
+            ),
             $system => array(
                 'text'      => __('System'),
                 'icon'      => 'wrench',
