@@ -456,7 +456,7 @@ class Page
                     array(
                         'text' => __('Blog'),
                         'url'  => '/?page=blog',
-                        'icon' => 'blog',
+                        'icon' => 'rss',
                     ),
                 ),
             ),

@@ -13,12 +13,7 @@ $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$posts_remote = file_get_contents('https://wishthis.online/src/blog/wp-json/wp/v2/posts');
-$posts        = array();
-
-if (false !== $posts_remote) {
-    $posts = json_decode($posts_remote);
-}
+$posts = Blog::getPosts();
 ?>
 
 <main>
