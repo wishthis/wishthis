@@ -290,8 +290,8 @@ $page->navigation();
                                     <label><?= __('Language') ?></label>
 
                                     <select class="ui search dropdown locale" name="user-locale">
-                                        <?php if (!in_array('en', $locales)) { ?>
-                                            <option value="<?= 'en' ?>"><?= \Locale::getDisplayName('en', $user->locale) ?></option>
+                                        <?php if (!in_array('en_GB', $locales)) { ?>
+                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $user->locale) ?></option>
                                         <?php } ?>
 
                                         <?php foreach ($locales as $locale) { ?>

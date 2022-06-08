@@ -1,7 +1,7 @@
-# 
+#
 # Translators:
 # Jay Trees, 2022
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -9,12 +9,12 @@ msgstr ""
 "POT-Creation-Date: 2022-04-26 10:26+0200\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
 "Last-Translator: Jay Trees, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/wishthis/teams/134148/es/)\n"
+"Language-Team: Indonesian (https://www.transifex.com/wishthis/teams/134148/id_ID/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Language: id_ID\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
@@ -25,232 +25,232 @@ msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
 msgstr ""
-"wishthis es una plataforma de listas de deseos sencilla, intuitiva y moderna"
-" para crear, gestionar y visualizar tus deseos para cualquier tipo de "
-"ocasión."
+"wishthis adalah platform daftar keinginan yang sederhana, intuitif dan "
+"modern untuk membuat, mengelola dan melihat keinginan Anda untuk segala "
+"jenis acara."
 
 #: classes/page.php:191
 msgid ""
 "This is the development environment of wishthis. The database will reset "
 "every day at around 00:00."
 msgstr ""
-"Este es el entorno de desarrollo de wishthis. La base de datos se reiniciará"
-" cada día alrededor de las 00:00."
+"Ini adalah lingkungan pengembangan wishthis. Database akan direset setiap "
+"hari sekitar pukul 00:00."
 
 #: classes/page.php:192
 msgid "Development environment"
-msgstr "Entorno de desarrollo"
+msgstr "Lingkungan pengembangan"
 
 #: classes/page.php:315
 msgid "No wishlist selected."
-msgstr "No se ha seleccionado ninguna lista de deseos."
+msgstr "Tidak ada daftar keinginan yang dipilih."
 
 #: classes/page.php:317 classes/page.php:347 pages/login-as.php:40
 msgid "Error"
-msgstr "Error"
+msgstr "Kesalahan"
 
 #: classes/page.php:318 pages/register.php:83 pages/register.php:86
 msgid "Failure"
-msgstr "Fracaso"
+msgstr "Kegagalan"
 
 #: classes/page.php:319
 msgid "The server did not confirm that the action was successful."
-msgstr "El servidor no confirmó que la acción tuviera éxito."
+msgstr "Server tidak mengonfirmasi bahwa tindakan itu berhasil."
 
 #: classes/page.php:320
 msgid "Thanks for nothing"
-msgstr "Gracias por nada"
+msgstr "Terima kasih untuk apa-apa"
 
 #: classes/page.php:321
 msgid "Understood"
-msgstr "Entendido"
+msgstr "Mengerti"
 
 #: classes/page.php:322 pages/install.php:229 pages/login-as.php:38
 #: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
 #: pages/wish.php:37
 msgid "Success"
-msgstr "Éxito"
+msgstr "Sukses"
 
 #: classes/page.php:324
 msgid "Close this tab"
-msgstr "Cierra esta pestaña"
+msgstr "Tutup tab ini"
 
 #: classes/page.php:325
 msgid "Show wishlist anyway"
-msgstr "Mostrar la lista de deseos de todos modos"
+msgstr "Tunjukkan daftar keinginan"
 
 #: classes/page.php:326 classes/page.php:331
 msgid "Really delete?"
-msgstr "¿Borrar de verdad?"
+msgstr "Benar-benar menghapus?"
 
 #: classes/page.php:327
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
-msgstr "¿Realmente quieres borrar la lista de deseos %s?"
+msgstr "Apakah Anda benar-benar ingin menghapus daftar keinginan %s?"
 
 #: classes/page.php:328 classes/page.php:333
 msgid "Yes, delete"
-msgstr "Sí, borra"
+msgstr "Ya, hapus"
 
 #: classes/page.php:329 classes/page.php:334
 msgid "No, keep"
-msgstr "No, guarda"
+msgstr "Tidak, tetap"
 
 #: classes/page.php:332
 msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "¿Realmente quieres borrar este deseo? Se perderá para siempre."
+msgstr ""
+"Apakah Anda benar-benar ingin menghapus keinginan ini? Ini akan hilang "
+"selamanya."
 
 #: classes/page.php:336
 msgid "Passwords must match."
-msgstr "Las contraseñas deben coincidir."
+msgstr "Kata sandi harus cocok."
 
 #: classes/page.php:338
 msgid "Wishlist successfully renamed."
-msgstr "Lista de deseos renombrada con éxito."
+msgstr "Daftar keinginan berhasil diganti namanya."
 
 #: classes/page.php:339
 msgid "Wishlist successfully deleted."
-msgstr "Lista de deseos eliminada con éxito."
+msgstr "Wishlist berhasil dihapus."
 
 #: classes/page.php:341
 msgid "Wish successfully created."
-msgstr "Deseo creado con éxito."
+msgstr "Keinginan berhasil dibuat."
 
 #: classes/page.php:342
 msgid "Wish successfully added."
-msgstr "Deseo añadido con éxito."
+msgstr "Keinginan berhasil ditambahkan."
 
 #: classes/page.php:343
 msgid "Wish information updated."
-msgstr "Información actualizada de los deseos."
+msgstr "Informasi keinginan diperbarui."
 
 #: classes/page.php:344
 msgid "Don't forget to save your changes."
-msgstr "No olvides guardar los cambios."
+msgstr "Jangan lupa menyimpan perubahan Anda."
 
 #: classes/page.php:345
 msgid "Wish successfully deleted."
-msgstr "Deseo eliminado con éxito."
+msgstr "Keinginan berhasil dihapus."
 
 #: classes/page.php:348
 msgid "Unable to copy to clipboard. There is likely a permission issue."
-msgstr ""
-"No se puede copiar al portapapeles. Es probable que haya un problema de "
-"permisos."
+msgstr "Tidak dapat menyalin ke clipboard. Kemungkinan ada masalah izin."
 
 #: classes/page.php:349
 msgid "Link copied to clipboard."
-msgstr "Enlace copiado en el portapapeles."
+msgstr "Tautan disalin ke clipboard."
 
 #: classes/page.php:351
 msgid "{name} must have a value"
-msgstr "{name} debe tener un valor"
+msgstr "{name} harus memiliki nilai"
 
 #: classes/page.php:352
 msgid "{name} must be checked"
-msgstr "{name} debe ser comprobado"
+msgstr "{name} harus diperiksa"
 
 #: classes/page.php:353
 msgid "{name} must be a valid e-mail"
-msgstr "{name} debe ser un correo electrónico válido"
+msgstr "{name} harus berupa email yang valid"
 
 #: classes/page.php:354
 msgid "{name} must be a valid URL"
-msgstr "{name} debe ser una URL válida"
+msgstr "{name} harus berupa URL yang valid"
 
 #: classes/page.php:355
 msgid "{name} is not formatted correctly"
-msgstr "{name} no está formateado correctamente"
+msgstr "{name} tidak diformat dengan benar"
 
 #: classes/page.php:356
 msgid "{name} must be an integer"
-msgstr "{name} debe ser un número entero"
+msgstr "{name} harus berupa bilangan bulat"
 
 #: classes/page.php:357
 msgid "{name} must be a decimal number"
-msgstr "{name} debe ser un número decimal"
+msgstr "{name} harus berupa angka desimal"
 
 #: classes/page.php:358
 msgid "{name} must be set to a number"
-msgstr "{name} debe ajustarse a un número"
+msgstr "{name} harus ditetapkan ke angka"
 
 #: classes/page.php:359
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} debe ser \"{ruleValue}\""
+msgstr "{name} harus \"{ruleValue}\""
 
 #: classes/page.php:360
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} debe ser exactamente \"{ruleValue}\""
+msgstr "{name} harus tepat \"{ruleValue}\""
 
 #: classes/page.php:361
 msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} no se puede ajustar a \"{ruleValue}\""
+msgstr "{name} tidak dapat diatur ke \"{ruleValue}\""
 
 #: classes/page.php:362
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} no puede ajustarse exactamente a \"{ruleValue}\""
+msgstr "{name} tidak bisa disetel persis \"{ruleValue}\""
 
 #: classes/page.php:363
 msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} no puede contener \"{ruleValue}\""
+msgstr "{name} tidak boleh mengandung \"{ruleValue}\""
 
 #: classes/page.php:364
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} no puede contener exactamente \"{ruleValue}\""
+msgstr "{name} tidak bisa mengandung persis \"{ruleValue}\""
 
 #: classes/page.php:365
 msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} debe contener \"{ruleValue}\""
+msgstr "{name} harus mengandung \"{ruleValue}\""
 
 #: classes/page.php:366
 msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} debe contener exactamente \"{ruleValue}\""
+msgstr "{name} harus mengandung persis \"{ruleValue}\""
 
 #: classes/page.php:367 classes/page.php:368
 msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} debe tener al menos {ruleValue} caracteres"
+msgstr "{name} harus setidaknya {ruleValue} karakter"
 
 #: classes/page.php:369
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} debe ser exactamente {ruleValue} caracteres"
+msgstr "{name} harus tepat {ruleValue} karakter"
 
 #: classes/page.php:370
 msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} no puede ser más largo que {ruleValue} caracteres"
+msgstr "{name} tidak boleh lebih panjang dari karakter {ruleValue}"
 
 #: classes/page.php:371
 msgid "{name} must match {ruleValue} field"
-msgstr "{name} debe coincidir con el campo {ruleValue}"
+msgstr "{name} harus cocok dengan bidang {ruleValue}"
 
 #: classes/page.php:372
 msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} debe tener un valor diferente al del campo {ruleValue}"
+msgstr "{name} harus memiliki nilai yang berbeda dari bidang {ruleValue}"
 
 #: classes/page.php:373
 msgid "{name} must be a valid credit card number"
-msgstr "{name} debe ser un número de tarjeta de crédito válido"
+msgstr "{name} harus berupa nomor kartu kredit yang valid"
 
 #: classes/page.php:374
 msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} debe tener al menos {ruleValue} opciones"
+msgstr "{name} harus memiliki setidaknya {ruleValue} pilihan"
 
 #: classes/page.php:375
 msgid "{name} must have exactly {ruleValue} choices"
-msgstr "{name} debe tener exactamente {ruleValue} opciones"
+msgstr "{name} harus memiliki pilihan yang tepat {ruleValue}"
 
 #: classes/page.php:376
 msgid "{name} must have {ruleValue} or less choices"
-msgstr "{name} debe tener {ruleValue} o menos opciones"
+msgstr "{name} harus memiliki {ruleValue} atau kurang pilihan"
 
 #: classes/page.php:378
 msgctxt "Calendar"
 msgid "Today"
-msgstr "Hoy"
+msgstr "Hari ini"
 
 #: classes/page.php:379
 msgctxt "Calendar"
 msgid "Now"
-msgstr "Ahora"
+msgstr "Sekarang"
 
 #: classes/page.php:380
 msgctxt "Calendar"
@@ -265,121 +265,121 @@ msgstr "PM"
 #: classes/page.php:382
 msgctxt "Calendar"
 msgid "Week"
-msgstr "Semana"
+msgstr "Minggu"
 
 #: classes/page.php:384 pages/profile.php:209 pages/profile.php:210
 #: pages/profile.php:243 pages/profile.php:244 pages/profile.php:334
 #: pages/profile.php:335 pages/settings.php:53 pages/settings.php:54
 #: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
 msgid "Save"
-msgstr "Guarda"
+msgstr "Simpan"
 
 #: classes/page.php:385
 msgid "Saved"
-msgstr "Guardado"
+msgstr "Tersimpan"
 
 #: classes/page.php:453
 msgid "System"
-msgstr "Sistema"
+msgstr "Sistem"
 
 #: classes/page.php:459
 msgid "Account"
-msgstr "Cuenta"
+msgstr "Akun"
 
 #: classes/page.php:468 pages/home.php:105
 msgid "Wishlists"
-msgstr "Listas de deseos"
+msgstr "Daftar Harapan"
 
 #: classes/page.php:472 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
-msgstr "Mis listas"
+msgstr "Daftar saya"
 
 #: classes/page.php:477 pages/wishlists-saved.php:11
 msgid "Saved lists"
-msgstr "Listas guardadas"
+msgstr "Daftar yang disimpan"
 
 #: classes/page.php:487 pages/profile.php:11
 msgid "Profile"
-msgstr "Perfil"
+msgstr "Profil"
 
 #: classes/page.php:493 pages/login-as.php:11
 msgid "Login as"
-msgstr "Entrar como"
+msgstr "Masuk sebagai"
 
 #: classes/page.php:499 pages/logout.php:11
 msgid "Logout"
-msgstr "Cierre de sesión"
+msgstr "Logout"
 
 #: classes/page.php:505 classes/page.php:509 pages/home.php:50
 #: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
-msgstr "Entra en"
+msgstr "Masuk"
 
 #: classes/page.php:516 classes/page.php:520 pages/install.php:233
 #: pages/install.php:235 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
-msgstr "Regístrate en"
+msgstr "Daftar"
 
 #: classes/page.php:530 pages/settings.php:11
 msgid "Settings"
-msgstr "Ajustes"
+msgstr "Pengaturan"
 
 #: classes/page.php:543
 msgid "wishthis logo"
-msgstr "logo de wishthis"
+msgstr "logo wishthis"
 
 #: classes/page.php:678
 msgid "Contribute"
-msgstr "Aporta"
+msgstr "Berkontribusi"
 
 #: classes/page.php:684 classes/page.php:687
 msgid "GitHub repository"
-msgstr "Repositorio GitHub"
+msgstr "Repositori GitHub"
 
 #: classes/page.php:693 classes/page.php:696
 msgid "Translate"
-msgstr "Traduce"
+msgstr "Terjemahkan"
 
 #: classes/page.php:732
 #, php-format
 msgid "%s not found"
-msgstr "%s no se encuentra"
+msgstr "%s tidak ditemukan"
 
 #: classes/page.php:742
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
-"La lista de deseos solicitada no se encontró y probablemente fue eliminada "
-"por su creador."
+"Wishlist yang diminta tidak ditemukan dan kemungkinan dihapus oleh "
+"pembuatnya."
 
 #: classes/page.php:746
 msgid "The requested Wish was not found."
-msgstr "No se ha encontrado el Deseo solicitado."
+msgstr "Wish yang diminta tidak ditemukan."
 
 #: classes/page.php:750
 #, php-format
 msgid "The requested %s was not found."
-msgstr "No se ha encontrado la dirección %s solicitada."
+msgstr " %s yang diminta tidak ditemukan."
 
 #: classes/wish.php:27
 msgid "Unsure about it"
-msgstr "No estoy seguro de ello"
+msgstr "Tidak yakin tentang hal itu"
 
 #: classes/wish.php:31
 msgid "Nice to have"
-msgstr "Es bueno tenerlo"
+msgstr "Bagus untuk dimiliki"
 
 #: classes/wish.php:35
 msgid "Would love it"
-msgstr "Me encantaría"
+msgstr "Akan menyukainya"
 
 #: classes/wish.php:129
 msgid "Wish temporarily fulfilled"
-msgstr "Deseo cumplido temporalmente"
+msgstr "Keinginan yang sementara terpenuhi"
 
 #: classes/wish.php:130
 #, php-format
@@ -388,83 +388,84 @@ msgid ""
 "fulfilled here. If you do not confirm this wish as fulfilled, it will become"
 " available again to others after %d minutes."
 msgstr ""
-"Si este deseo es un producto, confirma que el pedido se ha realizado "
-"correctamente y márcalo como cumplido aquí. Si no confirmas este deseo como "
-"cumplido, volverá a estar disponible para otros después de %d minutos."
+"Jika keinginan ini adalah produk, konfirmasikan pesanan berhasil dan tandai "
+"sebagai terpenuhi di sini. Jika Anda tidak mengonfirmasi keinginan ini "
+"sebagai terpenuhi, keinginan ini akan tersedia lagi bagi orang lain setelah "
+"%d menit."
 
 #: classes/wish.php:136
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr "Konfirmasi"
 
 #: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
 msgid "Fulfil wish"
-msgstr "Cumplir el deseo"
+msgstr "Memenuhi keinginan"
 
 #: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
 #: pages/wish.php:90
 msgid "Visit"
-msgstr "Visita"
+msgstr "Kunjungi"
 
 #: classes/wish.php:203 classes/wish.php:206 pages/wishlists.php:32
 #: pages/wishlists.php:62 pages/wishlists.php:65
 msgid "Options"
-msgstr "Opciones"
+msgstr "Opsi"
 
 #: classes/wish.php:211
 msgid "Mark as fulfilled"
-msgstr "Marcar como cumplido"
+msgstr "Tandai sebagai terpenuhi"
 
 #: classes/wish.php:216
 msgid "Edit"
-msgstr "Edita"
+msgstr "Edit"
 
 #: classes/wish.php:221 pages/wishlists.php:73 pages/wishlists.php:75
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Hapus"
 
 #: classes/wish.php:239
 msgid "Wish not found"
-msgstr "Deseo no encontrado"
+msgstr "Keinginan tidak ditemukan"
 
 #: classes/wishlist.php:117
 msgid "Wishlist not found"
-msgstr "Lista de deseos no encontrada"
+msgstr "Daftar keinginan tidak ditemukan"
 
 #: config/config-sample.php:22 config/config.php:22
 msgid "Stable"
-msgstr "Estable"
+msgstr "Stabil"
 
 #: config/config-sample.php:27 config/config.php:27
 msgid "Release candidate"
-msgstr "Candidato a la liberación"
+msgstr "Kandidat rilis"
 
 #: functions/getWishlistNameSuggestion.php:31
 msgid "Birthday"
-msgstr "Cumpleaños"
+msgstr "Ulang Tahun"
 
 #: functions/getWishlistNameSuggestion.php:33
 msgid "Easter"
-msgstr "Pascua"
+msgstr "Paskah"
 
 #: functions/getWishlistNameSuggestion.php:35
 msgid "Christmas"
-msgstr "Navidad"
+msgstr "Natal"
 
 #: pages/home.php:11
 msgid "Home"
-msgstr "Inicio"
+msgstr "Rumah"
 
 #: pages/home.php:24
 msgid "Welcome to wishthis"
-msgstr "Bienvenido a wishthis"
+msgstr "Selamat datang di wishthis"
 
 #: pages/home.php:42 pages/home.php:44
 msgid "Register now"
-msgstr "Regístrate ahora"
+msgstr "Daftar sekarang"
 
 #: pages/home.php:60
 msgid "Use case"
-msgstr "Caso práctico"
+msgstr "Kasus penggunaan"
 
 #: pages/home.php:62
 msgid ""
@@ -473,15 +474,15 @@ msgid ""
 " you are happy with so you send them your wishlist link and if anybody "
 "decides to fulfil one of your wishes, it will disappear for everybody else."
 msgstr ""
-"Se acerca tu cumpleaños y acabas de crear una lista de deseos con todas las "
-"cosas chulas que quieres. Tus amigos y familiares quieren asegurarse de que "
-"consigues algo que te hace feliz, así que les envías el enlace de tu lista "
-"de deseos y si alguien decide cumplir uno de tus deseos, desaparecerá para "
-"todos los demás."
+"Ulang tahun Anda akan datang dan Anda baru saja membuat daftar keinginan "
+"dengan semua barang keren yang Anda inginkan. Teman-teman dan keluarga Anda "
+"ingin memastikan Anda mendapatkan sesuatu yang Anda sukai, jadi Anda "
+"mengirimi mereka tautan daftar keinginan Anda dan jika ada yang memutuskan "
+"untuk memenuhi salah satu keinginan Anda, itu akan hilang untuk orang lain."
 
 #: pages/home.php:66
 msgid "Why wishthis?"
-msgstr "¿Por qué wishthis?"
+msgstr "Mengapa wishthis?"
 
 #: pages/home.php:69
 #, php-format
@@ -491,34 +492,35 @@ msgid ""
 "personal information and behaviour. Not only can anybody %sview and verify "
 "its code%s, I also encourage you to do so."
 msgstr ""
-"wishthis es un software libre y de código abierto. Con libre no me refiero "
-"sólo a que no tengas que pagar dinero por utilizarlo, sino que tampoco pagas"
-" con tu información personal y tu comportamiento. No sólo puede cualquiera "
-"%sver y verificar su código%s, también te animo a que lo hagas."
+"wishthis adalah perangkat lunak sumber terbuka dan gratis. Dengan gratis, "
+"saya tidak hanya bermaksud, Anda tidak perlu membayar uang untuk "
+"menggunakannya, tetapi Anda juga tidak membayar dengan informasi dan "
+"perilaku pribadi Anda. Tidak hanya siapa saja %sdapat melihat dan "
+"memverifikasi kodenya%s, saya juga mendorong Anda untuk melakukannya."
 
 #: pages/home.php:72
 msgid "As a non-commercial project it remains"
-msgstr "Como proyecto no comercial, sigue siendo"
+msgstr "Sebagai proyek non-komersial, proyek ini tetap"
 
 #: pages/home.php:76
 msgid "free of advertisements,"
-msgstr "libre de anuncios,"
+msgstr "bebas dari iklan,"
 
 #: pages/home.php:80
 msgid "without tracking, and"
-msgstr "sin seguimiento, y"
+msgstr "tanpa pelacakan, dan"
 
 #: pages/home.php:84
 msgid "open for feedback and suggestions."
-msgstr "abierto a comentarios y sugerencias."
+msgstr "terbuka untuk umpan balik dan saran."
 
 #: pages/home.php:92
 msgid "Statistics"
-msgstr "Estadísticas"
+msgstr "Statistik"
 
 #: pages/home.php:94
 msgid "Join the others and get started now!"
-msgstr "¡Únete a los demás y empieza ya!"
+msgstr "Bergabunglah dengan yang lain dan mulailah sekarang!"
 
 #: pages/home.php:99 pages/home.php:104 pages/home.php:109
 msgid "N. A."
@@ -526,120 +528,119 @@ msgstr "N. A."
 
 #: pages/home.php:100 pages/wishlist.php:69 pages/wishlists.php:85
 msgid "Wishes"
-msgstr "Deseos"
+msgstr "Keinginan"
 
 #: pages/home.php:110
 msgid "Registered users"
-msgstr "Usuarios registrados"
+msgstr "Pengguna terdaftar"
 
 #: pages/home.php:116
 msgid "What's new"
-msgstr "Novedades"
+msgstr "Apa yang baru"
 
 #. TRANSLATORS: %s: Changelog
 #: pages/home.php:122
 #, php-format
 msgid "Check out the %s for a list changes."
-msgstr "Consulta la página web %s para ver los cambios en la lista."
+msgstr "Lihat %s untuk perubahan daftar."
 
 #: pages/home.php:123
 msgid "Changelog"
-msgstr "Registro de cambios"
+msgstr "Changelog"
 
 #: pages/install.php:15
 msgid "Install"
-msgstr "Instala"
+msgstr "Pasang"
 
 #: pages/install.php:30 pages/install.php:101
 #, php-format
 msgid "Step %d"
-msgstr "Paso %d"
+msgstr "Langkah %d"
 
 #: pages/install.php:31
 msgid "Welcome to the wishthis installer."
-msgstr "Bienvenido al instalador de wishthis."
+msgstr "Selamat datang di penginstal wishthis."
 
 #: pages/install.php:32
 msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
 msgstr ""
-"wishthis necesita una base de datos para funcionar correctamente. Por favor,"
-" introduce tus credenciales."
+"wishthis membutuhkan database untuk berfungsi dengan baik. Silakan masukkan "
+"kredensial Anda."
 
 #: pages/install.php:39
 msgid "Host"
-msgstr "Anfitrión"
+msgstr "Tuan rumah"
 
 #: pages/install.php:44 pages/wishlists.php:117
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nama"
 
 #: pages/install.php:49
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "Nama pengguna"
 
 #: pages/install.php:54 pages/login.php:119 pages/profile.php:143
 #: pages/profile.php:218 pages/profile.php:227 pages/register.php:193
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Kata sandi"
 
 #: pages/install.php:60 pages/install.php:61 pages/install.php:110
 #: pages/install.php:111
 msgid "Continue"
-msgstr "Continuar"
+msgstr "Lanjutkan"
 
 #: pages/install.php:102
 msgid "Click continue to test the database connection."
-msgstr "Haz clic en continuar para probar la conexión a la base de datos."
+msgstr "Klik continue untuk menguji koneksi database."
 
 #: pages/login-as.php:38
 #, php-format
 msgid "Successfully logged in as %s."
-msgstr "Se ha conectado con éxito como %s."
+msgstr "Berhasil masuk sebagai %s."
 
 #: pages/login-as.php:40
 msgid "User not found!"
-msgstr "¡Usuario no encontrado!"
+msgstr "Pengguna tidak ditemukan!"
 
 #: pages/login-as.php:48 pages/login.php:110 pages/profile.php:34
 #: pages/profile.php:184 pages/register.php:175
 msgid "Email"
-msgstr "Envía un correo electrónico a"
+msgstr "Email"
 
 #: pages/login.php:36
 msgid "No user could be found with the credentials you provided."
 msgstr ""
-"No se ha podido encontrar ningún usuario con las credenciales que has "
-"proporcionado."
+"Tidak ada pengguna yang bisa ditemukan dengan kredensial yang Anda berikan."
 
 #: pages/login.php:37
 msgid "Invalid credentials"
-msgstr "Credenciales no válidas"
+msgstr "Kredensial tidak valid"
 
 #: pages/login.php:81
 msgid "Password reset link"
-msgstr "Enlace para restablecer la contraseña"
+msgstr "Tautan pengaturan ulang kata sandi"
 
 #: pages/login.php:85
 msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
 msgstr ""
-"Si se encuentra una coincidencia para esta dirección de correo electrónico, "
-"se le enviará un enlace para restablecer la contraseña."
+"Jika ditemukan kecocokan untuk alamat email ini, tautan pengaturan ulang "
+"kata sandi akan dikirim ke alamat email tersebut."
 
 #: pages/login.php:86
 msgid "Info"
-msgstr "Información"
+msgstr "Info"
 
 #: pages/login.php:106
 msgid "Credentials"
-msgstr "Credenciales"
+msgstr "Kredensial"
 
 #: pages/login.php:143
 msgid "Forgot password?"
-msgstr "¿Has olvidado la contraseña?"
+msgstr "Lupa kata sandi?"
 
 #: pages/login.php:145
 msgid ""
@@ -647,53 +648,53 @@ msgid ""
 " you to access them with one master password. Never forget a password ever "
 "again."
 msgstr ""
-"Considera la posibilidad de utilizar un gestor de contraseñas. Guardará "
-"todas tus contraseñas y te permitirá acceder a ellas con una sola contraseña"
-" maestra. No vuelvas a olvidar nunca una contraseña."
+"Pertimbangkan untuk menggunakan pengelola kata sandi. Ini akan menyimpan "
+"semua kata sandi Anda dan memungkinkan Anda untuk mengaksesnya dengan satu "
+"kata sandi utama. Jangan pernah lupa kata sandi lagi."
 
 #: pages/login.php:161 pages/login.php:162
 msgid "Send email"
-msgstr "Enviar correo electrónico"
+msgstr "Kirim email"
 
 #: pages/login.php:170
 msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
 msgstr ""
-"Ten en cuenta que tienes que introducir la dirección de correo electrónico "
-"con la que te has registrado."
+"Harap dicatat bahwa Anda harus memasukkan alamat email yang telah Anda "
+"daftarkan."
 
 #: pages/logout.php:28
 msgid "Goodbye"
-msgstr "Adiós"
+msgstr "Selamat tinggal"
 
 #: pages/logout.php:29
 msgid "You have been logged out."
-msgstr "Se ha cerrado la sesión."
+msgstr "Anda telah log keluar."
 
 #: pages/maintenance.php:11
 msgid "Maintenance"
-msgstr "Mantenimiento"
+msgstr "Pemeliharaan"
 
 #: pages/maintenance.php:22
 msgid "Temporarily unavailable"
-msgstr "No disponible temporalmente"
+msgstr "Untuk sementara tidak tersedia"
 
 #: pages/maintenance.php:23
 msgid ""
 "Due to maintenance, wishthis is temporarily not available. Please check back"
 " again in a minute."
 msgstr ""
-"Debido al mantenimiento, wishthis no está disponible temporalmente. Por "
-"favor, vuelve a comprobarlo en un momento."
+"Karena pemeliharaan, wishthis untuk sementara tidak tersedia. Harap periksa "
+"kembali sebentar lagi."
 
 #: pages/parts/wish-add.php:17 pages/wishlists.php:148
 msgid "Title"
-msgstr "Título"
+msgstr "Judul"
 
 #: pages/parts/wish-add.php:30
 msgid "Description"
-msgstr "Descripción"
+msgstr "Deskripsi"
 
 #: pages/parts/wish-add.php:42 pages/wish.php:153
 msgid "URL"
@@ -701,47 +702,47 @@ msgstr "URL"
 
 #: pages/parts/wish-add.php:53
 msgid "Priority"
-msgstr "Prioridad"
+msgstr "Prioritas"
 
 #: pages/parts/wish-add.php:58
 msgid "Select priority"
-msgstr "Selecciona la prioridad"
+msgstr "Pilih prioritas"
 
 #: pages/parts/wish-add.php:71
 msgid "Properties"
-msgstr "Propiedades"
+msgstr "Properti"
 
 #: pages/parts/wish-add.php:80
 msgid "Is purchasable"
-msgstr "Se puede comprar"
+msgstr "Dapat dibeli"
 
 #: pages/parts/wishlist-filter.php:21
 msgid "Filter priorities"
-msgstr "Filtrar las prioridades"
+msgstr "Prioritas filter"
 
 #: pages/parts/wishlist-filter.php:26
 msgid "Search priorities"
-msgstr "Prioridades de búsqueda"
+msgstr "Prioritas pencarian"
 
 #: pages/parts/wishlist-filter.php:33
 msgid "Priorities"
-msgstr "Prioridades"
+msgstr "Prioritas"
 
 #: pages/parts/wishlist-filter.php:39
 msgid "All priorities"
-msgstr "Todas las prioridades"
+msgstr "Semua prioritas"
 
 #: pages/parts/wishlist-filter.php:44
 msgid "No priority"
-msgstr "Sin prioridad"
+msgstr "Tidak ada prioritas"
 
 #: pages/power.php:11
 msgid "Insufficient power"
-msgstr "Potencia insuficiente"
+msgstr "Daya yang tidak mencukupi"
 
 #: pages/power.php:22
 msgid "Restricted access"
-msgstr "Acceso restringido"
+msgstr "Akses terbatas"
 
 #: pages/power.php:23
 #, php-format
@@ -749,102 +750,102 @@ msgid ""
 "You do not have enough power to view this page. You need %s to see this "
 "page, but only have %s."
 msgstr ""
-"No tienes suficiente potencia para ver esta página. Necesitas %s para ver "
-"esta página, pero sólo tienes %s."
+"Anda tidak memiliki cukup daya untuk melihat halaman ini. Anda memerlukan %s"
+" untuk melihat halaman ini, tetapi hanya memiliki %s."
 
 #: pages/profile.php:19 pages/profile.php:164
 msgid "First name"
-msgstr "Nombre"
+msgstr "Nama depan"
 
 #: pages/profile.php:24 pages/profile.php:170
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Nama belakang"
 
 #: pages/profile.php:29 pages/profile.php:176
 msgid "Nickname"
-msgstr "Apodo"
+msgstr "Nama panggilan"
 
 #: pages/profile.php:39 pages/profile.php:290
 msgid "Language"
-msgstr "Lengua"
+msgstr "Bahasa"
 
 #: pages/profile.php:52
 #, php-format
 msgid "%s successfully updated!"
-msgstr "%s ¡actualizado con éxito!"
+msgstr "%s berhasil diperbarui!"
 
 #: pages/profile.php:118
 msgid "It is required for you to login again."
-msgstr "Es necesario para que puedas volver a conectarte."
+msgstr "Ini diperlukan bagi Anda untuk login lagi."
 
 #: pages/profile.php:139 pages/profile.php:155
 msgid "Personal"
-msgstr "Personal"
+msgstr "Pribadi"
 
 #: pages/profile.php:140
 msgid "Information regarding yourself"
-msgstr "Información sobre ti mismo"
+msgstr "Informasi mengenai diri Anda"
 
 #: pages/profile.php:144
 msgid "Change your password"
-msgstr "Cambia tu contraseña"
+msgstr "Ubah kata sandi Anda"
 
 #: pages/profile.php:147 pages/profile.php:281
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "Preferensi"
 
 #: pages/profile.php:148
 msgid "Improve your wishthis experience"
-msgstr "Mejora tu experiencia en wishthis"
+msgstr "Tingkatkan pengalaman wishthis Anda"
 
 #: pages/profile.php:190
 msgid "Birthdate"
-msgstr "Fecha de nacimiento"
+msgstr "Tanggal lahir"
 
 #: pages/profile.php:197
 msgid "Pick a date"
-msgstr "Elige una fecha"
+msgstr "Pilih tanggal"
 
 #: pages/profile.php:233
 msgid "Password (repeat)"
-msgstr "Contraseña (repetir)"
+msgstr "Kata sandi (ulangi)"
 
 #: pages/profile.php:249
 msgid "Safe password checklist"
-msgstr "Lista de comprobación de contraseñas seguras"
+msgstr "Daftar periksa kata sandi yang aman"
 
 #: pages/profile.php:256
 msgid "Long"
-msgstr "Largo"
+msgstr "Panjang"
 
 #: pages/profile.php:257
 msgid "Over eight characters in length."
-msgstr "Más de ocho caracteres de longitud."
+msgstr "Panjangnya lebih dari delapan karakter."
 
 #. TRANSLATORS: A special character (for a password)
 #: pages/profile.php:268
 msgid "Special"
-msgstr "Especial"
+msgstr "Khusus"
 
 #: pages/profile.php:271
 msgid "Contains special characters."
-msgstr "Contiene caracteres especiales."
+msgstr "Mengandung karakter khusus."
 
 #: pages/profile.php:313 pages/profile.php:371
 msgid "Channel"
-msgstr "Canal"
+msgstr "Saluran"
 
 #: pages/profile.php:316
 msgid "Select channel"
-msgstr "Selecciona el canal"
+msgstr "Pilih saluran"
 
 #: pages/profile.php:374
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
 msgstr ""
-"Para mejorar la experiencia de usuario de wishthis, las nuevas versiones se "
-"publican tras un amplio periodo de pruebas."
+"Untuk meningkatkan pengalaman pengguna wishthis, versi yang lebih baru "
+"diterbitkan setelah periode pengujian yang ekstensif."
 
 #: pages/profile.php:375
 msgid ""
@@ -852,9 +853,9 @@ msgid ""
 "stability while using wishthis, minimizing the amount of errors you may "
 "encounter (if any)."
 msgstr ""
-"La suscripción al canal Estable te asegura la mayor estabilidad posible "
-"mientras utilizas wishthis, minimizando la cantidad de errores que puedas "
-"encontrar (si los hay)."
+"Berlangganan ke saluran Stable memastikan Anda memiliki stabilitas setinggi "
+"mungkin saat menggunakan wishthis, meminimalkan jumlah kesalahan yang "
+"mungkin Anda temui (jika ada)."
 
 #: pages/profile.php:376
 msgid ""
@@ -862,30 +863,28 @@ msgid ""
 "to the Release candidate of wishthis. A newer version is not published "
 "unless the next release candidate has been sufficiently tested."
 msgstr ""
-"Si quieres acelerar la publicación de nuevas versiones, considera la "
-"posibilidad de suscribirte a la versión candidata de wishthis. Una versión "
-"más nueva no se publica hasta que la siguiente versión candidata haya sido "
-"suficientemente probada."
+"Jika Anda ingin mempercepat rilis versi yang lebih baru, pertimbangkan untuk"
+" berlangganan Release candidate dari wishthis. Versi yang lebih baru tidak "
+"akan diterbitkan kecuali kandidat rilis berikutnya telah diuji secara "
+"memadai."
 
 #: pages/profile.php:388
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
-msgstr[0] "%d se necesitan más suscriptores"
-msgstr[1] "%d se necesitan más suscriptores"
-msgstr[2] "%d se necesitan más suscriptores"
+msgstr[0] "%d dibutuhkan lebih banyak pelanggan"
 
 #: pages/register.php:13
 msgid "Reset password"
-msgstr "Restablecer contraseña"
+msgstr "Setel ulang kata sandi"
 
 #: pages/register.php:14 pages/wish.php:123 pages/wish.php:124
 msgid "Reset"
-msgstr "Restablece"
+msgstr "Atur ulang"
 
 #: pages/register.php:31
 msgid "Mercury"
-msgstr "Mercurio"
+msgstr "Merkuri"
 
 #: pages/register.php:32
 msgid "Venus"
@@ -893,35 +892,35 @@ msgstr "Venus"
 
 #: pages/register.php:33
 msgid "Earth"
-msgstr "Tierra"
+msgstr "Bumi"
 
 #: pages/register.php:34
 msgid "Mars"
-msgstr "Marte"
+msgstr "Mars"
 
 #: pages/register.php:35
 msgid "Jupiter"
-msgstr "Júpiter"
+msgstr "Jupiter"
 
 #: pages/register.php:36
 msgid "Saturn"
-msgstr "Saturno"
+msgstr "Saturnus"
 
 #: pages/register.php:37
 msgid "Uranus"
-msgstr "Urano"
+msgstr "Uranus"
 
 #: pages/register.php:38
 msgid "Neptune"
-msgstr "Neptuno"
+msgstr "Neptunus"
 
 #: pages/register.php:41
 msgid "Pluto"
-msgstr "Plutón"
+msgstr "Pluto"
 
 #: pages/register.php:42
 msgid "Sun"
-msgstr "Sol"
+msgstr "Sun"
 
 #: pages/register.php:51
 #, php-format
@@ -929,72 +928,72 @@ msgid ""
 "%s is not a planet but I'll let it slide, since only a human would make this"
 " kind of mistake."
 msgstr ""
-"%s no es un planeta, pero lo dejaré pasar, ya que sólo un humano cometería "
-"este tipo de error."
+"%s bukanlah sebuah planet, tetapi saya akan membiarkannya, karena hanya "
+"manusia yang akan membuat kesalahan semacam ini."
 
 #: pages/register.php:52 pages/register.php:151
 msgid "Invalid planet"
-msgstr "Planeta inválido"
+msgstr "Planet yang tidak valid"
 
 #: pages/register.php:83
 msgid "This link has expired."
-msgstr "Este enlace ha caducado."
+msgstr "Tautan ini telah kedaluwarsa."
 
 #: pages/register.php:86
 msgid "This link seems invalid."
-msgstr "Este enlace parece no ser válido."
+msgstr "Tautan ini tampaknya tidak valid."
 
 #: pages/register.php:108
 msgid "An account with this email address already exists."
-msgstr "Ya existe una cuenta con esta dirección de correo electrónico."
+msgstr "Akun dengan alamat email ini sudah ada."
 
 #: pages/register.php:109
 msgid "Invalid email address"
-msgstr "Dirección de correo electrónico no válida"
+msgstr "Alamat email tidak valid"
 
 #: pages/register.php:123
 msgid "Your account was successfully created."
-msgstr "Tu cuenta ha sido creada con éxito."
+msgstr "Akun Anda berhasil dibuat."
 
 #: pages/register.php:133
 msgid "My hopes and dreams"
-msgstr "Mis esperanzas y sueños"
+msgstr "Harapan dan impian saya"
 
 #: pages/register.php:150
 #, php-format
 msgid ""
 "%s is not a planet in our solar system. Read this for more information: %s."
 msgstr ""
-"%s no es un planeta de nuestro sistema solar. Lee esto para obtener más "
-"información: %s."
+"%s bukanlah planet di tata surya kita. Baca ini untuk informasi lebih "
+"lanjut: %s."
 
 #: pages/register.php:172
 msgid "Account details"
-msgstr "Datos de la cuenta"
+msgstr "Detail akun"
 
 #: pages/register.php:203
 msgid "Authentication"
-msgstr "Autenticación"
+msgstr "Autentikasi"
 
 #: pages/register.php:204
 msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
 msgstr ""
-"Demuestra que eres un Humano, un Lagarto o una criatura parecida a un Zuck. "
-"Por favor, nombra un planeta de nuestro sistema solar."
+"Buktikan bahwa Anda adalah Manusia, Kadal, atau makhluk seperti Zuck. "
+"Sebutkan nama planet dari tata surya kita."
 
 #: pages/register.php:207
 msgid "Planet"
-msgstr "Planeta"
+msgstr "Planet"
 
 #: pages/register.php:214
 msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
-"Los robots son obviamente de otro sistema solar, así que esto los mantendrá "
-"a raya."
+"Robot jelas berasal dari sistem tata surya lain, jadi ini akan menjauhkan "
+"mereka."
 
 #: pages/settings.php:27
 msgid "MJML"
@@ -1004,8 +1003,7 @@ msgstr "MJML"
 #, php-format
 msgid "MJML is required for sending emails. Visit %s to request API access."
 msgstr ""
-"Se necesita MJML para enviar correos electrónicos. Visita %s para solicitar "
-"el acceso a la API."
+"MJML diperlukan untuk mengirim email. Kunjungi %s untuk meminta akses API."
 
 #: pages/settings.php:30
 msgid "API"
@@ -1013,139 +1011,139 @@ msgstr "API"
 
 #: pages/settings.php:33
 msgid "Key"
-msgstr "Clave"
+msgstr "Kunci"
 
 #: pages/settings.php:42
 msgid "Secret"
-msgstr "Secreto"
+msgstr "Rahasia"
 
 #: pages/update.php:11
 msgid "Update"
-msgstr "Actualiza"
+msgstr "Pembaruan"
 
 #: pages/update.php:42
 #, php-format
 msgid "Database successfully migrated to %s."
-msgstr "Base de datos migrada con éxito a %s."
+msgstr "Database berhasil dimigrasikan ke %s."
 
 #: pages/update.php:67
 msgid "Database migration"
-msgstr "Migración de la base de datos"
+msgstr "Migrasi basis data"
 
 #: pages/update.php:68
 msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
 msgstr ""
-"¡Gracias por actualizar wishthis! Para completar esta actualización, son "
-"necesarios algunos cambios en la estructura de la base de datos."
+"Terima kasih telah memperbarui wishthis! Untuk menyelesaikan pembaruan ini, "
+"beberapa perubahan diperlukan pada struktur database."
 
 #: pages/update.php:73 pages/update.php:76
 #, php-format
 msgid "Migrate to %s"
-msgstr "Migrar a %s"
+msgstr "Bermigrasi ke %s"
 
 #: pages/wish.php:37
 msgid "Wish successfully updated."
-msgstr "Deseo actualizado con éxito."
+msgstr "Keinginan berhasil diperbarui."
 
 #: pages/wish.php:95 pages/wish.php:98
 msgid "Auto-fill"
-msgstr "Relleno automático"
+msgstr "Isi otomatis"
 
 #: pages/wish.php:128 pages/wish.php:130
 msgid "Back"
-msgstr "Volver"
+msgstr "Kembali"
 
 #: pages/wish.php:146
 msgid "Image"
-msgstr "Imagen"
+msgstr "Gambar"
 
 #: pages/wish.php:149
 msgid "Define a new URL to be used as a preview."
-msgstr "Define una nueva URL que se utilizará como vista previa."
+msgstr "Tentukan URL baru untuk digunakan sebagai pratinjau."
 
 #: pages/wish.php:162 pages/wish.php:163
 msgid "Discard"
-msgstr "Descartar"
+msgstr "Buang"
 
 #: pages/wish.php:171
 msgid "Warning"
-msgstr "Advertencia"
+msgstr "Peringatan"
 
 #: pages/wish.php:174
 msgid "This action will potentially overwrite all fields in this wish."
-msgstr ""
-"Esta acción sobreescribirá potencialmente todos los campos de este deseo."
+msgstr "Tindakan ini berpotensi menimpa semua bidang dalam keinginan ini."
 
 #: pages/wish.php:175
 msgid "Would you like to continue?"
-msgstr "¿Quieres continuar?"
+msgstr "Apakah Anda ingin melanjutkan?"
 
 #: pages/wish.php:178 pages/wish.php:179
 msgid "Yes, overwrite"
-msgstr "Sí, sobrescribir"
+msgstr "Ya, timpa"
 
 #: pages/wish.php:181 pages/wish.php:182
 msgid "No"
-msgstr "No"
+msgstr "Tidak"
 
 #: pages/wish.php:190
 msgid "URL mismatch"
-msgstr "Falta de coincidencia de URL"
+msgstr "Ketidakcocokan URL"
 
 #: pages/wish.php:194
 msgid ""
 "The URL you have entered does not seem quite right. Would you like to update"
 " it with the one I found?"
 msgstr ""
-"La URL que has introducido no parece del todo correcta. ¿Quieres "
-"actualizarla con la que he encontrado?"
+"URL yang Anda masukkan tampaknya kurang tepat. Apakah Anda ingin "
+"memperbaruinya dengan yang saya temukan?"
 
 #: pages/wish.php:195
 #, php-format
 msgid "According to %s, this is the canonical (correct) URL."
-msgstr "Según %s, ésta es la URL canónica (correcta)."
+msgstr "Menurut %s, ini adalah URL kanonik (yang benar)."
 
 #: pages/wish.php:199
 msgid "Current"
-msgstr "Actual"
+msgstr "Saat ini"
 
 #: pages/wish.php:204
 msgid "Proposed"
-msgstr "Propuesta"
+msgstr "Diusulkan"
 
 #: pages/wish.php:211 pages/wish.php:212
 msgid "Yes, update"
-msgstr "Sí, actualiza"
+msgstr "Ya, perbarui"
 
 #: pages/wish.php:214 pages/wish.php:215
 msgid "No, leave it"
-msgstr "No, déjalo"
+msgstr "Tidak, biarkan saja"
 
 #: pages/wishlist.php:33
 msgid "Save list"
-msgstr "Guardar lista"
+msgstr "Simpan daftar"
 
 #: pages/wishlist.php:49
 msgid "Careful"
-msgstr "Cuidado"
+msgstr "Hati-hati"
 
 #: pages/wishlist.php:52
 msgid ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
 " already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
-"¡Estás viendo tu propia lista de deseos! Podrás ver qué deseos se han "
-"cumplido ya para ti. ¿No quieres que te sorprendan?"
+"Anda sedang melihat daftar keinginan Anda sendiri! Anda akan dapat melihat "
+"keinginan mana yang telah terpenuhi untuk Anda. Tidakkah Anda ingin "
+"terkejut?"
 
 #: pages/wishlist.php:53
 msgid "It's probably best to just close this tab."
-msgstr "Probablemente sea mejor cerrar esta pestaña."
+msgstr "Mungkin lebih baik menutup tab ini saja."
 
 #: pages/wishlist.php:61
 msgid "What to do?"
-msgstr "¿Qué hacer?"
+msgstr "Apa yang harus dilakukan?"
 
 #: pages/wishlist.php:63
 #, php-format
@@ -1155,64 +1153,67 @@ msgid ""
 "fulfilled wish here (i. e. after placing an order), to make the wish "
 "permanently unavailable for everybody else."
 msgstr ""
-"Si has encontrado un deseo que te gustaría cumplir, haz clic en el botón %s "
-"y quedará temporalmente indisponible para los demás. Asegúrate de confirmar "
-"el deseo cumplido aquí (es decir, después de hacer un pedido), para que el "
-"deseo no esté disponible permanentemente para los demás."
+"Jika Anda menemukan keinginan yang ingin Anda penuhi, klik tombol %s dan "
+"untuk sementara waktu keinginan tersebut tidak akan tersedia bagi orang "
+"lain. Pastikan untuk mengonfirmasi keinginan yang terpenuhi di sini (yaitu "
+"setelah melakukan pemesanan), untuk membuat keinginan tersebut secara "
+"permanen tidak tersedia bagi orang lain."
 
 #: pages/wishlists.php:24
 msgid "Wishlist"
-msgstr "Lista de deseos"
+msgstr "Daftar keinginan"
 
 #: pages/wishlists.php:27
 msgid "Loading your wishlists..."
-msgstr "Cargando tus listas de deseos..."
+msgstr "Memuat daftar keinginan Anda..."
 
 #: pages/wishlists.php:36 pages/wishlists.php:39 pages/wishlists.php:109
 msgid "Create a wishlist"
-msgstr "Crea una lista de deseos"
+msgstr "Buat daftar keinginan"
 
 #: pages/wishlists.php:47 pages/wishlists.php:50 pages/wishlists.php:166
 msgid "Add a wish"
-msgstr "Añade un deseo"
+msgstr "Tambahkan keinginan"
 
 #: pages/wishlists.php:55 pages/wishlists.php:58
 msgid "Share"
-msgstr "Comparte"
+msgstr "Berbagi"
 
 #: pages/wishlists.php:68 pages/wishlists.php:70 pages/wishlists.php:154
 #: pages/wishlists.php:155
 msgid "Rename"
-msgstr "Cambia el nombre de"
+msgstr "Ganti nama"
 
 #: pages/wishlists.php:113
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
 msgstr ""
-"Elige un nuevo nombre para tu lista de deseos. Aquí tienes una sugerencia "
-"para empezar."
+"Pilih nama baru untuk daftar keinginan Anda. Berikut saran untuk membantu "
+"Anda memulai."
 
 #: pages/wishlists.php:127 pages/wishlists.php:128
 msgid "Create"
-msgstr "Crea"
+msgstr "Buat"
 
 #: pages/wishlists.php:130 pages/wishlists.php:131 pages/wishlists.php:157
 #: pages/wishlists.php:158 pages/wishlists.php:185 pages/wishlists.php:186
 msgid "Cancel"
-msgstr "Cancela"
+msgstr "Batal"
 
 #: pages/wishlists.php:139
 msgid "Rename wishlist"
-msgstr "Cambiar el nombre de la lista de deseos"
+msgstr "Ubah nama daftar keinginan"
 
 #: pages/wishlists.php:142
 msgid "How would you like to name this wishlist?"
-msgstr "¿Cómo te gustaría nombrar esta lista de deseos?"
+msgstr "Bagaimana Anda ingin menamai daftar keinginan ini?"
 
 #: pages/wishlists.php:170
 msgid "Fill out any or all of the below fields to add your new wish."
-msgstr "Rellena uno o todos los campos siguientes para añadir tu nuevo deseo."
+msgstr ""
+"Isi salah satu atau semua kolom di bawah ini untuk menambahkan keinginan "
+"baru Anda."
 
 #: pages/wishlists.php:182 pages/wishlists.php:183
 msgid "Add"
-msgstr "Añade"
+msgstr "Tambahkan"
