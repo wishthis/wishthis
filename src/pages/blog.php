@@ -32,7 +32,7 @@ $posts = Blog::getPosts();
                 );
                 $mediaHTML      = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
                 $categoriesHTML = Blog::getCategoriesHTML($post->categories);
-                $postLink       = '/?page=post&id=' . $post->id;
+                $postLink       = '/?page=post&slug=' . $post->slug;
                 ?>
                 <div class="column">
                     <div class="ui fluid card stretch">

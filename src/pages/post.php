@@ -8,8 +8,8 @@
 
 namespace wishthis;
 
-$postID        = $_SESSION['_GET']['id'];
-$post          = Blog::getPost($postID);
+$postSlug      = $_SESSION['_GET']['slug'];
+$post          = Blog::getPostBySlug($postSlug);
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
 
 $page = new Page(__FILE__, 'Post');

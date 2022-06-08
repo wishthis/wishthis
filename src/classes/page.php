@@ -122,6 +122,7 @@ class Page
         $ignorePower = array(
             'home',
             'blog',
+            'post',
             'install',
             'login',
             'maintenance',

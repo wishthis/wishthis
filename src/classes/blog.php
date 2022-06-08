@@ -33,6 +33,19 @@ class Blog
         return $post;
     }
 
+    public static function getPostBySlug(string $slug): \stdClass
+    {
+        $posts = self::get(self::ENDPOINT_POSTS);
+
+        foreach ($posts as $post) {
+            if ($slug === $post->slug) {
+                return $post;
+            }
+        }
+
+        throw new \Exception('No post found with the slug "' . $slug . '".');
+    }
+
     public static function getPosts(): array
     {
         $posts = self::get(self::ENDPOINT_POSTS);
