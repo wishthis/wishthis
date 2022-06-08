@@ -22,13 +22,40 @@ $posts = Blog::getPosts();
 
         <?= $page->messages() ?>
 
-        <?php foreach ($posts as $post) { ?>
-            <div class="ui segment">
-                <h2 class="ui header"><?= $post->title->rendered ?></h2>
-
-                <div><?= $post->content->rendered ?></div>
-            </div>
-        <?php } ?>
+        <div class="ui two column doubling stackable grid">
+            <?php foreach ($posts as $post) { ?>
+                <?php
+                $dateFormatter  = new \IntlDateFormatter(
+                    $user->locale,
+                    \IntlDateFormatter::MEDIUM,
+                    \IntlDateFormatter::NONE
+                );
+                $mediaHTML      = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
+                $categoriesHTML = Blog::getCategoriesHTML($post->categories);
+                ?>
+                <div class="column">
+                    <div class="ui fluid card stretch">
+                        <div class="image"><?= $mediaHTML ?></div>
+                        <div class="content">
+                            <div class="header"><?= $post->title->rendered ?></div>
+                            <div class="meta">
+                                <a><?= $categoriesHTML ?></a>
+                            </div>
+                            <div class="description"><?= $post->excerpt->rendered ?></div>
+                        </div>
+                        <div class="extra content">
+                            <span class="right floated"><?= $dateFormatter->format(strtotime($post->date)) ?></span>
+                            <!--
+                            <span>
+                                <i class="user icon"></i>
+                                75 Friends
+                            </span>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
     </div>
 </main>
 

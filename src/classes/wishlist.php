@@ -92,7 +92,7 @@ class Wishlist
          * Cards
          */
         ?>
-        <div class="ui three column doubling stackable grid">
+        <div class="ui three column doubling stackable grid wishlist">
             <?php if (!empty($this->wishes)) { ?>
                 <?php foreach ($this->wishes as $wish) { ?>
                     <div class="column">
