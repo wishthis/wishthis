@@ -114,6 +114,7 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'Gettext\\' => 
         array (
             0 => __DIR__ . '/..' . '/gettext/gettext/src',
+            1 => __DIR__ . '/..' . '/gettext/translator/src',
         ),
         'Embed\\' => 
         array (

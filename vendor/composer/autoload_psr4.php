@@ -18,7 +18,7 @@ return array(
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Grandel\\' => array($vendorDir . '/grandel/include-directory/src'),
     'Gettext\\Languages\\' => array($vendorDir . '/gettext/languages/src'),
-    'Gettext\\' => array($vendorDir . '/gettext/gettext/src'),
+    'Gettext\\' => array($vendorDir . '/gettext/gettext/src', $vendorDir . '/gettext/translator/src'),
     'Embed\\' => array($vendorDir . '/embed/embed/src'),
     'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => array($vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),

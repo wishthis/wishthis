@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1676940e47329dfd87e34a4928446ce52a8725aa',
+        'reference' => 'cbdedfc7f48f7851b8bf5411f75a9df9f2ceae94',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1676940e47329dfd87e34a4928446ce52a8725aa',
+            'reference' => 'cbdedfc7f48f7851b8bf5411f75a9df9f2ceae94',
             'dev_requirement' => false,
         ),
         'composer/ca-bundle' => array(
@@ -62,6 +62,15 @@
             'install_path' => __DIR__ . '/../gettext/languages',
             'aliases' => array(),
             'reference' => 'ed56dd2c7f4024cc953ed180d25f02f2640e3ffa',
+            'dev_requirement' => false,
+        ),
+        'gettext/translator' => array(
+            'pretty_version' => 'v1.1.1',
+            'version' => '1.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../gettext/translator',
+            'aliases' => array(),
+            'reference' => 'b18ff33e8203de623854561f5e47e992fc5c50bb',
             'dev_requirement' => false,
         ),
         'grandel/include-directory' => array(
