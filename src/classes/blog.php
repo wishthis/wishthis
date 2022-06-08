@@ -89,6 +89,28 @@ class Blog
         return $htmlPicture;
     }
 
+    public static function getMediaPreviewURL(int $mediaID): string
+    {
+        $url = '';
+
+        $media      = self::getMedia($mediaID);
+        $mediaSizes = (array) $media->media_details->sizes;
+        uasort(
+            $mediaSizes,
+            function ($a, $b) {
+                $sizeA = $a->width + $a->height;
+                $sizeB = $b->width + $b->height;
+
+                return $sizeA <=> $sizeB;
+            }
+        );
+        $mediaSmallest = (object) reset($mediaSizes);
+
+        $url = $mediaSmallest->source_url;
+
+        return $url;
+    }
+
     public static function getCategory(int $categoryID): \stdClass
     {
         $category = self::get(sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
