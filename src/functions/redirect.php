@@ -10,12 +10,11 @@ function redirect(string $target)
 {
     global $user;
 
-    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
-
     /**
      * Redirect user based on channel setting
      */
-    $isHostInChannel = false;
+    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
+    $isHostInChannel  = false;
 
     /** Determine if host is a defined channel */
     foreach (CHANNELS as $channel) {
