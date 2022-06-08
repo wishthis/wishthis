@@ -38,23 +38,23 @@ $page->navigation();
                         <div class="ui segment">
                             <h3 class="ui header"><?= __('Added') ?></h3>
                             <ul>
-                                <li>Blog</li>
+                                <li><?= __('Blog') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
-                                <li>Localisation (many new translations added)</li>
-                                <li>Saved wish information is not updated if the url can not be found</li>
+                                <li><?= __('Localisation (many new translations added)') ?></li>
+                                <li><?= __('Saved wish information is not updated if the url can not be found') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Changed') ?></h3>
                             <ul>
-                                <li>Changelog is now a page instead of a downloadable markdown file</li>
+                                <li><?= __('Changelog is now a page instead of a downloadable markdown file') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
-                                <li>Various minor things (typos, menu order, etc)</li>
+                                <li><?= __('Various minor things (typos, menu order, etc)') ?></li>
                             </ul>
                         </div>
 
@@ -71,19 +71,19 @@ $page->navigation();
                         <div class="ui segment">
                             <h3 class="ui header"><?= __('Added') ?></h3>
                             <ul>
-                                <li>This changelog</li>
-                                <li>Wish properties</li>
-                                <li>Button to mark wish as fulfilled</li>
+                                <li><?= __('This changelog') ?></li>
+                                <li><?= __('Wish properties') ?></li>
+                                <li><?= __('Button to mark wish as fulfilled') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
-                                <li>Card design</li>
+                                <li><?= __('Card design') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
-                                <li>Various small bugs</li>
+                                <li><?= __('Various small bugs') ?></li>
                             </ul>
                         </div>
 
