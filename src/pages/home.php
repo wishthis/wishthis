@@ -21,7 +21,7 @@ $page->navigation();
         <div class="ui doubling stackable grid">
             <div class="twelve wide column">
                 <div class="ui segment">
-                    <h2 class="ui header"><?= __('Welcome to wishthis') ?></h2>
+                    <h2 class="ui header"><?= __('Make a wish') ?></h2>
 
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
