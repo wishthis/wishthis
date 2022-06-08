@@ -15,59 +15,35 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
-## :earth_africa: Available in 51 different locales
+## :earth_africa: Available in 27 different languages
 | Language             |                  | Country        | Locale  |
 | -------------------- | ---------------- | -------------- | ------- |
-| Bulgaria             |                  |                | bg      |
 | Bulgaria             | :bulgaria:       | Bulgaria       | bg_BG   |
 | Chinese (Simplified) |                  |                | zh-Hans |
-| Czech                |                  |                | cs      |
 | Czech                | :czech_republic: | Czech Republic | cs_CZ   |
-| Danish               |                  |                | da      |
 | Danish               | :denmark:        | Denmark        | da_DK   |
-| Dutch                |                  |                | nl      |
 | Dutch                | :netherlands:    | Netherlands    | nl_NL   |
-| English              |                  |                | en      |
 | English              | :gb:             | United Kingdom | en_GB   |
 | English              | :us:             | United States  | en_US   |
-| Estonian             |                  |                | et      |
 | Estonian             | :estonia:        | Estonia        | et_EE   |
-| Finnish              |                  |                | fi      |
 | Finnish              | :finland:        | Finland        | fi_FI   |
-| French               |                  |                | fr      |
 | French               | :fr:             | France         | fr_FR   |
-| German               |                  |                | de      |
 | German               | :de:             | Germany        | de_DE   |
-| Greek                |                  |                | el      |
 | Greek                | :greece:         | Greece         | el_GR   |
-| Hungarian            |                  |                | hu      |
 | Hungarian            | :hungary:        | Hungary        | hu_HU   |
-| Indonesian           |                  |                | id      |
 | Indonesian           | :indonesia:      | Indonesia      | id_ID   |
-| Italian              |                  |                | it      |
 | Italian              | :it:             | Italy          | it_IT   |
-| Japanese             |                  |                | ja      |
 | Japanese             | :jp:             | Japan          | ja_JP   |
-| Latvian              |                  |                | lv      |
 | Latvian              | :latvia:         | Latvia         | lv_LV   |
-| Polish               |                  |                | pl      |
 | Polish               | :poland:         | Poland         | pl_PL   |
-| Portuguese           |                  |                | pt      |
 | Portuguese           | :brazil:         | Brazil         | pt_BR   |
 | Portuguese           | :portugal:       | Portugal       | pt_PT   |
-| Romanian             |                  |                | ro      |
 | Romanian             | :romania:        | Romania        | ro_RO   |
-| Russian              |                  |                | ru      |
 | Russian              | :ru:             | Russia         | ru_RU   |
-| Slovak               |                  |                | ro      |
 | Slovak               | :slovakia:       | Slovakia       | ro_RO   |
-| Slovenian            |                  |                | sl      |
 | Slovenian            | :slovenia:       | Slovenia       | sl_SL   |
-| Spanish              |                  |                | es      |
 | Spanish              | :es:             | Spain          | es_ES   |
-| Swedish              |                  |                | sv      |
 | Swedish              | :sweden:         | Sweden         | sv_SE   |
-| Turkish              |                  |                | tr      |
 | Turkish              | :tr:             | Turkey         | tr_TR   |
 
 ## :heavy_check_mark: Requirements

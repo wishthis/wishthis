@@ -89,7 +89,10 @@ if ($options) {
 $locales = array_filter(
     array_map(
         function ($value) {
-            if ('po' === pathinfo($value, PATHINFO_EXTENSION)) {
+            $extension = pathinfo($value, PATHINFO_EXTENSION);
+            $filename  = pathinfo($value, PATHINFO_FILENAME);
+
+            if ('po' === $extension && strlen($filename) > 2) {
                 return pathinfo($value, PATHINFO_FILENAME);
             }
         },
