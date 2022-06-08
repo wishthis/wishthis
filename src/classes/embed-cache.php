@@ -37,7 +37,9 @@ class EmbedCache
 
     public function get(bool $generateCache = false): \stdClass
     {
-        $info = json_decode(file_get_contents($this->getFilepath()));
+        $filepath = $this->getFilepath();
+
+        $info = file_exists($filepath) ? json_decode(file_get_contents($filepath)) : new \stdClass();
 
         if (true === $this->generateCache() || true === $generateCache) {
             /**
