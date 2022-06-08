@@ -11,12 +11,12 @@ namespace wishthis;
 $postSlug      = $_SESSION['_GET']['slug'];
 $post          = Blog::getPostBySlug($postSlug);
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
-$postMediaURL  = isset($post->featured_media) ? Blog::getMediaPreviewURL($post->featured_media) : '';
+$postMedia     = isset($post->featured_media) ? Blog::getMedia($post->featured_media)     : new \stdClss();
 
 $page = new Page(__FILE__, $post->title->rendered);
 
-if ('' !== $postMediaURL) {
-    $page->link_preview = $postMediaURL;
+if (isset($postMedia->source_url)) {
+    $page->link_preview = $postMedia->source_url;
 }
 
 $page->header();
