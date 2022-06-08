@@ -6,23 +6,28 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
     <url>
-        <loc>https://wishthis.online/</loc>
-        <lastmod>2022-03-08T15:46:19+00:00</lastmod>
+        <loc>https://wishthis.online</loc>
+        <lastmod>2022-06-08T10:45:19+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://wishthis.online/blog</loc>
+        <lastmod>2022-06-08T10:45:19+00:00</lastmod>
         <priority>1.00</priority>
     </url>
     <url>
         <loc>https://wishthis.online/home</loc>
-        <lastmod>2022-03-08T15:46:19+00:00</lastmod>
-        <priority>0.80</priority>
+        <lastmod>2022-06-08T10:45:19+00:00</lastmod>
+        <priority>1.00</priority>
     </url>
     <url>
         <loc>https://wishthis.online/login</loc>
-        <lastmod>2022-03-08T15:46:19+00:00</lastmod>
-        <priority>0.80</priority>
+        <lastmod>2022-06-08T10:45:19+00:00</lastmod>
+        <priority>1.00</priority>
     </url>
     <url>
         <loc>https://wishthis.online/register</loc>
-        <lastmod>2022-03-08T15:46:19+00:00</lastmod>
-        <priority>0.80</priority>
+        <lastmod>2022-06-08T10:45:19+00:00</lastmod>
+        <priority>1.00</priority>
     </url>
 </urlset>
