@@ -18,7 +18,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 ## :earth_africa: Available in 28 different languages
 | Language             |                  | Country        | Locale  |
 | -------------------- | ---------------- | -------------- | ------- |
-| Bulgaria             | :bulgaria:       | Bulgaria       | bg_BG   |
+| Bulgarian            | :bulgaria:       | Bulgaria       | bg_BG   |
 | Chinese (Simplified) |                  |                | zh-Hans |
 | Czech                | :czech_republic: | Czech Republic | cs_CZ   |
 | Danish               | :denmark:        | Denmark        | da_DK   |
@@ -41,7 +41,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 | Portuguese           | :portugal:       | Portugal       | pt_PT   |
 | Romanian             | :romania:        | Romania        | ro_RO   |
 | Russian              | :ru:             | Russia         | ru_RU   |
-| Slovak               | :slovakia:       | Slovakia       | ro_RO   |
+| Slovak               | :slovakia:       | Slovakia       | sk_SK   |
 | Slovenian            | :slovenia:       | Slovenia       | sl_SL   |
 | Spanish              | :es:             | Spain          | es_ES   |
 | Swedish              | :sweden:         | Sweden         | sv_SE   |
