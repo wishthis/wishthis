@@ -6,14 +6,14 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-function __(string $text): string
+function __(string $text, string $context = null): string
 {
     global $translations;
 
     $translation = null;
 
     if ($translations) {
-        $translation = $translations->find(null, $text);
+        $translation = $translations->find($context, $text);
 
         if ($translation) {
             return htmlentities($translation->getTranslation());
@@ -28,7 +28,7 @@ function _n(string $singular, string $plural, int $amount): string
     return 1 === $amount ? __($singular) : __($plural);
 }
 
-function _x(string $text, string $context): string
+function _x(string $text, string $context = null): string
 {
-    return __($text);
+    return __($text, $context);
 }
