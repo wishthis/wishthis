@@ -449,7 +449,7 @@ class Page
         $register  = Navigation::Register->value;
 
         $pages = array(
-            $pages[$blog] = array(
+            $blog    => array(
                 'text'      => __('Blog'),
                 'alignment' => 'left',
                 'items'     => array(
@@ -460,7 +460,7 @@ class Page
                     ),
                 ),
             ),
-            $system => array(
+            $system  => array(
                 'text'      => __('System'),
                 'icon'      => 'wrench',
                 'alignment' => 'right',
