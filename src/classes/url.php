@@ -84,7 +84,7 @@ class URL
                             explode('&', parse_url($target, PHP_URL_QUERY))
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
-                        $parameters  = query_to_key_value_pair($this->url);
+                        $parameters  = array_reverse(query_to_key_value_pair($this->url), true);
 
                         preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
 
