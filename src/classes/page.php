@@ -126,6 +126,7 @@ class Page
             'login',
             'maintenance',
             'register',
+            'changelog',
         );
         if (
                !isset($_SESSION['user'])
@@ -681,6 +682,11 @@ class Page
                                     }
                                     ?>
                                 </div>
+                            </div>
+
+                            <div class="item">
+                                <i class="newspaper icon"></i>
+                                <div class="content"><a href="/?page=changelog"><?= __('Changelog') ?></a></div>
                             </div>
                         </div>
                     </div>
