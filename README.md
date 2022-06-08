@@ -15,7 +15,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
 
-## :earth_africa: Available in 27 different languages
+## :earth_africa: Available in 28 different languages
 | Language             |                  | Country        | Locale  |
 | -------------------- | ---------------- | -------------- | ------- |
 | Bulgaria             | :bulgaria:       | Bulgaria       | bg_BG   |
@@ -35,6 +35,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 | Italian              | :it:             | Italy          | it_IT   |
 | Japanese             | :jp:             | Japan          | ja_JP   |
 | Latvian              | :latvia:         | Latvia         | lv_LV   |
+| Lithuanian           | :lithuania:      | Lithuania      | lt_LT   |
 | Polish               | :poland:         | Poland         | pl_PL   |
 | Portuguese           | :brazil:         | Brazil         | pt_BR   |
 | Portuguese           | :portugal:       | Portugal       | pt_PT   |
