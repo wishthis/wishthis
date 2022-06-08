@@ -44,6 +44,7 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
                                 <li>Localisation (many new translations added)</li>
+                                <li>Saved wish information is not updated if the url can not be found</li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Changed') ?></h3>

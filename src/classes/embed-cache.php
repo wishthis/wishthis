@@ -37,17 +37,15 @@ class EmbedCache
 
     public function get(bool $generateCache = false): \stdClass
     {
-        $info = null;
+        $info = json_decode(file_get_contents($this->getFilepath()));
 
-        if (!$this->generateCache() && false === $generateCache) {
-            $info = json_decode(file_get_contents($this->getFilepath()));
-        } else {
+        if (true === $this->generateCache() || true === $generateCache) {
             /**
              * @link https://github.com/oscarotero/Embed
              */
             $embed = new \Embed\Embed();
 
-            $info_simplified = new \stdClass();
+            $info_simplified                = new \stdClass();
             $info_simplified->authorName    = '';
             $info_simplified->authorUrl     = '';
             $info_simplified->cms           = '';
@@ -69,50 +67,49 @@ class EmbedCache
             $info_simplified->url           = $this->url;
 
             if ($generateCache) {
-                $info = $embed->get($this->url);
-
-                $info_simplified->authorName    = (string) $info->authorName;
-                $info_simplified->authorUrl     = (string) $info->authorUrl;
-                $info_simplified->cms           = (string) $info->cms;
-                $info_simplified->code          = (string) $info->code;
-                $info_simplified->description   = (string) $info->description;
-                $info_simplified->favicon       = (string) $info->favicon;
-                $info_simplified->feeds         = (array)  $info->feeds;
-                $info_simplified->icon          = (string) $info->icon;
-                $info_simplified->image         = isset($info->image) ? (string) $info->image : null;
-                $info_simplified->keywords      = (array)  $info->keywords;
-                $info_simplified->language      = (string) $info->language;
-                $info_simplified->languages     = (array)  $info->languages;
-                $info_simplified->license       = (string) $info->license;
-                $info_simplified->providerName  = (string) $info->providerName;
-                $info_simplified->providerUrl   = (string) $info->providerUrl;
-                $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
-                $info_simplified->redirect      = (string) $info->redirect;
-                $info_simplified->title         = (string) $info->title;
-                $info_simplified->url           = (string) $info->url;
-
                 try {
+                    $info                           = $embed->get($this->url);
+                    $info_simplified->authorName    = (string) $info->authorName;
+                    $info_simplified->authorUrl     = (string) $info->authorUrl;
+                    $info_simplified->cms           = (string) $info->cms;
+                    $info_simplified->code          = (string) $info->code;
+                    $info_simplified->description   = (string) $info->description;
+                    $info_simplified->favicon       = (string) $info->favicon;
+                    $info_simplified->feeds         = (array)  $info->feeds;
+                    $info_simplified->icon          = (string) $info->icon;
+                    $info_simplified->image         = isset($info->image) ? (string) $info->image : null;
+                    $info_simplified->keywords      = (array)  $info->keywords;
+                    $info_simplified->language      = (string) $info->language;
+                    $info_simplified->languages     = (array)  $info->languages;
+                    $info_simplified->license       = (string) $info->license;
+                    $info_simplified->providerName  = (string) $info->providerName;
+                    $info_simplified->providerUrl   = (string) $info->providerUrl;
+                    $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
+                    $info_simplified->redirect      = (string) $info->redirect;
+                    $info_simplified->title         = (string) $info->title;
+                    $info_simplified->url           = (string) $info->url;
                 } catch (\Throwable $ex) {
                     $generateCache = false;
 
-                    $info_simplified->description = $ex->getMessage();
+                    echo $ex->getMessage();
                 }
 
-                if (str_contains(pathinfo($info_simplified->favicon, PATHINFO_EXTENSION), 'ico')) {
-                    $options = array(
-                        CURLOPT_AUTOREFERER    => true,
-                        CURLOPT_CONNECTTIMEOUT => 30,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HEADER         => false,
-                        CURLOPT_MAXREDIRS      => 10,
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_SSL_VERIFYPEER => false,
-                        CURLOPT_TIMEOUT        => 30,
-                        CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
-                    );
+                $ch_options = array(
+                    CURLOPT_AUTOREFERER    => true,
+                    CURLOPT_CONNECTTIMEOUT => 30,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HEADER         => false,
+                    CURLOPT_MAXREDIRS      => 10,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_TIMEOUT        => 30,
+                    CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+                );
 
+                /** Favicon */
+                if (str_contains(pathinfo($info_simplified->favicon, PATHINFO_EXTENSION), 'ico')) {
                     $ch = curl_init($info_simplified->favicon);
-                    curl_setopt_array($ch, $options);
+                    curl_setopt_array($ch, $ch_options);
 
                     $favicon = curl_exec($ch);
                     $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -121,9 +118,23 @@ class EmbedCache
 
                     $info_simplified->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
                 }
-            }
 
-            $info = $info_simplified;
+                /** Repsonse code */
+                $ch = curl_init($info_simplified->url);
+                curl_setopt_array($ch, $ch_options);
+
+                $favicon = curl_exec($ch);
+                $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                if (0 === $code || 404 === $code) {
+                    $generateCache = false;
+                }
+
+                curl_close($ch);
+
+                /** Update info */
+                $info = $info_simplified;
+            }
 
             if ($generateCache) {
                 file_put_contents($this->getFilepath(), json_encode($info));
