@@ -12,7 +12,7 @@ $postSlug      = $_SESSION['_GET']['slug'];
 $post          = Blog::getPostBySlug($postSlug);
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
 
-$page = new Page(__FILE__, 'Post');
+$page = new Page(__FILE__, $post->title->rendered);
 $page->header();
 $page->bodyStart();
 $page->navigation();
@@ -28,8 +28,6 @@ $page->navigation();
             </div>
 
            <div class="ui segment">
-                <h2 class="ui header"><?= $post->title->rendered ?></h2>
-
                 <div><?= $post->content->rendered ?></div>
             </div>
         </div>
