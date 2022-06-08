@@ -32,16 +32,19 @@ $posts = Blog::getPosts();
                 );
                 $mediaHTML      = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
                 $categoriesHTML = Blog::getCategoriesHTML($post->categories);
+                $postLink       = '/?page=post&id=' . $post->id;
                 ?>
                 <div class="column">
                     <div class="ui fluid card stretch">
-                        <div class="image"><?= $mediaHTML ?></div>
+                        <div class="image"><a href="<?= $postLink ?>"><?= $mediaHTML ?></a></div>
                         <div class="content">
                             <div class="header"><?= $post->title->rendered ?></div>
                             <div class="meta">
                                 <a><?= $categoriesHTML ?></a>
                             </div>
                             <div class="description"><?= $post->excerpt->rendered ?></div>
+
+                            <a href="<?= $postLink ?>"><?= __('Read more') ?></a>
                         </div>
                         <div class="extra content">
                             <span class="right floated"><?= $dateFormatter->format(strtotime($post->date)) ?></span>

@@ -9,6 +9,7 @@ namespace wishthis;
 class Blog
 {
     private const ENDPOINT_BASE       = 'https://wishthis.online/src/blog/wp-json/wp/v2';
+    private const ENDPOINT_POST       = self::ENDPOINT_BASE . '/posts/%d';
     private const ENDPOINT_POSTS      = self::ENDPOINT_BASE . '/posts';
     private const ENDPOINT_MEDIA      = self::ENDPOINT_BASE . '/media/%d';
     private const ENDPOINT_CATEGORIES = self::ENDPOINT_BASE . '/categories/%d';
@@ -23,6 +24,13 @@ class Blog
         }
 
         return $response;
+    }
+
+    public static function getPost(int $postID): \stdClass
+    {
+        $post = self::get(sprintf(self::ENDPOINT_POST, $postID));
+
+        return $post;
     }
 
     public static function getPosts(): array
