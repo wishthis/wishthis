@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-26 10:26+0200\n"
+"POT-Creation-Date: 2022-06-09 12:25+0200\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
 "Last-Translator: Jay Trees, 2022\n"
 "Language-Team: Chinese Simplified (https://www.transifex.com/wishthis/teams/134148/zh-Hans/)\n"
@@ -15,343 +15,352 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh-Hans\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:115 pages/home.php:26
+#: classes/page.php:116 pages/home.php:26
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
 msgstr "wishthis是一个简单、直观和现代的愿望清单平台，用于创建、管理和查看您对任何一种场合的愿望。"
 
-#: classes/page.php:191
+#: classes/page.php:194
 msgid ""
 "This is the development environment of wishthis. The database will reset "
 "every day at around 00:00."
 msgstr "这里是wishthis的开发环境。数据库将在每天的00:00左右重置。"
 
-#: classes/page.php:192
+#: classes/page.php:195
 msgid "Development environment"
 msgstr "开发环境"
 
-#: classes/page.php:315
+#: classes/page.php:318
 msgid "No wishlist selected."
 msgstr "没有选择愿望清单。"
 
-#: classes/page.php:317 classes/page.php:347 pages/login-as.php:40
+#: classes/page.php:320 classes/page.php:350 pages/login-as.php:40
 msgid "Error"
 msgstr "误差"
 
-#: classes/page.php:318 pages/register.php:83 pages/register.php:86
+#: classes/page.php:321 pages/register.php:83 pages/register.php:86
 msgid "Failure"
 msgstr "失败"
 
-#: classes/page.php:319
+#: classes/page.php:322
 msgid "The server did not confirm that the action was successful."
 msgstr "服务器没有确认该行动是否成功。"
 
-#: classes/page.php:320
+#: classes/page.php:323
 msgid "Thanks for nothing"
 msgstr "白白感谢"
 
-#: classes/page.php:321
+#: classes/page.php:324
 msgid "Understood"
 msgstr "明白了"
 
-#: classes/page.php:322 pages/install.php:229 pages/login-as.php:38
+#: classes/page.php:325 pages/install.php:229 pages/login-as.php:38
 #: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
 #: pages/wish.php:37
 msgid "Success"
 msgstr "成功"
 
-#: classes/page.php:324
+#: classes/page.php:327
 msgid "Close this tab"
 msgstr "关闭此标签"
 
-#: classes/page.php:325
+#: classes/page.php:328
 msgid "Show wishlist anyway"
 msgstr "无论如何显示愿望清单"
 
-#: classes/page.php:326 classes/page.php:331
+#: classes/page.php:329 classes/page.php:334
 msgid "Really delete?"
 msgstr "真的删除？"
 
-#: classes/page.php:327
+#: classes/page.php:330
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
 msgstr "你真的想删除愿望清单吗%s ？"
 
-#: classes/page.php:328 classes/page.php:333
+#: classes/page.php:331 classes/page.php:336
 msgid "Yes, delete"
 msgstr "是的，删除"
 
-#: classes/page.php:329 classes/page.php:334
+#: classes/page.php:332 classes/page.php:337
 msgid "No, keep"
 msgstr "不，保持"
 
-#: classes/page.php:332
+#: classes/page.php:335
 msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr "你真的想删除这个愿望吗？它将永远消失。"
 
-#: classes/page.php:336
+#: classes/page.php:339
 msgid "Passwords must match."
 msgstr "密码必须匹配。"
 
-#: classes/page.php:338
+#: classes/page.php:341
 msgid "Wishlist successfully renamed."
 msgstr "Wishlist成功重命名。"
 
-#: classes/page.php:339
+#: classes/page.php:342
 msgid "Wishlist successfully deleted."
 msgstr "Wishlist成功删除。"
 
-#: classes/page.php:341
+#: classes/page.php:344
 msgid "Wish successfully created."
 msgstr "愿望成功创建。"
 
-#: classes/page.php:342
+#: classes/page.php:345
 msgid "Wish successfully added."
 msgstr "愿望成功添加。"
 
-#: classes/page.php:343
+#: classes/page.php:346
 msgid "Wish information updated."
 msgstr "愿望信息已更新。"
 
-#: classes/page.php:344
+#: classes/page.php:347
 msgid "Don't forget to save your changes."
 msgstr "不要忘记保存你的修改。"
 
-#: classes/page.php:345
+#: classes/page.php:348
 msgid "Wish successfully deleted."
 msgstr "愿望成功删除。"
 
-#: classes/page.php:348
+#: classes/page.php:351
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr "无法复制到剪贴板。这可能是一个权限问题。"
 
-#: classes/page.php:349
+#: classes/page.php:352
 msgid "Link copied to clipboard."
 msgstr "链接被复制到剪贴板。"
 
-#: classes/page.php:351
+#: classes/page.php:354
 msgid "{name} must have a value"
 msgstr "{name}必须有一个值"
 
-#: classes/page.php:352
+#: classes/page.php:355
 msgid "{name} must be checked"
 msgstr "{name}必须检查"
 
-#: classes/page.php:353
+#: classes/page.php:356
 msgid "{name} must be a valid e-mail"
 msgstr "{name}必须是一个有效的电子邮件"
 
-#: classes/page.php:354
+#: classes/page.php:357
 msgid "{name} must be a valid URL"
 msgstr "{name}必须是一个有效的URL"
 
-#: classes/page.php:355
+#: classes/page.php:358
 msgid "{name} is not formatted correctly"
 msgstr "{name}的格式不正确"
 
-#: classes/page.php:356
+#: classes/page.php:359
 msgid "{name} must be an integer"
 msgstr "{name}必须是一个整数"
 
-#: classes/page.php:357
+#: classes/page.php:360
 msgid "{name} must be a decimal number"
 msgstr "{name}必须是一个十进制数字"
 
-#: classes/page.php:358
+#: classes/page.php:361
 msgid "{name} must be set to a number"
 msgstr "{name}必须设置为一个数字"
 
-#: classes/page.php:359
+#: classes/page.php:362
 msgid "{name} must be \"{ruleValue}\""
 msgstr "{name}必须是\"{ruleValue}\""
 
-#: classes/page.php:360
+#: classes/page.php:363
 msgid "{name} must be exactly \"{ruleValue}\""
 msgstr "{name}必须正好是\"{ruleValue}\""
 
-#: classes/page.php:361
+#: classes/page.php:364
 msgid "{name} cannot be set to \"{ruleValue}\""
 msgstr "{name}不能被设置为\"{ruleValue}\""
 
-#: classes/page.php:362
+#: classes/page.php:365
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
 msgstr "{name}不能准确设置为\"{ruleValue}\"。"
 
-#: classes/page.php:363
+#: classes/page.php:366
 msgid "{name} cannot contain \"{ruleValue}\""
 msgstr "{name}不能包含\"{ruleValue}\""
 
-#: classes/page.php:364
+#: classes/page.php:367
 msgid "{name} cannot contain exactly \"{ruleValue}\""
 msgstr "{name}不能完全包含\"{ruleValue}\""
 
-#: classes/page.php:365
+#: classes/page.php:368
 msgid "{name} must contain \"{ruleValue}\""
 msgstr "{name}必须包含\"{ruleValue}\""
 
-#: classes/page.php:366
+#: classes/page.php:369
 msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr "{name}必须正好包含\"{ruleValue}\""
 
-#: classes/page.php:367 classes/page.php:368
+#: classes/page.php:370 classes/page.php:371
 msgid "{name} must be at least {ruleValue} characters"
 msgstr "{name}必须至少是{ruleValue}字符"
 
-#: classes/page.php:369
+#: classes/page.php:372
 msgid "{name} must be exactly {ruleValue} characters"
 msgstr "{name}必须正好是{ruleValue}字符"
 
-#: classes/page.php:370
+#: classes/page.php:373
 msgid "{name} cannot be longer than {ruleValue} characters"
 msgstr "{name}不能长于{ruleValue}字符。"
 
-#: classes/page.php:371
+#: classes/page.php:374
 msgid "{name} must match {ruleValue} field"
 msgstr "{name}必须与{ruleValue}领域相匹配。"
 
-#: classes/page.php:372
+#: classes/page.php:375
 msgid "{name} must have a different value than {ruleValue} field"
 msgstr "{name}必须有一个与{ruleValue}领域不同的值"
 
-#: classes/page.php:373
+#: classes/page.php:376
 msgid "{name} must be a valid credit card number"
 msgstr "{name}必须是一个有效的信用卡号码"
 
-#: classes/page.php:374
+#: classes/page.php:377
 msgid "{name} must have at least {ruleValue} choices"
 msgstr "{name}至少要有{ruleValue}的选择。"
 
-#: classes/page.php:375
+#: classes/page.php:378
 msgid "{name} must have exactly {ruleValue} choices"
 msgstr "{name}必须正好有{ruleValue}的选择。"
 
-#: classes/page.php:376
+#: classes/page.php:379
 msgid "{name} must have {ruleValue} or less choices"
 msgstr "{name}必须有{ruleValue}或更少的选择"
 
-#: classes/page.php:378
+#: classes/page.php:381
 msgctxt "Calendar"
 msgid "Today"
 msgstr "今天"
 
-#: classes/page.php:379
+#: classes/page.php:382
 msgctxt "Calendar"
 msgid "Now"
 msgstr "现在"
 
-#: classes/page.php:380
+#: classes/page.php:383
 msgctxt "Calendar"
 msgid "AM"
 msgstr "上午"
 
-#: classes/page.php:381
+#: classes/page.php:384
 msgctxt "Calendar"
 msgid "PM"
 msgstr "下午"
 
-#: classes/page.php:382
+#: classes/page.php:385
 msgctxt "Calendar"
 msgid "Week"
 msgstr "周"
 
-#: classes/page.php:384 pages/profile.php:209 pages/profile.php:210
-#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:334
-#: pages/profile.php:335 pages/settings.php:53 pages/settings.php:54
+#: classes/page.php:387 pages/profile.php:209 pages/profile.php:210
+#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:336
+#: pages/profile.php:337 pages/settings.php:53 pages/settings.php:54
 #: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
 msgid "Save"
 msgstr "拯救"
 
-#: classes/page.php:385
+#: classes/page.php:388
 msgid "Saved"
 msgstr "被拯救的"
 
-#: classes/page.php:453
+#: classes/page.php:457 classes/page.php:461 pages/blog.php:11
+#: pages/changelog.php:41
+msgid "Blog"
+msgstr "博客"
+
+#: classes/page.php:468
 msgid "System"
 msgstr "系统"
 
-#: classes/page.php:459
+#: classes/page.php:474
 msgid "Account"
 msgstr "帐户"
 
-#: classes/page.php:468 pages/home.php:105
+#: classes/page.php:483 pages/home.php:105
 msgid "Wishlists"
 msgstr "愿望清单"
 
-#: classes/page.php:472 pages/home.php:33 pages/home.php:35
+#: classes/page.php:487 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "我的清单"
 
-#: classes/page.php:477 pages/wishlists-saved.php:11
+#: classes/page.php:492 pages/wishlists-saved.php:11
 msgid "Saved lists"
 msgstr "保存的列表"
 
-#: classes/page.php:487 pages/profile.php:11
+#: classes/page.php:502 pages/profile.php:11
 msgid "Profile"
 msgstr "形象"
 
-#: classes/page.php:493 pages/login-as.php:11
+#: classes/page.php:508 pages/login-as.php:11
 msgid "Login as"
 msgstr "登录为"
 
-#: classes/page.php:499 pages/logout.php:11
+#: classes/page.php:514 pages/logout.php:11
 msgid "Logout"
 msgstr "登出"
 
-#: classes/page.php:505 classes/page.php:509 pages/home.php:50
+#: classes/page.php:520 classes/page.php:524 pages/home.php:50
 #: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
 msgstr "登录"
 
-#: classes/page.php:516 classes/page.php:520 pages/install.php:233
+#: classes/page.php:531 classes/page.php:535 pages/install.php:233
 #: pages/install.php:235 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "注册"
 
-#: classes/page.php:530 pages/settings.php:11
+#: classes/page.php:545 pages/settings.php:11
 msgid "Settings"
 msgstr "设置"
 
-#: classes/page.php:543
+#: classes/page.php:558
 msgid "wishthis logo"
 msgstr "wishthis标志"
 
-#: classes/page.php:678
+#: classes/page.php:692 pages/changelog.php:11
+msgid "Changelog"
+msgstr "更新日志"
+
+#: classes/page.php:698
 msgid "Contribute"
 msgstr "贡献"
 
-#: classes/page.php:684 classes/page.php:687
+#: classes/page.php:704 classes/page.php:707
 msgid "GitHub repository"
 msgstr "GitHub存储库"
 
-#: classes/page.php:693 classes/page.php:696
+#: classes/page.php:713 classes/page.php:716
 msgid "Translate"
 msgstr "翻译"
 
-#: classes/page.php:732
+#: classes/page.php:752
 #, php-format
 msgid "%s not found"
 msgstr "%s 未找到"
 
-#: classes/page.php:742
+#: classes/page.php:762
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr "所请求的Wishlist没有被找到，很可能被其创建者删除。"
 
-#: classes/page.php:746
+#: classes/page.php:766
 msgid "The requested Wish was not found."
 msgstr "没有找到要求的Wish。"
 
-#: classes/page.php:750
+#: classes/page.php:770
 #, php-format
 msgid "The requested %s was not found."
 msgstr "没有找到要求的%s 。"
@@ -438,13 +447,81 @@ msgstr "复活节"
 msgid "Christmas"
 msgstr "圣诞节"
 
+#: pages/blog.php:47
+msgid "Read more"
+msgstr "阅读更多"
+
+#: pages/changelog.php:25 pages/changelog.php:35
+msgid "Unreleased"
+msgstr "未发布"
+
+#: pages/changelog.php:26 pages/changelog.php:69
+msgid "0.6.0"
+msgstr "0.6.0"
+
+#: pages/changelog.php:39 pages/changelog.php:73
+msgid "Added"
+msgstr "添加"
+
+#: pages/changelog.php:44 pages/changelog.php:80
+msgid "Improved"
+msgstr "改进后的"
+
+#: pages/changelog.php:46
+msgid "Localisation (many new translations added)"
+msgstr "本地化（增加了许多新的翻译）。"
+
+#: pages/changelog.php:47
+msgid "Saved wish information is not updated if the url can not be found"
+msgstr "如果找不到网址，保存的愿望信息不会被更新。"
+
+#: pages/changelog.php:48
+msgid "URL handling"
+msgstr "URL处理"
+
+#: pages/changelog.php:51
+msgid "Changed"
+msgstr "改变了"
+
+#: pages/changelog.php:53
+msgid "Changelog is now a page instead of a downloadable markdown file"
+msgstr "Changelog现在是一个页面，而不是一个可下载的markdown文件"
+
+#: pages/changelog.php:56 pages/changelog.php:85
+msgid "Fixed"
+msgstr "固定的"
+
+#: pages/changelog.php:58
+msgid "Various minor things (typos, menu order, etc)"
+msgstr "各种小事（错别字、菜单顺序等）。"
+
+#: pages/changelog.php:75
+msgid "This changelog"
+msgstr "本更新日志"
+
+#: pages/changelog.php:76
+msgid "Wish properties"
+msgstr "愿望属性"
+
+#: pages/changelog.php:77
+msgid "Button to mark wish as fulfilled"
+msgstr "标记愿望实现的按钮"
+
+#: pages/changelog.php:82
+msgid "Card design"
+msgstr "卡片设计"
+
+#: pages/changelog.php:87
+msgid "Various small bugs"
+msgstr "各种小错误"
+
 #: pages/home.php:11
 msgid "Home"
 msgstr "首页"
 
 #: pages/home.php:24
-msgid "Welcome to wishthis"
-msgstr "欢迎来到wishthis"
+msgid "Make a wish"
+msgstr "许个愿吧"
 
 #: pages/home.php:42 pages/home.php:44
 msgid "Register now"
@@ -513,20 +590,6 @@ msgstr "愿望"
 #: pages/home.php:110
 msgid "Registered users"
 msgstr "注册用户"
-
-#: pages/home.php:116
-msgid "What's new"
-msgstr "最新动态"
-
-#. TRANSLATORS: %s: Changelog
-#: pages/home.php:122
-#, php-format
-msgid "Check out the %s for a list changes."
-msgstr "请查看%s ，了解清单的变化。"
-
-#: pages/home.php:123
-msgid "Changelog"
-msgstr "更新日志"
 
 #: pages/install.php:15
 msgid "Install"
@@ -797,35 +860,35 @@ msgstr "特别"
 msgid "Contains special characters."
 msgstr "包含特殊字符。"
 
-#: pages/profile.php:313 pages/profile.php:371
+#: pages/profile.php:315 pages/profile.php:373
 msgid "Channel"
 msgstr "频道"
 
-#: pages/profile.php:316
+#: pages/profile.php:318
 msgid "Select channel"
 msgstr "选择频道"
 
-#: pages/profile.php:374
+#: pages/profile.php:376
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
 msgstr "为了改善wishthis的用户体验，较新的版本是在广泛的测试期后发布的。"
 
-#: pages/profile.php:375
+#: pages/profile.php:377
 msgid ""
 "Subscribing to the Stable channel ensures you have the highest possible "
 "stability while using wishthis, minimizing the amount of errors you may "
 "encounter (if any)."
 msgstr "订阅稳定频道可以确保你在使用wishthis时拥有尽可能高的稳定性，将你可能遇到的错误数量降到最低（如果有的话）。"
 
-#: pages/profile.php:376
+#: pages/profile.php:378
 msgid ""
 "If you want to speed up the release of newer versions, consider subscribing "
 "to the Release candidate of wishthis. A newer version is not published "
 "unless the next release candidate has been sufficiently tested."
 msgstr "如果你想加快更新版本的发布速度，可以考虑订阅wishthis的候选发布版。除非下一个候选版本经过充分的测试，否则不会发布较新的版本。"
 
-#: pages/profile.php:388
+#: pages/profile.php:390
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
