@@ -111,7 +111,7 @@ $locales = array_filter(
             $extension = pathinfo($value, PATHINFO_EXTENSION);
             $filename  = pathinfo($value, PATHINFO_FILENAME);
 
-            if ('po' === $extension && strlen($filename) > 2) {
+            if ('po' === $extension) {
                 return pathinfo($value, PATHINFO_FILENAME);
             }
         },
