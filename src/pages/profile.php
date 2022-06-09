@@ -295,10 +295,12 @@ $page->navigation();
                                         <?php } ?>
 
                                         <?php foreach ($locales as $locale) { ?>
-                                            <?php if ($locale === $user->locale) { ?>
-                                                <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
-                                            <?php } else { ?>
-                                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                            <?php if (\Locale::getRegion($locale)) { ?>
+                                                <?php if ($locale === $user->locale) { ?>
+                                                    <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                                <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>

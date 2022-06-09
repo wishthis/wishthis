@@ -249,34 +249,36 @@ function showError(error) {
     error = error.replace('<br />', '');
 
     $('body')
-        .modal({
-            title   : 'Error',
-            content : error,
-            class   : '',
-            actions : [
-                {
-                    text : text.modal_failure_approve,
-                    class: 'primary'
-                }
-            ],
-            autoShow: true
-        });
+    .modal({
+        title             : 'Error',
+        content           : error,
+        class             : '',
+        actions           : [
+            {
+                text  : text.modal_failure_approve,
+                class : 'primary'
+            }
+        ],
+        autoShow      : true,
+        allowMultiple : true
+    });
 }
 
 function showWarning(warning) {
     warning = warning.replace('<br />', '');
 
     $('body')
-        .modal({
-            title   : 'Warning',
-            content : warning,
-            class   : '',
-            actions : [
-                {
-                    text : text.modal_warning_approve,
-                    class: 'primary'
-                }
-            ],
-            autoShow: true,
-        });
+    .modal({
+        title         : 'Warning',
+        content       : warning,
+        class         : '',
+        actions       : [
+            {
+                text  : text.modal_warning_approve,
+                class : 'primary'
+            }
+        ],
+        autoShow      : true,
+        allowMultiple : true
+    });
 }

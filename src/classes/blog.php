@@ -16,12 +16,8 @@ class Blog
 
     private static function get(string $url): \stdClass|array
     {
-        $postsRemote = file_get_contents($url);
-        $response    = array();
-
-        if (false !== $postsRemote) {
-            $response = json_decode($postsRemote);
-        }
+        $cache    = new Cache\Blog($url);
+        $response = $cache->get();
 
         return $response;
     }

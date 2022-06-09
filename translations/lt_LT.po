@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-04-26 10:26+0200\n"
+"POT-Creation-Date: 2022-06-09 12:25+0200\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
 "Last-Translator: Jay Trees, 2022\n"
 "Language-Team: Lithuanian (Lithuania) (https://www.transifex.com/wishthis/teams/134148/lt_LT/)\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt_LT\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:115 pages/home.php:26
+#: classes/page.php:116 pages/home.php:26
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
@@ -29,7 +29,7 @@ msgstr ""
 "kurioje galite kurti, tvarkyti ir peržiūrėti savo pageidavimus bet kokia "
 "proga."
 
-#: classes/page.php:191
+#: classes/page.php:194
 msgid ""
 "This is the development environment of wishthis. The database will reset "
 "every day at around 00:00."
@@ -37,329 +37,338 @@ msgstr ""
 "Tai wishthis kūrimo aplinka. Duomenų bazė bus atstatoma kiekvieną dieną apie"
 " 00:00 val."
 
-#: classes/page.php:192
+#: classes/page.php:195
 msgid "Development environment"
 msgstr "Kūrimo aplinka"
 
-#: classes/page.php:315
+#: classes/page.php:318
 msgid "No wishlist selected."
 msgstr "Nėra pasirinkto pageidavimų sąrašo."
 
-#: classes/page.php:317 classes/page.php:347 pages/login-as.php:40
+#: classes/page.php:320 classes/page.php:350 pages/login-as.php:40
 msgid "Error"
 msgstr "Klaida"
 
-#: classes/page.php:318 pages/register.php:83 pages/register.php:86
+#: classes/page.php:321 pages/register.php:83 pages/register.php:86
 msgid "Failure"
 msgstr "Nesėkmė"
 
-#: classes/page.php:319
+#: classes/page.php:322
 msgid "The server did not confirm that the action was successful."
 msgstr "Serveris nepatvirtino, kad veiksmas buvo sėkmingas."
 
-#: classes/page.php:320
+#: classes/page.php:323
 msgid "Thanks for nothing"
 msgstr "Ačiū už nieką"
 
-#: classes/page.php:321
+#: classes/page.php:324
 msgid "Understood"
 msgstr "Supratau"
 
-#: classes/page.php:322 pages/install.php:229 pages/login-as.php:38
+#: classes/page.php:325 pages/install.php:229 pages/login-as.php:38
 #: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
 #: pages/wish.php:37
 msgid "Success"
 msgstr "Sėkmė"
 
-#: classes/page.php:324
+#: classes/page.php:327
 msgid "Close this tab"
 msgstr "Uždaryti šį skirtuką"
 
-#: classes/page.php:325
+#: classes/page.php:328
 msgid "Show wishlist anyway"
 msgstr "Vis tiek rodyti pageidavimų sąrašą"
 
-#: classes/page.php:326 classes/page.php:331
+#: classes/page.php:329 classes/page.php:334
 msgid "Really delete?"
 msgstr "Tikrai ištrinti?"
 
-#: classes/page.php:327
+#: classes/page.php:330
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
 msgstr "Ar tikrai norite ištrinti pageidavimų sąrašą %s?"
 
-#: classes/page.php:328 classes/page.php:333
+#: classes/page.php:331 classes/page.php:336
 msgid "Yes, delete"
 msgstr "Taip, ištrinti"
 
-#: classes/page.php:329 classes/page.php:334
+#: classes/page.php:332 classes/page.php:337
 msgid "No, keep"
 msgstr "Ne, pasilikite"
 
-#: classes/page.php:332
+#: classes/page.php:335
 msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr ""
 "Ar tikrai norėtumėte ištrinti šį pageidavimą? Jis išnyks visiems laikams."
 
-#: classes/page.php:336
+#: classes/page.php:339
 msgid "Passwords must match."
 msgstr "Slaptažodžiai turi sutapti."
 
-#: classes/page.php:338
+#: classes/page.php:341
 msgid "Wishlist successfully renamed."
 msgstr "Pageidavimų sąrašas sėkmingai pervadintas."
 
-#: classes/page.php:339
+#: classes/page.php:342
 msgid "Wishlist successfully deleted."
 msgstr "Pageidavimų sąrašas sėkmingai ištrintas."
 
-#: classes/page.php:341
+#: classes/page.php:344
 msgid "Wish successfully created."
 msgstr "Sėkmingai sukurtas noras."
 
-#: classes/page.php:342
+#: classes/page.php:345
 msgid "Wish successfully added."
 msgstr "Sėkmingai pridėtas noras."
 
-#: classes/page.php:343
+#: classes/page.php:346
 msgid "Wish information updated."
 msgstr "Atnaujinta informacija apie norus."
 
-#: classes/page.php:344
+#: classes/page.php:347
 msgid "Don't forget to save your changes."
 msgstr "Nepamirškite išsaugoti pakeitimų."
 
-#: classes/page.php:345
+#: classes/page.php:348
 msgid "Wish successfully deleted."
 msgstr "Noras sėkmingai ištrintas."
 
-#: classes/page.php:348
+#: classes/page.php:351
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr ""
 "Nepavyksta nukopijuoti į iškarpinę. Tikėtina, kad yra leidimų problema."
 
-#: classes/page.php:349
+#: classes/page.php:352
 msgid "Link copied to clipboard."
 msgstr "Nuoroda nukopijuota į iškarpinę."
 
-#: classes/page.php:351
+#: classes/page.php:354
 msgid "{name} must have a value"
 msgstr "{name} turi turėti vertę"
 
-#: classes/page.php:352
+#: classes/page.php:355
 msgid "{name} must be checked"
 msgstr "{name} turi būti tikrinama"
 
-#: classes/page.php:353
+#: classes/page.php:356
 msgid "{name} must be a valid e-mail"
 msgstr "{name} turi būti galiojantis el. paštas"
 
-#: classes/page.php:354
+#: classes/page.php:357
 msgid "{name} must be a valid URL"
 msgstr "{name} turi būti galiojantis URL"
 
-#: classes/page.php:355
+#: classes/page.php:358
 msgid "{name} is not formatted correctly"
 msgstr "{name} neteisingai suformatuotas"
 
-#: classes/page.php:356
+#: classes/page.php:359
 msgid "{name} must be an integer"
 msgstr "{name} turi būti sveikasis skaičius"
 
-#: classes/page.php:357
+#: classes/page.php:360
 msgid "{name} must be a decimal number"
 msgstr "{name} turi būti dešimtainis skaičius"
 
-#: classes/page.php:358
+#: classes/page.php:361
 msgid "{name} must be set to a number"
 msgstr "{name} turi būti nustatytas skaičius"
 
-#: classes/page.php:359
+#: classes/page.php:362
 msgid "{name} must be \"{ruleValue}\""
 msgstr "{name} turi būti \"{ruleValue}\"."
 
-#: classes/page.php:360
+#: classes/page.php:363
 msgid "{name} must be exactly \"{ruleValue}\""
 msgstr "{name} turi būti tiksliai \"{ruleValue}\"."
 
-#: classes/page.php:361
+#: classes/page.php:364
 msgid "{name} cannot be set to \"{ruleValue}\""
 msgstr "{name} negalima nustatyti į \"{ruleValue}\"."
 
-#: classes/page.php:362
+#: classes/page.php:365
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
 msgstr "{name} negalima nustatyti tiksliai \"{ruleValue}\"."
 
-#: classes/page.php:363
+#: classes/page.php:366
 msgid "{name} cannot contain \"{ruleValue}\""
 msgstr "{name} negali būti \"{ruleValue}\"."
 
-#: classes/page.php:364
+#: classes/page.php:367
 msgid "{name} cannot contain exactly \"{ruleValue}\""
 msgstr "{name} negali būti tiksliai \"{ruleValue}\"."
 
-#: classes/page.php:365
+#: classes/page.php:368
 msgid "{name} must contain \"{ruleValue}\""
 msgstr "{name} turi būti \"{ruleValue}\"."
 
-#: classes/page.php:366
+#: classes/page.php:369
 msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr "{name} turi būti būtent \"{ruleValue}\"."
 
-#: classes/page.php:367 classes/page.php:368
+#: classes/page.php:370 classes/page.php:371
 msgid "{name} must be at least {ruleValue} characters"
 msgstr "{name} turi būti ne mažiau kaip {ruleValue} simbolių."
 
-#: classes/page.php:369
+#: classes/page.php:372
 msgid "{name} must be exactly {ruleValue} characters"
 msgstr "{name} turi būti lygiai {ruleValue} simbolių"
 
-#: classes/page.php:370
+#: classes/page.php:373
 msgid "{name} cannot be longer than {ruleValue} characters"
 msgstr "{name} negali būti ilgesnis nei {ruleValue} simbolių"
 
-#: classes/page.php:371
+#: classes/page.php:374
 msgid "{name} must match {ruleValue} field"
 msgstr "{name} turi atitikti {ruleValue} lauką"
 
-#: classes/page.php:372
+#: classes/page.php:375
 msgid "{name} must have a different value than {ruleValue} field"
 msgstr "{name} turi turėti kitą vertę nei {ruleValue} laukas"
 
-#: classes/page.php:373
+#: classes/page.php:376
 msgid "{name} must be a valid credit card number"
 msgstr "{name} turi būti galiojantis kredito kortelės numeris"
 
-#: classes/page.php:374
+#: classes/page.php:377
 msgid "{name} must have at least {ruleValue} choices"
 msgstr "{name} turi turėti bent {ruleValue} pasirinkimų"
 
-#: classes/page.php:375
+#: classes/page.php:378
 msgid "{name} must have exactly {ruleValue} choices"
 msgstr "{name} turi turėti lygiai {ruleValue} pasirinkimų"
 
-#: classes/page.php:376
+#: classes/page.php:379
 msgid "{name} must have {ruleValue} or less choices"
 msgstr "{name} turi turėti {ruleValue} arba mažiau pasirinkimų"
 
-#: classes/page.php:378
+#: classes/page.php:381
 msgctxt "Calendar"
 msgid "Today"
 msgstr "Šiandien"
 
-#: classes/page.php:379
+#: classes/page.php:382
 msgctxt "Calendar"
 msgid "Now"
 msgstr "Dabar"
 
-#: classes/page.php:380
+#: classes/page.php:383
 msgctxt "Calendar"
 msgid "AM"
 msgstr "AM"
 
-#: classes/page.php:381
+#: classes/page.php:384
 msgctxt "Calendar"
 msgid "PM"
 msgstr "PREMJERAS"
 
-#: classes/page.php:382
+#: classes/page.php:385
 msgctxt "Calendar"
 msgid "Week"
 msgstr "Savaitė"
 
-#: classes/page.php:384 pages/profile.php:209 pages/profile.php:210
-#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:334
-#: pages/profile.php:335 pages/settings.php:53 pages/settings.php:54
+#: classes/page.php:387 pages/profile.php:209 pages/profile.php:210
+#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:336
+#: pages/profile.php:337 pages/settings.php:53 pages/settings.php:54
 #: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: classes/page.php:385
+#: classes/page.php:388
 msgid "Saved"
 msgstr "Išsaugota"
 
-#: classes/page.php:453
+#: classes/page.php:457 classes/page.php:461 pages/blog.php:11
+#: pages/changelog.php:41
+msgid "Blog"
+msgstr "Tinklaraštis"
+
+#: classes/page.php:468
 msgid "System"
 msgstr "Sistema"
 
-#: classes/page.php:459
+#: classes/page.php:474
 msgid "Account"
 msgstr "Sąskaita"
 
-#: classes/page.php:468 pages/home.php:105
+#: classes/page.php:483 pages/home.php:105
 msgid "Wishlists"
 msgstr "Pageidavimų sąrašai"
 
-#: classes/page.php:472 pages/home.php:33 pages/home.php:35
+#: classes/page.php:487 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "Mano sąrašai"
 
-#: classes/page.php:477 pages/wishlists-saved.php:11
+#: classes/page.php:492 pages/wishlists-saved.php:11
 msgid "Saved lists"
 msgstr "Išsaugoti sąrašai"
 
-#: classes/page.php:487 pages/profile.php:11
+#: classes/page.php:502 pages/profile.php:11
 msgid "Profile"
 msgstr "Profilis"
 
-#: classes/page.php:493 pages/login-as.php:11
+#: classes/page.php:508 pages/login-as.php:11
 msgid "Login as"
 msgstr "Prisijungti kaip"
 
-#: classes/page.php:499 pages/logout.php:11
+#: classes/page.php:514 pages/logout.php:11
 msgid "Logout"
 msgstr "Atsijungimas"
 
-#: classes/page.php:505 classes/page.php:509 pages/home.php:50
+#: classes/page.php:520 classes/page.php:524 pages/home.php:50
 #: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
 #: pages/login.php:11 pages/login.php:130 pages/login.php:131
 #: pages/register.php:229 pages/register.php:231
 msgid "Login"
 msgstr "Prisijungimas"
 
-#: classes/page.php:516 classes/page.php:520 pages/install.php:233
+#: classes/page.php:531 classes/page.php:535 pages/install.php:233
 #: pages/install.php:235 pages/login.php:135 pages/login.php:137
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registruotis"
 
-#: classes/page.php:530 pages/settings.php:11
+#: classes/page.php:545 pages/settings.php:11
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: classes/page.php:543
+#: classes/page.php:558
 msgid "wishthis logo"
 msgstr "wishthis logotipas"
 
-#: classes/page.php:678
+#: classes/page.php:692 pages/changelog.php:11
+msgid "Changelog"
+msgstr "Pakeitimų sąrašas"
+
+#: classes/page.php:698
 msgid "Contribute"
 msgstr "Prisidėti"
 
-#: classes/page.php:684 classes/page.php:687
+#: classes/page.php:704 classes/page.php:707
 msgid "GitHub repository"
 msgstr "\"GitHub\" saugykla"
 
-#: classes/page.php:693 classes/page.php:696
+#: classes/page.php:713 classes/page.php:716
 msgid "Translate"
 msgstr "Išversti"
 
-#: classes/page.php:732
+#: classes/page.php:752
 #, php-format
 msgid "%s not found"
 msgstr "%s nerasta"
 
-#: classes/page.php:742
+#: classes/page.php:762
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 "Prašomas pageidavimų sąrašas nerastas ir greičiausiai jo kūrėjas jį ištrynė."
 
-#: classes/page.php:746
+#: classes/page.php:766
 msgid "The requested Wish was not found."
 msgstr "Prašomas Wish nerastas."
 
-#: classes/page.php:750
+#: classes/page.php:770
 #, php-format
 msgid "The requested %s was not found."
 msgstr "Prašomas %s nerastas."
@@ -449,13 +458,85 @@ msgstr "Velykos"
 msgid "Christmas"
 msgstr "Kalėdos"
 
+#: pages/blog.php:47
+msgid "Read more"
+msgstr "Skaityti daugiau"
+
+#: pages/changelog.php:25 pages/changelog.php:35
+msgid "Unreleased"
+msgstr "Neišleistas"
+
+#: pages/changelog.php:26 pages/changelog.php:69
+msgid "0.6.0"
+msgstr "0.6.0"
+
+#: pages/changelog.php:39 pages/changelog.php:73
+msgid "Added"
+msgstr "Pridėta"
+
+#: pages/changelog.php:44 pages/changelog.php:80
+msgid "Improved"
+msgstr "Patobulintas"
+
+#: pages/changelog.php:46
+msgid "Localisation (many new translations added)"
+msgstr "Lokalizacija (pridėta daug naujų vertimų)"
+
+#: pages/changelog.php:47
+msgid "Saved wish information is not updated if the url can not be found"
+msgstr ""
+"Išsaugoto pageidavimo informacija neatnaujinama, jei nepavyksta rasti url "
+"adreso"
+
+#: pages/changelog.php:48
+msgid "URL handling"
+msgstr "URL tvarkymas"
+
+#: pages/changelog.php:51
+msgid "Changed"
+msgstr "Pakeista"
+
+#: pages/changelog.php:53
+msgid "Changelog is now a page instead of a downloadable markdown file"
+msgstr ""
+"Pakeitimų žurnalas dabar yra puslapis, o ne parsisiunčiamas \"Markdown\" "
+"failas"
+
+#: pages/changelog.php:56 pages/changelog.php:85
+msgid "Fixed"
+msgstr "Nustatyta"
+
+#: pages/changelog.php:58
+msgid "Various minor things (typos, menu order, etc)"
+msgstr "Įvairūs smulkūs dalykai (rašybos klaidos, meniu tvarka ir kt.)"
+
+#: pages/changelog.php:75
+msgid "This changelog"
+msgstr "Šis pakeitimų sąrašas"
+
+#: pages/changelog.php:76
+msgid "Wish properties"
+msgstr "Pageidaujamos savybės"
+
+#: pages/changelog.php:77
+msgid "Button to mark wish as fulfilled"
+msgstr "Mygtukas pažymėti norą kaip įvykdytą"
+
+#: pages/changelog.php:82
+msgid "Card design"
+msgstr "Kortelių dizainas"
+
+#: pages/changelog.php:87
+msgid "Various small bugs"
+msgstr "Įvairios nedidelės klaidos"
+
 #: pages/home.php:11
 msgid "Home"
 msgstr "Pagrindinis"
 
 #: pages/home.php:24
-msgid "Welcome to wishthis"
-msgstr "Sveiki atvykę į wishthis"
+msgid "Make a wish"
+msgstr "Sugalvokite norą"
 
 #: pages/home.php:42 pages/home.php:44
 msgid "Register now"
@@ -531,20 +612,6 @@ msgstr "Linkėjimai"
 #: pages/home.php:110
 msgid "Registered users"
 msgstr "Registruoti naudotojai"
-
-#: pages/home.php:116
-msgid "What's new"
-msgstr "Kas naujo"
-
-#. TRANSLATORS: %s: Changelog
-#: pages/home.php:122
-#, php-format
-msgid "Check out the %s for a list changes."
-msgstr "Patikrinkite %s sąrašo pakeitimus."
-
-#: pages/home.php:123
-msgid "Changelog"
-msgstr "Pakeitimų sąrašas"
 
 #: pages/install.php:15
 msgid "Install"
@@ -828,15 +895,15 @@ msgstr "Specialus"
 msgid "Contains special characters."
 msgstr "Turi specialių simbolių."
 
-#: pages/profile.php:313 pages/profile.php:371
+#: pages/profile.php:315 pages/profile.php:373
 msgid "Channel"
 msgstr "Kanalas"
 
-#: pages/profile.php:316
+#: pages/profile.php:318
 msgid "Select channel"
 msgstr "Pasirinkite kanalą"
 
-#: pages/profile.php:374
+#: pages/profile.php:376
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
@@ -844,7 +911,7 @@ msgstr ""
 "Siekiant pagerinti \"wishthis\" naudojimo patirtį, naujesnės versijos "
 "skelbiamos po ilgo testavimo laikotarpio."
 
-#: pages/profile.php:375
+#: pages/profile.php:377
 msgid ""
 "Subscribing to the Stable channel ensures you have the highest possible "
 "stability while using wishthis, minimizing the amount of errors you may "
@@ -854,7 +921,7 @@ msgstr ""
 "naudojant wishthis, todėl klaidų, su kuriomis galite susidurti (jei tokių "
 "yra), skaičius sumažėja iki minimumo."
 
-#: pages/profile.php:376
+#: pages/profile.php:378
 msgid ""
 "If you want to speed up the release of newer versions, consider subscribing "
 "to the Release candidate of wishthis. A newer version is not published "
@@ -864,7 +931,7 @@ msgstr ""
 "užsiprenumeruoti \"wishthis Release candidate\". Naujesnė versija "
 "neskelbiama, kol kita Release candidate versija nėra pakankamai išbandyta."
 
-#: pages/profile.php:388
+#: pages/profile.php:390
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"

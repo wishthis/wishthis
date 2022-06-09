@@ -49,26 +49,31 @@ $(function() {
 });
 
 function showStatistic(elementStatistic, amount, timeout) {
-    var interval    = 20;
-    var intervalEnd = 750;
+    const duration = 2000;
+
+    var interval  = 42;
+    var value     = 0;
+    var percent   = 0;
+    var increment = 1;
 
     setTimeout(
         function count() {
-            var value = $.isNumeric(elementStatistic.text())
-                      ? parseInt(elementStatistic.text())
-                      : -1;
+            increment = amount / duration * interval;
 
-            if (value < amount) {
-                elementStatistic.text(value + 1);
+            if (value + increment < amount) {
+                value = value + increment;
 
-                var remainingSlowDown    = 6;
-                var remainingInterations = amount - value;
-
-                if (remainingInterations < remainingSlowDown) {
-                    interval = (remainingSlowDown - remainingInterations) * (intervalEnd / remainingSlowDown);
-                }
+                elementStatistic.text(Math.round(value));
 
                 setTimeout(count, interval);
+            } else {
+                elementStatistic.text(amount);
+            }
+
+            percent = value / amount * 100;
+
+            if (percent >= 60) {
+                interval = interval * 1.4;
             }
         },
         timeout

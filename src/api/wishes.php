@@ -24,14 +24,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
                       WHERE `id` = ' . $_GET['wish_id'] . ';')
             ->fetch();
 
-            $wish = new wish($columns, true);
+            $wish = new Wish($columns, true);
 
             $response = array(
                 'info' => $wish,
                 'html' => $wish->getCard($_GET['wishlist_user'])
             );
         } elseif (isset($_GET['wish_url'])) {
-            $cache  = new EmbedCache($_GET['wish_url']);
+            $cache  = new Cache\Embed($_GET['wish_url']);
             $info   = $cache->get(true);
             $exists = $cache->exists() ? 'true' : 'false';
 
