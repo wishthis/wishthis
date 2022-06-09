@@ -139,7 +139,13 @@ class EmbedCache
             }
 
             if ($generateCache) {
-                file_put_contents($this->getFilepath(), json_encode($info));
+                $directory = dirname($filepath);
+
+                if (false === file_exists($directory)) {
+                    mkdir($directory);
+                }
+
+                file_put_contents($filepath, json_encode($info));
             }
         }
 
