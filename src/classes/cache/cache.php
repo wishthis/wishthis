@@ -11,8 +11,6 @@ class Cache
     /**
      * Private
      */
-    private string $filepath;
-
     private function age(): int
     {
         return time() - filemtime($this->getFilepath());
