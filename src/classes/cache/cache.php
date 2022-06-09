@@ -33,7 +33,7 @@ class Cache
 
     protected function getFilepath(): string
     {
-        return $this->directory . '/' . $this->getIdentifier();
+        return $this->directory . '/' . $this->getIdentifier() . '.json';
     }
 
     protected function write(mixed $value): void
