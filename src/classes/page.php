@@ -99,9 +99,10 @@ class Page
     /**
      * Non-Static
      */
-    public string $language     = DEFAULT_LOCALE;
-    public array $messages      = array();
+    public string $language = DEFAULT_LOCALE;
+    public array $messages  = array();
     public string $link_preview;
+    public string $description;
 
     /**
      * __construct
