@@ -19,7 +19,7 @@ class Embed extends Cache
     {
         parent::__construct($url);
 
-        $this->directory .= '/cache';
+        $this->directory .= '/wishes';
     }
 
     public function get(bool $generateCache = false): \stdClass
