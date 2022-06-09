@@ -15,7 +15,7 @@ class EmbedCache
     /**
      * Private
      */
-    private string $directory = ROOT . '/src/cache';
+    private string $directory = ROOT . '/src/cache/embed';
     private string $filepath;
 
     private function getIdentifier(): string
