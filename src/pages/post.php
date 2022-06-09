@@ -17,7 +17,12 @@ $page = new Page(__FILE__, $post->title->rendered);
 
 if (isset($postMedia->source_url)) {
     $page->link_preview = $postMedia->source_url;
-    $page->description  = $post->excerpt->rendered;
+}
+
+if (isset($post->excerpt->rendered)) {
+    $page->description = substr(strip_tags($post->excerpt->rendered), 0, 256);
+} else {
+    $page->description = substr(strip_tags($post->content->rendered), 0, 256);
 }
 
 $page->header();
