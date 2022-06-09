@@ -4,12 +4,33 @@
  * WordPress blog cache.
  */
 
-namespace wishthis;
+namespace wishthis\Cache;
 
-class BlogCache extends Cache
+class Blog extends Cache
 {
-    public function __construct(private string $url)
+    public function __construct($url)
     {
-        $this->$directory = parent::$directory . '/blog';
+        parent::__construct($url);
+
+        $this->directory .= '/blog';
+    }
+
+    public function get(): \stdClass|array
+    {
+        $filepath = $this->getFilepath();
+
+        $response = $this->exists() ? json_decode(file_get_contents($filepath)) : array();
+
+        if (true === $this->generateCache() || empty($response)) {
+            $postsRemote = file_get_contents($this->url);
+
+            if (false !== $postsRemote) {
+                $response = json_decode($postsRemote);
+            }
+
+            $this->write($response);
+        }
+
+        return $response;
     }
 }

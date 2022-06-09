@@ -10,36 +10,23 @@
 
 namespace wishthis\Cache;
 
-class Embed
+class Embed extends Cache
 {
-    /**
-     * Private
-     */
-    private string $directory = ROOT . '/src/cache/embed';
-    private string $filepath;
-
-    private function getIdentifier(): string
-    {
-        return md5($this->url);
-    }
-
-    private function getFilepath(): string
-    {
-        return $this->directory . '/' . $this->getIdentifier();
-    }
-
     /**
      * Public
      */
-    public function __construct(private string $url)
+    public function __construct($url)
     {
+        parent::__construct($url);
+
+        $this->directory .= '/cache';
     }
 
     public function get(bool $generateCache = false): \stdClass
     {
         $filepath = $this->getFilepath();
 
-        $info = file_exists($filepath) ? json_decode(file_get_contents($filepath)) : new \stdClass();
+        $info = $this->exists() ? json_decode(file_get_contents($filepath)) : new \stdClass();
 
         if (true === $this->generateCache() || true === $generateCache) {
             /**
@@ -139,37 +126,10 @@ class Embed
             }
 
             if ($generateCache) {
-                $directory = dirname($filepath);
-
-                if (false === file_exists($directory)) {
-                    mkdir($directory);
-                }
-
-                file_put_contents($filepath, json_encode($info));
+                $this->write($info);
             }
         }
 
         return $info;
-    }
-
-    public function exists(): bool
-    {
-        return file_exists($this->getFilepath());
-    }
-
-    public function age(): int
-    {
-        return time() - filemtime($this->getFilepath());
-    }
-
-    public function maxAge(): int
-    {
-        return 2592000; // 30 days
-    }
-
-    public function generateCache(): bool
-    {
-        return !$this->exists()
-            || ($this->exists() && $this->age() > $this->maxAge());
     }
 }
