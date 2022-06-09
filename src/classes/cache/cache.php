@@ -1,21 +1,17 @@
 <?php
 
 /**
- * Cache embed requests.
- *
- * @see https://github.com/oscarotero/Embed/issues/471
- *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * Generic cache class
  */
 
 namespace wishthis;
 
-class EmbedCache
+class Cache
 {
     /**
      * Private
      */
-    private string $directory = ROOT . '/src/cache/embed';
+    private string $directory = ROOT . '/src/cache';
     private string $filepath;
 
     private function getIdentifier(): string

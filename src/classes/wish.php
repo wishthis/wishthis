@@ -41,7 +41,7 @@ class Wish
     /**
      * Non-Static
      */
-    private EmbedCache $cache;
+    private Cache\Embed $cache;
 
     public int $id;
     public int $wishlist;
@@ -84,7 +84,7 @@ class Wish
             $this->info = new \stdClass();
 
             if ($this->url) {
-                $this->cache = new EmbedCache($this->url);
+                $this->cache = new Cache\Embed($this->url);
                 $this->info  = $this->cache->get($generateCache);
             }
 

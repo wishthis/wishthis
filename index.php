@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+namespace wishthis;
+
 define('VERSION', '0.6.0');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
@@ -15,8 +17,25 @@ define('DEFAULT_LOCALE', 'en_GB');
  */
 require 'vendor/autoload.php';
 
-$include = new Grandel\IncludeDirectory(__DIR__ . '/src/classes');
-$include = new Grandel\IncludeDirectory(__DIR__ . '/src/functions');
+$include = new \Grandel\IncludeDirectory(__DIR__ . '/src/functions');
+
+spl_autoload_register(
+    function (string $fullClass) {
+        /** Only include classes from this namespace */
+        if (__NAMESPACE__ === substr($fullClass, 0, strlen(__NAMESPACE__))) {
+            $fullClass = substr($fullClass, strlen(__NAMESPACE__));
+        } else {
+            return false;
+        }
+
+        $parts = explode('\\', $fullClass);
+        $class = implode('/', $parts);
+
+        $filepath = ROOT . '/src/classes/' . strtolower($class) . '.php';
+
+        require $filepath;
+    }
+);
 
 /**
  * Config
@@ -39,7 +58,7 @@ if (
     && defined('DATABASE_USER')
     && defined('DATABASE_PASSWORD')
 ) {
-    $database = new wishthis\Database(
+    $database = new Database(
         DATABASE_HOST,
         DATABASE_NAME,
         DATABASE_USER,
@@ -49,7 +68,7 @@ if (
     /**
      * Options
      */
-    $options = new wishthis\Options($database);
+    $options = new Options($database);
 }
 
 /**
@@ -77,7 +96,7 @@ setcookie(
  * User
  */
 if ($options) {
-    $user = new wishthis\User();
+    $user = new User();
 }
 
 /**
@@ -113,7 +132,7 @@ if (file_exists($translationFilepath)) {
 /**
  * Wish
  */
-wishthis\Wish::initialize();
+Wish::initialize();
 
 /**
  * API
@@ -125,7 +144,7 @@ if (isset($api)) {
 /**
  * Pretty URLs
  */
-$url = new \wishthis\URL($_SERVER['REQUEST_URI']);
+$url = new URL($_SERVER['REQUEST_URI']);
 
 if ($url->isPretty()) {
     $_SESSION['_GET'] = query_to_key_value_pair($url->getPermalink());
