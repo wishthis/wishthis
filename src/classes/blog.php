@@ -77,7 +77,7 @@ class Blog
                 <source srcset="<?= $image->source_url ?> <?= $image->width ?>w" type="<?= $image->mime_type ?>" media="(max-width: <?= $image->width ?>px)" />
             <?php } ?>
 
-            <img src="<?= $media->source_url; ?>" alt="<?= $media->alt_text; ?>" />
+            <img src="<?= $media->source_url; ?>" alt="<?= $media->alt_text; ?>" loading="lazy" />
         </picture>
         <?php
         $htmlPicture .= ob_get_clean();
