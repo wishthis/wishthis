@@ -60,7 +60,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_description    = trim($_POST['wish_description']);
             $wish_url            = trim($_POST['wish_url']);
             $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
-            $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
+            $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'true' : 'false';
 
             if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
                 /** Update wish */
