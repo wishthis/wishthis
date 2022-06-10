@@ -13,6 +13,14 @@ namespace wishthis\Cache;
 class Embed extends Cache
 {
     /**
+     * Private
+     */
+    protected function getFilepath(): string
+    {
+        return parent::getFilepath() . '.json';
+    }
+
+    /**
      * Public
      */
     public function __construct($url)
