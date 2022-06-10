@@ -50,6 +50,8 @@ class Wish
     public ?string $image;
     public ?string $url;
     public ?int $priority;
+    public bool $is_purchasable;
+
     public ?string $status;
 
     public \stdClass $info;
