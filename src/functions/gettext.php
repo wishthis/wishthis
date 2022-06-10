@@ -1,7 +1,7 @@
 <?php
 
 /**
- * gettext.php
+ * Gettext
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -16,7 +16,11 @@ function __(string $text, string $context = null): string
         $translation = $translations->find($context, $text);
 
         if ($translation) {
-            return htmlentities($translation->getTranslation());
+            $translationText = $translation->getTranslation();
+
+            if (!empty($translationText)) {
+                return htmlentities($translationText);
+            }
         }
     }
 
