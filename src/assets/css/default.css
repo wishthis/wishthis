@@ -342,3 +342,12 @@ ul.ui.list li::before {
 ul.ui.list {
 	margin: 0;
 }
+
+/**
+ * Dropdown
+ */
+button.item {
+    width: 100%;
+
+    background-color: transparent;
+}

@@ -208,20 +208,20 @@ class Wish
                         <span class="text"><?= __('Options') ?></span>
                         <div class="menu">
 
-                            <div class="item wish-fulfilled">
+                            <button class="item wish-fulfilled">
                                 <i class="check icon"></i>
                                 <?= __('Mark as fulfilled') ?>
-                            </div>
+                            </button>
 
-                            <a class="item" href="/?page=wish&id=<?= $this->id ?>">
+                            <button class="item wish-edit" data-id="<?= $this->id ?>">
                                 <i class="pen icon"></i>
                                 <?= __('Edit') ?>
-                            </a>
+                            </button>
 
-                            <div class="item wish-delete">
+                            <button class="item wish-delete">
                                 <i class="trash icon"></i>
                                 <?= __('Delete') ?>
-                            </div>
+                            </button>
 
                         </div>
                     </div>
