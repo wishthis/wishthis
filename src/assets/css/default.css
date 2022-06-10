@@ -1,6 +1,7 @@
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
+    --themeTransitionDuration: 2s;
 }
 
 img {
@@ -58,6 +59,9 @@ figure {
 
 /** Image */
 .wishlist .ui.card > .image > svg {
+    transition: var(--themeTransitionDuration) ease color,
+                var(--themeTransitionDuration) ease background-color;
+
     width: 100%;
     height: var(--wishPreviewHeight);
     padding: 15% 10%;
@@ -77,9 +81,11 @@ figure {
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .image > svg {
-            transition: height 0.2s linear,
-                        padding 0.2s linear,
-                        opacity 0.2s linear;
+            transition: var(--themeTransitionDuration) ease color,
+                        var(--themeTransitionDuration) ease background-color,
+                        0.2s linear height,
+                        0.2s linear padding,
+                        0.2s linear opacity;
         }
     }
     .wishlist .ui.card:hover > .image > svg {
@@ -90,6 +96,9 @@ figure {
 }
 
 .wishlist .ui.card > .image > img.preview {
+    transition: var(--themeTransitionDuration) ease filter,
+                var(--themeTransitionDuration) ease background-color;
+
     height: var(--wishPreviewHeight);
 
     object-fit: cover;
@@ -98,14 +107,15 @@ figure {
 }
 @media (prefers-color-scheme: dark) {
     .wishlist .ui.card > .image > img.preview {
-        background-color: #000;
         filter: brightness(80%);
+        background-color: #000;
     }
 }
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .image > img.preview {
-            transition: height 0.2s linear, opacity 0.2s linear;
+            transition: 0.2s linear height,
+                        0.2s linear opacity;
         }
     }
     .wishlist .ui.card:hover > .image > img.preview {
@@ -142,6 +152,8 @@ figure {
 
 /** Provider name */
 .wishlist .ui.card > .image > span.provider {
+    transition: var(--themeTransitionDuration) ease background-color;
+
     display: block;
     width: 100%;
     padding: calc(var(--padding) * 1.5) var(--padding);
@@ -196,8 +208,8 @@ figure {
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .content:not(.extra) {
-            transition: height 0.2s linear,
-                        margin-bottom 0.2s linear;
+            transition: 0.2s linear height,
+                        0.2s linear margin-bottom;
         }
     }
     .wishlist .ui.card > .content:not(.extra) {
@@ -259,8 +271,8 @@ figure {
     }
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .extra.buttons {
-            transition: opacity 0.2s ease,
-                        bottom 0.2s ease;
+            transition: 0.2s ease opacity,
+                        0.2s ease bottom;
         }
     }
 
@@ -384,6 +396,8 @@ p .ui.horizontal.label {
  * Filter
  */
 .ui.basic.white.button {
+    transition: var(--themeTransitionDuration) ease background-color;
+
     background-color: #fff;
 }
 @media (prefers-color-scheme: dark) {
@@ -416,11 +430,50 @@ button.item {
  * Dark theme
  */
 body,
-.ui.segment {
-    transition: color 2s ease,
-                background-color 2s ease;
+.ui.segment,
+.ui.menu,
+.ui.menu .dropdown.item .menu,
+.ui.vertical.pointing.menu .active.item::after,
+.ui.selection.dropdown,
+.ui.dropdown .menu .selected.item,
+.ui.dropdown.selected,
+.ui.pointing.dropdown > .menu:not(.hidden)::after,
+.ui.button,
+.ui.input > input,
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="file"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="text"],
+.ui.form input[type="time"],
+.ui.form input[type="url"],
+.ui.form textarea,
+.ui.input textarea,
+.ui.card,
+.ui.cards > .card,
+.ui.card > .image,
+.ui.cards > .card > .image,
+.ui.table,
+.ui.table > thead > tr > th,
+.ui.info.message,
+.ui.modal,
+.ui.modal > .header,
+.ui.modal > .content,
+.ui.modal > .actions,
+.ui.ui.table td.active,
+.ui.ui.ui.ui.table tr.active,
+.ui.bottom.popup::before,
+.ui.steps .step,
+.ui.steps .disabled.step,
+.ui.steps .disabled.step::after,
+.ui.steps .step::after {
+    transition: var(--themeTransitionDuration) ease background-color;
 }
-
 @media (prefers-color-scheme: dark) {
     body {
         color: #dfdfdf;
@@ -617,7 +670,8 @@ body,
     .ui.form ::placeholder {
         color: rgba(64, 64, 64, 0.87);
     }
-    input::selection, textarea::selection {
+    input::selection,
+    textarea::selection {
         color: rgba(255, 255, 255, 0.87);
         background-color: rgba(155, 155, 155, 0.4);
     }
