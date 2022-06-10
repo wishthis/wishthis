@@ -42,9 +42,10 @@ $posts = Blog::getPosts();
                             <div class="meta">
                                 <a><?= $categoriesHTML ?></a>
                             </div>
-                            <div class="description"><?= $post->excerpt->rendered ?></div>
-
-                            <a href="<?= $postLink ?>"><?= __('Read more') ?></a>
+                            <div class="description">
+                                <?= $post->excerpt->rendered ?>
+                                <p><a href="<?= $postLink ?>"><?= __('Read more') ?></a></p>
+                            </div>
                         </div>
                         <div class="extra content">
                             <span class="right floated"><?= $dateFormatter->format(strtotime($post->date)) ?></span>
