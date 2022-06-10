@@ -439,7 +439,7 @@ $(function () {
 
                         setTimeout(() => {
                             wishlistsRefresh();
-                        }, 200);
+                        }, 800);
                     },
                 });
 
