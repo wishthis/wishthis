@@ -49,16 +49,17 @@ $(function() {
 });
 
 function showStatistic(elementStatistic, amount, timeout) {
-    const duration = 2000;
+    const duration        = 2000;
+    const intervalInitial = 42;
 
-    var interval  = 42;
+    var interval  = intervalInitial;
     var value     = 0;
     var percent   = 0;
     var increment = 1;
 
     setTimeout(
         function count() {
-            increment = amount / duration * interval;
+            increment = amount / duration * intervalInitial;
 
             if (value + increment < amount) {
                 value = value + increment;
@@ -72,7 +73,7 @@ function showStatistic(elementStatistic, amount, timeout) {
 
             percent = value / amount * 100;
 
-            if (percent >= 60) {
+            if (percent >= 80) {
                 interval = interval * 1.4;
             }
         },
