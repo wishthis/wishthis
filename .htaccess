@@ -17,7 +17,7 @@
   RewriteRule ^(wishlist)/([0-9a-f]{40})$ /?page=$1&hash=$2 [QSA,L]
 
   # Blog Post
-  RewriteRule ^(blog)/([a-z\-0-9]+)$ /?page=$1&slug=$2 [QSA,L]
+  RewriteRule ^blog/([a-z\-0-9]+)$ /?page=post&slug=$1 [QSA,L]
 </IfModule>
 
 ##-- When caching of gzipped JS and CSS files is used, enable this setting
