@@ -167,7 +167,7 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <p><?= __('Fill out any or all of the below fields to add your new wish.') ?></p>
+            <p><?= __('Fill out any or all of the below fields to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
                 <input type="hidden" name="wishlist_id" />
@@ -181,6 +181,33 @@ $page->navigation();
     <div class="actions">
         <div class="ui primary approve button" title="<?= __('Add') ?>">
             <?= __('Add') ?>
+        </div>
+        <div class="ui deny button" title="<?= __('Cancel') ?>">
+            <?= __('Cancel') ?>
+        </div>
+    </div>
+</div>
+
+<!-- Wishlist: Edit a wish -->
+<div class="ui modal wishlist-wish-edit">
+    <div class="header">
+        <?= __('Edit wish') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <form class="ui form wishlist-wish-edit" method="POST">
+                <input type="hidden" name="wish_id" />
+                <input type="hidden" name="wishlist_id" />
+
+                <div class="ui two column grid">
+                    <?php include 'parts/wish-add.php' ?>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button" title="<?= __('Save') ?>">
+            <?= __('Save') ?>
         </div>
         <div class="ui deny button" title="<?= __('Cancel') ?>">
             <?= __('Cancel') ?>

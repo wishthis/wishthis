@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+namespace wishthis;
+
 $api      = true;
 $response = array();
 
@@ -26,12 +28,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['data'] = array();
 
                 foreach ($tables as $table) {
-                    $count = $database
-                             ->query('SELECT COUNT(`id`) AS "count"
-                                     FROM `' . $table . '`;')
-                             ->fetch();
+                    $count = new Cache\Query(
+                        'SELECT COUNT(`id`) AS "count"
+                           FROM `' . $table . '`;'
+                    );
 
-                    $response['data'][$table] = $count;
+                    $response['data'][$table] = $count->get();
                 }
             } else {
                 $count = $database

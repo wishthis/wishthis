@@ -322,6 +322,78 @@ $(function () {
     });
 
     /**
+     * Edit Wish
+     */
+    $(document).on('click', '.wish-edit', function (event) {
+        /** Form */
+        var form = $('.form.wishlist-wish-edit');
+        form.addClass('loading');
+        form.trigger('reset');
+        form.find('.dropdown').dropdown('restore defaults');
+
+        /** Get Wish */
+        var wishID = $(this).attr('data-id');
+
+        var wishFormData = new URLSearchParams({
+            'wish_id' : wishID
+        });
+
+        fetch('/src/api/wishes.php?' + wishFormData, {
+            method: 'GET'
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            var wish = response.info;
+
+            $('[name="wish_id"]').val(wish.id);
+            $('[name="wish_title"]').val(wish.title);
+            $('[name="wish_description"]').val(wish.description);
+            $('[name="wish_url"]').val(wish.url);
+            $('.ui.selection.dropdown.priority').dropdown('set selected', wish.priority);
+            $('[name="wish_is_purchasable"]').prop('checked', wish.is_purchasable);
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            form.removeClass('loading');
+        });
+
+        /** Modal */
+        var modalWishlistWishEdit = $('.ui.modal.wishlist-wish-edit');
+
+        modalWishlistWishEdit.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
+        modalWishlistWishEdit
+        .modal({
+            autoShow  : true,
+            onApprove : function (buttonSave) {
+                buttonSave.addClass('loading');
+
+                var formData = new URLSearchParams(new FormData(form[0]));
+
+                fetch('/src/api/wishes.php', {
+                    method : 'POST',
+                    body   : formData
+                })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    $('body').toast({ message: text.toast_wish_update });
+
+                    wishlistsRefresh();
+
+                    modalWishlistWishEdit.modal('hide');
+                    buttonSave.removeClass('loading');
+                })
+                .catch(handleFetchCatch);
+
+                return false;
+            }
+        });
+
+        event.preventDefault();
+    });
+
+    /**
      * Delete Wish
      */
     $(document).on('click', '.wish-delete', function () {
@@ -367,7 +439,7 @@ $(function () {
 
                         setTimeout(() => {
                             wishlistsRefresh();
-                        }, 200);
+                        }, 800);
                     },
                 });
 

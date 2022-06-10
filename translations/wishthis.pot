@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-06-09 12:25+0200\n"
+"POT-Creation-Date: 2022-06-10 09:50+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -256,6 +256,7 @@ msgstr ""
 #: pages/profile.php:243 pages/profile.php:244 pages/profile.php:336
 #: pages/profile.php:337 pages/settings.php:53 pages/settings.php:54
 #: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
+#: pages/wishlists.php:209 pages/wishlists.php:210
 msgid "Save"
 msgstr ""
 
@@ -368,46 +369,46 @@ msgstr ""
 msgid "Would love it"
 msgstr ""
 
-#: classes/wish.php:129
+#: classes/wish.php:131
 msgid "Wish temporarily fulfilled"
 msgstr ""
 
-#: classes/wish.php:130
+#: classes/wish.php:132
 #, php-format
 msgid "If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %d minutes."
 msgstr ""
 
-#: classes/wish.php:136
+#: classes/wish.php:138
 msgid "Confirm"
 msgstr ""
 
-#: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
+#: classes/wish.php:186 classes/wish.php:189 pages/wishlist.php:64
 msgid "Fulfil wish"
 msgstr ""
 
-#: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
+#: classes/wish.php:196 classes/wish.php:199 pages/wish.php:87
 #: pages/wish.php:90
 msgid "Visit"
 msgstr ""
 
-#: classes/wish.php:203 classes/wish.php:206 pages/wishlists.php:32
+#: classes/wish.php:205 classes/wish.php:208 pages/wishlists.php:32
 #: pages/wishlists.php:62 pages/wishlists.php:65
 msgid "Options"
 msgstr ""
 
-#: classes/wish.php:211
+#: classes/wish.php:213
 msgid "Mark as fulfilled"
 msgstr ""
 
-#: classes/wish.php:216
+#: classes/wish.php:218
 msgid "Edit"
 msgstr ""
 
-#: classes/wish.php:221 pages/wishlists.php:73 pages/wishlists.php:75
+#: classes/wish.php:223 pages/wishlists.php:73 pages/wishlists.php:75
 msgid "Delete"
 msgstr ""
 
-#: classes/wish.php:239
+#: classes/wish.php:241
 msgid "Wish not found"
 msgstr ""
 
@@ -443,15 +444,15 @@ msgstr ""
 msgid "Unreleased"
 msgstr ""
 
-#: pages/changelog.php:26 pages/changelog.php:69
+#: pages/changelog.php:26 pages/changelog.php:70
 msgid "0.6.0"
 msgstr ""
 
-#: pages/changelog.php:39 pages/changelog.php:73
+#: pages/changelog.php:39 pages/changelog.php:74
 msgid "Added"
 msgstr ""
 
-#: pages/changelog.php:44 pages/changelog.php:80
+#: pages/changelog.php:44 pages/changelog.php:81
 msgid "Improved"
 msgstr ""
 
@@ -475,31 +476,35 @@ msgstr ""
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr ""
 
-#: pages/changelog.php:56 pages/changelog.php:85
+#: pages/changelog.php:54
+msgid "Wishes can be edited from the wishlist now, without loading another page"
+msgstr ""
+
+#: pages/changelog.php:57 pages/changelog.php:86
 msgid "Fixed"
 msgstr ""
 
-#: pages/changelog.php:58
+#: pages/changelog.php:59
 msgid "Various minor things (typos, menu order, etc)"
 msgstr ""
 
-#: pages/changelog.php:75
+#: pages/changelog.php:76
 msgid "This changelog"
 msgstr ""
 
-#: pages/changelog.php:76
+#: pages/changelog.php:77
 msgid "Wish properties"
 msgstr ""
 
-#: pages/changelog.php:77
+#: pages/changelog.php:78
 msgid "Button to mark wish as fulfilled"
 msgstr ""
 
-#: pages/changelog.php:82
+#: pages/changelog.php:83
 msgid "Card design"
 msgstr ""
 
-#: pages/changelog.php:87
+#: pages/changelog.php:88
 msgid "Various small bugs"
 msgstr ""
 
@@ -1133,6 +1138,7 @@ msgstr ""
 
 #: pages/wishlists.php:130 pages/wishlists.php:131 pages/wishlists.php:157
 #: pages/wishlists.php:158 pages/wishlists.php:185 pages/wishlists.php:186
+#: pages/wishlists.php:212 pages/wishlists.php:213
 msgid "Cancel"
 msgstr ""
 
@@ -1145,9 +1151,13 @@ msgid "How would you like to name this wishlist?"
 msgstr ""
 
 #: pages/wishlists.php:170
-msgid "Fill out any or all of the below fields to add your new wish."
+msgid "Fill out any or all of the below fields to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields."
 msgstr ""
 
 #: pages/wishlists.php:182 pages/wishlists.php:183
 msgid "Add"
+msgstr ""
+
+#: pages/wishlists.php:194
+msgid "Edit wish"
 msgstr ""

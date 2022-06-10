@@ -8,6 +8,17 @@ namespace wishthis\Cache;
 
 class Blog extends Cache
 {
+    /**
+     * Private
+     */
+    protected function getFilepath(): string
+    {
+        return parent::getFilepath() . '.json';
+    }
+
+    /**
+     * Public
+     */
     public function __construct($url)
     {
         parent::__construct($url);

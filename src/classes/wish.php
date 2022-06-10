@@ -50,6 +50,8 @@ class Wish
     public ?string $image;
     public ?string $url;
     public ?int $priority;
+    public bool $is_purchasable;
+
     public ?string $status;
 
     public \stdClass $info;
@@ -147,7 +149,11 @@ class Wish
                 <?php } ?>
 
                 <?php if ($this->image) { ?>
-                    <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
+                        <?= file_get_contents(ROOT . $this->image) ?>
+                    <?php } else { ?>
+                        <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php } ?>
                 <?php } ?>
 
                 <?php if (isset($this->info->favicon)) { ?>
@@ -206,20 +212,20 @@ class Wish
                         <span class="text"><?= __('Options') ?></span>
                         <div class="menu">
 
-                            <div class="item wish-fulfilled">
+                            <button class="item wish-fulfilled">
                                 <i class="check icon"></i>
                                 <?= __('Mark as fulfilled') ?>
-                            </div>
+                            </button>
 
-                            <a class="item" href="/?page=wish&id=<?= $this->id ?>">
+                            <button class="item wish-edit" data-id="<?= $this->id ?>">
                                 <i class="pen icon"></i>
                                 <?= __('Edit') ?>
-                            </a>
+                            </button>
 
-                            <div class="item wish-delete">
+                            <button class="item wish-delete">
                                 <i class="trash icon"></i>
                                 <?= __('Delete') ?>
-                            </div>
+                            </button>
 
                         </div>
                     </div>

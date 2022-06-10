@@ -17,23 +17,25 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['wish_id'], $_GET['wishlist_user'])) {
+        if (isset($_GET['wish_id'])) {
             $columns = $database
-            ->query('SELECT *
-                       FROM `wishes`
-                      WHERE `id` = ' . $_GET['wish_id'] . ';')
+            ->query(
+                'SELECT *
+                   FROM `wishes`
+                  WHERE `id` = ' . $_GET['wish_id'] . ';'
+            )
             ->fetch();
 
             $wish = new Wish($columns, true);
 
-            $response = array(
-                'info' => $wish,
-                'html' => $wish->getCard($_GET['wishlist_user'])
-            );
+            $response['info'] = $wish;
+
+            if (isset($_GET['wishlist_user'])) {
+                $response['html'] = $wish->getCard($_GET['wishlist_user']);
+            }
         } elseif (isset($_GET['wish_url'])) {
-            $cache  = new Cache\Embed($_GET['wish_url']);
-            $info   = $cache->get(true);
-            $exists = $cache->exists() ? 'true' : 'false';
+            $cache = new Cache\Embed($_GET['wish_url']);
+            $info  = $cache->get(true);
 
             $response = array(
                 'info' => $info,
@@ -42,9 +44,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'POST':
-        if (isset($_POST['wishlist_id'])) {
+        if (isset($_POST['wishlist_id']) || isset($_POST['wish_id'])) {
             /**
-             * Insert New Wish
+             * Save wish
              */
             if (
                    empty($_POST['wish_title'])
@@ -54,28 +56,62 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
-            $wishlist_id      = $_POST['wishlist_id'];
-            $wish_title       = trim($_POST['wish_title']);
-            $wish_description = trim($_POST['wish_description']);
-            $wish_url         = trim($_POST['wish_url']);
-            $wish_priority    = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
+            $wish_title          = trim($_POST['wish_title']);
+            $wish_description    = trim($_POST['wish_description']);
+            $wish_url            = trim($_POST['wish_url']);
+            $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
+            $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'true' : 'false';
 
-            $database
-            ->query('INSERT INTO `wishes`
-                     (
+            if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
+                /** Update wish */
+                $wish_id     = $_POST['wish_id'];
+                $wishlist_id = $_POST['wishlist_id'];
+
+                $database
+                ->query(
+                    'REPLACE INTO `wishes`
+                    (
+                        `id`,
                         `wishlist`,
                         `title`,
                         `description`,
                         `url`,
-                        `priority`
-                     ) VALUES (
-                        ' . $wishlist_id . ',
-                        "' . $wish_title . '",
-                        "' . $wish_description . '",
-                        "' . $wish_url . '",
-                        ' . $wish_priority . '
-                     )
-            ;');
+                        `priority`,
+                        `is_purchasable`
+                    ) VALUES (
+                         ' . $wish_id      . ',
+                         ' . $wishlist_id         . ',
+                        "' . $wish_title          . '",
+                        "' . $wish_description    . '",
+                        "' . $wish_url            . '",
+                         ' . $wish_priority       . ',
+                         ' . $wish_is_purchasable . '
+                    );'
+                );
+            } elseif (isset($_POST['wishlist_id'])) {
+                /** Insert wish */
+                $wishlist_id = $_POST['wishlist_id'];
+
+                $database
+                ->query(
+                    'INSERT INTO `wishes`
+                    (
+                        `wishlist`,
+                        `title`,
+                        `description`,
+                        `url`,
+                        `priority`,
+                        `is_purchasable`
+                    ) VALUES (
+                         ' . $wishlist_id         . ',
+                        "' . $wish_title          . '",
+                        "' . $wish_description    . '",
+                        "' . $wish_url            . '",
+                         ' . $wish_priority       . ',
+                         ' . $wish_is_purchasable . '
+                    );'
+                );
+            }
 
             $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
