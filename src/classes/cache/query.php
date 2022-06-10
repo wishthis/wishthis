@@ -8,8 +8,14 @@ namespace wishthis\Cache;
 
 class Query extends Cache
 {
+    /**
+     * Private
+     */
     private Database $databse;
 
+    /**
+     * Public
+     */
     public function __construct($url)
     {
         global $database;
