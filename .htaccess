@@ -8,16 +8,16 @@
   RewriteRule ^([a-z\-]+)$ /?page=$1 [QSA,L]
 
   # Wishlists (My lists)
-  RewriteRule ^wishlists/([0-9]+)$ /?page=wishlists&id=$1 [QSA,L]
+  RewriteRule ^(wishlists)/([0-9]+)$ /?page=$1&id=$2 [QSA,L]
 
   # Wish
-  RewriteRule ^wish/(\d+)$ /?page=wish&id=$1 [QSA,L]
+  RewriteRule ^(wish)/(\d+)$ /?page=$1&id=$2 [QSA,L]
 
   # Wishlist
-  RewriteRule ^wishlist/([0-9a-f]{40})$ /?page=wishlist&hash=$1 [QSA,L]
+  RewriteRule ^(wishlist)/([0-9a-f]{40})$ /?page=$1&hash=$2 [QSA,L]
 
   # Blog Post
-  RewriteRule ^blog/([a-z\-0-9]+)$ /?page=post&slug=$1 [QSA,L]
+  RewriteRule ^(blog)/([a-z\-0-9]+)$ /?page=$1&slug=$2 [QSA,L]
 </IfModule>
 
 ##-- When caching of gzipped JS and CSS files is used, enable this setting
