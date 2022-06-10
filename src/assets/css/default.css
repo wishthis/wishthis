@@ -30,6 +30,8 @@ figure {
 .ui.footer {
     position: sticky;
     top: 100%;
+
+    min-height: 15vh;
 }
 @media (min-width: 768px) {
     .ui.footer {
