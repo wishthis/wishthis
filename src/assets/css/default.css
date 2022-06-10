@@ -7,6 +7,10 @@ img {
     max-width: 100%;
 }
 
+figure {
+    margin: 0 0 1em;
+}
+
 /**
  * Logo
  */
