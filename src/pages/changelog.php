@@ -45,7 +45,7 @@ $page->navigation();
                             <ul>
                                 <li><?= __('Localisation (many new translations added)') ?></li>
                                 <li><?= __('Saved wish information is not updated if the url can not be found') ?></li>
-                                <li><?= __('URL handling') ?></li>
+                                <li><?= __('Additional logins are no longer required when switching between wishthis channels') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Changed') ?></h3>
