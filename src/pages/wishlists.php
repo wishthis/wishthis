@@ -167,7 +167,7 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <p><?= __('Fill out any or all of the below fields to add your new wish.') ?></p>
+            <p><?= __('Fill out any or all of the below fields to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
                 <input type="hidden" name="wishlist_id" />
