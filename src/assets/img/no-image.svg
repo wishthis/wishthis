@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    enable-background="new 0 0 512 512"
-   height="1080"
-   id="Layer_1"
+   height="616.96271"
+   id="svgNoImage"
    version="1.1"
-   viewBox="0 0 1920 1080"
-   width="1920"
+   viewBox="0 0 645.30048 616.96271"
+   width="645.30048"
    xml:space="preserve"
    sodipodi:docname="no-image.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -32,23 +32,18 @@
      inkscape:snap-bbox-midpoints="true"
      inkscape:snap-page="true"
      inkscape:zoom="0.58073907"
-     inkscape:cx="936.7374"
-     inkscape:cy="664.67028"
+     inkscape:cx="300.47918"
+     inkscape:cy="433.92982"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-y="-7"
      inkscape:window-maximized="1"
-     inkscape:current-layer="Layer_1" /><rect
-     style="fill:#f9f9f9;stroke:#f0f0f0;stroke-width:0.98345;stroke-linecap:square;stroke-dashoffset:7.55905;paint-order:stroke markers fill"
-     id="rect852"
-     width="1919.5166"
-     height="1079.5166"
-     x="-0.0082750227"
-     y="-0.0082750227" /><g
+     inkscape:current-layer="svgNoImage"
+     inkscape:deskcolor="#d1d1d1" /><g
      id="g8"
-     transform="matrix(3.0801933,0,0,3.0801933,171.31651,-248.68347)"
-     style="stroke:#f0f0f0;stroke-opacity:1"><rect
+     transform="matrix(3.0801933,0,0,3.0801933,-466.03325,-480.20212)"
+     style="stroke:currentColor;stroke-opacity:1"><rect
        fill="none"
        height="190.3"
        stroke="#000000"
@@ -60,7 +55,7 @@
        x="156.3"
        y="160.89999"
        id="rect2"
-       style="stroke:#f0f0f0;stroke-opacity:1" /><polyline
+       style="stroke:currentColor;stroke-opacity:1" /><polyline
        fill="none"
        points="   156.3,315.7 219.7,256 275.7,315.7 304.7,285.8 355.7,351.1  "
        stroke="#000000"
@@ -69,7 +64,7 @@
        stroke-miterlimit="10"
        stroke-width="10"
        id="polyline4"
-       style="stroke:#f0f0f0;stroke-opacity:1" /><circle
+       style="stroke:currentColor;stroke-opacity:1" /><circle
        cx="303.89999"
        cy="222.60001"
        fill="none"
@@ -80,4 +75,4 @@
        stroke-miterlimit="10"
        stroke-width="10"
        id="circle6"
-       style="stroke:#f0f0f0;stroke-opacity:1" /></g></svg>
+       style="stroke:currentColor;stroke-opacity:1" /></g></svg>

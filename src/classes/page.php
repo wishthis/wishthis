@@ -549,14 +549,14 @@ class Page
         }
 
         ksort($pages);
+
+        $svgLogo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
         ?>
 
         <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
 
-                <a class="item home" href="/?page=home">
-                    <img src="/src/assets/img/logo.svg" alt="<?= __('wishthis logo') ?>" />
-                </a>
+                <a class="item home" href="/?page=home"><?= $svgLogo ?></a>
 
                 <?php foreach ($pages as $page) { ?>
                     <?php foreach ($page['items'] as $item) { ?>
@@ -575,9 +575,7 @@ class Page
         <div class="pusher">
             <div class="ui attached menu desktop">
                 <div class="ui container">
-                    <a class="item home" href="/?page=home">
-                        <img src="/src/assets/img/logo.svg" />
-                    </a>
+                    <a class="item home" href="/?page=home"><?= $svgLogo ?></a>
 
                     <?php foreach ($pages as $page) { ?>
                         <?php if ('left' === $page['alignment']) { ?>

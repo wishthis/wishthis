@@ -149,7 +149,11 @@ class Wish
                 <?php } ?>
 
                 <?php if ($this->image) { ?>
-                    <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
+                        <?= file_get_contents(ROOT . $this->image) ?>
+                    <?php } else { ?>
+                        <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php } ?>
                 <?php } ?>
 
                 <?php if (isset($this->info->favicon)) { ?>
