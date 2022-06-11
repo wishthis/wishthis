@@ -124,6 +124,7 @@ class Page
             'login',
             'maintenance',
             'register',
+            'wishlist',
         );
         if (
                !isset($_SESSION['user'])
