@@ -241,7 +241,7 @@ class Page
                 <?php } ?>
             <?php } ?>
 
-            <link rel="manifest" href="manifest.json" />
+            <link rel="manifest" href="/manifest.json" />
             <?php
             if (defined('CHANNELS') && is_array(CHANNELS)) {
                 $channels = CHANNELS;
