@@ -196,8 +196,8 @@ $page->navigation();
     <div class="content">
         <div class="description">
             <form class="ui form wishlist-wish-edit" method="POST">
-                <input type="hidden" name="wish_id" />
                 <input type="hidden" name="wishlist_id" />
+                <input type="hidden" name="wish_id" />
 
                 <div class="ui two column grid">
                     <?php include 'parts/wish-add.php' ?>

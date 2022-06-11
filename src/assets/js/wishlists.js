@@ -444,10 +444,12 @@ $(function () {
     $(document).on('click', '.button.wishlist-wish-add', function () {
         validateURL = true;
 
+        /** Form */
         var formAdd = $('.form.wishlist-wish-add');
         formAdd.trigger('reset');
         formAdd.find('.dropdown').dropdown('restore defaults');
 
+        /** Modal */
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
@@ -585,8 +587,6 @@ $(function () {
                     .then(handleFetchError)
                     .then(handleFetchResponse)
                     .then(function(response) {
-                        console.log(response);
-
                         $('body').toast({ message: text.toast_wish_update });
 
                         wishlistsRefresh();
@@ -614,8 +614,6 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                console.log(response);
-
                 $('body').toast({ message: text.toast_wish_update });
 
                 wishlistsRefresh();
