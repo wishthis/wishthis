@@ -39,6 +39,7 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Added') ?></h3>
                             <ul>
                                 <li><?= __('Blog') ?></li>
+                                <li><?= __('Dark theme') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>

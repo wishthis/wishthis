@@ -147,6 +147,11 @@ figure {
     box-sizing: content-box;
     z-index: 1;
 }
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > img.favicon {
+        filter: brightness(80%);
+    }
+}
 
 .wishlist .ui.card > .image > img.favicon + span.provider {
     padding-left: 3em;
@@ -668,7 +673,7 @@ body,
         box-shadow: 0 0 0 0 rgba(221, 219, 217, 0.35) inset;
     }
 
-    /** Form **/
+    /** Form */
     .ui.form ::placeholder {
         color: rgba(64, 64, 64, 0.87);
     }
@@ -676,6 +681,12 @@ body,
     textarea::selection {
         color: rgba(255, 255, 255, 0.87);
         background-color: rgba(155, 155, 155, 0.4);
+    }
+    .ui.loading.form::before {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .ui.form .grouped.fields > label {
+        color: rgba(255, 255, 255, 0.87);
     }
     .ui.form .field > label {
         color: rgba(255, 255, 255, 0.87);
@@ -711,6 +722,9 @@ body,
     .ui.card > .extra,
     .ui.cards > .card > .extra {
         color: rgba(255, 255, 255, 0.4);
+    }
+    .ui.loading.card::before {
+        background-color: rgba(0, 0, 0, 0.8);
     }
 
     /** Label */
