@@ -72,7 +72,7 @@ $referer = '/?page=wishlists&id=' . $wish->wishlist;
                 <div class="sixteen wide column">
 
                     <?php if ($wish->image) { ?>
-                        <img class="ui fluid rounded image preview" src="<?= $wish->image ?>" />
+                        <img class="ui fluid rounded image preview" src="<?= $wish->image ?>" loading="lazy" />
                     <?php } ?>
 
                 </div>
