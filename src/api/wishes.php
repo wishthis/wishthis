@@ -80,6 +80,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         $wish_description = $info->description;
                     }
 
+                    $wish_image = is_null($info->image) ? 'NULL' : "' . $info->image . '";
+
                     $response = array(
                         'info' => $info,
                     );
@@ -93,6 +95,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         `wishlist`,
                         `title`,
                         `description`,
+                        `image`,
                         `url`,
                         `priority`,
                         `is_purchasable`
@@ -101,6 +104,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                          ' . $wishlist_id         . ',
                         "' . $wish_title          . '",
                         "' . $wish_description    . '",
+                         ' . $wish_image          . ',
                         "' . $wish_url            . '",
                          ' . $wish_priority       . ',
                          ' . $wish_is_purchasable . '
