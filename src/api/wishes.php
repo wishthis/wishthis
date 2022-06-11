@@ -67,6 +67,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $wish_id     = $_POST['wish_id'];
                 $wishlist_id = $_POST['wishlist_id'];
 
+                /** Update wish information */
+                if (!empty($wish_url)) {
+                    $cache = new Cache\Embed($wish_url);
+                    $info  = $cache->get(true);
+
+                    if (empty($wish_title)) {
+                        $wish_title = $info->title;
+                    }
+
+                    if (empty($wish_description)) {
+                        $wish_description = $info->description;
+                    }
+
+                    $response = array(
+                        'info' => $info,
+                    );
+                }
+
                 $database
                 ->query(
                     'REPLACE INTO `wishes`
