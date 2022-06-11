@@ -130,6 +130,7 @@ class Page
             'maintenance',
             'register',
             'changelog',
+            'wishlist',
         );
         if (
                !isset($_SESSION['user'])
