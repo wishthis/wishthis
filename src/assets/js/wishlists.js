@@ -458,8 +458,11 @@ $(function () {
      * Add wish
      */
     $(document).on('click', '.button.wishlist-wish-add', function () {
-        var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
+        var form = $('.form.wishlist-wish-add');
+        form.trigger('reset');
+        form.find('.dropdown').dropdown('restore defaults');
 
+        var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
         .modal({
@@ -467,7 +470,6 @@ $(function () {
             onApprove : function (buttonAdd) {
                 buttonAdd.addClass('loading');
 
-                var form     = $('.form.wishlist-wish-add');
                 var formData = new URLSearchParams(new FormData(form[0]));
 
                 fetch('/src/api/wishes.php', {
@@ -481,8 +483,6 @@ $(function () {
 
                     wishlistsRefresh();
 
-                    form.trigger('reset');
-                    form.find('.dropdown').dropdown('restore defaults');
                     modalWishlistWishAdd.modal('hide');
                     buttonAdd.removeClass('loading');
                 })
