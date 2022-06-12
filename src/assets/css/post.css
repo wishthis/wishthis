@@ -4,6 +4,11 @@
 
     overflow: hidden;
 }
+@media (prefers-color-scheme: dark) {
+    .ui.fitted.segment.image {
+        filter: brightness(80%);
+    }
+}
 
 .ui.fitted.segment.image img {
     display: block;
