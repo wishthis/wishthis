@@ -667,7 +667,7 @@ class Page
             <div class="ui container">
                 <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="eight wide column">
+                    <div class="six wide column">
                         <h4 class="ui inverted header">wishthis</h4>
 
                         <div class="ui inverted link list">
@@ -693,7 +693,7 @@ class Page
                         </div>
                     </div>
 
-                    <div class="eight wide column">
+                    <div class="five wide column">
                         <h4 class="ui inverted header"><?= __('Contribute') ?></h4>
 
                         <div class="ui inverted link list">
@@ -713,6 +713,30 @@ class Page
                             >
                                 <i class="language icon"></i>
                                 <div class="content"><?= __('Translate') ?></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="five wide column">
+                        <h4 class="ui inverted header"><?= __('Contact') ?></h4>
+
+                        <div class="ui inverted link list">
+                            <a class="item"
+                               href="https://matrix.to/#/#wishthis:matrix.org"
+                               target="_blank"
+                               title="<?= __('Matrix') ?>"
+                            >
+                                <i class="comment dots icon"></i>
+                                <div class="content"><?= __('Matrix') ?></div>
+                            </a>
+
+                            <a class="item"
+                               href="https://discord.gg/WrUXnpNyza"
+                               target="_blank"
+                               title="<?= __('Discord') ?>"
+                            >
+                                <i class="discord icon"></i>
+                                <div class="content"><?= __('Discord') ?></div>
                             </a>
                         </div>
                     </div>
