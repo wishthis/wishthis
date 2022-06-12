@@ -407,4 +407,21 @@ body,
     .ui.steps .step .description {
         color: rgba(255, 255, 255, 0.87);
     }
+
+    /** Placeholder */
+    .ui.placeholder,
+    .ui.placeholder .image.header::after,
+    .ui.placeholder .line,
+    .ui.placeholder .line::after,
+    .ui.placeholder > ::before {
+        background-color: #000;
+    }
+    .ui.placeholder {
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.08) 0,
+            rgba(255, 255, 255, 0.15) 15%,
+            rgba(255, 255, 255, 0.08) 30%
+        );
+    }
 }

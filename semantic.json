@@ -27,9 +27,9 @@
     "grid",
 
     "button",
-    "checkbox",
     "calendar",
     "card",
+    "checkbox",
     "dimmer",
     "divider",
     "dropdown",
@@ -45,6 +45,7 @@
     "menu",
     "message",
     "modal",
+    "placeholder",
     "popup",
     "progress",
     "segment",

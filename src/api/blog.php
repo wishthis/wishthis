@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Blog
+ */
+
+namespace wishthis;
+
+$api           = true;
+$response      = array();
+$dateFormatter = new \IntlDateFormatter(
+    'en_GB',
+    \IntlDateFormatter::MEDIUM,
+    \IntlDateFormatter::NONE
+);
+
+ob_start();
+
+require '../../index.php';
+
+switch ($_SERVER['REQUEST_METHOD']) {
+    case 'GET':
+        $posts = Blog::getPosts();
+        $html  = '';
+
+        for ($i = 0; $i < 2; $i++) {
+            $post = $posts[$i];
+            $date = $dateFormatter->format(strtotime($post->date));
+
+            $html .= '<div class="item">';
+            $html .= '    <i class="large rss middle aligned icon"></i>';
+            $html .= '    <div class="content">';
+            $html .= '         <a class="header" href="/?page=post&slug=' . $post->slug . '">' . $post->title->rendered . '</a>';
+            $html .= '         <div class="description">' . sprintf(__('Posted on %s'), $date) . '</div>';
+            $html .= '    </div>';
+            $html .= '</div>';
+        }
+
+        $response['posts'] = $posts;
+        $response['html']  = $html;
+        break;
+}
+
+$response['warning'] = ob_get_clean();
+
+header('Content-type: application/json; charset=utf-8');
+echo json_encode($response);
+die();
