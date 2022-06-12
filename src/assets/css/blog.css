@@ -1,6 +1,11 @@
 .ui.card > .image {
     overflow: hidden;
 }
+@media (prefers-color-scheme: dark) {
+    .ui.card > .image {
+        filter: brightness(80%);
+    }
+}
 
 .ui.card > .image img {
     display: block;

@@ -24,6 +24,7 @@ class Blog extends Cache
         parent::__construct($url);
 
         $this->directory .= '/blog';
+        $this->maxAge     = 86400; // 24 hours
     }
 
     public function get(): \stdClass|array

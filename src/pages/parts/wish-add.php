@@ -18,10 +18,10 @@ $scriptPart = '/src/assets/js/parts/wish-add.js';
 
             <div class="ui input">
                 <input type="text"
-                        name="wish_title"
-                        placeholder="<?= $wish->title ?? '' ?>"
-                        value="<?= $wish->title ?? '' ?>"
-                        maxlength="128"
+                       name="wish_title"
+                       placeholder="<?= $wish->title ?? '' ?>"
+                       value="<?= $wish->title ?? '' ?>"
+                       maxlength="128"
                 />
             </div>
         </div>
@@ -30,7 +30,7 @@ $scriptPart = '/src/assets/js/parts/wish-add.js';
             <label><?= __('Description') ?></label>
 
             <textarea name="wish_description"
-                        placeholder="<?= $wish->description ?? '' ?>"
+                      placeholder="<?= $wish->description ?? '' ?>"
             ><?= $wish->description ?? '' ?></textarea>
         </div>
 
@@ -42,10 +42,10 @@ $scriptPart = '/src/assets/js/parts/wish-add.js';
             <label><?= __('URL') ?></label>
 
             <input type="url"
-                    name="wish_url"
-                    placeholder="<?= $wish->url ?? '' ?>"
-                    value="<?= $wish->url ?? '' ?>"
-                    maxlength="255"
+                   name="wish_url"
+                   placeholder="<?= $wish->url ?? '' ?>"
+                   value="<?= $wish->url ?? '' ?>"
+                   maxlength="255"
             />
         </div>
 

@@ -13,6 +13,8 @@ class Wish
     /**
      * Static
      */
+    public const NO_IMAGE = '/src/assets/img/no-image.svg';
+
     public const STATUS_TEMPORARY         = 'temporary';
     public const STATUS_TEMPORARY_MINUTES = 30;
     public const STATUS_UNAVAILABLE       = 'unavailable';
@@ -97,7 +99,7 @@ class Wish
             }
 
             if (empty($this->image)) {
-                $this->image = '/src/assets/img/no-image.svg';
+                $this->image = self::NO_IMAGE;
             }
         }
     }

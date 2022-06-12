@@ -10,9 +10,6 @@
   # Wishlists (My lists)
   RewriteRule ^(wishlists)/([0-9]+)$ /?page=$1&id=$2 [QSA,L]
 
-  # Wish
-  RewriteRule ^(wish)/(\d+)$ /?page=$1&id=$2 [QSA,L]
-
   # Wishlist
   RewriteRule ^(wishlist)/([0-9a-f]{40})$ /?page=$1&hash=$2 [QSA,L]
 

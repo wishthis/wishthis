@@ -11,20 +11,16 @@ class Cache
     /**
      * Private
      */
-    private function age(): int
+    private function getAge(): int
     {
         return time() - filemtime($this->getFilepath());
-    }
-
-    private function maxAge(): int
-    {
-        return 2592000; // 30 days
     }
 
     /**
      * Protected
      */
     protected string $directory = ROOT . '/src/cache';
+    protected int    $maxAge    = 2592000; // 30 days
 
     protected function getIdentifier(): string
     {
@@ -63,6 +59,6 @@ class Cache
     public function generateCache(): bool
     {
         return !$this->exists()
-            || ($this->exists() && $this->age() > $this->maxAge());
+            || ($this->exists() && $this->getAge() > $this->maxAge);
     }
 }

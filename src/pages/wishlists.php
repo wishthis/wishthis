@@ -196,8 +196,8 @@ $page->navigation();
     <div class="content">
         <div class="description">
             <form class="ui form wishlist-wish-edit" method="POST">
-                <input type="hidden" name="wish_id" />
                 <input type="hidden" name="wishlist_id" />
+                <input type="hidden" name="wish_id" />
 
                 <div class="ui two column grid">
                     <?php include 'parts/wish-add.php' ?>
@@ -211,6 +211,39 @@ $page->navigation();
         </div>
         <div class="ui deny button" title="<?= __('Cancel') ?>">
             <?= __('Cancel') ?>
+        </div>
+    </div>
+</div>
+
+<!-- Wish: Validate -->
+<div class="ui small modal validate">
+    <div class="header">
+        <?= __('URL mismatch') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('The URL you have entered does not seem quite right. Would you like to update it with the one I found?') ?></p>
+            <p class="provider"><?= sprintf(__('According to %s, this is the canonical (correct) URL.'), '<strong class="providerName">Unknown</strong>') ?></p>
+
+            <div class="ui form urls">
+                <div class="field">
+                    <label><?= __('Current') ?></label>
+                    <input class="ui input current disabled" type="url" readonly />
+                </div>
+
+                <div class="field">
+                    <label><?= __('Proposed') ?></label>
+                    <input class="ui input proposed" type="url" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button" title="<?= __('Yes, update') ?>">
+            <?= __('Yes, update') ?>
+        </div>
+        <div class="ui deny button" title="<?= __('No, leave it') ?>">
+            <?= __('No, leave it') ?>
         </div>
     </div>
 </div>

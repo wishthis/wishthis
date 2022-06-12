@@ -51,7 +51,7 @@ class Embed extends Cache
             $info_simplified->favicon       = '';
             $info_simplified->feeds         = array();
             $info_simplified->icon          = '';
-            $info_simplified->image         = '';
+            $info_simplified->image         = null;
             $info_simplified->keywords      = array();
             $info_simplified->language      = '';
             $info_simplified->languages     = array();
@@ -74,7 +74,7 @@ class Embed extends Cache
                     $info_simplified->favicon       = (string) $info->favicon;
                     $info_simplified->feeds         = (array)  $info->feeds;
                     $info_simplified->icon          = (string) $info->icon;
-                    $info_simplified->image         = isset($info->image) ? (string) $info->image : null;
+                    $info_simplified->image         = isset($info->image) && $info->image ? (string) $info->image : null;
                     $info_simplified->keywords      = (array)  $info->keywords;
                     $info_simplified->language      = (string) $info->language;
                     $info_simplified->languages     = (array)  $info->languages;
@@ -116,7 +116,7 @@ class Embed extends Cache
                     $info_simplified->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
                 }
 
-                /** Repsonse code */
+                /** Response code */
                 $ch = curl_init($info_simplified->url);
                 curl_setopt_array($ch, $ch_options);
 
