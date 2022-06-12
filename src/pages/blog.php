@@ -64,6 +64,5 @@ $posts = Blog::getPosts();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

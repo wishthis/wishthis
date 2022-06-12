@@ -193,5 +193,4 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

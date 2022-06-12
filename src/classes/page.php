@@ -569,8 +569,6 @@ class Page
                 <?php } ?>
 
             </div>
-
-            <?= $this->footer() ?>
         </div>
 
         <div class="pusher">
@@ -749,6 +747,7 @@ class Page
 
     public function bodyEnd(): void
     {
+        $this->footer();
         ?>
         </div><!-- .pusher -->
 

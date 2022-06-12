@@ -249,5 +249,4 @@ $page->navigation();
 </div>
 
 <?php
-$page->footer();
 $page->bodyEnd();
