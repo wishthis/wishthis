@@ -684,10 +684,13 @@ class Page
                                 </div>
                             </div>
 
-                            <div class="item">
+                            <a class="item"
+                               href="/?page=changelog"
+                               title="<?= __('Changelog') ?>"
+                            >
                                 <i class="newspaper icon"></i>
-                                <div class="content"><a href="/?page=changelog"><?= __('Changelog') ?></a></div>
-                            </div>
+                                <div class="content"><?= __('Changelog') ?></div>
+                            </a>
                         </div>
                     </div>
 
