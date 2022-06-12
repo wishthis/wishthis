@@ -32,14 +32,14 @@ $page->navigation();
 
 <main>
     <div class="ui text container">
-        <h1 class="ui header"><?= $page->title ?></h1>
-
         <div class="ui segments">
             <div class="ui fitted segment image">
                 <?= $postMediaHTML ?>
             </div>
 
            <div class="ui segment">
+                <h1 class="ui header"><?= $page->title ?></h1>
+
                 <div><?= $post->content->rendered ?></div>
             </div>
         </div>
