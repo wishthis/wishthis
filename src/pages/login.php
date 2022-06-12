@@ -60,11 +60,26 @@ if (isset($_POST['reset'], $_POST['email'])) {
         $database
         ->query('UPDATE `users`
                     SET `password_reset_token`       = "' . $token . '",
-                        `password_reset_valid_until` = ' . $validUntil . '
+                        `password_reset_valid_until` = "' . date('Y-m-d H:i:s', $validUntil) . '"
                   WHERE `id` = ' . $user['id'] . '
         ;');
 
         $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
+        $mjml = str_replace(
+            'TEXT_HELLO',
+            __('Hello,'),
+            $mjml
+        );
+        $mjml = str_replace(
+            'TEXT_PASSWORD_RESET',
+            __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.'),
+            $mjml
+        );
+        $mjml = str_replace(
+            'TEXT_SET_NEW_PASSWORD',
+            __('Set new password'),
+            $mjml
+        );
         $mjml = str_replace(
             'wishthis.online',
             $_SERVER['HTTP_HOST'],
