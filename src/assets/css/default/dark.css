@@ -92,6 +92,9 @@ body,
     .ui.vertical.pointing.menu .active.item:hover::after {
         background-color: #0d0d0d;
     }
+    .ui.vertical.menu .active.item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
     .ui.menu .active.item:hover,
     .ui.vertical.menu .active.item:hover {
         color: rgba(255, 255, 255, 0.95);
