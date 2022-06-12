@@ -21,6 +21,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishes .value'), response.data.wishes.count, 0);
+
+                    observerWishes.unobserve(document.querySelector('#wishes'));
                 }
             });
         };
@@ -28,6 +30,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishlists .value'), response.data.wishlists.count, 0);
+
+                    observerWishlists.unobserve(document.querySelector('#wishlists'));
                 }
             });
         };
@@ -35,6 +39,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#users .value'), response.data.users.count, 0);
+
+                    observerUsers.unobserve(document.querySelector('#users'));
                 }
             });
         };
