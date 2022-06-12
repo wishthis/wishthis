@@ -194,11 +194,14 @@ figure {
 }
 @media (hover: hover) {
     .wishlist .ui.card > .image > span.provider {
-        transition: opacity 0.2s linear;
-
         position: absolute;
 
         opacity: 0;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        .wishlist .ui.card > .image > span.provider {
+            transition: opacity 0.2s linear;
+        }
     }
 
     .wishlist .ui.card:hover > .image > span.provider {
@@ -257,8 +260,6 @@ figure {
 
 /** Buttons */
 .wishlist .ui.card > .extra.buttons {
-    transition: 0.4s ease opacity;
-
     display: flex;
 
     background-color: inherit;
@@ -266,8 +267,6 @@ figure {
 }
 @media (hover: hover) {
     .wishlist .ui.card > .extra.buttons {
-        transition: opacity 0.2s ease;
-
         position: absolute;
         top: unset;
         right: 0;
