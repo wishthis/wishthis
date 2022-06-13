@@ -1,6 +1,11 @@
 $(function () {
 
     /**
+     * Tabs
+     */
+    $('.menu.wish-add .item').tab();
+
+    /**
      * Priority
      */
     $('.modal .wishlist-wish-add .dropdown.priority').dropdown();
@@ -8,6 +13,13 @@ $(function () {
     /**
      * Properties
      */
-    $('.checkbox').checkbox();
+    $('.checkbox').checkbox({
+        onChecked   : function() {
+            $('.menu.wish-add .item[data-tab="product"]').removeClass('disabled');
+        },
+        onUnchecked : function() {
+            $('.menu.wish-add .item[data-tab="product"]').addClass('disabled');
+        },
+    });
 
 });
