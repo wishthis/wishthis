@@ -20,17 +20,7 @@ require '../../index.php';
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['wish_id'])) {
-            $columns = $database
-            ->query(
-                'SELECT `wishes`.*,
-                        `products`.`price`
-                   FROM `wishes`
-              LEFT JOIN `products` ON `wishes`.`id` = `products`.`wish`
-                  WHERE `wishes`.`id` = ' . $_GET['wish_id'] . ';'
-            )
-            ->fetch();
-
-            $wish = new Wish($columns, true);
+            $wish = new Wish($_GET['wish_id'], true);
 
             $response['info'] = $wish;
 
