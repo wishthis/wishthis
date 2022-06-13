@@ -42,6 +42,27 @@ class Blog
         throw new \Exception('No post found with the slug "' . $slug . '".');
     }
 
+    public static function getPreviousCurrentNextPostBySlug(string $slug): array
+    {
+        $posts = self::get(self::ENDPOINT_POSTS);
+
+        for ($i = 0; $i < count($posts); $i++) {
+            $previous = $posts[$i - 1] ?? null;
+            $current  = $posts[$i]     ?? null;
+            $next     = $psots[$i + 1] ?? null;
+
+            if ($slug === $current->slug) {
+                return array(
+                    'previous' => $previous,
+                    'current'  => $current,
+                    'next'     => $next,
+                );
+            }
+        }
+
+        throw new \Exception('No post found with the slug "' . $slug . '".');
+    }
+
     public static function getPosts(): array
     {
         $posts = self::get(self::ENDPOINT_POSTS);

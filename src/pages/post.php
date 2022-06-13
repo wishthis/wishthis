@@ -9,7 +9,8 @@
 namespace wishthis;
 
 $postSlug      = $_SESSION['_GET']['slug'];
-$post          = Blog::getPostBySlug($postSlug);
+$posts         = Blog::getPreviousCurrentNextPostBySlug($postSlug);
+$post          = $posts['current'];
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
 $postMedia     = isset($post->featured_media) ? Blog::getMedia($post->featured_media)     : new \stdClss();
 
@@ -47,8 +48,8 @@ $page->navigation();
         </div>
 
         <div class="ui two columns grid">
-            <div class="column">
 
+            <div class="column">
                 <a href="#top" class="ui fluid labeled icon button">
                     <i class="arrow up icon"></i>
                     <?= __('Top') ?>
