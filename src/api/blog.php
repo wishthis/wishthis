@@ -19,7 +19,6 @@ $dateFormatter = new \IntlDateFormatter(
     \IntlDateFormatter::NONE
 );
 
-
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         $posts = Blog::getPosts();
