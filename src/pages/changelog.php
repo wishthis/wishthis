@@ -40,12 +40,12 @@ $page->navigation();
                             <ul>
                                 <li><?= __('Blog') ?></li>
                                 <li><?= __('Dark theme') ?></li>
+                                <li><?= __('Wish products') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
                                 <li><?= __('Localisation (many new translations added)') ?></li>
-                                <li><?= __('Saved wish information is not updated if the url can not be found') ?></li>
                                 <li><?= __('Additional logins are no longer required when switching between wishthis channels') ?></li>
                             </ul>
 
@@ -58,6 +58,9 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
                                 <li><?= __('Various minor things (typos, menu order, etc)') ?></li>
+                                <li><?= __('Wish information is updated with 404 content from URL') ?></li>
+                                <li><?= __('Wish image not showing') ?></li>
+                                <li><?= __('An error when saving a wish with a really long URL') ?></li>
                             </ul>
                         </div>
 
@@ -100,6 +103,5 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

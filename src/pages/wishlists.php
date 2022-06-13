@@ -167,14 +167,14 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <p><?= __('Fill out any or all of the below fields to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
+            <p><?= __('Fill the title and/or description to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
                 <input type="hidden" name="wishlist_id" />
 
-                <div class="ui two column grid">
-                    <?php include 'parts/wish-add.php' ?>
-                </div>
+                <?php include 'parts/wish-add.php' ?>
+
+                <div class="ui error message"></div>
             </form>
         </div>
     </div>
@@ -195,13 +195,15 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
+            <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
+
             <form class="ui form wishlist-wish-edit" method="POST">
                 <input type="hidden" name="wishlist_id" />
                 <input type="hidden" name="wish_id" />
 
-                <div class="ui two column grid">
-                    <?php include 'parts/wish-add.php' ?>
-                </div>
+                <?php include 'parts/wish-add.php' ?>
+
+                <div class="ui error message"></div>
             </form>
         </div>
     </div>
@@ -249,5 +251,4 @@ $page->navigation();
 </div>
 
 <?php
-$page->footer();
 $page->bodyEnd();

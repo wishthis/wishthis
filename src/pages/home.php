@@ -29,7 +29,7 @@ $page->navigation();
                         <?php if ($user->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=wishlists"
+                                href="<?= Page::PAGE_WISHLISTS ?>"
                                 title="<?= __('My lists') ?>"
                                 >
                                     <?= __('My lists') ?>
@@ -38,7 +38,7 @@ $page->navigation();
                         <?php } else { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=register"
+                                href="<?= Page::PAGE_REGISTER ?>"
                                 title="<?= __('Register now') ?>"
                                 >
                                     <?= __('Register now') ?>
@@ -46,7 +46,7 @@ $page->navigation();
                             </div>
                             <div class="column">
                                 <a class="ui fluid button"
-                                href="/?page=login"
+                                href="<?= Page::PAGE_LOGIN ?>"
                                 title="<?= __('Login') ?>"
                                 >
                                     <?= __('Login') ?>
@@ -85,9 +85,54 @@ $page->navigation();
                         </li>
                     </ul>
                 </div>
+
+                <div class="ui segment">
+                    <h2 class="ui header"><?= __('News') ?></h2>
+
+                    <div class="ui relaxed divided list news">
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="full line"></div>
+                                        <div class="long line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="short line"></div>
+                                        <div class="very short line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="medium line"></div>
+                                        <div class="very long line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
             <div class="four wide column">
+
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Statistics') ?></h2>
 
@@ -111,11 +156,11 @@ $page->navigation();
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

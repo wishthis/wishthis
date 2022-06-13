@@ -13,6 +13,11 @@ class Wish
     /**
      * Static
      */
+    public const SELECT    = '`wishes`.*, `products`.`price`';
+    public const FROM      = '`wishes`';
+    public const LEFT_JOIN = '`products` ON `wishes`.`id` = `products`.`wish`';
+    public const WHERE     = '`wishes`.`id` = %d;';
+
     public const NO_IMAGE = '/src/assets/img/no-image.svg';
 
     public const STATUS_TEMPORARY         = 'temporary';
@@ -45,6 +50,7 @@ class Wish
      */
     private Cache\Embed $cache;
 
+    /** General */
     public int $id;
     public int $wishlist;
     public ?string $title;
@@ -53,9 +59,12 @@ class Wish
     public ?string $url;
     public ?int $priority;
     public bool $is_purchasable;
-
     public ?string $status;
 
+    /** Product */
+    public ?float $price;
+
+    /** Other */
     public \stdClass $info;
 
     public bool $exists = false;
@@ -68,9 +77,12 @@ class Wish
 
         if (is_numeric($wish)) {
             $wish = $database
-            ->query('SELECT *
-                       FROM `wishes`
-                      WHERE `id` = ' . $wish . ';')
+            ->query(
+                'SELECT ' . self::SELECT    . '
+                   FROM ' . self::FROM      . '
+              LEFT JOIN ' . self::LEFT_JOIN . '
+                  WHERE ' . sprintf(self::WHERE, $_GET['wish_id'])
+            )
             ->fetch();
 
             $columns = $wish;
@@ -108,11 +120,17 @@ class Wish
     {
         ob_start();
 
+        $userCard        = new User($ofUser);
+        $numberFormatter = new \NumberFormatter(
+            $userCard->locale,
+            \NumberFormatter::CURRENCY
+        );
+
+        $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $userCard->id;
+
         /**
          * Card
          */
-        $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $ofUser;
-
         if ($this->url) {
             $generateCache = $this->cache->generateCache() || !$this->url ? 'true' : 'false';
         } else {
@@ -175,6 +193,12 @@ class Wish
                         <?php } else { ?>
                             <?= $this->title ?>
                         <?php } ?>
+                    </div>
+                <?php } ?>
+
+                <?php if ($this->price) { ?>
+                    <div class="meta">
+                        <span class="date"><?= $numberFormatter->format($this->price) ?></span>
                     </div>
                 <?php } ?>
 

@@ -50,6 +50,11 @@ body,
         background-color: #0b0b0b;
     }
 
+    /** Pusher */
+    body.pushable > .pusher {
+        background-color: #0b0b0b;
+    }
+
     /** Segment */
     .ui.segment {
         background-color: #000;
@@ -86,6 +91,9 @@ body,
     }
     .ui.vertical.pointing.menu .active.item:hover::after {
         background-color: #0d0d0d;
+    }
+    .ui.vertical.menu .active.item {
+        background-color: rgba(255, 255, 255, 0.05);
     }
     .ui.menu .active.item:hover,
     .ui.vertical.menu .active.item:hover {
@@ -311,6 +319,11 @@ body,
         color: rgba(255, 255, 255, 0.87);
     }
 
+    .ui.striped.table > tbody > tr:nth-child(2n),
+    .ui.striped.table > tr:nth-child(2n) {
+        background-color: rgba(255, 255, 205, 0.02);
+    }
+
     .ui.table > thead > tr > th {
         background-color: #060504;
         color: rgba(255, 255, 255, 0.87);
@@ -396,5 +409,22 @@ body,
     }
     .ui.steps .step .description {
         color: rgba(255, 255, 255, 0.87);
+    }
+
+    /** Placeholder */
+    .ui.placeholder,
+    .ui.placeholder .image.header::after,
+    .ui.placeholder .line,
+    .ui.placeholder .line::after,
+    .ui.placeholder > ::before {
+        background-color: #000;
+    }
+    .ui.placeholder {
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.08) 0,
+            rgba(255, 255, 255, 0.15) 15%,
+            rgba(255, 255, 255, 0.08) 30%
+        );
     }
 }

@@ -14,6 +14,17 @@ $page->bodyStart();
 $page->navigation();
 
 $posts = Blog::getPosts();
+
+if ('en' !== \Locale::getPrimaryLanguage($user->locale)) {
+    $page->messages[] = Page::warning(
+        sprintf(
+            /** TRANSLATORS: %s: Language, most likely English */
+            __('The blog is currently only available in %s and not translateable. Please let me know if you have any ideas to improve this.'),
+            '<strong>' . \Locale::getDisplayName('en', 'en') . '</strong>'
+        ),
+        __('Warning')
+    );
+}
 ?>
 
 <main>
@@ -32,8 +43,9 @@ $posts = Blog::getPosts();
                 );
                 $mediaHTML      = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
                 $categoriesHTML = Blog::getCategoriesHTML($post->categories);
-                $postLink       = '/?page=post&slug=' . $post->slug;
+                $postLink       = Page::PAGE_POST . '&slug=' . $post->slug;
                 ?>
+
                 <div class="column">
                     <div class="ui fluid card stretch">
                         <div class="image"><a href="<?= $postLink ?>"><?= $mediaHTML ?></a></div>
@@ -60,10 +72,27 @@ $posts = Blog::getPosts();
                 </div>
             <?php } ?>
         </div>
+
+        <?php if (count($posts) > 4) { ?>
+            <div class="ui hidden divider"></div>
+
+            <div class="ui one column centered grid">
+                <div class="column centered row">
+                    <a href="#top" class="ui vertical animated button">
+                        <div class="visible content">
+                            <i class="arrow up icon"></i>
+                        </div>
+                        <div class="hidden content">
+                            <?= __('Top') ?>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
+
     </div>
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

@@ -332,6 +332,20 @@ $(function () {
         formEdit.addClass('loading');
         formEdit.trigger('reset');
         formEdit.find('.dropdown').dropdown('restore defaults');
+        formEdit.find('.item').tab('change tab', 'general');
+
+        /** Checkbox */
+        formEdit
+        .find('.checkbox')
+        .checkbox({
+            onChecked   : function() {
+                formEdit.find('.item[data-tab="product"]').removeClass('disabled');
+            },
+            onUnchecked : function() {
+                formEdit.find('.item[data-tab="product"]').addClass('disabled');
+            },
+        })
+        .checkbox('uncheck');
 
         /** Get Wish */
         var wishID = $(this).attr('data-id');
@@ -348,12 +362,21 @@ $(function () {
         .then(function(response) {
             var wish = response.info;
 
+            /** General */
             $('[name="wish_id"]').val(wish.id);
             $('[name="wish_title"]').val(wish.title);
             $('[name="wish_description"]').val(wish.description);
             $('[name="wish_url"]').val(wish.url);
             $('.ui.selection.dropdown.priority').dropdown('set selected', wish.priority);
-            $('[name="wish_is_purchasable"]').prop('checked', wish.is_purchasable);
+
+            if (wish.is_purchasable) {
+                formEdit.find('.checkbox').checkbox('check');
+            } else {
+                formEdit.find('.checkbox').checkbox('uncheck');
+            }
+
+            /** Product */
+            $('[name="wish_price"]').val(wish.price);
         })
         .catch(handleFetchCatch)
         .finally(function() {
@@ -448,6 +471,18 @@ $(function () {
         var formAdd = $('.form.wishlist-wish-add');
         formAdd.trigger('reset');
         formAdd.find('.dropdown').dropdown('restore defaults');
+        formAdd.find('.item').tab('change tab', 'general');
+
+        /** Checkbox */
+        formAdd.find('.checkbox').checkbox({
+            onChecked   : function() {
+                formAdd.find('.item[data-tab="product"]').removeClass('disabled');
+            },
+            onUnchecked : function() {
+                formAdd.find('.item[data-tab="product"]').addClass('disabled');
+            },
+        })
+        .checkbox('uncheck');
 
         /** Modal */
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
@@ -511,6 +546,17 @@ $(function () {
     var validateURL = true;
 
     function validateWishURL(formAddOrEdit, buttonAddOrSave, modalAddOrEdit) {
+        /**
+         * Validate Form
+         */
+        formAddOrEdit
+        .form({
+            fields: {
+                wish_price : ['number'],
+            }
+        })
+        .form('validate form');
+
         /**
          * Validate URL
          */
@@ -587,6 +633,10 @@ $(function () {
                     .then(handleFetchError)
                     .then(handleFetchResponse)
                     .then(function(response) {
+                        if (!response.lastInsertId) {
+                            return;
+                        }
+
                         $('body').toast({ message: text.toast_wish_update });
 
                         wishlistsRefresh();
@@ -614,6 +664,10 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
+                if (!response.lastInsertId) {
+                    return;
+                }
+
                 $('body').toast({ message: text.toast_wish_update });
 
                 wishlistsRefresh();

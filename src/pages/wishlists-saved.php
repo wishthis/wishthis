@@ -28,7 +28,7 @@ $page->navigation();
                     <div class="item">
                         <i class="large heart middle aligned icon"></i>
                         <div class="content">
-                            <a class="header" href="/?page=wishlist&hash=<?= $wishlist->hash ?>"><?= $wishlist->getTitle(); ?></a>
+                            <a class="header" href="<?= Page::PAGE_WISHLIST ?>&hash=<?= $wishlist->hash ?>"><?= $wishlist->getTitle(); ?></a>
                             <div class="description"><?= $wishlist_user->getDisplayName(); ?></div>
                         </div>
                     </div>
@@ -40,5 +40,4 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

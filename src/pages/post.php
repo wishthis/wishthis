@@ -9,7 +9,8 @@
 namespace wishthis;
 
 $postSlug      = $_SESSION['_GET']['slug'];
-$post          = Blog::getPostBySlug($postSlug);
+$posts         = Blog::getPreviousCurrentNextPostBySlug($postSlug);
+$post          = $posts['current'];
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
 $postMedia     = isset($post->featured_media) ? Blog::getMedia($post->featured_media)     : new \stdClss();
 
@@ -32,7 +33,7 @@ $page->navigation();
 
 <main>
     <div class="ui text container">
-        <h1 class="ui header"><?= $page->title ?></h1>
+        <?= $page->messages() ?>
 
         <div class="ui segments">
             <div class="ui fitted segment image">
@@ -40,13 +41,32 @@ $page->navigation();
             </div>
 
            <div class="ui segment">
+                <h1 class="ui header"><?= $page->title ?></h1>
+
                 <div><?= $post->content->rendered ?></div>
             </div>
+        </div>
+
+        <div class="ui two columns grid">
+
+            <div class="column">
+                <a href="#top" class="ui fluid labeled icon button">
+                    <i class="arrow up icon"></i>
+                    <?= __('Top') ?>
+                </a>
+            </div>
+
+            <div class="column">
+                <a href="<?= Page::PAGE_BLOG ?>" class="ui fluid labeled icon button">
+                    <i class="rss icon"></i>
+                    <?= __('Blog') ?>
+                </a>
+            </div>
+
         </div>
     </div>
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

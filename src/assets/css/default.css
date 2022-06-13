@@ -6,6 +6,10 @@
     --themeTransitionDuration: 2s;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 img {
     max-width: 100%;
 }
@@ -40,6 +44,10 @@ figure {
         padding-top: 2em;
         padding-bottom: 2em;
     }
+}
+
+.ui.vertical.menu.sidebar .ui.footer {
+    position: static;
 }
 
 /**
@@ -352,10 +360,6 @@ p .ui.horizontal.label {
 @media (max-width: 767px) {
     .pusher .menu.toggle {
         display: block;
-    }
-
-    .pusher > .footer {
-        display: none;
     }
 
     .pusher .menu.attached.desktop {

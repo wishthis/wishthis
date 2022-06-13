@@ -167,7 +167,7 @@ $page->navigation();
             <form class="ui form" method="POST">
                 <div class="ui divided relaxed stackable two column grid">
 
-                    <div class=" row">
+                    <div class="row">
                         <div class="column">
                             <h2 class="ui header"><?= __('Account details') ?></h2>
 
@@ -225,7 +225,7 @@ $page->navigation();
                                    title="<?= $buttonSubmit ?>"
                             />
                             <a class="ui tertiary button"
-                               href="/?page=login"
+                               href="<?= Page::PAGE_LOGIN ?>"
                                title="<?= __('Login') ?>"
                             >
                                 <?= __('Login') ?>
@@ -237,8 +237,23 @@ $page->navigation();
             </form>
         </div>
 
+        <div class="ui segment">
+            <h2 class="ui header"><?= __('About your email address') ?></h2>
+
+            <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
+            <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (i. e. when a wish has been fulfilled).') ?></p>
+            <p>
+                <?=
+                sprintf(
+                    /** TRANSLATORS: %s: source code is publicly viewable */
+                    __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s.'),
+                    '<a href="https://github.com/grandeljay/wishthis" target="_blank">' . __('source code is publicly viewable') . '</a>'
+                )
+                ?>
+            </p>
+        </div>
+
     </div>
 </main>
 <?php
-$page->footer();
 $page->bodyEnd();

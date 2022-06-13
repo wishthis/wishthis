@@ -21,6 +21,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishes .value'), response.data.wishes.count, 0);
+
+                    observerWishes.unobserve(document.querySelector('#wishes'));
                 }
             });
         };
@@ -28,6 +30,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishlists .value'), response.data.wishlists.count, 0);
+
+                    observerWishlists.unobserve(document.querySelector('#wishlists'));
                 }
             });
         };
@@ -35,6 +39,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#users .value'), response.data.users.count, 0);
+
+                    observerUsers.unobserve(document.querySelector('#users'));
                 }
             });
         };
@@ -45,6 +51,18 @@ $(function() {
         observerWishes.observe(document.querySelector('#wishes'));
         observerWishlists.observe(document.querySelector('#wishlists'));
         observerUsers.observe(document.querySelector('#users'));
+    });
+
+    /**
+     * News
+     */
+     fetch('/src/api/blog.php', {
+        method: 'GET'
+    })
+    .then(handleFetchError)
+    .then(handleFetchResponse)
+    .then(function(response) {
+        $('.ui.list.news').html(response.html);
     });
 });
 
