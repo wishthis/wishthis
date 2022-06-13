@@ -196,9 +196,11 @@ class Wish
                     </div>
                 <?php } ?>
 
-                <div class="meta">
-                    <span class="date"><?= $numberFormatter->format($this->price ?? 0) ?></span>
-                </div>
+                <?php if ($this->price) { ?>
+                    <div class="meta">
+                        <span class="date"><?= $numberFormatter->format($this->price) ?></span>
+                    </div>
+                <?php } ?>
 
                 <?php if ($this->description) { ?>
                     <div class="description">
