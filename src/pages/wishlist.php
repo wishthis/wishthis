@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$wishlist = new Wishlist($_SESSION['_GET']['hash']);
+$wishlist = new Wishlist($_GET['hash']);
 $page     = new Page(__FILE__, $wishlist->getTitle());
 
 if (!$wishlist->exists) {

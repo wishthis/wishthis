@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'cbdedfc7f48f7851b8bf5411f75a9df9f2ceae94',
+        'reference' => 'e38691fe5efc940251b1b92d3fe3438a3088f3a7',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'cbdedfc7f48f7851b8bf5411f75a9df9f2ceae94',
+            'reference' => 'e38691fe5efc940251b1b92d3fe3438a3088f3a7',
             'dev_requirement' => false,
         ),
         'composer/ca-bundle' => array(
@@ -200,12 +200,12 @@
             'dev_requirement' => false,
         ),
         'squizlabs/php_codesniffer' => array(
-            'pretty_version' => '3.6.2',
-            'version' => '3.6.2.0',
+            'pretty_version' => '3.7.0',
+            'version' => '3.7.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),
-            'reference' => '5e4e71592f69da17871dba6e80dd51bce74a351a',
+            'reference' => 'a2cd51b45bcaef9c1f2a4bda48f2dd2fa2b95563',
             'dev_requirement' => true,
         ),
         'symfony/deprecation-contracts' => array(
