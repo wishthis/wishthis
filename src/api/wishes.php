@@ -9,7 +9,9 @@
 namespace wishthis;
 
 $api      = true;
-$response = array();
+$response = array(
+    'success' => false,
+);
 
 ob_start();
 
@@ -83,7 +85,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $wish_image = is_null($info->image) ? 'NULL' : "' . $info->image . '";
 
                     $response = array(
-                        'info' => $info,
+                        'info'    => $info,
+                        'success' => true,
                     );
                 }
 
@@ -137,6 +140,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
+                'success'      => true,
             );
         }
         break;

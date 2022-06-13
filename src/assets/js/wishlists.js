@@ -587,6 +587,10 @@ $(function () {
                     .then(handleFetchError)
                     .then(handleFetchResponse)
                     .then(function(response) {
+                        if (true !== response.success) {
+                            return;
+                        }
+
                         $('body').toast({ message: text.toast_wish_update });
 
                         wishlistsRefresh();
@@ -614,6 +618,10 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
+                if (true !== response.success) {
+                    return;
+                }
+
                 $('body').toast({ message: text.toast_wish_update });
 
                 wishlistsRefresh();
