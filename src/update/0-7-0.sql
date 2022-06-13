@@ -1,4 +1,9 @@
 /**
+ * Wishes
+ */
+ALTER TABLE `wishes` MODIFY `image` TEXT NULL DEFAULT NULL;
+
+/**
  * Products
  */
 CREATE TABLE `products` (
