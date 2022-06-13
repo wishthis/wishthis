@@ -32,6 +32,8 @@ $page->navigation();
 
 <main>
     <div class="ui text container">
+        <?= $page->messages() ?>
+
         <div class="ui segments">
             <div class="ui fitted segment image">
                 <?= $postMediaHTML ?>
