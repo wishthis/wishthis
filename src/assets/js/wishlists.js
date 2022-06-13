@@ -512,6 +512,17 @@ $(function () {
 
     function validateWishURL(formAddOrEdit, buttonAddOrSave, modalAddOrEdit) {
         /**
+         * Validate Form
+         */
+        formAddOrEdit
+        .form({
+            fields: {
+                wish_price : ['number'],
+            }
+        })
+        .form('validate form');
+
+        /**
          * Validate URL
          */
         var inputURL       = modalAddOrEdit.find('[name="wish_url"]');

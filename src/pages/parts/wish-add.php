@@ -67,6 +67,17 @@ $scriptPart = '/src/assets/js/parts/wish-add.js';
             </select>
         </div>
 
+        <div class="field disabled">
+            <label><?= __('Price') ?></label>
+
+            <input type="text"
+                   name="wish_price"
+                   placeholder="<?= $wish->price ?? '' ?>"
+                   value="<?= $wish->price ?? '' ?>"
+                   maxlength="9"
+            />
+        </div>
+
         <div class="grouped fields">
             <label><?= __('Properties') ?></label>
 

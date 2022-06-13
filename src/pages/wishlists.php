@@ -175,6 +175,8 @@ $page->navigation();
                 <div class="ui two column grid">
                     <?php include 'parts/wish-add.php' ?>
                 </div>
+
+                <div class="ui error message"></div>
             </form>
         </div>
     </div>
@@ -202,6 +204,8 @@ $page->navigation();
                 <div class="ui two column grid">
                     <?php include 'parts/wish-add.php' ?>
                 </div>
+
+                <div class="ui error message"></div>
             </form>
         </div>
     </div>
