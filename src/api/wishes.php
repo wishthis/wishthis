@@ -101,18 +101,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
                             ? 'NULL'
                             : $_POST['wish_price'];
-
-                $database
-                ->query(
-                    'REPLACE INTO `products`
-                    (
-                        `wish`,
-                        `price`
-                    ) VALUES (
-                        ' . $wish_id . ',
-                        ' . $wish_price . '
-                    );'
-                );
             } elseif (isset($_POST['wishlist_id'])) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];
@@ -143,18 +131,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 if (!empty($_POST['wish_price'])) {
                     $wish_id    = $database->lastInsertId();
                     $wish_price = $_POST['wish_price'];
-
-                    $database
-                    ->query(
-                        'INSERT INTO `products`
-                        (
-                            `wish`,
-                            `price`
-                        ) VALUES (
-                            ' . $wish_id    . ',
-                            ' . $wish_price . '
-                        );'
-                    );
                 }
             }
 

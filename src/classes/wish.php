@@ -13,9 +13,8 @@ class Wish
     /**
      * Static
      */
-    public const SELECT    = '`wishes`.*, `products`.`price`';
+    public const SELECT    = '`wishes`.*';
     public const FROM      = '`wishes`';
-    public const LEFT_JOIN = '`products` ON `wishes`.`id` = `products`.`wish`';
     public const WHERE     = '`wishes`.`id` = %d;';
 
     public const NO_IMAGE = '/src/assets/img/no-image.svg';
@@ -80,7 +79,6 @@ class Wish
             ->query(
                 'SELECT ' . self::SELECT    . '
                    FROM ' . self::FROM      . '
-              LEFT JOIN ' . self::LEFT_JOIN . '
                   WHERE ' . sprintf(self::WHERE, $_GET['wish_id'])
             )
             ->fetch();
@@ -193,12 +191,6 @@ class Wish
                         <?php } else { ?>
                             <?= $this->title ?>
                         <?php } ?>
-                    </div>
-                <?php } ?>
-
-                <?php if ($this->price) { ?>
-                    <div class="meta">
-                        <span class="date"><?= $numberFormatter->format($this->price) ?></span>
                     </div>
                 <?php } ?>
 
