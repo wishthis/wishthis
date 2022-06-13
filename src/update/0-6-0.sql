@@ -16,5 +16,5 @@ CREATE INDEX `idx_wishlist` ON `wishlists_saved` (`wishlist`);
  * Wishes
  */
 ALTER TABLE `wishes`
- ADD COLUMN `is_purchasable` BOOLEAN NOT NULL DEFAULT FALSE
+  ADD COLUMN `is_purchasable` BOOLEAN NOT NULL DEFAULT FALSE
 ;

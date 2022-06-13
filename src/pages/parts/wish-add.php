@@ -5,10 +5,7 @@
  */
 
 namespace wishthis;
-
-$scriptPart = '/src/assets/js/parts/wish-add.js';
 ?>
-<script defer src="<?= $scriptPart ?>?m=<?= filemtime(ROOT . $scriptPart) ?>"></script>
 
 <div class="ui secondary menu wish-add">
     <a class="item active" data-tab="general"><?= __('General') ?></a>

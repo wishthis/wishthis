@@ -191,6 +191,21 @@ switch ($step) {
         $database->query('CREATE INDEX `idx_url` ON `wishes` (`url`);');
 
         /**
+         * Products
+         */
+        $database->query(
+            'CREATE TABLE `products` (
+                          `id`    INT   PRIMARY KEY AUTO_INCREMENT,
+                          `wish`  INT   NOT NULL,
+                          `price` FLOAT NOT NULL DEFAULT 0,
+             FOREIGN KEY (`wish`)
+                 REFERENCES `wishes` (`id`)
+                 ON DELETE CASCADE
+            );'
+        );
+        $database->query('CREATE INDEX `idx_wish` ON `products` (`wish`);');
+
+        /**
          * Options
          */
         $database->query('DROP TABLE IF EXISTS `options`;');
