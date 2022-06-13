@@ -195,15 +195,13 @@ switch ($step) {
          */
         $database->query(
             'CREATE TABLE `products` (
-                          `id`    INT   PRIMARY KEY AUTO_INCREMENT,
-                          `wish`  INT   NOT NULL,
-                          `price` FLOAT NOT NULL DEFAULT 0,
+                          `wish`  INT   NOT NULL PRIMARY KEY,
+                          `price` FLOAT NULL     DEFAULT NULL,
              FOREIGN KEY (`wish`)
                  REFERENCES `wishes` (`id`)
                  ON DELETE CASCADE
             );'
         );
-        $database->query('CREATE INDEX `idx_wish` ON `products` (`wish`);');
 
         /**
          * Options

@@ -108,16 +108,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 /**
                  * Product
                  */
-                if (!empty($_POST['wish_price'])) {
-                    $wish_price = $_POST['wish_price'];
+                $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
+                            ? 'NULL'
+                            : $_POST['wish_price'];
 
-                    $database
-                    ->query(
-                        'UPDATE `products`
-                            SET `price` = ' . $wish_price . '
-                          WHERE `wish`  = ' . $wish_id    . ';'
-                    );
-                }
+                $database
+                ->query(
+                    'REPLACE INTO `products`
+                    (
+                        `wish`,
+                        `price`
+                    ) VALUES (
+                        ' . $wish_id . ',
+                        ' . $wish_price . '
+                    );'
+                );
             } elseif (isset($_POST['wishlist_id'])) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];

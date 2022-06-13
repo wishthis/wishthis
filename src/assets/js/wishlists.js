@@ -335,14 +335,17 @@ $(function () {
         formEdit.find('.item').tab('change tab', 'general');
 
         /** Checkbox */
-        formEdit.find('.checkbox').checkbox({
+        formEdit
+        .find('.checkbox')
+        .checkbox({
             onChecked   : function() {
                 formEdit.find('.item[data-tab="product"]').removeClass('disabled');
             },
             onUnchecked : function() {
                 formEdit.find('.item[data-tab="product"]').addClass('disabled');
             },
-        });
+        })
+        .checkbox('uncheck');
 
         /** Get Wish */
         var wishID = $(this).attr('data-id');
@@ -478,7 +481,8 @@ $(function () {
             onUnchecked : function() {
                 formAdd.find('.item[data-tab="product"]').addClass('disabled');
             },
-        });
+        })
+        .checkbox('uncheck');
 
         /** Modal */
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
