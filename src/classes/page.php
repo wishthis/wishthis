@@ -148,11 +148,13 @@ class Page
             'changelog',
             'wishlist',
         );
+
         if (
                !isset($_SESSION['user'])
             && isset($_SESSION['_GET']['page'])
             && !in_array($_SESSION['_GET']['page'], $ignorePower)
         ) {
+            $_SESSION['REDIRECT_URL'] = $_SERVER['REQUEST_URI'];
             redirect(Page::PAGE_LOGIN);
         }
 

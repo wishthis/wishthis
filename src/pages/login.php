@@ -40,7 +40,11 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
 }
 
 if (isset($_SESSION['user'])) {
-    redirect(Page::PAGE_HOME);
+    if (isset($_SESSION['REDIRECT_URL'])) {
+        redirect($_SESSION['REDIRECT_URL']);
+    } else {
+        redirect(Page::PAGE_HOME);
+    }
 }
 
 /**
