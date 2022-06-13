@@ -74,7 +74,7 @@ class Embed extends Cache
                     $info_simplified->favicon       = (string) $info->favicon;
                     $info_simplified->feeds         = (array)  $info->feeds;
                     $info_simplified->icon          = (string) $info->icon;
-                    $info_simplified->image         = isset($info->image) && $info->image ? (string) $info->image : null;
+                    $info_simplified->image         = (string) $info->image;
                     $info_simplified->keywords      = (array)  $info->keywords;
                     $info_simplified->language      = (string) $info->language;
                     $info_simplified->languages     = (array)  $info->languages;

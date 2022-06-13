@@ -75,7 +75,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         $wish_description = $info->description;
                     }
 
-                    $wish_image = is_null($info->image) ? 'NULL' : "' . $info->image . '";
+                    $wish_image = is_null($info->image) ? 'NULL' : '"' . $info->image . '"';
 
                     $response = array(
                         'info' => $info,
