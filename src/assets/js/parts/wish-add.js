@@ -1,11 +1,6 @@
 $(function () {
 
     /**
-     * Tabs
-     */
-    $('.menu.wish-add .item').tab();
-
-    /**
      * Priority
      */
     $('.modal .wishlist-wish-add .dropdown.priority').dropdown();
