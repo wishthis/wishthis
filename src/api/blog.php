@@ -6,17 +6,19 @@
 
 namespace wishthis;
 
-$api           = true;
+ob_start();
+
+$api = true;
+
+require '../../index.php';
+
 $response      = array();
 $dateFormatter = new \IntlDateFormatter(
-    'en_GB',
+    $user->locale,
     \IntlDateFormatter::MEDIUM,
     \IntlDateFormatter::NONE
 );
 
-ob_start();
-
-require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
