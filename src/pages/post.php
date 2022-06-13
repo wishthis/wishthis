@@ -43,6 +43,24 @@ $page->navigation();
                 <div><?= $post->content->rendered ?></div>
             </div>
         </div>
+
+        <div class="ui two columns grid">
+            <div class="column">
+
+                <a href="#top" class="ui fluid labeled icon button">
+                    <i class="arrow up icon"></i>
+                    <?= __('Top') ?>
+                </a>
+            </div>
+
+            <div class="column">
+                <a href="<?= Page::PAGE_BLOG ?>" class="ui fluid labeled icon button">
+                    <i class="rss icon"></i>
+                    <?= __('Blog') ?>
+                </a>
+            </div>
+
+        </div>
     </div>
 </main>
 

@@ -453,7 +453,7 @@ class Page
     public function bodyStart(): void
     {
         ?>
-        <body>
+        <body id="top">
         <?php
     }
 

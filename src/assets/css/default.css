@@ -6,6 +6,10 @@
     --themeTransitionDuration: 2s;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 img {
     max-width: 100%;
 }
