@@ -100,8 +100,6 @@ class URL
                                     ) {
                                         $rewriteRule = str_replace($match, $value, $rewriteRule);
 
-                                        error_log('Successfully matched ' . $match . ' with ' . $value . ' New rule is now: ' . $rewriteRule);
-
                                         $countMatches++;
                                         break;
                                     }
