@@ -195,6 +195,8 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
+            <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
+
             <form class="ui form wishlist-wish-edit" method="POST">
                 <input type="hidden" name="wishlist_id" />
                 <input type="hidden" name="wish_id" />
