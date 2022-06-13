@@ -45,6 +45,7 @@ if ('en' !== \Locale::getPrimaryLanguage($user->locale)) {
                 $categoriesHTML = Blog::getCategoriesHTML($post->categories);
                 $postLink       = Page::PAGE_POST . '&slug=' . $post->slug;
                 ?>
+
                 <div class="column">
                     <div class="ui fluid card stretch">
                         <div class="image"><a href="<?= $postLink ?>"><?= $mediaHTML ?></a></div>
@@ -71,6 +72,24 @@ if ('en' !== \Locale::getPrimaryLanguage($user->locale)) {
                 </div>
             <?php } ?>
         </div>
+
+        <?php if (count($posts) > 4) { ?>
+            <div class="ui hidden divider"></div>
+
+            <div class="ui one column centered grid">
+                <div class="column centered row">
+                    <a href="#top" class="ui vertical animated button">
+                        <div class="visible content">
+                            <i class="arrow up icon"></i>
+                        </div>
+                        <div class="hidden content">
+                            <?= __('Top') ?>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
+
     </div>
 </main>
 
