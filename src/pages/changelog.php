@@ -40,6 +40,7 @@ $page->navigation();
                             <ul>
                                 <li><?= __('Blog') ?></li>
                                 <li><?= __('Dark theme') ?></li>
+                                <li><?= __('Wish products') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>
