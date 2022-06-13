@@ -243,6 +243,17 @@ body,
         background-color: #000;
         box-shadow: 0 0 0 0 rgba(221, 219, 217, 0.35) inset;
     }
+    .ui.form .field.field input:autofill {
+        box-shadow: 0 0 0 100px #00000f inset !important;
+        border-color: #1a205e !important;
+    }
+    .ui.form .field.field input:autofill:focus {
+        box-shadow: 0 0 0 100px #00000f inset !important;
+        border-color: #2a3cea !important;
+    }
+    i.icon::before {
+        color: #fff;
+    }
 
     /** Form */
     .ui.form ::placeholder {
