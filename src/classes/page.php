@@ -151,10 +151,9 @@ class Page
 
         if (
                !isset($_SESSION['user'])
-            && isset($_SESSION['_GET']['page'])
-            && !in_array($_SESSION['_GET']['page'], $ignorePower)
+            && isset($_GET['page'])
+            && !in_array($_GET['page'], $ignorePower)
         ) {
-            $_SESSION['REDIRECT_URL'] = $_SERVER['REQUEST_URI'];
             redirect(Page::PAGE_LOGIN);
         }
 
@@ -186,10 +185,10 @@ class Page
         /**
          * Redirect
          */
-        if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
-            $url = new URL(http_build_query($_SESSION['_GET']));
+        if ($options && $options->getOption('isInstalled') && isset($_GET)) {
+            $url = new URL(http_build_query($_GET));
 
-            if (false === $url->isPretty()) {
+            if ($url->url && false === $url->isPretty()) {
                 redirect($url->getPretty());
             }
         }
@@ -329,7 +328,7 @@ class Page
             ?>
             <script type="text/javascript">
                 var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
+                var $_GET                   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';

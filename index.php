@@ -146,14 +146,6 @@ if (isset($api)) {
  */
 $url = new URL($_SERVER['REQUEST_URI']);
 
-if ($url->isPretty()) {
-    $_SESSION['_GET'] = query_to_key_value_pair($url->getPermalink());
-}
-
-if ($_SERVER['QUERY_STRING']) {
-    $_SESSION['_GET'] = $_GET;
-}
-
 /**
  * Install
  */
@@ -174,7 +166,7 @@ if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') &&
  * Page
  */
 if (!isset($page)) {
-    $page = isset($_SESSION['_GET']['page']) ? $_SESSION['_GET']['page'] : 'home';
+    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 }
 $pagePath = 'src/pages/' . $page . '.php';
 

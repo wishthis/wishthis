@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$postSlug      = $_SESSION['_GET']['slug'];
+$postSlug      = $_GET['slug'];
 $posts         = Blog::getPreviousCurrentNextPostBySlug($postSlug);
 $post          = $posts['current'];
 $postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
