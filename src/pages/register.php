@@ -225,7 +225,7 @@ $page->navigation();
                                    title="<?= $buttonSubmit ?>"
                             />
                             <a class="ui tertiary button"
-                               href="/?page=login"
+                               href="<?= Page::PAGE_LOGIN ?>"
                                title="<?= __('Login') ?>"
                             >
                                 <?= __('Login') ?>

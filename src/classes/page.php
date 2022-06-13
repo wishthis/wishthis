@@ -21,9 +21,25 @@ class Page
 {
     /**
      * Static
-     *
-     * @return string
      */
+    public const PAGE_BLOG            = '/?page=blog';
+    public const PAGE_CHANGELOG       = '/?page=changelog';
+    public const PAGE_HOME            = '/?page=home';
+    public const PAGE_INSTALL         = '/?page=install';
+    public const PAGE_LOGIN_AS        = '/?page=login-as';
+    public const PAGE_LOGIN           = '/?page=login';
+    public const PAGE_LOGOUT          = '/?page=logout';
+    public const PAGE_MAINTENANCE     = '/?page=maintenance';
+    public const PAGE_POST            = '/?page=post';
+    public const PAGE_POWER           = '/?page=power';
+    public const PAGE_PROFILE         = '/?page=profile';
+    public const PAGE_REGISTER        = '/?page=register';
+    public const PAGE_SETTINGS        = '/?page=settings';
+    public const PAGE_UPDATE          = '/?page=update';
+    public const PAGE_WISHLIST        = '/?page=wishlist';
+    public const PAGE_WISHLISTS_SAVED = '/?page=wishlists-saved';
+    public const PAGE_WISHLISTS       = '/?page=wishlists';
+
     public static function message(string $content = '', string $header = '', string $type = ''): string
     {
         ob_start();
@@ -137,14 +153,14 @@ class Page
             && isset($_SESSION['_GET']['page'])
             && !in_array($_SESSION['_GET']['page'], $ignorePower)
         ) {
-            redirect('/?page=login');
+            redirect(Page::PAGE_LOGIN);
         }
 
         /**
          * Power
          */
         if (isset($user->power) && $user->power < $this->power) {
-            redirect('/?page=power&required=' . $this->power);
+            redirect(Page::PAGE_POWER . '&required=' . $this->power);
         }
 
         /**
@@ -159,9 +175,9 @@ class Page
 
         if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
             if (100 === $user->power) {
-                redirect('/?page=update');
+                redirect(Page::PAGE_UPDATE);
             } else {
-                redirect('/?page=maintenance');
+                redirect(Page::PAGE_MAINTENANCE);
             }
         }
 
@@ -460,7 +476,7 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('Blog'),
-                        'url'  => '/?page=blog',
+                        'url'  => self::PAGE_BLOG,
                         'icon' => 'rss',
                     ),
                 ),
@@ -486,12 +502,12 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('My lists'),
-                        'url'  => '/?page=wishlists',
+                        'url'  => Page::PAGE_WISHLISTS,
                         'icon' => 'list',
                     ),
                     array(
                         'text' => __('Saved lists'),
-                        'url'  => '/?page=wishlists-saved',
+                        'url'  => Page::PAGE_WISHLISTS_SAVED,
                         'icon' => 'heart',
                     ),
                 ),
@@ -501,19 +517,19 @@ class Page
         if ($user->isLoggedIn()) {
             $pages[$account]['items'][] = array(
                 'text' => __('Profile'),
-                'url'  => '/?page=profile',
+                'url'  => Page::PAGE_PROFILE,
                 'icon' => 'user circle alternate',
             );
             if (100 === $user->power) {
                 $pages[$account]['items'][] = array(
                     'text' => __('Login as'),
-                    'url'  => '/?page=login-as',
+                    'url'  => Page::PAGE_LOGIN_AS,
                     'icon' => 'sign out alternate',
                 );
             }
             $pages[$account]['items'][] = array(
                 'text' => __('Logout'),
-                'url'  => '/?page=logout',
+                'url'  => Page::PAGE_LOGOUT,
                 'icon' => 'sign out alternate',
             );
         } else {
@@ -523,7 +539,7 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('Login'),
-                        'url'  => '/?page=login',
+                        'url'  => Page::PAGE_LOGIN,
                         'icon' => 'sign in alternate',
                     )
                 ),
@@ -534,7 +550,7 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('Register'),
-                        'url'  => '/?page=register',
+                        'url'  => Page::PAGE_REGISTER,
                         'icon' => 'user plus alternate',
                     )
                 ),
@@ -544,7 +560,7 @@ class Page
         if (isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
                 'text' => __('Settings'),
-                'url'  => '/?page=settings',
+                'url'  => Page::PAGE_SETTINGS,
                 'icon' => 'cog',
             );
         }
@@ -557,7 +573,7 @@ class Page
         <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
 
-                <a class="item home" href="/?page=home"><?= $svgLogo ?></a>
+                <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $svgLogo ?></a>
 
                 <?php foreach ($pages as $page) { ?>
                     <?php foreach ($page['items'] as $item) { ?>
@@ -574,7 +590,7 @@ class Page
         <div class="pusher">
             <div class="ui attached menu desktop">
                 <div class="ui container">
-                    <a class="item home" href="/?page=home"><?= $svgLogo ?></a>
+                    <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $svgLogo ?></a>
 
                     <?php foreach ($pages as $page) { ?>
                         <?php if ('left' === $page['alignment']) { ?>
@@ -685,7 +701,7 @@ class Page
                             </div>
 
                             <a class="item"
-                               href="/?page=changelog"
+                               href="<?= Page::PAGE_CHANGELOG ?>"
                                title="<?= __('Changelog') ?>"
                             >
                                 <i class="newspaper icon"></i>

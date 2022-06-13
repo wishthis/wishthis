@@ -29,7 +29,7 @@ $page->navigation();
                         <?php if ($user->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=wishlists"
+                                href="<?= Page::PAGE_WISHLISTS ?>"
                                 title="<?= __('My lists') ?>"
                                 >
                                     <?= __('My lists') ?>
@@ -38,7 +38,7 @@ $page->navigation();
                         <?php } else { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=register"
+                                href="<?= Page::PAGE_REGISTER ?>"
                                 title="<?= __('Register now') ?>"
                                 >
                                     <?= __('Register now') ?>
@@ -46,7 +46,7 @@ $page->navigation();
                             </div>
                             <div class="column">
                                 <a class="ui fluid button"
-                                href="/?page=login"
+                                href="<?= Page::PAGE_LOGIN ?>"
                                 title="<?= __('Login') ?>"
                                 >
                                     <?= __('Login') ?>

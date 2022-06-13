@@ -40,7 +40,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
 }
 
 if (isset($_SESSION['user'])) {
-    redirect('/?page=home');
+    redirect(Page::PAGE_HOME);
 }
 
 /**
@@ -89,7 +89,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            '/?page=register&password-reset=' . $_POST['email'] . '&token=' . $token,
+            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token,
             $mjml
         );
 
@@ -146,7 +146,7 @@ $page->navigation();
                                    title="<?= __('Login') ?>"
                             />
                             <a class="ui tertiary button"
-                               href="/?page=register"
+                               href="<?= Page::PAGE_REGISTER ?>"
                                title="<?= __('Register') ?>"
                             >
                                 <?= __('Register') ?>
