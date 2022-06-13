@@ -45,7 +45,6 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
                                 <li><?= __('Localisation (many new translations added)') ?></li>
-                                <li><?= __('Wish information is not updated if the url can not be found') ?></li>
                                 <li><?= __('Additional logins are no longer required when switching between wishthis channels') ?></li>
                             </ul>
 
@@ -57,6 +56,7 @@ $page->navigation();
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
+                                <li><?= __('Wish information is updated with 404 content from URL') ?></li>
                                 <li><?= __('Various minor things (typos, menu order, etc)') ?></li>
                             </ul>
                         </div>
