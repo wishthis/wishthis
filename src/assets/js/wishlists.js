@@ -332,6 +332,7 @@ $(function () {
         formEdit.addClass('loading');
         formEdit.trigger('reset');
         formEdit.find('.dropdown').dropdown('restore defaults');
+        formEdit.find('.item[data-tab="product"]').addClass('disabled');
 
         /** Get Wish */
         var wishID = $(this).attr('data-id');
@@ -448,6 +449,7 @@ $(function () {
         var formAdd = $('.form.wishlist-wish-add');
         formAdd.trigger('reset');
         formAdd.find('.dropdown').dropdown('restore defaults');
+        formAdd.find('.item[data-tab="product"]').addClass('disabled');
 
         /** Modal */
         var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
