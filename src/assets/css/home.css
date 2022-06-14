@@ -17,14 +17,14 @@
 @keyframes text-list {
     0% {
         position: relative;
+        bottom: 0;
 
         opacity: 1;
-        bottom: 0;
     }
 
     100% {
-        opacity: 0;
         bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 2px);
+        opacity: 0;
     }
 }
 
@@ -34,13 +34,13 @@
 @keyframes text-this {
     0% {
         position: relative;
+        bottom: 0;
 
         opacity: 0;
-        bottom: 0;
     }
 
     100% {
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 3px);
         opacity: 1;
-        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 2px);
     }
 }
