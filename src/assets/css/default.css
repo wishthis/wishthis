@@ -415,6 +415,7 @@ p .ui.horizontal.label {
 .ui.basic.white.button {
     transition: var(--themeTransitionDuration) ease background-color;
 
+    color: inherit;
     background-color: #fff;
 }
 @media (prefers-color-scheme: dark) {
