@@ -17,7 +17,7 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <div class="ui three column grid wishlists-saved">
+        <div class="ui three column doubling stackable grid wishlists-saved">
             <?php foreach ($user->getSavedWishlists() as $wishlist_saved) { ?>
                 <?php
                 $wishlist      = new Wishlist($wishlist_saved['wishlist']);
