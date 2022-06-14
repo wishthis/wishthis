@@ -44,3 +44,20 @@
         opacity: 1;
     }
 }
+
+.column.buttons {
+    display: flex !important;
+}
+
+.column.buttons .left.attached.button {
+    flex: 1 1 100%;
+
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.column.buttons .right.attached.button {
+    flex: 0 0 auto;
+}

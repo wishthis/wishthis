@@ -406,6 +406,7 @@ class Page
                     button_wishlist_saved : '<?= __('Saved') ?>',
                 };
             </script>
+
             <?php
             /** jQuery */
             $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
