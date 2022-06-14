@@ -22,7 +22,7 @@ $page->navigation();
 
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
-                    <a class="item" data-tab="unreleased"><?= __('Unreleased') ?></a>
+                    <a class="item" data-tab="unreleased"><?= __('0.7.0') ?></a>
                     <a class="item" data-tab="0-6-0"><?= __('0.6.0') ?></a>
                 </div>
             </div>
@@ -32,7 +32,7 @@ $page->navigation();
                     <div class="ui segments">
 
                         <div class="ui segment">
-                            <h2 class="ui header"><?= __('Unreleased') ?></h2>
+                            <h2 class="ui header"><?= __('0.7.0') ?></h2>
                         </div>
 
                         <div class="ui segment">
@@ -41,12 +41,15 @@ $page->navigation();
                                 <li><?= __('Blog') ?></li>
                                 <li><?= __('Dark theme') ?></li>
                                 <li><?= __('Wish products') ?></li>
+                                <li><?= __('Jump to last edited wishlist from home') ?></li>
+                                <li><?= __('Quick add wish from home') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
                                 <li><?= __('Localisation (many new translations added)') ?></li>
                                 <li><?= __('Additional logins are no longer required when switching between wishthis channels') ?></li>
+                                <li><?= __('Saved wishlists design') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Changed') ?></h3>
@@ -58,7 +61,7 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
                                 <li><?= __('Various minor things (typos, menu order, etc)') ?></li>
-                                <li><?= __('Wish information is updated with 404 content from URL') ?></li>
+                                <li><?= __('Wish information being updated with 404 content from URL') ?></li>
                                 <li><?= __('Wish image not showing') ?></li>
                                 <li><?= __('An error when saving a wish with a really long URL') ?></li>
                                 <li><?= __('Redirect errors on Nginx') ?></li>

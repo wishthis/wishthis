@@ -29,25 +29,54 @@ $page->navigation();
                         <?php if ($user->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="<?= Page::PAGE_WISHLISTS ?>"
-                                title="<?= __('My lists') ?>"
+                                   href="<?= Page::PAGE_WISHLISTS ?>"
+                                   title="<?= __('My lists') ?>"
                                 >
                                     <?= __('My lists') ?>
                                 </a>
                             </div>
+
+                            <?php
+                            $lastWishlist      = null;
+                            $lastWishlistQuery = $database->query(
+                                '  SELECT `wishlists`.*
+                                        FROM `wishes`
+                                        JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
+                                        JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
+                                    WHERE `users`.`id` = ' . $user->id . '
+                                    ORDER BY `wishes`.`edited` DESC
+                                    LIMIT 1;'
+                            );
+
+                            if (false !== $lastWishlistQuery && 1 === $lastWishlistQuery->rowCount()) {
+                                $lastWishlist = $lastWishlistQuery->fetch();
+                                $href         = Page::PAGE_WISHLISTS . '&id=' . $lastWishlist['id'];
+                                $hrefAdd      = $href . '&wish_add=true';
+                                ?>
+                                <div class="column buttons">
+                                    <a class="ui left attached button" href="<?= $href ?>">
+                                        <?= $lastWishlist['name'] ?>
+                                    </a>
+                                    <a class="ui right attached icon button" href="<?= $hrefAdd ?>">
+                                        <i class="plus icon"></i>
+                                    </a>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         <?php } else { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="<?= Page::PAGE_REGISTER ?>"
-                                title="<?= __('Register now') ?>"
+                                   href="<?= Page::PAGE_REGISTER ?>"
+                                   title="<?= __('Register now') ?>"
                                 >
                                     <?= __('Register now') ?>
                                 </a>
                             </div>
                             <div class="column">
                                 <a class="ui fluid button"
-                                href="<?= Page::PAGE_LOGIN ?>"
-                                title="<?= __('Login') ?>"
+                                   href="<?= Page::PAGE_LOGIN ?>"
+                                   title="<?= __('Login') ?>"
                                 >
                                     <?= __('Login') ?>
                                 </a>

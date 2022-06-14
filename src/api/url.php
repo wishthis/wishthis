@@ -1,9 +1,9 @@
 <?php
 
 /**
- * url.php
+ * URL
  *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * @category API
  */
 
 namespace wishthis;

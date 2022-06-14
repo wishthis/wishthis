@@ -206,6 +206,10 @@ body,
         color: rgba(255, 255, 255, 0.8);
         background-color: #000;
     }
+    .ui.basic.button:active,
+    .ui.basic.buttons .button:active {
+        color: rgba(255, 255, 255, 0.9);
+    }
 
     /** Input */
     .ui.input > input {
@@ -271,7 +275,7 @@ body,
         border-color: #2a3cea !important;
     }
     i.icon::before {
-        color: #fff;
+        color: inherit;
     }
 
     /** Form */

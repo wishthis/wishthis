@@ -1,9 +1,9 @@
 <?php
 
 /**
- * wishes.php
+ * Wishes
  *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * @category API
  */
 
 namespace wishthis;
@@ -163,20 +163,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $status = time();
             }
 
-            $database->query('UPDATE `wishes`
-                                 SET `status` = "' . $status . '"
-                               WHERE `id`     = ' . $_PUT['wish_id'] . '
-            ;');
+            $database->query(
+                'UPDATE `wishes`
+                    SET `status` = "' . $status . '"
+                  WHERE `id`     = ' . $_PUT['wish_id'] . ';'
+            );
 
             $response['success'] = true;
         } elseif (isset($_PUT['wish_url_current'], $_PUT['wish_url_proposed'])) {
             /**
              * Update Wish URL
              */
-            $database->query('UPDATE `wishes`
-                                 SET `url` = "' . $_PUT['wish_url_proposed'] . '"
-                               WHERE `url` = "' . $_PUT['wish_url_current'] . '"
-            ;');
+            $database->query(
+                'UPDATE `wishes`
+                    SET `url` = "' . $_PUT['wish_url_proposed'] . '"
+                  WHERE `url` = "' . $_PUT['wish_url_current'] . '";'
+            );
 
             $response['success'] = true;
         }
@@ -186,9 +188,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         parse_str(file_get_contents("php://input"), $_DELETE);
 
         if (isset($_DELETE['wish_id'])) {
-            $database->query('DELETE FROM `wishes`
-                                    WHERE `id` = ' . $_DELETE['wish_id'] . '
-            ;');
+            $database->query(
+                'DELETE FROM `wishes`
+                       WHERE `id` = ' . $_DELETE['wish_id'] . ';'
+            );
         }
 
         $response['success'] = true;

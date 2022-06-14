@@ -1,7 +1,8 @@
 /**
  * Wishes
  */
-ALTER TABLE `wishes` MODIFY `image` TEXT NULL DEFAULT NULL;
+ALTER TABLE `wishes` MODIFY     `image`  TEXT          NULL DEFAULT NULL,
+                     ADD COLUMN `edited` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 /**
  * Products

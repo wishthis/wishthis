@@ -10,7 +10,8 @@ html {
     scroll-behavior: smooth;
 }
 
-img {
+img,
+svg {
     max-width: 100%;
 }
 
@@ -26,7 +27,7 @@ figure {
     height: 1em;
     margin: 0;
 }
-#svgLogo path {
+#logo path {
     fill: currentColor;
 }
 
@@ -70,6 +71,12 @@ figure {
 }
 
 /** Image */
+svg#no-image,
+.wishlist .ui.card > .image > svg {
+    color: #f0f0f0;
+    background-color: #f4f4f4;
+}
+
 .wishlist .ui.card > .image > svg {
     transition: var(--themeTransitionDuration) ease color,
                 var(--themeTransitionDuration) ease background-color;
@@ -80,11 +87,9 @@ figure {
 
     box-sizing: border-box;
     border-radius: inherit;
-
-    color: #f0f0f0;
-    background-color: #f4f4f4;
 }
 @media (prefers-color-scheme: dark) {
+    svg#no-image,
     .wishlist .ui.card > .image > svg {
         color: #0f0f0f;
         background-color: #0b0b0b;
@@ -410,6 +415,7 @@ p .ui.horizontal.label {
 .ui.basic.white.button {
     transition: var(--themeTransitionDuration) ease background-color;
 
+    color: inherit;
     background-color: #fff;
 }
 @media (prefers-color-scheme: dark) {

@@ -10,3 +10,54 @@
 .ui.statistics .statistic > .value {
     font-variant-numeric: tabular-nums lining-nums slashed-zero;
 }
+
+#text-list {
+    animation: 0.8s 1s ease text-list;
+}
+@keyframes text-list {
+    0% {
+        position: relative;
+        bottom: 0;
+
+        opacity: 1;
+    }
+
+    100% {
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
+        opacity: 0;
+    }
+}
+
+#text-this {
+    animation: 0.8s 1s ease text-this;
+}
+@keyframes text-this {
+    0% {
+        position: relative;
+        bottom: 0;
+
+        opacity: 0;
+    }
+
+    100% {
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
+        opacity: 1;
+    }
+}
+
+.column.buttons {
+    display: flex !important;
+}
+
+.column.buttons .left.attached.button {
+    flex: 1 1 100%;
+
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.column.buttons .right.attached.button {
+    flex: 0 0 auto;
+}

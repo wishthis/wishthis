@@ -28,6 +28,11 @@ $(function () {
                         element.dropdown('set selected', wishlists[0].value);
                     }
                 }
+
+                /** Open add wish modal */
+                if ($_GET.wish_add) {
+                    $('.button.wishlist-wish-add').trigger('click');
+                }
             }
         });
     }
