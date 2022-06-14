@@ -12,9 +12,15 @@ namespace wishthis;
 
 class Database
 {
-    public \PDO $pdo;
-
+    /**
+     * Private
+     */
     private int $lastInsertId;
+
+    /**
+     * Public
+     */
+    public \PDO $pdo;
 
     public function __construct(
         public string $host,
@@ -22,7 +28,7 @@ class Database
         public string $user,
         public string $password,
     ) {
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
+        $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
         $options = array();
 
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);

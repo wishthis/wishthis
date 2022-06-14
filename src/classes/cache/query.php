@@ -11,7 +11,7 @@ class Query extends Cache
     /**
      * Private
      */
-    private Database $databse;
+    private \wishthis\Database $database;
 
     /**
      * Public
@@ -23,7 +23,7 @@ class Query extends Cache
         parent::__construct($url);
 
         $this->directory .= '/query';
-        $this->database = $database;
+        $this->database   = $database;
     }
 
     public function get(): array

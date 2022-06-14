@@ -191,9 +191,45 @@ $(function () {
     /**
      * Rename Wishlist
      */
+    function wishlistRenameApprove(buttonApprove) {
+        buttonApprove.addClass('loading disabled');
+
+        var modalRename = $('.modal.wishlist-rename');
+
+        var formRename = modalRename.find('.form.wishlist-rename');
+        var formData   = new URLSearchParams(new FormData(formRename[0]));
+
+        fetch('/src/api/wishlists.php', {
+            method: 'PUT',
+            body:   formData
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            wishlistsRefresh();
+
+            modalRename.modal('hide');
+
+            $('body').toast({ message: text.toast_wishlist_rename });
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            buttonApprove.removeClass('loading disabled');
+        });
+
+        return false;
+    }
+
+    $(document).on('submit', '.form.wishlist-rename', function(event) {
+        event.preventDefault();
+
+        var buttonApprove = $('.modal.wishlist-rename .button.approve');
+
+        wishlistRenameApprove(buttonApprove);
+    });
+
     $(document).on('click', '.options .wishlist-rename', function() {
         var modalRename   = $('.modal.wishlist-rename');
-        var formRename    = modalRename.find('.form.wishlist-rename');
         var inputID       = modalRename.find('[name="wishlist_id"]');
         var inputTitle    = modalRename.find('[name="wishlist_title"]');
 
@@ -207,32 +243,8 @@ $(function () {
 
         modalRename
         .modal({
-            autoShow:  true,
-            onApprove: function(buttonApprove) {
-                buttonApprove.addClass('loading disabled');
-
-                var formData = new URLSearchParams(new FormData(formRename[0]));
-
-                fetch('/src/api/wishlists.php', {
-                    method: 'PUT',
-                    body:   formData
-                })
-                .then(handleFetchError)
-                .then(handleFetchResponse)
-                .then(function(response) {
-                    wishlistsRefresh();
-
-                    modalRename.modal('hide');
-
-                    $('body').toast({ message: text.toast_wishlist_rename });
-                })
-                .catch(handleFetchCatch)
-                .finally(function() {
-                    buttonApprove.removeClass('loading disabled');
-                });
-
-                return false;
-            }
+            autoShow  :  true,
+            onApprove : wishlistRenameApprove
         });
     });
 
@@ -556,6 +568,10 @@ $(function () {
             }
         })
         .form('validate form');
+
+        if (!formAddOrEdit.form('is valid')) {
+            return;
+        }
 
         /**
          * Validate URL

@@ -5,10 +5,11 @@
  */
 
 namespace wishthis;
+
 ?>
 
 <div class="ui secondary menu wish-add">
-    <a class="item active" data-tab="general"><?= __('General') ?></a>
+    <a class="item active"   data-tab="general"><?= __('General') ?></a>
     <a class="item disabled" data-tab="product"><?= __('Product') ?></a>
 </div>
 
@@ -22,10 +23,10 @@ namespace wishthis;
 
                     <div class="ui input">
                         <input type="text"
-                            name="wish_title"
-                            placeholder="<?= $wish->title ?? '' ?>"
-                            value="<?= $wish->title ?? '' ?>"
-                            maxlength="128"
+                               name="wish_title"
+                               placeholder="<?= $wish->title ?? '' ?>"
+                               value="<?= $wish->title ?? '' ?>"
+                               maxlength="128"
                         />
                     </div>
                 </div>
@@ -34,7 +35,7 @@ namespace wishthis;
                     <label><?= __('Description') ?></label>
 
                     <textarea name="wish_description"
-                            placeholder="<?= $wish->description ?? '' ?>"
+                              placeholder="<?= $wish->description ?? '' ?>"
                     ><?= $wish->description ?? '' ?></textarea>
                 </div>
 
@@ -46,10 +47,10 @@ namespace wishthis;
                     <label><?= __('URL') ?></label>
 
                     <input type="url"
-                        name="wish_url"
-                        placeholder="<?= $wish->url ?? '' ?>"
-                        value="<?= $wish->url ?? '' ?>"
-                        maxlength="255"
+                           name="wish_url"
+                           placeholder="<?= $wish->url ?? '' ?>"
+                           value="<?= $wish->url ?? '' ?>"
+                           maxlength="255"
                     />
                 </div>
 
@@ -100,10 +101,10 @@ namespace wishthis;
                     <label><?= __('Price') ?></label>
 
                     <input type="text"
-                        name="wish_price"
-                        placeholder="<?= $wish->price ?? '' ?>"
-                        value="<?= $wish->price ?? '' ?>"
-                        maxlength="9"
+                           name="wish_price"
+                           placeholder="<?= $wish->price ?? '' ?>"
+                           value="<?= $wish->price ?? '' ?>"
+                           maxlength="9"
                     />
                 </div>
 

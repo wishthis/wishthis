@@ -100,6 +100,25 @@ body,
         color: rgba(255, 255, 255, 0.95);
         background-color: rgba(255, 255, 255, 0.05);
     }
+    .ui.menu .item::before {
+        background-color: rgba(221, 219, 217, 0.1);
+    }
+    .ui.secondary.menu .active.item {
+        color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    .ui.secondary.menu .active.item:hover {
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .ui.ui.menu .item.disabled {
+        color: rgba(215, 215, 215, 0.3);
+    }
+    .ui.secondary.menu .dropdown.item:hover,
+    .ui.secondary.menu .link.item:hover,
+    .ui.secondary.menu a.item:hover {
+        color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
 
     /** */
     .ui.link.menu .item:hover,
@@ -374,7 +393,33 @@ body,
     .ui.checkbox + label:hover {
         color: rgba(255, 255, 255, 0.8);
     }
+    .ui.checkbox label::before {
+        border: 1px solid #2b2b2a;
+        background-color: #000;
+    }
+    .ui.checkbox label:hover::before {
+        border-color: rgba(221, 219, 217, 0.35);
+        background-color: #000;
+    }
     .ui.checkbox input:focus ~ label {
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .ui.checkbox input:focus ~ label::before {
+        background-color: #000;
+    }
+    .ui.checkbox input:checked:focus ~ label::before,
+    .ui.checkbox input:not([type="radio"]):indeterminate:focus ~ label::before {
+        background-color: #000;
+    }
+    .ui.checkbox input:checked ~ label::before {
+        background-color: #000;
+        border-color: rgba(221, 219, 217, 0.35);
+    }
+    .ui.checkbox input:checked ~ label::after {
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .ui.checkbox input:checked:focus ~ label::after,
+    .ui.checkbox input:not([type="radio"]):indeterminate:focus ~ label::after {
         color: rgba(255, 255, 255, 0.95);
     }
 

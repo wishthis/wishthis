@@ -19,6 +19,7 @@ class Cache
     /**
      * Protected
      */
+    protected string $url;
     protected string $directory = ROOT . '/src/cache';
     protected int    $maxAge    = 2592000; // 30 days
 
@@ -34,11 +35,16 @@ class Cache
 
     protected function write(mixed $value): void
     {
-        $filepath  = $this->getFilepath();
-        $directory = dirname($filepath);
+        $filepath       = $this->getFilepath();
+        $directoryName  = dirname($filepath);
+        $directoryCache = dirname($directoryName);
 
-        if (false === file_exists($directory)) {
-            mkdir($directory);
+        if (false === file_exists($directoryCache)) {
+            mkdir($directoryCache);
+        }
+
+        if (false === file_exists($directoryName)) {
+            mkdir($directoryName);
         }
 
         file_put_contents($filepath, json_encode($value));
@@ -47,8 +53,9 @@ class Cache
     /**
      * Public
      */
-    public function __construct(protected string $url)
+    public function __construct($url)
     {
+        $this->url = trim($url);
     }
 
     public function exists(): bool
