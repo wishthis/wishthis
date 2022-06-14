@@ -8,7 +8,7 @@
    version="1.1"
    id="svgLogo"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="logo.svg"
+   sodipodi:docname="logo-animation.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="7.9999999"
-     inkscape:cx="393.5625"
-     inkscape:cy="161.625"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="249.78547"
+     inkscape:cy="212.13204"
      inkscape:window-width="3742"
      inkscape:window-height="2126"
      inkscape:window-x="3829"
@@ -95,7 +95,7 @@
      transform="translate(157.69673,48.619995)">
     <g
        aria-label="wishthis"
-       transform="matrix(0.89381537,0,0,0.89381537,375.03434,172.12423)"
+       transform="matrix(0.89381537,0,0,0.89381537,375.03434,173.18257)"
        id="text1572"
        style="font-size:40px;line-height:1.25;font-family:Raleway;-inkscape-font-specification:Raleway;white-space:pre;shape-inside:url(#rect1574);stroke-width:0.296016">
       <path
@@ -151,7 +151,8 @@
          id="path388" />
     </g>
     <g
-       id="text-this">
+       id="text-this"
+       transform="translate(0,0.52916667)">
       <path
          d="m -69.852554,2.9710227 q -0.607794,0.2502683 -1.465857,0.5720418 -0.858063,0.3217736 -1.859136,0.5005367 -0.96532,0.2145156 -1.966394,0.2145156 -1.322846,0 -2.431177,-0.464784 -1.108331,-0.4647839 -1.787631,-1.4658572 -0.643547,-1.0368258 -0.643547,-2.68144607 V -11.115508 h -2.466931 v -3.682519 h 2.466931 v -6.077944 h 4.79085 v 6.077944 h 3.932788 v 3.682519 h -3.932788 v 9.1526699 q 0.03575,0.96532057 0.536289,1.39435194 0.500537,0.42903138 1.251342,0.42903138 0.750805,0 1.465857,-0.2502683 0.715052,-0.25026831 1.144084,-0.42903138 z"
          style="font-weight:bold;font-size:40px;line-height:1.25;font-family:Raleway;-inkscape-font-specification:'Raleway Bold';white-space:pre;fill:#6435c9;stroke-width:0.264584"
