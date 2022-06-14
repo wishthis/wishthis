@@ -10,7 +10,8 @@ html {
     scroll-behavior: smooth;
 }
 
-img {
+img,
+svg {
     max-width: 100%;
 }
 
