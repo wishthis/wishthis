@@ -1,9 +1,13 @@
+.wishlists-saved .column {
+    aspect-ratio: 1;
+}
+
 .wishlists-saved .image {
     display: flex !important;
     justify-content: center;
     align-items: center;
 
-    height: 20vh !important;
+    height: 100% !important;
 
     background-color: #fff;
 }
