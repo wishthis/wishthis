@@ -10,3 +10,37 @@
 .ui.statistics .statistic > .value {
     font-variant-numeric: tabular-nums lining-nums slashed-zero;
 }
+
+#text-list {
+    animation: 0.8s 1s ease text-list;
+}
+@keyframes text-list {
+    0% {
+        position: relative;
+
+        opacity: 1;
+        bottom: 0;
+    }
+
+    100% {
+        opacity: 0;
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 2px);
+    }
+}
+
+#text-this {
+    animation: 0.8s 1s ease text-this;
+}
+@keyframes text-this {
+    0% {
+        position: relative;
+
+        opacity: 0;
+        bottom: 0;
+    }
+
+    100% {
+        opacity: 1;
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 2px);
+    }
+}

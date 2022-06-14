@@ -568,7 +568,11 @@ class Page
 
         ksort($pages);
 
+        if ('home' === $this->name) {
+            $logo = file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
+        } else {
             $logo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
+        }
         ?>
 
         <div class="ui attached stackable vertical menu sidebar">
