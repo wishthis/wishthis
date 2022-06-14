@@ -2,6 +2,8 @@
 
 /**
  * Blog
+ *
+ * @category API
  */
 
 namespace wishthis;

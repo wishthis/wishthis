@@ -3,7 +3,7 @@
 /**
  * Various statistics
  *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * @category API
  */
 
 namespace wishthis;
@@ -37,8 +37,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
             } else {
                 $count = $database
-                ->query('SELECT COUNT(`id`) AS "count"
-                           FROM `' . $_GET['table'] . '`;')
+                ->query(
+                    'SELECT COUNT(`id`) AS "count"
+                       FROM `' . $_GET['table'] . '`;'
+                )
                 ->fetch();
 
                 $response['data'] = $count;

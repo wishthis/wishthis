@@ -1,7 +1,7 @@
 <?php
 
 /**
- * index.php
+ * wishthis - Make a wish
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
