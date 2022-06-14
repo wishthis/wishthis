@@ -23,7 +23,7 @@
     }
 
     100% {
-        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 2px);
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
         opacity: 0;
     }
 }
@@ -40,7 +40,7 @@
     }
 
     100% {
-        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 3px);
+        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
         opacity: 1;
     }
 }
