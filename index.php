@@ -156,7 +156,7 @@ if (!$options || !$options->getOption('isInstalled')) {
 /**
  * Database Update
  */
-if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') && ENV_IS_DEV)) {
+if ($options && $options->getOption('isInstalled')) {
     if (-1 === version_compare($options->version, VERSION)) {
         $options->setOption('updateAvailable', true);
     }
