@@ -26,7 +26,7 @@ figure {
     height: 1em;
     margin: 0;
 }
-#svgLogo path {
+#logo path {
     fill: currentColor;
 }
 

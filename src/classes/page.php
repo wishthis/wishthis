@@ -568,13 +568,13 @@ class Page
 
         ksort($pages);
 
-        $svgLogo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
+            $logo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
         ?>
 
         <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
 
-                <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $svgLogo ?></a>
+                <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
 
                 <?php foreach ($pages as $page) { ?>
                     <?php foreach ($page['items'] as $item) { ?>
@@ -591,7 +591,7 @@ class Page
         <div class="pusher">
             <div class="ui attached menu desktop">
                 <div class="ui container">
-                    <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $svgLogo ?></a>
+                    <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
 
                     <?php foreach ($pages as $page) { ?>
                         <?php if ('left' === $page['alignment']) { ?>
