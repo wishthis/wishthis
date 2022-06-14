@@ -17,24 +17,26 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
-        <div class="ui segment">
-            <div class="ui relaxed divided list">
-
-                <?php foreach ($user->getSavedWishlists() as $wishlist_saved) { ?>
-                    <?php
-                    $wishlist      = new Wishlist($wishlist_saved['wishlist']);
-                    $wishlist_user = new User($wishlist_saved['user']);
-                    ?>
-                    <div class="item">
-                        <i class="large heart middle aligned icon"></i>
-                        <div class="content">
-                            <a class="header" href="<?= Page::PAGE_WISHLIST ?>&hash=<?= $wishlist->hash ?>"><?= $wishlist->getTitle(); ?></a>
-                            <div class="description"><?= $wishlist_user->getDisplayName(); ?></div>
+        <div class="ui three column grid wishlists-saved">
+            <?php foreach ($user->getSavedWishlists() as $wishlist_saved) { ?>
+                <?php
+                $wishlist      = new Wishlist($wishlist_saved['wishlist']);
+                $wishlist_user = new User($wishlist_saved['user']);
+                $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->hash;
+                ?>
+                <div class="column">
+                    <a class="header" href="<?= $wishlist_href ?>">
+                        <div class="ui rounded bordered fluid image">
+                            <?= file_get_contents(ROOT . '/' . Wish::NO_IMAGE) ?>
                         </div>
-                    </div>
-                <?php } ?>
+                    </a>
 
-            </div>
+                    <div class="content">
+                        <a class="header" href="<?= $wishlist_href ?>"><?= $wishlist->getTitle(); ?></a>
+                        <div class="description"><?= $wishlist_user->getDisplayName(); ?></div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </main>
