@@ -22,7 +22,7 @@ $page->navigation();
 
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
-                    <a class="item" data-tab="unreleased"><?= __('Unreleased') ?></a>
+                    <a class="item" data-tab="unreleased"><?= __('0.7.0') ?></a>
                     <a class="item" data-tab="0-6-0"><?= __('0.6.0') ?></a>
                 </div>
             </div>
@@ -32,7 +32,7 @@ $page->navigation();
                     <div class="ui segments">
 
                         <div class="ui segment">
-                            <h2 class="ui header"><?= __('Unreleased') ?></h2>
+                            <h2 class="ui header"><?= __('0.7.0') ?></h2>
                         </div>
 
                         <div class="ui segment">
