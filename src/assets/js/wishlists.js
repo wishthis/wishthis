@@ -569,6 +569,10 @@ $(function () {
         })
         .form('validate form');
 
+        if (!formAddOrEdit.form('is valid')) {
+            return;
+        }
+
         /**
          * Validate URL
          */
