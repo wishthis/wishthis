@@ -58,7 +58,7 @@ $page->navigation();
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
                                 <li><?= __('Various minor things (typos, menu order, etc)') ?></li>
-                                <li><?= __('Wish information is updated with 404 content from URL') ?></li>
+                                <li><?= __('Wish information being updated with 404 content from URL') ?></li>
                                 <li><?= __('Wish image not showing') ?></li>
                                 <li><?= __('An error when saving a wish with a really long URL') ?></li>
                                 <li><?= __('Redirect errors on Nginx') ?></li>
