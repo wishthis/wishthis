@@ -140,10 +140,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 /**
                  * Product
                  */
-                if (!empty($_POST['wish_price'])) {
-                    $wish_id    = $database->lastInsertId();
-                    $wish_price = $_POST['wish_price'];
+                $wish_id    = $database->lastInsertId();
+                $wish_price = floatval($_POST['wish_price']);
 
+                if ($wish_price > 0) {
                     $database
                     ->query(
                         'INSERT INTO `products`
@@ -156,9 +156,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         );'
                     );
                 }
-            }
 
-            $response['lastInsertId'] = $wish_id;
+                $response['lastInsertId'] = $wish_id;
+            }
         }
         break;
 
