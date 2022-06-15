@@ -202,12 +202,14 @@ class Wish
                     </div>
                 <?php } ?>
 
-                <?php if ($this->description) { ?>
-                    <div class="description">
+                <div class="description">
+                    <?php if ($this->description) { ?>
                         <?= $this->description ?>
-                    </div>
-                    <div class="description-fade"></div>
-                <?php } ?>
+                    <?php } elseif ($this->url && !$this->title) { ?>
+                        <a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a>
+                    <?php } ?>
+                </div>
+                <div class="description-fade"></div>
             </div>
 
             <div class="extra content buttons">
