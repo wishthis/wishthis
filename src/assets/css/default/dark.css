@@ -21,6 +21,9 @@
     .ui.header {
         color: rgba(255, 255, 255, 0.87);
     }
+    .ui.header .sub.header {
+        color: rgba(255, 255, 255, 0.6);
+    }
 
     /** Menu */
     .ui.menu,
@@ -445,5 +448,10 @@
             rgba(255, 255, 255, 0.15) 15%,
             rgba(255, 255, 255, 0.08) 30%
         );
+    }
+
+    /** Dimmer */
+    .blurring.dimmable > .inverted.dimmer {
+        background: rgba(0, 0, 0, 0.6);
     }
 }
