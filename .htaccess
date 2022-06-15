@@ -39,7 +39,7 @@
     Header set Cache-Control "max-age=2592000, public, must-revalidate"
   </FilesMatch>
   <FilesMatch "(\.css|\.js|\.CSS|\.JS)$">
-    Header set Cache-Control "max-age=604800, private, must-revalidate"
+    Header set Cache-Control "max-age=604800, public, must-revalidate"
   </FilesMatch>
   <FilesMatch "(\.xml|\.txt|\.XML|\.TXT)$">
     Header set Cache-Control "max-age=604800, public, must-revalidate"
