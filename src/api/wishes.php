@@ -75,7 +75,32 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         $wish_description = $info->description;
                     }
 
-                    $wish_image = is_null($info->image) ? 'NULL' : '"' . $info->image . '"';
+                    if (null !== $info->image) {
+                        /** URL */
+                        $ch_options = array(
+                            CURLOPT_AUTOREFERER    => true,
+                            CURLOPT_CONNECTTIMEOUT => 30,
+                            CURLOPT_FOLLOWLOCATION => true,
+                            CURLOPT_HEADER         => false,
+                            CURLOPT_MAXREDIRS      => 10,
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_SSL_VERIFYPEER => false,
+                            CURLOPT_TIMEOUT        => 30,
+                            CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+                        );
+
+                        $ch = curl_init($info->image);
+                        curl_setopt_array($ch, $ch_options);
+
+                        $favicon = curl_exec($ch);
+                        $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                        if (200 === $code) {
+                            $wish_image = '"' . $info->image . '"';
+                        }
+
+                        curl_close($ch);
+                    }
 
                     $response = array(
                         'info' => $info,
@@ -113,6 +138,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         ' . $wish_price . '
                     );'
                 );
+
+                $response['lastInsertId'] = $wish_id;
             } elseif (isset($_POST['wishlist_id'])) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];

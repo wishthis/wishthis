@@ -9,19 +9,16 @@ namespace wishthis\Cache;
 class Cache
 {
     /**
-     * Private
-     */
-    private function getAge(): int
-    {
-        return time() - filemtime($this->getFilepath());
-    }
-
-    /**
      * Protected
      */
     protected string $url;
     protected string $directory = ROOT . '/src/cache';
     protected int    $maxAge    = 2592000; // 30 days
+
+    protected function getAge(): int
+    {
+        return time() - filemtime($this->getFilepath());
+    }
 
     protected function getIdentifier(): string
     {
