@@ -58,35 +58,34 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
 
                 /** Send email */
-                $mjml = file_get_contents(ROOT . '/src/mjml/wishlist-request-wishes.mjml');
-                $mjml = str_replace(
+                $user  = new User($wishlist['user']);
+                $email = new Email($user->email, __('Wish request'), 'default', 'wishlist-request-wishes');
+                $email->mjml = str_replace(
                     'TEXT_HELLO',
                     __('Hello,'),
-                    $mjml
+                    $email->mjml
                 );
-                $mjml = str_replace(
+                $email->mjml = str_replace(
                     'TEXT_WISHLIST_REQUEST_WISHES',
                     sprintf(
                         /** TRANSLATORS: %s: Wishlist name */
                         __('somebody has requested that you add more wishes to your wishlist %s.'),
                         '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
                     ),
-                    $mjml
+                    $email->mjml
                 );
-                $mjml = str_replace(
+                $email->mjml = str_replace(
                     'TEXT_WISH_ADD',
                     __('Add wish'),
-                    $mjml
+                    $email->mjml
                 );
-                $mjml = str_replace(
+                $email->mjml = str_replace(
                     'LINK_WISH_ADD',
                     $href . '&wish_add=true',
-                    $mjml
+                    $email->mjml
                 );
 
-                $user         = new User($wishlist['user']);
-                $emailRequest = new Email($user->email, __('Wish request'), $mjml);
-                $success      = $emailRequest->send();
+                $success = $email->send();
 
                 /** Save date to database */
                 if (true === $success) {

@@ -16,11 +16,16 @@ use Qferrer\Mjml\Renderer\ApiRenderer;
 
 class Email
 {
+    public string $mjml;
+
     public function __construct(
         private string $to,
         private string $subject,
-        private string $mjml
+        private string $template,
+        private string $part
     ) {
+        $this->mjml = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
+        $this->mjml = str_replace('MJML_PART', 'parts/' . $this->part . '.mjml');
     }
 
     public function send(): bool

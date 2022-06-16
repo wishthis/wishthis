@@ -68,28 +68,28 @@ if (isset($_POST['reset'], $_POST['email'])) {
                   WHERE `id` = ' . $user['id'] . '
         ;');
 
-        $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
-        $mjml = str_replace(
+        $emailReset = new Email($_POST['email'], __('Password reset link'), 'default', 'password-reset');
+        $emailReset->mjml = str_replace(
             'TEXT_HELLO',
             __('Hello,'),
-            $mjml
+            $emailReset->mjml
         );
-        $mjml = str_replace(
+        $emailReset->mjml = str_replace(
             'TEXT_PASSWORD_RESET',
             __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.'),
-            $mjml
+            $emailReset->mjml
         );
-        $mjml = str_replace(
+        $emailReset->mjml = str_replace(
             'TEXT_SET_NEW_PASSWORD',
             __('Set new password'),
-            $mjml
+            $emailReset->mjml
         );
-        $mjml = str_replace(
+        $emailReset->mjml = str_replace(
             'wishthis.online',
             $_SERVER['HTTP_HOST'],
             $mjml
         );
-        $mjml = str_replace(
+        $emailReset->mjml = str_replace(
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
@@ -97,7 +97,6 @@ if (isset($_POST['reset'], $_POST['email'])) {
             $mjml
         );
 
-        $emailReset = new Email($_POST['email'], __('Password reset link'), $mjml);
         $emailReset->send();
 
         $page->messages[] = Page::info(

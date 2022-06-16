@@ -1,0 +1,11 @@
+<mj-section mj-class="segment" css-class="segment">
+    <mj-column>
+
+        <mj-text>TEXT_HELLO</mj-text>
+
+        <mj-text>TEXT_WISHLIST_REQUEST_WISHES</mj-text>
+
+        <mj-button href="LINK_WISH_ADD">TEXT_WISH_ADD</mj-button>
+
+    </mj-column>
+</mj-section>
