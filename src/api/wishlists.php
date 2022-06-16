@@ -84,6 +84,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $mjml
                 );
 
+                $user         = new User($wishlist['user']);
                 $emailRequest = new Email($user->email, __('Wish request'), $mjml);
                 $emailRequest->send();
 
