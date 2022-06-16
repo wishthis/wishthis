@@ -105,17 +105,11 @@ class Embed extends Cache
                 }
 
                 /** URL */
-                $ch = curl_init($info->url);
-                curl_setopt_array($ch, $ch_options);
+                $codeURL = \wishthis\URL::getResponseCode($info->url);
 
-                $favicon = curl_exec($ch);
-                $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                if (200 !== $code) {
+                if (200 !== $codeURL) {
                     $generateCache = false;
                 }
-
-                curl_close($ch);
             }
 
             if ($generateCache) {

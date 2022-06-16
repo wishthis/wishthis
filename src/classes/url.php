@@ -10,6 +10,41 @@ namespace wishthis;
 
 class URL
 {
+    /**
+     * Static
+     */
+    public static function getResponseCode(string $url): int
+    {
+        $ch_options = array(
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 30,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_TIMEOUT        => 30,
+            CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+        );
+
+        $ch = curl_init($url);
+        curl_setopt_array($ch, $ch_options);
+        curl_exec($ch);
+
+        $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if (0 === $responseCode) {
+            echo curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $responseCode;
+    }
+
+    /**
+     * Non-Static
+     */
     public string $url;
 
     public function __construct(string $url)

@@ -81,7 +81,7 @@ class Wish
                 'SELECT ' . self::SELECT    . '
                    FROM ' . self::FROM      . '
               LEFT JOIN ' . self::LEFT_JOIN . '
-                  WHERE ' . sprintf(self::WHERE, $_GET['wish_id'])
+                  WHERE ' . sprintf(self::WHERE, $wish)
             )
             ->fetch();
 
