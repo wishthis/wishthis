@@ -23,7 +23,7 @@ class Email
     ) {
     }
 
-    public function send()
+    public function send(): bool
     {
         global $options;
 
@@ -56,5 +56,7 @@ class Email
         );
 
         $success = mail($to, $subject, $message, $headers);
+
+        return $success
     }
 }

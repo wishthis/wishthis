@@ -86,15 +86,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 $user         = new User($wishlist['user']);
                 $emailRequest = new Email($user->email, __('Wish request'), $mjml);
-                $emailRequest->send();
+                $success      = $emailRequest->send();
 
                 /** Save date to database */
-                $database
-                ->query(
-                    'UPDATE `wishlists`
-                        SET `notification_sent` = CURRENT_TIMESTAMP
-                      WHERE `id` = ' . $wishlist['id'] . ';'
-                );
+                if (true === $success) {
+                    $database
+                    ->query(
+                        'UPDATE `wishlists`
+                            SET `notification_sent` = CURRENT_TIMESTAMP
+                          WHERE `id` = ' . $wishlist['id'] . ';'
+                    );
+                }
             }
 
             $response['success']        = true;
