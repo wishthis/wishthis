@@ -35,7 +35,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             if (isset($info->url) && $info->url) {
                 $code = URL::getResponseCode($info->url);
 
-                if (200 !== $code) {
+                if ($code < 200 || $code >= 400) {
                     $info->url = $url;
                 }
             }
@@ -87,7 +87,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     if (!empty($info->image)) {
                         $codeImage = URL::getResponseCode($info->image);
 
-                        if (200 === $codeImage) {
+                        if ($codeImage >= 200 && $codeImage < 400) {
                             $wish_image = '"' . $info->image . '"';
                         }
                     }
@@ -156,7 +156,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     if (!empty($info->image)) {
                         $codeImage = URL::getResponseCode($info->image);
 
-                        if (200 === $codeImage) {
+                        if ($codeImage >= 200 && $codeImage < 400) {
                             $wish_image = '"' . $info->image . '"';
                         }
                     }
