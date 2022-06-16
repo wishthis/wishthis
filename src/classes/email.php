@@ -25,7 +25,7 @@ class Email
         private string $part
     ) {
         $this->mjml = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
-        $this->mjml = str_replace('MJML_PART', 'parts/' . $this->part . '.mjml');
+        $this->mjml = str_replace('MJML_PART', 'parts/' . $this->part . '.mjml', $this->mjml);
     }
 
     public function send(): bool
