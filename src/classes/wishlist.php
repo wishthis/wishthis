@@ -60,7 +60,7 @@ class Wishlist
         $FROM      = isset($sql['FROM'])      ? $sql['FROM']      : Wish::FROM;
         $LEFT_JOIN = isset($sql['LEFT_JOIN']) ? $sql['LEFT_JOIN'] : Wish::LEFT_JOIN;
         $WHERE     = isset($sql['WHERE'])     ? $sql['WHERE']     : '`wishlist` = ' . $this->id;
-        $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `title` ASC, `url` ASC';
+        $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
 
         $WHERE .= ' AND (`status` != "' . Wish::STATUS_FULFILLED . '" OR `status` IS NULL)';
 
