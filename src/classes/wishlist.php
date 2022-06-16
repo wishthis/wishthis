@@ -105,7 +105,7 @@ class Wishlist
                 <?php } ?>
             <?php } else { ?>
                 <div class="sixteen wide column">
-                    <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+                    <?= Page::info(__('This wishlist seems to be empty.'), __('Empty')); ?>
                 </div>
             <?php } ?>
         </div>
