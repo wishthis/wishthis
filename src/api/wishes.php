@@ -28,8 +28,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['html'] = $wish->getCard($_GET['wishlist_user']);
             }
         } elseif (isset($_GET['wish_url'])) {
-            $cache = new Cache\Embed($_GET['wish_url']);
+            $url   = trim($_GET['wish_url']);
+            $cache = new Cache\Embed($url);
             $info  = $cache->get(true);
+
+            if ($info->url) {
+                $code = URL::getResponseCode($info->url);
+
+                if (200 !== $code) {
+                    $info->url = $url;
+                }
+            }
 
             $response = array(
                 'info' => $info,
@@ -50,10 +59,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
-            $wish_title          = empty(trim($_POST['wish_title']))       ? 'NULL' : '"' . trim($_POST['wish_title'])       . '"';
-            $wish_description    = empty(trim($_POST['wish_description'])) ? 'NULL' : '"' . trim($_POST['wish_description']) . '"';
+            $wish_title          = trim($_POST['wish_title']);
+            $wish_description    = trim($_POST['wish_description']);
             $wish_image          = 'NULL';
-            $wish_url            = empty(trim($_POST['wish_url']))         ? 'NULL' : '"' . trim($_POST['wish_url'])         . '"';
+            $wish_url            = trim($_POST['wish_url']);
             $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'true' : 'false';
 
@@ -63,7 +72,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 /** Update wish information */
                 if (!empty($wish_url)) {
-                    $cache = new Cache\Embed(trim($_POST['wish_url']));
+                    $cache = new Cache\Embed($wish_url);
                     $info  = $cache->get(true);
 
                     if (empty($wish_title) && empty($wish->title)) {
@@ -87,6 +96,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         'info' => $info,
                     );
                 }
+
+                /** Update */
+                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
+                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
 
                 $database
                 ->query(
@@ -125,6 +139,38 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];
 
+                /** Update wish information */
+                if (!empty($wish_url)) {
+                    $cache = new Cache\Embed($wish_url);
+                    $info  = $cache->get(true);
+
+                    if (empty($wish_title)) {
+                        $wish_title = $info->title;
+                    }
+
+                    if (empty($wish_description)) {
+                        $wish_description = $info->description;
+                    }
+
+                    /** Image */
+                    if (!empty($info->image)) {
+                        $codeImage = URL::getResponseCode($info->image);
+
+                        if (200 === $codeImage) {
+                            $wish_image = '"' . $info->image . '"';
+                        }
+                    }
+
+                    $response = array(
+                        'info' => $info,
+                    );
+                }
+
+                /** Update */
+                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
+                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
+
                 $database
                 ->query(
                     'INSERT INTO `wishes`
@@ -132,14 +178,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         `wishlist`,
                         `title`,
                         `description`,
+                        `image`,
                         `url`,
                         `priority`,
                         `is_purchasable`
                     ) VALUES (
                          ' . $wishlist_id         . ',
-                        "' . $wish_title          . '",
-                        "' . $wish_description    . '",
-                        "' . $wish_url            . '",
+                         ' . $wish_title          . ',
+                         ' . $wish_description    . ',
+                         ' . $wish_image          . ',
+                         ' . $wish_url            . ',
                          ' . $wish_priority       . ',
                          ' . $wish_is_purchasable . '
                     );'
