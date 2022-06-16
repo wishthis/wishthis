@@ -32,10 +32,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $cache = new Cache\Embed($url);
             $info  = $cache->get(true);
 
-            if ($info->url) {
+            if (isset($info->url) && $info->url) {
                 $code = URL::getResponseCode($info->url);
 
-                if (200 !== $code) {
+                if ($code < 200 || $code >= 400) {
                     $info->url = $url;
                 }
             }
@@ -87,7 +87,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     if (!empty($info->image)) {
                         $codeImage = URL::getResponseCode($info->image);
 
-                        if (200 === $codeImage) {
+                        if ($codeImage >= 200 && $codeImage < 400) {
                             $wish_image = '"' . $info->image . '"';
                         }
                     }
@@ -144,11 +144,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $cache = new Cache\Embed($wish_url);
                     $info  = $cache->get(true);
 
-                    if (empty($wish_title)) {
+                    if (empty($wish_title) && isset($info->title)) {
                         $wish_title = $info->title;
                     }
 
-                    if (empty($wish_description)) {
+                    if (empty($wish_description) && isset($info->description)) {
                         $wish_description = $info->description;
                     }
 
@@ -156,7 +156,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     if (!empty($info->image)) {
                         $codeImage = URL::getResponseCode($info->image);
 
-                        if (200 === $codeImage) {
+                        if ($codeImage >= 200 && $codeImage < 400) {
                             $wish_image = '"' . $info->image . '"';
                         }
                     }

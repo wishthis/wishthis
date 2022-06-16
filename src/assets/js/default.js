@@ -61,16 +61,16 @@ $(function() {
 
         $('body')
         .modal({
-            title   : text.modal_failure_title,
-            content : content,
-            class   : 'small',
-            actions : [
+            autoShow : true,
+            title    : text.modal_failure_title,
+            content  : content,
+            class    : 'small',
+            actions  : [
                 {
                     text  : text.modal_failure_approve,
                     class : 'primary'
                 }
-            ],
-            autoShow: true
+            ]
         });
     }
     $.fn.api.settings.onError = function(response, element, xhr) {

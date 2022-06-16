@@ -101,13 +101,13 @@ class Embed extends Cache
 
                     curl_close($ch);
 
-                    $info->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
+                    $info->favicon = $favicon && ($code >= 200 && $code < 400) ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
                 }
 
                 /** URL */
                 $codeURL = \wishthis\URL::getResponseCode($info->url);
 
-                if (200 !== $codeURL) {
+                if ($codeURL < 200 || $codeURL >= 400) {
                     $generateCache = false;
                 }
             }

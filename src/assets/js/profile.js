@@ -58,11 +58,20 @@ $(function() {
         }
     });
 
-    $('.ui.dropdown.channel').dropdown();
-    $('.ui.dropdown.locale').dropdown({
-        sortSelect : 'natural',
-    });
     $('.ui.progress').progress();
+
+    /**
+     * Preferences
+     */
+
+    /** Language */
+    $('.ui.dropdown.locale').dropdown({
+        sortSelect     : 'natural',
+        fullTextSearch : true,
+    });
+
+    /** Channel */
+    $('.ui.dropdown.channel').dropdown();
 
     var isPWA = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
 

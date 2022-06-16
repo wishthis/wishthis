@@ -9,6 +9,8 @@ $(function () {
     var wishlists = [];
 
     function wishlistsRefresh() {
+        var selectedValue = $('.ui.dropdown.wishlists').dropdown('get value');
+
         $('.ui.dropdown.wishlists').api({
             action   : 'get wishlists',
             method   : 'GET',
@@ -22,7 +24,11 @@ $(function () {
                 })
 
                 if (wishlist.id) {
-                    element.dropdown('set selected', wishlist.id);
+                    if (wishlist.id === selectedValue) {
+                        element.dropdown('set selected', wishlist.id, null, true);
+                    } else {
+                        element.dropdown('set selected', wishlist.id);
+                    }
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -43,6 +49,18 @@ $(function () {
      * Selection
      */
     var progress = $('.ui.progress');
+    progress.progress({
+        /**
+         * Only fires once
+         *
+         * @see https://github.com/fomantic/Fomantic-UI/issues/2177
+         */
+        onSuccess : function() {
+            wishlistsRefresh();
+
+            progress.slideUp();
+        }
+    });
 
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
@@ -70,7 +88,7 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                window.history.replaceState(null, document.title, response.data.url);
+                window.history.pushState(null, document.title, response.data.url);
 
                 $('.ui.dropdown.filter.priority')
                 .dropdown('restore default value')
@@ -100,14 +118,7 @@ $(function () {
         if (cards.length > 0) {
             progress.slideDown();
             progress.removeClass('indeterminate');
-            progress.progress({
-                total    : cards.length,
-                onChange : function(percent, value, total) {
-                    if (percent >= 100) {
-                        setTimeout(() => { progress.slideUp(); }, 800);
-                    }
-                }
-            });
+            progress.progress('set total', cards.length);
         } else {
             progress.slideUp();
         }
@@ -522,7 +533,7 @@ $(function () {
                 if (queryString.has('wish_add')) {
                     queryString.delete('wish_add');
 
-                    window.history.replaceState(null, document.title, '?' + queryString.toString());
+                    window.history.pushState(null, document.title, '?' + queryString.toString());
                 }
 
                 /** Pretty URL */
@@ -532,7 +543,7 @@ $(function () {
                 var pathNew   = path.substring(0, path.length - pathAdd.length - 1);
 
                 if (pathAdd.toLowerCase() === 'add') {
-                    window.history.replaceState(null, document.title, pathNew);
+                    window.history.pushState(null, document.title, pathNew);
                 }
             }
         });
@@ -629,7 +640,7 @@ $(function () {
                 }
 
                 /** URL */
-                if (wishURLCurrent !== wishInfoProposed.url && validateURL) {
+                if (wishURLCurrent && wishInfoProposed.url && wishURLCurrent !== wishInfoProposed.url && validateURL) {
                     modalValidate.find('input.current').val(wishURLCurrent);
                     modalValidate.find('input.proposed').val(wishInfoProposed.url);
                     modalValidate
@@ -695,7 +706,11 @@ $(function () {
                     /** */
                 }
             })
-            .catch(handleFetchCatch);
+            .catch(handleFetchCatch)
+            .finally(function() {
+                formAddOrEdit.removeClass('loading');
+                buttonAddOrSave.removeClass('disabled');
+            });
         } else {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */
