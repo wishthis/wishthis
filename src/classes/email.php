@@ -57,6 +57,6 @@ class Email
 
         $success = mail($to, $subject, $message, $headers);
 
-        return $success
+        return $success;
     }
 }
