@@ -60,30 +60,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 /** Send email */
                 $user  = new User($wishlist['user']);
                 $email = new Email($user->email, __('Wish request'), 'default', 'wishlist-request-wishes');
-                $email->mjml = str_replace(
-                    'TEXT_HELLO',
-                    __('Hello,'),
-                    $email->mjml
-                );
-                $email->mjml = str_replace(
+                $email->setPlaceholder('TEXT_HELLO', __('Hello,'));
+                $email->setPlaceholder(
                     'TEXT_WISHLIST_REQUEST_WISHES',
                     sprintf(
                         /** TRANSLATORS: %s: Wishlist name */
                         __('somebody has requested that you add more wishes to your wishlist %s.'),
                         '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
-                    ),
-                    $email->mjml
+                    )
                 );
-                $email->mjml = str_replace(
-                    'TEXT_WISH_ADD',
-                    __('Add wish'),
-                    $email->mjml
-                );
-                $email->mjml = str_replace(
-                    'LINK_WISH_ADD',
-                    $href . '&wish_add=true',
-                    $email->mjml
-                );
+                $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish'));
+                $email->setPlaceholder('LINK_WISH_ADD', $href . '&wish_add=true');
 
                 $success = $email->send();
 

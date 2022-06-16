@@ -16,7 +16,9 @@ use Qferrer\Mjml\Renderer\ApiRenderer;
 
 class Email
 {
-    public string $mjml;
+    private string $mjml = '';
+    private string $contentsTemplate;
+    private string $contentsPart;
 
     public function __construct(
         private string $to,
@@ -24,8 +26,15 @@ class Email
         private string $template,
         private string $part
     ) {
-        $this->mjml = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
-        $this->mjml = str_replace('MJML_PART', 'parts/' . $this->part . '.mjml', $this->mjml);
+        $this->contentsTemplate = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
+        $this->contentsPart     = file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
+
+        $this->mjml = str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
+    }
+
+    public function setPlaceholder(string $placeholder, string $replacement): void
+    {
+        $this->mjml = str_replace($placeholder, $replacement, $this->mjml);
     }
 
     public function send(): bool
@@ -61,6 +70,8 @@ class Email
         );
 
         $success = mail($to, $subject, $message, $headers);
+
+        error_log($html);
 
         return $success;
     }

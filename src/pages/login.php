@@ -69,32 +69,18 @@ if (isset($_POST['reset'], $_POST['email'])) {
         ;');
 
         $emailReset = new Email($_POST['email'], __('Password reset link'), 'default', 'password-reset');
-        $emailReset->mjml = str_replace(
-            'TEXT_HELLO',
-            __('Hello,'),
-            $emailReset->mjml
-        );
-        $emailReset->mjml = str_replace(
+        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,'));
+        $emailReset->setPlaceholder(
             'TEXT_PASSWORD_RESET',
-            __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.'),
-            $emailReset->mjml
+            __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.')
         );
-        $emailReset->mjml = str_replace(
-            'TEXT_SET_NEW_PASSWORD',
-            __('Set new password'),
-            $emailReset->mjml
-        );
-        $emailReset->mjml = str_replace(
-            'wishthis.online',
-            $_SERVER['HTTP_HOST'],
-            $mjml
-        );
-        $emailReset->mjml = str_replace(
+        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password'));
+        $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
+        $emailReset->setPlaceholder(
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token,
-            $mjml
+            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token
         );
 
         $emailReset->send();
