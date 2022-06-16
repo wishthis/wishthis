@@ -17,10 +17,10 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        /**
-         * Create
-         */
         if (isset($_POST['wishlist-name'], $_SESSION['user']['id'])) {
+            /**
+             * Create
+             */
             $database->query('INSERT INTO `wishlists`
                 (
                     `user`,
@@ -36,6 +36,68 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
             );
+        } elseif (isset($_POST['wishlist-id'])) {
+            /**
+             * Request more wishes
+             */
+            $wishlistID = $_POST['wishlist-id'];
+
+            /** Get last notification time */
+            $wishlistQuery = $database
+            ->query(
+                'SELECT *
+                   FROM `wishlists`
+                  WHERE `id` = ' . $wishlistID . '
+                    AND (`notification_sent` < UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
+            );
+
+            $wishlist = $wishlistQuery->fetch();
+
+            /** Set notification time */
+            if (false !== $wishlist) {
+                /** Send email */
+                $mjml = file_get_contents(ROOT . '/src/mjml/wishlist-request-wishes.mjml');
+                $mjml = str_replace(
+                    'TEXT_HELLO',
+                    __('Hello,'),
+                    $mjml
+                );
+                $mjml = str_replace(
+                    'TEXT_WISHLIST_REQUEST_WISHES',
+                    sprintf(
+                        /** TRANSLATORS: %s: Wishlist name */
+                        __('somebody has requested that you add more wishes to your wishlist %s.'),
+                        '<a href="https://wishthis.online/?page=wishlists&id=' . $wishlist['id'] . '">' . $wishlist['name'] . '</a>'
+                    ),
+                    $mjml
+                );
+                $mjml = str_replace(
+                    'TEXT_WISH_ADD',
+                    __('Add wish'),
+                    $mjml
+                );
+                $mjml = str_replace(
+                    'LINK_WISH_ADD',
+                    $_SERVER['REQUEST_SCHEME'] . '://' .
+                    $_SERVER['HTTP_HOST'] .
+                    Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'] . '&wish_add=true',
+                    $mjml
+                );
+
+                $emailRequest = new Email($user->email, __('Wish request'), $mjml);
+                $emailRequest->send();
+
+                /** Save date to database */
+                $database
+                ->query(
+                    'UPDATE `wishlists`
+                        SET `notification_sent` = CURRENT_TIMESTAMP
+                      WHERE `id` = ' . $wishlist['id'] . ';'
+                );
+            }
+
+            $response['success']        = true;
+            $response['email_was_sent'] = false !== $wishlist;
         }
         break;
 

@@ -86,9 +86,47 @@ $page->navigation();
             ?>
         </div>
 
+        <div class="ui basic center aligned segment">
+            <button class="ui primary button wishlist-request-wishes">
+                <?= __('Request more wishes') ?>
+            </button>
+        </div>
+
     </div>
 </main>
 
 <?php
 $page->bodyEnd();
 ?>
+
+<!-- Wishlist: Request wishes -->
+<div class="ui tiny modal wishlist-request-wishes-notification-sent">
+    <div class="header">
+        <?= __('Request more wishes') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('A notification has just been sent to the owner of this wishlist.') ?></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve primary button" title="<?= __('Ok') ?>">
+            <?= __('Ok') ?>
+        </div>
+    </div>
+</div>
+<div class="ui tiny modal wishlist-request-wishes-notification-notsent">
+    <div class="header">
+        <?= __('Request more wishes') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('The wishlist owner has already received a notification recently and has not been notified again.') ?></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve primary button" title="<?= __('Ok') ?>">
+            <?= __('Ok') ?>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,9 @@
 /**
+ * Wishlists
+ */
+ALTER TABLE `wishlists` ADD COLUMN `notification_sent` TIMESTAMP NULL DEFAULT NULL;
+
+/**
  * Wishes
  */
 ALTER TABLE `wishes` MODIFY     `image`  TEXT          NULL DEFAULT NULL,
