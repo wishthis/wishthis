@@ -55,6 +55,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             /** Set notification time */
             if (false !== $wishlist) {
+                $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
+
                 /** Send email */
                 $mjml = file_get_contents(ROOT . '/src/mjml/wishlist-request-wishes.mjml');
                 $mjml = str_replace(
@@ -67,7 +69,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     sprintf(
                         /** TRANSLATORS: %s: Wishlist name */
                         __('somebody has requested that you add more wishes to your wishlist %s.'),
-                        '<a href="https://wishthis.online/?page=wishlists&id=' . $wishlist['id'] . '">' . $wishlist['name'] . '</a>'
+                        '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
                     ),
                     $mjml
                 );
@@ -78,9 +80,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 );
                 $mjml = str_replace(
                     'LINK_WISH_ADD',
-                    $_SERVER['REQUEST_SCHEME'] . '://' .
-                    $_SERVER['HTTP_HOST'] .
-                    Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'] . '&wish_add=true',
+                    $href . '&wish_add=true',
                     $mjml
                 );
 
