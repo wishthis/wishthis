@@ -101,9 +101,11 @@ $(function () {
             progress.slideDown();
             progress.removeClass('indeterminate');
             progress.progress({
-                total: cards.length,
-                onSuccess: function() {
-                    $(this).slideUp();
+                total    : cards.length,
+                onChange : function(percent, value, total) {
+                    if (percent >= 100) {
+                        setTimeout(() => { progress.slideUp(); }, 800);
+                    }
                 }
             });
         } else {
