@@ -83,7 +83,7 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                window.history.replaceState(null, document.title, response.data.url);
+                window.history.pushState(null, document.title, response.data.url);
 
                 $('.ui.dropdown.filter.priority')
                 .dropdown('restore default value')
@@ -528,7 +528,7 @@ $(function () {
                 if (queryString.has('wish_add')) {
                     queryString.delete('wish_add');
 
-                    window.history.replaceState(null, document.title, '?' + queryString.toString());
+                    window.history.pushState(null, document.title, '?' + queryString.toString());
                 }
 
                 /** Pretty URL */
@@ -538,7 +538,7 @@ $(function () {
                 var pathNew   = path.substring(0, path.length - pathAdd.length - 1);
 
                 if (pathAdd.toLowerCase() === 'add') {
-                    window.history.replaceState(null, document.title, pathNew);
+                    window.history.pushState(null, document.title, pathNew);
                 }
             }
         });
