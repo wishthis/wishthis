@@ -9,6 +9,8 @@ $(function () {
     var wishlists = [];
 
     function wishlistsRefresh() {
+        var selectedValue = $('.ui.dropdown.wishlists').dropdown('get value');
+
         $('.ui.dropdown.wishlists').api({
             action   : 'get wishlists',
             method   : 'GET',
@@ -22,7 +24,11 @@ $(function () {
                 })
 
                 if (wishlist.id) {
-                    element.dropdown('set selected', wishlist.id);
+                    if (wishlist.id === selectedValue) {
+                        element.dropdown('set selected', wishlist.id, null, true);
+                    } else {
+                        element.dropdown('set selected', wishlist.id);
+                    }
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -43,6 +49,13 @@ $(function () {
      * Selection
      */
     var progress = $('.ui.progress');
+    progress.progress({
+        onSuccess : function() {
+            wishlistsRefresh();
+
+            progress.slideUp();
+        }
+    });
 
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
@@ -100,14 +113,7 @@ $(function () {
         if (cards.length > 0) {
             progress.slideDown();
             progress.removeClass('indeterminate');
-            progress.progress({
-                total    : cards.length,
-                onChange : function(percent, value, total) {
-                    if (percent >= 100) {
-                        setTimeout(() => { progress.slideUp(); }, 800);
-                    }
-                }
-            });
+            progress.progress('set total', cards.length);
         } else {
             progress.slideUp();
         }
