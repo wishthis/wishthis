@@ -13,8 +13,9 @@ class Wish
     /**
      * Static
      */
-    public const SELECT    = '`wishes`.*';
+    public const SELECT    = '`wishes`.*, `products`.`price`';
     public const FROM      = '`wishes`';
+    public const LEFT_JOIN = '`products` ON `wishes`.`id` = `products`.`wish`';
     public const WHERE     = '`wishes`.`id` = %d;';
 
     public const NO_IMAGE = '/src/assets/img/no-image.svg';
