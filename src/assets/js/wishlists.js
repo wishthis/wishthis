@@ -50,6 +50,11 @@ $(function () {
      */
     var progress = $('.ui.progress');
     progress.progress({
+        /**
+         * Only fires once
+         *
+         * @see https://github.com/fomantic/Fomantic-UI/issues/2177
+         */
         onSuccess : function() {
             wishlistsRefresh();
 
