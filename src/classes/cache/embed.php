@@ -34,63 +34,51 @@ class Embed extends Cache
     {
         $filepath = $this->getFilepath();
 
+        /** Get existing info */
         $info = $this->exists() ? json_decode(file_get_contents($filepath)) : new \stdClass();
 
-        if (true === $this->generateCache() || true === $generateCache) {
-            /**
-             * @link https://github.com/oscarotero/Embed
-             */
-            $embed = new \Embed\Embed();
+        if (($this->exists() && $this->getAge() > $this->maxAge) || true === $generateCache) {
+            $infoToSave = $info;
 
-            $info_simplified                = new \stdClass();
-            $info_simplified->authorName    = '';
-            $info_simplified->authorUrl     = '';
-            $info_simplified->cms           = '';
-            $info_simplified->code          = '';
-            $info_simplified->description   = '';
-            $info_simplified->favicon       = '';
-            $info_simplified->feeds         = array();
-            $info_simplified->icon          = '';
-            $info_simplified->image         = null;
-            $info_simplified->keywords      = array();
-            $info_simplified->language      = '';
-            $info_simplified->languages     = array();
-            $info_simplified->license       = '';
-            $info_simplified->providerName  = '';
-            $info_simplified->providerUrl   = '';
-            $info_simplified->publishedTime = '';
-            $info_simplified->redirect      = '';
-            $info_simplified->title         = $this->url;
-            $info_simplified->url           = $this->url;
+            try {
+                /**
+                 * Fetch embed info
+                 *
+                 * @link https://github.com/oscarotero/Embed
+                 */
+                $embed = new \Embed\Embed();
+                $info  = $embed->get($this->url);
+
+                /** Convert embed info to a saveable format (JSON) stdClass */
+                $infoToSave                = new \stdClass();
+                $infoToSave->authorName    = (string) $info->authorName;
+                $infoToSave->authorUrl     = (string) $info->authorUrl;
+                $infoToSave->cms           = (string) $info->cms;
+                $infoToSave->code          = (string) $info->code;
+                $infoToSave->description   = (string) $info->description;
+                $infoToSave->favicon       = (string) $info->favicon;
+                $infoToSave->feeds         = (array)  $info->feeds;
+                $infoToSave->icon          = (string) $info->icon;
+                $infoToSave->image         = (string) $info->image;
+                $infoToSave->keywords      = (array)  $info->keywords;
+                $infoToSave->language      = (string) $info->language;
+                $infoToSave->languages     = (array)  $info->languages;
+                $infoToSave->license       = (string) $info->license;
+                $infoToSave->providerName  = (string) $info->providerName;
+                $infoToSave->providerUrl   = (string) $info->providerUrl;
+                $infoToSave->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
+                $infoToSave->redirect      = (string) $info->redirect;
+                $infoToSave->title         = (string) $info->title;
+                $infoToSave->url           = (string) $info->url;
+
+                $info = $infoToSave;
+            } catch (\Throwable $ex) {
+                $generateCache = false;
+
+                echo $ex->getMessage();
+            }
 
             if ($generateCache) {
-                try {
-                    $info                           = $embed->get($this->url);
-                    $info_simplified->authorName    = (string) $info->authorName;
-                    $info_simplified->authorUrl     = (string) $info->authorUrl;
-                    $info_simplified->cms           = (string) $info->cms;
-                    $info_simplified->code          = (string) $info->code;
-                    $info_simplified->description   = (string) $info->description;
-                    $info_simplified->favicon       = (string) $info->favicon;
-                    $info_simplified->feeds         = (array)  $info->feeds;
-                    $info_simplified->icon          = (string) $info->icon;
-                    $info_simplified->image         = (string) $info->image;
-                    $info_simplified->keywords      = (array)  $info->keywords;
-                    $info_simplified->language      = (string) $info->language;
-                    $info_simplified->languages     = (array)  $info->languages;
-                    $info_simplified->license       = (string) $info->license;
-                    $info_simplified->providerName  = (string) $info->providerName;
-                    $info_simplified->providerUrl   = (string) $info->providerUrl;
-                    $info_simplified->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
-                    $info_simplified->redirect      = (string) $info->redirect;
-                    $info_simplified->title         = (string) $info->title;
-                    $info_simplified->url           = (string) $info->url;
-                } catch (\Throwable $ex) {
-                    $generateCache = false;
-
-                    echo $ex->getMessage();
-                }
-
                 $ch_options = array(
                     CURLOPT_AUTOREFERER    => true,
                     CURLOPT_CONNECTTIMEOUT => 30,
@@ -104,8 +92,8 @@ class Embed extends Cache
                 );
 
                 /** Favicon */
-                if (str_contains(pathinfo($info_simplified->favicon, PATHINFO_EXTENSION), 'ico')) {
-                    $ch = curl_init($info_simplified->favicon);
+                if (str_contains(pathinfo($info->favicon, PATHINFO_EXTENSION), 'ico')) {
+                    $ch = curl_init($info->favicon);
                     curl_setopt_array($ch, $ch_options);
 
                     $favicon = curl_exec($ch);
@@ -113,24 +101,15 @@ class Embed extends Cache
 
                     curl_close($ch);
 
-                    $info_simplified->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
+                    $info->favicon = $favicon && 200 === $code ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
                 }
 
-                /** Response code */
-                $ch = curl_init($info_simplified->url);
-                curl_setopt_array($ch, $ch_options);
+                /** URL */
+                $codeURL = \wishthis\URL::getResponseCode($info->url);
 
-                $favicon = curl_exec($ch);
-                $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                if (0 === $code || 404 === $code) {
+                if (200 !== $codeURL) {
                     $generateCache = false;
                 }
-
-                curl_close($ch);
-
-                /** Update info */
-                $info = $info_simplified;
             }
 
             if ($generateCache) {

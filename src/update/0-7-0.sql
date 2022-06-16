@@ -2,7 +2,7 @@
  * Wishes
  */
 ALTER TABLE `wishes` MODIFY     `image`  TEXT          NULL DEFAULT NULL,
-                     ADD COLUMN `edited` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+                     ADD COLUMN `edited` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 /**
  * Products

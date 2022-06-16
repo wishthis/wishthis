@@ -79,7 +79,8 @@ class Wish
             ->query(
                 'SELECT ' . self::SELECT    . '
                    FROM ' . self::FROM      . '
-                  WHERE ' . sprintf(self::WHERE, $_GET['wish_id'])
+              LEFT JOIN ' . self::LEFT_JOIN . '
+                  WHERE ' . sprintf(self::WHERE, $wish)
             )
             ->fetch();
 
@@ -194,12 +195,20 @@ class Wish
                     </div>
                 <?php } ?>
 
-                <?php if ($this->description) { ?>
-                    <div class="description">
-                        <?= $this->description ?>
+                <?php if ($this->price) { ?>
+                    <div class="meta">
+                        <span class="date"><?= $numberFormatter->format($this->price) ?></span>
                     </div>
-                    <div class="description-fade"></div>
                 <?php } ?>
+
+                <div class="description">
+                    <?php if ($this->description) { ?>
+                        <?= $this->description ?>
+                    <?php } elseif ($this->url && !$this->title) { ?>
+                        <a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a>
+                    <?php } ?>
+                </div>
+                <div class="description-fade"></div>
             </div>
 
             <div class="extra content buttons">

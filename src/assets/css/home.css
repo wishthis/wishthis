@@ -12,36 +12,34 @@
 }
 
 #text-list {
-    animation: 0.8s 1s ease text-list;
+    animation: 0.4s 1s ease text-list;
+    animation-fill-mode: both;
 }
 @keyframes text-list {
     0% {
-        position: relative;
-        bottom: 0;
-
         opacity: 1;
+        transform: matrix(3.63682, 0, 0, 3.63682, 425.483, 130.092);
     }
 
     100% {
-        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
         opacity: 0;
+        transform: matrix(3.63682, 0, 0, 3.63682, 426.568, 30.092);
     }
 }
 
 #text-this {
-    animation: 0.8s 1s ease text-this;
+    animation: 0.4s 1s ease text-this;
+    animation-fill-mode: both;
 }
 @keyframes text-this {
     0% {
-        position: relative;
-        bottom: 0;
-
         opacity: 0;
+        transform: matrix(3.63682, 0, 0, 3.63682, 426.568, 135.761);
     }
 
     100% {
-        bottom: calc(1em * 1.4285 + 0.91666667em * 2 + 4px);
         opacity: 1;
+        transform: matrix(3.63682, 0, 0, 3.63682, 426.568, 35.761);
     }
 }
 

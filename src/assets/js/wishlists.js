@@ -101,9 +101,11 @@ $(function () {
             progress.slideDown();
             progress.removeClass('indeterminate');
             progress.progress({
-                total: cards.length,
-                onSuccess: function() {
-                    $(this).slideUp();
+                total    : cards.length,
+                onChange : function(percent, value, total) {
+                    if (percent >= 100) {
+                        setTimeout(() => { progress.slideUp(); }, 800);
+                    }
                 }
             });
         } else {
@@ -511,6 +513,27 @@ $(function () {
                 validateWishURL(formAdd, buttonAdd, modalWishlistWishAdd);
 
                 return false;
+            },
+            onHide    : function() {
+                /** Ugly URL */
+                var paramString = location.search.split('?')[1];
+                var queryString = new URLSearchParams(paramString);
+
+                if (queryString.has('wish_add')) {
+                    queryString.delete('wish_add');
+
+                    window.history.replaceState(null, document.title, '?' + queryString.toString());
+                }
+
+                /** Pretty URL */
+                var path      = location.pathname;
+                var pathParts = path.split('/')
+                var pathAdd   = pathParts[pathParts.length - 1];
+                var pathNew   = path.substring(0, path.length - pathAdd.length - 1);
+
+                if (pathAdd.toLowerCase() === 'add') {
+                    window.history.replaceState(null, document.title, pathNew);
+                }
             }
         });
     });

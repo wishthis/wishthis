@@ -63,7 +63,7 @@ $(function() {
         .modal({
             title   : text.modal_failure_title,
             content : content,
-            class   : '',
+            class   : 'small',
             actions : [
                 {
                     text  : text.modal_failure_approve,
@@ -82,7 +82,7 @@ $(function() {
         .modal({
             title   : text.modal_error_title,
             content : response,
-            class   : '',
+            class   : 'small',
             actions : [
                 {
                     text : text.modal_failure_approve,
@@ -252,7 +252,7 @@ function showError(error) {
     .modal({
         title             : 'Error',
         content           : error,
-        class             : '',
+        class             : 'small',
         actions           : [
             {
                 text  : text.modal_failure_approve,
@@ -271,7 +271,7 @@ function showWarning(warning) {
     .modal({
         title         : 'Warning',
         content       : warning,
-        class         : '',
+        class         : 'small',
         actions       : [
             {
                 text  : text.modal_warning_approve,

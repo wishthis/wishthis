@@ -28,8 +28,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['html'] = $wish->getCard($_GET['wishlist_user']);
             }
         } elseif (isset($_GET['wish_url'])) {
-            $cache = new Cache\Embed($_GET['wish_url']);
+            $url   = trim($_GET['wish_url']);
+            $cache = new Cache\Embed($url);
             $info  = $cache->get(true);
+
+            if ($info->url) {
+                $code = URL::getResponseCode($info->url);
+
+                if (200 !== $code) {
+                    $info->url = $url;
+                }
+            }
 
             $response = array(
                 'info' => $info,
@@ -59,7 +68,75 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
                 /** Update wish */
-                $wish_id     = $_POST['wish_id'];
+                $wish = new Wish($_POST['wish_id']);
+
+                /** Update wish information */
+                if (!empty($wish_url)) {
+                    $cache = new Cache\Embed($wish_url);
+                    $info  = $cache->get(true);
+
+                    if (empty($wish_title) && empty($wish->title)) {
+                        $wish_title = $info->title;
+                    }
+
+                    if (empty($wish_description) && empty($wish->description)) {
+                        $wish_description = $info->description;
+                    }
+
+                    /** Image */
+                    if (!empty($info->image)) {
+                        $codeImage = URL::getResponseCode($info->image);
+
+                        if (200 === $codeImage) {
+                            $wish_image = '"' . $info->image . '"';
+                        }
+                    }
+
+                    $response = array(
+                        'info' => $info,
+                    );
+                }
+
+                /** Update */
+                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
+                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
+
+                $database
+                ->query(
+                    'UPDATE `wishes`
+                        SET `wishlist`       = ' . $wish->wishlist      . ',
+                            `title`          = ' . $wish_title          . ',
+                            `description`    = ' . $wish_description    . ',
+                            `image`          = ' . $wish_image          . ',
+                            `url`            = ' . $wish_url            . ',
+                            `priority`       = ' . $wish_priority       . ',
+                            `is_purchasable` = ' . $wish_is_purchasable . '
+                      WHERE `id`             = ' . $wish->id            . ';'
+                );
+
+                /**
+                 * Product
+                 */
+                $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
+                            ? 'NULL'
+                            : $_POST['wish_price'];
+
+                $database
+                ->query(
+                    'REPLACE INTO `products`
+                    (
+                        `wish`,
+                        `price`
+                    ) VALUES (
+                        ' . $wish->id   . ',
+                        ' . $wish_price . '
+                    );'
+                );
+
+                $response['lastInsertId'] = $wish->id;
+            } elseif (isset($_POST['wishlist_id'])) {
+                /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];
 
                 /** Update wish information */
@@ -75,35 +152,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         $wish_description = $info->description;
                     }
 
-                    $wish_image = is_null($info->image) ? 'NULL' : '"' . $info->image . '"';
+                    /** Image */
+                    if (!empty($info->image)) {
+                        $codeImage = URL::getResponseCode($info->image);
+
+                        if (200 === $codeImage) {
+                            $wish_image = '"' . $info->image . '"';
+                        }
+                    }
 
                     $response = array(
                         'info' => $info,
                     );
                 }
 
-                $database
-                ->query(
-                    'UPDATE `wishes`
-                        SET `wishlist`       =  ' . $wishlist_id         . ',
-                            `title`          = "' . $wish_title          . '",
-                            `description`    = "' . $wish_description    . '",
-                            `image`          =  ' . $wish_image          . ',
-                            `url`            = "' . $wish_url            . '",
-                            `priority`       =  ' . $wish_priority       . ',
-                            `is_purchasable` =  ' . $wish_is_purchasable . '
-                      WHERE `id`             =  ' . $wish_id . ';'
-                );
-
-                /**
-                 * Product
-                 */
-                $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
-                            ? 'NULL'
-                            : $_POST['wish_price'];
-            } elseif (isset($_POST['wishlist_id'])) {
-                /** Insert wish */
-                $wishlist_id = $_POST['wishlist_id'];
+                /** Update */
+                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
+                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
 
                 $database
                 ->query(
@@ -112,14 +178,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         `wishlist`,
                         `title`,
                         `description`,
+                        `image`,
                         `url`,
                         `priority`,
                         `is_purchasable`
                     ) VALUES (
                          ' . $wishlist_id         . ',
-                        "' . $wish_title          . '",
-                        "' . $wish_description    . '",
-                        "' . $wish_url            . '",
+                         ' . $wish_title          . ',
+                         ' . $wish_description    . ',
+                         ' . $wish_image          . ',
+                         ' . $wish_url            . ',
                          ' . $wish_priority       . ',
                          ' . $wish_is_purchasable . '
                     );'
