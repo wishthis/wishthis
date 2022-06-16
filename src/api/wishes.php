@@ -32,7 +32,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $cache = new Cache\Embed($url);
             $info  = $cache->get(true);
 
-            if ($info->url) {
+            if (isset($info->url) && $info->url) {
                 $code = URL::getResponseCode($info->url);
 
                 if (200 !== $code) {
@@ -144,11 +144,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $cache = new Cache\Embed($wish_url);
                     $info  = $cache->get(true);
 
-                    if (empty($wish_title)) {
+                    if (empty($wish_title) && isset($info->title)) {
                         $wish_title = $info->title;
                     }
 
-                    if (empty($wish_description)) {
+                    if (empty($wish_description) && isset($info->description)) {
                         $wish_description = $info->description;
                     }
 
