@@ -71,8 +71,6 @@ class Email
 
         $success = mail($to, $subject, $message, $headers);
 
-        error_log($html);
-
         return $success;
     }
 }

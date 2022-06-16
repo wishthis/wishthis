@@ -72,7 +72,11 @@ if (isset($_POST['reset'], $_POST['email'])) {
         $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,'));
         $emailReset->setPlaceholder(
             'TEXT_PASSWORD_RESET',
-            __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.')
+            sprintf(
+                /** TRANSLATORS: %s: The wishthis domain */
+                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.'),
+                '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
+            )
         );
         $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password'));
         $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
