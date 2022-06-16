@@ -640,7 +640,7 @@ $(function () {
                 }
 
                 /** URL */
-                if (wishURLCurrent !== wishInfoProposed.url && validateURL) {
+                if (wishURLCurrent && wishInfoProposed.url && wishURLCurrent !== wishInfoProposed.url && validateURL) {
                     modalValidate.find('input.current').val(wishURLCurrent);
                     modalValidate.find('input.proposed').val(wishInfoProposed.url);
                     modalValidate
@@ -706,7 +706,11 @@ $(function () {
                     /** */
                 }
             })
-            .catch(handleFetchCatch);
+            .catch(handleFetchCatch)
+            .finally(function() {
+                formAddOrEdit.removeClass('loading');
+                buttonAddOrSave.removeClass('disabled');
+            });
         } else {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */
