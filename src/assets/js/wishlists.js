@@ -9,13 +9,11 @@ $(function () {
     var wishlists = [];
 
     function wishlistsRefresh() {
-        var selectedValue = $('.ui.dropdown.wishlists').dropdown('get value');
-
         $('.ui.dropdown.wishlists').api({
-            action   : 'get wishlists',
-            method   : 'GET',
-            on       : 'now',
-            onSuccess: function (response, element, xhr) {
+            action    : 'get wishlists',
+            method    : 'GET',
+            on        : 'now',
+            onSuccess : function (response, element, xhr) {
                 wishlists = response.results;
 
                 element.dropdown({
@@ -24,11 +22,7 @@ $(function () {
                 })
 
                 if (wishlist.id) {
-                    if (wishlist.id === selectedValue) {
-                        element.dropdown('set selected', wishlist.id, null, true);
-                    } else {
-                        element.dropdown('set selected', wishlist.id);
-                    }
+                    element.dropdown('set selected', wishlist.id);
                 } else {
                     if (wishlists[0]) {
                         element.dropdown('set selected', wishlists[0].value);
@@ -396,6 +390,7 @@ $(function () {
             $('[name="wish_id"]').val(wish.id);
             $('[name="wish_title"]').val(wish.title);
             $('[name="wish_description"]').val(wish.description);
+            $('[name="wish_image"]').val(wish.image);
             $('[name="wish_url"]').val(wish.url);
             $('.ui.selection.dropdown.priority').dropdown('set selected', wish.priority);
 
@@ -706,11 +701,7 @@ $(function () {
                     /** */
                 }
             })
-            .catch(handleFetchCatch)
-            .finally(function() {
-                formAddOrEdit.removeClass('loading');
-                buttonAddOrSave.removeClass('disabled');
-            });
+            .catch(handleFetchCatch);
         } else {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */

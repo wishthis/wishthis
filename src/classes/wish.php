@@ -109,10 +109,6 @@ class Wish
                     $this->$key = $this->info->$key;
                 }
             }
-
-            if (empty($this->image)) {
-                $this->image = self::NO_IMAGE;
-            }
         }
     }
 
@@ -190,6 +186,8 @@ class Wish
                     <?php } else { ?>
                         <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                     <?php } ?>
+                <?php } else { ?>
+                    <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
                 <?php } ?>
 
                 <?php if (isset($this->info->favicon)) { ?>

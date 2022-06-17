@@ -70,15 +70,12 @@ figure {
 }
 
 /** Image */
-svg,
-.wishlist .ui.card > .image > svg {
-    color: #f0f0f0;
-    background-color: #f4f4f4;
-}
-
 .wishlist .ui.card > .image > svg {
     width: 100%;
     height: var(--wishPreviewHeight);
+
+    color: #f0f0f0;
+    background-color: #f4f4f4;
 
     box-sizing: border-box;
     border-radius: inherit;
