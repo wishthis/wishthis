@@ -182,7 +182,11 @@ class Wish
 
                 <?php if ($this->image) { ?>
                     <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
-                        <?= file_get_contents(ROOT . $this->image) ?>
+                        <?php if (file_exists(ROOT . $this->image)) { ?>
+                            <?= file_get_contents(ROOT . $this->image) ?>
+                        <?php } else { ?>
+                            <?= file_get_contents($this->image) ?>
+                        <?php } ?>
                     <?php } else { ?>
                         <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                     <?php } ?>

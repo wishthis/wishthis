@@ -3,7 +3,6 @@
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
-    --themeTransitionDuration: 2s;
 }
 
 html {
@@ -71,25 +70,24 @@ figure {
 }
 
 /** Image */
-svg#no-image,
+svg,
 .wishlist .ui.card > .image > svg {
     color: #f0f0f0;
     background-color: #f4f4f4;
 }
 
 .wishlist .ui.card > .image > svg {
-    transition: var(--themeTransitionDuration) ease color,
-                var(--themeTransitionDuration) ease background-color;
-
     width: 100%;
     height: var(--wishPreviewHeight);
-    padding: 15% 10%;
 
     box-sizing: border-box;
     border-radius: inherit;
 }
+.wishlist .ui.card > .image > svg#no-image {
+    padding: 15% 10%;
+}
 @media (prefers-color-scheme: dark) {
-    svg#no-image,
+    svg,
     .wishlist .ui.card > .image > svg {
         color: #0f0f0f;
         background-color: #0b0b0b;
@@ -98,24 +96,19 @@ svg#no-image,
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .image > svg {
-            transition: var(--themeTransitionDuration) ease color,
-                        var(--themeTransitionDuration) ease background-color,
-                        0.2s linear height,
+            transition: 0.2s linear height,
                         0.2s linear padding,
                         0.2s linear opacity;
         }
     }
     .wishlist .ui.card:hover > .image > svg {
         height: calc(1em + 3 * var(--padding) - 5px);
-        padding: 0;
+        padding: 0 !important;
         opacity: 0;
     }
 }
 
 .wishlist .ui.card > .image > img.preview {
-    transition: var(--themeTransitionDuration) ease filter,
-                var(--themeTransitionDuration) ease background-color;
-
     height: var(--wishPreviewHeight);
 
     object-fit: cover;
@@ -174,8 +167,6 @@ svg#no-image,
 
 /** Provider name */
 .wishlist .ui.card > .image > span.provider {
-    transition: var(--themeTransitionDuration) ease background-color;
-
     display: block;
     width: 100%;
     padding: calc(var(--padding) * 1.5) var(--padding);
@@ -414,8 +405,6 @@ p .ui.horizontal.label {
  * Filter
  */
 .ui.basic.white.button {
-    transition: var(--themeTransitionDuration) ease background-color;
-
     color: inherit;
     background-color: #fff;
 }
