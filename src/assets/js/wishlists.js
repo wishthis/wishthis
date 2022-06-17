@@ -7,6 +7,12 @@ $(function () {
      * Get Wishlists
      */
     var wishlists = [];
+    var progress  = $('.ui.progress');
+    progress.progress({
+        onSuccess : function() {
+            $(this).slideUp();
+        }
+    });
 
     function wishlistsRefresh() {
         $('.ui.dropdown.wishlists').api({
@@ -39,29 +45,9 @@ $(function () {
 
     wishlistsRefresh();
 
-    /**
-     * Selection
-     */
-    var progress = $('.ui.progress');
-    progress.progress({
-        /**
-         * Only fires once
-         *
-         * @see https://github.com/fomantic/Fomantic-UI/issues/2177
-         */
-        onSuccess : function() {
-            wishlistsRefresh();
-
-            progress.slideUp();
-        }
-    });
-
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
-
-        progress.progress('reset');
-        progress.addClass('indeterminate');
 
         if (wishlistValue) {
             wishlist.id = wishlistValue;
@@ -111,10 +97,8 @@ $(function () {
 
         if (cards.length > 0) {
             progress.slideDown();
-            progress.removeClass('indeterminate');
+            progress.progress('reset');
             progress.progress('set total', cards.length);
-        } else {
-            progress.slideUp();
         }
 
         var timerInterval = 1200;
@@ -122,15 +106,15 @@ $(function () {
             function generateCacheCards() {
                 var cards = $('.ui.card[data-cache="true"]');
 
-                cards.each(function (index, card) {
-                    generateCacheCard($(card));
-
-                    if (index >= 0) {
-                        return false;
-                    }
-                });
-
                 if (cards.length > 0) {
+                    cards.each(function (index, card) {
+                        generateCacheCard($(card));
+
+                        if (index >= 0) {
+                            return false;
+                        }
+                    });
+
                     setTimeout(generateCacheCards, timerInterval);
                 }
             },
@@ -155,9 +139,6 @@ $(function () {
             return;
         }
 
-        card.addClass('loading');
-        card.attr('data-cache', false);
-
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
         var wishlist_user = wishlists[wishlistIndex].user;
 
@@ -173,7 +154,11 @@ $(function () {
         .finally(function() {
             card.removeClass('loading');
 
-            progress.progress('increment');
+            progress.progress('increment', 1);
+
+            if (progress.progress('get percent') >= 100) {
+                progress.slideUp();
+            }
 
             $('.ui.dropdown.options').dropdown();
         });
