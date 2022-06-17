@@ -274,6 +274,7 @@ svg#no-image,
 /** Buttons */
 .wishlist .ui.card > .extra.buttons {
     display: flex;
+    align-items: center;
 
     background-color: inherit;
     z-index: 2;
