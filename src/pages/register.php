@@ -80,10 +80,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         'Success'
                     );
                 } else {
-                    $page->messages[] = Page::error(__('This link has expired.'), __('Failure'));
+                    $page->messages[] = Page::error(__('This password reset link has expired, please request a new one.'), __('Failure'));
                 }
             } else {
-                $page->messages[] = Page::error(__('This link seems invalid.'), __('Failure'));
+                $page->messages[] = Page::error(__('This password reset link seems to have been manipulated, please request a new one.'), __('Failure'));
             }
         } else {
             /**
