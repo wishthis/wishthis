@@ -131,13 +131,13 @@ $(function() {
     /** Set default state */
     function button_set_default_state(buttonSave) {
         buttonSave.find('.icon').removeClass('red');
-        buttonSave.find('span').text(text.button_wishlist_save);
+        buttonSave.find('span').text(text.button_wishlist_remember);
     }
 
     /** Set saved state */
     function button_set_saved_state(buttonSave) {
         buttonSave.find('.icon').addClass('red');
-        buttonSave.find('span').text(text.button_wishlist_saved);
+        buttonSave.find('span').text(text.button_wishlist_forget);
     }
 
     /**

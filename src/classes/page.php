@@ -402,8 +402,8 @@ class Page
                     calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
                     calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
 
-                    button_wishlist_save  : '<?= __('Remember list') ?>',
-                    button_wishlist_saved : '<?= __('Remembered') ?>',
+                    button_wishlist_remember : '<?= __('Remember list') ?>',
+                    button_wishlist_forget   : '<?= __('Forget list') ?>',
                 };
             </script>
 
