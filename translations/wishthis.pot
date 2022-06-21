@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-06-21 08:38+0200\n"
+"POT-Creation-Date: 2022-06-21 10:08+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -279,7 +279,7 @@ msgid "Remember list"
 msgstr ""
 
 #: classes/page.php:406
-msgid "Remembered"
+msgid "Forget list"
 msgstr ""
 
 #: classes/page.php:450 pages/home.php:24
@@ -399,52 +399,52 @@ msgstr ""
 msgid "Would love it"
 msgstr ""
 
-#: classes/wish.php:147
+#: classes/wish.php:146
 msgid "Wish temporarily fulfilled"
 msgstr ""
 
 #. TRANSLATORS: %s: Duration (i. e. 30 minutes)
-#: classes/wish.php:152
+#: classes/wish.php:151
 #, php-format
 msgid "If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s."
 msgstr ""
 
 #. TRANSLATORS: %d Amount of minutes
-#: classes/wish.php:155
+#: classes/wish.php:154
 #, php-format
 msgid "%d minutes"
 msgstr ""
 
-#: classes/wish.php:166
+#: classes/wish.php:165
 msgid "Confirm"
 msgstr ""
 
-#: classes/wish.php:232 classes/wish.php:235 pages/wishlist.php:64
+#: classes/wish.php:231 classes/wish.php:234 pages/wishlist.php:64
 msgid "Fulfil wish"
 msgstr ""
 
-#: classes/wish.php:242 classes/wish.php:245
+#: classes/wish.php:241 classes/wish.php:244
 msgid "Visit"
 msgstr ""
 
-#: classes/wish.php:251 classes/wish.php:254 pages/wishlists.php:34
+#: classes/wish.php:250 classes/wish.php:253 pages/wishlists.php:34
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Options"
 msgstr ""
 
-#: classes/wish.php:259
+#: classes/wish.php:258
 msgid "Mark as fulfilled"
 msgstr ""
 
-#: classes/wish.php:264
+#: classes/wish.php:263
 msgid "Edit"
 msgstr ""
 
-#: classes/wish.php:269 pages/wishlists.php:75 pages/wishlists.php:77
+#: classes/wish.php:268 pages/wishlists.php:75 pages/wishlists.php:77
 msgid "Delete"
 msgstr ""
 
-#: classes/wish.php:287
+#: classes/wish.php:286
 msgid "Wish not found"
 msgstr ""
 
