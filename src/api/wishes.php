@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$api      = true;
+$api     = true;
 $response = array(
     'success' => false,
 );
