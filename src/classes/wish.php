@@ -190,7 +190,7 @@ class Wish
                     <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
                 <?php } ?>
 
-                <?php if (isset($this->info->favicon)) { ?>
+                <?php if (isset($this->info->favicon) && $this->info->favicon) { ?>
                     <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                 <?php } ?>
 

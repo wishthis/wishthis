@@ -402,8 +402,8 @@ class Page
                     calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
                     calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
 
-                    button_wishlist_save : '<?= __('Save') ?>',
-                    button_wishlist_saved : '<?= __('Saved') ?>',
+                    button_wishlist_save  : '<?= __('Remember list') ?>',
+                    button_wishlist_saved : '<?= __('Remembered') ?>',
                 };
             </script>
 
@@ -508,7 +508,7 @@ class Page
                         'icon' => 'list',
                     ),
                     array(
-                        'text' => __('Saved lists'),
+                        'text' => __('Remembered lists'),
                         'url'  => Page::PAGE_WISHLISTS_SAVED,
                         'icon' => 'heart',
                     ),

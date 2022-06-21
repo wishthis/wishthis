@@ -30,7 +30,7 @@ $page->navigation();
                 <?php if ($user->isLoggedIn() && $user->id !== intval($wishlist->user)) { ?>
                     <button class="ui white small basic labeled icon button save disabled loading">
                         <i class="heart icon"></i>
-                        <span><?= __('Save list') ?></span>
+                        <span><?= __('Remember list') ?></span>
                     </button>
                 <?php } ?>
 

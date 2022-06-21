@@ -115,11 +115,11 @@ $(function() {
     .then(handleFetchError)
     .then(handleFetchResponse)
     .then(function(response) {
-        var wishlists = response.data;
+        var wishlists  = response.data;
         var buttonSave = $('.button.save');
 
         wishlists.forEach(wishlist => {
-            if (wishlist.hash == $_GET.wishlist) {
+            if (wishlist.hash == $_GET.hash) {
                 button_set_saved_state(buttonSave);
                 return;
             }
