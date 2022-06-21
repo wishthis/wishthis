@@ -447,7 +447,7 @@ class Page
                     src="https://plausible.io/js/plausible.js">
             </script>
 
-            <title><?= $this->title ?> - wishthis - Make a wish</title>
+            <title><?= $this->title ?> - wishthis - <?= __('Make a wish') ?></title>
         </head>
         <?php
     }

@@ -109,10 +109,6 @@ class Wish
                     $this->$key = $this->info->$key;
                 }
             }
-
-            if (empty($this->image)) {
-                $this->image = self::NO_IMAGE;
-            }
         }
     }
 
@@ -149,7 +145,19 @@ class Wish
                         <i class="history icon"></i>
                             <div class="content">
                                 <?= __('Wish temporarily fulfilled') ?>
-                                <div class="sub header"><?= sprintf(__('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %d minutes.'), self::STATUS_TEMPORARY_MINUTES) ?></div>
+                                <div class="sub header">
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: Duration (i. e. 30 minutes) */
+                                        __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
+                                        sprintf(
+                                            /** TRANSLATORS: %d Amount of minutes */
+                                            '<strong>' . __('%d minutes') . '</strong>',
+                                            self::STATUS_TEMPORARY_MINUTES
+                                        )
+                                    )
+                                    ?>
+                                </div>
                             </div>
                         </div>
 
@@ -170,10 +178,16 @@ class Wish
 
                 <?php if ($this->image) { ?>
                     <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
-                        <?= file_get_contents(ROOT . $this->image) ?>
+                        <?php if (file_exists(ROOT . $this->image)) { ?>
+                            <?= file_get_contents(ROOT . $this->image) ?>
+                        <?php } else { ?>
+                            <?= file_get_contents($this->image) ?>
+                        <?php } ?>
                     <?php } else { ?>
                         <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                     <?php } ?>
+                <?php } else { ?>
+                    <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
                 <?php } ?>
 
                 <?php if (isset($this->info->favicon)) { ?>

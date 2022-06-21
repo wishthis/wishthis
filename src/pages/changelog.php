@@ -43,6 +43,7 @@ $page->navigation();
                                 <li><?= __('Wish products') ?></li>
                                 <li><?= __('Jump to last edited wishlist from home') ?></li>
                                 <li><?= __('Quick add wish from home') ?></li>
+                                <li><?= __('Button to request more wishes from a users wishlist') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>

@@ -68,36 +68,25 @@ if (isset($_POST['reset'], $_POST['email'])) {
                   WHERE `id` = ' . $user['id'] . '
         ;');
 
-        $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
-        $mjml = str_replace(
-            'TEXT_HELLO',
-            __('Hello,'),
-            $mjml
-        );
-        $mjml = str_replace(
+        $emailReset = new Email($_POST['email'], __('Password reset link'), 'default', 'password-reset');
+        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,'));
+        $emailReset->setPlaceholder(
             'TEXT_PASSWORD_RESET',
-            __('somebody has requested a password reset for this email address from <a href="https://wishthis.online">wishthis.online</a>. If this was you, click the button below to invalidate your current password and set a new one.'),
-            $mjml
+            sprintf(
+                /** TRANSLATORS: %s: The wishthis domain */
+                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.'),
+                '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
+            )
         );
-        $mjml = str_replace(
-            'TEXT_SET_NEW_PASSWORD',
-            __('Set new password'),
-            $mjml
-        );
-        $mjml = str_replace(
-            'wishthis.online',
-            $_SERVER['HTTP_HOST'],
-            $mjml
-        );
-        $mjml = str_replace(
+        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password'));
+        $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
+        $emailReset->setPlaceholder(
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token,
-            $mjml
+            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token
         );
 
-        $emailReset = new Email($_POST['email'], __('Password reset link'), $mjml);
         $emailReset->send();
 
         $page->messages[] = Page::info(

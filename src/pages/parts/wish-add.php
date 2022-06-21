@@ -72,6 +72,17 @@ namespace wishthis;
                     </select>
                 </div>
 
+                <div class="field">
+                    <label><?= __('Image') ?></label>
+
+                    <input type="url"
+                           name="wish_image"
+                           placeholder="<?= $wish->image ?? '' ?>"
+                           value="<?= $wish->image ?? '' ?>"
+                           maxlength="255"
+                    />
+                </div>
+
                 <div class="grouped fields">
                     <label><?= __('Properties') ?></label>
 

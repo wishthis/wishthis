@@ -17,10 +17,10 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        /**
-         * Create
-         */
         if (isset($_POST['wishlist-name'], $_SESSION['user']['id'])) {
+            /**
+             * Create
+             */
             $database->query('INSERT INTO `wishlists`
                 (
                     `user`,
@@ -36,6 +36,57 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
             );
+        } elseif (isset($_POST['wishlist-id'])) {
+            /**
+             * Request more wishes
+             */
+            $wishlistID = $_POST['wishlist-id'];
+
+            /** Get last notification time */
+            $wishlistQuery = $database
+            ->query(
+                'SELECT *
+                   FROM `wishlists`
+                  WHERE `id` = ' . $wishlistID . '
+                    AND (`notification_sent` < UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
+            );
+
+            $wishlist = $wishlistQuery->fetch();
+
+            /** Set notification time */
+            if (false !== $wishlist) {
+                $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
+
+                /** Send email */
+                $user  = new User($wishlist['user']);
+                $email = new Email($user->email, __('Wish request'), 'default', 'wishlist-request-wishes');
+                $email->setPlaceholder('TEXT_HELLO', __('Hello,'));
+                $email->setPlaceholder(
+                    'TEXT_WISHLIST_REQUEST_WISHES',
+                    sprintf(
+                        /** TRANSLATORS: %s: Wishlist name */
+                        __('somebody has requested that you add more wishes to your wishlist %s.'),
+                        '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
+                    )
+                );
+                $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish'));
+                $email->setPlaceholder('LINK_WISH_ADD', $href . '&wish_add=true');
+
+                $success = $email->send();
+
+                /** Save date to database */
+                if (true === $success) {
+                    $database
+                    ->query(
+                        'UPDATE `wishlists`
+                            SET `notification_sent` = CURRENT_TIMESTAMP
+                          WHERE `id` = ' . $wishlist['id'] . ';'
+                    );
+                }
+            }
+
+            $response['success']        = true;
+            $response['email_was_sent'] = false !== $wishlist;
         }
         break;
 

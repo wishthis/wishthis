@@ -24,10 +24,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
         $users
     );
 
-    $isHuman    = false;
-    $planet     = strtolower($_POST['planet']);
-    $planetName = strtoupper($planet[0]) . substr($planet, 1);
-    $planets    = array(
+    $isHuman     = false;
+    $planet      = strtolower($_POST['planet']);
+    $planetName  = strtoupper($planet[0]) . substr($planet, 1);
+    $planets     = array(
         strtolower(__('Mercury')),
         strtolower(__('Venus')),
         strtolower(__('Earth')),
@@ -61,36 +61,41 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
              * Password reset
              */
             $user = $database
-            ->query('SELECT * FROM `users`
-                      WHERE `email`                = "' . $_GET['password-reset'] . '"
-                        AND `password_reset_token` = "' . $_GET['token'] . '";')
+            ->query(
+                'SELECT * FROM `users`
+                  WHERE `email`                = "' . $_GET['password-reset'] . '"
+                    AND `password_reset_token` = "' . $_GET['token'] . '";'
+            )
             ->fetch();
 
-            if ($user) {
+            if (false !== $user) {
                 if (time() > $user['password_reset_valid_until']) {
                     $database
-                    ->query('UPDATE `users`
+                    ->query(
+                        'UPDATE `users`
                                 SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
-                              WHERE `id`                         = ' . $user['id'] . ';');
+                              WHERE `id`                         = ' . $user['id'] . ';'
+                    );
 
                     $page->messages[] = Page::success(
                         'Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.',
                         'Success'
                     );
                 } else {
-                    $page->messages[] = Page::error(__('This link has expired.'), __('Failure'));
+                    $page->messages[] = Page::error(__('This password reset link has expired, please request a new one.'), __('Failure'));
                 }
             } else {
-                $page->messages[] = Page::error(__('This link seems invalid.'), __('Failure'));
+                $page->messages[] = Page::error(__('This password reset link seems to have been manipulated, please request a new one.'), __('Failure'));
             }
         } else {
             /**
              * Register
              */
             if (0 === count($users)) {
-                $database->query('INSERT INTO `users`
+                $database->query(
+                    'INSERT INTO `users`
                                 (
                                     `email`,
                                     `password`,
@@ -100,7 +105,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     "' . User::generatePassword($_POST['password']) . '",
                                     100
                                 )
-                ;');
+                ;'
+                );
                 $userRegistered = true;
             } else {
                 if (in_array($_POST['email'], $emails)) {
@@ -109,7 +115,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         __('Invalid email address')
                     );
                 } else {
-                    $database->query('INSERT INTO `users`
+                    $database->query(
+                        'INSERT INTO `users`
                                     (
                                         `email`,
                                         `password`
@@ -117,7 +124,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                         "' . $_POST['email'] . '",
                                         "' . User::generatePassword($_POST['password']) . '"
                                     )
-                    ;');
+                    ;'
+                    );
                     $userRegistered = true;
 
                     $page->messages[] = Page::success(__('Your account was successfully created.'), __('Success'));
@@ -133,7 +141,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             $wishlistName = __('My hopes and dreams');
 
             $database
-            ->query('INSERT INTO `wishlists`
+            ->query(
+                'INSERT INTO `wishlists`
                     (
                         `user`,
                         `name`,
@@ -143,7 +152,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         "' . $wishlistName . '",
                         "' . sha1(time() . $userID . $wishlistName) . '"
                     )
-            ;');
+            ;'
+            );
         }
     } else {
         $page->messages[] = Page::error(

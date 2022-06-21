@@ -61,10 +61,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $wish_title          = trim($_POST['wish_title']);
             $wish_description    = trim($_POST['wish_description']);
-            $wish_image          = 'NULL';
+            $wish_image          = trim($_POST['wish_image']);
             $wish_url            = trim($_POST['wish_url']);
             $wish_priority       = isset($_POST['wish_priority']) && $_POST['wish_priority'] ? $_POST['wish_priority'] : 'NULL';
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'true' : 'false';
+
+            if (Wish::NO_IMAGE === $wish_image) {
+                $wish_image = '';
+            }
 
             if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
                 /** Update wish */
@@ -84,11 +88,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     }
 
                     /** Image */
-                    if (!empty($info->image)) {
-                        $codeImage = URL::getResponseCode($info->image);
+                    if (empty($wish_image) && empty($wish->image)) {
+                        if (!empty($info->image)) {
+                            $codeImage = URL::getResponseCode($info->image);
 
-                        if ($codeImage >= 200 && $codeImage < 400) {
-                            $wish_image = '"' . $info->image . '"';
+                            if ($codeImage >= 200 && $codeImage < 400) {
+                                $wish_image = '"' . $info->image . '"';
+                            }
                         }
                     }
 
@@ -98,9 +104,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
-                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
-                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
+                $wish_title       = empty($wish_title)                                   ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description)                             ? 'NULL' : '"' . $wish_description           . '"';
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? 'NULL' : '"' . $wish_image                 . '"';
+                $wish_url         = empty($wish_url)                                     ? 'NULL' : '"' . $wish_url                   . '"';
 
                 $database
                 ->query(
@@ -153,11 +160,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     }
 
                     /** Image */
-                    if (!empty($info->image)) {
-                        $codeImage = URL::getResponseCode($info->image);
+                    if (empty($wish_image) && empty($wish->image)) {
+                        if (!empty($info->image)) {
+                            $codeImage = URL::getResponseCode($info->image);
 
-                        if ($codeImage >= 200 && $codeImage < 400) {
-                            $wish_image = '"' . $info->image . '"';
+                            if ($codeImage >= 200 && $codeImage < 400) {
+                                $wish_image = '"' . $info->image . '"';
+                            }
                         }
                     }
 
@@ -167,9 +176,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)       ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
-                $wish_description = empty($wish_description) ? 'NULL' : '"' . $wish_description            . '"';
-                $wish_url         = empty($wish_url)         ? 'NULL' : '"' . $wish_url                    . '"';
+                $wish_title       = empty($wish_title)                                   ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
+                $wish_description = empty($wish_description)                             ? 'NULL' : '"' . $wish_description           . '"';
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? 'NULL' : '"' . $wish_image                 . '"';
+                $wish_url         = empty($wish_url)                                     ? 'NULL' : '"' . $wish_url                   . '"';
 
                 $database
                 ->query(
