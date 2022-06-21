@@ -507,13 +507,11 @@ $(function () {
             },
             onHide    : function() {
                 /** Ugly URL */
-                var paramString = location.search.split('?')[1];
-                var queryString = new URLSearchParams(paramString);
+                if (urlParams.has('wish_add')) {
+                    delete($_GET.wish_add);
+                    urlParams.delete('wish_add');
 
-                if (queryString.has('wish_add')) {
-                    queryString.delete('wish_add');
-
-                    window.history.pushState(null, document.title, '?' + queryString.toString());
+                    window.history.pushState(null, document.title, '?' + urlParams.toString());
                 }
 
                 /** Pretty URL */
