@@ -57,6 +57,7 @@ $page->navigation();
                             <ul>
                                 <li><?= __('Changelog is now a page instead of a downloadable markdown file') ?></li>
                                 <li><?= __('Wishes can be edited from the wishlist now, without loading another page') ?></li>
+                                <li><?= __('"Saved wishlists" has been renamed to "Remember lists"') ?></li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>

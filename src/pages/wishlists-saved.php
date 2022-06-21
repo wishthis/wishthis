@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$page = new Page(__FILE__, __('Saved lists'));
+$page = new Page(__FILE__, __('Remembered lists'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
