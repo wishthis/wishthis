@@ -11,7 +11,7 @@ namespace wishthis;
 $page = new Page(__FILE__, __('Login as'), 100);
 
 if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+    $email = Sanitiser::getEmail($_POST['email']);
 
     $user = $database
     ->query(

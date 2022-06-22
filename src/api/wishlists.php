@@ -21,15 +21,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Create
              */
+            $user_id   = Sanitiser::getNumber($_SESSION['user']['id']);
+            $wish_name = Sanitiser::getTitle($_POST['wishlist-name']);
+
             $database->query('INSERT INTO `wishlists`
                 (
                     `user`,
                     `name`,
                     `hash`
                 ) VALUES (
-                    ' . $_SESSION['user']['id'] . ',
-                    "' . $_POST['wishlist-name'] . '",
-                    "' . sha1(time() . $_SESSION['user']['id'] . $_POST['wishlist-name']) . '"
+                     ' . $user_id . ',
+                    "' . $wish_name . '",
+                    "' . sha1(time() . $user_id . $wish_name) . '"
                 )
             ;');
 
@@ -40,7 +43,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Request more wishes
              */
-            $wishlistID = $_POST['wishlist-id'];
+            $wishlistID = Sanitiser::getNumber($_POST['wishlist-id']);
 
             /** Get last notification time */
             $wishlistQuery = $database
@@ -148,8 +151,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $database
         ->query('UPDATE `wishlists`
-                    SET `name` = "' . $_PUT['wishlist_title'] . '"
-                  WHERE `id`   = ' . $_PUT['wishlist_id'] . '
+                    SET `name` = "' . Sanitiser::getTitle($_PUT['wishlist_title']) . '"
+                  WHERE `id`   =  ' . Sanitiser::getNumber($_PUT['wishlist_id']) . '
         ;');
 
         $response['success'] = true;
@@ -159,7 +162,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         parse_str(file_get_contents("php://input"), $_DELETE);
 
         $database->query('DELETE FROM `wishlists`
-            WHERE `id` = ' . $_DELETE['wishlistID'] . '
+            WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlistID']) . '
         ;');
 
         $response['success'] = true;

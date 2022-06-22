@@ -108,7 +108,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         $database
         ->query('UPDATE `users`
                     SET ' . implode(',', $set) . '
-                  WHERE `id` = ' . $_POST['user-id']);
+                  WHERE `id` = ' . Sanitiser::getNumber($_POST['user-id']));
     }
 
     if ($loginRequired) {

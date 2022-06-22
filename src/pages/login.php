@@ -14,7 +14,7 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $email    = $_POST['email'];
+    $email    = Sanitiser::getEmail($_POST['email']);
     $password = User::generatePassword($_POST['password']);
 
     $database->query('UPDATE `users`
@@ -54,7 +54,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
     $user = $database
     ->query('SELECT *
                FROM `users`
-              WHERE `email` = "' . $_POST['email'] . '";')
+              WHERE `email` = "' . Sanitiser::getEmail($_POST['email']) . '";')
     ->fetch();
 
     if ($user) {
@@ -68,7 +68,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
                   WHERE `id` = ' . $user['id'] . '
         ;');
 
-        $emailReset = new Email($_POST['email'], __('Password reset link'), 'default', 'password-reset');
+        $emailReset = new Email($user['email'], __('Password reset link'), 'default', 'password-reset');
         $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,'));
         $emailReset->setPlaceholder(
             'TEXT_PASSWORD_RESET',
@@ -84,7 +84,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token
+            Page::PAGE_REGISTER . '&password-reset=' . $user['email'] . '&token=' . $token
         );
 
         $emailReset->send();
