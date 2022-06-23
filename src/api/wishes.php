@@ -165,7 +165,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             $codeImage = URL::getResponseCode($info->image);
 
                             if ($codeImage >= 200 && $codeImage < 400) {
-                                $wish_image = '"' . $info->image . '"';
+                                $wish_image = $info->image;
                             }
                         }
                     }
