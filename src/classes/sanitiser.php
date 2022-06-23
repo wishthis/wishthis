@@ -6,7 +6,7 @@ class Sanitiser
 {
     public static function getNumber(mixed $valueToSanitise): float
     {
-        return preg_replace('/[^0-9\.]+/', '', $valueToSanitise);
+        return floatval(preg_replace('/[^0-9\.]+/', '', $valueToSanitise));
     }
 
     public static function getPage(mixed $valueToSanitise): string
