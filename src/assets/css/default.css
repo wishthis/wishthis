@@ -26,6 +26,9 @@ figure {
     height: 1em;
     margin: 0;
 }
+#logo {
+    color: inherit;
+}
 #logo path {
     fill: currentColor;
 }
