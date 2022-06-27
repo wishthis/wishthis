@@ -52,7 +52,7 @@ $users = $database
         <?php
         if (isset($success)) {
             if ($success) {
-                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']['email']), __('Success'));
+                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']->email), __('Success'));
             } else {
                 echo Page::error(__('User not found!'), __('Error'));
             }
