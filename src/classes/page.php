@@ -694,17 +694,7 @@ class Page
                         <div class="ui inverted link list">
                             <div class="item">
                                 <i class="code branch icon"></i>
-                                <div class="content">
-                                    <?php
-                                    global $options;
-
-                                    if (VERSION === $options->version) {
-                                        echo 'v' . VERSION;
-                                    } else {
-                                        echo 'v' . VERSION . ' / ' . 'v' . $options->version;
-                                    }
-                                    ?>
-                                </div>
+                                <div class="content"><?= VERSION ?></div>
                             </div>
 
                             <a class="item"
