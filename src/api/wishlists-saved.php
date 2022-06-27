@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+namespace wishthis;
+
 $api      = true;
 $response = array();
 

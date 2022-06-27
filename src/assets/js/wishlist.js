@@ -103,7 +103,8 @@ $(function() {
                     button_set_default_state(buttonSave);
                     break;
             }
-
+        })
+        .finally(function() {
             buttonSave.removeClass('disabled loading');
         });
     });
