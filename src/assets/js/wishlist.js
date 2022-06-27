@@ -144,11 +144,13 @@ $(function() {
      * Request more wishes
      */
     $(document).on('click', '.ui.button.wishlist-request-wishes', function() {
-        var buttonRequest = $(this);
-        var wishlist_id   = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+        var buttonRequest   = $(this);
+        var wishlist_id     = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+        var wishlist_locale = buttonRequest.attr('data-locale');
 
         var formData = new URLSearchParams({
             'wishlist-id' : wishlist_id,
+            'locale'      : wishlist_locale
         });
 
         buttonRequest.addClass('disabled loading');

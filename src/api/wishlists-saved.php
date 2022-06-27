@@ -18,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         /**
          * Get
          */
-        $response['data'] = $user->getSavedWishlists();
+        $response['data'] = $_SESSION['user']->getSavedWishlists();
         break;
 
     case 'POST':
@@ -45,7 +45,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     `user`,
                     `wishlist`
                 ) VALUES (
-                    ' . $user->id . ',
+                    ' . $_SESSION['user']->id . ',
                     ' . Sanitiser::getNumber($_POST['wishlist']) . '
                 )
                 ;');

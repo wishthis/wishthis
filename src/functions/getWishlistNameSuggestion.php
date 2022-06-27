@@ -8,8 +8,7 @@
 
 function getWishlistNameSuggestion(): string
 {
-    global $user;
-
+    $user  = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
     $now   = time();
     $month = date('n');
     $name  = '';

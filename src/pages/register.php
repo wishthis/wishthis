@@ -64,23 +64,24 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             /**
              * Password reset
              */
-            $user = $database
+            $userQuery = $database
             ->query(
                 'SELECT * FROM `users`
                   WHERE `email`                = "' . $user_email . '"
                     AND `password_reset_token` = "' . $user_token . '";'
-            )
-            ->fetch();
+            );
 
-            if (false !== $user) {
-                if (time() > $user['password_reset_valid_until']) {
+            if (false !== $userQuery) {
+                $user = new User($userQuery->fetch());
+
+                if (time() > $user->password_reset_valid_until) {
                     $database
                     ->query(
                         'UPDATE `users`
                                 SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
-                              WHERE `id`                         = ' . $user['id'] . ';'
+                              WHERE `id`                         = ' . $user->id . ';'
                     );
 
                     $page->messages[] = Page::success(

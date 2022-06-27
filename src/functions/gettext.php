@@ -6,14 +6,16 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-function __(string $text, string $context = null): string
+use wishthis\User;
+
+function __(string $text, string $context = null, User $user = null): string
 {
-    global $translations;
+    if (null === $user) {
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+    }
 
-    $translation = null;
-
-    if ($translations) {
-        $translation = $translations->find($context, $text);
+    if (null !== $user->translations) {
+        $translation = $user->translations->find($context, $text);
 
         if ($translation) {
             $translationText = $translation->getTranslation();

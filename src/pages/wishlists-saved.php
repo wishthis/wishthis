@@ -13,7 +13,7 @@ $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$wishlists = $user->getSavedWishlists();
+$wishlists = $_SESSION['user']->getSavedWishlists();
 ?>
 <main>
     <div class="ui container">
@@ -24,7 +24,7 @@ $wishlists = $user->getSavedWishlists();
                 <?php foreach ($wishlists as $wishlist_saved) { ?>
                     <?php
                     $wishlist      = new Wishlist($wishlist_saved['wishlist']);
-                    $wishlist_user = new User($wishlist_saved['user']);
+                    $wishlist_user = User::getFromID($wishlist_saved['user']);
                     $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->hash;
                     ?>
                     <div class="column">

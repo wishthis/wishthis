@@ -135,8 +135,9 @@ class Page
         /**
          * Session
          */
-        global $user, $options;
+        global $options;
 
+        $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
             'home',
             'blog',
@@ -150,9 +151,9 @@ class Page
         );
 
         if (
-               !isset($_SESSION['user'])
+               false === $user->isLoggedIn()
             && isset($_GET['page'])
-            && !in_array($_GET['page'], $ignorePower)
+            && false === in_array($_GET['page'], $ignorePower)
         ) {
             redirect(Page::PAGE_LOGIN);
         }
@@ -461,7 +462,7 @@ class Page
 
     public function navigation(): void
     {
-        $user = new User();
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
         $wishlists = Navigation::Wishlists->value;
         $blog      = Navigation::Blog->value;

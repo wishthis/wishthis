@@ -13,18 +13,19 @@ $page = new Page(__FILE__, __('Login as'), 100);
 if (isset($_POST['email'])) {
     $email = Sanitiser::getEmail($_POST['email']);
 
-    $user = $database
+    $userQuery = $database
     ->query(
         'SELECT *
            FROM `users`
-          WHERE `email`    = "' . $email . '";'
-    )
-    ->fetch();
+          WHERE `email` = "' . $email . '";'
+    );
 
-    $success = false !== $user;
+    $success = false !== $userQuery;
 
     if ($success) {
-        $_SESSION['user'] = $user;
+        $fields = $userQuery->fetch();
+
+        $_SESSION['user'] = new User($fields);
     }
 }
 

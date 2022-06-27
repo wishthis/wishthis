@@ -115,13 +115,13 @@ class Wish
     {
         ob_start();
 
-        $userCard        = new User($ofUser);
+        $userCard        = User::getFromID($ofUser);
         $numberFormatter = new \NumberFormatter(
-            $userCard->locale,
+            $userCard->getLocale(),
             \NumberFormatter::CURRENCY
         );
 
-        $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $userCard->id;
+        $userIsCurrent = isset($_SESSION['user']->id) && $_SESSION['user']->id === $userCard->id;
 
         /**
          * Card
