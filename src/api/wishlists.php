@@ -51,7 +51,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'SELECT *
                    FROM `wishlists`
                   WHERE `id` = ' . $wishlistID . '
-                    AND (`notification_sent` < UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
+                    AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
             );
 
             $wishlist = $wishlistQuery->fetch();
