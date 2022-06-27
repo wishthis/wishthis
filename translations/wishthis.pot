@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-06-21 10:08+0200\n"
+"POT-Creation-Date: 2022-06-27 10:33+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -21,21 +21,21 @@ msgstr ""
 msgid "Posted on %s"
 msgstr ""
 
-#: api/wishlists.php:62
+#: api/wishlists.php:65
 msgid "Wish request"
 msgstr ""
 
-#: api/wishlists.php:63 pages/login.php:72
+#: api/wishlists.php:66 pages/login.php:84
 msgid "Hello,"
 msgstr ""
 
 #. TRANSLATORS: %s: Wishlist name
-#: api/wishlists.php:68
+#: api/wishlists.php:71
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
 msgstr ""
 
-#: api/wishlists.php:72
+#: api/wishlists.php:75
 msgid "Add wish"
 msgstr ""
 
@@ -43,346 +43,346 @@ msgstr ""
 msgid "wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion."
 msgstr ""
 
-#: classes/page.php:212
+#: classes/page.php:213
 msgid "This is the development environment of wishthis. The database will reset every day at around 00:00."
 msgstr ""
 
-#: classes/page.php:213
+#: classes/page.php:214
 msgid "Development environment"
 msgstr ""
 
-#: classes/page.php:336
+#: classes/page.php:337
 msgid "No wishlist selected."
 msgstr ""
 
-#: classes/page.php:338 classes/page.php:368 pages/login-as.php:56
+#: classes/page.php:339 classes/page.php:369 pages/login-as.php:57
 msgid "Error"
 msgstr ""
 
-#: classes/page.php:339 pages/register.php:87 pages/register.php:90
+#: classes/page.php:340 pages/register.php:92 pages/register.php:95
 msgid "Failure"
 msgstr ""
 
-#: classes/page.php:340
+#: classes/page.php:341
 msgid "The server did not confirm that the action was successful."
 msgstr ""
 
-#: classes/page.php:341
+#: classes/page.php:342
 msgid "Thanks for nothing"
 msgstr ""
 
-#: classes/page.php:342
+#: classes/page.php:343
 msgid "Understood"
 msgstr ""
 
-#: classes/page.php:343 pages/install.php:253 pages/login-as.php:54
-#: pages/profile.php:55 pages/profile.php:119 pages/register.php:131
+#: classes/page.php:344 pages/install.php:253 pages/login-as.php:55
+#: pages/profile.php:55 pages/profile.php:119 pages/register.php:136
 msgid "Success"
 msgstr ""
 
-#: classes/page.php:345
+#: classes/page.php:346
 msgid "Close this tab"
 msgstr ""
 
-#: classes/page.php:346
+#: classes/page.php:347
 msgid "Show wishlist anyway"
 msgstr ""
 
-#: classes/page.php:347 classes/page.php:352
+#: classes/page.php:348 classes/page.php:353
 msgid "Really delete?"
 msgstr ""
 
-#: classes/page.php:348
+#: classes/page.php:349
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
 msgstr ""
 
-#: classes/page.php:349 classes/page.php:354
+#: classes/page.php:350 classes/page.php:355
 msgid "Yes, delete"
 msgstr ""
 
-#: classes/page.php:350 classes/page.php:355
+#: classes/page.php:351 classes/page.php:356
 msgid "No, keep"
 msgstr ""
 
-#: classes/page.php:353
+#: classes/page.php:354
 msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr ""
 
-#: classes/page.php:357
+#: classes/page.php:358
 msgid "Passwords must match."
 msgstr ""
 
-#: classes/page.php:359
+#: classes/page.php:360
 msgid "Wishlist successfully renamed."
 msgstr ""
 
-#: classes/page.php:360
+#: classes/page.php:361
 msgid "Wishlist successfully deleted."
 msgstr ""
 
-#: classes/page.php:362
+#: classes/page.php:363
 msgid "Wish successfully created."
 msgstr ""
 
-#: classes/page.php:363
+#: classes/page.php:364
 msgid "Wish successfully added."
 msgstr ""
 
-#: classes/page.php:364
+#: classes/page.php:365
 msgid "Wish information updated."
 msgstr ""
 
-#: classes/page.php:365
+#: classes/page.php:366
 msgid "Don't forget to save your changes."
 msgstr ""
 
-#: classes/page.php:366
+#: classes/page.php:367
 msgid "Wish successfully deleted."
 msgstr ""
 
-#: classes/page.php:369
+#: classes/page.php:370
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr ""
 
-#: classes/page.php:370
+#: classes/page.php:371
 msgid "Link copied to clipboard."
 msgstr ""
 
-#: classes/page.php:372
+#: classes/page.php:373
 msgid "{name} must have a value"
 msgstr ""
 
-#: classes/page.php:373
+#: classes/page.php:374
 msgid "{name} must be checked"
 msgstr ""
 
-#: classes/page.php:374
+#: classes/page.php:375
 msgid "{name} must be a valid e-mail"
 msgstr ""
 
-#: classes/page.php:375
+#: classes/page.php:376
 msgid "{name} must be a valid URL"
 msgstr ""
 
-#: classes/page.php:376
+#: classes/page.php:377
 msgid "{name} is not formatted correctly"
 msgstr ""
 
-#: classes/page.php:377
+#: classes/page.php:378
 msgid "{name} must be an integer"
 msgstr ""
 
-#: classes/page.php:378
+#: classes/page.php:379
 msgid "{name} must be a decimal number"
 msgstr ""
 
-#: classes/page.php:379
+#: classes/page.php:380
 msgid "{name} must be set to a number"
 msgstr ""
 
-#: classes/page.php:380
+#: classes/page.php:381
 msgid "{name} must be \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:381
+#: classes/page.php:382
 msgid "{name} must be exactly \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:382
+#: classes/page.php:383
 msgid "{name} cannot be set to \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:383
+#: classes/page.php:384
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:384
+#: classes/page.php:385
 msgid "{name} cannot contain \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:385
+#: classes/page.php:386
 msgid "{name} cannot contain exactly \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:386
+#: classes/page.php:387
 msgid "{name} must contain \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:387
+#: classes/page.php:388
 msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr ""
 
-#: classes/page.php:388 classes/page.php:389
+#: classes/page.php:389 classes/page.php:390
 msgid "{name} must be at least {ruleValue} characters"
 msgstr ""
 
-#: classes/page.php:390
+#: classes/page.php:391
 msgid "{name} must be exactly {ruleValue} characters"
 msgstr ""
 
-#: classes/page.php:391
+#: classes/page.php:392
 msgid "{name} cannot be longer than {ruleValue} characters"
 msgstr ""
 
-#: classes/page.php:392
+#: classes/page.php:393
 msgid "{name} must match {ruleValue} field"
 msgstr ""
 
-#: classes/page.php:393
+#: classes/page.php:394
 msgid "{name} must have a different value than {ruleValue} field"
 msgstr ""
 
-#: classes/page.php:394
+#: classes/page.php:395
 msgid "{name} must be a valid credit card number"
 msgstr ""
 
-#: classes/page.php:395
+#: classes/page.php:396
 msgid "{name} must have at least {ruleValue} choices"
 msgstr ""
 
-#: classes/page.php:396
+#: classes/page.php:397
 msgid "{name} must have exactly {ruleValue} choices"
 msgstr ""
 
-#: classes/page.php:397
+#: classes/page.php:398
 msgid "{name} must have {ruleValue} or less choices"
-msgstr ""
-
-#: classes/page.php:399
-msgctxt "Calendar"
-msgid "Today"
 msgstr ""
 
 #: classes/page.php:400
 msgctxt "Calendar"
-msgid "Now"
+msgid "Today"
 msgstr ""
 
 #: classes/page.php:401
 msgctxt "Calendar"
-msgid "AM"
+msgid "Now"
 msgstr ""
 
 #: classes/page.php:402
 msgctxt "Calendar"
-msgid "PM"
+msgid "AM"
 msgstr ""
 
 #: classes/page.php:403
 msgctxt "Calendar"
+msgid "PM"
+msgstr ""
+
+#: classes/page.php:404
+msgctxt "Calendar"
 msgid "Week"
 msgstr ""
 
-#: classes/page.php:405 pages/wishlist.php:33
+#: classes/page.php:406 pages/wishlist.php:34
 msgid "Remember list"
 msgstr ""
 
-#: classes/page.php:406
+#: classes/page.php:407
 msgid "Forget list"
 msgstr ""
 
-#: classes/page.php:450 pages/home.php:24
+#: classes/page.php:451 pages/home.php:24
 msgid "Make a wish"
 msgstr ""
 
-#: classes/page.php:476 classes/page.php:480 pages/blog.php:11
+#: classes/page.php:477 classes/page.php:481 pages/blog.php:11
 #: pages/changelog.php:41 pages/post.php:62
 msgid "Blog"
 msgstr ""
 
-#: classes/page.php:487
+#: classes/page.php:488
 msgid "System"
 msgstr ""
 
-#: classes/page.php:493
+#: classes/page.php:494
 msgid "Account"
 msgstr ""
 
-#: classes/page.php:502 pages/home.php:179
+#: classes/page.php:503 pages/home.php:179
 msgid "Wishlists"
 msgstr ""
 
-#: classes/page.php:506 pages/home.php:33 pages/home.php:35
+#: classes/page.php:507 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr ""
 
-#: classes/page.php:511 pages/wishlists-saved.php:11
+#: classes/page.php:512 pages/wishlists-saved.php:11
 msgid "Remembered lists"
 msgstr ""
 
-#: classes/page.php:521 pages/profile.php:11
+#: classes/page.php:522 pages/profile.php:11
 msgid "Profile"
 msgstr ""
 
-#: classes/page.php:527 pages/login-as.php:11
+#: classes/page.php:528 pages/login-as.php:11
 msgid "Login as"
 msgstr ""
 
-#: classes/page.php:533 pages/logout.php:11
+#: classes/page.php:534 pages/logout.php:11
 msgid "Logout"
 msgstr ""
 
-#: classes/page.php:539 classes/page.php:543 pages/home.php:79
-#: pages/home.php:81 pages/login-as.php:75 pages/login-as.php:76
-#: pages/login.php:11 pages/login.php:138 pages/login.php:139
-#: pages/register.php:239 pages/register.php:241
+#: classes/page.php:540 classes/page.php:544 pages/home.php:79
+#: pages/home.php:81 pages/login-as.php:76 pages/login-as.php:77
+#: pages/login.php:11 pages/login.php:150 pages/login.php:151
+#: pages/register.php:244 pages/register.php:246
 msgid "Login"
 msgstr ""
 
-#: classes/page.php:550 classes/page.php:554 pages/install.php:257
-#: pages/install.php:259 pages/login.php:143 pages/login.php:145
+#: classes/page.php:551 classes/page.php:555 pages/install.php:257
+#: pages/install.php:259 pages/login.php:155 pages/login.php:157
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr ""
 
-#: classes/page.php:564 pages/settings.php:11
+#: classes/page.php:565 pages/settings.php:11
 msgid "Settings"
 msgstr ""
 
-#: classes/page.php:711 classes/page.php:714 pages/changelog.php:11
+#: classes/page.php:712 classes/page.php:715 pages/changelog.php:11
 msgid "Changelog"
 msgstr ""
 
-#: classes/page.php:720
+#: classes/page.php:721
 msgid "Contribute"
 msgstr ""
 
-#: classes/page.php:726 classes/page.php:729
+#: classes/page.php:727 classes/page.php:730
 msgid "GitHub repository"
 msgstr ""
 
-#: classes/page.php:735 classes/page.php:738
+#: classes/page.php:736 classes/page.php:739
 msgid "Translate"
 msgstr ""
 
-#: classes/page.php:744
+#: classes/page.php:745
 msgid "Contact"
 msgstr ""
 
-#: classes/page.php:750 classes/page.php:753
+#: classes/page.php:751 classes/page.php:754
 msgid "Matrix"
 msgstr ""
 
-#: classes/page.php:759 classes/page.php:762
+#: classes/page.php:760 classes/page.php:763
 msgid "Discord"
 msgstr ""
 
-#: classes/page.php:799
+#: classes/page.php:800
 #, php-format
 msgid "%s not found"
 msgstr ""
 
-#: classes/page.php:809
+#: classes/page.php:810
 msgid "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 
-#: classes/page.php:813
+#: classes/page.php:814
 msgid "The requested Wish was not found."
 msgstr ""
 
-#: classes/page.php:817
+#: classes/page.php:818
 #, php-format
 msgid "The requested %s was not found."
 msgstr ""
@@ -419,7 +419,7 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: classes/wish.php:231 classes/wish.php:234 pages/wishlist.php:64
+#: classes/wish.php:231 classes/wish.php:234 pages/wishlist.php:65
 msgid "Fulfil wish"
 msgstr ""
 
@@ -468,15 +468,15 @@ msgstr ""
 msgid "Release candidate"
 msgstr ""
 
-#: functions/getWishlistNameSuggestion.php:31
+#: functions/getWishlistNameSuggestion.php:30
 msgid "Birthday"
 msgstr ""
 
-#: functions/getWishlistNameSuggestion.php:33
+#: functions/getWishlistNameSuggestion.php:32
 msgid "Easter"
 msgstr ""
 
-#: functions/getWishlistNameSuggestion.php:35
+#: functions/getWishlistNameSuggestion.php:34
 msgid "Christmas"
 msgstr ""
 
@@ -663,7 +663,7 @@ msgstr ""
 msgid "N. A."
 msgstr ""
 
-#: pages/home.php:174 pages/wishlist.php:69 pages/wishlists.php:87
+#: pages/home.php:174 pages/wishlist.php:70 pages/wishlists.php:87
 msgid "Wishes"
 msgstr ""
 
@@ -700,8 +700,8 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: pages/install.php:54 pages/login.php:127 pages/profile.php:143
-#: pages/profile.php:218 pages/profile.php:227 pages/register.php:203
+#: pages/install.php:54 pages/login.php:139 pages/profile.php:143
+#: pages/profile.php:218 pages/profile.php:227 pages/register.php:208
 msgid "Password"
 msgstr ""
 
@@ -714,67 +714,67 @@ msgstr ""
 msgid "Click continue to test the database connection."
 msgstr ""
 
-#: pages/login-as.php:54
+#: pages/login-as.php:55
 #, php-format
 msgid "Successfully logged in as %s."
 msgstr ""
 
-#: pages/login-as.php:56
+#: pages/login-as.php:57
 msgid "User not found!"
 msgstr ""
 
-#: pages/login-as.php:64 pages/login.php:118 pages/profile.php:34
-#: pages/profile.php:184 pages/register.php:185
+#: pages/login-as.php:65 pages/login.php:130 pages/profile.php:34
+#: pages/profile.php:184 pages/register.php:190
 msgid "Email"
 msgstr ""
 
-#: pages/login.php:36
+#: pages/login.php:44
 msgid "No user could be found with the credentials you provided."
 msgstr ""
 
-#: pages/login.php:37
+#: pages/login.php:45
 msgid "Invalid credentials"
 msgstr ""
 
-#: pages/login.php:71
+#: pages/login.php:83
 msgid "Password reset link"
 msgstr ""
 
 #. TRANSLATORS: %s: The wishthis domain
-#: pages/login.php:77
+#: pages/login.php:89
 #, php-format
 msgid "somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one."
 msgstr ""
 
-#: pages/login.php:81
+#: pages/login.php:93
 msgid "Set new password"
 msgstr ""
 
-#: pages/login.php:93
+#: pages/login.php:105
 msgid "If a match can be found for this email address, a password reset link will be sent to it."
 msgstr ""
 
-#: pages/login.php:94
+#: pages/login.php:106
 msgid "Info"
 msgstr ""
 
-#: pages/login.php:114
+#: pages/login.php:126
 msgid "Credentials"
 msgstr ""
 
-#: pages/login.php:151
+#: pages/login.php:163
 msgid "Forgot password?"
 msgstr ""
 
-#: pages/login.php:153
+#: pages/login.php:165
 msgid "Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again."
 msgstr ""
 
-#: pages/login.php:169 pages/login.php:170
+#: pages/login.php:181 pages/login.php:182
 msgid "Send email"
 msgstr ""
 
-#: pages/login.php:178
+#: pages/login.php:190
 msgid "Please note that you have to enter the email address, you have registered with."
 msgstr ""
 
@@ -995,123 +995,123 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: pages/register.php:31
+#: pages/register.php:32
 msgid "Mercury"
 msgstr ""
 
-#: pages/register.php:32
+#: pages/register.php:33
 msgid "Venus"
 msgstr ""
 
-#: pages/register.php:33
+#: pages/register.php:34
 msgid "Earth"
 msgstr ""
 
-#: pages/register.php:34
+#: pages/register.php:35
 msgid "Mars"
 msgstr ""
 
-#: pages/register.php:35
+#: pages/register.php:36
 msgid "Jupiter"
 msgstr ""
 
-#: pages/register.php:36
+#: pages/register.php:37
 msgid "Saturn"
 msgstr ""
 
-#: pages/register.php:37
+#: pages/register.php:38
 msgid "Uranus"
 msgstr ""
 
-#: pages/register.php:38
+#: pages/register.php:39
 msgid "Neptune"
 msgstr ""
 
-#: pages/register.php:41
+#: pages/register.php:42
 msgid "Pluto"
 msgstr ""
 
-#: pages/register.php:42
+#: pages/register.php:43
 msgid "Sun"
 msgstr ""
 
-#: pages/register.php:51
+#: pages/register.php:52
 #, php-format
 msgid "%s is not a planet but I'll let it slide, since only a human would make this kind of mistake."
 msgstr ""
 
-#: pages/register.php:52 pages/register.php:161
+#: pages/register.php:53 pages/register.php:166
 msgid "Invalid planet"
 msgstr ""
 
-#: pages/register.php:87
+#: pages/register.php:92
 msgid "This password reset link has expired, please request a new one."
 msgstr ""
 
-#: pages/register.php:90
+#: pages/register.php:95
 msgid "This password reset link seems to have been manipulated, please request a new one."
 msgstr ""
 
-#: pages/register.php:114
+#: pages/register.php:119
 msgid "An account with this email address already exists."
 msgstr ""
 
-#: pages/register.php:115
+#: pages/register.php:120
 msgid "Invalid email address"
 msgstr ""
 
-#: pages/register.php:131
+#: pages/register.php:136
 msgid "Your account was successfully created."
 msgstr ""
 
-#: pages/register.php:141
+#: pages/register.php:146
 msgid "My hopes and dreams"
 msgstr ""
 
-#: pages/register.php:160
+#: pages/register.php:165
 #, php-format
 msgid "%s is not a planet in our solar system. Read this for more information: %s."
 msgstr ""
 
-#: pages/register.php:182
+#: pages/register.php:187
 msgid "Account details"
 msgstr ""
 
-#: pages/register.php:213
+#: pages/register.php:218
 msgid "Authentication"
 msgstr ""
 
-#: pages/register.php:214
+#: pages/register.php:219
 msgid "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system."
 msgstr ""
 
-#: pages/register.php:217
+#: pages/register.php:222
 msgid "Planet"
 msgstr ""
 
-#: pages/register.php:224
+#: pages/register.php:229
 msgid "Robots are obviously from another solar system so this will keep them at bay."
 msgstr ""
 
-#: pages/register.php:251
+#: pages/register.php:256
 msgid "About your email address"
 msgstr ""
 
-#: pages/register.php:253
+#: pages/register.php:258
 msgid "Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address."
 msgstr ""
 
-#: pages/register.php:254
+#: pages/register.php:259
 msgid "wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (i. e. when a wish has been fulfilled)."
 msgstr ""
 
 #. TRANSLATORS: %s: source code is publicly viewable
-#: pages/register.php:259
+#: pages/register.php:264
 #, php-format
 msgid "Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s."
 msgstr ""
 
-#: pages/register.php:260
+#: pages/register.php:265
 msgid "source code is publicly viewable"
 msgstr ""
 
@@ -1158,41 +1158,41 @@ msgstr ""
 msgid "Migrate to %s"
 msgstr ""
 
-#: pages/wishlist.php:49
+#: pages/wishlist.php:50
 msgid "Careful"
 msgstr ""
 
-#: pages/wishlist.php:52
+#: pages/wishlist.php:53
 msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
 
-#: pages/wishlist.php:53
+#: pages/wishlist.php:54
 msgid "It's probably best to just close this tab."
 msgstr ""
 
-#: pages/wishlist.php:61
+#: pages/wishlist.php:62
 msgid "What to do?"
 msgstr ""
 
-#: pages/wishlist.php:63
+#: pages/wishlist.php:64
 #, php-format
 msgid "If you found a wish you would like to fulfil, click the %s button and it will temporarily become unavailable for others. Make sure to confirm the fulfilled wish here (i. e. after placing an order), to make the wish permanently unavailable for everybody else."
 msgstr ""
 
-#: pages/wishlist.php:91 pages/wishlist.php:105 pages/wishlist.php:120
+#: pages/wishlist.php:92 pages/wishlist.php:106 pages/wishlist.php:121
 msgid "Request more wishes"
 msgstr ""
 
-#: pages/wishlist.php:109
+#: pages/wishlist.php:110
 msgid "A notification has just been sent to the owner of this wishlist."
 msgstr ""
 
-#: pages/wishlist.php:113 pages/wishlist.php:114 pages/wishlist.php:128
-#: pages/wishlist.php:129
+#: pages/wishlist.php:114 pages/wishlist.php:115 pages/wishlist.php:129
+#: pages/wishlist.php:130
 msgid "Ok"
 msgstr ""
 
-#: pages/wishlist.php:124
+#: pages/wishlist.php:125
 msgid "The wishlist owner has already received a notification recently and has not been notified again."
 msgstr ""
 
