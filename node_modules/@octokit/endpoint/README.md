@@ -3,7 +3,7 @@
 > Turns GitHub REST API endpoints into generic request options
 
 [![@latest](https://img.shields.io/npm/v/@octokit/endpoint.svg)](https://www.npmjs.com/package/@octokit/endpoint)
-![Build Status](https://github.com/octokit/endpoint.js/workflows/Test/badge.svg)
+[![Build Status](https://github.com/octokit/endpoint.js/workflows/Test/badge.svg)](https://github.com/octokit/endpoint.js/actions/workflows/test.yml?query=branch%3Amaster)
 
 `@octokit/endpoint` combines [GitHub REST API routes](https://developer.github.com/v3/) with your parameters and turns them into generic request options that can be used in any request library.
 

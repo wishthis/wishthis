@@ -6,7 +6,7 @@ var resolve = require('../');
 var sync = require('../sync');
 
 var requireResolveSupportsPaths = require.resolve.length > 1
-    && (/^12\.[012]\./).test(process.version); // broken in v12.0-12.2, see https://github.com/nodejs/node/issues/27794
+    && !(/^v12\.[012]\./).test(process.version); // broken in v12.0-12.2, see https://github.com/nodejs/node/issues/27794
 
 test('`./sync` entry point', function (t) {
     t.equal(resolve.sync, sync, '`./sync` entry point is the same as `.sync` on `main`');
@@ -303,6 +303,87 @@ test('incorrect main', function (t) {
             resolve.sync('./incorrect_main', { basedir: resolverDir }),
             require.resolve('./incorrect_main', { paths: [resolverDir] }),
             './incorrect_main: resolve.sync === require.resolve'
+        );
+    }
+
+    t.end();
+});
+
+test('missing index', function (t) {
+    t.plan(requireResolveSupportsPaths ? 2 : 1);
+
+    var resolverDir = path.join(__dirname, 'resolver');
+    try {
+        resolve.sync('./missing_index', { basedir: resolverDir });
+        t.fail('did not fail');
+    } catch (err) {
+        t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+    }
+    if (requireResolveSupportsPaths) {
+        try {
+            require.resolve('./missing_index', { basedir: resolverDir });
+            t.fail('require.resolve did not fail');
+        } catch (err) {
+            t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+        }
+    }
+});
+
+test('missing main', function (t) {
+    var resolverDir = path.join(__dirname, 'resolver');
+
+    try {
+        resolve.sync('./missing_main', { basedir: resolverDir });
+        t.fail('require.resolve did not fail');
+    } catch (err) {
+        t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+    }
+    if (requireResolveSupportsPaths) {
+        try {
+            resolve.sync('./missing_main', { basedir: resolverDir });
+            t.fail('require.resolve did not fail');
+        } catch (err) {
+            t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+        }
+    }
+
+    t.end();
+});
+
+test('null main', function (t) {
+    var resolverDir = path.join(__dirname, 'resolver');
+
+    try {
+        resolve.sync('./null_main', { basedir: resolverDir });
+        t.fail('require.resolve did not fail');
+    } catch (err) {
+        t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+    }
+    if (requireResolveSupportsPaths) {
+        try {
+            resolve.sync('./null_main', { basedir: resolverDir });
+            t.fail('require.resolve did not fail');
+        } catch (err) {
+            t.equal(err && err.code, 'MODULE_NOT_FOUND', 'error has correct error code');
+        }
+    }
+
+    t.end();
+});
+
+test('main: false', function (t) {
+    var basedir = path.join(__dirname, 'resolver');
+    var dir = path.join(basedir, 'false_main');
+    t.equal(
+        resolve.sync('./false_main', { basedir: basedir }),
+        path.join(dir, 'index.js'),
+        '`"main": false`: resolves to `index.js`'
+    );
+    if (requireResolveSupportsPaths) {
+        t.equal(
+            resolve.sync('./false_main', { basedir: basedir }),
+            require.resolve('./false_main', { paths: [basedir] }),
+            '`"main": false`: resolve.sync === require.resolve'
         );
     }
 
