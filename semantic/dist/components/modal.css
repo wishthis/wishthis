@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Modal
+ * # Fomantic-UI 2.9.0-beta.298+8d87844 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
