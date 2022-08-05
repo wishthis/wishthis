@@ -18,46 +18,6 @@
   "permission": false,
   "autoInstall": false,
   "rtl": false,
-  "version": "2.8.8",
-  "components": [
-    "reset",
-    "site",
-
-    "container",
-    "grid",
-
-    "button",
-    "calendar",
-    "card",
-    "checkbox",
-    "dimmer",
-    "divider",
-    "dropdown",
-    "form",
-    "header",
-    "icon",
-    "image",
-    "input",
-    "label",
-    "list",
-    "list",
-    "loader",
-    "menu",
-    "message",
-    "modal",
-    "placeholder",
-    "popup",
-    "progress",
-    "segment",
-    "sidebar",
-    "statistic",
-    "step",
-    "tab",
-    "table",
-    "text",
-    "toast",
-
-    "api",
-    "transition"
-  ]
+  "version": "2.9.0-beta.301+42e68bc",
+  "components": ["reset", "site", "container", "grid", "button", "calendar", "card", "checkbox", "dimmer", "divider", "dropdown", "form", "header", "icon", "image", "input", "label", "list", "list", "loader", "menu", "message", "modal", "placeholder", "popup", "progress", "segment", "sidebar", "statistic", "step", "tab", "table", "text", "toast", "api", "transition"]
 }
