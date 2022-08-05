@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.298+8d87844
+ * # Fomantic UI - 2.9.0-beta.301+42e68bc
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -10,7 +10,7 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400%3B0,700%3B1,400%3B1,700&subset=latin&display=swap');
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Reset
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Reset
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -436,7 +436,7 @@ template {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Site
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -660,7 +660,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Container
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Container
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -818,7 +818,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Grid
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Grid
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3190,7 +3190,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Button
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Button
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8203,7 +8203,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Calendar
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8395,7 +8395,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Card
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Card
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -9955,7 +9955,7 @@ a.inverted.ui.card:hover,
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Checkbox
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10854,7 +10854,7 @@ a.inverted.ui.card:hover,
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Dimmer
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -11362,7 +11362,7 @@ body.dimmable > .dimmer {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Divider
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Divider
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -11676,7 +11676,7 @@ body.dimmable > .dimmer {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Dropdown
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -13989,7 +13989,7 @@ select.ui.dropdown {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Form
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Form
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -15992,7 +15992,7 @@ select.ui.dropdown {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Header
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Header
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16946,7 +16946,7 @@ a.ui.inverted.black.header.header.header:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Icon
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Icon
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -26064,7 +26064,7 @@ i.icon.youtube.play:before {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Image
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Image
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -26419,7 +26419,7 @@ img.ui.bordered.image {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Input
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Input
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -27225,7 +27225,7 @@ img.ui.bordered.image {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Label
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Label
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -29630,7 +29630,7 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - List
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - List
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -30736,7 +30736,7 @@ ol.ui.suffixed.list li:before,
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Loader
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Loader
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -34224,7 +34224,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Message
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Message
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -35030,7 +35030,7 @@ Floated Menu / Item
         Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Modal
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -35905,7 +35905,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Loader
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Loader
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -36192,7 +36192,7 @@ Floated Menu / Item
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Popup
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -37104,7 +37104,7 @@ Floated Menu / Item
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Progress Bar
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Progress Bar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -38079,7 +38079,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Segment
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Segment
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -39071,7 +39071,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Sidebar
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -39755,7 +39755,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Statistic
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Statistic
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -40461,7 +40461,7 @@ body.pushable > .pusher {
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Step
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Step
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -41233,7 +41233,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Tab
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -41317,7 +41317,7 @@ body.pushable > .pusher {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Table
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Table
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -43908,7 +43908,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Text
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Text
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -44103,7 +44103,7 @@ span.ui.massive.text {
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Toast
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -45048,7 +45048,7 @@ span.ui.massive.text {
   }
 }
 /*!
- * # Fomantic-UI 2.9.0-beta.298+8d87844 - Transition
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *

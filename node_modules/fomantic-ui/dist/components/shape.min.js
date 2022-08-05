@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.298+8d87844
+ * # Fomantic UI - 2.9.0-beta.301+42e68bc
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *

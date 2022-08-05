@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.10.0](https://github.com/inspect-js/is-core-module/compare/v2.9.0...v2.10.0) - 2022-08-03
+
+### Commits
+
+- [New] `node:test` is now available in node ^16.17 [`e8fd36e`](https://github.com/inspect-js/is-core-module/commit/e8fd36e9b86c917775a07cc473b62a3294f459f2)
+- [Tests] improve skip message [`c014a4c`](https://github.com/inspect-js/is-core-module/commit/c014a4c0cd6eb15fff573ae4709191775e70cab4)
+
 ## [v2.9.0](https://github.com/inspect-js/is-core-module/compare/v2.8.1...v2.9.0) - 2022-04-19
 
 ### Commits
