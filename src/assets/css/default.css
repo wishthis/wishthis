@@ -67,6 +67,9 @@ figure {
     --padding: 0.91666667em;
     --buttonsHeight: calc(0.75em * 2 + 1em + 2 * var(--padding) - 2px);
 }
+.wishlist .ui.card:hover {
+    z-index: 110;
+}
 
 .wishlist .ui.fluid.card.stretch {
     height: 100%;
@@ -306,6 +309,9 @@ figure {
 /**
  * Label
  */
+.ui.label {
+    z-index: 100;
+}
 p .ui.horizontal.label {
     margin: 0;
     cursor: default;
