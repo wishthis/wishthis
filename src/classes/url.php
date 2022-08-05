@@ -172,7 +172,7 @@ class URL
         $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
         $GET         = array();
 
-        if ($this->isPretty()) {
+        if ($this->isPretty() && $queryString) {
             parse_str($queryString, $GET);
         } else {
             $GET = $_GET;
