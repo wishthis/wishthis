@@ -5,6 +5,7 @@
 /*-------------------
        Fonts
 --------------------*/
+
 @fontName      : 'Raleway';
 @fallbackFonts : sans-serif;
 
@@ -17,3 +18,10 @@
 
 /* The size of page text  */
 @fontSize : 14pt;
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor        : @violet;
+@lightPrimaryColor   : @lightViolet;

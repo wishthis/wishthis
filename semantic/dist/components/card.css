@@ -660,8 +660,8 @@ a.ui.card:hover,
 .ui.primary.cards > .card,
 .ui.cards > .primary.card,
 .ui.primary.card {
-  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #2185D0, 0 1px 3px 0 #D4D4D5;
-          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #2185D0, 0 1px 3px 0 #D4D4D5;
+  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #6435C9, 0 1px 3px 0 #D4D4D5;
+          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #6435C9, 0 1px 3px 0 #D4D4D5;
 }
 .ui.cards a.primary.card:hover,
 .ui.primary.cards a.card:hover,
@@ -669,14 +669,14 @@ a.ui.card:hover,
 .ui.link.cards .primary.card:not(.icon):hover,
 a.ui.primary.card:hover,
 .ui.link.primary.card:hover {
-  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #1678c2, 0 1px 3px 0 #BCBDBD;
-          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #1678c2, 0 1px 3px 0 #BCBDBD;
+  -webkit-box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #5829bb, 0 1px 3px 0 #BCBDBD;
+          box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #5829bb, 0 1px 3px 0 #BCBDBD;
 }
 .ui.cards > .basic.primary.card,
 .ui.basic.primary.cards > .card,
 .ui.basic.cards > .primary.card,
 .ui.basic.primary.card {
-  background: #54C8FF;
+  background: #A291FB;
 }
 .ui.basic.cards a.primary.card:hover,
 .ui.cards a.basic.primary.card:hover,
@@ -686,13 +686,13 @@ a.ui.primary.card:hover,
 .ui.link.basic.cards .primary.card:not(.icon):hover,
 a.ui.basic.primary.card:hover,
 .ui.link.basic.primary.card:hover {
-  background: #21b8ff;
+  background: #745aff;
 }
 .ui.inverted.primary.cards > .card,
 .ui.inverted.cards > .primary.card,
 .ui.inverted.primary.card {
-  -webkit-box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #54C8FF, 0 0 0 1px #555555;
-          box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #54C8FF, 0 0 0 1px #555555;
+  -webkit-box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #A291FB, 0 0 0 1px #555555;
+          box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #A291FB, 0 0 0 1px #555555;
 }
 .ui.inverted.cards a.primary.card:hover,
 .ui.inverted.primary.cards a.card:hover,
@@ -700,14 +700,14 @@ a.ui.basic.primary.card:hover,
 .ui.link.inverted.cards .primary.card:not(.icon):hover,
 a.ui.inverted.primary.card:hover,
 .ui.link.inverted.primary.card:hover {
-  -webkit-box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #21b8ff, 0 0 0 1px #555555;
-          box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #21b8ff, 0 0 0 1px #555555;
+  -webkit-box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #745aff, 0 0 0 1px #555555;
+          box-shadow: 0 1px 3px 0 #555555, 0 2px 0 0 #745aff, 0 0 0 1px #555555;
 }
 .ui.inverted.cards > .basic.primary.card,
 .ui.basic.inverted.primary.cards > .card,
 .ui.basic.inverted.cards > .primary.card,
 .ui.basic.inverted.primary.card {
-  background: #2185D0;
+  background: #6435C9;
 }
 .ui.inverted.cards a.basic.primary.card:hover,
 .ui.basic.inverted.cards a.primary.card:hover,
@@ -717,7 +717,7 @@ a.ui.inverted.primary.card:hover,
 .ui.link.basic.inverted.cards .primary.card:not(.icon):hover,
 a.ui.basic.inverted.primary.card:hover,
 .ui.link.basic.inverted.primary.card:hover {
-  background: #1678c2;
+  background: #5829bb;
 }
 .ui.secondary.cards > .card,
 .ui.cards > .secondary.card,

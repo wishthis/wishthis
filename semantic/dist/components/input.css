@@ -867,12 +867,12 @@ input[type="file"].ui.file.input:focus + label.ui.button:not(.basic):not(.tertia
 /* this is related to existing buttons, so the button color variable is used here! */
 input[type="file"].ui.file.input:focus + label.ui.primary.button:not(.basic):not(.tertiary),
 .ui.file.input input[type="file"]:focus + label.ui.primary.button:not(.basic):not(.tertiary) {
-  background-color: #1678c2;
+  background-color: #5829bb;
   color: #FFFFFF;
 }
 input[type="file"].ui.file.input:focus + label.ui.primary.button:not(.basic):not(.tertiary).inverted,
 .ui.file.input input[type="file"]:focus + label.ui.primary.button:not(.basic):not(.tertiary).inverted {
-  background-color: #21b8ff;
+  background-color: #745aff;
 }
 input[type="file"].ui.file.input:focus + label.ui.secondary.button:not(.basic):not(.tertiary),
 .ui.file.input input[type="file"]:focus + label.ui.secondary.button:not(.basic):not(.tertiary) {
@@ -1002,30 +1002,30 @@ input[type="file"].ui.file.input:focus + label.ui.black.button:not(.basic):not(.
 }
 input[type="file"].ui.primary.file.input::-webkit-file-upload-button,
 .ui.primary.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #2185D0;
+  background: #6435C9;
   color: #FFFFFF;
 }
 input[type="file"].ui.primary.file.input::-webkit-file-upload-button:hover,
 .ui.primary.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #1678c2;
+  background: #5829bb;
 }
 input[type="file"].ui.primary.file.input::-ms-browse,
 .ui.primary.file.input input[type="file"]::-ms-browse {
-  background: #2185D0;
+  background: #6435C9;
   color: #FFFFFF;
 }
 input[type="file"].ui.primary.file.input::-ms-browse:hover,
 .ui.primary.file.input input[type="file"]::-ms-browse:hover {
-  background: #1678c2;
+  background: #5829bb;
 }
 input[type="file"].ui.primary.file.input::file-selector-button,
 .ui.primary.file.input input[type="file"]::file-selector-button {
-  background: #2185D0;
+  background: #6435C9;
   color: #FFFFFF;
 }
 input[type="file"].ui.primary.file.input::file-selector-button:hover,
 .ui.primary.file.input input[type="file"]::file-selector-button:hover {
-  background: #1678c2;
+  background: #5829bb;
 }
 input[type="file"].ui.secondary.file.input::-webkit-file-upload-button,
 .ui.secondary.file.input input[type="file"]::-webkit-file-upload-button {

@@ -305,16 +305,16 @@ i.inverted.icon {
 --------------------*/
 
 i.primary.icon.icon.icon.icon.icon {
-  color: #2185D0;
+  color: #6435C9;
 }
 i.inverted.primary.icon.icon.icon.icon.icon {
-  color: #54C8FF;
+  color: #A291FB;
 }
 i.inverted.bordered.primary.icon.icon.icon.icon.icon,
 i.inverted.circular.primary.icon.icon.icon.icon.icon,
 i.inverted.bordered.primary.icons,
 i.inverted.circular.primary.icons {
-  background-color: #2185D0;
+  background-color: #6435C9;
   color: #FFFFFF;
 }
 i.secondary.icon.icon.icon.icon.icon {

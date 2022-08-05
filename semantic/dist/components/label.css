@@ -668,77 +668,77 @@ a.ui.basic.label:hover {
 
 .ui.primary.labels .label,
 .ui.ui.ui.primary.label {
-  background-color: #2185D0;
-  border-color: #2185D0;
+  background-color: #6435C9;
+  border-color: #6435C9;
   color: rgba(255, 255, 255, 0.9);
 }
 
 /* Link */
 .ui.primary.labels a.label:hover,
 a.ui.ui.ui.primary.label:hover {
-  background-color: #1678c2;
-  border-color: #1678c2;
+  background-color: #5829bb;
+  border-color: #5829bb;
   color: #FFFFFF;
 }
 
 /* Ribbon */
 .ui.ui.ui.primary.ribbon.label {
-  border-color: #1a69a4;
+  border-color: #502aa1;
 }
 
 /* Basic */
 .ui.basic.labels .primary.label,
 .ui.ui.ui.basic.primary.label {
   background: none #FFFFFF;
-  border-color: #2185D0;
-  color: #2185D0;
+  border-color: #6435C9;
+  color: #6435C9;
 }
 .ui.basic.labels a.primary.label:hover,
 a.ui.ui.ui.basic.primary.label:hover {
   background: none #FFFFFF;
-  border-color: #1678c2;
-  color: #1678c2;
+  border-color: #5829bb;
+  color: #5829bb;
 }
 
 /* Inverted */
 .ui.inverted.labels .primary.label,
 .ui.ui.ui.inverted.primary.label {
-  background-color: #54C8FF;
-  border-color: #54C8FF;
+  background-color: #A291FB;
+  border-color: #A291FB;
   color: #1B1C1D;
 }
 
 /* Inverted Link */
 .ui.inverted.labels a.primary.label:hover,
 a.ui.ui.ui.inverted.primary.label:hover {
-  background-color: #21b8ff;
-  border-color: #21b8ff;
+  background-color: #745aff;
+  border-color: #745aff;
   color: #1B1C1D;
 }
 
 /* Inverted Ribbon */
 .ui.ui.ui.inverted.primary.ribbon.label {
-  border-color: #21b8ff;
+  border-color: #7860f9;
 }
 
 /* Inverted Basic */
 .ui.inverted.basic.labels .primary.label,
 .ui.ui.ui.inverted.basic.primary.label {
   background-color: #1B1C1D;
-  border-color: #54C8FF;
-  color: #54C8FF;
+  border-color: #A291FB;
+  color: #A291FB;
 }
 .ui.inverted.basic.labels a.primary.label:hover,
 a.ui.ui.ui.inverted.basic.primary.label:hover {
-  border-color: #21b8ff;
+  border-color: #745aff;
   background-color: #1B1C1D;
-  color: #21b8ff;
+  color: #745aff;
 }
 
 /* Inverted Basic Tags */
 .ui.inverted.basic.tag.labels .primary.label,
 .ui.ui.ui.inverted.primary.basic.tag.label {
-  border: 1px solid #54C8FF;
+  border: 1px solid #A291FB;
 }
 .ui.inverted.basic.tag.labels .primary.label::before,
 .ui.ui.ui.inverted.primary.basic.tag.label::before {

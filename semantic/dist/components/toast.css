@@ -608,12 +608,12 @@
 -------------- */
 
 .ui.primary.toast {
-  background-color: #2185D0;
+  background-color: #6435C9;
   color: rgba(255, 255, 255, 0.9);
 }
 .ui.inverted.primary.toast,
 .ui.toast-container .toast-box > .inverted.primary.attached.progress .bar {
-  background-color: #54C8FF;
+  background-color: #A291FB;
   color: rgba(0, 0, 0, 0.87);
 }
 .ui.secondary.toast {
