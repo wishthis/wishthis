@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Sidebar
+ * # Fomantic-UI 2.8.8 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
