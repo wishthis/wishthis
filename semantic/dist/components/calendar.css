@@ -68,7 +68,6 @@
 .ui.calendar .ui.table tr td {
   padding: 0.5em;
   white-space: nowrap;
-  text-align: center;
 }
 .ui.calendar .ui.table tr th {
   border-left: none;
@@ -130,8 +129,8 @@
 }
 .ui.calendar:not(.disabled) .calendar:focus .ui.table tbody tr td.focus,
 .ui.calendar:not(.disabled) .calendar.active .ui.table tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #6435C9;
-          box-shadow: inset 0 0 0 1px #6435C9;
+  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
+          box-shadow: inset 0 0 0 1px #85B7D9;
 }
 .ui.inverted.calendar .ui.table.inverted tr td.range {
   background: rgba(255, 255, 255, 0.08);
@@ -141,8 +140,8 @@
 }
 .ui.inverted.calendar:not(.disabled) .calendar:focus .ui.table.inverted tbody tr td.focus,
 .ui.inverted.calendar:not(.disabled) .calendar.active .ui.table.inverted tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #6435C9;
-          box-shadow: inset 0 0 0 1px #6435C9;
+  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
+          box-shadow: inset 0 0 0 1px #85B7D9;
 }
 .ui.inverted.calendar .ui.inverted.table tr .disabled {
   color: rgba(225, 225, 225, 0.3);
@@ -150,6 +149,23 @@
 .ui.inverted.calendar .ui.inverted.table tr .adjacent:not(.disabled):not(.active) {
   color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.02);
+}
+.ui.calendar.popup > .ui.ui.grid {
+  margin: -1rem;
+}
+.ui.calendar.popup > .ui.ui.grid > .column:not(:first-child) {
+  padding-left: 0;
+}
+.ui.calendar.popup > .ui.ui.grid > .column:not(:first-child) > .ui.table {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ui.calendar.popup > .ui.ui.grid > .column:not(:last-child) {
+  padding-right: 0;
+}
+.ui.calendar.popup > .ui.ui.grid > .column:not(:last-child) > .ui.table {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 
