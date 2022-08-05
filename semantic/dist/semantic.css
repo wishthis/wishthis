@@ -450,7 +450,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/LatoLatin-Regular.woff2") format('woff2') , url("./themes/default/assets/fonts/LatoLatin-Regular.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/RalewayLatin-Regular.ttf") format('truetype') , url("./themes/default/assets/fonts/RalewayLatin-Regular.ttf") format('truetype');
   font-style: normal;
   font-weight: normal;
   font-display: swap;
@@ -460,7 +460,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/LatoLatin-Bold.woff2") format('woff2') , url("./themes/default/assets/fonts/LatoLatin-Bold.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/RalewayLatin-Bold.ttf") format('truetype') , url("./themes/default/assets/fonts/RalewayLatin-Bold.ttf") format('truetype');
   font-style: normal;
   font-weight: bold;
   font-display: swap;
@@ -470,7 +470,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/LatoLatin-Italic.woff2") format('woff2') , url("./themes/default/assets/fonts/LatoLatin-Italic.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/RalewayLatin-Italic.ttf") format('truetype') , url("./themes/default/assets/fonts/RalewayLatin-Italic.ttf") format('truetype');
   font-style: italic;
   font-weight: normal;
   font-display: swap;
@@ -480,7 +480,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/LatoLatin-BoldItalic.woff2") format('woff2') , url("./themes/default/assets/fonts/LatoLatin-BoldItalic.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/RalewayLatin-BoldItalic.ttf") format('truetype') , url("./themes/default/assets/fonts/RalewayLatin-BoldItalic.ttf") format('truetype');
   font-style: italic;
   font-weight: bold;
   font-display: swap;
@@ -490,7 +490,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/Lato-Regular.woff2") format('woff2') , url("./themes/default/assets/fonts/Lato-Regular.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/Raleway-Regular.ttf") format('truetype') , url("./themes/default/assets/fonts/Raleway-Regular.ttf") format('truetype');
   font-style: normal;
   font-weight: normal;
   font-display: swap;
@@ -500,7 +500,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/Lato-Bold.woff2") format('woff2') , url("./themes/default/assets/fonts/Lato-Bold.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/Raleway-Bold.ttf") format('truetype') , url("./themes/default/assets/fonts/Raleway-Bold.ttf") format('truetype');
   font-style: normal;
   font-weight: bold;
   font-display: swap;
@@ -510,7 +510,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/Lato-Italic.woff2") format('woff2') , url("./themes/default/assets/fonts/Lato-Italic.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/Raleway-Italic.ttf") format('truetype') , url("./themes/default/assets/fonts/Raleway-Italic.ttf") format('truetype');
   font-style: italic;
   font-weight: normal;
   font-display: swap;
@@ -520,7 +520,7 @@ template {
 
 @font-face {
   font-family: 'Raleway';
-  src: url("./themes/default/assets/fonts/Lato-BoldItalic.woff2") format('woff2') , url("./themes/default/assets/fonts/Lato-BoldItalic.woff") format('woff');
+  src: url("./themes/wishthis/assets/fonts/Raleway-BoldItalic.ttf") format('truetype') , url("./themes/default/assets/fonts/Raleway-BoldItalic.ttf") format('truetype');
   font-style: italic;
   font-weight: bold;
   font-display: swap;
