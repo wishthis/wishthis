@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '03788f71ffb580b6f1b6469fdc74463f381928d8',
+    'reference' => 'e3fe1086d5bf7fe17d3d2c64ecd2cab4e2696dc9',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,16 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '03788f71ffb580b6f1b6469fdc74463f381928d8',
+      'reference' => 'e3fe1086d5bf7fe17d3d2c64ecd2cab4e2696dc9',
     ),
     'composer/ca-bundle' => 
     array (
-      'pretty_version' => '1.3.2',
-      'version' => '1.3.2.0',
+      'pretty_version' => '1.3.3',
+      'version' => '1.3.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fd5dd441932a7e10ca6e5b490e272d34c8430640',
+      'reference' => '30897edbfb15e784fe55587b4f73ceefd3c4d98c',
     ),
     'dealerdirect/phpcodesniffer-composer-installer' => 
     array (
@@ -49,12 +49,12 @@
     ),
     'gettext/gettext' => 
     array (
-      'pretty_version' => 'v5.6.1',
-      'version' => '5.6.1.0',
+      'pretty_version' => 'v5.7.0',
+      'version' => '5.7.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '017e249601d32b9a88c2eb4c10eac89bf582a7d3',
+      'reference' => '8657e580747bb3baacccdcebe69cac094661e404',
     ),
     'gettext/languages' => 
     array (
@@ -214,8 +214,8 @@
     ),
     'symfony/deprecation-contracts' => 
     array (
-      'pretty_version' => 'v3.1.0',
-      'version' => '3.1.0.0',
+      'pretty_version' => 'v3.1.1',
+      'version' => '3.1.1.0',
       'aliases' => 
       array (
       ),
@@ -232,12 +232,12 @@
     ),
     'symfony/process' => 
     array (
-      'pretty_version' => 'v5.4.8',
-      'version' => '5.4.8.0',
+      'pretty_version' => 'v5.4.11',
+      'version' => '5.4.11.0',
       'aliases' => 
       array (
       ),
-      'reference' => '597f3fff8e3e91836bb0bd38f5718b56ddbde2f3',
+      'reference' => '6e75fe6874cbc7e4773d049616ab450eff537bf1',
     ),
     'wp-coding-standards/wpcs' => 
     array (
