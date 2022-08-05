@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Tab
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
