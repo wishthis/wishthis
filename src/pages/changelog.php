@@ -67,6 +67,7 @@ $page->navigation();
                                 <li><?= __('Wish image not showing') ?></li>
                                 <li><?= __('An error when saving a wish with a really long URL') ?></li>
                                 <li><?= __('Redirect errors on Nginx') ?></li>
+                                <li><?= __('An error when fetching title from an URL containing quotes') ?></li>
                             </ul>
                         </div>
 

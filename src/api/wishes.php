@@ -80,11 +80,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $info  = $cache->get(true);
 
                     if (empty($wish_title) && empty($wish->title)) {
-                        $wish_title = $info->title;
+                        $wish_title = Sanitiser::getTitle($info->title);
                     }
 
                     if (empty($wish_description) && empty($wish->description)) {
-                        $wish_description = $info->description;
+                        $wish_description = Sanitiser::getText($info->description);
                     }
 
                     /** Image */
@@ -152,11 +152,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $info  = $cache->get(true);
 
                     if (empty($wish_title) && isset($info->title)) {
-                        $wish_title = $info->title;
+                        $wish_title = Sanitiser::getTitle($info->title);
                     }
 
                     if (empty($wish_description) && isset($info->description)) {
-                        $wish_description = $info->description;
+                        $wish_description = Sanitiser::getText($info->description);
                     }
 
                     /** Image */

@@ -108,6 +108,9 @@ class Wish
                     $this->$key = $this->info->$key;
                 }
             }
+
+            $this->title       = Sanitiser::render($this->title);
+            $this->description = Sanitiser::render($this->description);
         }
     }
 

@@ -4,6 +4,10 @@ namespace wishthis;
 
 class Sanitiser
 {
+    public static function render(string $text): string {
+        return html_entity_decode($text);
+    }
+
     public static function getNumber(mixed $valueToSanitise): float
     {
         return floatval(preg_replace('/[^0-9\.]+/', '', $valueToSanitise));
