@@ -614,7 +614,7 @@ a.ui.active.label:hover::before {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #1e70bf;
+  color: #4d17c0;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -659,7 +659,7 @@ a.ui.basic.label:hover {
   background: #1B1C1D;
 }
 .ui.inverted.basic.label:hover {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 /*-------------------

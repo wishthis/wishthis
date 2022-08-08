@@ -9,6 +9,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    background-color: #f4f4f4;
+}
+
 img,
 svg {
     max-width: 100%;

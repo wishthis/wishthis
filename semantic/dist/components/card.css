@@ -308,7 +308,7 @@
 }
 .ui.cards > .card > .content > a.header:hover,
 .ui.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Meta */
@@ -452,7 +452,7 @@
 }
 .ui.cards > .card > .extra a:not(.ui):hover,
 .ui.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 
@@ -1960,7 +1960,7 @@ a.ui.basic.inverted.black.card:hover,
 }
 .ui.inverted.cards > .card > .content > a.header:hover,
 .ui.inverted.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Description */
@@ -1995,7 +1995,7 @@ a.ui.basic.inverted.black.card:hover,
 }
 .ui.inverted.cards > .card > .extra a:not(.ui):hover,
 .ui.inverted.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Link card(s) */

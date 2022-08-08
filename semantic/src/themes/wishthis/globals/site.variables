@@ -118,3 +118,19 @@
 
 @primaryColor        : @violet;
 @lightPrimaryColor   : @lightViolet;
+
+/*-------------------
+    Focused Input
+--------------------*/
+
+/* Used on inputs, textarea etc */
+@focusedFormBorderColor: lighten(@primaryColor, 20);
+
+/* Used on dropdowns, other larger blocks */
+@focusedFormMutedBorderColor: lighten(@primaryColor, 10);
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor : @primaryColor;

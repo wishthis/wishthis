@@ -156,7 +156,7 @@
 
 .ui.checkbox input:focus ~ label::before {
   background: #FFFFFF;
-  border-color: #96C8DA;
+  border-color: #835dd4;
 }
 .ui.checkbox input:focus ~ label::after {
   color: rgba(0, 0, 0, 0.95);
@@ -208,7 +208,7 @@
 .ui.checkbox input:not([type=radio]):indeterminate:focus ~ label::before,
 .ui.checkbox input:checked:focus ~ label::before {
   background: #FFFFFF;
-  border-color: #96C8DA;
+  border-color: #835dd4;
 }
 .ui.checkbox input:not([type=radio]):indeterminate:focus ~ label::after,
 .ui.checkbox input:checked:focus ~ label::after {

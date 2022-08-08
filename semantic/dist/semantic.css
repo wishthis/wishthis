@@ -624,12 +624,12 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #4183C4;
+  color: #6435C9;
   text-decoration: none;
 }
 
 a:hover {
-  color: #1e70bf;
+  color: #4d17c0;
   text-decoration: none;
 }
 
@@ -8626,8 +8626,8 @@ input::selection {
 
 .ui.calendar:not(.disabled) .calendar:focus .ui.table tbody tr td.focus,
 .ui.calendar:not(.disabled) .calendar.active .ui.table tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
-  box-shadow: inset 0 0 0 1px #85B7D9;
+  -webkit-box-shadow: inset 0 0 0 1px #a285df;
+  box-shadow: inset 0 0 0 1px #a285df;
 }
 
 .ui.inverted.calendar .ui.table.inverted tr td.range {
@@ -8639,8 +8639,8 @@ input::selection {
 
 .ui.inverted.calendar:not(.disabled) .calendar:focus .ui.table.inverted tbody tr td.focus,
 .ui.inverted.calendar:not(.disabled) .calendar.active .ui.table.inverted tbody tr td.focus {
-  -webkit-box-shadow: inset 0 0 0 1px #85B7D9;
-  box-shadow: inset 0 0 0 1px #85B7D9;
+  -webkit-box-shadow: inset 0 0 0 1px #a285df;
+  box-shadow: inset 0 0 0 1px #a285df;
 }
 
 .ui.inverted.calendar .ui.inverted.table tr .disabled {
@@ -9028,7 +9028,7 @@ input::selection {
 
 .ui.cards > .card > .content > a.header:hover,
 .ui.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Meta */
@@ -9182,7 +9182,7 @@ input::selection {
 
 .ui.cards > .card > .extra a:not(.ui):hover,
 .ui.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /*******************************
@@ -10885,7 +10885,7 @@ a.ui.basic.inverted.black.card:hover,
 
 .ui.inverted.cards > .card > .content > a.header:hover,
 .ui.inverted.card > .content > a.header:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Description */
@@ -10927,7 +10927,7 @@ a.ui.basic.inverted.black.card:hover,
 
 .ui.inverted.cards > .card > .extra a:not(.ui):hover,
 .ui.inverted.card > .extra a:not(.ui):hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Link card(s) */
@@ -11119,7 +11119,7 @@ a.inverted.ui.card:hover,
 
 .ui.checkbox input:focus ~ label::before {
   background: #FFFFFF;
-  border-color: #96C8DA;
+  border-color: #835dd4;
 }
 
 .ui.checkbox input:focus ~ label::after {
@@ -11178,7 +11178,7 @@ a.inverted.ui.card:hover,
 .ui.checkbox input:not([type=radio]):indeterminate:focus ~ label::before,
 .ui.checkbox input:checked:focus ~ label::before {
   background: #FFFFFF;
-  border-color: #96C8DA;
+  border-color: #835dd4;
 }
 
 .ui.checkbox input:not([type=radio]):indeterminate:focus ~ label::after,
@@ -13307,14 +13307,14 @@ select.ui.dropdown {
 
 .ui.selection.simple.dropdown:hover,
 .ui.selection.active.dropdown {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
 
 .ui.selection.simple.dropdown:hover .menu,
 .ui.selection.active.dropdown .menu {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
@@ -13322,13 +13322,13 @@ select.ui.dropdown {
 /* Focus */
 
 .ui.selection.dropdown:focus {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .ui.selection.dropdown:focus .menu {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
@@ -13343,13 +13343,13 @@ select.ui.dropdown {
 /* Visible Hover */
 
 .ui.selection.active.dropdown:hover {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
 
 .ui.selection.active.dropdown:hover .menu {
-  border-color: #96C8DA;
+  border-color: #835dd4;
   -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 }
@@ -15505,7 +15505,7 @@ select.ui.dropdown {
 .ui.form input[type="url"]:focus,
 .ui.form input[type="week"]:focus {
   color: rgba(0, 0, 0, 0.95);
-  border-color: #85B7D9;
+  border-color: #a285df;
   border-radius: 0.28571429rem;
   background: #FFFFFF;
   -webkit-box-shadow: 0 0 0 0 rgba(34, 36, 38, 0.35) inset;
@@ -15552,7 +15552,7 @@ select.ui.dropdown {
 
 .ui.form textarea:focus {
   color: rgba(0, 0, 0, 0.95);
-  border-color: #85B7D9;
+  border-color: #a285df;
   border-radius: 0.28571429rem;
   background: #FFFFFF;
   -webkit-box-shadow: 0 0 0 0 rgba(34, 36, 38, 0.35) inset;
@@ -27814,7 +27814,7 @@ img.ui.bordered.image {
 
 .ui.input.focus > input,
 .ui.input > input:focus {
-  border-color: #85B7D9;
+  border-color: #a285df;
   background: #FFFFFF;
   color: rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: none;
@@ -28186,7 +28186,7 @@ img.ui.bordered.image {
 }
 
 .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input:focus {
-  border-left-color: #85B7D9;
+  border-left-color: #a285df;
 }
 
 /* Regular Label on Right */
@@ -28203,7 +28203,7 @@ img.ui.bordered.image {
 }
 
 .ui[class*="right labeled"].input > input:focus {
-  border-right-color: #85B7D9 !important;
+  border-right-color: #a285df !important;
 }
 
 /* Corner Label */
@@ -28511,11 +28511,11 @@ img.ui.bordered.image {
 /* Input Focus */
 
 .ui.action.input:not([class*="left action"]) > input:focus {
-  border-right-color: #85B7D9;
+  border-right-color: #a285df;
 }
 
 .ui.ui[class*="left action"].input > input:focus {
-  border-left-color: #85B7D9;
+  border-left-color: #a285df;
 }
 
 /*--------------------
@@ -30043,7 +30043,7 @@ a.ui.active.label:hover::before {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #1e70bf;
+  color: #4d17c0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -30093,7 +30093,7 @@ a.ui.basic.label:hover {
 }
 
 .ui.inverted.basic.label:hover {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 /*-------------------
@@ -31983,12 +31983,12 @@ ol.ui.list ol li,
 .ui.list .list > a.item,
 .ui.list > a.item {
   cursor: pointer;
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.list .list > a.item:hover,
 .ui.list > a.item:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Linked Item Icons */
@@ -32005,12 +32005,12 @@ ol.ui.list ol li,
 .ui.list .list > .item a.header,
 .ui.list > .item a.header {
   cursor: pointer;
-  color: #4183C4 !important;
+  color: #6435C9 !important;
 }
 
 .ui.list .list > .item > a.header:hover,
 .ui.list > .item > a.header:hover {
-  color: #1e70bf !important;
+  color: #4d17c0 !important;
 }
 
 /* Floated Content */
@@ -32200,7 +32200,7 @@ ol.ui.list ol li,
 
 .ui.inverted.list .list > a.item:hover,
 .ui.inverted.list > a.item:hover {
-  color: #1e70bf;
+  color: #4d17c0;
 }
 
 /* Linking Content */
@@ -32210,7 +32210,7 @@ ol.ui.list ol li,
 }
 
 .ui.inverted.list .item a:not(.ui):hover {
-  color: #1e70bf !important;
+  color: #4d17c0 !important;
 }
 
 /*-------------------
@@ -43172,7 +43172,7 @@ body.pushable > .pusher {
 }
 
 .ui.steps .step.active .title {
-  color: #4183C4;
+  color: #6435C9;
 }
 
 .ui.ordered.steps .step.active::before,
