@@ -38,6 +38,31 @@ spl_autoload_register(
 );
 
 /**
+ * Session
+ */
+$sessionLifetime = 2592000; // 1 Month
+
+session_set_cookie_params($sessionLifetime, '/');
+session_start();
+
+/** Refresh lifetime */
+$session = session_get_cookie_params();
+
+setcookie(
+    session_name(),
+    session_id(),
+    time() + $sessionLifetime,
+    $session['path'],
+    $session['domain'],
+    $session['secure'],
+    $session['httponly']
+);
+
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = new User();
+}
+
+/**
  * Config
  */
 $configPath = __DIR__ . '/' . 'src/config/config.php';
@@ -72,34 +97,6 @@ if (
 }
 
 /**
- * Session
- */
-$sessionLifetime = 2592000; // 1 Month
-
-session_set_cookie_params($sessionLifetime, '/');
-session_start();
-
-/** Refresh lifetime */
-$session = session_get_cookie_params();
-
-setcookie(
-    session_name(),
-    session_id(),
-    time() + $sessionLifetime,
-    $session['path'],
-    $session['domain'],
-    $session['secure'],
-    $session['httponly']
-);
-
-/**
- * User
- */
-if ($options) {
-    $user = new User();
-}
-
-/**
  * Language
  */
 \Locale::setDefault(DEFAULT_LOCALE);
@@ -118,16 +115,8 @@ $locales = array_filter(
         scandir(ROOT . '/translations')
     )
 );
-$locale  = \Locale::lookup($locales, $user->locale, false, DEFAULT_LOCALE);
 
-/** Load Translation */
-$translationFilepath = ROOT . '/translations/' . $locale . '.po';
-$translations        = null;
-
-if (file_exists($translationFilepath)) {
-    $loader       = new \Gettext\Loader\PoLoader();
-    $translations = $loader->loadFile($translationFilepath);
-}
+$locale = isset($_REQUEST['locale']) ? $_REQUEST['locale'] : \Locale::lookup($locales, $_SESSION['user']->getLocale(), false, 'en_GB');
 
 /**
  * Wish

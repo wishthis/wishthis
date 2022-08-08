@@ -30,6 +30,11 @@ class Email
         $this->contentsPart     = file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
 
         $this->mjml = str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
+
+        /** Set Locale */
+        global $locale;
+
+        $this->mjml = preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . $locale . '">', $this->mjml);
     }
 
     public function setPlaceholder(string $placeholder, string $replacement): void

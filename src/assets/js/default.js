@@ -4,9 +4,9 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
     navigator.serviceWorker
-        .register('/serviceWorker.js')
-        .then(res => console.log('service worker registered'))
-        .catch(err => console.log('service worker not registered', err))
+        .register('/service-worker.js')
+        .then(res => console.log('wishthis service worker registered'))
+        .catch(err => console.log('wishthis service worker not registered', err))
     })
 }
 
@@ -18,10 +18,10 @@ $(function() {
      */
     /** API */
     $.fn.api.settings.api = {
-        'get wishlists'        : '/src/api/wishlists.php',
-        'delete wishlist'      : '/src/api/wishlists.php',
-        'update wish status'   : '/src/api/wishes.php',
-        'delete wish'          : '/src/api/wishes.php',
+        'get wishlists'      : '/src/api/wishlists.php',
+        'delete wishlist'    : '/src/api/wishlists.php',
+        'update wish status' : '/src/api/wishes.php',
+        'delete wish'        : '/src/api/wishes.php',
     };
 
     /** Default callbacks */

@@ -38,9 +38,6 @@ const { RequestError } = require("@octokit/request-error");
 
 ```js
 const error = new RequestError("Oops", 500, {
-  headers: {
-    "x-github-request-id": "1:2:3:4",
-  }, // response headers
   request: {
     method: "POST",
     url: "https://api.github.com/foo",
@@ -51,14 +48,21 @@ const error = new RequestError("Oops", 500, {
       authorization: "token secret123",
     },
   },
+  response: {
+    status: 500,
+    url: "https://api.github.com/foo"
+    headers: {
+      "x-github-request-id": "1:2:3:4",
+    },
+    data: {
+      foo: "bar"
+    }
+  },
 });
 
 error.message; // Oops
 error.status; // 500
-error.request.method; // POST
-error.request.url; // https://api.github.com/foo
-error.request.body; // { bar: 'baz' }
-error.request.headers; // { authorization: 'token [REDACTED]' }
+error.request; // { method, url, headers, body }
 error.response; // { url, status, headers, data }
 ```
 

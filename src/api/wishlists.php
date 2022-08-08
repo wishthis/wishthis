@@ -17,19 +17,22 @@ require '../../index.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        if (isset($_POST['wishlist-name'], $_SESSION['user']['id'])) {
+        if (isset($_POST['wishlist-name'], $_SESSION['user']->id)) {
             /**
              * Create
              */
+            $user_id   = Sanitiser::getNumber($_SESSION['user']->id);
+            $wish_name = Sanitiser::getTitle($_POST['wishlist-name']);
+
             $database->query('INSERT INTO `wishlists`
                 (
                     `user`,
                     `name`,
                     `hash`
                 ) VALUES (
-                    ' . $_SESSION['user']['id'] . ',
-                    "' . $_POST['wishlist-name'] . '",
-                    "' . sha1(time() . $_SESSION['user']['id'] . $_POST['wishlist-name']) . '"
+                     ' . $user_id . ',
+                    "' . $wish_name . '",
+                    "' . sha1(time() . $user_id . $wish_name) . '"
                 )
             ;');
 
@@ -40,7 +43,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Request more wishes
              */
-            $wishlistID = $_POST['wishlist-id'];
+            $wishlistID = Sanitiser::getNumber($_POST['wishlist-id']);
 
             /** Get last notification time */
             $wishlistQuery = $database
@@ -48,7 +51,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'SELECT *
                    FROM `wishlists`
                   WHERE `id` = ' . $wishlistID . '
-                    AND (`notification_sent` < UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
+                    AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
             );
 
             $wishlist = $wishlistQuery->fetch();
@@ -58,18 +61,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
 
                 /** Send email */
-                $user  = new User($wishlist['user']);
-                $email = new Email($user->email, __('Wish request'), 'default', 'wishlist-request-wishes');
-                $email->setPlaceholder('TEXT_HELLO', __('Hello,'));
+                $user  = User::getFromID($wishlist['user']);
+                $email = new Email($user->email, __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
+                $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
                 $email->setPlaceholder(
                     'TEXT_WISHLIST_REQUEST_WISHES',
                     sprintf(
                         /** TRANSLATORS: %s: Wishlist name */
-                        __('somebody has requested that you add more wishes to your wishlist %s.'),
+                        __('somebody has requested that you add more wishes to your wishlist %s.', null, $user),
                         '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
                     )
                 );
-                $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish'));
+                $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish', null, $user));
                 $email->setPlaceholder('LINK_WISH_ADD', $href . '&wish_add=true');
 
                 $success = $email->send();
@@ -115,11 +118,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
             );
 
             $response['results'] = $wishlist->getCards($options);
-        } elseif (isset($_GET['userid']) || isset($_SESSION['user']['id'])) {
+        } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
             /**
              * Get user wishlists
              */
-            $user = isset($_GET['userid']) ? new User($_GET['userid']) : new User();
+            $user = isset($_GET['userid']) ? User::getFromID($_GET['userid']) : $_SESSION['user'];
 
             $wishlists = $user->getWishlists();
             $wishlists = array_map(
@@ -148,8 +151,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $database
         ->query('UPDATE `wishlists`
-                    SET `name` = "' . $_PUT['wishlist_title'] . '"
-                  WHERE `id`   = ' . $_PUT['wishlist_id'] . '
+                    SET `name` = "' . Sanitiser::getTitle($_PUT['wishlist_title']) . '"
+                  WHERE `id`   =  ' . Sanitiser::getNumber($_PUT['wishlist_id']) . '
         ;');
 
         $response['success'] = true;
@@ -159,7 +162,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         parse_str(file_get_contents("php://input"), $_DELETE);
 
         $database->query('DELETE FROM `wishlists`
-            WHERE `id` = ' . $_DELETE['wishlistID'] . '
+            WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlistID']) . '
         ;');
 
         $response['success'] = true;

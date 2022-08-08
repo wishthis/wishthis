@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: dark) {
     body {
         color: #dfdfdf;
-        background-color: #0b0b0b;
+        background-color: #0b0b0b !important;
     }
 
     /** Pusher */
@@ -75,6 +75,9 @@
     .ui.secondary.menu a.item:hover {
         color: rgba(255, 255, 255, 0.95);
         background-color: rgba(255, 255, 255, 0.05);
+    }
+    .ui.attached.menu:not(.tabular):not(.text) {
+        border-color: #2b2b2a;
     }
 
     /** */
@@ -167,6 +170,12 @@
     .ui.basic.buttons .button:active {
         color: rgba(255, 255, 255, 0.9);
     }
+    .ui.tertiary.button {
+        color: rgba(255, 255, 255, 0.6);
+    }
+    .ui.tertiary.button:hover {
+        color: #ccc;
+    }
 
     /** Input */
     .ui.input {
@@ -255,7 +264,7 @@
     .ui.form .grouped.fields > label {
         color: rgba(255, 255, 255, 0.87);
     }
-    .ui.form .field > label {
+    .ui.form .field > label:not(.button) {
         color: rgba(255, 255, 255, 0.87);
     }
 

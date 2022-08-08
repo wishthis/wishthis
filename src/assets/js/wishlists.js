@@ -142,6 +142,7 @@ $(function () {
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
         var wishlist_user = wishlists[wishlistIndex].user;
 
+        card.addClass('loading');
         card.attr('data-cache', 'false');
 
         fetch('/src/api/wishes.php?wish_id=' + card.attr('data-id') + '&wishlist_user=' + wishlist_user, {
@@ -149,6 +150,9 @@ $(function () {
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
+        .then(function(response) {
+            card.replaceWith(response.html.replace('data-cache="true"', 'data-cache="false"'));
+        })
         .catch(handleFetchCatch)
         .finally(function() {
             card.removeClass('loading');

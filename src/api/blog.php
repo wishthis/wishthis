@@ -16,7 +16,7 @@ require '../../index.php';
 
 $response      = array();
 $dateFormatter = new \IntlDateFormatter(
-    $user->locale,
+    $_SESSION['user']->getLocale(),
     \IntlDateFormatter::MEDIUM,
     \IntlDateFormatter::NONE
 );

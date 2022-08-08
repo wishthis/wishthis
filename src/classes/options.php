@@ -28,12 +28,12 @@ class Options
         try {
             $option = $this->database->query(
                 'SELECT * FROM `options`
-                 WHERE `key` = "' . $key . '";'
+                 WHERE `key` = "' . Sanitiser::getOption($key) . '";'
             )->fetch();
 
             $value = $option['value'] ?? '';
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
         return $value;
@@ -41,6 +41,9 @@ class Options
 
     public function setOption(string $key, string $value): void
     {
+        $key   = Sanitiser::getOption($key);
+        $value = Sanitiser::getText($value);
+
         $optionExists = 0 !== $this->database
         ->query('SELECT *
                    FROM `options`

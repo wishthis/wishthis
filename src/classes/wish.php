@@ -69,25 +69,24 @@ class Wish
 
     public bool $exists = false;
 
-    public function __construct(int|array $wish, bool $generateCache = false)
+    public function __construct(int|array $idOrColumns, bool $generateCache = false)
     {
         global $database;
 
         $columns = array();
 
-        if (is_numeric($wish)) {
-            $wish = $database
+        if (is_numeric($idOrColumns)) {
+            $id      = $idOrColumns;
+            $columns = $database
             ->query(
                 'SELECT ' . self::SELECT    . '
                    FROM ' . self::FROM      . '
               LEFT JOIN ' . self::LEFT_JOIN . '
-                  WHERE ' . sprintf(self::WHERE, $wish)
+                  WHERE ' . sprintf(self::WHERE, $id)
             )
             ->fetch();
-
-            $columns = $wish;
-        } elseif (is_array($wish)) {
-            $columns = $wish;
+        } elseif (is_array($idOrColumns)) {
+            $columns = $idOrColumns;
         }
 
         if ($columns) {
@@ -109,6 +108,9 @@ class Wish
                     $this->$key = $this->info->$key;
                 }
             }
+
+            $this->title       = Sanitiser::render($this->title);
+            $this->description = Sanitiser::render($this->description);
         }
     }
 
@@ -116,13 +118,13 @@ class Wish
     {
         ob_start();
 
-        $userCard        = new User($ofUser);
+        $userCard        = User::getFromID($ofUser);
         $numberFormatter = new \NumberFormatter(
-            $userCard->locale,
+            $userCard->getLocale(),
             \NumberFormatter::CURRENCY
         );
 
-        $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $userCard->id;
+        $userIsCurrent = isset($_SESSION['user']->id) && $_SESSION['user']->id === $userCard->id;
 
         /**
          * Card
@@ -170,9 +172,9 @@ class Wish
             </div>
 
             <div class="image">
-                <?php if ($this->priority && isset(Wish::$priorities[$this->priority])) { ?>
-                    <div class="ui small <?= Wish::$priorities[$this->priority]['color'] ?> right ribbon label">
-                        <?= Wish::$priorities[$this->priority]['name'] ?>
+                <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
+                    <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> right ribbon label">
+                        <?= self::$priorities[$this->priority]['name'] ?>
                     </div>
                 <?php } ?>
 

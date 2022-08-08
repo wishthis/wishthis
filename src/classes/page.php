@@ -135,8 +135,9 @@ class Page
         /**
          * Session
          */
-        global $user, $options;
+        global $options;
 
+        $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
             'home',
             'blog',
@@ -150,9 +151,9 @@ class Page
         );
 
         if (
-               !isset($_SESSION['user'])
+               false === $user->isLoggedIn()
             && isset($_GET['page'])
-            && !in_array($_GET['page'], $ignorePower)
+            && false === in_array($_GET['page'], $ignorePower)
         ) {
             redirect(Page::PAGE_LOGIN);
         }
@@ -402,8 +403,8 @@ class Page
                     calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
                     calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
 
-                    button_wishlist_save  : '<?= __('Remember list') ?>',
-                    button_wishlist_saved : '<?= __('Remembered') ?>',
+                    button_wishlist_remember : '<?= __('Remember list') ?>',
+                    button_wishlist_forget   : '<?= __('Forget list') ?>',
                 };
             </script>
 
@@ -461,7 +462,7 @@ class Page
 
     public function navigation(): void
     {
-        $user = new User();
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
         $wishlists = Navigation::Wishlists->value;
         $blog      = Navigation::Blog->value;
@@ -693,17 +694,7 @@ class Page
                         <div class="ui inverted link list">
                             <div class="item">
                                 <i class="code branch icon"></i>
-                                <div class="content">
-                                    <?php
-                                    global $options;
-
-                                    if (VERSION === $options->version) {
-                                        echo 'v' . VERSION;
-                                    } else {
-                                        echo 'v' . VERSION . ' / ' . 'v' . $options->version;
-                                    }
-                                    ?>
-                                </div>
+                                <div class="content"><?= VERSION ?></div>
                             </div>
 
                             <a class="item"

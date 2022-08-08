@@ -103,7 +103,8 @@ $(function() {
                     button_set_default_state(buttonSave);
                     break;
             }
-
+        })
+        .finally(function() {
             buttonSave.removeClass('disabled loading');
         });
     });
@@ -131,24 +132,26 @@ $(function() {
     /** Set default state */
     function button_set_default_state(buttonSave) {
         buttonSave.find('.icon').removeClass('red');
-        buttonSave.find('span').text(text.button_wishlist_save);
+        buttonSave.find('span').text(text.button_wishlist_remember);
     }
 
     /** Set saved state */
     function button_set_saved_state(buttonSave) {
         buttonSave.find('.icon').addClass('red');
-        buttonSave.find('span').text(text.button_wishlist_saved);
+        buttonSave.find('span').text(text.button_wishlist_forget);
     }
 
     /**
      * Request more wishes
      */
     $(document).on('click', '.ui.button.wishlist-request-wishes', function() {
-        var buttonRequest = $(this);
-        var wishlist_id   = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+        var buttonRequest   = $(this);
+        var wishlist_id     = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+        var wishlist_locale = buttonRequest.attr('data-locale');
 
         var formData = new URLSearchParams({
             'wishlist-id' : wishlist_id,
+            'locale'      : wishlist_locale
         });
 
         buttonRequest.addClass('disabled loading');

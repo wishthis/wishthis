@@ -1,17 +1,9 @@
 {
-    "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
-    },
     "require": {
         "embed/embed": "^4.3",
         "grandel/include-directory": "^0.2.2",
         "qferr/mjml-php": "^1.1",
         "gettext/gettext": "^5.6",
         "gettext/translator": "^1.1"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
     }
 }

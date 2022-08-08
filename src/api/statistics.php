@@ -36,10 +36,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $response['data'][$table] = $count->get();
                 }
             } else {
+                $table = Sanitiser::getTable($_GET['table']);
+
                 $count = $database
                 ->query(
                     'SELECT COUNT(`id`) AS "count"
-                       FROM `' . $_GET['table'] . '`;'
+                       FROM `' . $table . '`;'
                 )
                 ->fetch();
 

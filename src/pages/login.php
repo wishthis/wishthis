@@ -14,23 +14,31 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $email    = $_POST['email'];
+    $email    = Sanitiser::getEmail($_POST['email']);
     $password = User::generatePassword($_POST['password']);
 
-    $database->query('UPDATE `users`
-                         SET `last_login` = NOW()
-                       WHERE `email` = "' . $email . '"
-                         AND `password` = "' . $password . '"
-    ;');
-    $user = $database->query('SELECT * FROM `users`
-                               WHERE `email`    = "' . $email . '"
-                                 AND `password` = "' . $password . '";')
-                     ->fetch();
+    $database
+    ->query(
+        'UPDATE `users`
+            SET `last_login` = NOW()
+          WHERE `email`      = "' . $email    . '"
+            AND `password`   = "' . $password . '";'
+    );
 
-    $success = false !== $user;
+    $userQuery = $database
+    ->query(
+        'SELECT *
+           FROM `users`
+          WHERE `email`    = "' . $email . '"
+            AND `password` = "' . $password . '";'
+    );
+
+    $success = false !== $userQuery;
 
     if ($success) {
-        $_SESSION['user'] = $user;
+        $fields = $userQuery->fetch();
+
+        $_SESSION['user'] = new User($fields);
     } else {
         $page->messages[] = Page::error(
             __('No user could be found with the credentials you provided.'),
@@ -39,7 +47,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     }
 }
 
-if (isset($_SESSION['user'])) {
+if ($_SESSION['user']->isLoggedIn()) {
     if (isset($_SESSION['REDIRECT_URL'])) {
         redirect($_SESSION['REDIRECT_URL']);
     } else {
@@ -51,40 +59,44 @@ if (isset($_SESSION['user'])) {
  * Reset
  */
 if (isset($_POST['reset'], $_POST['email'])) {
-    $user = $database
-    ->query('SELECT *
-               FROM `users`
-              WHERE `email` = "' . $_POST['email'] . '";')
-    ->fetch();
+    $userQuery = $database
+    ->query(
+        'SELECT *
+           FROM `users`
+          WHERE `email` = "' . Sanitiser::getEmail($_POST['email']) . '";'
+    );
 
-    if ($user) {
+    $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
+
+    if (isset($user->id)) {
         $token      = sha1(time() . rand(0, 999999));
         $validUntil = time() + 3600;
 
         $database
-        ->query('UPDATE `users`
-                    SET `password_reset_token`       = "' . $token . '",
-                        `password_reset_valid_until` = "' . date('Y-m-d H:i:s', $validUntil) . '"
-                  WHERE `id` = ' . $user['id'] . '
-        ;');
+        ->query(
+            'UPDATE `users`
+                SET `password_reset_token`       = "' . $token . '",
+                    `password_reset_valid_until` = "' . date('Y-m-d H:i:s', $validUntil) . '"
+              WHERE `id` = ' . $user->id . ';'
+        );
 
-        $emailReset = new Email($_POST['email'], __('Password reset link'), 'default', 'password-reset');
-        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,'));
+        $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');
+        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
         $emailReset->setPlaceholder(
             'TEXT_PASSWORD_RESET',
             sprintf(
                 /** TRANSLATORS: %s: The wishthis domain */
-                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.'),
+                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.', null, $user),
                 '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
             )
         );
-        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password'));
+        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password', null, $user));
         $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
         $emailReset->setPlaceholder(
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $_POST['email'] . '&token=' . $token
+            Page::PAGE_REGISTER . '&password-reset=' . $user->email . '&token=' . $token
         );
 
         $emailReset->send();

@@ -6,9 +6,11 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+use wishthis\User;
+
 function redirect(string $target)
 {
-    global $user;
+    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
     /**
      * Redirect user based on channel setting

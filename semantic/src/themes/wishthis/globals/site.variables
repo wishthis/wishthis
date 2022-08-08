@@ -1,0 +1,136 @@
+/*******************************
+         Site Settings
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName               : 'Raleway';
+@fontFileNameLatin      : 'RalewayLatin';
+@fontFileNameSupplement : 'Raleway';
+
+@fallbackFonts : sans-serif;
+
+@fonts: {
+    @regularLatin: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Regular.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Regular.ttf") format('truetype'));
+            font-style     : normal;
+            font-weight    : @normal;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeLatin;
+    };
+    @boldLatin: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Bold.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Bold.ttf") format('truetype'));
+            font-style     : normal;
+            font-weight    : @bold;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Italic.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Italic.ttf") format('truetype'));
+            font-style     : italic;
+            font-weight    : @normal;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeLatin;
+    };
+    @boldItalicLatin: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-BoldItalic.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-BoldItalic.ttf") format('truetype'));
+            font-style     : italic;
+            font-weight    : @bold;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeLatin;
+    };
+    @regularSupplement: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Regular.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Regular.ttf") format('truetype'));
+            font-style     : normal;
+            font-weight    : @normal;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeSupplement;
+    };
+    @boldSupplement: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Bold.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Bold.ttf") format('truetype'));
+            font-style     : normal;
+            font-weight    : @bold;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeSupplement;
+    };
+    @italicSupplement: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Italic.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Italic.ttf") format('truetype'));
+            font-style     : italic;
+            font-weight    : @normal;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeSupplement;
+    };
+    @boldItalicSupplement: {
+            font-family: @fontName;
+            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-BoldItalic.ttf") format('truetype')
+                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-BoldItalic.ttf") format('truetype'));
+            font-style     : italic;
+            font-weight    : @bold;
+            font-display   : @fontDisplay;
+            text-rendering : @textRendering;
+            unicode-range  : @unicodeRangeSupplement;
+    };
+};
+
+/*-------------------
+        Paths
+--------------------*/
+
+/* For source only. Modified in gulp for dist */
+@fontPathWishthis : '../../themes/wishthis/assets/fonts';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 14pt;
+
+/* The size of page text  */
+@fontSize : 14pt;
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor        : @violet;
+@lightPrimaryColor   : @lightViolet;
+
+/*-------------------
+    Focused Input
+--------------------*/
+
+/* Used on inputs, textarea etc */
+@focusedFormBorderColor: lighten(@primaryColor, 20);
+
+/* Used on dropdowns, other larger blocks */
+@focusedFormMutedBorderColor: lighten(@primaryColor, 10);
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor : @primaryColor;

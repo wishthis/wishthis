@@ -8,8 +8,9 @@
 
 namespace wishthis;
 
-$wishlist = new Wishlist($_GET['hash']);
-$page     = new Page(__FILE__, $wishlist->getTitle());
+$wishlist      = new Wishlist($_GET['hash']);
+$page          = new Page(__FILE__, $wishlist->getTitle());
+$wishlist_user = User::getFromID($wishlist->user);
 
 if (!$wishlist->exists) {
     $page->errorDocument(404, $wishlist);
@@ -27,7 +28,7 @@ $page->navigation();
         <div class="ui stackable grid">
             <div class="column">
 
-                <?php if ($user->isLoggedIn() && $user->id !== intval($wishlist->user)) { ?>
+                <?php if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id !== $wishlist->user) { ?>
                     <button class="ui white small basic labeled icon button save disabled loading">
                         <i class="heart icon"></i>
                         <span><?= __('Remember list') ?></span>
@@ -41,7 +42,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if ($user->isLoggedIn() && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
+        if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -87,7 +88,7 @@ $page->navigation();
         </div>
 
         <div class="ui basic center aligned segment">
-            <button class="ui primary button wishlist-request-wishes">
+            <button class="ui primary button wishlist-request-wishes" data-locale="<?= $wishlist_user->getLocale() ?>">
                 <?= __('Request more wishes') ?>
             </button>
         </div>

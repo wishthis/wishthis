@@ -16,16 +16,17 @@ $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
 $page = new Page(__FILE__, $pageTitle);
 
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
-    $users  = $database->query('SELECT * FROM `users`;')->fetchAll();
-    $emails = array_map(
+    $users      = $database->query('SELECT * FROM `users`;')->fetchAll();
+    $emails     = array_map(
         function ($user) {
             return $user['email'];
         },
         $users
     );
+    $user_email = Sanitiser::getEmail($_POST['email']);
 
     $isHuman     = false;
-    $planet      = strtolower($_POST['planet']);
+    $planet      = Sanitiser::getTitle($_POST['planet']);
     $planetName  = strtoupper($planet[0]) . substr($planet, 1);
     $planets     = array(
         strtolower(__('Mercury')),
@@ -57,30 +58,34 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
         $userRegistered = false;
 
         if (isset($_GET['password-reset'], $_GET['token'])) {
+            $user_email = Sanitiser::getEmail($_GET['password-reset']);
+            $user_token = Sanitiser::getSHA1($_GET['token']);
+
             /**
              * Password reset
              */
-            $user = $database
+            $userQuery = $database
             ->query(
                 'SELECT * FROM `users`
-                  WHERE `email`                = "' . $_GET['password-reset'] . '"
-                    AND `password_reset_token` = "' . $_GET['token'] . '";'
-            )
-            ->fetch();
+                  WHERE `email`                = "' . $user_email . '"
+                    AND `password_reset_token` = "' . $user_token . '";'
+            );
 
-            if (false !== $user) {
-                if (time() > $user['password_reset_valid_until']) {
+            if (false !== $userQuery) {
+                $user = new User($userQuery->fetch());
+
+                if (time() > $user->password_reset_valid_until) {
                     $database
                     ->query(
                         'UPDATE `users`
                                 SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
-                              WHERE `id`                         = ' . $user['id'] . ';'
+                              WHERE `id`                         = ' . $user->id . ';'
                     );
 
                     $page->messages[] = Page::success(
-                        'Password has been successfully reset for <strong>' . $_GET['password-reset'] . '</strong>.',
+                        'Password has been successfully reset for <strong>' . $user_email . '</strong>.',
                         'Success'
                     );
                 } else {
@@ -101,7 +106,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     `password`,
                                     `power`
                                 ) VALUES (
-                                    "' . $_POST['email'] . '",
+                                    "' . $user_email . '",
                                     "' . User::generatePassword($_POST['password']) . '",
                                     100
                                 )
@@ -109,7 +114,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 );
                 $userRegistered = true;
             } else {
-                if (in_array($_POST['email'], $emails)) {
+                if (in_array($user_email, $emails)) {
                     $page->messages[] = Page::error(
                         __('An account with this email address already exists.'),
                         __('Invalid email address')
@@ -121,7 +126,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                         `email`,
                                         `password`
                                     ) VALUES (
-                                        "' . $_POST['email'] . '",
+                                        "' . $user_email . '",
                                         "' . User::generatePassword($_POST['password']) . '"
                                     )
                     ;'
@@ -138,7 +143,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          */
         if ($userRegistered) {
             $userID       = $database->lastInsertID();
-            $wishlistName = __('My hopes and dreams');
+            $wishlistName = Sanitiser::getTitle(__('My hopes and dreams'));
 
             $database
             ->query(

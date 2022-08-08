@@ -9,6 +9,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    background-color: #f4f4f4;
+}
+
 img,
 svg {
     max-width: 100%;
@@ -25,6 +29,9 @@ figure {
     width: auto;
     height: 1em;
     margin: 0;
+}
+#logo {
+    color: inherit;
 }
 #logo path {
     fill: currentColor;
@@ -63,6 +70,9 @@ figure {
 .wishlist .ui.card {
     --padding: 0.91666667em;
     --buttonsHeight: calc(0.75em * 2 + 1em + 2 * var(--padding) - 2px);
+}
+.wishlist .ui.card:hover {
+    z-index: 110;
 }
 
 .wishlist .ui.fluid.card.stretch {
@@ -303,6 +313,9 @@ figure {
 /**
  * Label
  */
+.ui.label {
+    z-index: 100;
+}
 p .ui.horizontal.label {
     margin: 0;
     cursor: default;

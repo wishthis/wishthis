@@ -26,7 +26,7 @@ $page->navigation();
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
                     <div class="ui two column doubling stackable centered grid">
-                        <?php if ($user->isLoggedIn()) { ?>
+                        <?php if ($_SESSION['user']->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
                                    href="<?= Page::PAGE_WISHLISTS ?>"
@@ -40,11 +40,11 @@ $page->navigation();
                             $lastWishlist      = null;
                             $lastWishlistQuery = $database->query(
                                 '  SELECT `wishlists`.*
-                                        FROM `wishes`
-                                        JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
-                                        JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
-                                    WHERE `users`.`id` = ' . $user->id . '
-                                    ORDER BY `wishes`.`edited` DESC
+                                     FROM `wishes`
+                                     JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
+                                     JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
+                                    WHERE `users`.`id` = ' . $_SESSION['user']->id . '
+                                 ORDER BY `wishes`.`edited` DESC
                                     LIMIT 1;'
                             );
 

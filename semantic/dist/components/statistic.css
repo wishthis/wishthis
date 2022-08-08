@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Statistic
+ * # Fomantic-UI 2.9.0-beta.301+42e68bc - Statistic
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -75,7 +75,7 @@
 }
 
 /* Clearing */
-.ui.statistics:after {
+.ui.statistics::after {
   display: block;
   content: ' ';
   height: 0;
@@ -335,7 +335,7 @@
 .ui.inverted.primary.statistics .statistic > .value,
 .ui.statistics .inverted.primary.statistic > .value,
 .ui.inverted.primary.statistic > .value {
-  color: #54C8FF;
+  color: #A291FB;
 }
 .ui.secondary.statistics .statistic > .value,
 .ui.statistics .secondary.statistic > .value,
