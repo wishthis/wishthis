@@ -334,8 +334,6 @@ class Page
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';
                 var text                    = {
-                    wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
-
                     modal_error_title     : '<?= __('Error') ?>',
                     modal_failure_title   : '<?= __('Failure') ?>',
                     modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
