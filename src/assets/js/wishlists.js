@@ -23,8 +23,7 @@ $(function () {
                 wishlists = response.results;
 
                 element.dropdown({
-                    values      : wishlists,
-                    placeholder : text.wishlist_no_selection
+                    values : wishlists
                 })
 
                 if (wishlist.id) {

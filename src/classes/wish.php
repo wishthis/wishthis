@@ -109,8 +109,8 @@ class Wish
                 }
             }
 
-            $this->title       = Sanitiser::render($this->title);
-            $this->description = Sanitiser::render($this->description);
+            $this->title       = Sanitiser::render($this->title ?? '');
+            $this->description = Sanitiser::render($this->description ?? '');
         }
     }
 

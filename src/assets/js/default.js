@@ -36,8 +36,7 @@ $(function() {
     }
     $.fn.api.settings.onSuccess = function(response, element, xhr) {
         element.dropdown({
-            values     : response.results,
-            placeholder: text.wishlist_no_selection
+            values : response.results
         })
 
         if ($_GET.id) {

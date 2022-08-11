@@ -44,7 +44,7 @@
         color: rgba(255, 255, 255, 0.95);
     }
     .ui.vertical.pointing.menu .item::after {
-        border-color: #2b2b2a;
+        border-color: rgb(21, 21, 21);
     }
     .ui.vertical.pointing.menu .active.item:hover::after {
         background-color: #0d0d0d;
