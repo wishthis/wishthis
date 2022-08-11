@@ -4,7 +4,8 @@ namespace wishthis;
 
 class Sanitiser
 {
-    public static function render(string $text): string {
+    public static function render(string $text): string
+    {
         return html_entity_decode($text);
     }
 
