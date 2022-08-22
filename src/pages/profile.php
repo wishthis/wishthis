@@ -341,7 +341,7 @@ $page->navigation();
                     </div>
 
                     <?php
-                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 30 DAY';
+                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 60 DAY';
 
                     $count_users = $database
                     ->query('SELECT COUNT(`id`)
@@ -350,7 +350,7 @@ $page->navigation();
                     ->fetch();
                     $count_users = reset($count_users);
 
-                    $count_users_needed_minimum = 1;
+                    $count_users_needed_minimum = 3;
                     $count_users_needed_maximum = 100;
                     $count_users_needed         = min(
                         $count_users_needed_maximum,
