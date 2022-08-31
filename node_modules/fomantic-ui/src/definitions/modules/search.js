@@ -262,7 +262,7 @@ $.fn.search = function(parameters) {
 
           resultsScrollTop = $results.scrollTop();
           resultsHeight = $results.height();
-            
+
           if (elTop < 0) {
             $results.scrollTop(resultsScrollTop + elTop);
           }
@@ -293,8 +293,13 @@ $.fn.search = function(parameters) {
           ;
           // search shortcuts
           if(keyCode == keys.escape) {
-            module.verbose('Escape key pressed, blurring search field');
-            module.hideResults();
+            if(!module.is.visible()) {
+              module.verbose('Escape key pressed, blurring search field');
+              $prompt.blur();
+            } else {
+              module.hideResults();
+            }
+            event.stopPropagation();
             resultsDismissed = true;
           }
           if( module.is.visible() ) {
@@ -530,8 +535,8 @@ $.fn.search = function(parameters) {
           },
           type: function(type) {
             type = type || settings.type;
-            if(settings.type == 'category') {
-              $module.addClass(settings.type);
+            if(className[type]) {
+              $module.addClass(className[type]);
             }
           },
           buttonPressed: function() {
@@ -678,10 +683,10 @@ $.fn.search = function(parameters) {
                 ;
                 if(fieldExists) {
                   var text;
-                  if (typeof content[field] === 'string'){  
+                  if (typeof content[field] === 'string'){
                       text = module.remove.diacritics(content[field]);
                   } else {
-                      text = content[field].toString(); 
+                      text = content[field].toString();
                   }
                   if( text.search(matchRegExp) !== -1) {
                     // content starts with value (first in results)
@@ -993,6 +998,7 @@ $.fn.search = function(parameters) {
                   animation  : settings.transition + ' in',
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   duration   : settings.duration,
                   onShow     : function() {
                     var $firstResult = $module.find(selector.result).eq(0);
@@ -1028,6 +1034,7 @@ $.fn.search = function(parameters) {
                   animation  : settings.transition + ' out',
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   duration   : settings.duration,
                   onComplete : function() {
                     callback();
@@ -1350,6 +1357,7 @@ $.fn.search.settings = {
   className: {
     animating : 'animating',
     active    : 'active',
+    category  : 'category',
     empty     : 'empty',
     focus     : 'focus',
     hidden    : 'hidden',

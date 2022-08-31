@@ -7,14 +7,14 @@ export interface EnsureBaseOptions {
 }
 
 export interface EnsureIsOptional {
-	isOptional?: boolean;
+	isOptional: boolean;
 }
 
 export interface EnsureDefault<T> {
-	default?: T;
+	default: T;
 }
 
-type EnsureOptions = EnsureBaseOptions & EnsureIsOptional & EnsureDefault<any>;
+type EnsureOptions = EnsureBaseOptions & { isOptional?: boolean } & { default?: any };
 
 type ValidationDatum = [argumentName: string, inputValue: any, ensureFunction: EnsureFunction, options?: object];
 type ValidationDatumList = ValidationDatum[];
