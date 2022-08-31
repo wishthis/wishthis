@@ -19,7 +19,7 @@ if ('en' !== \Locale::getPrimaryLanguage($_SESSION['user']->getLocale())) {
     $page->messages[] = Page::warning(
         sprintf(
             /** TRANSLATORS: %s: Language, most likely English */
-            __('The blog is currently only available in %s and not translateable. Please let me know if you have any ideas to improve this.'),
+            __('The blog is currently only available in %s and not translatable. Please let me know if you have any ideas to improve this.'),
             '<strong>' . \Locale::getDisplayName('en', 'en') . '</strong>'
         ),
         __('Warning')
