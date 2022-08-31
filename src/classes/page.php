@@ -712,19 +712,19 @@ class Page
                             <a class="item"
                                href="https://github.com/grandeljay/wishthis"
                                target="_blank"
-                               title="<?= __('GitHub repository') ?>"
+                               title="<?= __('GitHub') ?>"
                             >
                                 <i class="github icon"></i>
-                                <div class="content"><?= __('GitHub repository') ?></div>
+                                <div class="content"><?= __('GitHub') ?></div>
                             </a>
 
                             <a class="item"
                                href="https://www.transifex.com/wishthis/wishthis/"
                                target="_blank"
-                               title="<?= __('Translate') ?>"
+                               title="<?= __('Transifex') ?>"
                             >
                                 <i class="language icon"></i>
-                                <div class="content"><?= __('Translate') ?></div>
+                                <div class="content"><?= __('Transifex') ?></div>
                             </a>
                         </div>
                     </div>
