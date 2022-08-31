@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Sidebar
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -80,10 +80,14 @@
      Pushable
 ---------------*/
 
-.pushable {
+.pushable.pushable.pushable {
   height: 100%;
   overflow-x: hidden;
-  padding: 0 !important;
+  padding: 0;
+}
+.pushable.pushable.pushable.locked {
+  overflow-y: hidden;
+  background: inherit;
 }
 
 /* Whole Page */

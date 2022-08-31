@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.301+42e68bc
+ * # Fomantic UI - 2.9.0-beta.311+116f84b
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Site
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -503,7 +503,7 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Calendar
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -1097,8 +1097,8 @@ $.fn.calendar = function(parameters) {
           },
           keydown: function (event) {
             var keyCode = event.which;
-            if (keyCode === 27 || keyCode === 9) {
-              //esc || tab
+            if (keyCode === 9) {
+              //tab
               module.popup('hide');
             }
 
@@ -1133,6 +1133,9 @@ $.fn.calendar = function(parameters) {
                 }
                 //disable form submission:
                 event.preventDefault();
+                event.stopPropagation();
+              } else if (keyCode === 27) {
+                module.popup('hide');
                 event.stopPropagation();
               }
             }
@@ -1990,7 +1993,7 @@ $.fn.calendar.settings = {
   silent: false,
   debug: false,
   verbose: false,
-  performance: false,
+  performance: true,
 
   type               : 'datetime', // picker type, can be 'datetime', 'date', 'time', 'month', or 'year'
   firstDayOfWeek     : 0,          // day for first day column (0 = Sunday)
@@ -2392,7 +2395,7 @@ $.fn.calendar.settings = {
 })(jQuery, window, document);
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Checkbox
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -2637,6 +2640,7 @@ $.fn.checkbox = function(parameters) {
               module.verbose('Escape key pressed blurring field');
               $input.blur();
               shortcutPressed = true;
+              event.stopPropagation();
             }
             else if(!event.ctrlKey && module.can.change()) {
                 if( key == keyCode.space || (key == keyCode.enter && settings.enableEnterKey) ) {
@@ -3222,7 +3226,7 @@ $.fn.checkbox.settings = {
 
   silent              : false,
   debug               : false,
-  verbose             : true,
+  verbose             : false,
   performance         : true,
 
   // delegated event context
@@ -3275,7 +3279,7 @@ $.fn.checkbox.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Dimmer
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3534,6 +3538,9 @@ $.fn.dimmer = function(parameters) {
               }
               $dimmer
                 .transition({
+                  debug       : settings.debug,
+                  verbose     : settings.verbose,
+                  silent      : settings.silent,
                   displayType : settings.useFlex
                     ? 'flex'
                     : 'block',
@@ -3583,6 +3590,9 @@ $.fn.dimmer = function(parameters) {
               module.verbose('Hiding dimmer with css');
               $dimmer
                 .transition({
+                  debug       : settings.debug,
+                  verbose     : settings.verbose,
+                  silent      : settings.silent,
                   displayType : settings.useFlex
                     ? 'flex'
                     : 'block',
@@ -4038,7 +4048,7 @@ $.fn.dimmer.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Dropdown
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -4100,7 +4110,7 @@ $.fn.dropdown = function(parameters) {
         moduleNamespace = 'module-' + namespace,
 
         $module         = $(this),
-        $context        = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $(settings.context),
+        $context        = [window,document].indexOf(settings.context) < 0 ? $document.find(settings.context) : $(settings.context),
         $text           = $module.find(selector.text),
         $search         = $module.find(selector.search),
         $sizer          = $module.find(selector.sizer),
@@ -4150,6 +4160,7 @@ $.fn.dropdown = function(parameters) {
               module.error(error.noNormalize, element);
             }
 
+            module.create.id();
             module.setup.layout();
 
             if(settings.values) {
@@ -4163,7 +4174,6 @@ $.fn.dropdown = function(parameters) {
             module.save.defaults();
             module.restore.selected();
 
-            module.create.id();
             module.bind.events();
 
             module.observeChanges();
@@ -4405,11 +4415,20 @@ $.fn.dropdown = function(parameters) {
             }
             if( module.is.search() && !module.has.search() ) {
               module.verbose('Adding search input');
+              var
+                  labelNode = $module.prev('label')
+              ;
               $search = $('<input />')
                 .addClass(className.search)
                 .prop('autocomplete', module.is.chrome() ? 'fomantic-search' : 'off')
-                .insertBefore($text)
               ;
+              if (labelNode.length) {
+                if (!labelNode.attr('id')) {
+                  labelNode.attr('id', module.get.id() + '_formLabel');
+                }
+                $search.attr('aria-labelledby', labelNode.attr('id'));
+              }
+              $search.insertBefore($text);
             }
             if( module.is.multiple() && module.is.searchSelection() && !module.has.sizer()) {
               module.create.sizer();
@@ -4478,7 +4497,7 @@ $.fn.dropdown = function(parameters) {
             // replace module reference
             $module  = $module.parent(selector.dropdown);
             instance = $module.data(moduleNamespace);
-            element  = $module.get(0);
+            element  = $module[0];
             module.refresh();
             module.setup.returnedObject();
           },
@@ -5729,6 +5748,7 @@ $.fn.dropdown = function(parameters) {
                 if(pressedKey == keys.escape) {
                   module.verbose('Escape key pressed, closing dropdown');
                   module.hide();
+                  event.stopPropagation();
                 }
 
               }
@@ -5950,7 +5970,7 @@ $.fn.dropdown = function(parameters) {
           },
           caretPosition: function(returnEndPos) {
             var
-              input = $search.get(0),
+              input = $search[0],
               range,
               rangeLength
             ;
@@ -6920,6 +6940,7 @@ $.fn.dropdown = function(parameters) {
                     animation  : settings.label.transition,
                     debug      : settings.debug,
                     verbose    : settings.verbose,
+                    silent     : settings.silent,
                     duration   : settings.label.duration
                 })
               ;
@@ -7549,7 +7570,7 @@ $.fn.dropdown = function(parameters) {
           },
           verticallyScrollableContext: function() {
             var
-              overflowY = ($context.get(0) !== window)
+              overflowY = ($context[0] !== window)
                 ? $context.css('overflow-y')
                 : false
             ;
@@ -7557,7 +7578,7 @@ $.fn.dropdown = function(parameters) {
           },
           horizontallyScrollableContext: function() {
             var
-              overflowX = ($context.get(0) !== window)
+              overflowX = ($context[0] !== window)
                 ? $context.css('overflow-X')
                 : false
             ;
@@ -7590,7 +7611,7 @@ $.fn.dropdown = function(parameters) {
             ;
             calculations = {
               context: {
-                offset    : ($context.get(0) === window)
+                offset    : ($context[0] === window)
                   ? { top: 0, left: 0}
                   : $context.offset(),
                 scrollTop : $context.scrollTop(),
@@ -7638,7 +7659,7 @@ $.fn.dropdown = function(parameters) {
             ;
             calculations = {
               context: {
-                offset     : ($context.get(0) === window)
+                offset     : ($context[0] === window)
                   ? { top: 0, left: 0}
                   : $context.offset(),
                 scrollLeft : $context.scrollLeft(),
@@ -7708,6 +7729,7 @@ $.fn.dropdown = function(parameters) {
                     animation  : transition + ' in',
                     debug      : settings.debug,
                     verbose    : settings.verbose,
+                    silent     : settings.silent,
                     duration   : settings.transition.showDuration || settings.duration,
                     queue      : true,
                     onStart    : start,
@@ -7755,6 +7777,7 @@ $.fn.dropdown = function(parameters) {
                     duration   : settings.transition.hideDuration || settings.duration,
                     debug      : settings.debug,
                     verbose    : settings.verbose,
+                    silent     : settings.silent,
                     queue      : false,
                     onStart    : start,
                     displayType: module.get.displayType(),
@@ -8287,7 +8310,8 @@ $.fn.dropdown.settings.templates = {
     var
       placeholder = select.placeholder || false,
       html        = '',
-      escape = $.fn.dropdown.settings.templates.escape
+      escape = $.fn.dropdown.settings.templates.escape,
+      deQuote = $.fn.dropdown.settings.templates.deQuote
     ;
     html +=  '<i class="dropdown icon"></i>';
     if(placeholder) {
@@ -8296,7 +8320,7 @@ $.fn.dropdown.settings.templates = {
     else {
       html += '<div class="text"></div>';
     }
-    html += '<div class="'+className.menu+'">';
+    html += '<div class="'+deQuote(className.menu)+'">';
     html += $.fn.dropdown.settings.templates.menu(select, fields, preserveHTML,className);
     html += '</div>';
     return html;
@@ -8334,27 +8358,27 @@ $.fn.dropdown.settings.templates = {
             : '',
           hasDescription = (escape(option[fields.description] || '', preserveHTML) != '')
         ;
-        html += '<div class="'+ maybeActionable + maybeDisabled + maybeDescriptionVertical + (option[fields.class] ? deQuote(option[fields.class]) : className.item)+'" data-value="' + deQuote(option[fields.value],true) + '"' + maybeText + '>';
+        html += '<div class="'+ deQuote(maybeActionable + maybeDisabled + maybeDescriptionVertical + (option[fields.class] ? option[fields.class] : className.item))+'" data-value="' + deQuote(option[fields.value],true) + '"' + maybeText + '>';
         if (isMenu) {
           html += '<i class="'+ (itemType.indexOf('left') !== -1 ? 'left' : '') + ' dropdown icon"></i>';
         }
         if(option[fields.image]) {
-          html += '<img class="'+(option[fields.imageClass] ? deQuote(option[fields.imageClass]) : className.image)+'" src="' + deQuote(option[fields.image]) + '">';
+          html += '<img class="'+deQuote(option[fields.imageClass] ? option[fields.imageClass] : className.image)+'" src="' + deQuote(option[fields.image]) + '">';
         }
         if(option[fields.icon]) {
-          html += '<i class="'+deQuote(option[fields.icon])+' '+(option[fields.iconClass] ? deQuote(option[fields.iconClass]) : className.icon)+'"></i>';
+          html += '<i class="'+deQuote(option[fields.icon]+' '+(option[fields.iconClass] ? option[fields.iconClass] : className.icon))+'"></i>';
         }
         if(hasDescription){
-          html += '<span class="'+ className.description +'">'+ escape(option[fields.description] || '', preserveHTML) + '</span>';
-          html += (!isMenu) ? '<span class="'+ className.text + '">' : '';
+          html += '<span class="'+ deQuote(className.description) +'">'+ escape(option[fields.description] || '', preserveHTML) + '</span>';
+          html += (!isMenu) ? '<span class="'+ deQuote(className.text) + '">' : '';
         }
         if (isMenu) {
-          html += '<span class="' + className.text + '">';
+          html += '<span class="' + deQuote(className.text) + '">';
         }
         html +=   escape(option[fields.name] || '', preserveHTML);
         if (isMenu) {
           html += '</span>';
-          html += '<div class="' + itemType + '">';
+          html += '<div class="' + deQuote(itemType) + '">';
           html += $.fn.dropdown.settings.templates.menu(option, fields, preserveHTML, className);
           html += '</div>';
         } else if(hasDescription){
@@ -8363,18 +8387,18 @@ $.fn.dropdown.settings.templates = {
         html += '</div>';
       } else if (itemType === 'header') {
         var groupName = escape(option[fields.name] || '', preserveHTML),
-            groupIcon = option[fields.icon] ? deQuote(option[fields.icon]) : className.groupIcon
+            groupIcon = deQuote(option[fields.icon] ? option[fields.icon] : className.groupIcon)
         ;
         if(groupName !== '' || groupIcon !== '') {
-          html += '<div class="' + (option[fields.class] ? deQuote(option[fields.class]) : className.header) + '">';
+          html += '<div class="' + deQuote(option[fields.class] ? option[fields.class] : className.header) + '">';
           if (groupIcon !== '') {
-            html += '<i class="' + groupIcon + ' ' + (option[fields.iconClass] ? deQuote(option[fields.iconClass]) : className.icon) + '"></i>';
+            html += '<i class="' + deQuote(groupIcon + ' ' + (option[fields.iconClass] ? option[fields.iconClass] : className.icon)) + '"></i>';
           }
           html += groupName;
           html += '</div>';
         }
         if(option[fields.divider]){
-          html += '<div class="'+className.divider+'"></div>';
+          html += '<div class="'+deQuote(className.divider)+'"></div>';
         }
       }
     });
@@ -8384,8 +8408,10 @@ $.fn.dropdown.settings.templates = {
   // generates label for multiselect
   label: function(value, text, preserveHTML, className) {
     var
-        escape = $.fn.dropdown.settings.templates.escape;
-    return escape(text,preserveHTML) + '<i class="'+className.delete+' icon"></i>';
+        escape = $.fn.dropdown.settings.templates.escape,
+        deQuote = $.fn.dropdown.settings.templates.deQuote
+    ;
+    return escape(text,preserveHTML) + '<i class="'+deQuote(className.delete)+' icon"></i>';
   },
 
 
@@ -8404,7 +8430,7 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Form Validation
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Form Validation
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10485,7 +10511,7 @@ $.fn.form.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Modal
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -11038,6 +11064,8 @@ $.fn.modal = function(parameters) {
                 $module
                   .transition({
                     debug       : settings.debug,
+                    verbose     : settings.verbose,
+                    silent      : settings.silent,
                     animation   : (settings.transition.showMethod || settings.transition) + ' in',
                     queue       : settings.queue,
                     duration    : settings.transition.showDuration || settings.duration,
@@ -11088,6 +11116,8 @@ $.fn.modal = function(parameters) {
               $module
                 .transition({
                   debug       : settings.debug,
+                  verbose     : settings.verbose,
+                  silent      : settings.silent,
                   animation   : (settings.transition.hideMethod || settings.transition) + ' out',
                   queue       : settings.queue,
                   duration    : settings.transition.hideDuration || settings.duration,
@@ -11209,7 +11239,7 @@ $.fn.modal = function(parameters) {
           keyboardShortcuts: function() {
             module.verbose('Adding keyboard shortcuts');
             $document
-              .on('keyup' + eventNamespace, module.event.keyboard)
+              .on('keydown' + eventNamespace, module.event.keyboard)
             ;
           }
         },
@@ -11289,7 +11319,7 @@ $.fn.modal = function(parameters) {
           keyboardShortcuts: function() {
             module.verbose('Removing keyboard shortcuts');
             $document
-              .off('keyup' + eventNamespace)
+              .off('keydown' + eventNamespace)
             ;
           },
           scrolling: function() {
@@ -11993,7 +12023,7 @@ $.fn.modal.settings.templates = {
         denyFn = function(){args.handler(null)}
     ;
     if (input.length === 0) {
-      args.content += '<p><div class="'+settings.className.prompt+'"><input placeholder="'+this.helpers.deQuote(args.placeholder || '')+'" type="text" value="'+this.helpers.deQuote(args.defaultValue || '')+'"></div></p>';
+      args.content += '<p><div class="'+this.helpers.deQuote(settings.className.prompt)+'"><input placeholder="'+this.helpers.deQuote(args.placeholder || '')+'" type="text" value="'+this.helpers.deQuote(args.defaultValue || '')+'"></div></p>';
     }
     return {
       title  : args.title,
@@ -12016,7 +12046,7 @@ $.fn.modal.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Popup
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -12079,11 +12109,11 @@ $.fn.popup = function(parameters) {
         moduleNamespace    = 'module-' + namespace,
 
         $module            = $(this),
-        $context           = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $(settings.context),
-        $scrollContext     = [window,document].indexOf(settings.scrollContext) < 0 ? $(document).find(settings.scrollContext) : $(settings.scrollContext),
-        $boundary          = [window,document].indexOf(settings.boundary) < 0 ? $(document).find(settings.boundary) : $(settings.boundary),
+        $context           = [window,document].indexOf(settings.context) < 0 ? $document.find(settings.context) : $(settings.context),
+        $scrollContext     = [window,document].indexOf(settings.scrollContext) < 0 ? $document.find(settings.scrollContext) : $(settings.scrollContext),
+        $boundary          = [window,document].indexOf(settings.boundary) < 0 ? $document.find(settings.boundary) : $(settings.boundary),
         $target            = (settings.target)
-          ? ([window,document].indexOf(settings.target) < 0 ? $(document).find(settings.target) : $(settings.target))
+          ? ([window,document].indexOf(settings.target) < 0 ? $document.find(settings.target) : $(settings.target))
           : $module,
 
         $popup,
@@ -12138,8 +12168,8 @@ $.fn.popup = function(parameters) {
         },
 
         refresh: function() {
-          if(settings.popup && typeof settings.popup === 'string') {
-            $popup = $(document).find(settings.popup).eq(0);
+          if(settings.popup) {
+            $popup = $document.find(settings.popup).eq(0);
           }
           else {
             if(settings.inline) {
@@ -12303,8 +12333,8 @@ $.fn.popup = function(parameters) {
             }
             settings.onCreate.call($popup, element);
           }
-          else if(settings.popup && typeof settings.popup === 'string') {
-            $(document).find(settings.popup).data(metadata.activator, $module);
+          else if(settings.popup) {
+            $document.find(settings.popup).data(metadata.activator, $module);
             module.verbose('Used popup specified in settings');
             module.refresh();
             if(settings.hoverable) {
@@ -12385,7 +12415,7 @@ $.fn.popup = function(parameters) {
         },
 
         hideAll: function() {
-          $(document).find(selector.popup)
+          $document.find(selector.popup)
             .filter('.' + className.popupVisible)
             .each(function() {
               $(this)
@@ -12455,6 +12485,7 @@ $.fn.popup = function(parameters) {
                   queue      : false,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   duration   : settings.transition.showDuration || settings.duration,
                   onComplete : function() {
                     module.bind.close();
@@ -12479,6 +12510,7 @@ $.fn.popup = function(parameters) {
                   duration   : settings.transition.hideDuration || settings.duration,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   onComplete : function() {
                     module.reset();
                     callback.call($popup, element);
@@ -12574,7 +12606,7 @@ $.fn.popup = function(parameters) {
             };
 
             // if popup offset context is not same as target, then adjust calculations
-            if($popupOffsetParent.get(0) !== $offsetParent.get(0)) {
+            if($popupOffsetParent[0] !== $offsetParent[0]) {
               var
                 popupOffset        = $popupOffsetParent.offset()
               ;
@@ -13152,7 +13184,7 @@ $.fn.popup = function(parameters) {
             return !module.is.visible();
           },
           rtl: function () {
-            return $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl';
+            return $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl' || $body.attr('dir') === 'rtl' || $body.css('direction') === 'rtl' || $context.attr('dir') === 'rtl' || $context.css('direction') === 'rtl';
           }
         },
 
@@ -13558,7 +13590,7 @@ $.fn.popup.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Progress
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Progress
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14595,7 +14627,7 @@ $.fn.progress.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Sidebar
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14624,6 +14656,7 @@ $.fn.sidebar = function(parameters) {
     $allModules     = $(this),
     $window         = $(window),
     $document       = $(document),
+    $body           = $('body'),
     $html           = $('html'),
     $head           = $('head'),
 
@@ -14662,7 +14695,8 @@ $.fn.sidebar = function(parameters) {
         moduleNamespace = 'module-' + namespace,
 
         $module         = $(this),
-        $context        = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $(settings.context),
+        $context        = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $body,
+        isBody          = $context[0] === $body[0],
 
         $sidebars       = $module.children(selector.sidebar),
         $fixed          = $context.children(selector.fixed),
@@ -14676,6 +14710,9 @@ $.fn.sidebar = function(parameters) {
         id,
         currentScroll,
         transitionEvent,
+        initialBodyMargin = '',
+        tempBodyMargin = '',
+        hadScrollbar = false,
 
         module
       ;
@@ -14781,9 +14818,12 @@ $.fn.sidebar = function(parameters) {
           scrollLock: function() {
             if(settings.scrollLock) {
               module.debug('Disabling page scroll');
-              $window
-                .on('DOMMouseScroll' + elementNamespace, module.event.scroll)
-              ;
+              hadScrollbar = module.has.scrollbar();
+              if(hadScrollbar) {
+                module.save.bodyMargin();
+                module.set.bodyMargin();
+              }
+              $context.addClass(className.locked);
             }
             module.verbose('Adding events to contain sidebar scroll');
             $document
@@ -14801,8 +14841,11 @@ $.fn.sidebar = function(parameters) {
           },
           scrollLock: function() {
             module.verbose('Removing scroll lock from page');
+            if(hadScrollbar) {
+              module.restore.bodyMargin();
+            }
+            $context.removeClass(className.locked);
             $document.off(elementNamespace);
-            $window.off(elementNamespace);
             $module.off('scroll' + eventNamespace);
           }
         },
@@ -14960,7 +15003,22 @@ $.fn.sidebar = function(parameters) {
             module.error(error.notFound, selector);
           }
         },
-
+        can: {
+          leftBodyScrollbar: function () {
+            if (module.cache.leftBodyScrollbar === undefined) {
+              module.cache.leftBodyScrollbar = module.is.rtl() && ((module.is.iframe && !module.is.firefox()) || module.is.safari() || module.is.edge() || module.is.ie());
+            }
+            return module.cache.leftBodyScrollbar;
+          }
+        },
+        save: {
+          bodyMargin: function() {
+            initialBodyMargin = $context.css((isBody ? 'margin-':'padding-')+(module.can.leftBodyScrollbar() ? 'left':'right'));
+            var bodyMarginRightPixel = parseInt(initialBodyMargin.replace(/[^\d.]/g, '')),
+                bodyScrollbarWidth = isBody ? window.innerWidth - document.documentElement.clientWidth : $context[0].offsetWidth - $context[0].clientWidth;
+            tempBodyMargin = bodyMarginRightPixel + bodyScrollbarWidth;
+          }
+        },
         show: function(callback) {
           callback = $.isFunction(callback)
             ? callback
@@ -15071,9 +15129,13 @@ $.fn.sidebar = function(parameters) {
             ? callback
             : function(){}
           ;
-          if(settings.transition == 'scale down') {
+          if(settings.returnScroll) {
+            currentScroll = (isBody ? $window : $context).scrollTop();
+          }
+          if(settings.transition === 'scale down') {
             module.scrollToTop();
           }
+          module.bind.scrollLock();
           module.set.transition(transition);
           module.repaint();
           animate = function() {
@@ -15089,7 +15151,6 @@ $.fn.sidebar = function(parameters) {
             if( event.target == $transition[0] ) {
               $transition.off(transitionEvent + elementNamespace, transitionEnd);
               module.remove.animating();
-              module.bind.scrollLock();
               callback.call(element);
             }
           };
@@ -15133,7 +15194,7 @@ $.fn.sidebar = function(parameters) {
               module.remove.animating();
               module.remove.transition();
               module.remove.inlineCSS();
-              if(transition == 'scale down' || (settings.returnScroll && module.is.mobile()) ) {
+              if(transition === 'scale down' || settings.returnScroll) {
                 module.scrollBack();
               }
               callback.call(element);
@@ -15146,14 +15207,13 @@ $.fn.sidebar = function(parameters) {
 
         scrollToTop: function() {
           module.verbose('Scrolling to top of page to avoid animation issues');
-          currentScroll = $(window).scrollTop();
           $module.scrollTop(0);
-          window.scrollTo(0, 0);
+          (isBody ? $window : $context)[0].scrollTo(0, 0);
         },
 
         scrollBack: function() {
           module.verbose('Scrolling back to original page position');
-          window.scrollTo(0, currentScroll);
+          (isBody ? $window : $context)[0].scrollTo(0, currentScroll);
         },
 
         clear: {
@@ -15164,7 +15224,16 @@ $.fn.sidebar = function(parameters) {
         },
 
         set: {
-
+          bodyMargin: function() {
+            var position = module.can.leftBodyScrollbar() ? 'left':'right';
+            $context.css((isBody ? 'margin-':'padding-')+position, tempBodyMargin + 'px');
+            $context.find(selector.bodyFixed.replace('right',position)).each(function(){
+              var el = $(this),
+                  attribute = el.css('position') === 'fixed' ? 'padding-'+position : position
+              ;
+              el.css(attribute, 'calc(' + el.css(attribute) + ' + ' + tempBodyMargin + 'px)');
+            });
+          },
           // ios only (scroll on html not document). This prevent auto-resize canvas/scroll in ios
           // (This is no longer necessary in latest iOS)
           ios: function() {
@@ -15250,7 +15319,18 @@ $.fn.sidebar = function(parameters) {
             $module.removeClass(className.overlay);
           }
         },
-
+        restore: {
+          bodyMargin: function() {
+            var position = module.can.leftBodyScrollbar() ? 'left':'right';
+            $context.css((isBody ? 'margin-':'padding-')+position, initialBodyMargin);
+            $context.find(selector.bodyFixed.replace('right',position)).each(function(){
+              var el = $(this),
+                  attribute = el.css('position') === 'fixed' ? 'padding-'+position : position
+              ;
+              el.css(attribute, '');
+            });
+          }
+        },
         get: {
           direction: function() {
             if($module.hasClass(className.top)) {
@@ -15298,15 +15378,42 @@ $.fn.sidebar = function(parameters) {
             }
           }
         },
-
+        has: {
+          scrollbar: function() {
+            return isBody || $context.css('overflow-y') !== 'hidden';
+          }
+        },
         is: {
-
+          safari: function() {
+            if(module.cache.isSafari === undefined) {
+              module.cache.isSafari = /constructor/i.test(window.HTMLElement) || !!window.ApplePaySession;
+            }
+            return module.cache.isSafari;
+          },
+          edge: function(){
+            if(module.cache.isEdge === undefined) {
+              module.cache.isEdge = !!window.setImmediate && !module.is.ie();
+            }
+            return module.cache.isEdge;
+          },
+          firefox: function(){
+            if(module.cache.isFirefox === undefined) {
+              module.cache.isFirefox = !!window.InstallTrigger;
+            }
+            return module.cache.isFirefox;
+          },
+          iframe: function() {
+            return !(self === top);
+          },
           ie: function() {
-            var
-              isIE11 = (!(window.ActiveXObject) && 'ActiveXObject' in window),
-              isIE   = ('ActiveXObject' in window)
-            ;
-            return (isIE11 || isIE);
+            if(module.cache.isIE === undefined) {
+              var
+                  isIE11 = (!(window.ActiveXObject) && 'ActiveXObject' in window),
+                  isIE = ('ActiveXObject' in window)
+              ;
+              module.cache.isIE = (isIE11 || isIE);
+            }
+            return module.cache.isIE;
           },
 
           ios: function() {
@@ -15356,12 +15463,12 @@ $.fn.sidebar = function(parameters) {
           animating: function() {
             return $context.hasClass(className.animating);
           },
-          rtl: function () {
-            if(module.cache.rtl === undefined) {
-              module.cache.rtl = $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl';
+          rtl: function() {
+            if(module.cache.isRTL === undefined) {
+              module.cache.isRTL = $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl' || $body.attr('dir') === 'rtl' || $body.css('direction') === 'rtl' || $context.attr('dir') === 'rtl' || $context.css('direction') === 'rtl';
             }
-            return module.cache.rtl;
-          }
+            return module.cache.isRTL;
+          },
         },
 
         setting: function(name, value) {
@@ -15598,6 +15705,7 @@ $.fn.sidebar.settings = {
     animating : 'animating',
     dimmed    : 'dimmed',
     ios       : 'ios',
+    locked    : 'locked',
     pushable  : 'pushable',
     pushed    : 'pushed',
     right     : 'right',
@@ -15608,6 +15716,7 @@ $.fn.sidebar.settings = {
   },
 
   selector: {
+    bodyFixed: '> .ui.fixed.menu, > .ui.right.toast-container, > .ui.right.sidebar, > .ui.fixed.nag, > .ui.fixed.nag > .close',
     fixed   : '.fixed',
     omitted : 'script, link, style, .ui.modal, .ui.dimmer, .ui.nag, .ui.fixed',
     pusher  : '.pusher',
@@ -15634,7 +15743,7 @@ $.fn.sidebar.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Tab
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16654,7 +16763,7 @@ $.fn.tab.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Toast
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -17046,6 +17155,7 @@ $.fn.toast = function(parameters) {
                   queue      : false,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   duration   : settings.transition.showDuration,
                   onComplete : function() {
                     callback.call($toastBox, element);
@@ -17065,6 +17175,7 @@ $.fn.toast = function(parameters) {
                   duration   : settings.transition.hideDuration,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   interval   : 50,
 
                   onBeforeHide: function(callback){
@@ -17579,7 +17690,7 @@ $.extend( $.easing, {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - API
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - API
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18816,7 +18927,7 @@ $.api.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Transition
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -19515,11 +19626,13 @@ $.fn.transition = function() {
                 .addClass(className.transition)
                 .css('animationName')
               ;
+              $clone.detach().insertAfter($module);
               inAnimation = $clone
                 .addClass(className.inward)
                 .css('animationName')
               ;
               if(!displayType) {
+                $clone.detach().insertAfter($module);
                 displayType = $clone
                   .attr('class', elementClass)
                   .removeAttr('style')

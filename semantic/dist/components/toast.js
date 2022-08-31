@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Toast
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -391,6 +391,7 @@ $.fn.toast = function(parameters) {
                   queue      : false,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   duration   : settings.transition.showDuration,
                   onComplete : function() {
                     callback.call($toastBox, element);
@@ -410,6 +411,7 @@ $.fn.toast = function(parameters) {
                   duration   : settings.transition.hideDuration,
                   debug      : settings.debug,
                   verbose    : settings.verbose,
+                  silent     : settings.silent,
                   interval   : 50,
 
                   onBeforeHide: function(callback){

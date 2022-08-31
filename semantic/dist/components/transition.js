@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Transition
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -698,11 +698,13 @@ $.fn.transition = function() {
                 .addClass(className.transition)
                 .css('animationName')
               ;
+              $clone.detach().insertAfter($module);
               inAnimation = $clone
                 .addClass(className.inward)
                 .css('animationName')
               ;
               if(!displayType) {
+                $clone.detach().insertAfter($module);
                 displayType = $clone
                   .attr('class', elementClass)
                   .removeAttr('style')

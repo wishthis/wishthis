@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Form
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Form
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -60,7 +60,7 @@
   font-weight: bold;
   text-transform: none;
 }
-.ui.form .field > label:not(.button) {
+.ui.form:not(.inverted) .field > label:not(.button) {
   color: rgba(0, 0, 0, 0.87);
 }
 
