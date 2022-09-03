@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Dropdown
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -554,6 +554,16 @@ select.ui.dropdown {
 /* User Item */
 .ui.selection.dropdown .menu > .hidden.addition.item {
   display: none;
+}
+
+/* User addition item */
+.ui.dropdown > .menu > .stuck.addition.item:first-child {
+  position: sticky;
+  top: 0;
+  -webkit-box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+          box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  background: #FFFFFF;
+  z-index: 14;
 }
 
 /* Hover */

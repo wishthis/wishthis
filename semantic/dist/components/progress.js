@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Progress
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Progress
  * http://github.com/fomantic/Fomantic-UI/
  *
  *

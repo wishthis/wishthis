@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/medikoo/es5-ext/compare/v1.6.0...v1.7.0) (2022-08-31)
+
+### Features
+
+- `string.camelToHyphen` method ([b8ea4ab](https://github.com/medikoo/es5-ext/commit/b8ea4ab6c8b920ecdff224f9c92092e1c7f8cdfc))
+- `string.capitalize` method ([32e7360](https://github.com/medikoo/es5-ext/commit/32e736034bd27ed25d4566b22aa93aa66c7901cf))
+
 ## [1.6.0](https://github.com/medikoo/es5-ext/compare/v1.5.0...v1.6.0) (2021-09-24)
 
 ### Features

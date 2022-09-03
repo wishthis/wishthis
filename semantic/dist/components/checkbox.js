@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.301+42e68bc - Checkbox
+ * # Fomantic-UI 2.9.0-beta.311+116f84b - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -244,6 +244,7 @@ $.fn.checkbox = function(parameters) {
               module.verbose('Escape key pressed blurring field');
               $input.blur();
               shortcutPressed = true;
+              event.stopPropagation();
             }
             else if(!event.ctrlKey && module.can.change()) {
                 if( key == keyCode.space || (key == keyCode.enter && settings.enableEnterKey) ) {
@@ -829,7 +830,7 @@ $.fn.checkbox.settings = {
 
   silent              : false,
   debug               : false,
-  verbose             : true,
+  verbose             : false,
   performance         : true,
 
   // delegated event context

@@ -103,6 +103,20 @@ Use one of the following commands.
 | ---------------| ------------------------- |
 | `yarn install` | Install all dependencies. |
 
+#### Updating fomantic-ui
+To update fomantic-ui run the following commands
+```
+yarn upgrade
+cd node_modules/fomantic-ui
+npx gulp install
+npx gulp build
+```
+
+or as a one-liner
+```
+yarn upgrade && cd node_modules/fomantic-ui && npx gulp install && npx gulp build && cd ../..
+```
+
 #### Theme changes
 ```
 cd semantic

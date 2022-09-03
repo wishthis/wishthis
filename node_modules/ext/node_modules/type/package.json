@@ -1,6 +1,6 @@
 {
 	"name": "type",
-	"version": "2.7.1",
+	"version": "2.7.2",
 	"description": "Runtime validation and processing of JavaScript types",
 	"author": "Mariusz Nowak <medyk@medikoo.com> (https://www.medikoo.com/)",
 	"keywords": [

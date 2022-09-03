@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.2](https://github.com/medikoo/type/compare/v2.7.1...v2.7.2) (2022-08-05)
+
+### Maintenance Improvements
+
+- **TS:** Improve `ensure` options handling ([#8](https://github.com/medikoo/type/issues/8)) ([4a54066](https://github.com/medikoo/type/commit/4a54066d7b55cef14ac4aa25a6f070296a043a6f)) ([Marco](https://github.com/borracciaBlu))
+
 ### [2.7.1](https://github.com/medikoo/type/compare/v2.7.0...v2.7.1) (2022-08-04)
 
 ### Maintenance Improvements
