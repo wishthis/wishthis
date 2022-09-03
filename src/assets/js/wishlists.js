@@ -14,6 +14,8 @@ $(function () {
         }
     });
 
+    $('.ui.dropdown.wishlists').dropdown();
+
     function wishlistsRefresh() {
         $('.ui.dropdown.wishlists').api({
             action    : 'get wishlists',
