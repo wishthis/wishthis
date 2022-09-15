@@ -264,7 +264,7 @@
     .ui.form .grouped.fields > label {
         color: rgba(255, 255, 255, 0.87);
     }
-    .ui.form .field > label:not(.button) {
+    .ui.form:not(.inverted) .field > label:not(.button) {
         color: rgba(255, 255, 255, 0.87);
     }
 
