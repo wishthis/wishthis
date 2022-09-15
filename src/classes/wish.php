@@ -130,7 +130,7 @@ class Wish
          * Card
          */
         if ($this->url) {
-            $generateCache = $this->cache->generateCache() || !$this->url ? 'true' : 'false';
+            $generateCache = $this->cache->generateCache() ? 'true' : 'false';
         } else {
             $generateCache = 'false';
         }
