@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-09-15 16:02+0200\n"
+"POT-Creation-Date: 2022-09-15 19:00+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -282,8 +282,9 @@ msgstr ""
 msgid "Make a wish"
 msgstr ""
 
+#. TRANSLATORS: Changelog: Added
 #: classes/page.php:475 classes/page.php:479 pages/blog.php:11
-#: pages/changelog.php:41 pages/post.php:62
+#: pages/changelog.php:44 pages/post.php:62
 msgid "Blog"
 msgstr ""
 
@@ -498,111 +499,133 @@ msgstr ""
 msgid "0.7.0"
 msgstr ""
 
-#: pages/changelog.php:26 pages/changelog.php:81
+#: pages/changelog.php:26 pages/changelog.php:171
 msgid "0.6.0"
 msgstr ""
 
-#: pages/changelog.php:39 pages/changelog.php:85
+#: pages/changelog.php:39 pages/changelog.php:175
 msgid "Added"
 msgstr ""
 
-#: pages/changelog.php:42
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:50
 msgid "Dark theme"
 msgstr ""
 
-#: pages/changelog.php:43
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:56
 msgid "Wish products"
 msgstr ""
 
-#: pages/changelog.php:44
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:62
 msgid "Jump to last edited wishlist from home"
 msgstr ""
 
-#: pages/changelog.php:45
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:68
 msgid "Quick add wish from home"
 msgstr ""
 
-#: pages/changelog.php:46
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:74
 msgid "Button to request more wishes from a users wishlist"
 msgstr ""
 
-#: pages/changelog.php:49 pages/changelog.php:92
+#: pages/changelog.php:79 pages/changelog.php:197
 msgid "Improved"
 msgstr ""
 
-#: pages/changelog.php:51
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:84
 msgid "Localisation (many new translations added)"
 msgstr ""
 
-#: pages/changelog.php:52
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:90
 msgid "Additional logins are no longer required when switching between wishthis channels"
 msgstr ""
 
-#: pages/changelog.php:53
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:96
 msgid "Remembered wishlists design"
 msgstr ""
 
-#: pages/changelog.php:56
+#: pages/changelog.php:101
 msgid "Changed"
 msgstr ""
 
-#: pages/changelog.php:58
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:106
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr ""
 
-#: pages/changelog.php:59
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:112
 msgid "Wishes can be edited from the wishlist now, without loading another page"
 msgstr ""
 
-#: pages/changelog.php:60
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:118
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
 msgstr ""
 
-#: pages/changelog.php:63 pages/changelog.php:97
+#: pages/changelog.php:123 pages/changelog.php:207
 msgid "Fixed"
 msgstr ""
 
-#: pages/changelog.php:65
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:128
 msgid "Various minor things (typos, menu order, etc)"
 msgstr ""
 
-#: pages/changelog.php:66
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:134
 msgid "Wish information being updated with 404 content from URL"
 msgstr ""
 
-#: pages/changelog.php:67
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:140
 msgid "Wish image not showing"
 msgstr ""
 
-#: pages/changelog.php:68
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:146
 msgid "An error when saving a wish with a really long URL"
 msgstr ""
 
-#: pages/changelog.php:69
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:152
 msgid "Redirect errors on Nginx"
 msgstr ""
 
-#: pages/changelog.php:70
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:158
 msgid "An error when fetching title from an URL containing quotes"
 msgstr ""
 
-#: pages/changelog.php:87
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:180
 msgid "This changelog"
 msgstr ""
 
-#: pages/changelog.php:88
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:186
 msgid "Wish properties"
 msgstr ""
 
-#: pages/changelog.php:89
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:192
 msgid "Button to mark wish as fulfilled"
 msgstr ""
 
-#: pages/changelog.php:94
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:202
 msgid "Card design"
 msgstr ""
 
-#: pages/changelog.php:99
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:212
 msgid "Various small bugs"
 msgstr ""
 
