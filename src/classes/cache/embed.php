@@ -37,7 +37,7 @@ class Embed extends Cache
         /** Get existing info */
         $info = $this->exists() ? json_decode(file_get_contents($filepath)) : new \stdClass();
 
-        if (($this->exists() && $this->getAge() > $this->maxAge) || true === $generateCache) {
+        if (true === $generateCache) {
             $infoToSave = $info;
 
             try {

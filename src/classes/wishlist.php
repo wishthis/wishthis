@@ -31,9 +31,11 @@ class Wishlist
          * Get Wishlist
          */
         $columns = $database
-        ->query('SELECT *
-                   FROM `wishlists`
-                  WHERE `' . $column . '` = ' . $id_or_hash . ';')
+        ->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `' . $column . '` = ' . $id_or_hash . ';'
+        )
         ->fetch();
 
         if ($columns) {
