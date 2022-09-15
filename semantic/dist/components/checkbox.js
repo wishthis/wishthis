@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Checkbox
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -754,7 +754,7 @@ $.fn.checkbox = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;

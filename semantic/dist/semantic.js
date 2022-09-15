@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.311+116f84b
+ * # Fomantic UI - 2.9.0-beta.315+0963809
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Site
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -369,7 +369,7 @@ $.site = $.fn.site = function(parameters) {
         response
       ;
       passedArguments = passedArguments || queryArguments;
-      context         = element         || context;
+      context         = context         || element;
       if(typeof query == 'string' && object !== undefined) {
         query    = query.split(/[\. ]/);
         maxDepth = query.length - 1;
@@ -503,7 +503,7 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Calendar
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -1103,9 +1103,9 @@ $.fn.calendar = function(parameters) {
             }
 
             if (module.popup('is visible')) {
+              var mode = module.get.mode();
               if (keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40) {
                 //arrow keys
-                var mode = module.get.mode();
                 var bigIncrement = mode === 'day' ? 7 : mode === 'hour' ? 4 : mode === 'minute' ? timeGap['column'] : 3;
                 var increment = keyCode === 37 ? -1 : keyCode === 38 ? -bigIncrement : keyCode == 39 ? 1 : bigIncrement;
                 increment *= mode === 'minute' ? settings.minTimeGap : 1;
@@ -1124,7 +1124,6 @@ $.fn.calendar = function(parameters) {
                 }
               } else if (keyCode === 13) {
                 //enter
-                var mode = module.get.mode();
                 var date = module.get.focusDate();
                 if (date && !settings.isDisabled(date, mode) && !module.helper.isDisabled(date, mode) && module.helper.isEnabled(date, mode)) {
                   if (settings.onSelect.call(element, date, module.get.mode()) !== false) {
@@ -1917,7 +1916,7 @@ $.fn.calendar = function(parameters) {
             response
             ;
           passedArguments = passedArguments || queryArguments;
-          context = element || context;
+          context = context || element;
           if (typeof query == 'string' && object !== undefined) {
             query = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -2395,7 +2394,7 @@ $.fn.calendar.settings = {
 })(jQuery, window, document);
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Checkbox
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3150,7 +3149,7 @@ $.fn.checkbox = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -3279,7 +3278,7 @@ $.fn.checkbox.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Dimmer
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3660,10 +3659,7 @@ $.fn.dimmer = function(parameters) {
           },
           closable: function() {
             if(settings.closable == 'auto') {
-              if(settings.on == 'hover') {
-                return false;
-              }
-              return true;
+              return settings.on != 'hover';
             }
             return settings.closable;
           },
@@ -3882,7 +3878,7 @@ $.fn.dimmer = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -4048,7 +4044,7 @@ $.fn.dimmer.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Dropdown
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -4277,7 +4273,6 @@ $.fn.dropdown = function(parameters) {
             var
               $userChoices,
               $userChoice,
-              isUserValue,
               html
             ;
             values = values || module.get.userValues();
@@ -4963,30 +4958,18 @@ $.fn.dropdown = function(parameters) {
                 }
                 if(settings.match === 'both' || settings.match === 'text') {
                   text = module.remove.diacritics(String(module.get.choiceText($choice, false)));
-                  if(text.search(beginsWithRegExp) !== -1) {
-                    results.push(this);
-                    return true;
-                  }
-                  else if (settings.fullTextSearch === 'exact' && module.exactSearch(searchTerm, text)) {
-                    results.push(this);
-                    return true;
-                  }
-                  else if (settings.fullTextSearch === true && module.fuzzySearch(searchTerm, text)) {
+                  if(text.search(beginsWithRegExp) !== -1 ||
+                     (settings.fullTextSearch === 'exact' && module.exactSearch(searchTerm, text)) ||
+                     (settings.fullTextSearch === true && module.fuzzySearch(searchTerm, text))) {
                     results.push(this);
                     return true;
                   }
                 }
                 if(settings.match === 'both' || settings.match === 'value') {
                   value = module.remove.diacritics(String(module.get.choiceValue($choice, text)));
-                  if(value.search(beginsWithRegExp) !== -1) {
-                    results.push(this);
-                    return true;
-                  }
-                  else if (settings.fullTextSearch === 'exact' && module.exactSearch(searchTerm, value)) {
-                    results.push(this);
-                    return true;
-                  }
-                  else if (settings.fullTextSearch === true && module.fuzzySearch(searchTerm, value)) {
+                  if(value.search(beginsWithRegExp) !== -1 ||
+                     (settings.fullTextSearch === 'exact' && module.exactSearch(searchTerm, value)) ||
+                     (settings.fullTextSearch === true && module.fuzzySearch(searchTerm, value))) {
                     results.push(this);
                     return true;
                   }
@@ -5487,8 +5470,7 @@ $.fn.dropdown = function(parameters) {
                   isFocusedOnSearch = module.is.focusedOnSearch(),
                   isFocused         = module.is.focused(),
                   caretAtStart      = (isFocusedOnSearch && module.get.caretPosition(false) === 0),
-                  isSelectedSearch  = (caretAtStart && module.get.caretPosition(true) !== 0),
-                  $nextLabel
+                  isSelectedSearch  = (caretAtStart && module.get.caretPosition(true) !== 0)
                 ;
                 if(isSearch && !hasActiveLabel && !isFocusedOnSearch) {
                   return;
@@ -5605,8 +5587,7 @@ $.fn.dropdown = function(parameters) {
                 delimiterPressed      = (event.key === settings.delimiter && module.is.multiple()),
                 isAdditionWithoutMenu = (settings.allowAdditions && settings.hideAdditions && (pressedKey == keys.enter || delimiterPressed) && selectedIsSelectable),
                 $nextItem,
-                isSubMenuItem,
-                newIndex
+                isSubMenuItem
               ;
               // allow selection with menu closed
               if(isAdditionWithoutMenu) {
@@ -5710,7 +5691,7 @@ $.fn.dropdown = function(parameters) {
                 // down arrow (traverse menu down)
                 if(pressedKey == keys.downArrow) {
                   $nextItem = (hasSelectedItem && inVisibleMenu)
-                    ? $nextItem = $selectedItem.nextAll(selector.item + ':not(' + selector.unselectable + ')').eq(0)
+                    ? $selectedItem.nextAll(selector.item + ':not(' + selector.unselectable + ')').eq(0)
                     : $item.eq(0)
                   ;
                   if($nextItem.length === 0) {
@@ -6465,7 +6446,6 @@ $.fn.dropdown = function(parameters) {
             currentScroll = $menu.scrollTop(),
             itemHeight    = $item.eq(0).outerHeight(),
             itemsPerPage  = Math.floor(menuHeight / itemHeight),
-            maxScroll     = $menu.prop('scrollHeight'),
             newScroll     = (direction == 'up')
               ? currentScroll - (itemHeight * itemsPerPage)
               : currentScroll + (itemHeight * itemsPerPage),
@@ -6590,7 +6570,6 @@ $.fn.dropdown = function(parameters) {
               $menu,
               hasActive,
               offset,
-              itemHeight,
               itemOffset,
               menuOffset,
               menuScroll,
@@ -6753,8 +6732,7 @@ $.fn.dropdown = function(parameters) {
               currentValue = module.get.values(),
               stringValue  = (value !== undefined)
                 ? String(value)
-                : value,
-              newValue
+                : value
             ;
             if(hasInput) {
               if(!settings.allowReselection && stringValue == currentValue) {
@@ -6963,7 +6941,7 @@ $.fn.dropdown = function(parameters) {
               ;
             }
             else {
-              $message = $('<div/>')
+              $('<div/>')
                 .html(html)
                 .addClass(className.message)
                 .appendTo($menu)
@@ -7046,16 +7024,13 @@ $.fn.dropdown = function(parameters) {
               hasCount    = (message.search('{count}') !== -1),
               hasMaxCount = (message.search('{maxCount}') !== -1),
               hasTerm     = (message.search('{term}') !== -1),
-              count,
               query
             ;
             module.verbose('Adding templated variables to message', message);
             if(hasCount) {
-              count  = module.get.selectionCount();
-              message = message.replace('{count}', count);
+              message = message.replace('{count}', module.get.selectionCount());
             }
             if(hasMaxCount) {
-              count  = module.get.selectionCount();
               message = message.replace('{maxCount}', settings.maxSelections);
             }
             if(hasTerm) {
@@ -7502,7 +7477,7 @@ $.fn.dropdown = function(parameters) {
             return (document.activeElement === $search[0]);
           },
           allFiltered: function() {
-            return( (module.is.multiple() || module.has.search()) && !(settings.hideAdditions == false && module.has.userSuggestion()) && !module.has.message() && module.has.allResultsFiltered() );
+            return( (module.is.multiple() || module.has.search()) && !(!settings.hideAdditions && module.has.userSuggestion()) && !module.has.message() && module.has.allResultsFiltered() );
           },
           hidden: function($subMenu) {
             return !module.is.visible($subMenu);
@@ -7588,22 +7563,17 @@ $.fn.dropdown = function(parameters) {
 
         can: {
           activate: function($item) {
-            if(settings.useLabels) {
-              return true;
-            }
-            if(!module.has.maxSelections()) {
-              return true;
-            }
-            if(module.has.maxSelections() && $item.hasClass(className.active)) {
-              return true;
-            }
-            return false;
+            return (
+               settings.useLabels ||
+               !module.has.maxSelections() ||
+               (module.has.maxSelections() && $item.hasClass(className.active))
+            );
           },
           openDownward: function($subMenu) {
             var
               $currentMenu    = $subMenu || $menu,
-              canOpenDownward = true,
-              onScreen        = {},
+              canOpenDownward,
+              onScreen,
               calculations
             ;
             $currentMenu
@@ -7863,7 +7833,7 @@ $.fn.dropdown = function(parameters) {
                   }
               ;
               if(shouldEscape.test(string)) {
-                  string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+                  string = string.replace(/&(?![a-z0-9#]{1,12};)/gi, "&amp;");
                   return string.replace(badChars, escapedChar);
               }
               return string;
@@ -7985,7 +7955,7 @@ $.fn.dropdown = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -8300,7 +8270,7 @@ $.fn.dropdown.settings.templates = {
         }
     ;
     if(shouldEscape.test(string)) {
-      string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+      string = string.replace(/&(?![a-z0-9#]{1,12};)/gi, "&amp;");
       return string.replace(badChars, escapedChar);
     }
     return string;
@@ -8430,7 +8400,7 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Form Validation
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Form Validation
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8896,7 +8866,7 @@ $.fn.form = function(parameters) {
           },
           beforeUnload: function(event) {
             if (module.is.dirty() && !submitting) {
-              var event = event || window.event;
+              event = event || window.event;
 
               // For modern browsers
               if (event) {
@@ -9232,16 +9202,11 @@ $.fn.form = function(parameters) {
             if(typeof identifier !== 'string') {
               module.error(error.identifier, identifier);
             }
-            if($field.filter('#' + identifier).length > 0 ) {
-              return true;
-            }
-            else if( $field.filter('[name="' + identifier +'"]').length > 0 ) {
-              return true;
-            }
-            else if( $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0 ) {
-              return true;
-            }
-            return false;
+            return (
+              $field.filter('#' + identifier).length > 0 ||
+              $field.filter('[name="' + identifier +'"]').length > 0 ||
+              $field.filter('[data-' + metadata.validate + '="'+ identifier +'"]').length > 0
+            );
           }
 
         },
@@ -9888,7 +9853,7 @@ $.fn.form = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -10511,7 +10476,7 @@ $.fn.form.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Modal
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10535,7 +10500,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
     : Function('return this')()
 ;
 
-$.fn.modal = function(parameters) {
+$.modal = $.fn.modal = function(parameters) {
   var
     $allModules    = $(this),
     $window        = $(window),
@@ -10577,7 +10542,8 @@ $.fn.modal = function(parameters) {
         moduleNamespace = 'module-' + namespace,
 
         $module         = $(this),
-        $context        = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $(settings.context),
+        $context        = [window,document].indexOf(settings.context) < 0 ? $document.find(settings.context) : $body,
+        isBody          = $context[0] === $body[0],
         $closeIcon      = $module.find(selector.closeIcon),
         $inputs,
 
@@ -10587,8 +10553,10 @@ $.fn.modal = function(parameters) {
         $dimmable,
         $dimmer,
 
+        isModalComponent = $module.hasClass('modal'),
+
         element         = this,
-        instance        = $module.hasClass('modal') ? $module.data(moduleNamespace) : undefined,
+        instance        = isModalComponent ? $module.data(moduleNamespace) : undefined,
 
         ignoreRepeatedEvents = false,
 
@@ -10596,6 +10564,8 @@ $.fn.modal = function(parameters) {
         initialMouseDownInScrollbar,
         initialBodyMargin = '',
         tempBodyMargin = '',
+        keepScrollingClass = false,
+        hadScrollbar = false,
 
         elementEventNamespace,
         id,
@@ -10606,7 +10576,7 @@ $.fn.modal = function(parameters) {
 
         initialize: function() {
           module.create.id();
-          if(!$module.hasClass('modal')) {
+          if(!isModalComponent) {
             module.create.modal();
             if(!$.isFunction(settings.onHidden)) {
               settings.onHidden = function () {
@@ -10713,6 +10683,7 @@ $.fn.modal = function(parameters) {
             }
             module.debug('Creating dimmer');
             $dimmable = $context.dimmer(dimmerSettings);
+            keepScrollingClass = module.is.scrolling();
             if(settings.detachable) {
               module.verbose('Modal is detachable, moving content into dimmer');
               $dimmable.dimmer('add content', $module);
@@ -10838,13 +10809,13 @@ $.fn.modal = function(parameters) {
           },
           scrollLock: function() {
             // touch events default to passive, due to changes in chrome to optimize mobile perf
-            $dimmable.get(0).addEventListener('touchmove', module.event.preventScroll, { passive: false });
+            $dimmable[0].addEventListener('touchmove', module.event.preventScroll, { passive: false });
           }
         },
 
         unbind: {
           scrollLock: function() {
-            $dimmable.get(0).removeEventListener('touchmove', module.event.preventScroll, { passive: false });
+            $dimmable[0].removeEventListener('touchmove', module.event.preventScroll, { passive: false });
           }
         },
 
@@ -10926,7 +10897,7 @@ $.fn.modal = function(parameters) {
             if(initialMouseDownInModal) {
               module.verbose('Mouse down event registered inside the modal');
             }
-            initialMouseDownInScrollbar = module.is.scrolling() && ((!isRtl && $(window).outerWidth() - settings.scrollbarWidth <= event.clientX) || (isRtl && settings.scrollbarWidth >= event.clientX));
+            initialMouseDownInScrollbar = module.is.scrolling() && ((!isRtl && $window.outerWidth() - settings.scrollbarWidth <= event.clientX) || (isRtl && settings.scrollbarWidth >= event.clientX));
             if(initialMouseDownInScrollbar) {
               module.verbose('Mouse down event registered inside the scrollbar');
             }
@@ -11030,9 +11001,12 @@ $.fn.modal = function(parameters) {
               module.verbose('Show callback returned false cancelling show');
               return;
             }
+            hadScrollbar = module.has.scrollbar();
             module.showDimmer();
             module.cacheSizes();
-            module.set.bodyMargin();
+            if(hadScrollbar) {
+              module.set.bodyMargin();
+            }
             if(module.can.useFlex()) {
               module.remove.legacy();
             }
@@ -11161,7 +11135,12 @@ $.fn.modal = function(parameters) {
 
         showDimmer: function() {
           if($dimmable.dimmer('is animating') || !$dimmable.dimmer('is active') ) {
-            module.save.bodyMargin();
+            if(hadScrollbar) {
+              if(!isBody) {
+                $dimmer.css('top', $dimmable.scrollTop());
+              }
+              module.save.bodyMargin();
+            }
             module.debug('Showing dimmer');
             $dimmable.dimmer('show');
           }
@@ -11174,14 +11153,15 @@ $.fn.modal = function(parameters) {
           if( $dimmable.dimmer('is animating') || ($dimmable.dimmer('is active')) ) {
             module.unbind.scrollLock();
             $dimmable.dimmer('hide', function() {
-              module.restore.bodyMargin();
+              if(hadScrollbar) {
+                module.restore.bodyMargin();
+              }
               module.remove.clickaway();
               module.remove.screenHeight();
             });
           }
           else {
             module.debug('Dimmer is not visible cannot hide');
-            return;
           }
         },
 
@@ -11255,9 +11235,9 @@ $.fn.modal = function(parameters) {
             }
           },
           bodyMargin: function() {
-            initialBodyMargin = $body.css('margin-'+(module.can.leftBodyScrollbar() ? 'left':'right'));
+            initialBodyMargin = $context.css((isBody ? 'margin-':'padding-')+(module.can.leftBodyScrollbar() ? 'left':'right'));
             var bodyMarginRightPixel = parseInt(initialBodyMargin.replace(/[^\d.]/g, '')),
-                bodyScrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                bodyScrollbarWidth = isBody ? window.innerWidth - document.documentElement.clientWidth : $context[0].offsetWidth - $context[0].clientWidth;
             tempBodyMargin = bodyMarginRightPixel + bodyScrollbarWidth;
           }
         },
@@ -11270,8 +11250,8 @@ $.fn.modal = function(parameters) {
           },
           bodyMargin: function() {
             var position = module.can.leftBodyScrollbar() ? 'left':'right';
-            $body.css('margin-'+position, initialBodyMargin);
-            $body.find(selector.bodyFixed.replace('right',position)).each(function(){
+            $context.css((isBody ? 'margin-':'padding-')+position, initialBodyMargin);
+            $context.find(selector.bodyFixed.replace('right',position)).each(function(){
               var el = $(this),
                   attribute = el.css('position') === 'fixed' ? 'padding-'+position : position
               ;
@@ -11305,16 +11285,17 @@ $.fn.modal = function(parameters) {
             $dimmable.removeClass(className.blurring);
           },
           bodyStyle: function() {
-            if($body.attr('style') === '') {
+            if($context.attr('style') === '') {
               module.verbose('Removing style attribute');
-              $body.removeAttr('style');
+              $context.removeAttr('style');
             }
           },
           screenHeight: function() {
             module.debug('Removing page height');
-            $body
+            $context
               .css('height', '')
             ;
+            module.remove.bodyStyle()
           },
           keyboardShortcuts: function() {
             module.verbose('Removing keyboard shortcuts');
@@ -11323,7 +11304,9 @@ $.fn.modal = function(parameters) {
             ;
           },
           scrolling: function() {
-            $dimmable.removeClass(className.scrolling);
+            if(!keepScrollingClass) {
+              $dimmable.removeClass(className.scrolling);
+            }
             $module.removeClass(className.scrolling);
           }
         },
@@ -11337,12 +11320,12 @@ $.fn.modal = function(parameters) {
           ;
           if(module.cache.pageHeight === undefined || modalHeight !== 0) {
             $.extend(module.cache, {
-              pageHeight    : $(document).outerHeight(),
+              pageHeight    : $document.outerHeight(),
               width         : modalWidth,
               height        : modalHeight + settings.offset,
               scrollHeight  : scrollHeight + settings.offset,
-              contextHeight : (settings.context == 'body')
-                ? $(window).height()
+              contextHeight : isBody
+                ? $window.height()
                 : $dimmable.height(),
             });
             module.cache.topOffset = -(module.cache.height / 2);
@@ -11373,7 +11356,7 @@ $.fn.modal = function(parameters) {
                 }
             ;
             if(shouldEscape.test(string)) {
-              string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+              string = string.replace(/&(?![a-z0-9#]{1,12};)/gi, "&amp;");
               return string.replace(badChars, escapedChar);
             }
             return string;
@@ -11416,6 +11399,9 @@ $.fn.modal = function(parameters) {
         has: {
           configActions: function () {
             return Array.isArray(settings.actions) && settings.actions.length > 0;
+          },
+          scrollbar: function() {
+            return isBody || $context.css('overflow-y') !== 'hidden';
           }
         },
         is: {
@@ -11447,7 +11433,7 @@ $.fn.modal = function(parameters) {
           },
           rtl: function() {
             if(module.cache.isRTL === undefined) {
-              module.cache.isRTL = $body.attr('dir') === 'rtl' || $body.css('direction') === 'rtl';
+              module.cache.isRTL = $module.attr('dir') === 'rtl' || $module.css('direction') === 'rtl' || $body.attr('dir') === 'rtl' || $body.css('direction') === 'rtl' || $context.attr('dir') === 'rtl' || $context.css('direction') === 'rtl';
             }
             return module.cache.isRTL;
           },
@@ -11489,9 +11475,9 @@ $.fn.modal = function(parameters) {
           bodyMargin: function() {
             var position = module.can.leftBodyScrollbar() ? 'left':'right';
             if(settings.detachable || module.can.fit()) {
-              $body.css('margin-'+position, tempBodyMargin + 'px');
+              $context.css((isBody ? 'margin-':'padding-')+position, tempBodyMargin + 'px');
             }
-            $body.find(selector.bodyFixed.replace('right',position)).each(function(){
+            $context.find(selector.bodyFixed.replace('right',position)).each(function(){
               var el = $(this),
                   attribute = el.css('position') === 'fixed' ? 'padding-'+position : position
               ;
@@ -11557,10 +11543,10 @@ $.fn.modal = function(parameters) {
               $module
                 .css({
                   top: (!$module.hasClass('aligned') && canFit)
-                    ? $(document).scrollTop() + (module.cache.contextHeight - module.cache.height) / 2
+                    ? $document.scrollTop() + (module.cache.contextHeight - module.cache.height) / 2
                     : !canFit || $module.hasClass('top')
-                      ? $(document).scrollTop() + settings.padding
-                      : $(document).scrollTop() + (module.cache.contextHeight - module.cache.height - settings.padding),
+                      ? $document.scrollTop() + settings.padding
+                      : $document.scrollTop() + (module.cache.contextHeight - module.cache.height - settings.padding),
                   marginLeft: -(module.cache.width / 2)
                 })
               ;
@@ -11578,11 +11564,11 @@ $.fn.modal = function(parameters) {
           },
           screenHeight: function() {
             if( module.can.fit() ) {
-              $body.css('height', '');
+              $context.css('height', '');
             }
             else if(!$module.hasClass('bottom')) {
               module.debug('Modal is taller than page content, resizing page height');
-              $body
+              $context
                 .css('height', module.cache.height + (settings.padding * 2) )
               ;
             }
@@ -11734,7 +11720,7 @@ $.fn.modal = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -12046,7 +12032,7 @@ $.fn.modal.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Popup
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -13134,10 +13120,7 @@ $.fn.popup = function(parameters) {
         is: {
           closable: function() {
             if(settings.closable == 'auto') {
-              if(settings.on == 'hover') {
-                return false;
-              }
-              return true;
+              return settings.on != 'hover';
             }
             return settings.closable;
           },
@@ -13152,12 +13135,7 @@ $.fn.popup = function(parameters) {
                 offstage.push(direction);
               }
             });
-            if(offstage.length > 0) {
-              return true;
-            }
-            else {
-              return false;
-            }
+            return offstage.length > 0;
           },
           svg: function(element) {
             return module.supports.svg() && (element instanceof SVGGraphicsElement);
@@ -13311,7 +13289,7 @@ $.fn.popup = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -13560,7 +13538,7 @@ $.fn.popup.settings = {
         }
       ;
       if(shouldEscape.test(string)) {
-        string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+        string = string.replace(/&(?![a-z0-9#]{1,12};)/gi, "&amp;");
         return string.replace(badChars, escapedChar);
       }
       return string;
@@ -13590,7 +13568,7 @@ $.fn.popup.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Progress
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Progress
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14468,7 +14446,7 @@ $.fn.progress = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -14589,7 +14567,7 @@ $.fn.progress.settings = {
   },
 
   regExp: {
-    variable: /\{\$*[A-z0-9]+\}/g
+    variable: /\{\$*[a-z0-9]+\}/gi
   },
 
   metadata: {
@@ -14627,7 +14605,7 @@ $.fn.progress.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Sidebar
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -15586,7 +15564,7 @@ $.fn.sidebar = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -15691,8 +15669,6 @@ $.fn.sidebar.settings = {
   returnScroll      : false,
   delaySetup        : false,
 
-  duration          : 500,
-
   onChange          : function(){},
   onShow            : function(){},
   onHide            : function(){},
@@ -15743,7 +15719,7 @@ $.fn.sidebar.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Tab
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16612,7 +16588,7 @@ $.fn.tab = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -16763,7 +16739,7 @@ $.fn.tab.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Toast
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16787,7 +16763,7 @@ window = (typeof window != 'undefined' && window.Math == Math)
     : Function('return this')()
 ;
 
-$.fn.toast = function(parameters) {
+$.toast = $.fn.toast = function(parameters) {
   var
     $allModules    = $(this),
     moduleSelector = $allModules.selector || '',
@@ -17339,7 +17315,7 @@ $.fn.toast = function(parameters) {
               }
             ;
             if(shouldEscape.test(string)) {
-              string = string.replace(/&(?![a-z0-9#]{1,6};)/, "&amp;");
+              string = string.replace(/&(?![a-z0-9#]{1,12};)/gi, "&amp;");
               return string.replace(badChars, escapedChar);
             }
             return string;
@@ -17471,7 +17447,7 @@ $.fn.toast = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -17690,7 +17666,7 @@ $.extend( $.easing, {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - API
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - API
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18706,7 +18682,7 @@ $.api = $.fn.api = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -18897,8 +18873,8 @@ $.api.settings = {
   },
 
   regExp  : {
-    required : /\{\$*[A-z0-9]+\}/g,
-    optional : /\{\/\$*[A-z0-9]+\}/g,
+    required : /\{\$*[a-z0-9]+\}/gi,
+    optional : /\{\/\$*[a-z0-9]+\}/gi,
     validate: /^[a-z_][a-z0-9_-]*(?:\[[a-z0-9_-]*\])*$/i,
     key:      /[a-z0-9_-]+|(?=\[\])/gi,
     push:     /^$/,
@@ -18927,7 +18903,7 @@ $.api.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Transition
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -19014,7 +18990,7 @@ $.fn.transition = function() {
           if(methodInvoked === false) {
             module.verbose('Converted arguments into settings object', settings);
             if(settings.interval) {
-              module.delay(settings.animate);
+              module.delay(settings.interval);
             }
             else  {
               module.animate();
@@ -19081,9 +19057,9 @@ $.fn.transition = function() {
             : settings.interval
           ;
           shouldReverse = (settings.reverse == 'auto' && direction == className.outward);
-          delay = (shouldReverse || settings.reverse == true)
-            ? ($allModules.length - index) * settings.interval
-            : index * settings.interval
+          delay = (shouldReverse || settings.reverse === true)
+            ? ($allModules.length - index) * interval
+            : index * interval
           ;
           module.debug('Delaying animation by', delay);
           setTimeout(module.animate, delay);
@@ -19720,7 +19696,6 @@ $.fn.transition = function() {
             module.force.hidden();
             settings.onHidden.call(element);
             settings.onComplete.call(element);
-            // module.repaint();
         },
 
         show: function(display) {
@@ -19735,7 +19710,6 @@ $.fn.transition = function() {
           module.set.visible();
           settings.onVisible.call(element);
           settings.onComplete.call(element);
-          // module.repaint();
         },
 
         toggle: function() {
@@ -19894,7 +19868,7 @@ $.fn.transition = function() {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
