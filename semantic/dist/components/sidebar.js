@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Sidebar
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -958,7 +958,7 @@ $.fn.sidebar = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
@@ -1062,8 +1062,6 @@ $.fn.sidebar.settings = {
   scrollLock        : false,
   returnScroll      : false,
   delaySetup        : false,
-
-  duration          : 500,
 
   onChange          : function(){},
   onShow            : function(){},

@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Modal
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -446,6 +446,12 @@
       -ms-flex-pack: start;
           justify-content: flex-start;
   position: fixed;
+}
+.scrolling.dimmable:not(body) > .dimmer {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
 }
 .scrolling.dimmable.dimmed > .dimmer {
   overflow: auto;

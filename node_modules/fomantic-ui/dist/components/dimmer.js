@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Dimmer
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -380,10 +380,7 @@ $.fn.dimmer = function(parameters) {
           },
           closable: function() {
             if(settings.closable == 'auto') {
-              if(settings.on == 'hover') {
-                return false;
-              }
-              return true;
+              return settings.on != 'hover';
             }
             return settings.closable;
           },
@@ -602,7 +599,7 @@ $.fn.dimmer = function(parameters) {
             response
           ;
           passedArguments = passedArguments || queryArguments;
-          context         = element         || context;
+          context         = context         || element;
           if(typeof query == 'string' && object !== undefined) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;

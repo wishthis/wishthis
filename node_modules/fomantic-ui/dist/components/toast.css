@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.311+116f84b - Toast
+ * # Fomantic-UI 2.9.0-beta.315+0963809 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -125,6 +125,7 @@
   margin-bottom: 0.5em;
   border-radius: 0.28571429rem;
   cursor: default;
+  will-change: transform, opacity;
 }
 .ui.toast-container .toast-box:hover {
   opacity: 1;
