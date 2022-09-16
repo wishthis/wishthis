@@ -24,7 +24,7 @@
   display: -ms-flexbox;
   display: flex;
   margin: 1rem 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
   background: #FFFFFF;
   font-weight: normal;
   border: 1px solid rgba(34, 36, 38, 0.15);
@@ -299,9 +299,6 @@
 }
 .ui.vertical.menu .dropdown.item .menu {
   left: 100%;
-  
-/* IE needs 0, all others support max-content to show dropdown icon inline, so keep both settings! */
-  min-width: 0;
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
@@ -1810,9 +1807,6 @@ Floated Menu / Item
   vertical-align: middle;
 }
 .ui.compact.vertical.menu {
-  
-/* IE hack to make dropdown icons appear inline */
-  display: -ms-inline-flexbox !important;
   display: inline-block;
 }
 .ui.compact.menu:not(.secondary) .item:last-child {

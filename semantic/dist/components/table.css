@@ -606,26 +606,6 @@
 .ui.scrolling.table > thead,
 .ui.scrolling.table > tfoot {
   scrollbar-color: currentColor currentColor;
-  scrollbar-face-color: currentColor;
-  scrollbar-shadow-color: currentColor;
-  scrollbar-track-color: currentColor;
-  scrollbar-arrow-color: currentColor;
-}
-
-/* IE scrollbar color needs hex values */
-@media all and (-ms-high-contrast: none) {
-  .ui.scrolling.table > thead {
-    color: #F9FAFB;
-  }
-  .ui.scrolling.table > tfoot {
-    color: #F9FAFB;
-  }
-  .ui.inverted.scrolling.table > thead {
-    color: #252525;
-  }
-  .ui.inverted.scrolling.table > tfoot {
-    color: #252525;
-  }
 }
 .ui.inverted.scrolling.table > tbody::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
@@ -640,12 +620,6 @@
   background: rgba(255, 255, 255, 0.35);
 }
 .ui.inverted.scrolling.table > tbody {
-  
-/* IE11 */
-  scrollbar-face-color: #656565;
-  scrollbar-shadow-color: #656565;
-  scrollbar-track-color: #323232;
-  scrollbar-arrow-color: #323232;
   
 /* firefox : first color thumb, second track */
   scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);

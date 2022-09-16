@@ -17,6 +17,16 @@
   dependencies:
     tunnel "^0.0.6"
 
+"@fontsource/atkinson-hyperlegible@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/atkinson-hyperlegible/-/atkinson-hyperlegible-4.5.9.tgz#87a377801c1b8ebc4d575da95d75a83efcbbacdc"
+  integrity sha512-LPnUFmAwc11Ki+EmqzipFvSJKvHBhLBtCzOLKQTC9hkOgrrtNdz2kiRvl+mdwCfgXVFwHtxIhsIyPUxou14Z1w==
+
+"@fontsource/raleway@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.10.tgz#6859021ac4faf83be4b4ce769d479321a29c6f0d"
+  integrity sha512-G5ykrg9cK/i5wSLD0cFkmK9Phoo803VQqwsbWePU1IULFkZWxOe4L9L6cPwbcS392RNBjCj3UE6nBt4QvwQ/Vg==
+
 "@octokit/auth-token@^2.4.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@octokit/auth-token/-/auth-token-2.5.0.tgz#27c37ea26c205f28443402477ffd261311f21e36"

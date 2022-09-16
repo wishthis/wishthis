@@ -1420,14 +1420,6 @@ select.ui.dropdown {
 .ui.dropdown > .visible.menu .scrolling.menu {
   display: block;
 }
-
-/* Scrollbar in IE */
-@media all and (-ms-high-contrast: none) {
-  .ui.scrolling.dropdown .menu,
-  .ui.dropdown .scrolling.menu {
-    min-width: calc(100% - 17px);
-  }
-}
 @media only screen and (max-width: 767.98px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
@@ -1509,9 +1501,6 @@ select.ui.dropdown {
 }
 .ui.simple.dropdown .menu {
   position: absolute;
-  
-/* IE hack to make dropdown icons appear inline */
-  display: -ms-inline-flexbox !important;
   display: block;
   overflow: hidden;
   top: -9999px;
@@ -2025,12 +2014,6 @@ select.ui.dropdown {
 }
 .ui.dropdown .inverted.menu,
 .ui.inverted.dropdown .menu {
-  
-/* IE11 */
-  scrollbar-face-color: #656565;
-  scrollbar-shadow-color: #656565;
-  scrollbar-track-color: #323232;
-  scrollbar-arrow-color: #323232;
   
 /* firefox : first color thumb, second track */
   scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);

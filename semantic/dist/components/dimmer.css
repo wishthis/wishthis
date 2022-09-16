@@ -82,12 +82,6 @@
 }
 .ui.dimmer:not(.inverted) {
   
-/* IE11 */
-  scrollbar-face-color: #656565;
-  scrollbar-shadow-color: #656565;
-  scrollbar-track-color: #323232;
-  scrollbar-arrow-color: #323232;
-  
 /* firefox : first color thumb, second track */
   scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);
 }
