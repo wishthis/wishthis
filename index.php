@@ -58,6 +58,7 @@ setcookie(
     $session['httponly']
 );
 
+/** Backwards compatibility */
 if (!isset($_SESSION['user']) || is_array($_SESSION['user'])) {
     $_SESSION['user'] = new User();
 }
