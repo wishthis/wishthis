@@ -28,7 +28,7 @@ class User
     public function __construct(int $id = -1)
     {
         if (-1 === $id) {
-            if (isset($_SESSION['user']['id'])) {
+            if (is_array($_SESSION['user']) && isset($_SESSION['user']['id'])) {
                 $this->id = $_SESSION['user']['id'];
             }
         } else {
