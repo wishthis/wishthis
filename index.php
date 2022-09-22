@@ -51,7 +51,7 @@ if (file_exists($configPath)) {
  */
 $cookie_domain = $_SERVER['HTTP_HOST'];
 
-if (defined('CHANNELS') && is_iterable(CHANNELS)) {
+if (defined('CHANNELS') && is_iterable(CHANNELS) && defined('ENV_IS_DEV') && ! ENV_IS_DEV) {
     foreach (CHANNELS as $channel) {
         if ('stable' === $channel['branch']) {
             $cookie_domain = $channel['host'];
