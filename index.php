@@ -46,14 +46,8 @@ session_start(
     array(
         'name'            => 'wishthis',
         'cookie_lifetime' => $sessionLifetime,
+        'cookie_path'     => '/'
     )
-);
-setcookie(
-    name: session_name(),
-    value: session_id(),
-    expires_or_options: time() + $sessionLifetime,
-    path: '/',
-    domain: ''
 );
 
 /** Backwards compatibility */
