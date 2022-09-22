@@ -50,6 +50,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 ## :heavy_check_mark: Requirements
 * Apache or Nginx
 * PHP 8.1
+  * [intl](https://www.php.net/manual/en/book.intl.php)
 
 ## :hammer: Installation
 
