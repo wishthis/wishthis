@@ -61,7 +61,8 @@ session_start(
     array(
         'name'            => 'wishthis',
         'cookie_lifetime' => $sessionLifetime,
-        'cookie_path'     => '/'
+        'cookie_path'     => '/',
+        'cookie_domain'   => '.wishthis.online',
     )
 );
 
