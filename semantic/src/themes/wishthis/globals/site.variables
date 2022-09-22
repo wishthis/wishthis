@@ -16,7 +16,7 @@
 @fallbackFonts : sans-serif;
 
 @headerFont        : @fontRaleway, @fallbackFonts;
-@pageFont          : @fontAtkinsonHyperlegible, @fallbackFonts;
+@pageFont          : @fontRaleway, @fallbackFonts;
 
 @fonts: {
     /** Raleway */
