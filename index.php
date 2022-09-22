@@ -67,10 +67,13 @@ session_start(
 
 /** Forwards compatibility */
 if (isset($_SESSION['user']) && $_SESSION['user'] instanceof wishthis\User) {
-    $_SESSION['user'] = array(
-        'id'    => $_SESSION['user']->id,
-        'email' => $_SESSION['user']->email,
-    );
+    if (isset($_SESSION['user']->id)) {
+        $_SESSION['user']['id'] = $_SESSION['user']->id;
+    }
+
+    if (isset($_SESSION['user']->email)) {
+        $_SESSION['user']['email'] = $_SESSION['user']->email;
+    }
 }
 
 /**
