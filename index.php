@@ -40,7 +40,7 @@ spl_autoload_register(
 /**
  * Session
  */
-$sessionLifetime = 2592000; // 1 Month
+$sessionLifetime = 2592000 * 12; // 12 Months
 
 session_set_cookie_params($sessionLifetime, '/');
 session_start();
