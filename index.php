@@ -73,6 +73,14 @@ setcookie(
     $session['httponly']
 );
 
+/** Forwards compatibility */
+if (isset($_SESSION['user']) && $_SESSION['user'] instanceof wishthis\User) {
+    $_SESSION['user'] = array(
+        'id'    => $_SESSION['user']->id,
+        'email' => $_SESSION['user']->email,
+    );
+}
+
 /**
  * User
  */
