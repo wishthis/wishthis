@@ -2,96 +2,105 @@
          Site Settings
 *******************************/
 
+@supportIE: false;
+
 /*-------------------
        Fonts
 --------------------*/
 
-@fontName               : 'Raleway';
-@fontFileNameLatin      : 'RalewayLatin';
-@fontFileNameSupplement : 'Raleway';
+@fontRaleway                   : 'Raleway';
+@fontFileNameLatin             : 'raleway-latin';
+@fontAtkinsonHyperlegible      : 'Atkinson Hyperlegible';
+@fontAtkinsonHyperlegibleLatin : 'atkinson-hyperlegible-latin';
 
 @fallbackFonts : sans-serif;
 
+@headerFont        : @fontRaleway, @fallbackFonts;
+@pageFont          : @fontRaleway, @fallbackFonts;
+
 @fonts: {
+    /** Raleway */
     @regularLatin: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Regular.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Regular.ttf") format('truetype'));
-            font-style     : normal;
-            font-weight    : @normal;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeLatin;
-    };
-    @boldLatin: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Bold.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Bold.ttf") format('truetype'));
-            font-style     : normal;
-            font-weight    : @bold;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeLatin;
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-400-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
     @italicLatin: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-Italic.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-Italic.ttf") format('truetype'));
-            font-style     : italic;
-            font-weight    : @normal;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeLatin;
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-400-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
-    @boldItalicLatin: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameLatin}-BoldItalic.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameLatin}-BoldItalic.ttf") format('truetype'));
-            font-style     : italic;
-            font-weight    : @bold;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeLatin;
+    @regularLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-700-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
-    @regularSupplement: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Regular.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Regular.ttf") format('truetype'));
-            font-style     : normal;
-            font-weight    : @normal;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeSupplement;
+    @italicLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-700-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
-    @boldSupplement: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Bold.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Bold.ttf") format('truetype'));
-            font-style     : normal;
-            font-weight    : @bold;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeSupplement;
+
+    /** Atkinson Hyperlegible */
+    @regularLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-400-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
-    @italicSupplement: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-Italic.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-Italic.ttf") format('truetype'));
-            font-style     : italic;
-            font-weight    : @normal;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeSupplement;
+    @italicLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-400-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
-    @boldItalicSupplement: {
-            font-family: @fontName;
-            src: url("@{fontPathWishthis}/@{fontFileNameSupplement}-BoldItalic.ttf") format('truetype')
-                 if(@supportIE, e(',') url("@{fontPath}/@{fontFileNameSupplement}-BoldItalic.ttf") format('truetype'));
-            font-style     : italic;
-            font-weight    : @bold;
-            font-display   : @fontDisplay;
-            text-rendering : @textRendering;
-            unicode-range  : @unicodeRangeSupplement;
+    @regularLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-700-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-700-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
     };
 };
 
@@ -100,7 +109,8 @@
 --------------------*/
 
 /* For source only. Modified in gulp for dist */
-@fontPathWishthis : '../../themes/wishthis/assets/fonts';
+@fontPathRaleway              : '../../../../node_modules/@fontsource/raleway/files';
+@fontPathAtkinsonHyperlegible : '../../../../node_modules/@fontsource/atkinson-hyperlegible/files';
 
 /*-------------------
       Base Sizes
