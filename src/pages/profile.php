@@ -32,12 +32,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'column' => 'email',
             'key'    => 'user-email',
             'label'  => __('Email'),
-        ),
-        array(
-            'column' => 'locale',
-            'key'    => 'user-locale',
-            'label'  => __('Language'),
-        ),
+        )
     );
     $loginRequired    = false;
 
@@ -92,6 +87,22 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     /**
      * Preferences
      */
+    /** Locale */
+    if (isset($_POST['user-locale']) && $_POST['user-locale'] !== $_SESSION['user']->getLocale()) {
+        $_SESSION['user']->setLocale($_POST['user-locale']);
+
+        $set[] = '`locale` = "' . $_SESSION['user']->getLocale() . '"';
+
+        $page->messages[] = Page::success(
+            sprintf(
+                __('Locale successfully updated!'),
+                '<strong>Locale</strong>'
+            ),
+            __('Success')
+        );
+    }
+
+    /** Channel */
     if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $_SESSION['user']->channel) {
         if (empty($_POST['user-channel'])) {
             $_SESSION['user']->channel = null;
