@@ -69,15 +69,28 @@ session_start(
 /** Forwards compatibility */
 if (isset($_SESSION['user']) && $_SESSION['user'] instanceof wishthis\User) {
     $oldSession = $_SESSION['user'];
+    $fields     = array(
+        'id',
+        'email',
+        'password',
+        'password_reset_token',
+        'password_reset_valid_until',
+        'last_login',
+        'power',
+        'birthdate',
+        'locale',
+        'name_first',
+        'name_last',
+        'name_nick',
+        'channel',
+    );
 
     $_SESSION['user'] = array();
 
-    if (isset($_SESSION['user']->id)) {
-        $_SESSION['user']['id'] = $oldSession->id;
-    }
-
-    if (isset($_SESSION['user']->email)) {
-        $_SESSION['user']['email'] = $oldSession->email;
+    foreach ($fields as $field) {
+        if (isset($oldSession->$field)) {
+            $_SESSION['user'][$field] = $oldSession->$field;
+        }
     }
 }
 
