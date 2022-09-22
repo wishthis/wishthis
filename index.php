@@ -55,22 +55,20 @@ if (
 /**
  * Session
  */
-$sessionLifetime = 2592000; // 1 Month
+$sessionLifetime = 2592000 * 12; // 12 Months
 
-session_set_cookie_params($sessionLifetime, '/');
-session_start();
-
-/** Refresh lifetime */
-$session = session_get_cookie_params();
-
+session_start(
+    array(
+        'name'            => 'wishthis',
+        'cookie_lifetime' => $sessionLifetime,
+    )
+);
 setcookie(
-    session_name(),
-    session_id(),
-    time() + $sessionLifetime,
-    $session['path'],
-    $session['domain'],
-    $session['secure'],
-    $session['httponly']
+    name: session_name(),
+    value: session_id(),
+    expires_or_options: time() + $sessionLifetime,
+    path: '/',
+    domain: ''
 );
 
 /** Forwards compatibility */
