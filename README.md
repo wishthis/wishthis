@@ -134,7 +134,6 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | Group wishes by store                               | Planned             |
 | Option to show/notify when a wish was fulfilled     | Planned             |
 | Redirect to original target after login             | Planned             |
-| Request more wishes on shared wishlist              | Planned             |
 | Activity feed and friends                           | Under consideration |
 | Browser extension to quickly create wishes from url | Under consideration |
 | Bulk add wishes via link list                       | Under consideration |
