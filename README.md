@@ -89,14 +89,6 @@ Use one of the following commands.
 | `composer install`          | Install all dependencies.           |
 | `composer install --no-dev` | Install only required dependencies. |
 
-#### NPM
-Use one of the following commands.
-
-| Command                                       | Description                         |
-| --------------------------------------------- | ----------------------------------- |
-| `npm install`                                 | Install all dependencies.           |
-| `npm install --only=production --no-optional` | Install only required dependencies. |
-
 #### Yarn
 Use one of the following commands.
 
