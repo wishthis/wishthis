@@ -253,7 +253,7 @@ switch ($step) {
                     <h1 class="ui header"><?= __('Success') ?></h1>
                     <p>
                         <a class="ui primary button"
-                           href="<? Page::PAGE_REGISTER ?>"
+                           href="<?= Page::PAGE_REGISTER ?>"
                            title="<?= __('Register') ?>"
                         >
                             <?= __('Register') ?>
