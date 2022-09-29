@@ -50,6 +50,7 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 ## :heavy_check_mark: Requirements
 * Apache or Nginx
 * PHP 8.1
+  * [intl](https://www.php.net/manual/en/book.intl.php)
 
 ## :hammer: Installation
 
@@ -87,14 +88,6 @@ Use one of the following commands.
 | --------------------------- | ----------------------------------- |
 | `composer install`          | Install all dependencies.           |
 | `composer install --no-dev` | Install only required dependencies. |
-
-#### NPM
-Use one of the following commands.
-
-| Command                                       | Description                         |
-| --------------------------------------------- | ----------------------------------- |
-| `npm install`                                 | Install all dependencies.           |
-| `npm install --only=production --no-optional` | Install only required dependencies. |
 
 #### Yarn
 Use one of the following commands.
@@ -141,7 +134,6 @@ For more information see: https://fomantic-ui.com/introduction/build-tools.html
 | Group wishes by store                               | Planned             |
 | Option to show/notify when a wish was fulfilled     | Planned             |
 | Redirect to original target after login             | Planned             |
-| Request more wishes on shared wishlist              | Planned             |
 | Activity feed and friends                           | Under consideration |
 | Browser extension to quickly create wishes from url | Under consideration |
 | Bulk add wishes via link list                       | Under consideration |

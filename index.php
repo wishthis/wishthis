@@ -38,8 +38,29 @@ spl_autoload_register(
 );
 
 /**
+ * Config
+ */
+$configPath = __DIR__ . '/' . 'src/config/config.php';
+
+if (file_exists($configPath)) {
+    require $configPath;
+}
+
+/**
  * Session
  */
+$cookie_domain = $_SERVER['HTTP_HOST'];
+
+if (defined('CHANNELS') && is_iterable(CHANNELS) && defined('ENV_IS_DEV') && ! ENV_IS_DEV) {
+    foreach (CHANNELS as $channel) {
+        if ('stable' === $channel['branch']) {
+            $cookie_domain = $channel['host'];
+
+            break;
+        }
+    }
+}
+
 $sessionLifetime = 2592000 * 12; // 12 Months
 
 session_start(
@@ -47,22 +68,13 @@ session_start(
         'name'            => 'wishthis',
         'cookie_lifetime' => $sessionLifetime,
         'cookie_path'     => '/',
-        'cookie_domain'   => '.wishthis.online',
+        'cookie_domain'   => '.' . $cookie_domain,
     )
 );
 
 /** Backwards compatibility */
 if (!isset($_SESSION['user']) || is_array($_SESSION['user'])) {
     $_SESSION['user'] = new User();
-}
-
-/**
- * Config
- */
-$configPath = __DIR__ . '/' . 'src/config/config.php';
-
-if (file_exists($configPath)) {
-    require $configPath;
 }
 
 /**

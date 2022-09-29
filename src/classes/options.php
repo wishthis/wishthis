@@ -33,7 +33,7 @@ class Options
 
             $value = $option['value'] ?? '';
         } catch (\Throwable $th) {
-            throw $th;
+            /** Option does not exist */
         }
 
         return $value;
