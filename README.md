@@ -2,8 +2,7 @@
 
 # Make a wish
 
-wishthis is a simple, intuitive and modern wishlist platform to create, manage and view
-your wishes for any kind of occasion ([demo](https://wishthis.online)).
+wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion ([demo](https://wishthis.online)). Currently, wishthis is available in **99** different locales!
 
 ## :desktop_computer: Screenshots
 | Home                                                 | Wishlists                                                           |
@@ -14,38 +13,6 @@ your wishes for any kind of occasion ([demo](https://wishthis.online)).
 
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
 [![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org)](https://matrix.to/#/#wishthis:matrix.org)
-
-## :earth_africa: Available in 28 different languages
-| Language             |                  | Country        | Locale  |
-| -------------------- | ---------------- | -------------- | ------- |
-| Bulgarian            | :bulgaria:       | Bulgaria       | bg_BG   |
-| Chinese (Simplified) |                  |                | zh-Hans |
-| Czech                | :czech_republic: | Czech Republic | cs_CZ   |
-| Danish               | :denmark:        | Denmark        | da_DK   |
-| Dutch                | :netherlands:    | Netherlands    | nl_NL   |
-| English              | :gb:             | United Kingdom | en_GB   |
-| English              | :us:             | United States  | en_US   |
-| Estonian             | :estonia:        | Estonia        | et_EE   |
-| Finnish              | :finland:        | Finland        | fi_FI   |
-| French               | :fr:             | France         | fr_FR   |
-| German               | :de:             | Germany        | de_DE   |
-| Greek                | :greece:         | Greece         | el_GR   |
-| Hungarian            | :hungary:        | Hungary        | hu_HU   |
-| Indonesian           | :indonesia:      | Indonesia      | id_ID   |
-| Italian              | :it:             | Italy          | it_IT   |
-| Japanese             | :jp:             | Japan          | ja_JP   |
-| Latvian              | :latvia:         | Latvia         | lv_LV   |
-| Lithuanian           | :lithuania:      | Lithuania      | lt_LT   |
-| Polish               | :poland:         | Poland         | pl_PL   |
-| Portuguese           | :brazil:         | Brazil         | pt_BR   |
-| Portuguese           | :portugal:       | Portugal       | pt_PT   |
-| Romanian             | :romania:        | Romania        | ro_RO   |
-| Russian              | :ru:             | Russia         | ru_RU   |
-| Slovak               | :slovakia:       | Slovakia       | sk_SK   |
-| Slovenian            | :slovenia:       | Slovenia       | sl_SL   |
-| Spanish              | :es:             | Spain          | es_ES   |
-| Swedish              | :sweden:         | Sweden         | sv_SE   |
-| Turkish              | :tr:             | Turkey         | tr_TR   |
 
 ## :heavy_check_mark: Requirements
 * Apache or Nginx
