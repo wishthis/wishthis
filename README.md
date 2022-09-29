@@ -12,7 +12,7 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 ## :family_man_man_boy: Join the conversation
 
 [![Discord](https://badgen.net/discord/members/WrUXnpNyza/?label=Discord&color=purple&icon=discord)](https://discord.gg/WrUXnpNyza)
-[![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org/?label=Matrix&color=purple)](https://matrix.to/#/#wishthis:matrix.org)
+[![Matrix](https://badgen.net/matrix/members/wishthis/matrix.org?label=Matrix&color=purple)](https://matrix.to/#/#wishthis:matrix.org)
 
 ## :heavy_check_mark: Requirements
 * Apache or Nginx
