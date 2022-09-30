@@ -155,4 +155,24 @@ class User
             ?: $this->name_first
             ?: $this->email;
     }
+
+    public function logOut(): void
+    {
+        /** Destroy session */
+        if (isset($_COOKIE[COOKIE_PERSISTENT])) {
+            global $database;
+
+            $persistent = $database
+            ->query(
+                'DELETE FROM `sessions`
+                       WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+            );
+        }
+
+        session_destroy();
+        unset($_SESSION);
+
+        /** Delete cookie */
+        setcookie(COOKIE_PERSISTENT, '', time() - 3600, '/', getCookieDomain());
+    }
 }

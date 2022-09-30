@@ -11,6 +11,7 @@ namespace wishthis;
 define('VERSION', '0.7.0');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
+define('COOKIE_PERSISTENT', 'wishthis_persistent');
 
 /**
  * Include
@@ -49,26 +50,9 @@ if (file_exists($configPath)) {
 /**
  * Session
  */
-$cookie_domain = $_SERVER['HTTP_HOST'];
-
-if (defined('CHANNELS') && is_iterable(CHANNELS) && defined('ENV_IS_DEV') && ! ENV_IS_DEV) {
-    foreach (CHANNELS as $channel) {
-        if ('stable' === $channel['branch']) {
-            $cookie_domain = $channel['host'];
-
-            break;
-        }
-    }
-}
-
-$sessionLifetime = 2592000 * 12; // 12 Months
-
 session_start(
     array(
-        'name'            => 'wishthis',
-        'cookie_lifetime' => $sessionLifetime,
-        'cookie_path'     => '/',
-        'cookie_domain'   => '.' . $cookie_domain,
+        'name' => 'wishthis',
     )
 );
 
@@ -100,6 +84,23 @@ if (
      * Options
      */
     $options = new Options($database);
+}
+
+/**
+ * Persistent (stay logged in)
+ */
+if (isset($_COOKIE[COOKIE_PERSISTENT])) {
+    $persistent = $database
+    ->query(
+        'SELECT *
+           FROM `sessions`
+          WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+    )
+    ->fetch();
+
+    if (false !== $persistent) {
+        $_SESSION['user'] = User::getFromID($persistent['user']);
+    }
 }
 
 /**

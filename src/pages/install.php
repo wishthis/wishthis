@@ -21,6 +21,7 @@ $step = isset($_POST['step']) ? $_POST['step'] : 1;
 switch ($step) {
     case 1:
         session_destroy();
+        unset($_SESSION);
         ?>
         <main>
             <div class="ui hidden divider"></div>

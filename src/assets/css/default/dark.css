@@ -398,12 +398,23 @@
         color: rgba(255, 255, 255, 0.95);
     }
 
+    /** Toggle */
+    .ui.toggle.checkbox label {
+        color: rgba(255, 255, 255, 0.87);
+    }
+    .ui.toggle.checkbox label::before {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .ui.toggle.checkbox label:hover::before {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
     /** Calendar */
     .ui.ui.table td.active,
     .ui.ui.ui.ui.table tr.active {
         color: rgba(255, 255, 255, 0.87);
         background-color: #1f1f1f;
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0.87) inset;
+        box-shadow: rgba(123, 105, 105, 0.05) 255, 255, 0.87) inset;
     }
     .ui.bottom.popup::before {
         background-color: #000;
