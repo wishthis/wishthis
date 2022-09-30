@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Sidebar
+ * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -163,8 +163,8 @@ body.pushable > .pusher {
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
   opacity: 0;
-  -webkit-transition: opacity 500ms;
-  transition: opacity 500ms;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
   will-change: opacity;
   z-index: 1000;
 }
@@ -191,6 +191,14 @@ body.pushable > .pusher {
   width: 100% !important;
   height: 100% !important;
   opacity: 1 !important;
+}
+.pushable > .pusher.dimmed.blurring:not(.closing)::after {
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(5px) grayscale(0.7);
+  backdrop-filter: blur(5px) grayscale(0.7);
+}
+.pushable > .pusher.closing.dimmed::after {
+  opacity: 0 !important;
 }
 
 /*--------------
