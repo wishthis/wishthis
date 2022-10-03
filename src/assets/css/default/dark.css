@@ -267,6 +267,69 @@
     .ui.form:not(.inverted) .field > label:not(.button) {
         color: rgba(255, 255, 255, 0.87);
     }
+    .ui.form .field.error input:not([type]),
+    .ui.form .field.error input[type="color"],
+    .ui.form .field.error input[type="date"],
+    .ui.form .field.error input[type="datetime-local"],
+    .ui.form .field.error input[type="email"],
+    .ui.form .field.error input[type="file"],
+    .ui.form .field.error input[type="month"],
+    .ui.form .field.error input[type="number"],
+    .ui.form .field.error input[type="password"],
+    .ui.form .field.error input[type="search"],
+    .ui.form .field.error input[type="tel"],
+    .ui.form .field.error input[type="text"],
+    .ui.form .field.error input[type="time"],
+    .ui.form .field.error input[type="url"],
+    .ui.form .field.error input[type="week"],
+    .ui.form .field.error select,
+    .ui.form .field.error textarea,
+    .ui.form .fields.error .field input:not([type]),
+    .ui.form .fields.error .field input[type="color"],
+    .ui.form .fields.error .field input[type="date"],
+    .ui.form .fields.error .field input[type="datetime-local"],
+    .ui.form .fields.error .field input[type="email"],
+    .ui.form .fields.error .field input[type="file"],
+    .ui.form .fields.error .field input[type="month"],
+    .ui.form .fields.error .field input[type="number"],
+    .ui.form .fields.error .field input[type="password"],
+    .ui.form .fields.error .field input[type="search"],
+    .ui.form .fields.error .field input[type="tel"],
+    .ui.form .fields.error .field input[type="text"],
+    .ui.form .fields.error .field input[type="time"],
+    .ui.form .fields.error .field input[type="url"],
+    .ui.form .fields.error .field input[type="week"],
+    .ui.form .fields.error .field select,
+    .ui.form .fields.error .field textarea {
+        color: #dd5e58;
+        background-color: #412626;
+        border-color: currentColor;
+    }
+    .ui.form .field.error input:not([type]):focus,
+    .ui.form .field.error input[type="color"]:focus,
+    .ui.form .field.error input[type="date"]:focus,
+    .ui.form .field.error input[type="datetime-local"]:focus,
+    .ui.form .field.error input[type="email"]:focus,
+    .ui.form .field.error input[type="file"]:focus,
+    .ui.form .field.error input[type="month"]:focus,
+    .ui.form .field.error input[type="number"]:focus,
+    .ui.form .field.error input[type="password"]:focus,
+    .ui.form .field.error input[type="search"]:focus,
+    .ui.form .field.error input[type="tel"]:focus,
+    .ui.form .field.error input[type="text"]:focus,
+    .ui.form .field.error input[type="time"]:focus,
+    .ui.form .field.error input[type="url"]:focus,
+    .ui.form .field.error input[type="week"]:focus,
+    .ui.form .field.error select:focus,
+    .ui.form .field.error textarea:focus {
+        background-color: #d9a8a8;
+        border-color: #554545;
+        color: #782c2b;
+    }
+    .ui.success.message {
+        background-color: #abb594;
+        color: #345435;
+    }
 
     /** Card */
     .ui.card,
@@ -338,6 +401,14 @@
     /** Message */
     .ui.info.message {
         background-color: #070000;
+    }
+    .ui.error.message {
+        background-color: #412626;
+        color: #dd5e58;
+    }
+    .ui.attached.error.message,
+    .ui.error.message {
+        box-shadow: 0 0 0 1px currentColor inset, 0 0 0 0 transparent;
     }
 
     /** Modal */
