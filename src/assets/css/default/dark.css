@@ -330,6 +330,11 @@
         background-color: #abb594;
         color: #345435;
     }
+    .ui.form .field input:not(:placeholder-shown):invalid {
+        color: #9f5755;
+        background-color: #2c1f1f;
+        border-color: #de8a8a;
+    }
 
     /** Card */
     .ui.card,
