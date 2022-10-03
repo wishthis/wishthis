@@ -231,7 +231,7 @@ $page->navigation();
                     </div>
 
                     <div class="row">
-                        <div class="column">
+                        <div class="sixteen wide column">
                             <div class="ui error message"></div>
 
                             <input class="ui primary button"
