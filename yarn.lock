@@ -211,9 +211,9 @@
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
 
 "@types/node@*", "@types/node@>= 8":
-  version "18.7.23"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.23.tgz#75c580983846181ebe5f4abc40fe9dfb2d65665f"
-  integrity sha512-DWNcCHolDq0ZKGizjx2DZjR/PqsYwAcYUJmfMWqtVU2MBMG5Mo+xFZrhGId5r/O5HOuMPyQEcM6KUBp5lBZZBg==
+  version "18.8.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.0.tgz#b8ee8d83a99470c0661bd899417fcd77060682fe"
+  integrity sha512-u+h43R6U8xXDt2vzUaVP3VwjjLyOJk6uEciZS8OSyziUQGOwmk+l+4drxcsDboHXwyTaqS1INebghmWMRxq3LA==
 
 "@types/node@^14.14.41":
   version "14.18.31"
@@ -1132,9 +1132,9 @@ editorconfig@^0.15.3:
     sigmund "^1.0.1"
 
 electron-to-chromium@^1.4.251:
-  version "1.4.269"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.269.tgz#93ea2724b07f5f562daa7dd3740a1d28572b028b"
-  integrity sha512-7mHFONwp7MNvdyto1v70fCwk28NJMFgsK79op+iYHzz1BLE8T66a1B2qW5alb8XgE0yi3FL3ZQjSYZpJpF6snw==
+  version "1.4.270"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.270.tgz#2c6ea409b45cdb5c3e0cb2c08cf6c0ba7e0f2c26"
+  integrity sha512-KNhIzgLiJmDDC444dj9vEOpZEgsV96ult9Iff98Vanumn+ShJHd5se8aX6KeVxdc0YQeqdrezBZv89rleDbvSg==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -1403,9 +1403,9 @@ flush-write-stream@^1.0.2:
     readable-stream "^2.3.6"
 
 fomantic-ui@^2.9.0-beta.293:
-  version "2.9.0-beta.323"
-  resolved "https://registry.yarnpkg.com/fomantic-ui/-/fomantic-ui-2.9.0-beta.323.tgz#3ead87ccba5941b6f8a8842482f42b10e44d6320"
-  integrity sha512-DS8RF6NydIHTn5XRjn07MePiKwujlM/LyBlggF4TKTd0GlhSm1oC89v1rfraGKHVB/s9xT4kbC4wauxmgqrAMQ==
+  version "2.9.0-beta.324"
+  resolved "https://registry.yarnpkg.com/fomantic-ui/-/fomantic-ui-2.9.0-beta.324.tgz#b570914366baae2569ec9cd1023839360a34b582"
+  integrity sha512-pPUi5oPop6A+9839SP2xniBlB0pO2GERRV0gWqC+/D5o0mEM2M8/ygtitWpKdm12OtqCXzefR1WUWX7S2mhzeQ==
   dependencies:
     "@actions/core" "^1.6.0"
     "@octokit/core" ">=3"

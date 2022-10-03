@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.323+b4c18ce
+ * # Fomantic UI - 2.9.0-beta.324+80dca46
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Site
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -503,7 +503,7 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Calendar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -2394,7 +2394,7 @@ $.fn.calendar.settings = {
 })(jQuery, window, document);
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Checkbox
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3278,7 +3278,7 @@ $.fn.checkbox.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Dimmer
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -4044,7 +4044,7 @@ $.fn.dimmer.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Dropdown
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8400,7 +8400,7 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Form Validation
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Form Validation
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10476,7 +10476,7 @@ $.fn.form.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Modal
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -12032,7 +12032,7 @@ $.fn.modal.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Popup
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -13568,7 +13568,7 @@ $.fn.popup.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Progress
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Progress
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14605,7 +14605,7 @@ $.fn.progress.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Sidebar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -15739,7 +15739,7 @@ $.fn.sidebar.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Tab
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16759,7 +16759,7 @@ $.fn.tab.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Toast
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -17686,7 +17686,7 @@ $.extend( $.easing, {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - API
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - API
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18923,7 +18923,7 @@ $.api.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.323+b4c18ce - Transition
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
