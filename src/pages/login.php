@@ -25,19 +25,18 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             AND `password`   = "' . $password . '";'
     );
 
-    $userQuery = $database
+    $fields = $database
     ->query(
         'SELECT *
            FROM `users`
           WHERE `email`    = "' . $email . '"
             AND `password` = "' . $password . '";'
-    );
+    )
+    ->fetch();
 
-    $success = false !== $userQuery;
+    $success = false !== $userQuery && is_array($fields);
 
     if ($success) {
-        $fields = $userQuery->fetch();
-
         $_SESSION['user'] = new User($fields);
 
         /**
