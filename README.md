@@ -75,7 +75,7 @@ npx gulp build
 
 or as a one-liner
 ```
-yarn upgrade && cd node_modules/fomantic-ui && npx gulp install && npx gulp build && cd ../..
+yarn upgrade fomantic-ui && cd node_modules/fomantic-ui && npx gulp install && npx gulp build && cd ../..
 ```
 
 #### Theme changes
