@@ -26,7 +26,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $user_email = Sanitiser::getEmail($_POST['email']);
 
     $isHuman     = false;
-    $planet      = Sanitiser::getTitle($_POST['planet']);
+    $planet      = strtolower(Sanitiser::getTitle($_POST['planet']));
     $planetName  = strtoupper($planet[0]) . substr($planet, 1);
     $planets     = array(
         strtolower(__('Mercury')),
