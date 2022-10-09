@@ -25,20 +25,50 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             AND `password`   = "' . $password . '";'
     );
 
-    $userQuery = $database
+    $fields = $database
     ->query(
         'SELECT *
            FROM `users`
           WHERE `email`    = "' . $email . '"
             AND `password` = "' . $password . '";'
-    );
+    )
+    ->fetch();
 
-    $success = false !== $userQuery;
+    $success = is_array($fields);
 
     if ($success) {
-        $fields = $userQuery->fetch();
-
         $_SESSION['user'] = new User($fields);
+
+        /**
+         * Persisent session
+         */
+        if (isset($_POST['persistent'])) {
+            /** Cookie options */
+            $sessionPassword = md5(time() . rand(-2147483648, 2147483647));
+            $sessionLifetime = 2592000 * 4; // 4 Months
+            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV;
+            $sessionOptions  = array (
+                'domain'   => getCookieDomain(),
+                'expires'  => time() + $sessionLifetime,
+                'httponly' => true,
+                'path'     => '/',
+                'samesite' => 'None',
+                'secure'   => !$sessionIsDev,
+            );
+
+            /** Set cookie */
+            setcookie(COOKIE_PERSISTENT, $sessionPassword, $sessionOptions);
+
+            $database->query(
+                'INSERT INTO `sessions` (
+                    `user`,
+                    `session`
+                ) VALUES (
+                     ' . $_SESSION['user']->id . ',
+                    "' . $sessionPassword . '"
+                );'
+            );
+        }
     } else {
         $page->messages[] = Page::error(
             __('No user could be found with the credentials you provided.'),
@@ -144,18 +174,32 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <input class="ui primary button"
-                                   type="submit"
-                                   name="login"
-                                   value="<?= __('Login') ?>"
-                                   title="<?= __('Login') ?>"
-                            />
-                            <a class="ui tertiary button"
-                               href="<?= Page::PAGE_REGISTER ?>"
-                               title="<?= __('Register') ?>"
-                            >
-                                <?= __('Register') ?>
-                            </a>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" name="persistent">
+                                    <label><?= __('Keep me logged in') ?></label>
+                                </div>
+                            </div>
+
+                            <div class="inline fields">
+                               <div class="field">
+                                    <input class="ui primary button"
+                                        type="submit"
+                                        name="login"
+                                        value="<?= __('Login') ?>"
+                                        title="<?= __('Login') ?>"
+                                    />
+                               </div>
+
+                               <div class="field">
+                                    <a class="ui tertiary button"
+                                    href="<?= Page::PAGE_REGISTER ?>"
+                                    title="<?= __('Register') ?>"
+                                    >
+                                        <?= __('Register') ?>
+                                    </a>
+                               </div>
+                            </div>
                         </form>
                     </div>
 

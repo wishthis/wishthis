@@ -38,40 +38,35 @@ class Embed extends Cache
         $info = $this->exists() ? json_decode(file_get_contents($filepath)) : new \stdClass();
 
         if (true === $generateCache) {
-            $infoToSave = $info;
-
             try {
                 /**
                  * Fetch embed info
                  *
                  * @link https://github.com/oscarotero/Embed
                  */
-                $embed = new \Embed\Embed();
-                $info  = $embed->get($this->url);
+                $embed     = new \Embed\Embed();
+                $embedInfo = $embed->get($this->url);
 
                 /** Convert embed info to a saveable format (JSON) stdClass */
-                $infoToSave                = new \stdClass();
-                $infoToSave->authorName    = (string) $info->authorName;
-                $infoToSave->authorUrl     = (string) $info->authorUrl;
-                $infoToSave->cms           = (string) $info->cms;
-                $infoToSave->code          = (string) $info->code;
-                $infoToSave->description   = (string) $info->description;
-                $infoToSave->favicon       = (string) $info->favicon;
-                $infoToSave->feeds         = (array)  $info->feeds;
-                $infoToSave->icon          = (string) $info->icon;
-                $infoToSave->image         = (string) $info->image;
-                $infoToSave->keywords      = (array)  $info->keywords;
-                $infoToSave->language      = (string) $info->language;
-                $infoToSave->languages     = (array)  $info->languages;
-                $infoToSave->license       = (string) $info->license;
-                $infoToSave->providerName  = (string) $info->providerName;
-                $infoToSave->providerUrl   = (string) $info->providerUrl;
-                $infoToSave->publishedTime = $info->publishedTime ? $info->publishedTime->format('d.m.Y') : '';
-                $infoToSave->redirect      = (string) $info->redirect;
-                $infoToSave->title         = (string) $info->title;
-                $infoToSave->url           = (string) $info->url;
-
-                $info = $infoToSave;
+                $info->authorName    = (string) $embedInfo->authorName;
+                $info->authorUrl     = (string) $embedInfo->authorUrl;
+                $info->cms           = (string) $embedInfo->cms;
+                $info->code          = (string) $embedInfo->code;
+                $info->description   = (string) $embedInfo->description;
+                $info->favicon       = (string) $embedInfo->favicon;
+                $info->feeds         = (array)  $embedInfo->feeds;
+                $info->icon          = (string) $embedInfo->icon;
+                $info->image         = (string) $embedInfo->image;
+                $info->keywords      = (array)  $embedInfo->keywords;
+                $info->language      = (string) $embedInfo->language;
+                $info->languages     = (array)  $embedInfo->languages;
+                $info->license       = (string) $embedInfo->license;
+                $info->providerName  = (string) $embedInfo->providerName;
+                $info->providerUrl   = (string) $embedInfo->providerUrl;
+                $info->publishedTime = $embedInfo->publishedTime ? $embedInfo->publishedTime->format('d.m.Y') : '';
+                $info->redirect      = (string) $embedInfo->redirect;
+                $info->title         = (string) $embedInfo->title;
+                $info->url           = (string) $embedInfo->url;
             } catch (\Throwable $ex) {
                 $generateCache = false;
 

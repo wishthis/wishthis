@@ -19,3 +19,9 @@ CREATE TABLE `products` (
         REFERENCES `wishes` (`id`)
         ON DELETE CASCADE
 );
+
+/**
+ * Users
+ */
+  ALTER TABLE `users`
+CHANGE COLUMN `password_reset_token` VARCHAR(40) NULL DEFAULT NULL AFTER `password`;

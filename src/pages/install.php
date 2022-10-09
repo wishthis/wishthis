@@ -21,6 +21,7 @@ $step = isset($_POST['step']) ? $_POST['step'] : 1;
 switch ($step) {
     case 1:
         session_destroy();
+        unset($_SESSION);
         ?>
         <main>
             <div class="ui hidden divider"></div>
@@ -129,7 +130,7 @@ switch ($step) {
                 `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
                 `email`                      VARCHAR(64)  NOT NULL UNIQUE,
                 `password`                   VARCHAR(128) NOT NULL,
-                `password_reset_token`       VARCHAR(128) NULL     DEFAULT NULL,
+                `password_reset_token`       VARCHAR(128) NULL     NULL,
                 `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
                 `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
                 `power`                      INT          NOT NULL DEFAULT 0,

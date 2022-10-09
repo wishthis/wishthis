@@ -24,6 +24,10 @@ Requirements:
 
 http://oscarotero.com/embed/demo
 
+## Video Tutorial
+ [<img src="https://img.youtube.com/vi/4YCLRpKY1cs/0.jpg" width="250">](https://youtu.be/4YCLRpKY1cs)
+ 
+
 ## Installation
 
 This package is installable and autoloadable via Composer as [embed/embed](https://packagist.org/packages/embed/embed).
@@ -54,7 +58,7 @@ $info->image; //The thumbnail or main image
 $info->code->html; //The code to embed the image, video, etc
 $info->code->width; //The exact width of the embed code (if exists)
 $info->code->height; //The exact height of the embed code (if exists)
-$info->code->aspectRatio; //The aspect ratio (width/height)
+$info->code->ratio; //The aspect ratio (width/height)
 
 $info->authorName; //The resource author
 $info->authorUrl; //The author url

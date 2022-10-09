@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.315+0963809
+ * # Fomantic UI - 2.9.0-beta.324+80dca46
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Site
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -503,7 +503,7 @@ $.extend($.expr[ ":" ], {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Calendar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -2394,7 +2394,7 @@ $.fn.calendar.settings = {
 })(jQuery, window, document);
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Checkbox
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3278,7 +3278,7 @@ $.fn.checkbox.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Dimmer
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -4044,7 +4044,7 @@ $.fn.dimmer.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Dropdown
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -4419,7 +4419,7 @@ $.fn.dropdown = function(parameters) {
               ;
               if (labelNode.length) {
                 if (!labelNode.attr('id')) {
-                  labelNode.attr('id', module.get.id() + '_formLabel');
+                  labelNode.attr('id', '_' + module.get.id() + '_formLabel');
                 }
                 $search.attr('aria-labelledby', labelNode.attr('id'));
               }
@@ -8400,7 +8400,7 @@ $.fn.dropdown.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Form Validation
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Form Validation
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10476,7 +10476,7 @@ $.fn.form.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Modal
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -12032,7 +12032,7 @@ $.fn.modal.settings.templates = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Popup
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -13568,7 +13568,7 @@ $.fn.popup.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Progress
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Progress
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14605,7 +14605,7 @@ $.fn.progress.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Sidebar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -14673,7 +14673,7 @@ $.fn.sidebar = function(parameters) {
         moduleNamespace = 'module-' + namespace,
 
         $module         = $(this),
-        $context        = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $body,
+        $context        = [window,document].indexOf(settings.context) < 0 ? $document.find(settings.context) : $body,
         isBody          = $context[0] === $body[0],
 
         $sidebars       = $module.children(selector.sidebar),
@@ -14911,8 +14911,8 @@ $.fn.sidebar = function(parameters) {
 
         refresh: function() {
           module.verbose('Refreshing selector cache');
-          $context  = [window,document].indexOf(settings.context) < 0 ? $(document).find(settings.context) : $(settings.context);
-          $sidebars = $context.children(selector.sidebar);
+          $context  = [window,document].indexOf(settings.context) < 0 ? $document.find(settings.context) : $body;
+          module.refreshSidebars();
           $pusher   = $context.children(selector.pusher);
           $fixed    = $context.children(selector.fixed);
           module.clear.cache();
@@ -15007,7 +15007,6 @@ $.fn.sidebar = function(parameters) {
               module.verbose('Show callback returned false cancelling show');
               return;
             }
-            module.refreshSidebars();
             if(settings.overlay)  {
               module.error(error.overlay);
               settings.transition = 'overlay';
@@ -15029,6 +15028,7 @@ $.fn.sidebar = function(parameters) {
                 settings.transition = 'overlay';
               }
             }
+            module.set.dimmerStyles();
             module.pushPage(function() {
               callback.call(element);
               settings.onVisible.call(element);
@@ -15161,19 +15161,23 @@ $.fn.sidebar = function(parameters) {
           animate = function() {
             module.set.transition(transition);
             module.set.animating();
-            module.remove.visible();
             if(settings.dimPage && !module.othersVisible()) {
-              $pusher.removeClass(className.dimmed);
+              module.set.closing();
             }
+            module.remove.visible();
           };
           transitionEnd = function(event) {
             if( event.target == $transition[0] ) {
               $transition.off(transitionEvent + elementNamespace, transitionEnd);
               module.remove.animating();
+              module.remove.closing();
               module.remove.transition();
               module.remove.inlineCSS();
               if(transition === 'scale down' || settings.returnScroll) {
                 module.scrollBack();
+              }
+              if(settings.dimPage && !module.othersVisible()) {
+                $pusher.removeClass(className.dimmed);
               }
               callback.call(element);
             }
@@ -15212,6 +15216,14 @@ $.fn.sidebar = function(parameters) {
               el.css(attribute, 'calc(' + el.css(attribute) + ' + ' + tempBodyMargin + 'px)');
             });
           },
+          dimmerStyles: function() {
+            if(settings.blurring) {
+              $pusher.addClass(className.blurring);
+            }
+            else {
+              $pusher.removeClass(className.blurring);
+            }
+          },
           // ios only (scroll on html not document). This prevent auto-resize canvas/scroll in ios
           // (This is no longer necessary in latest iOS)
           ios: function() {
@@ -15237,6 +15249,9 @@ $.fn.sidebar = function(parameters) {
           },
           animating: function() {
             $module.addClass(className.animating);
+          },
+          closing: function() {
+            $pusher.addClass(className.closing);
           },
           transition: function(transition) {
             transition = transition || module.get.transition();
@@ -15281,6 +15296,9 @@ $.fn.sidebar = function(parameters) {
           },
           animating: function() {
             $module.removeClass(className.animating);
+          },
+          closing: function() {
+            $pusher.removeClass(className.closing);
           },
           transition: function(transition) {
             transition = transition || module.get.transition();
@@ -15679,6 +15697,8 @@ $.fn.sidebar.settings = {
   className         : {
     active    : 'active',
     animating : 'animating',
+    blurring  : 'blurring',
+    closing   : 'closing',
     dimmed    : 'dimmed',
     ios       : 'ios',
     locked    : 'locked',
@@ -15719,7 +15739,7 @@ $.fn.sidebar.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Tab
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -16739,7 +16759,7 @@ $.fn.tab.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Toast
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -17666,7 +17686,7 @@ $.extend( $.easing, {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - API
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - API
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18903,7 +18923,7 @@ $.api.settings = {
 })( jQuery, window, document );
 
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Transition
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *

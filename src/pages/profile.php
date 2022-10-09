@@ -124,6 +124,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
 
     if ($loginRequired) {
         session_destroy();
+        unset($_SESSION);
 
         $page->messages[] = Page::warning(
             __('It is required for you to login again.'),

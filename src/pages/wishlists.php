@@ -117,10 +117,9 @@ $page->navigation();
             <form class="ui form">
                 <div class="field">
                     <label><?= __('Name') ?></label>
-                    <input type="text"
-                           name="wishlist-name"
-                           data-default="<?= getWishlistNameSuggestion() ?>"
-                    />
+                    <div class="ui input">
+                        <input type="text" name="wishlist-name" data-default="<?= getWishlistNameSuggestion() ?>" />
+                    </div>
                 </div>
             </form>
         </div>

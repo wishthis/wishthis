@@ -1,5 +1,5 @@
 /*
- * # Fomantic UI - 2.9.0-beta.315+0963809
+ * # Fomantic UI - 2.9.0-beta.324+80dca46
  * https://github.com/fomantic/Fomantic-UI
  * http://fomantic-ui.com/
  *
@@ -9,7 +9,7 @@
  *
  */
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Reset
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Reset
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -435,7 +435,7 @@ template {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Site
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Site
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -750,7 +750,7 @@ input::selection {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Container
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Container
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -1024,7 +1024,7 @@ input::selection {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Grid
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Grid
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -3400,7 +3400,7 @@ input::selection {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Button
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Button
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8472,7 +8472,7 @@ input::selection {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Calendar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Calendar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -8685,7 +8685,7 @@ input::selection {
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Card
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Card
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -10947,7 +10947,7 @@ a.inverted.ui.card:hover,
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Checkbox
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -11847,7 +11847,7 @@ a.inverted.ui.card:hover,
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Dimmer
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dimmer
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -12364,7 +12364,7 @@ body.dimmable > .dimmer {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Divider
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Divider
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -12678,7 +12678,7 @@ body.dimmable > .dimmer {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Dropdown
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Dropdown
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -15027,7 +15027,7 @@ select.ui.dropdown {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Form
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Form
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -17068,7 +17068,7 @@ select.ui.dropdown {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Header
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Header
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18024,7 +18024,7 @@ a.ui.inverted.black.header.header.header:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Icon
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Icon
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -18038,9 +18038,28 @@ a.ui.inverted.black.header.header.header:hover {
 *******************************/
 
 @font-face {
-  font-family: 'Icons';
-  src: url("./themes/default/assets/fonts/icons.eot");
-  src: url("./themes/default/assets/fonts/icons.eot?#iefix") format('embedded-opentype'), url("./themes/default/assets/fonts/icons.woff2") format('woff2'), url("./themes/default/assets/fonts/icons.woff") format('woff'), url("./themes/default/assets/fonts/icons.ttf") format('truetype'), url("./themes/default/assets/fonts/icons.svg#icons") format('svg');
+  font-family: 'icons';
+  src: url("./themes/default/assets/fonts/icons.woff2") format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+@font-face {
+  font-family: 'outline-icons';
+  src: url("./themes/default/assets/fonts/outline-icons.woff2") format('woff2');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+@font-face {
+  font-family: 'brand-icons';
+  src: url("./themes/default/assets/fonts/brand-icons.woff2") format('woff2');
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -18054,7 +18073,7 @@ i.icon {
   margin: 0 0.25rem 0 0;
   width: 1.18em;
   height: 1em;
-  font-family: 'Icons';
+  font-family: 'icons';
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;
@@ -18808,39 +18827,6 @@ i.circular.icons .icon.corner[class*="bottom left"] {
   bottom: 1.15em;
 }
 
-/*
-* Font Awesome 5.15.4 by @fontawesome [https://fontawesome.com]
-* License - https://fontawesome.com/license (Icons: CC BY 4.0 License, Fonts: SIL OFL 1.1 License, CSS: MIT License)
-*/
-
-/*******************************
-
-Fomantic-UI integration of FontAwesome :
-
-// class names are separated
-i.icon.angle-left  =>  i.icon.angle.left
-
-// variations are extracted
-i.icon.circle      =>  i.icon.circle
-i.icon.circle-o    =>  i.icon.circle.outline
-
-// abbreviation are replaced by full words
-i.icon.*-h         =>  i.icon.*.horizontal
-i.icon.*-v         =>  i.icon.*.vertical
-i.icon.alpha       =>  i.icon.alphabet
-i.icon.asc         =>  i.icon.ascending
-i.icon.desc        =>  i.icon.descending
-i.icon.alt         =>  i.icon.alternate
-
-
-Icons are order A-Z in their group, Solid, Outline, Thin (Pro only) and Brand
-
-*******************************/
-
-/*******************************
-             Icons
-*******************************/
-
 /* Deprecated *In/Out Naming Conflict) */
 
 i.icon.linkedin.in::before {
@@ -18873,7 +18859,7 @@ i.icon.sign.out::before {
 
 /*******************************
           Solid Icons
-*******************************/
+  *******************************/
 
 /* Icons */
 
@@ -18945,10 +18931,6 @@ i.icon.angle.double.up::before {
   content: "\f102";
 }
 
-i.icon.angle.down::before {
-  content: "\f107";
-}
-
 i.icon.angle.left::before {
   content: "\f104";
 }
@@ -18959,6 +18941,10 @@ i.icon.angle.right::before {
 
 i.icon.angle.up::before {
   content: "\f106";
+}
+
+i.icon.angle.down::before {
+  content: "\f107";
 }
 
 i.icon.angry::before {
@@ -19009,6 +18995,10 @@ i.icon.arrow.circle.up::before {
   content: "\f0aa";
 }
 
+i.icon.arrow.down::before {
+  content: "\f063";
+}
+
 i.icon.arrow.left::before {
   content: "\f060";
 }
@@ -19019,10 +19009,6 @@ i.icon.arrow.right::before {
 
 i.icon.arrow.up::before {
   content: "\f062";
-}
-
-i.icon.arrow.down::before {
-  content: "\f063";
 }
 
 i.icon.arrows.alternate::before {
@@ -19521,16 +19507,12 @@ i.icon.chart.bar::before {
   content: "\f080";
 }
 
-i.icon.chart.line::before {
-  content: "\f201";
+i.icon.chart.pie::before {
+  content: "\f200";
 }
 
 i.icon.chartline::before {
   content: "\f201";
-}
-
-i.icon.chart.pie::before {
-  content: "\f200";
 }
 
 i.icon.check::before {
@@ -23419,10 +23401,6 @@ i.icon.like::before {
   content: "\f004";
 }
 
-i.icon.line.graph::before {
-  content: "\f201";
-}
-
 i.icon.linegraph::before {
   content: "\f201";
 }
@@ -24048,23 +24026,8 @@ i.icon.zoom.out::before {
 }
 
 /*******************************
-         Outline Icons
-*******************************/
-
-/* Outline Icon */
-
-/* Load & Define Icon Font */
-
-@font-face {
-  font-family: 'outline-icons';
-  src: url("./themes/default/assets/fonts/outline-icons.eot");
-  src: url("./themes/default/assets/fonts/outline-icons.eot?#iefix") format('embedded-opentype'), url("./themes/default/assets/fonts/outline-icons.woff2") format('woff2'), url("./themes/default/assets/fonts/outline-icons.woff") format('woff'), url("./themes/default/assets/fonts/outline-icons.ttf") format('truetype'), url("./themes/default/assets/fonts/outline-icons.svg#icons") format('svg');
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-decoration: inherit;
-  text-transform: none;
-}
+           Outline Icons
+  *******************************/
 
 i.icon.outline {
   font-family: 'outline-icons';
@@ -24676,22 +24639,23 @@ i.icon.window.restore.outline::before {
   content: "\f2d2";
 }
 
+/* Aliases */
+
 /*******************************
-          Brand Icons
-*******************************/
+         Thin Icons
+  *******************************/
 
-/* Load & Define Brand Font */
+/* Icons */
 
-@font-face {
-  font-family: 'brand-icons';
-  src: url("./themes/default/assets/fonts/brand-icons.eot");
-  src: url("./themes/default/assets/fonts/brand-icons.eot?#iefix") format('embedded-opentype'), url("./themes/default/assets/fonts/brand-icons.woff2") format('woff2'), url("./themes/default/assets/fonts/brand-icons.woff") format('woff'), url("./themes/default/assets/fonts/brand-icons.ttf") format('truetype'), url("./themes/default/assets/fonts/brand-icons.svg#icons") format('svg');
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-decoration: inherit;
-  text-transform: none;
+i.icon.thin {
+  font-family: 'thin-icons';
 }
+
+/* Aliases */
+
+/*******************************
+            Brand Icons
+  *******************************/
 
 /* Icons */
 
@@ -27238,10 +27202,14 @@ i.icon.youtube.play::before {
 }
 
 /*******************************
+         Theme Overrides
+*******************************/
+
+/*******************************
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Image
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Image
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -27596,7 +27564,7 @@ img.ui.bordered.image {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Input
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Input
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -29048,7 +29016,7 @@ input[type="file"].ui.black.file.input::file-selector-button:hover,
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Label
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Label
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -31453,7 +31421,7 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - List
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - List
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -32559,7 +32527,7 @@ ol.ui.suffixed.list li::before,
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Loader
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Loader
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -36076,7 +36044,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Message
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Message
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -36882,7 +36850,7 @@ Floated Menu / Item
         Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Modal
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -37082,7 +37050,7 @@ Floated Menu / Item
   margin-left: 0.75em;
 }
 
-.ui.modal > .basic.actions,
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .actions {
   border-top: none;
 }
@@ -37271,8 +37239,8 @@ Floated Menu / Item
   color: #FFFFFF;
 }
 
-.ui.modal > .basic.header,
-.ui.modal > .basic.actions,
+.ui.ui.modal > .basic.header,
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .header,
 .ui.basic.modal > .content,
 .ui.basic.modal > .actions {
@@ -37757,12 +37725,12 @@ Floated Menu / Item
   *******************************/
 
 .ui.inverted.modal {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
 }
 
 .ui.inverted.modal > .header,
 .ui.inverted.modal > .content {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
   color: #FFFFFF;
 }
 
@@ -37795,7 +37763,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Loader
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Loader
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -38082,7 +38050,7 @@ Floated Menu / Item
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Popup
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Popup
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -38992,7 +38960,7 @@ Floated Menu / Item
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Progress Bar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Progress Bar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -39967,7 +39935,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Segment
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Segment
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -41065,7 +41033,7 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Sidebar
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Sidebar
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -41239,8 +41207,8 @@ body.pushable > .pusher {
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
   opacity: 0;
-  -webkit-transition: opacity 500ms;
-  transition: opacity 500ms;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
   will-change: opacity;
   z-index: 1000;
 }
@@ -41265,6 +41233,16 @@ body.pushable > .pusher {
   width: 100% !important;
   height: 100% !important;
   opacity: 1 !important;
+}
+
+.pushable > .pusher.dimmed.blurring:not(.closing)::after {
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(5px) grayscale(0.7);
+  backdrop-filter: blur(5px) grayscale(0.7);
+}
+
+.pushable > .pusher.closing.dimmed::after {
+  opacity: 0 !important;
 }
 
 /*--------------
@@ -41757,7 +41735,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Statistic
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Statistic
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -42463,7 +42441,7 @@ body.pushable > .pusher {
     User Variable Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Step
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Step
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -43235,7 +43213,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Tab
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Tab
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -43319,7 +43297,7 @@ body.pushable > .pusher {
         User Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Table
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Table
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -47500,7 +47478,7 @@ body.pushable > .pusher {
          Site Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Text
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Text
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -47695,7 +47673,7 @@ span.ui.massive.text {
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Toast
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -48696,7 +48674,7 @@ span.ui.massive.text {
          Theme Overrides
 *******************************/
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Transition
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Transition
  * http://github.com/fomantic/Fomantic-UI/
  *
  *

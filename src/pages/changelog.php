@@ -74,6 +74,12 @@ $page->navigation();
                                         echo __('Button to request more wishes from a users wishlist')
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Option to stay logged in')
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>

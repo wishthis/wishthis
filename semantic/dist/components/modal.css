@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.315+0963809 - Modal
+ * # Fomantic-UI 2.9.0-beta.324+80dca46 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -186,7 +186,7 @@
 .ui.modal .actions > .button:not(.fluid) {
   margin-left: 0.75em;
 }
-.ui.modal > .basic.actions,
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .actions {
   border-top: none;
 }
@@ -348,8 +348,8 @@
           box-shadow: none !important;
   color: #FFFFFF;
 }
-.ui.modal > .basic.header,
-.ui.modal > .basic.actions,
+.ui.ui.modal > .basic.header,
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .header,
 .ui.basic.modal > .content,
 .ui.basic.modal > .actions {
@@ -768,11 +768,11 @@
   *******************************/
 
 .ui.inverted.modal {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
 }
 .ui.inverted.modal > .header,
 .ui.inverted.modal > .content {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
   color: #FFFFFF;
 }
 .ui.inverted.modal > .actions {
