@@ -34,7 +34,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     )
     ->fetch();
 
-    $success = false !== $userQuery && is_array($fields);
+    $success = is_array($fields);
 
     if ($success) {
         $_SESSION['user'] = new User($fields);
