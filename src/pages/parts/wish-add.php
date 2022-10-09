@@ -34,9 +34,11 @@ namespace wishthis;
                 <div class="field">
                     <label><?= __('Description') ?></label>
 
-                    <textarea name="wish_description"
-                              placeholder="<?= $wish->description ?? '' ?>"
-                    ><?= $wish->description ?? '' ?></textarea>
+                    <div class="ui input">
+                        <textarea name="wish_description" placeholder="<?= $wish->description ?? '' ?>">
+                            <?= $wish->description ?? '' ?>
+                        </textarea>
+                    </div>
                 </div>
 
             </div>
