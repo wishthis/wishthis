@@ -27,7 +27,7 @@
 
 .wishlists-saved .ui.bordered.image svg,
 .wishlists-saved .ui.bordered.images svg {
-	border: none;
+    border: none;
 }
 
 .wishlists-saved .content {
@@ -36,8 +36,8 @@
     bottom: 0;
     left: 0;
 
-    padding: 1em;
-    margin: 0.5rem 0.5625rem;
+    padding: 1rem;
+    margin: 1rem;
 
     border-radius: 0 0 4px 4px;
     background-color: rgba(255, 255, 255, 0.6);
