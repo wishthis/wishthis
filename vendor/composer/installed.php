@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9c8e559956fd2a6473d57c7b22168b40e2db59c8',
+    'reference' => '0ffe21fd25ad5261d9a9aad7202ba083a5afceb1',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9c8e559956fd2a6473d57c7b22168b40e2db59c8',
+      'reference' => '0ffe21fd25ad5261d9a9aad7202ba083a5afceb1',
     ),
     'composer/ca-bundle' => 
     array (
@@ -29,23 +29,14 @@
       ),
       'reference' => '30897edbfb15e784fe55587b4f73ceefd3c4d98c',
     ),
-    'dealerdirect/phpcodesniffer-composer-installer' => 
-    array (
-      'pretty_version' => 'v0.7.2',
-      'version' => '0.7.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '1c968e542d8843d7cd71de3c5c9c3ff3ad71a1db',
-    ),
     'embed/embed' => 
     array (
-      'pretty_version' => 'v4.4.4',
-      'version' => '4.4.4.0',
+      'pretty_version' => 'v4.4.6',
+      'version' => '4.4.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '52c2d77f58672868346ae09b0fa1eecc818bdf42',
+      'reference' => '9cb2dff5c82201bbf653b7396d533d1914ff4517',
     ),
     'gettext/gettext' => 
     array (
@@ -85,30 +76,30 @@
     ),
     'guzzlehttp/guzzle' => 
     array (
-      'pretty_version' => '7.4.5',
-      'version' => '7.4.5.0',
+      'pretty_version' => '7.5.0',
+      'version' => '7.5.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1dd98b0564cb3f6bd16ce683cb755f94c10fbd82',
+      'reference' => 'b50a2a1251152e43f6a37f0fa053e730a67d25ba',
     ),
     'guzzlehttp/promises' => 
     array (
-      'pretty_version' => '1.5.1',
-      'version' => '1.5.1.0',
+      'pretty_version' => '1.5.2',
+      'version' => '1.5.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fe752aedc9fd8fcca3fe7ad05d419d32998a06da',
+      'reference' => 'b94b2807d85443f9719887892882d0329d1e2598',
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '2.4.0',
-      'version' => '2.4.0.0',
+      'pretty_version' => '2.4.1',
+      'version' => '2.4.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '13388f00956b1503577598873fffb5ae994b5737',
+      'reference' => '69568e4293f4fa993f3b0e51c9723e1e17c41379',
     ),
     'ml/iri' => 
     array (
@@ -121,12 +112,12 @@
     ),
     'ml/json-ld' => 
     array (
-      'pretty_version' => '1.2.0',
-      'version' => '1.2.0.0',
+      'pretty_version' => '1.2.1',
+      'version' => '1.2.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c74a1aed5979ed1cfb1be35a55a305fd30e30b93',
+      'reference' => '537e68e87a6bce23e57c575cd5dcac1f67ce25d8',
     ),
     'oscarotero/html-parser' => 
     array (
@@ -203,15 +194,6 @@
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
     ),
-    'squizlabs/php_codesniffer' => 
-    array (
-      'pretty_version' => '3.7.1',
-      'version' => '3.7.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '1359e176e9307e906dc3d890bcc9603ff6d90619',
-    ),
     'symfony/deprecation-contracts' => 
     array (
       'pretty_version' => 'v3.1.1',
@@ -238,15 +220,6 @@
       array (
       ),
       'reference' => '6e75fe6874cbc7e4773d049616ab450eff537bf1',
-    ),
-    'wp-coding-standards/wpcs' => 
-    array (
-      'pretty_version' => '2.3.0',
-      'version' => '2.3.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '7da1894633f168fe244afc6de00d141f27517b62',
     ),
   ),
 );
