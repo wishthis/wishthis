@@ -6,7 +6,7 @@ class Sanitiser
 {
     public static function render(string $text): string
     {
-        return html_entity_decode($text);
+        return html_entity_decode($text, ENT_HTML5);
     }
 
     public static function getNumber(mixed $valueToSanitise): float
