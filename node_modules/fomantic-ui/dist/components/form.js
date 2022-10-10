@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.324+80dca46 - Form Validation
+ * # Fomantic-UI 2.9.0 - Form Validation
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -642,6 +642,7 @@ $.fn.form = function(parameters) {
             if((t=$field.filter('[data-' + metadata.validate + '="'+ identifier +'"]')).length > 0 ) {
               return t;
             }
+            module.error(error.noField.replace('{identifier}',identifier));
             return $('<input/>');
           },
           fields: function(fields) {
@@ -1628,6 +1629,7 @@ $.fn.form.settings = {
     method     : 'The method you called is not defined.',
     noRule     : 'There is no rule matching the one you specified',
     oldSyntax  : 'Starting in 2.0 forms now only take a single settings object. Validation settings converted to new syntax automatically.',
+    noField    : 'Field identifier {identifier} not found',
     noElement  : 'This module requires ui {element}'
   },
 

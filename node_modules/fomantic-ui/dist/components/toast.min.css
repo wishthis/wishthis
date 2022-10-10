@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.324+80dca46 - Toast
+ * # Fomantic-UI 2.9.0 - Toast
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
