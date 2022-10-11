@@ -117,9 +117,11 @@ if (isset($_POST['user-id'], $_POST['section'])) {
 
     if ($set) {
         $database
-        ->query('UPDATE `users`
-                    SET ' . implode(',', $set) . '
-                  WHERE `id` = ' . Sanitiser::getNumber($_POST['user-id']));
+        ->query(
+            'UPDATE `users`
+                SET ' . implode(',', $set) . '
+              WHERE `id` = ' . Sanitiser::getNumber($_POST['user-id'])
+        );
     }
 
     if ($loginRequired) {
@@ -356,9 +358,11 @@ $page->navigation();
                     $user_is_active = '`last_login` >= CURDATE() - INTERVAL 60 DAY';
 
                     $count_users = $database
-                    ->query('SELECT COUNT(`id`)
-                               FROM `users`
-                              WHERE ' . $user_is_active . ';')
+                    ->query(
+                        'SELECT COUNT(`id`)
+                           FROM `users`
+                          WHERE ' . $user_is_active . ';'
+                    )
                     ->fetch();
                     $count_users = reset($count_users);
 
@@ -373,10 +377,12 @@ $page->navigation();
                     );
 
                     $count_users_rc = $database
-                    ->query('SELECT COUNT(`id`)
-                               FROM `users`
-                              WHERE ' . $user_is_active . '
-                                AND `channel` = "release-candidate";')
+                    ->query(
+                        'SELECT COUNT(`id`)
+                           FROM `users`
+                          WHERE ' . $user_is_active . '
+                            AND `channel` = "release-candidate";'
+                    )
                     ->fetch();
                     $count_users_rc = reset($count_users_rc);
                     ?>
