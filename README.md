@@ -1,4 +1,4 @@
-![wishthis logo](/src/assets/img/logo-readme.svg "wishthis logo")
+![wishthis logo](/src/assets/img/logo-readme.svg?v=2 "wishthis logo")
 
 # Make a wish
 
