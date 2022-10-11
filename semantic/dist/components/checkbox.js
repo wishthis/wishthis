@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.0-beta.324+80dca46 - Checkbox
+ * # Fomantic-UI 2.9.0 - Checkbox
  * http://github.com/fomantic/Fomantic-UI/
  *
  *

@@ -1,207 +1,209 @@
 @media (prefers-color-scheme: dark) {
-    body {
-        color: #dfdfdf;
-        background-color: #0b0b0b !important;
-    }
 
-    /** Pusher */
-    body.pushable > .pusher {
-        background-color: #0b0b0b;
-    }
-
-    /** Segment */
-    .ui.segment {
-        background-color: #000;
-    }
-
-    /** Header */
-    .ui.dropdown .menu > .header:not(.ui) {
-        color: rgba(255, 255, 255, 0.85);
-    }
-    .ui.header {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.header .sub.header {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    /** Menu */
-    .ui.menu,
-    .ui.menu .dropdown.item .menu {
-        background-color: #000;
-    }
-    .ui.menu .item {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.vertical.menu {
-        background: #000;
-        box-shadow: 0 1px 2px 0 rgba(221, 219, 217, 0.15);
-    }
-    .ui.vertical.pointing.menu .active.item::after {
-        background-color: #0d0d0d;
-    }
-    .ui.menu .active.item {
-        color: rgba(255, 255, 255, 0.95);
-    }
-    .ui.vertical.pointing.menu .item::after {
-        border-color: rgb(21, 21, 21);
-    }
-    .ui.vertical.pointing.menu .active.item:hover::after {
-        background-color: #0d0d0d;
-    }
-    .ui.vertical.menu .active.item {
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    .ui.menu .active.item:hover,
-    .ui.vertical.menu .active.item:hover {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    .ui.menu .item::before {
-        background-color: rgba(221, 219, 217, 0.1);
-    }
-    .ui.secondary.menu .active.item {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    .ui.secondary.menu .active.item:hover {
-        color: rgba(255, 255, 255, 0.95);
-    }
-    .ui.ui.menu .item.disabled {
-        color: rgba(215, 215, 215, 0.3);
-    }
-    .ui.secondary.menu .dropdown.item:hover,
-    .ui.secondary.menu .link.item:hover,
-    .ui.secondary.menu a.item:hover {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    .ui.attached.menu:not(.tabular):not(.text) {
-        border-color: #2b2b2a;
-    }
-
-    /** */
-    .ui.link.menu .item:hover,
-    .ui.menu .dropdown.item:hover,
-    .ui.menu .link.item:hover,
-    .ui.menu a.item:hover,
-    .ui.dropdown .menu > a.item,
-    .ui.dropdown .menu > a.item:hover {
-        color: rgba(255, 255, 255, 0.95);
-    }
-    .ui.menu .ui.dropdown .menu > .item {
-        color: rgba(255, 255, 255, 0.87) !important;
-    }
-    .ui.menu .ui.dropdown .menu > .item:hover {
-        color: rgba(255, 255, 255, 0.95) !important;
-        background-color: rgba(255, 255, 255, 0.05) !important;
-    }
-    .ui.dropdown .menu > .item:hover {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .ui.statistic > .value,
-    .ui.statistics .statistic > .value {
-        color: #e4e3e2;
-    }
-    .ui.statistic > .label,
-    .ui.statistics .statistic > .label {
-        color: rgba(255, 255, 255, 0.87);
-    }
-
-    .ui.list .list > .item > .content,
-    .ui.list > .item > .content {
-        color: rgba(255, 255, 255, 0.87);
-    }
-
-    .ui.attached.menu:not(.tabular) {
-        border-color: #2b2b2a;
-    }
-
-    /** Dropdown */
-    .ui.selection.dropdown {
-        color: rgba(255, 255, 255, 0.87);
-        border-color: rgba(221, 219, 217, 0.15);
-        background-color: #000;
-    }
-    .ui.selection.visible.dropdown > .text:not(.default) {
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    .ui.dropdown .menu {
-        background-color: #000;
-    }
-    .ui.dropdown .menu > .item {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.selection.dropdown .menu > .item {
-        border-top-color: #050505;
-    }
-    .ui.dropdown .menu .selected.item,
-    .ui.dropdown.selected {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: rgba(255, 255, 255, 0.03);
-    }
-    .ui.pointing.dropdown > .menu:not(.hidden)::after {
-        box-shadow: -1px -1px 0 0 rgba(221, 219, 217, 0.15);
-        background-color: #000;
-    }
-
-    /** Button */
+    /**
+     * Button
+     */
     .ui.button {
-        color: rgba(255, 255, 255, 0.6);
-        background-color: #1f1e1d;
+        box-shadow: 0 0 0 2px #fff inset;
+        background: transparent none;
+        color: #fff;
+        text-shadow: none !important;
+    }
+    .ui.button.active,
+    .ui.button:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 2px #fff inset;
+        color: rgba(0, 0, 0, .8);
+    }
+    .ui.button.active:focus {
+        background: #dcddde;
+        box-shadow: 0 0 0 2px #dcddde inset;
+        color: rgba(0, 0, 0, .8);
     }
     .ui.button:hover {
-        color: rgba(255, 255, 255, 0.8);
-        background-color: #353432;
+        background-color: #fff;
+        box-shadow: 0 0 0 2px #fff inset;
+        color: rgba(0, 0, 0, .8);
     }
+
+    /** Primary */
+    .ui.primary.button,
+    .ui.primary.buttons .button {
+        background-color: transparent;
+        box-shadow: 0 0 0 2px #a291fb inset;
+        color: #a291fb;
+    }
+    .ui.primary.button:hover,
+    .ui.primary.buttons .button:hover {
+        background-color: #745aff;
+    }
+
+    /** Basic */
     .ui.basic.button,
     .ui.basic.buttons .button {
-        color: rgba(255, 255, 255, 0.6);
+        background-color: transparent;
+        color: #f9fafb !important;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, .5) inset;
     }
     .ui.basic.button:hover,
     .ui.basic.buttons .button:hover {
-        color: rgba(255, 255, 255, 0.8);
-        background-color: #000;
-    }
-    .ui.basic.button:active,
-    .ui.basic.buttons .button:active {
-        color: rgba(255, 255, 255, 0.9);
-    }
-    .ui.tertiary.button {
-        color: rgba(255, 255, 255, 0.6);
-    }
-    .ui.tertiary.button:hover {
-        color: #ccc;
+        color: #fff !important;
+        box-shadow: 0 0 0 2px #fff inset !important;
     }
 
-    /** Input */
-    .ui.input {
-        color: rgba(255, 255, 255, 0.87);
+    .ui.basic.active.button,
+    .ui.basic.buttons .active.button {
+        background-color: rgba(255, 255, 255, .08);
+        color: #000 !important;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, .7) inset;
     }
-    .ui.input > input {
-        color: rgba(255, 255, 255, 0.87);
-        background-color: #000;
+
+    /**
+     * Card
+     */
+    .ui.card,
+    .ui.cards > .card {
+        background-color: #1b1c1d;
+        box-shadow: 0 1px 3px 0 #555, 0 0 0 1px #555;
     }
-    .ui.input.down input,
-    .ui.input > input:active {
-        color: rgba(255, 255, 255, 0.87);
-        border-color: rgba(255, 255, 255, 0.3);
-        background-color: #050505;
+
+    /** Content */
+    .ui.card > .content,
+    .ui.cards > .card > .content {
+        border-top: 1px solid rgba(255, 255, 255, .15);
     }
-    .ui.input.focus > input,
-    .ui.input > input:focus {
-        color: rgba(255, 255, 255, 0.8);
-        background-color: #000;
+
+    .ui.card > .content > .header,
+    .ui.cards > .card > .content > .header {
+        color: rgba(255, 255, 255, .9);
+    }
+
+    /** Description */
+    .ui.card > .content > .description,
+    .ui.cards > .card > .content > .description {
+        color: rgba(255, 255, 255, .8);
+    }
+
+    /** Buttons */
+    .wishlist .ui.card > .extra.buttons {
+        background-color: #000 !important;
+    }
+
+    /**
+     * Dimmer
+     */
+    .ui.dimmer {
+        background-color: rgba(255, 255, 255, .85);
+    }
+
+    /**
+     * Dropdown
+     */
+    .ui.dropdown .menu {
+        background-color: #1b1c1d;
+        border: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .ui.dropdown .menu > .header {
+        color: #fff !important;
+    }
+
+    .ui.dropdown .menu > .item {
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .ui.menu .ui.dropdown .menu > .item {
+        color: rgba(255, 255, 255, .8) !important;
+    }
+
+    .ui.menu .ui.dropdown .menu > .item:hover {
+        background-color: rgba(255, 255, 255, .08) !important;
+        color: rgba(255, 255, 255, .8) !important;
+    }
+
+    /** Selection */
+    .ui.selection.dropdown {
+        border: 1px solid rgba(255, 255, 255, .15);
+        background-color: #1b1c1d;
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .ui.selection.dropdown:hover {
+        border-color: rgba(255, 255, 255, .25);
+        box-shadow: none;
+    }
+
+    .ui.selection.dropdown .menu > .item {
+        border-top: 1px solid #242526;
+    }
+
+    .ui.selection.dropdown input {
+        color: #fff;
+    }
+
+    .ui.selection.visible.dropdown > .text:not(.default) {
+        color: rgba(255, 255, 255, .9);
+    }
+
+    /** Menu */
+    .ui.dropdown .menu > .item:first-child {
+        border-top-width: 0;
+    }
+
+    .ui.dropdown .menu .selected.item,
+    .ui.dropdown .menu .selected.item,
+    .ui.dropdown.selected {
+        background-color: rgba(255, 255, 255, .15);
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .ui.dropdown .menu > .item:hover,
+    .ui.dropdown .menu > .item:hover {
+        background-color: rgba(255, 255, 255, .08);
+        color: rgba(255, 255, 255, .8);
+    }
+
+    .ui.menu .dropdown.item:hover,
+    .ui.menu .link.item:hover,
+    .ui.menu a.item:hover,
+    .ui.link.menu .item:hover {
+        background-color: rgba(255, 255, 255, .08);
+        color: #fff;
+    }
+
+    .ui.menu .ui.dropdown.item .menu {
+        background-color: #1b1c1d;
+        box-shadow: none;
+    }
+
+    .ui.pointing.dropdown > .menu::after,
+    .ui.pointing.dropdown > .menu::after {
+        background-color: #1b1c1d !important;
+        box-shadow: -1px -1px 0 0 rgba(255, 255, 255, .15) !important;
+    }
+
+    /**
+     * Form
+     */
+    .ui.form .segment .ui.checkbox label,
+    .ui.form .segment label,
+    .ui.form .inline.field > label,
+    .ui.form .inline.field > p,
+    .ui.form .inline.fields .field > label,
+    .ui.form .inline.fields .field > p,
+    .ui.form .inline.fields > label,
+    .ui.form .ui.checkbox label,
+    .ui.form label {
+        color: rgba(255, 255, 255, .9) !important;
     }
 
     .ui.form input:not([type]),
+    .ui.form input[type="color"],
     .ui.form input[type="date"],
     .ui.form input[type="datetime-local"],
     .ui.form input[type="email"],
     .ui.form input[type="file"],
+    .ui.form input[type="month"],
     .ui.form input[type="number"],
     .ui.form input[type="password"],
     .ui.form input[type="search"],
@@ -209,19 +211,20 @@
     .ui.form input[type="text"],
     .ui.form input[type="time"],
     .ui.form input[type="url"],
-    .ui.form textarea,
-    .ui.input textarea {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-        background-color: #000;
-        border-color: rgba(221, 219, 217, 0.15);
-        color: rgba(255, 255, 255, 0.87);
+    .ui.form input[type="week"] {
+        background-color: rgb(27, 28, 29);
+        border-color: rgba(255, 255, 255, .1);
+        color: rgba(255, 255, 255, .87);
+        box-shadow: none;
     }
+
     .ui.form input:not([type]):focus,
+    .ui.form input[type="color"]:focus,
     .ui.form input[type="date"]:focus,
     .ui.form input[type="datetime-local"]:focus,
     .ui.form input[type="email"]:focus,
     .ui.form input[type="file"]:focus,
+    .ui.form input[type="month"]:focus,
     .ui.form input[type="number"]:focus,
     .ui.form input[type="password"]:focus,
     .ui.form input[type="search"]:focus,
@@ -229,336 +232,187 @@
     .ui.form input[type="text"]:focus,
     .ui.form input[type="time"]:focus,
     .ui.form input[type="url"]:focus,
+    .ui.form input[type="week"]:focus {
+        color: rgba(255, 255, 255, .87);
+        background-color: rgb(27, 28, 29);
+    }
+    .ui.form textarea,
     .ui.form textarea:focus,
+    .ui.input textarea,
     .ui.input textarea:focus {
-        color: rgba(255, 255, 255, 0.95);
-        background-color: #000;
-        box-shadow: 0 0 0 0 rgba(221, 219, 217, 0.35) inset;
-    }
-    .ui.form .field.field input:-webkit-autofill,
-    .ui.form .field.field input:autofill {
-        box-shadow: 0 0 0 100px #00000f inset !important;
-        border-color: #1a205e !important;
-    }
-    .ui.form .field.field input:-webkit-autofill:focus,
-    .ui.form .field.field input:autofill:focus {
-        box-shadow: 0 0 0 100px #00000f inset !important;
-        border-color: #2a3cea !important;
-    }
-    i.icon::before {
-        color: inherit;
+        color: rgba(255, 255, 255, .87);
+        background-color: rgb(27, 28, 29);
     }
 
-    /** Form */
-    .ui.form ::placeholder {
-        color: rgba(64, 64, 64, 0.87);
-    }
-    input::selection,
-    textarea::selection {
-        color: rgba(255, 255, 255, 0.87);
-        background-color: rgba(155, 155, 155, 0.4);
-    }
-    .ui.loading.form::before {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-    .ui.form .grouped.fields > label {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.form:not(.inverted) .field > label:not(.button) {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.form .field.error input:not([type]),
-    .ui.form .field.error input[type="color"],
-    .ui.form .field.error input[type="date"],
-    .ui.form .field.error input[type="datetime-local"],
-    .ui.form .field.error input[type="email"],
-    .ui.form .field.error input[type="file"],
-    .ui.form .field.error input[type="month"],
-    .ui.form .field.error input[type="number"],
-    .ui.form .field.error input[type="password"],
-    .ui.form .field.error input[type="search"],
-    .ui.form .field.error input[type="tel"],
-    .ui.form .field.error input[type="text"],
-    .ui.form .field.error input[type="time"],
-    .ui.form .field.error input[type="url"],
-    .ui.form .field.error input[type="week"],
-    .ui.form .field.error select,
-    .ui.form .field.error textarea,
-    .ui.form .fields.error .field input:not([type]),
-    .ui.form .fields.error .field input[type="color"],
-    .ui.form .fields.error .field input[type="date"],
-    .ui.form .fields.error .field input[type="datetime-local"],
-    .ui.form .fields.error .field input[type="email"],
-    .ui.form .fields.error .field input[type="file"],
-    .ui.form .fields.error .field input[type="month"],
-    .ui.form .fields.error .field input[type="number"],
-    .ui.form .fields.error .field input[type="password"],
-    .ui.form .fields.error .field input[type="search"],
-    .ui.form .fields.error .field input[type="tel"],
-    .ui.form .fields.error .field input[type="text"],
-    .ui.form .fields.error .field input[type="time"],
-    .ui.form .fields.error .field input[type="url"],
-    .ui.form .fields.error .field input[type="week"],
-    .ui.form .fields.error .field select,
-    .ui.form .fields.error .field textarea {
-        color: #dd5e58;
-        background-color: #412626;
-        border-color: currentColor;
-    }
-    .ui.form .field.error input:not([type]):focus,
-    .ui.form .field.error input[type="color"]:focus,
-    .ui.form .field.error input[type="date"]:focus,
-    .ui.form .field.error input[type="datetime-local"]:focus,
-    .ui.form .field.error input[type="email"]:focus,
-    .ui.form .field.error input[type="file"]:focus,
-    .ui.form .field.error input[type="month"]:focus,
-    .ui.form .field.error input[type="number"]:focus,
-    .ui.form .field.error input[type="password"]:focus,
-    .ui.form .field.error input[type="search"]:focus,
-    .ui.form .field.error input[type="tel"]:focus,
-    .ui.form .field.error input[type="text"]:focus,
-    .ui.form .field.error input[type="time"]:focus,
-    .ui.form .field.error input[type="url"]:focus,
-    .ui.form .field.error input[type="week"]:focus,
-    .ui.form .field.error select:focus,
-    .ui.form .field.error textarea:focus {
-        background-color: #d9a8a8;
-        border-color: #554545;
-        color: #782c2b;
-    }
-    .ui.success.message {
-        background-color: #abb594;
-        color: #345435;
-    }
     .ui.form .field input:not(:placeholder-shown):invalid {
-        color: #9f5755;
-        background-color: #2c1f1f;
-        border-color: #de8a8a;
+        color: #fff6f6;
+        background: #9f3a38;
+        border-color: #e0b4b4;
     }
 
-    /** Card */
-    .ui.card,
-    .ui.cards > .card {
-        background-color: #000;
-        box-shadow: 0 1px 3px 0 #2b2b2a,
-                    0 0 0 1px #2b2b2a;
-    }
-    .ui.card > .image,
-    .ui.cards > .card > .image {
-        background-color: rgba(255, 255, 255, 0.05);
-    }
-    .ui.card > .content > .header,
-    .ui.cards > .card > .content > .header {
-        color: rgba(255, 255, 255, 0.85);
-    }
-    .ui.card > .content > .description,
-    .ui.cards > .card > .content > .description {
-        color: rgba(255, 255, 255, 0.68);
-    }
-    .ui.card .meta > a:not(.ui),
-    .ui.cards > .card .meta > a:not(.ui) {
-        color: rgba(255, 255, 255, 0.4);
-    }
-    .ui.card .meta > a:not(.ui):hover,
-    .ui.cards > .card .meta > a:not(.ui):hover {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.card > .extra,
-    .ui.cards > .card > .extra {
-        color: rgba(255, 255, 255, 0.4);
-    }
-    .ui.loading.card::before {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    /** Label */
-    .ui.teal.labels .label,
-    .ui.ui.ui.teal.label,
-    .ui.olive.labels .label,
-    .ui.ui.ui.olive.label {
-        color: inherit;
-    }
-
-    /** List */
-    .ui.list .list > .item .description,
-    .ui.list > .item .description {
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    /** Table */
-    .ui.table {
-        background-color: #000;
-        border-color: rgba(221, 219, 217, 0.15);
-        color: rgba(255, 255, 255, 0.87);
-    }
-
-    .ui.striped.table > tbody > tr:nth-child(2n),
-    .ui.striped.table > tr:nth-child(2n) {
-        background-color: rgba(255, 255, 205, 0.02);
-    }
-
-    .ui.table > thead > tr > th {
-        background-color: #060504;
-        color: rgba(255, 255, 255, 0.87);
-        border-bottom-color: rgba(221, 219, 217, 0.1);
-    }
-
-    /** Message */
-    .ui.info.message {
-        background-color: #070000;
-    }
-    .ui.error.message {
-        background-color: #412626;
-        color: #dd5e58;
-    }
-    .ui.attached.error.message,
-    .ui.error.message {
-        box-shadow: 0 0 0 1px currentColor inset, 0 0 0 0 transparent;
-    }
-
-    /** Modal */
-    .ui.modal {
-        box-shadow: 1px 3px 3px 0 rgba(255, 255, 255, 0.2),
-                    1px 3px 15px 2px rgba(255, 255, 255, 0.2);
-        background-color: #000;
-    }
-    .ui.modal > .header {
-        color: rgba(255, 255, 255, 0.85);
-        background-color: #000;
-        border-bottom-color: rgba(221, 219, 217, 0.15);
-    }
-    .ui.modal > .content {
-        background-color: #000;
-    }
-    .ui.modal > .actions {
-        background-color: #060504;
-        border-top-color: rgba(221, 219, 217, 0.15);
-    }
-
-    /** Checkbox */
-    .ui.checkbox label,
-    .ui.checkbox + label {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.checkbox label:hover,
-    .ui.checkbox + label:hover {
-        color: rgba(255, 255, 255, 0.8);
-    }
-    .ui.checkbox label::before {
-        border: 1px solid #2b2b2a;
-        background-color: #000;
-    }
-    .ui.checkbox label:hover::before {
-        border-color: rgba(221, 219, 217, 0.35);
-        background-color: #000;
-    }
-    .ui.checkbox input:focus ~ label {
-        color: rgba(255, 255, 255, 0.95);
-    }
-    .ui.checkbox input:focus ~ label::before {
-        background-color: #000;
-    }
-    .ui.checkbox input:checked:focus ~ label::before,
-    .ui.checkbox input:not([type="radio"]):indeterminate:focus ~ label::before {
-        background-color: #000;
-    }
-    .ui.checkbox input:checked ~ label::before {
-        background-color: #000;
-        border-color: rgba(221, 219, 217, 0.35);
-    }
-    .ui.checkbox input:checked ~ label::after {
-        color: rgba(255, 255, 255, 0.95);
-    }
-    .ui.checkbox input:checked:focus ~ label::after,
-    .ui.checkbox input:not([type="radio"]):indeterminate:focus ~ label::after {
-        color: rgba(255, 255, 255, 0.95);
-    }
-
-    /** Toggle */
-    .ui.toggle.checkbox label {
-        color: rgba(255, 255, 255, 0.87);
-    }
-    .ui.toggle.checkbox label::before {
-        background: rgba(255, 255, 255, 0.05);
-    }
-    .ui.toggle.checkbox label:hover::before {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-    .ui.toggle.checkbox input:checked ~ label {
-        color: rgba(255, 255, 255, 0.95) !important;
-    }
-
-    /** Calendar */
-    .ui.ui.table td.active,
-    .ui.ui.ui.ui.table tr.active {
-        color: rgba(255, 255, 255, 0.87);
-        background-color: #1f1f1f;
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0.87) inset;
-    }
-    .ui.bottom.popup::before {
-        background-color: #000;
-    }
-    .ui.bottom.left.popup::before {
-        box-shadow: -1px -1px 0 0 #454543;
-    }
-
-    /** Icon */
-    i.icon.calendar::before {
+    /**
+     * Header
+     */
+    .ui.header {
         color: #fff;
     }
 
-    /** Steps */
-    .ui.steps .step {
-        background-color: #000;
-        color: rgba(255, 255, 255, 0.87);
-        border-right: 1px solid rgba(221, 219, 217, 0.15);
+    /**
+     * List
+     */
+    .ui.list .list > .item > .content,
+    .ui.list > .item > .content {
+        color: rgba(255, 255, 255, .7);
     }
-    .ui.steps .disabled.step,
-    .ui.steps .disabled.step .description,
-    .ui.steps .disabled.step .title {
-        color: rgba(215, 215, 215, 0.3);
-    }
-    .ui.steps .disabled.step {
-        background-color: #000;
-    }
-    .ui.steps .disabled.step::after {
-        background-color: #000;
-    }
-    .ui.steps .step::after {
-        background-color: #000;
-        border-color: rgba(221, 219, 217, 0.15);
-    }
-    .ui.steps .step .description {
-        color: rgba(255, 255, 255, 0.87);
+    .ui.list .list > .item .description,
+    .ui.list > .item .description {
+        color: rgba(255, 255, 255, .7);
     }
 
-    /** Placeholder */
+    /**
+     * Menu
+     */
+    .ui.menu.desktop,
+    .ui.vertical.pointing.menu {
+        border: 0 solid transparent;
+        background-color: #1b1c1d;
+    }
+
+    /** Attached */
+    .ui.attached.menu {
+        border: none;
+    }
+
+    /** Item */
+    .ui.menu .item,
+    .ui.menu .item > a:not(.ui) {
+        background: 0 0;
+        color: rgba(255, 255, 255, .9);
+    }
+    .ui.menu .active.item {
+        background-color: #3d3e3f !important;
+        color: #fff !important;
+    }
+    .ui.ui.menu .item.disabled {
+        color: rgba(225, 225, 225, .3);
+    }
+    .ui.secondary.menu .dropdown.item:hover,
+    .ui.secondary.menu .link.item:hover,
+    .ui.secondary.menu a.item:hover {
+        background: rgba(255, 255, 255, .08);
+        color: #fff;
+    }
+
+    /** Pointing */
+    .ui.ui.ui.pointing.menu .active.item::after {
+        background-color: inherit;
+    }
+    .ui.pointing.menu .active.item::after {
+        background-color: #3d3e3f;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    /**
+     * Modal
+     */
+    .ui.modal {
+        background-color: #000 !important;
+    }
+
+    .ui.modal > .content,
+    .ui.modal > .header {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .ui.modal > .actions {
+        background-color: #191a1b;
+        border-top: 1px solid rgba(34, 36, 38, .85);
+        color: #fff;
+    }
+
+    /**
+     * Placeholder
+     */
     .ui.placeholder,
     .ui.placeholder .image.header::after,
     .ui.placeholder .line,
     .ui.placeholder .line::after,
     .ui.placeholder > ::before {
-        background-color: #000;
-    }
-    .ui.placeholder {
-        background-image: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.08) 0,
-            rgba(255, 255, 255, 0.15) 15%,
-            rgba(255, 255, 255, 0.08) 30%
-        );
+        background-color: #1b1c1d;
     }
 
-    /** Dimmer */
-    .blurring.dimmable > .inverted.dimmer {
-        background: rgba(0, 0, 0, 0.6);
-    }
-
-    /** Progress */
+    /**
+     * Progress
+     */
     .ui.progress {
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: rgba(255, 255, 255, .08);
+        border: none;
+    }
+    .ui.indeterminate.primary.progress .bar::before,
+    .ui.progress .primary.bar,
+    .ui.primary.progress .bar {
+        background-color: #a291fb;
+    }
+    .ui.progress .bar {
+        background-color: #888;
     }
     .ui.progress > .label {
         color: #fff;
+    }
+    .ui.progress .bar > .progress {
+        color: #1b1c1d;
+    }
+
+    /**
+     * Segment
+     */
+    .ui.segment,
+    .ui.segments .segment,
+    .ui.primary.segment {
+        background-color: #1b1c1d;
+        color: rgba(255, 255, 255, .9);
+    }
+
+    /**
+     * Statistic
+     */
+    .ui.statistic .value,
+    .ui.statistics .statistic > .value {
+        color: #fff;
+    }
+    .ui.statistic .label,
+    .ui.statistics .statistic > .label {
+        color: rgba(255, 255, 255, .9);
+    }
+
+    /**
+      * Step
+      */
+    .ui.steps {
+        border: 1px solid #555;
+    }
+    .ui.steps .disabled.step,
+    .ui.steps .disabled.step .description,
+    .ui.steps .disabled.step .title {
+        color: rgba(225, 225, 225, .3);
+    }
+    .ui.steps .disabled.step,
+    .ui.steps .disabled.step::after {
+        background-color: #222;
+    }
+    .ui.steps .step {
+        color: rgba(255, 255, 255, .9);
+        background-color: #1b1c1d;
+        border-color: #555;
+    }
+    .ui.steps .step::after {
+        background-color: #1b1c1d;
+        border-color: #555;
+    }
+    .ui.steps .step .description {
+        color: rgba(255, 255, 255, .9);
     }
 }
