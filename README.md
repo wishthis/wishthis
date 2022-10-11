@@ -53,6 +53,12 @@ And set your channel to "Release candidate". Make sure to give feedback!
 
 https://www.transifex.com/wishthis/wishthis/
 
+### As a sponsor
+
+Time spent on wishthis is time not doing for-profit work. Of course there is no expectation but if you would still like to show your appreciation, you can here. It is very appreciated!
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/grandeljay?color=6435c9&logo=githubsponsors&logoColor=fff&style=for-the-badge)](https://github.com/sponsors/grandeljay)
+
 ### As a developer
 
 Install dependencies
