@@ -7,9 +7,13 @@ $(function() {
         startMode      : 'year'
     });
 
-    $('.ui.form').form({
+    $('[data-tab="personal"] .ui.form').form({
         fields: {
-            'user-email'           : 'email',
+            'user-email' : 'email',
+        }
+    });
+    $('[data-tab="password"] .ui.form').form({
+        fields: {
             'user-password'        : ['minLength[8]', 'empty'],
             'user-password-repeat' : ['minLength[8]', 'empty'],
             match                  : {
