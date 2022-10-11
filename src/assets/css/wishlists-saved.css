@@ -13,7 +13,7 @@
 }
 @media (prefers-color-scheme: dark) {
     .wishlists-saved .image {
-        background-color: #000;
+        background-color: #222;
     }
 }
 
@@ -23,6 +23,11 @@
 
     color: #f0f0f0;
     background-color: inherit;
+}
+@media (prefers-color-scheme: dark) {
+    .wishlists-saved svg#no-image {
+        color: rgba(255, 255, 255, 0.6);
+    }
 }
 
 .wishlists-saved .ui.bordered.image svg,
@@ -44,6 +49,7 @@
 }
 @media (prefers-color-scheme: dark) {
     .wishlists-saved .content {
+        color: rgba(255, 255, 255, 0.6);
         background-color: rgba(0, 0, 0, 0.6);
     }
 }

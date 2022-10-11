@@ -20,7 +20,7 @@ $scriptPart = '/src/assets/js/parts/wishlist-filter.js';
                 <i class="filter icon"></i>
                 <span class="text"><?= __('Filter priorities') ?></span>
 
-                <div class="menu">
+                <div class="ui menu">
                     <div class="ui icon search input">
                         <i class="search icon"></i>
                         <input type="text" placeholder="<?= __('Search priorities') ?>" />

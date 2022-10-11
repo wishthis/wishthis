@@ -55,7 +55,19 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
+@media (prefers-color-scheme: dark) {
+    .column.buttons .left.attached.button {
+        box-shadow:
+            2px 0 0 0 #fff inset,
+            0 2px 0 0 #fff inset,
+            0 -2px 0 0 #fff inset;
+    }
+}
 .column.buttons .right.attached.button {
     flex: 0 0 auto;
+}
+@media (prefers-color-scheme: dark) {
+    .column.buttons .right.attached.button {
+        box-shadow: 0 0 0 2px #fff inset;
+    }
 }
