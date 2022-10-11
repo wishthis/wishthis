@@ -51,6 +51,8 @@ And set your channel to "Release candidate". Make sure to give feedback!
 
 ### As a translator
 
+Localisation is currently done via Transifex.
+
 https://www.transifex.com/wishthis/wishthis/
 
 ### As a sponsor
