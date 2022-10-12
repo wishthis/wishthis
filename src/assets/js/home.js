@@ -56,7 +56,7 @@ $(function() {
     /**
      * News
      */
-     fetch('/src/api/blog.php', {
+    fetch('/src/api/blog.php', {
         method: 'GET'
     })
     .then(handleFetchError)

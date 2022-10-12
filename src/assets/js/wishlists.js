@@ -176,7 +176,6 @@ $(function () {
 
         var wishlist_href = window.location.origin + $(event.currentTarget).attr('href');
 
-
         navigator.clipboard.writeText(wishlist_href).then(function() {
             $('body').toast({ message: text.toast_clipboard_success });
         }, function() {
