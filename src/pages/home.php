@@ -95,7 +95,9 @@ $page->navigation();
                     <h2 class="ui header"><?= __('Why wishthis?') ?></h2>
 
                     <p><?= sprintf(
-                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'), '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">', '</a>'
+                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'),
+                        '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">',
+                        '</a>'
                     ) ?></p>
 
                     <p><?= __('As a non-commercial project it remains') ?></p>
