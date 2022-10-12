@@ -25,7 +25,7 @@ $page->navigation();
 
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
-                    <div class="ui two column doubling stackable centered grid">
+                    <div class="ui two column doubling stackable centered grid actions">
                         <?php if ($_SESSION['user']->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
