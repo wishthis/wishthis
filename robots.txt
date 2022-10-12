@@ -1,0 +1,8 @@
+sitemap: /sitemap.xml
+
+user-agent: *
+allow: /
+
+# User wishlists
+disallow: /wishlist/
+disallow: /?page=wishlist&hash=
