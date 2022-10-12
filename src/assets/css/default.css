@@ -3,6 +3,7 @@
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
+    --dimmerZIndex: 100;
 }
 
 html {
@@ -76,6 +77,9 @@ figure {
 .wishlist .ui.card {
     --padding: 0.91666667em;
     --buttonsHeight: calc(1em + 1.50em + 0.78571429em * 2 - 3px);
+}
+.wishlist .ui.card:focus-within {
+    z-index: calc(var(--dimmerZIndex) + 2);
 }
 
 .wishlist .ui.fluid.card.stretch {
@@ -349,7 +353,7 @@ figure {
  * Label
  */
 .ui.label {
-    z-index: 1;
+    z-index: calc(var(--dimmerZIndex) + 1);
 }
 
 p .ui.horizontal.label {
