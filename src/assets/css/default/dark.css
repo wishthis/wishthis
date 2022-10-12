@@ -10,7 +10,7 @@
         text-shadow: none !important;
     }
     .ui.button.active,
-    .ui.button:focus {
+    .ui.button:not(.tertiary):focus {
         background-color: #fff !important;
         box-shadow: 0 0 0 2px #fff inset;
         color: rgba(0, 0, 0, .8);
@@ -58,6 +58,15 @@
         box-shadow: 0 0 0 2px rgba(255, 255, 255, .7) inset;
     }
 
+    /** Tertiary */
+    .ui.tertiary.button {
+        color: rgba(255, 255, 255, .6);
+    }
+    .ui.tertiary.button:hover {
+        color: #ddd;
+        box-shadow: inset 0 -.2em 0 #aaa;
+    }
+
     /**
      * Card
      */
@@ -87,6 +96,19 @@
     /** Buttons */
     .wishlist .ui.card > .extra.buttons {
         background-color: #000 !important;
+    }
+
+    /**
+     * Checkbox
+     */
+    .ui.toggle.checkbox input:checked ~ label {
+        color: #fff !important;
+    }
+    .ui.toggle.checkbox label::before {
+        background-color: rgba(255, 255, 255, .9) !important;
+    }
+    .ui.toggle.checkbox input:focus:checked ~ label {
+        color: rgba(255, 255, 255, .95) !important;
     }
 
     /**
@@ -236,6 +258,9 @@
         color: rgba(255, 255, 255, .87);
         background-color: rgb(27, 28, 29);
     }
+    .ui.input {
+        color: rgba(255, 255, 255, .87);
+    }
     .ui.form textarea,
     .ui.form textarea:focus,
     .ui.input textarea,
@@ -272,10 +297,14 @@
     /**
      * Menu
      */
-    .ui.menu.desktop,
-    .ui.vertical.pointing.menu {
+    .ui.menu {
         border: 0 solid transparent;
-        background-color: #1b1c1d;
+        background-color: #1b1c1d !important;
+    }
+
+    /** Secondary */
+    .ui.secondary.menu {
+        background-color: transparent !important;
     }
 
     /** Attached */
