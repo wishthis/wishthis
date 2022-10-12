@@ -19,7 +19,7 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui doubling stackable grid">
-            <div class="twelve wide column">
+            <div class="eleven wide column">
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Make a wish') ?></h2>
 
@@ -160,7 +160,7 @@ $page->navigation();
                 </div>
             </div>
 
-            <div class="four wide column">
+            <div class="five wide column">
 
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Statistics') ?></h2>
