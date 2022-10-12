@@ -76,6 +76,14 @@
         box-shadow: 0 1px 3px 0 #555, 0 0 0 1px #555;
     }
 
+    /** Loading */
+    .ui.loading.card {
+        color: #fff;
+    }
+    .ui.loading.card::before {
+        background-color: rgba(0, 0, 0, .85);
+    }
+
     /** Content */
     .ui.card > .content,
     .ui.cards > .card > .content {
