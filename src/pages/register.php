@@ -100,17 +100,15 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
              */
             if (0 === count($users)) {
                 $database->query(
-                    'INSERT INTO `users`
-                                (
-                                    `email`,
-                                    `password`,
-                                    `power`
-                                ) VALUES (
-                                    "' . $user_email . '",
-                                    "' . User::generatePassword($_POST['password']) . '",
-                                    100
-                                )
-                ;'
+                    'INSERT INTO `users` (
+                        `email`,
+                        `password`,
+                        `power`
+                    ) VALUES (
+                        "' . $user_email . '",
+                        "' . User::generatePassword($_POST['password']) . '",
+                        100
+                    );'
                 );
                 $userRegistered = true;
             } else {
@@ -121,15 +119,13 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     );
                 } else {
                     $database->query(
-                        'INSERT INTO `users`
-                                    (
-                                        `email`,
-                                        `password`
-                                    ) VALUES (
-                                        "' . $user_email . '",
-                                        "' . User::generatePassword($_POST['password']) . '"
-                                    )
-                    ;'
+                        'INSERT INTO `users` (
+                            `email`,
+                            `password`
+                        ) VALUES (
+                            "' . $user_email . '",
+                            "' . User::generatePassword($_POST['password']) . '"
+                        );'
                     );
                     $userRegistered = true;
 
@@ -147,17 +143,15 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
 
             $database
             ->query(
-                'INSERT INTO `wishlists`
-                    (
-                        `user`,
-                        `name`,
-                        `hash`
-                    ) VALUES (
-                        ' . $userID . ',
-                        "' . $wishlistName . '",
-                        "' . sha1(time() . $userID . $wishlistName) . '"
-                    )
-            ;'
+                'INSERT INTO `wishlists` (
+                    `user`,
+                    `name`,
+                    `hash`
+                ) VALUES (
+                    ' . $userID . ',
+                    "' . $wishlistName . '",
+                    "' . sha1(time() . $userID . $wishlistName) . '"
+                );'
             );
         }
     } else {

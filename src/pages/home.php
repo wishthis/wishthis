@@ -19,13 +19,13 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui doubling stackable grid">
-            <div class="twelve wide column">
+            <div class="eleven wide column">
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Make a wish') ?></h2>
 
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
-                    <div class="ui two column doubling stackable centered grid">
+                    <div class="ui two column doubling stackable centered grid actions">
                         <?php if ($_SESSION['user']->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
@@ -95,7 +95,9 @@ $page->navigation();
                     <h2 class="ui header"><?= __('Why wishthis?') ?></h2>
 
                     <p><?= sprintf(
-                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'), '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">', '</a>'
+                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'),
+                        '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">',
+                        '</a>'
                     ) ?></p>
 
                     <p><?= __('As a non-commercial project it remains') ?></p>
@@ -160,7 +162,7 @@ $page->navigation();
                 </div>
             </div>
 
-            <div class="four wide column">
+            <div class="five wide column">
 
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Statistics') ?></h2>

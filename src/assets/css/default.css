@@ -387,7 +387,9 @@ p .ui.horizontal.label {
 .pusher {
     min-height: 100vh;
 }
-
+body.pushable > .pusher {
+    background-color: transparent;
+}
 .pusher .menu.toggle {
     display: none;
 }
