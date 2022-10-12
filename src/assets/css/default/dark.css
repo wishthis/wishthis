@@ -299,6 +299,13 @@
     }
 
     /**
+     * Label
+     */
+    .ui.label {
+        filter: brightness(90%);
+    }
+
+    /**
      * List
      */
     .ui.list .list > .item > .content,
