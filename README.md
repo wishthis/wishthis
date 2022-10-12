@@ -63,72 +63,12 @@ Time spent on wishthis is time not doing for-profit work. Of course there is no 
 
 ### As a developer
 
-Install dependencies
+To setup your development environment you currently have two possibilities:
 
-#### Composer
+1. Git
 
-Use one of the following commands.
+    Clone this repository and you're good to go!
 
-| Command                     | Description                         |
-| --------------------------- | ----------------------------------- |
-| `composer install`          | Install all dependencies.           |
-| `composer install --no-dev` | Install only required dependencies. |
+1. Docker
 
-#### Yarn
-
-Use one of the following commands.
-
-| Command        | Description               |
-| -------------- | ------------------------- |
-| `yarn install` | Install all dependencies. |
-
-#### Updating fomantic-ui
-
-To update fomantic-ui run the following commands
-
-```
-yarn upgrade
-cd node_modules/fomantic-ui
-npx gulp install
-npx gulp build
-```
-
-or as a one-liner
-
-```
-yarn upgrade fomantic-ui && cd node_modules/fomantic-ui && npx gulp install && npx gulp build && cd ../..
-```
-
-#### Theme changes
-
-```
-cd semantic
-```
-
-And then one of the following commands:
-
--   `gulp build`
--   `gulp watch`
-
-For more information see: https://fomantic-ui.com/introduction/build-tools.html
-
-#### Code style
-
-| Language | Style                       |
-| -------- | --------------------------- |
-| PHP      | Custom (PSR-12 + WordPress) |
-
-## :construction: Roadmap
-
-| Item                                                | Status              |
-| --------------------------------------------------- | ------------------- |
-| Add "or similar" option to wishes                   | Planned             |
-| Combined/separate (and/or) wishes                   | Planned             |
-| Group wishes by store                               | Planned             |
-| Option to show/notify when a wish was fulfilled     | Planned             |
-| Redirect to original target after login             | Planned             |
-| Activity feed and friends                           | Under consideration |
-| Browser extension to quickly create wishes from url | Under consideration |
-| Bulk add wishes via link list                       | Under consideration |
-| Folders / Subcategories for wishlists               | Under consideration |
-| Synchronise Steam wishlist                          | Under consideration |
+    An unofficial Docker image is available on Docker Hub: [hiob/wishthis](https://hub.docker.com/r/hiob/wishthis), thanks [Hiobi](https://github.com/Hiobi)!
