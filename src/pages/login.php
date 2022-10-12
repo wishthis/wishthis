@@ -181,7 +181,7 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <div class="inline fields">
+                            <div class="inline unstackable fields">
                                <div class="field">
                                     <input class="ui primary button"
                                         type="submit"
