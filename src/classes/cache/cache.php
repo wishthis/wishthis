@@ -9,11 +9,15 @@ namespace wishthis\Cache;
 class Cache
 {
     /**
+     * Private
+     */
+    private int $maxAge;
+
+    /**
      * Protected
      */
     protected string $url;
     protected string $directory = ROOT . '/src/cache';
-    protected int $maxAge       = 2592000; // 30 days
 
     protected function getAge(): int
     {
@@ -50,9 +54,10 @@ class Cache
     /**
      * Public
      */
-    public function __construct($url)
+    public function __construct(string $url, int $maxAge = \wishthis\Duration::YEAR)
     {
-        $this->url = trim($url);
+        $this->url    = trim($url);
+        $this->maxAge = $maxAge;
     }
 
     public function exists(): bool

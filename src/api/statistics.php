@@ -30,7 +30,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 foreach ($tables as $table) {
                     $count = new Cache\Query(
                         'SELECT COUNT(`id`) AS "count"
-                           FROM `' . $table . '`;'
+                           FROM `' . $table . '`;',
+                        Duration::DAY
                     );
 
                     $response['data'][$table] = $count->get();

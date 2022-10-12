@@ -16,11 +16,11 @@ class Query extends Cache
     /**
      * Public
      */
-    public function __construct($url)
+    public function __construct(string $url, int $maxAge = \wishthis\Duration::YEAR)
     {
         global $database;
 
-        parent::__construct($url);
+        parent::__construct($url, $maxAge);
 
         $this->directory .= '/query';
         $this->database   = $database;

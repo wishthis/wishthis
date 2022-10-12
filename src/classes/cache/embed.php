@@ -25,7 +25,7 @@ class Embed extends Cache
      */
     public function __construct($url)
     {
-        parent::__construct($url);
+        parent::__construct($url, \wishthis\Duration::MONTH);
 
         $this->directory .= '/embed';
     }
