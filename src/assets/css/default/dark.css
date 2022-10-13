@@ -285,7 +285,7 @@
 
     /** Loading */
     .ui.loading.form::before {
-        background-color: rgba(27, 28, 29, 0.85);
+        background-color: rgba(17, 17, 17, 0.85);
     }
     .ui.loading.form {
         color: #fff;
