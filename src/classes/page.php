@@ -139,13 +139,14 @@ class Page
 
         $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
-            'home',
             'blog',
-            'post',
+            'changelog',
+            'home',
+            'install',
             'login',
             'maintenance',
+            'post',
             'register',
-            'changelog',
             'wishlist',
         );
 
