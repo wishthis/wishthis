@@ -42,7 +42,6 @@ switch ($step) {
                     <p><?= __('wishthis needs a database to function properly. Please enter your credentials.') ?></p>
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
-                        <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
                         <div class="ui error message"></div>
@@ -127,7 +126,6 @@ switch ($step) {
                     <p><?= __('Click continue to test the database connection.') ?></p>
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
-                        <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
                         <input class="ui primary button"
