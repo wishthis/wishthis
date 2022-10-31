@@ -50,4 +50,25 @@ class Database
     {
         return $this->lastInsertId;
     }
+
+    public function tableExists(string $table_to_check): bool
+    {
+        $tables = $this
+        ->query('SHOW TABLES;')
+        ->fetchAll();
+
+        if (!is_iterable($tables)) {
+            return false;
+        }
+
+        foreach ($tables as $table_kv) {
+            $table = reset($table_kv);
+
+            if ($table === $table_to_check) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

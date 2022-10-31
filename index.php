@@ -89,17 +89,21 @@ if (
 /**
  * Persistent (stay logged in)
  */
-if (isset($_COOKIE[COOKIE_PERSISTENT])) {
-    $persistent = $database
-    ->query(
-        'SELECT *
-           FROM `sessions`
-          WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
-    )
-    ->fetch();
+if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
+    $table_sessions_exists = $database->tableExists('sessions');
 
-    if (false !== $persistent) {
-        $_SESSION['user'] = User::getFromID($persistent['user']);
+    if ($table_sessions_exists) {
+        $persistent = $database
+        ->query(
+            'SELECT *
+               FROM `sessions`
+              WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+        )
+        ->fetch();
+
+        if (false !== $persistent) {
+            $_SESSION['user'] = User::getFromID($persistent['user']);
+        }
     }
 }
 
