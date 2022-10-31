@@ -76,18 +76,20 @@ function minify(files, options) {
             annotations: undefined,
             compress: {},
             enclose: false,
+            expression: false,
             ie: false,
             ie8: false,
             keep_fargs: false,
             keep_fnames: false,
             mangle: {},
+            module: false,
             nameCache: null,
             output: {},
             parse: {},
             rename: undefined,
             sourceMap: false,
             timings: false,
-            toplevel: false,
+            toplevel: !!(options && options["module"]),
             v8: false,
             validate: false,
             warnings: false,
@@ -97,10 +99,12 @@ function minify(files, options) {
         if (options.validate) AST_Node.enable_validation();
         var timings = options.timings && { start: Date.now() };
         if (options.annotations !== undefined) set_shorthand("annotations", options, [ "compress", "output" ]);
+        if (options.expression) set_shorthand("expression", options, [ "compress", "parse" ]);
         if (options.ie8) options.ie = options.ie || options.ie8;
         if (options.ie) set_shorthand("ie", options, [ "compress", "mangle", "output", "rename" ]);
         if (options.keep_fargs) set_shorthand("keep_fargs", options, [ "compress", "mangle", "rename" ]);
         if (options.keep_fnames) set_shorthand("keep_fnames", options, [ "compress", "mangle", "rename" ]);
+        if (options.module) set_shorthand("module", options, [ "compress", "parse" ]);
         if (options.toplevel) set_shorthand("toplevel", options, [ "compress", "mangle", "rename" ]);
         if (options.v8) set_shorthand("v8", options, [ "mangle", "output", "rename" ]);
         if (options.webkit) set_shorthand("webkit", options, [ "compress", "mangle", "output", "rename" ]);
@@ -151,13 +155,11 @@ function minify(files, options) {
         }, options.warnings == "verbose");
         if (timings) timings.parse = Date.now();
         var toplevel;
-        if (files instanceof AST_Toplevel) {
+        options.parse = options.parse || {};
+        if (files instanceof AST_Node) {
             toplevel = files;
         } else {
-            if (typeof files == "string") {
-                files = [ files ];
-            }
-            options.parse = options.parse || {};
+            if (typeof files == "string") files = [ files ];
             options.parse.toplevel = null;
             var source_map_content = options.sourceMap && options.sourceMap.content;
             if (typeof source_map_content == "string" && source_map_content != "inline") {
@@ -169,17 +171,14 @@ function minify(files, options) {
                 options.parse.toplevel = toplevel = parse(files[name], options.parse);
                 if (source_map_content == "inline") {
                     var inlined_content = read_source_map(name, toplevel);
-                    if (inlined_content) {
-                        options.sourceMap.orig[name] = parse_source_map(inlined_content);
-                    }
+                    if (inlined_content) options.sourceMap.orig[name] = parse_source_map(inlined_content);
                 } else if (source_map_content) {
                     options.sourceMap.orig[name] = source_map_content;
                 }
             }
         }
-        if (quoted_props) {
-            reserve_quoted_keys(toplevel, quoted_props);
-        }
+        if (options.parse.expression) toplevel = toplevel.wrap_expression();
+        if (quoted_props) reserve_quoted_keys(toplevel, quoted_props);
         [ "enclose", "wrap" ].forEach(function(action) {
             var option = options[action];
             if (!option) return;
@@ -206,7 +205,9 @@ function minify(files, options) {
             toplevel.mangle_names(options.mangle);
         }
         if (timings) timings.properties = Date.now();
+        if (quoted_props) reserve_quoted_keys(toplevel, quoted_props);
         if (options.mangle && options.mangle.properties) mangle_properties(toplevel, options.mangle.properties);
+        if (options.parse.expression) toplevel = toplevel.unwrap_expression();
         if (timings) timings.output = Date.now();
         var result = {};
         var output = defaults(options.output, {

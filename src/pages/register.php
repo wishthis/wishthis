@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$passwordReset = isset($_SESSION['_GET']['password-reset'], $_SESSION['_GET']['token']);
+$passwordReset = isset($_GET['password-reset'], $_GET['token']);
 
 $pageTitle    = $passwordReset ? __('Reset password') : __('Register');
 $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
@@ -16,18 +16,19 @@ $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
 $page = new Page(__FILE__, $pageTitle);
 
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
-    $users  = $database->query('SELECT * FROM `users`;')->fetchAll();
-    $emails = array_map(
+    $users      = $database->query('SELECT * FROM `users`;')->fetchAll();
+    $emails     = array_map(
         function ($user) {
             return $user['email'];
         },
         $users
     );
+    $user_email = Sanitiser::getEmail($_POST['email']);
 
-    $isHuman    = false;
-    $planet     = strtolower($_POST['planet']);
-    $planetName = strtoupper($planet[0]) . substr($planet, 1);
-    $planets    = array(
+    $isHuman     = false;
+    $planet      = strtolower(Sanitiser::getTitle($_POST['planet']));
+    $planetName  = strtoupper($planet[0]) . substr($planet, 1);
+    $planets     = array(
         strtolower(__('Mercury')),
         strtolower(__('Venus')),
         strtolower(__('Earth')),
@@ -56,68 +57,76 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     if ($isHuman) {
         $userRegistered = false;
 
-        if (isset($_SESSION['_GET']['password-reset'], $_SESSION['_GET']['token'])) {
+        if (isset($_GET['password-reset'], $_GET['token'])) {
+            $user_email = Sanitiser::getEmail($_GET['password-reset']);
+            $user_token = Sanitiser::getSHA1($_GET['token']);
+
             /**
              * Password reset
              */
-            $user = $database
-            ->query('SELECT * FROM `users`
-                      WHERE `email`                = "' . $_SESSION['_GET']['password-reset'] . '"
-                        AND `password_reset_token` = "' . $_SESSION['_GET']['token'] . '";')
-            ->fetch();
+            $userQuery = $database
+            ->query(
+                'SELECT * FROM `users`
+                  WHERE `email`                = "' . $user_email . '"
+                    AND `password_reset_token` = "' . $user_token . '";'
+            );
 
-            if ($user) {
-                if (time() > $user['password_reset_valid_until']) {
+            if (false !== $userQuery) {
+                $user = new User($userQuery->fetch());
+
+                if (time() > $user->password_reset_valid_until) {
                     $database
-                    ->query('UPDATE `users`
+                    ->query(
+                        'UPDATE `users`
                                 SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
-                              WHERE `id`                         = ' . $user['id'] . ';');
+                              WHERE `id`                         = ' . $user->id . ';'
+                    );
 
                     $page->messages[] = Page::success(
-                        'Password has been successfully reset for <strong>' . $_SESSION['_GET']['password-reset'] . '</strong>.',
+                        'Password has been successfully reset for <strong>' . $user_email . '</strong>.',
                         'Success'
                     );
                 } else {
-                    $page->messages[] = Page::error(__('This link has expired.'), __('Failure'));
+                    $page->messages[] = Page::error(__('This password reset link has expired, please request a new one.'), __('Failure'));
                 }
             } else {
-                $page->messages[] = Page::error(__('This link seems invalid.'), __('Failure'));
+                $page->messages[] = Page::error(__('This password reset link seems to have been manipulated, please request a new one.'), __('Failure'));
             }
         } else {
             /**
              * Register
              */
             if (0 === count($users)) {
-                $database->query('INSERT INTO `users`
-                                (
-                                    `email`,
-                                    `password`,
-                                    `power`
-                                ) VALUES (
-                                    "' . $_POST['email'] . '",
-                                    "' . User::generatePassword($_POST['password']) . '",
-                                    100
-                                )
-                ;');
+                $database->query(
+                    'INSERT INTO `users` (
+                        `email`,
+                        `password`,
+                        `power`
+                    ) VALUES (
+                        "' . $user_email . '",
+                        "' . User::generatePassword($_POST['password']) . '",
+                        100
+                    );'
+                );
                 $userRegistered = true;
             } else {
-                if (in_array($_POST['email'], $emails)) {
+                if (in_array($user_email, $emails)) {
                     $page->messages[] = Page::error(
                         __('An account with this email address already exists.'),
                         __('Invalid email address')
                     );
                 } else {
-                    $database->query('INSERT INTO `users`
-                                    (
-                                        `email`,
-                                        `password`
-                                    ) VALUES (
-                                        "' . $_POST['email'] . '",
-                                        "' . User::generatePassword($_POST['password']) . '"
-                                    )
-                    ;');
+                    $database->query(
+                        'INSERT INTO `users` (
+                            `email`,
+                            `password`
+                        ) VALUES (
+                            "' . $user_email . '",
+                            "' . User::generatePassword($_POST['password']) . '"
+                        );'
+                    );
                     $userRegistered = true;
 
                     $page->messages[] = Page::success(__('Your account was successfully created.'), __('Success'));
@@ -130,20 +139,20 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          */
         if ($userRegistered) {
             $userID       = $database->lastInsertID();
-            $wishlistName = __('My hopes and dreams');
+            $wishlistName = Sanitiser::getTitle(__('My hopes and dreams'));
 
             $database
-            ->query('INSERT INTO `wishlists`
-                    (
-                        `user`,
-                        `name`,
-                        `hash`
-                    ) VALUES (
-                        ' . $userID . ',
-                        "' . $wishlistName . '",
-                        "' . sha1(time() . $userID . $wishlistName) . '"
-                    )
-            ;');
+            ->query(
+                'INSERT INTO `wishlists` (
+                    `user`,
+                    `name`,
+                    `hash`
+                ) VALUES (
+                    ' . $userID . ',
+                    "' . $wishlistName . '",
+                    "' . sha1(time() . $userID . $wishlistName) . '"
+                );'
+            );
         }
     } else {
         $page->messages[] = Page::error(
@@ -167,19 +176,19 @@ $page->navigation();
             <form class="ui form" method="POST">
                 <div class="ui divided relaxed stackable two column grid">
 
-                    <div class=" row">
+                    <div class="row">
                         <div class="column">
                             <h2 class="ui header"><?= __('Account details') ?></h2>
 
                             <div class="field">
                                 <label><?= __('Email') ?></label>
 
-                                <div class="ui left icon input<?= isset($_SESSION['_GET']['password-reset']) ? ' disabled' : '' ?>">
-                                    <?php if (isset($_SESSION['_GET']['password-reset'])) { ?>
+                                <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
+                                    <?php if (isset($_GET['password-reset'])) { ?>
                                         <input type="email"
                                                name="email"
                                                placeholder="john.doe@domain.tld"
-                                               value="<?= $_SESSION['_GET']['password-reset'] ?>"
+                                               value="<?= $_GET['password-reset'] ?>"
                                                readonly
                                         />
                                     <?php } else { ?>
@@ -216,7 +225,7 @@ $page->navigation();
                     </div>
 
                     <div class="row">
-                        <div class="column">
+                        <div class="sixteen wide column">
                             <div class="ui error message"></div>
 
                             <input class="ui primary button"
@@ -225,7 +234,7 @@ $page->navigation();
                                    title="<?= $buttonSubmit ?>"
                             />
                             <a class="ui tertiary button"
-                               href="/?page=login"
+                               href="<?= Page::PAGE_LOGIN ?>"
                                title="<?= __('Login') ?>"
                             >
                                 <?= __('Login') ?>
@@ -237,8 +246,23 @@ $page->navigation();
             </form>
         </div>
 
+        <div class="ui segment">
+            <h2 class="ui header"><?= __('About your email address') ?></h2>
+
+            <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
+            <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (i. e. when a wish has been fulfilled).') ?></p>
+            <p>
+                <?=
+                sprintf(
+                    /** TRANSLATORS: %s: source code */
+                    __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s is publicly viewable.'),
+                    '<a href="https://github.com/grandeljay/wishthis" target="_blank">' . __('source code') . '</a>'
+                )
+                ?>
+            </p>
+        </div>
+
     </div>
 </main>
 <?php
-$page->footer();
 $page->bodyEnd();

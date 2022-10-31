@@ -32,20 +32,15 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'column' => 'email',
             'key'    => 'user-email',
             'label'  => __('Email'),
-        ),
-        array(
-            'column' => 'locale',
-            'key'    => 'user-locale',
-            'label'  => __('Language'),
-        ),
+        )
     );
-    $loginRequired   = false;
+    $loginRequired    = false;
 
     foreach ($formFieldsString as $field) {
-        if (!empty($_POST[$field['key']]) && $_POST[$field['key']] !== $user->{$field['column']}) {
+        if (!empty($_POST[$field['key']]) && $_POST[$field['key']] !== $_SESSION['user']->{$field['column']}) {
             $set[] = '`' . $field['column'] . '` = "' . $_POST[$field['key']] . '"';
 
-            $user->{$field['column']} = $_POST[$field['key']];
+            $_SESSION['user']->{$field['column']} = $_POST[$field['key']];
 
             $page->messages[] = Page::success(
                 sprintf(
@@ -57,7 +52,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
-    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $user->email) {
+    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $_SESSION['user']->email) {
         $loginRequired = true;
     }
 
@@ -66,13 +61,13 @@ if (isset($_POST['user-id'], $_POST['section'])) {
      */
     if (isset($_POST['user-birthdate'])) {
         if (empty($_POST['user-birthdate'])) {
-            $user->birthdate = null;
+            $_SESSION['user']->birthdate = null;
 
             $set[] = '`birthdate` = NULL';
         } else {
-            $user->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
+            $_SESSION['user']->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
 
-            $set[] = '`birthdate` = "' . $user->birthdate . '"';
+            $set[] = '`birthdate` = "' . $_SESSION['user']->birthdate . '"';
         }
     }
 
@@ -92,27 +87,46 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     /**
      * Preferences
      */
-    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->channel) {
+    /** Locale */
+    if (isset($_POST['user-locale']) && $_POST['user-locale'] !== $_SESSION['user']->getLocale()) {
+        $_SESSION['user']->setLocale($_POST['user-locale']);
+
+        $set[] = '`locale` = "' . $_SESSION['user']->getLocale() . '"';
+
+        $page->messages[] = Page::success(
+            sprintf(
+                __('Locale successfully updated!'),
+                '<strong>Locale</strong>'
+            ),
+            __('Success')
+        );
+    }
+
+    /** Channel */
+    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $_SESSION['user']->channel) {
         if (empty($_POST['user-channel'])) {
-            $user->channel = null;
+            $_SESSION['user']->channel = null;
 
             $set[] = '`channel` = NULL';
         } else {
-            $user->channel = $_POST['user-channel'];
+            $_SESSION['user']->channel = $_POST['user-channel'];
 
-            $set[] = '`channel` = "' . $user->channel . '"';
+            $set[] = '`channel` = "' . $_SESSION['user']->channel . '"';
         }
     }
 
     if ($set) {
         $database
-        ->query('UPDATE `users`
-                    SET ' . implode(',', $set) . '
-                  WHERE `id` = ' . $_POST['user-id']);
+        ->query(
+            'UPDATE `users`
+                SET ' . implode(',', $set) . '
+              WHERE `id` = ' . Sanitiser::getNumber($_POST['user-id'])
+        );
     }
 
     if ($loginRequired) {
         session_destroy();
+        unset($_SESSION);
 
         $page->messages[] = Page::warning(
             __('It is required for you to login again.'),
@@ -156,26 +170,26 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
                             <input type="hidden" name="section" value="personal" />
 
                             <div class="three fields">
                                 <div class="field">
                                     <label><?= __('First name') ?></label>
 
-                                    <input type="text" name="user-name-first" value="<?= $user->name_first ?>" />
+                                    <input type="text" name="user-name-first" value="<?= $_SESSION['user']->name_first ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Last name') ?></label>
 
-                                    <input type="text" name="user-name-last" value="<?= $user->name_last ?>" />
+                                    <input type="text" name="user-name-last" value="<?= $_SESSION['user']->name_last ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Nickname') ?></label>
 
-                                    <input type="text" name="user-name-nick" value="<?= $user->name_nick ?>" />
+                                    <input type="text" name="user-name-nick" value="<?= $_SESSION['user']->name_nick ?>" />
                                 </div>
                             </div>
 
@@ -183,7 +197,7 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('Email') ?></label>
 
-                                    <input type="email" name="user-email" value="<?= $user->email ?>" />
+                                    <input type="email" name="user-email" value="<?= $_SESSION['user']->email ?>" />
                                 </div>
 
                                 <div class="field">
@@ -195,7 +209,7 @@ $page->navigation();
                                             <input type="text"
                                                 name="user-birthdate"
                                                 placeholder="<?= __('Pick a date') ?>"
-                                                value="<?= $user->birthdate ?>"
+                                                value="<?= $_SESSION['user']->birthdate ?>"
                                             />
                                         </div>
                                     </div>
@@ -219,7 +233,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
                             <input type="hidden" name="section" value="password" />
 
                             <div class="two fields">
@@ -282,7 +296,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="two fields">
@@ -290,15 +304,17 @@ $page->navigation();
                                     <label><?= __('Language') ?></label>
 
                                     <select class="ui search dropdown locale" name="user-locale">
-                                        <?php if (!in_array('en', $locales)) { ?>
-                                            <option value="<?= 'en' ?>"><?= \Locale::getDisplayName('en', $user->locale) ?></option>
+                                        <?php if (!in_array('en_GB', $locales)) { ?>
+                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $_SESSION['user']->getLocale()) ?></option>
                                         <?php } ?>
 
                                         <?php foreach ($locales as $locale) { ?>
-                                            <?php if ($locale === $user->locale) { ?>
-                                                <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
-                                            <?php } else { ?>
-                                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->locale) ?></option>
+                                            <?php if (\Locale::getRegion($locale)) { ?>
+                                                <?php if ($locale === $_SESSION['user']->getLocale()) { ?>
+                                                    <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
+                                                <?php } ?>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
@@ -316,7 +332,7 @@ $page->navigation();
                                             <option value=""><?= __('Select channel') ?></option>
 
                                             <?php foreach (CHANNELS as $channel) { ?>
-                                                <?php if ($channel['branch'] === $user->channel) { ?>
+                                                <?php if ($channel['branch'] === $_SESSION['user']->channel) { ?>
                                                     <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
                                                 <?php } else { ?>
                                                     <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
@@ -339,16 +355,18 @@ $page->navigation();
                     </div>
 
                     <?php
-                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 30 DAY';
+                    $user_is_active = '`last_login` >= CURDATE() - INTERVAL 60 DAY';
 
                     $count_users = $database
-                    ->query('SELECT COUNT(`id`)
-                               FROM `users`
-                              WHERE ' . $user_is_active . ';')
+                    ->query(
+                        'SELECT COUNT(`id`)
+                           FROM `users`
+                          WHERE ' . $user_is_active . ';'
+                    )
                     ->fetch();
                     $count_users = reset($count_users);
 
-                    $count_users_needed_minimum = 1;
+                    $count_users_needed_minimum = 3;
                     $count_users_needed_maximum = 100;
                     $count_users_needed         = min(
                         $count_users_needed_maximum,
@@ -359,10 +377,12 @@ $page->navigation();
                     );
 
                     $count_users_rc = $database
-                    ->query('SELECT COUNT(`id`)
-                               FROM `users`
-                              WHERE ' . $user_is_active . '
-                                AND `channel` = "release-candidate";')
+                    ->query(
+                        'SELECT COUNT(`id`)
+                           FROM `users`
+                          WHERE ' . $user_is_active . '
+                            AND `channel` = "release-candidate";'
+                    )
                     ->fetch();
                     $count_users_rc = reset($count_users_rc);
                     ?>
@@ -405,6 +425,5 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

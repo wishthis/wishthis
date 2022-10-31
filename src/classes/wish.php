@@ -13,6 +13,13 @@ class Wish
     /**
      * Static
      */
+    public const SELECT    = '`wishes`.*, `products`.`price`';
+    public const FROM      = '`wishes`';
+    public const LEFT_JOIN = '`products` ON `wishes`.`id` = `products`.`wish`';
+    public const WHERE     = '`wishes`.`id` = %d;';
+
+    public const NO_IMAGE = '/src/assets/img/no-image.svg';
+
     public const STATUS_TEMPORARY         = 'temporary';
     public const STATUS_TEMPORARY_MINUTES = 30;
     public const STATUS_UNAVAILABLE       = 'unavailable';
@@ -41,8 +48,9 @@ class Wish
     /**
      * Non-Static
      */
-    private EmbedCache $cache;
+    private Cache\Embed $cache;
 
+    /** General */
     public int $id;
     public int $wishlist;
     public ?string $title;
@@ -50,28 +58,35 @@ class Wish
     public ?string $image;
     public ?string $url;
     public ?int $priority;
+    public bool $is_purchasable;
     public ?string $status;
 
+    /** Product */
+    public ?float $price;
+
+    /** Other */
     public \stdClass $info;
 
     public bool $exists = false;
 
-    public function __construct(int|array $wish, bool $generateCache = false)
+    public function __construct(int|array $idOrColumns, bool $generateCache = false)
     {
         global $database;
 
         $columns = array();
 
-        if (is_numeric($wish)) {
-            $wish = $database
-            ->query('SELECT *
-                       FROM `wishes`
-                      WHERE `id` = ' . $wish . ';')
+        if (is_numeric($idOrColumns)) {
+            $id      = $idOrColumns;
+            $columns = $database
+            ->query(
+                'SELECT ' . self::SELECT    . '
+                   FROM ' . self::FROM      . '
+              LEFT JOIN ' . self::LEFT_JOIN . '
+                  WHERE ' . sprintf(self::WHERE, $id)
+            )
             ->fetch();
-
-            $columns = $wish;
-        } elseif (is_array($wish)) {
-            $columns = $wish;
+        } elseif (is_array($idOrColumns)) {
+            $columns = $idOrColumns;
         }
 
         if ($columns) {
@@ -84,7 +99,7 @@ class Wish
             $this->info = new \stdClass();
 
             if ($this->url) {
-                $this->cache = new EmbedCache($this->url);
+                $this->cache = new Cache\Embed($this->url);
                 $this->info  = $this->cache->get($generateCache);
             }
 
@@ -94,9 +109,8 @@ class Wish
                 }
             }
 
-            if (empty($this->image)) {
-                $this->image = '/src/assets/img/no-image.svg';
-            }
+            $this->title       = Sanitiser::render($this->title ?? '');
+            $this->description = Sanitiser::render($this->description ?? '');
         }
     }
 
@@ -104,13 +118,19 @@ class Wish
     {
         ob_start();
 
+        $userCard        = User::getFromID($ofUser);
+        $numberFormatter = new \NumberFormatter(
+            $userCard->getLocale(),
+            \NumberFormatter::CURRENCY
+        );
+
+        $userIsCurrent = isset($_SESSION['user']->id) && $_SESSION['user']->id === $userCard->id;
+
         /**
          * Card
          */
-        $userIsCurrent = isset($_SESSION['user']['id']) && intval($_SESSION['user']['id']) === $ofUser;
-
         if ($this->url) {
-            $generateCache = $this->cache->generateCache() || !$this->url ? 'true' : 'false';
+            $generateCache = $this->cache->generateCache() ? 'true' : 'false';
         } else {
             $generateCache = 'false';
         }
@@ -127,7 +147,19 @@ class Wish
                         <i class="history icon"></i>
                             <div class="content">
                                 <?= __('Wish temporarily fulfilled') ?>
-                                <div class="sub header"><?= sprintf(__('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %d minutes.'), self::STATUS_TEMPORARY_MINUTES) ?></div>
+                                <div class="sub header">
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: Duration (i. e. 30 minutes) */
+                                        __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
+                                        sprintf(
+                                            /** TRANSLATORS: %d Amount of minutes */
+                                            '<strong>' . __('%d minutes') . '</strong>',
+                                            self::STATUS_TEMPORARY_MINUTES
+                                        )
+                                    )
+                                    ?>
+                                </div>
                             </div>
                         </div>
 
@@ -140,17 +172,27 @@ class Wish
             </div>
 
             <div class="image">
-                <?php if ($this->priority && isset(Wish::$priorities[$this->priority])) { ?>
-                    <div class="ui small <?= Wish::$priorities[$this->priority]['color'] ?> right ribbon label">
-                        <?= Wish::$priorities[$this->priority]['name'] ?>
+                <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
+                    <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> right ribbon label">
+                        <?= self::$priorities[$this->priority]['name'] ?>
                     </div>
                 <?php } ?>
 
                 <?php if ($this->image) { ?>
-                    <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
+                        <?php if (file_exists(ROOT . $this->image)) { ?>
+                            <?= file_get_contents(ROOT . $this->image) ?>
+                        <?php } else { ?>
+                            <?= file_get_contents($this->image) ?>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <img class="preview" src="<?= $this->image ?>" loading="lazy" />
+                    <?php } ?>
+                <?php } else { ?>
+                    <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
                 <?php } ?>
 
-                <?php if (isset($this->info->favicon)) { ?>
+                <?php if (isset($this->info->favicon) && $this->info->favicon) { ?>
                     <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                 <?php } ?>
 
@@ -170,12 +212,20 @@ class Wish
                     </div>
                 <?php } ?>
 
-                <?php if ($this->description) { ?>
-                    <div class="description">
-                        <?= $this->description ?>
+                <?php if ($this->price) { ?>
+                    <div class="meta">
+                        <span class="date"><?= $numberFormatter->format($this->price) ?></span>
                     </div>
-                    <div class="description-fade"></div>
                 <?php } ?>
+
+                <div class="description">
+                    <?php if ($this->description) { ?>
+                        <?= $this->description ?>
+                    <?php } elseif ($this->url && !$this->title) { ?>
+                        <a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a>
+                    <?php } ?>
+                </div>
+                <div class="description-fade"></div>
             </div>
 
             <div class="extra content buttons">
@@ -206,20 +256,20 @@ class Wish
                         <span class="text"><?= __('Options') ?></span>
                         <div class="menu">
 
-                            <div class="item wish-fulfilled">
+                            <button class="item wish-fulfilled">
                                 <i class="check icon"></i>
                                 <?= __('Mark as fulfilled') ?>
-                            </div>
+                            </button>
 
-                            <a class="item" href="/?page=wish&id=<?= $this->id ?>">
+                            <button class="item wish-edit" data-id="<?= $this->id ?>">
                                 <i class="pen icon"></i>
                                 <?= __('Edit') ?>
-                            </a>
+                            </button>
 
-                            <div class="item wish-delete">
+                            <button class="item wish-delete">
                                 <i class="trash icon"></i>
                                 <?= __('Delete') ?>
-                            </div>
+                            </button>
 
                         </div>
                     </div>

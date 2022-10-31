@@ -19,35 +19,64 @@ $page->navigation();
         <h1 class="ui header"><?= $page->title ?></h1>
 
         <div class="ui doubling stackable grid">
-            <div class="twelve wide column">
+            <div class="eleven wide column">
                 <div class="ui segment">
-                    <h2 class="ui header"><?= __('Welcome to wishthis') ?></h2>
+                    <h2 class="ui header"><?= __('Make a wish') ?></h2>
 
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
-                    <div class="ui two column doubling stackable centered grid">
-                        <?php if ($user->isLoggedIn()) { ?>
+                    <div class="ui two column doubling stackable centered grid actions">
+                        <?php if ($_SESSION['user']->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=wishlists"
-                                title="<?= __('My lists') ?>"
+                                   href="<?= Page::PAGE_WISHLISTS ?>"
+                                   title="<?= __('My lists') ?>"
                                 >
                                     <?= __('My lists') ?>
                                 </a>
                             </div>
+
+                            <?php
+                            $lastWishlist      = null;
+                            $lastWishlistQuery = $database->query(
+                                '  SELECT `wishlists`.*
+                                     FROM `wishes`
+                                     JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
+                                     JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
+                                    WHERE `users`.`id` = ' . $_SESSION['user']->id . '
+                                 ORDER BY `wishes`.`edited` DESC
+                                    LIMIT 1;'
+                            );
+
+                            if (false !== $lastWishlistQuery && 1 === $lastWishlistQuery->rowCount()) {
+                                $lastWishlist = $lastWishlistQuery->fetch();
+                                $href         = Page::PAGE_WISHLISTS . '&id=' . $lastWishlist['id'];
+                                $hrefAdd      = $href . '&wish_add=true';
+                                ?>
+                                <div class="column buttons">
+                                    <a class="ui left attached button" href="<?= $href ?>">
+                                        <?= $lastWishlist['name'] ?>
+                                    </a>
+                                    <a class="ui right attached icon button" href="<?= $hrefAdd ?>">
+                                        <i class="plus icon"></i>
+                                    </a>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         <?php } else { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
-                                href="/?page=register"
-                                title="<?= __('Register now') ?>"
+                                   href="<?= Page::PAGE_REGISTER ?>"
+                                   title="<?= __('Register now') ?>"
                                 >
                                     <?= __('Register now') ?>
                                 </a>
                             </div>
                             <div class="column">
                                 <a class="ui fluid button"
-                                href="/?page=login"
-                                title="<?= __('Login') ?>"
+                                   href="<?= Page::PAGE_LOGIN ?>"
+                                   title="<?= __('Login') ?>"
                                 >
                                     <?= __('Login') ?>
                                 </a>
@@ -66,7 +95,9 @@ $page->navigation();
                     <h2 class="ui header"><?= __('Why wishthis?') ?></h2>
 
                     <p><?= sprintf(
-                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'), '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">', '</a>'
+                        __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'),
+                        '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">',
+                        '</a>'
                     ) ?></p>
 
                     <p><?= __('As a non-commercial project it remains') ?></p>
@@ -85,9 +116,54 @@ $page->navigation();
                         </li>
                     </ul>
                 </div>
+
+                <div class="ui segment">
+                    <h2 class="ui header"><?= __('News') ?></h2>
+
+                    <div class="ui relaxed divided list news">
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="full line"></div>
+                                        <div class="long line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="short line"></div>
+                                        <div class="very short line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="large rss middle aligned icon"></i>
+                            <div class="content">
+                                <div class="ui placeholder">
+                                    <div class="paragraph">
+                                        <div class="medium line"></div>
+                                        <div class="very long line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-            <div class="four wide column">
+            <div class="five wide column">
+
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Statistics') ?></h2>
 
@@ -112,24 +188,10 @@ $page->navigation();
                     </div>
                 </div>
 
-                <div class="ui segment">
-                    <h2 class="ui header"><?= __("What's new") ?></h2>
-
-                    <p>
-                        <?php
-                        printf(
-                            /** TRANSLATORS: %s: Changelog */
-                            __('Check out the %s for a list changes.'),
-                            '<a href="/CHANGELOG.md">' . __('Changelog') . '</a> (<i class="markdown icon"></i>)'
-                        );
-                        ?>
-                    </p>
-                </div>
             </div>
         </div>
     </div>
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

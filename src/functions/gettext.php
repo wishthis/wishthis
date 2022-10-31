@@ -1,22 +1,28 @@
 <?php
 
 /**
- * gettext.php
+ * Gettext
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-function __(string $text): string
+use wishthis\User;
+
+function __(string $text, string $context = null, User $user = null): string
 {
-    global $translations;
+    if (null === $user) {
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+    }
 
-    $translation = null;
-
-    if ($translations) {
-        $translation = $translations->find(null, $text);
+    if (null !== $user->translations) {
+        $translation = $user->translations->find($context, $text);
 
         if ($translation) {
-            return htmlentities($translation->getTranslation());
+            $translationText = $translation->getTranslation();
+
+            if (!empty($translationText)) {
+                return htmlentities($translationText);
+            }
         }
     }
 
@@ -28,7 +34,7 @@ function _n(string $singular, string $plural, int $amount): string
     return 1 === $amount ? __($singular) : __($plural);
 }
 
-function _x(string $text, string $context): string
+function _x(string $text, string $context = null): string
 {
-    return __($text);
+    return __($text, $context);
 }

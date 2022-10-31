@@ -6,6 +6,8 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+namespace wishthis;
+
 $api      = true;
 $response = array();
 
@@ -18,7 +20,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         /**
          * Get
          */
-        $response['data'] = $user->getSavedWishlists();
+        $response['data'] = $_SESSION['user']->getSavedWishlists();
         break;
 
     case 'POST':
@@ -26,7 +28,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wishlist = $database
             ->query('SELECT *
                        FROM `wishlists_saved`
-                      WHERE `wishlist` = ' . $_POST['wishlist'] . '
+                      WHERE `wishlist` = ' . Sanitiser::getNumber($_POST['wishlist']) . '
             ;')
             ->fetch();
 
@@ -34,7 +36,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 /** Delete */
                 $database
                 ->query('DELETE FROM `wishlists_saved`
-                               WHERE `wishlist` = ' . $_POST['wishlist'] . '
+                               WHERE `wishlist` = ' . Sanitiser::getNumber($_POST['wishlist']) . '
                 ;');
 
                 $response['action'] = 'deleted';
@@ -45,8 +47,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     `user`,
                     `wishlist`
                 ) VALUES (
-                    ' . $user->id . ',
-                    ' . $_POST['wishlist'] . '
+                    ' . $_SESSION['user']->id . ',
+                    ' . Sanitiser::getNumber($_POST['wishlist']) . '
                 )
                 ;');
 

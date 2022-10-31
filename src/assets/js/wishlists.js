@@ -7,18 +7,25 @@ $(function () {
      * Get Wishlists
      */
     var wishlists = [];
+    var progress  = $('.ui.progress');
+    progress.progress({
+        onSuccess : function() {
+            $(this).slideUp();
+        }
+    });
+
+    $('.ui.dropdown.wishlists').dropdown();
 
     function wishlistsRefresh() {
         $('.ui.dropdown.wishlists').api({
-            action   : 'get wishlists',
-            method   : 'GET',
-            on       : 'now',
-            onSuccess: function (response, element, xhr) {
+            action    : 'get wishlists',
+            method    : 'GET',
+            on        : 'now',
+            onSuccess : function (response, element, xhr) {
                 wishlists = response.results;
 
                 element.dropdown({
-                    values      : wishlists,
-                    placeholder : text.wishlist_no_selection
+                    values : wishlists
                 })
 
                 if (wishlist.id) {
@@ -28,23 +35,20 @@ $(function () {
                         element.dropdown('set selected', wishlists[0].value);
                     }
                 }
+
+                /** Open add wish modal */
+                if ($_GET.wish_add) {
+                    $('.button.wishlist-wish-add').trigger('click');
+                }
             }
         });
     }
 
     wishlistsRefresh();
 
-    /**
-     * Selection
-     */
-    var progress = $('.ui.progress');
-
     $(document).on('change', '.ui.dropdown.wishlists', function () {
         var wishlistValue = $('.ui.dropdown.wishlists').dropdown('get value');
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
-
-        progress.progress('reset');
-        progress.addClass('indeterminate');
 
         if (wishlistValue) {
             wishlist.id = wishlistValue;
@@ -65,7 +69,7 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                window.history.replaceState(null, document.title, response.data.url);
+                window.history.pushState(null, document.title, response.data.url);
 
                 $('.ui.dropdown.filter.priority')
                 .dropdown('restore default value')
@@ -94,15 +98,8 @@ $(function () {
 
         if (cards.length > 0) {
             progress.slideDown();
-            progress.removeClass('indeterminate');
-            progress.progress({
-                total: cards.length,
-                onSuccess: function() {
-                    $(this).slideUp();
-                }
-            });
-        } else {
-            progress.slideUp();
+            progress.progress('reset');
+            progress.progress('set total', cards.length);
         }
 
         var timerInterval = 1200;
@@ -110,15 +107,15 @@ $(function () {
             function generateCacheCards() {
                 var cards = $('.ui.card[data-cache="true"]');
 
-                cards.each(function (index, card) {
-                    generateCacheCard($(card));
-
-                    if (index >= 0) {
-                        return false;
-                    }
-                });
-
                 if (cards.length > 0) {
+                    cards.each(function (index, card) {
+                        generateCacheCard($(card));
+
+                        if (index >= 0) {
+                            return false;
+                        }
+                    });
+
                     setTimeout(generateCacheCards, timerInterval);
                 }
             },
@@ -143,11 +140,11 @@ $(function () {
             return;
         }
 
-        card.addClass('loading');
-        card.attr('data-cache', false);
-
         var wishlistIndex = $('.ui.dropdown.wishlists select').prop('selectedIndex') - 1;
         var wishlist_user = wishlists[wishlistIndex].user;
+
+        card.addClass('loading');
+        card.attr('data-cache', 'false');
 
         fetch('/src/api/wishes.php?wish_id=' + card.attr('data-id') + '&wishlist_user=' + wishlist_user, {
             method: 'GET'
@@ -161,7 +158,11 @@ $(function () {
         .finally(function() {
             card.removeClass('loading');
 
-            progress.progress('increment');
+            progress.progress('increment', 1);
+
+            if (progress.progress('get percent') >= 100) {
+                progress.slideUp();
+            }
 
             $('.ui.dropdown.options').dropdown();
         });
@@ -174,7 +175,6 @@ $(function () {
         event.preventDefault();
 
         var wishlist_href = window.location.origin + $(event.currentTarget).attr('href');
-
 
         navigator.clipboard.writeText(wishlist_href).then(function() {
             $('body').toast({ message: text.toast_clipboard_success });
@@ -191,9 +191,45 @@ $(function () {
     /**
      * Rename Wishlist
      */
+    function wishlistRenameApprove(buttonApprove) {
+        buttonApprove.addClass('loading disabled');
+
+        var modalRename = $('.modal.wishlist-rename');
+
+        var formRename = modalRename.find('.form.wishlist-rename');
+        var formData   = new URLSearchParams(new FormData(formRename[0]));
+
+        fetch('/src/api/wishlists.php', {
+            method: 'PUT',
+            body:   formData
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            wishlistsRefresh();
+
+            modalRename.modal('hide');
+
+            $('body').toast({ message: text.toast_wishlist_rename });
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            buttonApprove.removeClass('loading disabled');
+        });
+
+        return false;
+    }
+
+    $(document).on('submit', '.form.wishlist-rename', function(event) {
+        event.preventDefault();
+
+        var buttonApprove = $('.modal.wishlist-rename .button.approve');
+
+        wishlistRenameApprove(buttonApprove);
+    });
+
     $(document).on('click', '.options .wishlist-rename', function() {
         var modalRename   = $('.modal.wishlist-rename');
-        var formRename    = modalRename.find('.form.wishlist-rename');
         var inputID       = modalRename.find('[name="wishlist_id"]');
         var inputTitle    = modalRename.find('[name="wishlist_title"]');
 
@@ -207,32 +243,8 @@ $(function () {
 
         modalRename
         .modal({
-            autoShow:  true,
-            onApprove: function(buttonApprove) {
-                buttonApprove.addClass('loading disabled');
-
-                var formData = new URLSearchParams(new FormData(formRename[0]));
-
-                fetch('/src/api/wishlists.php', {
-                    method: 'PUT',
-                    body:   formData
-                })
-                .then(handleFetchError)
-                .then(handleFetchResponse)
-                .then(function(response) {
-                    wishlistsRefresh();
-
-                    modalRename.modal('hide');
-
-                    $('body').toast({ message: text.toast_wishlist_rename });
-                })
-                .catch(handleFetchCatch)
-                .finally(function() {
-                    buttonApprove.removeClass('loading disabled');
-                });
-
-                return false;
-            }
+            autoShow  :  true,
+            onApprove : wishlistRenameApprove
         });
     });
 
@@ -322,6 +334,86 @@ $(function () {
     });
 
     /**
+     * Edit Wish
+     */
+    $(document).on('click', '.wish-edit', function (event) {
+        validateURL = true;
+
+        /** Form */
+        var formEdit = $('.form.wishlist-wish-edit');
+        formEdit.addClass('loading');
+        formEdit.trigger('reset');
+        formEdit.find('.dropdown').dropdown('restore defaults');
+        formEdit.find('.item').tab('change tab', 'general');
+
+        /** Checkbox */
+        formEdit
+        .find('.checkbox')
+        .checkbox({
+            onChecked   : function() {
+                formEdit.find('.item[data-tab="product"]').removeClass('disabled');
+            },
+            onUnchecked : function() {
+                formEdit.find('.item[data-tab="product"]').addClass('disabled');
+            },
+        })
+        .checkbox('uncheck');
+
+        /** Get Wish */
+        var wishID = $(this).attr('data-id');
+
+        var wishFormData = new URLSearchParams({
+            'wish_id' : wishID
+        });
+
+        fetch('/src/api/wishes.php?' + wishFormData, {
+            method: 'GET'
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            var wish = response.info;
+
+            /** General */
+            $('[name="wish_id"]').val(wish.id);
+            $('[name="wish_title"]').val(wish.title);
+            $('[name="wish_description"]').val(wish.description);
+            $('[name="wish_image"]').val(wish.image);
+            $('[name="wish_url"]').val(wish.url);
+            $('.ui.selection.dropdown.priority').dropdown('set selected', wish.priority);
+
+            if (wish.is_purchasable) {
+                formEdit.find('.checkbox').checkbox('check');
+            } else {
+                formEdit.find('.checkbox').checkbox('uncheck');
+            }
+
+            /** Product */
+            $('[name="wish_price"]').val(wish.price);
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            formEdit.removeClass('loading');
+        });
+
+        /** Save wish */
+        var modalWishlistWishEdit = $('.ui.modal.wishlist-wish-edit');
+
+        modalWishlistWishEdit.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
+        modalWishlistWishEdit
+        .modal({
+            autoShow  : true,
+            onApprove : function (buttonSave) {
+                validateWishURL(formEdit, buttonSave, modalWishlistWishEdit, validateURL);
+
+                return false;
+            }
+        });
+
+        event.preventDefault();
+    });
+
+    /**
      * Delete Wish
      */
     $(document).on('click', '.wish-delete', function () {
@@ -367,7 +459,7 @@ $(function () {
 
                         setTimeout(() => {
                             wishlistsRefresh();
-                        }, 200);
+                        }, 800);
                     },
                 });
 
@@ -386,37 +478,54 @@ $(function () {
      * Add wish
      */
     $(document).on('click', '.button.wishlist-wish-add', function () {
-        var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
+        validateURL = true;
 
+        /** Form */
+        var formAdd = $('.form.wishlist-wish-add');
+        formAdd.trigger('reset');
+        formAdd.find('.dropdown').dropdown('restore defaults');
+        formAdd.find('.item').tab('change tab', 'general');
+
+        /** Checkbox */
+        formAdd.find('.checkbox').checkbox({
+            onChecked   : function() {
+                formAdd.find('.item[data-tab="product"]').removeClass('disabled');
+            },
+            onUnchecked : function() {
+                formAdd.find('.item[data-tab="product"]').addClass('disabled');
+            },
+        })
+        .checkbox('uncheck');
+
+        /** Modal */
+        var modalWishlistWishAdd = $('.ui.modal.wishlist-wish-add');
         modalWishlistWishAdd.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
         modalWishlistWishAdd
         .modal({
             autoShow  : true,
             onApprove : function (buttonAdd) {
-                buttonAdd.addClass('loading');
-
-                var form     = $('.form.wishlist-wish-add');
-                var formData = new URLSearchParams(new FormData(form[0]));
-
-                fetch('/src/api/wishes.php', {
-                    method : 'POST',
-                    body   : formData
-                })
-                .then(handleFetchError)
-                .then(handleFetchResponse)
-                .then(function(response) {
-                    $('body').toast({ message: text.toast_wish_add });
-
-                    wishlistsRefresh();
-
-                    form.trigger('reset');
-                    form.find('.dropdown').dropdown('restore defaults');
-                    modalWishlistWishAdd.modal('hide');
-                    buttonAdd.removeClass('loading');
-                })
-                .catch(handleFetchCatch);
+                validateWishURL(formAdd, buttonAdd, modalWishlistWishAdd);
 
                 return false;
+            },
+            onHide    : function() {
+                /** Ugly URL */
+                if (urlParams.has('wish_add')) {
+                    delete($_GET.wish_add);
+                    urlParams.delete('wish_add');
+
+                    window.history.pushState(null, document.title, '?' + urlParams.toString());
+                }
+
+                /** Pretty URL */
+                var path      = location.pathname;
+                var pathParts = path.split('/')
+                var pathAdd   = pathParts[pathParts.length - 1];
+                var pathNew   = path.substring(0, path.length - pathAdd.length - 1);
+
+                if (pathAdd.toLowerCase() === 'add') {
+                    window.history.pushState(null, document.title, pathNew);
+                }
             }
         });
     });
@@ -465,5 +574,150 @@ $(function () {
             }
         });
     });
+
+    var validateURL = true;
+
+    function validateWishURL(formAddOrEdit, buttonAddOrSave, modalAddOrEdit) {
+        /**
+         * Validate Form
+         */
+        formAddOrEdit
+        .form({
+            fields: {
+                wish_price : ['number'],
+            }
+        })
+        .form('validate form');
+
+        if (!formAddOrEdit.form('is valid')) {
+            return;
+        }
+
+        /**
+         * Validate URL
+         */
+        var inputURL       = modalAddOrEdit.find('[name="wish_url"]');
+        var wishURLCurrent = inputURL.val();
+
+        formAddOrEdit.addClass('loading');
+        buttonAddOrSave.addClass('disabled');
+
+        if (wishURLCurrent) {
+            fetch('/src/api/wishes.php?wish_url=' + wishURLCurrent, {
+                method: 'GET'
+            })
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(response) {
+                var wishInfoProposed = response.info;
+
+                var modalValidate = $('.modal.validate');
+
+                /** Prodiver name */
+                if (wishInfoProposed.providerName) {
+                    modalValidate.find('.providerName').text(wishInfoProposed.providerName);
+                } else {
+                    modalValidate.find('.provider').remove();
+                }
+
+                /** URL */
+                if (wishURLCurrent && wishInfoProposed.url && wishURLCurrent !== wishInfoProposed.url && validateURL) {
+                    modalValidate.find('input.current').val(wishURLCurrent);
+                    modalValidate.find('input.proposed').val(wishInfoProposed.url);
+                    modalValidate
+                    .modal({
+                        autoShow      : true,
+                        allowMultiple : true,
+                        onApprove     : function (buttonUpdate) {
+                            inputURL.val(modalValidate.find('input.proposed').val());
+
+                            var formData = new URLSearchParams({
+                                'wish_url_current'  : modalValidate.find('input.current').val(),
+                                'wish_url_proposed' : modalValidate.find('input.proposed').val()
+                            });
+
+                            buttonUpdate.addClass('loading');
+
+                            fetch('/src/api/wishes.php', {
+                                method : 'PUT',
+                                body   : formData
+                            })
+                            .then(handleFetchError)
+                            .then(handleFetchResponse)
+                            .then(function(response) {
+                                buttonUpdate.removeClass('loading');
+                                modalValidate.modal('hide');
+                            });
+                        },
+                        onDeny        : function() {
+                            validateURL = false;
+                        },
+                        onHide        : function() {
+                            formAddOrEdit.removeClass('loading');
+                            buttonAddOrSave.removeClass('disabled');
+                        }
+                    });
+                } else {
+                    /** Save form edit fields */
+                    /** This code block is a duplicate, please refactor */
+                    var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
+
+                    fetch('/src/api/wishes.php', {
+                        method : 'POST',
+                        body   : formData
+                    })
+                    .then(handleFetchError)
+                    .then(handleFetchResponse)
+                    .then(function(response) {
+                        if (!response.lastInsertId) {
+                            return;
+                        }
+
+                        $('body').toast({ message: text.toast_wish_update });
+
+                        wishlistsRefresh();
+
+                        modalAddOrEdit.modal('hide');
+                    })
+                    .catch(handleFetchCatch)
+                    .finally(function() {
+                        formAddOrEdit.removeClass('loading');
+                        buttonAddOrSave.removeClass('disabled');
+                    });
+                    /** */
+                }
+            })
+            .catch(handleFetchCatch);
+        } else {
+            /** Save form edit fields */
+            /** This code block is a duplicate, please refactor */
+            var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
+
+            fetch('/src/api/wishes.php', {
+                method : 'POST',
+                body   : formData
+            })
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(response) {
+                if (!response.lastInsertId) {
+                    return;
+                }
+
+                $('body').toast({ message: text.toast_wish_update });
+
+                wishlistsRefresh();
+
+                modalAddOrEdit.modal('hide');
+            })
+            .catch(handleFetchCatch)
+            .finally(function() {
+                formAddOrEdit.removeClass('loading');
+                buttonAddOrSave.removeClass('disabled');
+            });
+            /** */
+        }
+    }
+
 
 });

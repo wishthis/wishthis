@@ -1,0 +1,146 @@
+/*******************************
+         Site Settings
+*******************************/
+
+@supportIE: false;
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontRaleway                   : 'Raleway';
+@fontFileNameLatin             : 'raleway-latin';
+@fontAtkinsonHyperlegible      : 'Atkinson Hyperlegible';
+@fontAtkinsonHyperlegibleLatin : 'atkinson-hyperlegible-latin';
+
+@fallbackFonts : sans-serif;
+
+@headerFont        : @fontRaleway, @fallbackFonts;
+@pageFont          : @fontRaleway, @fallbackFonts;
+
+@fonts: {
+    /** Raleway */
+    @regularLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-400-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-400-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @regularLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-700-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+        font-family    : @fontRaleway;
+        src            : local(@fontRaleway),
+                         url("@{fontPathRaleway}/@{fontFileNameLatin}-700-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+
+    /** Atkinson Hyperlegible */
+    @regularLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-400-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-400-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @normal;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @regularLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-700-normal.woff2") format('woff2');
+        font-style     : normal;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+    @italicLatin: {
+        font-family    : @fontAtkinsonHyperlegible;
+        src            : local(@fontAtkinsonHyperlegible),
+                         url("@{fontPathAtkinsonHyperlegible}/@{fontAtkinsonHyperlegibleLatin}-700-italic.woff2") format('woff2');
+        font-style     : italic;
+        font-weight    : @bold;
+        font-display   : @fontDisplay;
+        text-rendering : @textRendering;
+        unicode-range  : @unicodeRangeLatin;
+    };
+};
+
+/*-------------------
+        Paths
+--------------------*/
+
+/* For source only. Modified in gulp for dist */
+@fontPathRaleway              : '../../../../node_modules/@fontsource/raleway/files';
+@fontPathAtkinsonHyperlegible : '../../../../node_modules/@fontsource/atkinson-hyperlegible/files';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 14pt;
+
+/* The size of page text  */
+@fontSize : 14pt;
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor        : @violet;
+@lightPrimaryColor   : @lightViolet;
+
+/*-------------------
+    Focused Input
+--------------------*/
+
+/* Used on inputs, textarea etc */
+@focusedFormBorderColor: lighten(@primaryColor, 20);
+
+/* Used on dropdowns, other larger blocks */
+@focusedFormMutedBorderColor: lighten(@primaryColor, 10);
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor : @primaryColor;

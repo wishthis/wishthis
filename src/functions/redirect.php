@@ -6,16 +6,17 @@
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
+use wishthis\User;
+
 function redirect(string $target)
 {
-    global $user;
-
-    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
+    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
     /**
      * Redirect user based on channel setting
      */
-    $isHostInChannel = false;
+    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
+    $isHostInChannel  = false;
 
     /** Determine if host is a defined channel */
     foreach (CHANNELS as $channel) {

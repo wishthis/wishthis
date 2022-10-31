@@ -11,22 +11,39 @@ namespace wishthis;
 $page = new Page(__FILE__, __('Login as'), 100);
 
 if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+    $email = Sanitiser::getEmail($_POST['email']);
 
-    $user = $database->query('SELECT * FROM `users`
-                               WHERE `email`    = "' . $email . '";')
-                     ->fetch();
+    $userQuery = $database
+    ->query(
+        'SELECT *
+           FROM `users`
+          WHERE `email` = "' . $email . '";'
+    );
 
-    $success = false !== $user;
+    $success = false !== $userQuery;
 
     if ($success) {
-        $_SESSION['user'] = $user;
+        $fields = $userQuery->fetch();
+
+        $_SESSION['user'] = new User($fields);
     }
 }
 
 $page->header();
 $page->bodyStart();
 $page->navigation();
+
+/**
+ * Recent users
+ */
+$users = $database
+->query(
+    '  SELECT *
+         FROM `users`
+     ORDER BY `last_login` DESC
+        LIMIT 100;'
+)
+->fetchAll();
 ?>
 <main>
     <div class="ui container">
@@ -35,7 +52,7 @@ $page->navigation();
         <?php
         if (isset($success)) {
             if ($success) {
-                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']['email']), __('Success'));
+                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']->email), __('Success'));
             } else {
                 echo Page::error(__('User not found!'), __('Error'));
             }
@@ -46,7 +63,12 @@ $page->navigation();
             <form class="ui form" method="POST">
                 <div class="field">
                     <label><?= __('Email') ?></label>
-                    <input type="email" name="email" placeholder="john.doe@domain.tld" />
+
+                    <select class="ui fluid search selection dropdown" name="email">
+                        <?php foreach ($users as $user) { ?>
+                            <option value="<?= $user['email'] ?>"><?= $user['email'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
 
                 <input class="ui primary button"
@@ -60,5 +82,4 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

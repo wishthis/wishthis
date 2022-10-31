@@ -1,19 +1,9 @@
 {
-    "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
-    },
     "require": {
         "embed/embed": "^4.3",
-        "laminas/laminas-diactoros": "^2.8",
         "grandel/include-directory": "^0.2.2",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "http-interop/http-factory-guzzle": "^1.0",
         "qferr/mjml-php": "^1.1",
-        "gettext/gettext": "^5.6"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+        "gettext/gettext": "^5.6",
+        "gettext/translator": "^1.1"
     }
 }

@@ -1,22 +1,42 @@
 <?php
 
 /**
- * index.php
+ * wishthis - Make a wish
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-define('VERSION', '0.6.0');
+namespace wishthis;
+
+define('VERSION', '0.7.0');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
+define('COOKIE_PERSISTENT', 'wishthis_persistent');
 
 /**
  * Include
  */
 require 'vendor/autoload.php';
 
-$include = new Grandel\IncludeDirectory(__DIR__ . '/src/classes');
-$include = new Grandel\IncludeDirectory(__DIR__ . '/src/functions');
+$include = new \Grandel\IncludeDirectory(__DIR__ . '/src/functions');
+
+spl_autoload_register(
+    function (string $fullClass) {
+        /** Only include classes from this namespace */
+        if (__NAMESPACE__ === substr($fullClass, 0, strlen(__NAMESPACE__))) {
+            $fullClass = substr($fullClass, strlen(__NAMESPACE__));
+        } else {
+            return false;
+        }
+
+        $parts = explode('\\', $fullClass);
+        $class = implode('/', $parts);
+
+        $filepath = ROOT . '/src/classes/' . strtolower($class) . '.php';
+
+        require $filepath;
+    }
+);
 
 /**
  * Config
@@ -25,6 +45,20 @@ $configPath = __DIR__ . '/' . 'src/config/config.php';
 
 if (file_exists($configPath)) {
     require $configPath;
+}
+
+/**
+ * Session
+ */
+session_start(
+    array(
+        'name' => 'wishthis',
+    )
+);
+
+/** Backwards compatibility */
+if (!isset($_SESSION['user']) || is_array($_SESSION['user'])) {
+    $_SESSION['user'] = new User();
 }
 
 /**
@@ -39,7 +73,7 @@ if (
     && defined('DATABASE_USER')
     && defined('DATABASE_PASSWORD')
 ) {
-    $database = new wishthis\Database(
+    $database = new Database(
         DATABASE_HOST,
         DATABASE_NAME,
         DATABASE_USER,
@@ -49,56 +83,28 @@ if (
     /**
      * Options
      */
-    $options = new wishthis\Options($database);
+    $options = new Options($database);
 }
 
 /**
- * Session
+ * Persistent (stay logged in)
  */
-$sessionLifetime = 2592000 * 12; // 12 Months
+if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
+    $table_sessions_exists = $database->tableExists('sessions');
 
-session_start(
-    array(
-        'name'            => 'wishthis',
-        'cookie_lifetime' => $sessionLifetime,
-        'cookie_path'     => '/',
-        'cookie_domain'   => '.wishthis.online',
-    )
-);
+    if ($table_sessions_exists) {
+        $persistent = $database
+        ->query(
+            'SELECT *
+               FROM `sessions`
+              WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+        )
+        ->fetch();
 
-/** Forwards compatibility */
-if (isset($_SESSION['user']) && $_SESSION['user'] instanceof wishthis\User) {
-    $oldSession = $_SESSION['user'];
-    $fields     = array(
-        'id',
-        'email',
-        'password',
-        'password_reset_token',
-        'password_reset_valid_until',
-        'last_login',
-        'power',
-        'birthdate',
-        'locale',
-        'name_first',
-        'name_last',
-        'name_nick',
-        'channel',
-    );
-
-    $_SESSION['user'] = array();
-
-    foreach ($fields as $field) {
-        if (isset($oldSession->$field)) {
-            $_SESSION['user'][$field] = $oldSession->$field;
+        if (false !== $persistent) {
+            $_SESSION['user'] = User::getFromID($persistent['user']);
         }
     }
-}
-
-/**
- * User
- */
-if ($options) {
-    $user = new wishthis\User();
 }
 
 /**
@@ -110,28 +116,23 @@ if ($options) {
 $locales = array_filter(
     array_map(
         function ($value) {
-            if ('po' === pathinfo($value, PATHINFO_EXTENSION)) {
+            $extension = pathinfo($value, PATHINFO_EXTENSION);
+            $filename  = pathinfo($value, PATHINFO_FILENAME);
+
+            if ('po' === $extension) {
                 return pathinfo($value, PATHINFO_FILENAME);
             }
         },
         scandir(ROOT . '/translations')
     )
 );
-$locale  = \Locale::lookup($locales, $user->locale, false, DEFAULT_LOCALE);
 
-/** Load Translation */
-$translationFilepath = ROOT . '/translations/' . $locale . '.po';
-$translations        = null;
-
-if (file_exists($translationFilepath)) {
-    $loader       = new \Gettext\Loader\PoLoader();
-    $translations = $loader->loadFile($translationFilepath);
-}
+$locale = isset($_REQUEST['locale']) ? $_REQUEST['locale'] : \Locale::lookup($locales, $_SESSION['user']->getLocale(), false, 'en_GB');
 
 /**
  * Wish
  */
-wishthis\Wish::initialize();
+Wish::initialize();
 
 /**
  * API
@@ -143,15 +144,7 @@ if (isset($api)) {
 /**
  * Pretty URLs
  */
-$url = new \wishthis\URL($_SERVER['REQUEST_URI']);
-
-if ($url->isPretty()) {
-    $_SESSION['_GET'] = query_to_key_value_pair($url->getPermalink());
-}
-
-if ($_SERVER['QUERY_STRING']) {
-    $_SESSION['_GET'] = $_GET;
-}
+$url = new URL($_SERVER['REQUEST_URI']);
 
 /**
  * Install
@@ -163,7 +156,7 @@ if (!$options || !$options->getOption('isInstalled')) {
 /**
  * Database Update
  */
-if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') && ENV_IS_DEV)) {
+if ($options && $options->getOption('isInstalled')) {
     if (-1 === version_compare($options->version, VERSION)) {
         $options->setOption('updateAvailable', true);
     }
@@ -173,7 +166,7 @@ if ($options && $options->getOption('isInstalled') && !(defined('ENV_IS_DEV') &&
  * Page
  */
 if (!isset($page)) {
-    $page = isset($_SESSION['_GET']['page']) ? $_SESSION['_GET']['page'] : 'home';
+    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 }
 $pagePath = 'src/pages/' . $page . '.php';
 

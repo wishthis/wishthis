@@ -12,7 +12,9 @@ $page = new Page(__FILE__, __('My lists'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
+
 ?>
+
 <main>
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
@@ -115,10 +117,9 @@ $page->navigation();
             <form class="ui form">
                 <div class="field">
                     <label><?= __('Name') ?></label>
-                    <input type="text"
-                           name="wishlist-name"
-                           data-default="<?= getWishlistNameSuggestion() ?>"
-                    />
+                    <div class="ui input">
+                        <input type="text" name="wishlist-name" data-default="<?= getWishlistNameSuggestion() ?>" />
+                    </div>
                 </div>
             </form>
         </div>
@@ -167,14 +168,14 @@ $page->navigation();
     </div>
     <div class="content">
         <div class="description">
-            <p><?= __('Fill out any or all of the below fields to add your new wish.') ?></p>
+            <p><?= __('Fill the title and/or description to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
                 <input type="hidden" name="wishlist_id" />
 
-                <div class="ui two column grid">
-                    <?php include 'parts/wish-add.php' ?>
-                </div>
+                <?php include 'parts/wish-add.php' ?>
+
+                <div class="ui error message"></div>
             </form>
         </div>
     </div>
@@ -188,6 +189,67 @@ $page->navigation();
     </div>
 </div>
 
+<!-- Wishlist: Edit a wish -->
+<div class="ui modal wishlist-wish-edit">
+    <div class="header">
+        <?= __('Edit wish') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
+
+            <form class="ui form wishlist-wish-edit" method="POST">
+                <input type="hidden" name="wishlist_id" />
+                <input type="hidden" name="wish_id" />
+
+                <?php include 'parts/wish-add.php' ?>
+
+                <div class="ui error message"></div>
+            </form>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button" title="<?= __('Save') ?>">
+            <?= __('Save') ?>
+        </div>
+        <div class="ui deny button" title="<?= __('Cancel') ?>">
+            <?= __('Cancel') ?>
+        </div>
+    </div>
+</div>
+
+<!-- Wish: Validate -->
+<div class="ui small modal validate">
+    <div class="header">
+        <?= __('URL mismatch') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('The URL you have entered does not seem quite right. Would you like to update it with the one I found?') ?></p>
+            <p class="provider"><?= sprintf(__('According to %s, this is the canonical (correct) URL.'), '<strong class="providerName">Unknown</strong>') ?></p>
+
+            <div class="ui form urls">
+                <div class="field">
+                    <label><?= __('Current') ?></label>
+                    <input class="ui input current disabled" type="url" readonly />
+                </div>
+
+                <div class="field">
+                    <label><?= __('Proposed') ?></label>
+                    <input class="ui input proposed" type="url" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary approve button" title="<?= __('Yes, update') ?>">
+            <?= __('Yes, update') ?>
+        </div>
+        <div class="ui deny button" title="<?= __('No, leave it') ?>">
+            <?= __('No, leave it') ?>
+        </div>
+    </div>
+</div>
+
 <?php
-$page->footer();
 $page->bodyEnd();

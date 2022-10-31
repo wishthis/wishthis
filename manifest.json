@@ -1,4 +1,5 @@
 {
+    "id": "wishthis",
     "name": "wishthis",
     "short_name": "wishthis",
     "description": "wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.",
@@ -7,11 +8,11 @@
         "shopping"
     ],
     "background_color": "#f4f4f4",
+    "theme_color": "#5829bb",
     "display": "standalone",
     "orientation": "any",
     "scope": "/",
     "start_url": "/",
-    "theme_color": "#5829bb",
     "screenshots": [],
     "icons": [
         {

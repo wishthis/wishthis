@@ -10,7 +10,7 @@ Confirms if given object is a native set\_
 const isSet = require("type/set/is");
 
 isSet(new Set()); // true
-isSet(new Set()); // false
+isSet(new Map()); // false
 isSet({}); // false
 ```
 

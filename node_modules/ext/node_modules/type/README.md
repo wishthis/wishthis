@@ -111,6 +111,9 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
   - **Time Value**
     - [`time-value/coerce`](docs/time-value.md#time-valuecoerce)
     - [`time-value/ensure`](docs/time-value.md#time-valueensure)
+- **BigInt**
+  - [`big-int/coerce`](docs/big-int.md#big-intcoerce)
+  - [`big-int/ensure`](docs/big-int.md#big-intensure)
 - **Array Like**
   - [`array-like/is`](docs/array-like.md#array-likeis)
   - [`array-like/ensure`](docs/array-like.md#array-likeensure)

@@ -10,11 +10,48 @@ namespace wishthis;
 
 class URL
 {
+    /**
+     * Static
+     */
+    public static function getResponseCode(string $url): int
+    {
+        $ch_options = array(
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 30,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_TIMEOUT        => 30,
+            CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+        );
+
+        $ch = curl_init($url);
+        curl_setopt_array($ch, $ch_options);
+        curl_exec($ch);
+
+        $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if (0 === $responseCode) {
+            echo curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return $responseCode;
+    }
+
+    /**
+     * Non-Static
+     */
     public string $url;
 
     public function __construct(string $url)
     {
         $this->url = urldecode($url);
+
+        $_GET = $this->get_GET();
     }
 
     public function isPretty(): bool
@@ -84,7 +121,15 @@ class URL
                             explode('&', parse_url($target, PHP_URL_QUERY))
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
-                        $parameters  = query_to_key_value_pair($this->url);
+                        parse_str($this->url, $getParameters);
+
+                        uasort(
+                            $getParameters,
+                            function($a, $b) {
+                                return strlen($a) <=> strlen($b);
+                            }
+                        );
+                        $getParameters = array_reverse($getParameters, true);
 
                         preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
 
@@ -92,11 +137,11 @@ class URL
 
                         foreach ($regexes as $matches) {
                             foreach ($matches as $match) {
-                                foreach ($parameters as $key => $value) {
+                                foreach ($getParameters as $key => $value) {
                                     if (
                                            preg_match('/^' . $match . '$/', $value)
                                         && in_array($key, $keys)
-                                        && count($parameters) === count($keys)
+                                        && count($getParameters) === count($keys)
                                     ) {
                                         $rewriteRule = str_replace($match, $value, $rewriteRule);
 
@@ -120,5 +165,19 @@ class URL
         }
 
         return $pretty_url ?: '/?' . $this->url;
+    }
+
+    public function get_GET(): array
+    {
+        $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
+        $GET         = array();
+
+        if ($this->isPretty() && $queryString) {
+            parse_str($queryString, $GET);
+        } else {
+            $GET = $_GET;
+        }
+
+        return $GET;
     }
 }

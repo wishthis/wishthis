@@ -21,6 +21,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishes .value'), response.data.wishes.count, 0);
+
+                    observerWishes.unobserve(document.querySelector('#wishes'));
                 }
             });
         };
@@ -28,6 +30,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#wishlists .value'), response.data.wishlists.count, 0);
+
+                    observerWishlists.unobserve(document.querySelector('#wishlists'));
                 }
             });
         };
@@ -35,6 +39,8 @@ $(function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     showStatistic($('#users .value'), response.data.users.count, 0);
+
+                    observerUsers.unobserve(document.querySelector('#users'));
                 }
             });
         };
@@ -46,29 +52,47 @@ $(function() {
         observerWishlists.observe(document.querySelector('#wishlists'));
         observerUsers.observe(document.querySelector('#users'));
     });
+
+    /**
+     * News
+     */
+    fetch('/src/api/blog.php', {
+        method: 'GET'
+    })
+    .then(handleFetchError)
+    .then(handleFetchResponse)
+    .then(function(response) {
+        $('.ui.list.news').html(response.html);
+    });
 });
 
 function showStatistic(elementStatistic, amount, timeout) {
-    var interval    = 20;
-    var intervalEnd = 750;
+    const duration        = 2000;
+    const intervalInitial = 42;
+
+    var interval  = intervalInitial;
+    var value     = 0;
+    var percent   = 0;
+    var increment = 1;
 
     setTimeout(
         function count() {
-            var value = $.isNumeric(elementStatistic.text())
-                      ? parseInt(elementStatistic.text())
-                      : -1;
+            increment = amount / duration * intervalInitial;
 
-            if (value < amount) {
-                elementStatistic.text(value + 1);
+            if (value + increment < amount) {
+                value = value + increment;
 
-                var remainingSlowDown    = 6;
-                var remainingInterations = amount - value;
-
-                if (remainingInterations < remainingSlowDown) {
-                    interval = (remainingSlowDown - remainingInterations) * (intervalEnd / remainingSlowDown);
-                }
+                elementStatistic.text(Math.round(value));
 
                 setTimeout(count, interval);
+            } else {
+                elementStatistic.text(amount);
+            }
+
+            percent = value / amount * 100;
+
+            if (percent >= 80) {
+                interval = interval * 1.4;
             }
         },
         timeout

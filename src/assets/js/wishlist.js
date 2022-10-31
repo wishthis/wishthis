@@ -103,7 +103,8 @@ $(function() {
                     button_set_default_state(buttonSave);
                     break;
             }
-
+        })
+        .finally(function() {
             buttonSave.removeClass('disabled loading');
         });
     });
@@ -115,11 +116,11 @@ $(function() {
     .then(handleFetchError)
     .then(handleFetchResponse)
     .then(function(response) {
-        var wishlists = response.data;
+        var wishlists  = response.data;
         var buttonSave = $('.button.save');
 
         wishlists.forEach(wishlist => {
-            if (wishlist.hash == $_GET.wishlist) {
+            if (wishlist.hash == $_GET.hash) {
                 button_set_saved_state(buttonSave);
                 return;
             }
@@ -131,13 +132,47 @@ $(function() {
     /** Set default state */
     function button_set_default_state(buttonSave) {
         buttonSave.find('.icon').removeClass('red');
-        buttonSave.find('span').text(text.button_wishlist_save);
+        buttonSave.find('span').text(text.button_wishlist_remember);
     }
 
     /** Set saved state */
     function button_set_saved_state(buttonSave) {
         buttonSave.find('.icon').addClass('red');
-        buttonSave.find('span').text(text.button_wishlist_saved);
+        buttonSave.find('span').text(text.button_wishlist_forget);
     }
+
+    /**
+     * Request more wishes
+     */
+    $(document).on('click', '.ui.button.wishlist-request-wishes', function() {
+        var buttonRequest   = $(this);
+        var wishlist_id     = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+        var wishlist_locale = buttonRequest.attr('data-locale');
+
+        var formData = new URLSearchParams({
+            'wishlist-id' : wishlist_id,
+            'locale'      : wishlist_locale
+        });
+
+        buttonRequest.addClass('disabled loading');
+
+        fetch('/src/api/wishlists.php', {
+            method : 'POST',
+            body   : formData
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            if (response.email_was_sent) {
+                $('.modal.wishlist-request-wishes-notification-sent').modal('show');
+            } else {
+                $('.modal.wishlist-request-wishes-notification-notsent').modal('show');
+            }
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            buttonRequest.removeClass('loading');
+        });;
+    });
 
 });

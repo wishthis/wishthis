@@ -1,19 +1,48 @@
+@import 'default/dark.css?v=0.7.0';
+
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
+    --dimmerZIndex: 100;
 }
 
-img {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #fff;
+        background-color: #2c2c2c;
+    }
+}
+
+img,
+svg {
     max-width: 100%;
+}
+
+figure {
+    margin: 0 0 1em;
 }
 
 /**
  * Logo
  */
-.ui.menu .item.home > img:not(.ui) {
+.ui.menu .item.home > :is(img, svg):not(.ui) {
     width: auto;
     height: 1em;
     margin: 0;
+}
+
+#logo {
+    color: inherit;
+}
+#logo path {
+    fill: currentColor;
 }
 
 /**
@@ -22,6 +51,8 @@ img {
 .ui.footer {
     position: sticky;
     top: 100%;
+
+    min-height: 15vh;
 }
 @media (min-width: 768px) {
     .ui.footer {
@@ -30,62 +61,118 @@ img {
     }
 }
 
+.ui.vertical.menu.sidebar .ui.footer {
+    position: static;
+}
+
 /**
  * Progress
  */
 .ui.progress.nolabel:last-child {
-	margin: 0;
+    margin: 0;
 }
 
 /**
- * Card
+ * Wishlist Card
  */
-.ui.card {
+.wishlist .ui.card {
     --padding: 0.91666667em;
-    --buttonsHeight: calc(0.75em * 2 + 1em + 2 * var(--padding) - 2px);
+    --buttonsHeight: calc(1em + 1.50em + 0.78571429em * 2 - 3px);
+}
+.wishlist .ui.card:focus-within {
+    z-index: calc(var(--dimmerZIndex) + 2);
 }
 
-.ui.fluid.card.stretch {
+.wishlist .ui.fluid.card.stretch {
     height: 100%;
 }
 
 /** Image */
-.ui.card > .image > img.preview {
+.wishlist .ui.card > .image > svg {
+    width: 100%;
+    height: var(--wishPreviewHeight);
+
+    color: #f0f0f0;
+    background-color: #f4f4f4;
+
+    box-sizing: border-box;
+    border-radius: inherit;
+}
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > svg {
+        color: rgba(255, 255, 255, 0.6);
+        background-color: #222;
+    }
+}
+
+.wishlist .ui.card > .image > svg#no-image {
+    padding: 15% 10%;
+}
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > svg#no-image {
+        color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+@media (hover: hover) {
+    @media (prefers-reduced-motion: no-preference) {
+        .wishlist .ui.card > .image > svg {
+            transition:
+                0.2s linear height,
+                0.2s linear padding,
+                0.2s linear opacity;
+        }
+    }
+    .wishlist .ui.card:hover > .image > svg {
+        height: calc(1em + 3 * var(--padding) - 5px);
+        padding: 0 !important;
+        opacity: 0;
+    }
+}
+
+.wishlist .ui.card > .image > img.preview {
     height: var(--wishPreviewHeight);
 
     object-fit: cover;
     object-position: 50%;
     background-color: #fff;
 }
+
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > img.preview {
+        filter: brightness(80%);
+        background-color: #111;
+    }
+}
+
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
-        .ui.card > .image > img.preview {
-            transition: height 0.2s linear, opacity 0.2s linear;
+        .wishlist .ui.card > .image > img.preview {
+            transition:
+                0.2s linear height,
+                0.2s linear opacity;
         }
     }
-    .ui.card:hover > .image > img.preview {
+
+    .wishlist .ui.card:hover > .image > img.preview {
         height: calc(1em + 3 * var(--padding));
-    }
-    .ui.card:hover > .image > img.preview[src="/src/assets/img/no-image.svg"] {
-        object-fit: contain;
-        background-color: #f9f9f9;
     }
 }
 
 /** Provider */
-.ui.card > .image,
-.ui.card > .image > span.provider {
+.wishlist .ui.card > .image,
+.wishlist .ui.card > .image > span.provider {
     border-radius: .33333333rem .33333333rem 0 0;
 }
 
-.ui.card > .image > img.favicon,
-.ui.card > .image > span.provider {
+.wishlist .ui.card > .image > img.favicon,
+.wishlist .ui.card > .image > span.provider {
     position: absolute;
     top: 0;
 }
 
 /** Favicon */
-.ui.card > .image > img.favicon {
+.wishlist .ui.card > .image > img.favicon {
     padding: calc(var(--padding) * 1.5) var(--padding);
 
     height: 1.25em;
@@ -95,12 +182,18 @@ img {
     z-index: 1;
 }
 
-.ui.card > .image > img.favicon + span.provider {
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > img.favicon {
+        filter: brightness(80%);
+    }
+}
+
+.wishlist .ui.card > .image > img.favicon + span.provider {
     padding-left: 3em;
 }
 
 /** Provider name */
-.ui.card > .image > span.provider {
+.wishlist .ui.card > .image > span.provider {
     display: block;
     width: 100%;
     padding: calc(var(--padding) * 1.5) var(--padding);
@@ -112,25 +205,42 @@ img {
     text-overflow: ellipsis;
 
     background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 4px rgba(200, 200, 200, 0.4);
     backdrop-filter: blur(4px);
 }
+
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .image > span.provider {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
 @supports (backdrop-filter: blur(4px)) {
-    .ui.card > .image > span.provider {
+    .wishlist .ui.card > .image > span.provider {
         background-color: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(4px);
     }
-}
-@media (hover: hover) {
-    .ui.card > .image > span.provider {
-        transition: opacity 0.2s linear;
 
+    @media (prefers-color-scheme: dark) {
+        .wishlist .ui.card > .image > span.provider {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+@media (hover: hover) {
+    .wishlist .ui.card > .image > span.provider {
         position: absolute;
 
         opacity: 0;
     }
 
-    .ui.card:hover > .image > span.provider {
+    @media (prefers-reduced-motion: no-preference) {
+        .wishlist .ui.card > .image > span.provider {
+            transition: opacity 0.2s linear;
+        }
+    }
+
+    .wishlist .ui.card:hover > .image > span.provider {
         display: block;
 
         opacity: 1;
@@ -138,23 +248,26 @@ img {
 }
 
 /** Content */
-.ui.card > .content:not(.extra) {
+.wishlist .ui.card > .content:not(.extra) {
     height: calc(0.75 * var(--wishPreviewHeight));
 
     overflow: auto;
 }
+
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
-        .ui.card > .content:not(.extra) {
-            transition: height 0.2s linear,
-                        margin-bottom 0.2s linear;
+        .wishlist .ui.card > .content:not(.extra) {
+            transition:
+                0.2s linear height,
+                0.2s linear margin-bottom;
         }
     }
-    .ui.card > .content:not(.extra) {
+
+    .wishlist .ui.card > .content:not(.extra) {
         overflow: hidden;
     }
 
-    .ui.card:hover > .content:not(.extra) {
+    .wishlist .ui.card:hover > .content:not(.extra) {
         height: calc(1.5 * var(--wishPreviewHeight) - var(--buttonsHeight) - 4px);
         margin-bottom: var(--buttonsHeight);
 
@@ -162,12 +275,12 @@ img {
     }
 }
 
-.ui.card > .content > .header {
+.wishlist .ui.card > .content > .header {
     max-height: calc(2 * 1.28571429em);
     overflow: hidden;
 }
 
-.ui.card > .content > .description-fade {
+.wishlist .ui.card > .content > .description-fade {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -175,23 +288,36 @@ img {
 
     height: 4em;
     width: 100%;
-    background-image: linear-gradient(0deg, rgba(255,255,255,1) 0.75em, rgba(255,255,255,0.8995799003195029) 45%, rgba(255,255,255,0) 100%);
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
     border-radius: 0.33333333rem;
 }
 
-/** Buttons */
-.ui.card > .extra.buttons {
-    transition: 0.4s ease opacity;
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .content > .description-fade {
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 1) 0.75em, rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0) 100%);
+    }
+}
 
+/** Buttons */
+.wishlist .ui.card > .extra.buttons {
     display: flex;
+    align-items: center;
 
     background-color: inherit;
     z-index: 2;
 }
-@media (hover: hover) {
-    .ui.card > .extra.buttons {
-        transition: opacity 0.2s ease;
 
+@media (hover: hover) {
+    @media (prefers-reduced-motion: no-preference) {
+        .wishlist .ui.card > .content > .description-fade {
+            transition: 0.2s ease bottom;
+        }
+    }
+    .wishlist .ui.card:hover > .content > .description-fade {
+        bottom: var(--buttonsHeight);
+    }
+
+    .wishlist .ui.card > .extra.buttons {
         position: absolute;
         top: unset;
         right: 0;
@@ -203,29 +329,34 @@ img {
         margin-bottom: 0;
     }
     @media (prefers-reduced-motion: no-preference) {
-        .ui.card > .extra.buttons {
-            transition: opacity 0.2s ease,
-                        bottom 0.2s ease;
+        .wishlist .ui.card > .extra.buttons {
+            transition:
+                0.2s ease opacity,
+                0.2s ease bottom;
         }
     }
-
-    .ui.card:hover > .extra.buttons {
+    .wishlist .ui.card:hover > .extra.buttons {
         opacity: 1;
 
         bottom: 0;
     }
 }
 
-.ui.card > .extra.buttons > .button {
+.wishlist .ui.card > .extra.buttons > .button {
     flex: 1 1 auto;
 }
-.ui.card > .extra.buttons > :last-child {
+
+.wishlist .ui.card > .extra.buttons > :last-child {
     margin-right: 0;
 }
 
 /**
  * Label
  */
+.ui.label {
+    z-index: calc(var(--dimmerZIndex) + 1);
+}
+
 p .ui.horizontal.label {
     margin: 0;
     cursor: default;
@@ -239,6 +370,7 @@ p .ui.horizontal.label {
     display: flex;
     flex-flow: row wrap;
 }
+
 @media (max-width: 767px) {
     .flex {
         flex-direction: column;
@@ -248,6 +380,7 @@ p .ui.horizontal.label {
     .flex > .ui.button {
         margin-bottom: 0.5rem;
     }
+
     .flex :last-child {
         margin-bottom: 0;
     }
@@ -259,13 +392,21 @@ p .ui.horizontal.label {
 .pusher {
     min-height: 100vh;
 }
-
+body.pushable > .pusher {
+    background-color: transparent;
+}
 .pusher .menu.toggle {
     display: none;
 }
 
 .ui.attached.menu.sidebar:not(.tabular) {
     border: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .ui.attached.menu.desktop:not(.tabular) {
+        border: 0;
+    }
 }
 
 .ui.vertical.menu .footer .item > i.icon,
@@ -277,10 +418,6 @@ p .ui.horizontal.label {
 @media (max-width: 767px) {
     .pusher .menu.toggle {
         display: block;
-    }
-
-    .pusher > .footer {
-        display: none;
     }
 
     .pusher .menu.attached.desktop {
@@ -303,7 +440,7 @@ p .ui.horizontal.label {
 
     .ui.action.input > input {
         border-radius: 0.33333333rem 0.33333333rem 0 0 !important;
-        border: 1px solid rgba(34,36,38,.15) !important;
+        border: 1px solid rgba(34, 36, 38, .15) !important;
     }
 
     .ui.action.input > .button:last-child,
@@ -322,14 +459,20 @@ p .ui.horizontal.label {
 
 .ui.dropdown .menu > a.item,
 .ui.dropdown .menu > a.item:hover {
-	color: rgba(0,0,0,.95);
+    color: rgba(0, 0, 0, .95);
 }
 
 /**
  * Filter
  */
 .ui.basic.white.button {
+    color: inherit;
     background-color: #fff;
+}
+@media (prefers-color-scheme: dark) {
+    .ui.basic.white.button {
+        background-color: #222;
+    }
 }
 
 /**
@@ -340,5 +483,14 @@ ul.ui.list li::before {
 }
 
 ul.ui.list {
-	margin: 0;
+    margin: 0;
+}
+
+/**
+ * Dropdown
+ */
+button.item {
+    width: 100%;
+
+    background-color: transparent;
 }

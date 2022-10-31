@@ -10,11 +10,9 @@ namespace wishthis;
 
 $page = new Page(__FILE__, __('Logout'));
 
-if (PHP_SESSION_ACTIVE === session_status()) {
-    session_destroy();
+$_SESSION['user']->logOut();
 
-    redirect('/?page=home');
-}
+redirect(Page::PAGE_HOME);
 
 $page->header();
 $page->bodyStart();
@@ -32,5 +30,4 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

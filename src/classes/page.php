@@ -9,20 +9,37 @@ namespace wishthis;
 enum Navigation: int
 {
     case Wishlists = 1;
-    case System    = 2;
-    case Settings  = 3;
-    case Account   = 4;
-    case Login     = 5;
-    case Register  = 6;
+    case Blog      = 2;
+    case System    = 3;
+    case Settings  = 4;
+    case Account   = 5;
+    case Login     = 6;
+    case Register  = 7;
 }
 
 class Page
 {
     /**
      * Static
-     *
-     * @return string
      */
+    public const PAGE_BLOG            = '/?page=blog';
+    public const PAGE_CHANGELOG       = '/?page=changelog';
+    public const PAGE_HOME            = '/?page=home';
+    public const PAGE_INSTALL         = '/?page=install';
+    public const PAGE_LOGIN_AS        = '/?page=login-as';
+    public const PAGE_LOGIN           = '/?page=login';
+    public const PAGE_LOGOUT          = '/?page=logout';
+    public const PAGE_MAINTENANCE     = '/?page=maintenance';
+    public const PAGE_POST            = '/?page=post';
+    public const PAGE_POWER           = '/?page=power';
+    public const PAGE_PROFILE         = '/?page=profile';
+    public const PAGE_REGISTER        = '/?page=register';
+    public const PAGE_SETTINGS        = '/?page=settings';
+    public const PAGE_UPDATE          = '/?page=update';
+    public const PAGE_WISHLIST        = '/?page=wishlist';
+    public const PAGE_WISHLISTS_SAVED = '/?page=wishlists-saved';
+    public const PAGE_WISHLISTS       = '/?page=wishlists';
+
     public static function message(string $content = '', string $header = '', string $type = ''): string
     {
         ob_start();
@@ -33,22 +50,22 @@ class Page
         switch ($type) {
             case 'error':
                 $containerClasses[] = 'error icon';
-                $iconClasses[] = 'exclamation triangle';
+                $iconClasses[]      = 'exclamation triangle';
                 break;
 
             case 'warning':
                 $containerClasses[] = 'warning icon';
-                $iconClasses[] = 'exclamation circle';
+                $iconClasses[]      = 'exclamation circle';
                 break;
 
             case 'info':
                 $containerClasses[] = 'info icon';
-                $iconClasses[] = 'info circle';
+                $iconClasses[]      = 'info circle';
                 break;
 
             case 'success':
                 $containerClasses[] = 'success icon';
-                $iconClasses[] = 'check circle';
+                $iconClasses[]      = 'check circle';
                 break;
         }
 
@@ -100,6 +117,8 @@ class Page
      */
     public string $language = DEFAULT_LOCALE;
     public array $messages  = array();
+    public string $link_preview;
+    public string $description;
 
     /**
      * __construct
@@ -116,29 +135,34 @@ class Page
         /**
          * Session
          */
-        global $user, $options;
+        global $options;
 
+        $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
+            'blog',
+            'changelog',
             'home',
             'install',
             'login',
             'maintenance',
+            'post',
             'register',
             'wishlist',
         );
+
         if (
-               !isset($_SESSION['user'])
-            && isset($_SESSION['_GET']['page'])
-            && !in_array($_SESSION['_GET']['page'], $ignorePower)
+               false === $user->isLoggedIn()
+            && isset($_GET['page'])
+            && false === in_array($_GET['page'], $ignorePower)
         ) {
-            redirect('/?page=login');
+            redirect(Page::PAGE_LOGIN);
         }
 
         /**
          * Power
          */
         if (isset($user->power) && $user->power < $this->power) {
-            redirect('/?page=power&required=' . $this->power);
+            redirect(Page::PAGE_POWER . '&required=' . $this->power);
         }
 
         /**
@@ -153,19 +177,19 @@ class Page
 
         if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
             if (100 === $user->power) {
-                redirect('/?page=update');
+                redirect(Page::PAGE_UPDATE);
             } else {
-                redirect('/?page=maintenance');
+                redirect(Page::PAGE_MAINTENANCE);
             }
         }
 
         /**
          * Redirect
          */
-        if ($options && $options->getOption('isInstalled') && isset($_SESSION['_GET'])) {
-            $url = new URL(http_build_query($_SESSION['_GET']));
+        if ($options && $options->getOption('isInstalled') && isset($_GET)) {
+            $url = new URL(http_build_query($_GET));
 
-            if (false === $url->isPretty()) {
+            if ($url->url && false === $url->isPretty()) {
                 redirect($url->getPretty());
             }
         }
@@ -235,7 +259,7 @@ class Page
                 <?php } ?>
             <?php } ?>
 
-            <link rel="manifest" href="manifest.json" />
+            <link rel="manifest" href="/manifest.json" />
             <?php
             if (defined('CHANNELS') && is_array(CHANNELS)) {
                 $channels = CHANNELS;
@@ -266,7 +290,7 @@ class Page
              */
 
             /** Fomantic UI */
-            $stylesheetFomantic = 'semantic/dist/semantic.min.css';
+            $stylesheetFomantic         = 'semantic/dist/semantic.min.css';
             $stylesheetFomanticModified = filemtime($stylesheetFomantic);
             ?>
             <link rel="stylesheet"
@@ -276,7 +300,7 @@ class Page
             <?php
 
             /** Default */
-            $stylesheetDefault = 'src/assets/css/default.css';
+            $stylesheetDefault         = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
             ?>
             <link rel="stylesheet"
@@ -305,13 +329,11 @@ class Page
             ?>
             <script type="text/javascript">
                 var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET                   = JSON.parse('<?= isset($_SESSION['_GET']) ? json_encode($_SESSION['_GET']) : json_encode(array()) ?>');
+                var $_GET                   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';
                 var text                    = {
-                    wishlist_no_selection : '<?= __('No wishlist selected.') ?>',
-
                     modal_error_title     : '<?= __('Error') ?>',
                     modal_failure_title   : '<?= __('Failure') ?>',
                     modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
@@ -379,27 +401,28 @@ class Page
                     calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
                     calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
 
-                    button_wishlist_save : '<?= __('Save') ?>',
-                    button_wishlist_saved : '<?= __('Saved') ?>',
+                    button_wishlist_remember : '<?= __('Remember list') ?>',
+                    button_wishlist_forget   : '<?= __('Forget list') ?>',
                 };
             </script>
+
             <?php
             /** jQuery */
-            $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
+            $scriptjQuery         = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
             ?>
             <script defer src="/<?= $scriptjQuery ?>?m=<?= $scriptjQueryModified ?>"></script>
             <?php
 
             /** Fomantic */
-            $scriptFomantic = 'semantic/dist/semantic.min.js';
+            $scriptFomantic         = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
             ?>
             <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>"></script>
             <?php
 
             /** Default */
-            $scriptDefault = 'src/assets/js/default.js';
+            $scriptDefault         = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
             ?>
             <script defer src="/<?= $scriptDefault ?>?m=<?= $scriptDefaultModified ?>"></script>
@@ -423,7 +446,7 @@ class Page
                     src="https://plausible.io/js/plausible.js">
             </script>
 
-            <title><?= $this->title ?> - wishthis</title>
+            <title><?= $this->title ?> - wishthis - <?= __('Make a wish') ?></title>
         </head>
         <?php
     }
@@ -431,15 +454,16 @@ class Page
     public function bodyStart(): void
     {
         ?>
-        <body>
+        <body id="top">
         <?php
     }
 
     public function navigation(): void
     {
-        $user = new User();
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
         $wishlists = Navigation::Wishlists->value;
+        $blog      = Navigation::Blog->value;
         $system    = Navigation::System->value;
         $settings  = Navigation::Settings->value;
         $account   = Navigation::Account->value;
@@ -447,7 +471,18 @@ class Page
         $register  = Navigation::Register->value;
 
         $pages = array(
-            $system => array(
+            $blog    => array(
+                'text'      => __('Blog'),
+                'alignment' => 'left',
+                'items'     => array(
+                    array(
+                        'text' => __('Blog'),
+                        'url'  => self::PAGE_BLOG,
+                        'icon' => 'rss',
+                    ),
+                ),
+            ),
+            $system  => array(
                 'text'      => __('System'),
                 'icon'      => 'wrench',
                 'alignment' => 'right',
@@ -468,12 +503,12 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('My lists'),
-                        'url'  => '/?page=wishlists',
+                        'url'  => Page::PAGE_WISHLISTS,
                         'icon' => 'list',
                     ),
                     array(
-                        'text' => __('Saved lists'),
-                        'url'  => '/?page=wishlists-saved',
+                        'text' => __('Remembered lists'),
+                        'url'  => Page::PAGE_WISHLISTS_SAVED,
                         'icon' => 'heart',
                     ),
                 ),
@@ -483,29 +518,29 @@ class Page
         if ($user->isLoggedIn()) {
             $pages[$account]['items'][] = array(
                 'text' => __('Profile'),
-                'url'  => '/?page=profile',
+                'url'  => Page::PAGE_PROFILE,
                 'icon' => 'user circle alternate',
             );
             if (100 === $user->power) {
                 $pages[$account]['items'][] = array(
                     'text' => __('Login as'),
-                    'url'  => '/?page=login-as',
+                    'url'  => Page::PAGE_LOGIN_AS,
                     'icon' => 'sign out alternate',
                 );
             }
             $pages[$account]['items'][] = array(
                 'text' => __('Logout'),
-                'url'  => '/?page=logout',
+                'url'  => Page::PAGE_LOGOUT,
                 'icon' => 'sign out alternate',
             );
         } else {
-            $pages[$login] = array(
+            $pages[$login]    = array(
                 'text'      => __('Login'),
                 'alignment' => 'right',
                 'items'     => array(
                     array(
                         'text' => __('Login'),
-                        'url'  => '/?page=login',
+                        'url'  => Page::PAGE_LOGIN,
                         'icon' => 'sign in alternate',
                     )
                 ),
@@ -516,7 +551,7 @@ class Page
                 'items'     => array(
                     array(
                         'text' => __('Register'),
-                        'url'  => '/?page=register',
+                        'url'  => Page::PAGE_REGISTER,
                         'icon' => 'user plus alternate',
                     )
                 ),
@@ -526,20 +561,24 @@ class Page
         if (isset($user->power) && 100 === $user->power) {
             $pages[$system]['items'][] = array(
                 'text' => __('Settings'),
-                'url'  => '/?page=settings',
+                'url'  => Page::PAGE_SETTINGS,
                 'icon' => 'cog',
             );
         }
 
         ksort($pages);
+
+        if ('home' === $this->name) {
+            $logo = file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
+        } else {
+            $logo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
+        }
         ?>
 
         <div class="ui attached stackable vertical menu sidebar">
             <div class="ui container">
 
-                <a class="item home" href="/?page=home">
-                    <img src="/src/assets/img/logo.svg" alt="<?= __('wishthis logo') ?>" />
-                </a>
+                <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
 
                 <?php foreach ($pages as $page) { ?>
                     <?php foreach ($page['items'] as $item) { ?>
@@ -551,16 +590,12 @@ class Page
                 <?php } ?>
 
             </div>
-
-            <?= $this->footer() ?>
         </div>
 
         <div class="pusher">
             <div class="ui attached menu desktop">
                 <div class="ui container">
-                    <a class="item home" href="/?page=home">
-                        <img src="/src/assets/img/logo.svg" />
-                    </a>
+                    <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
 
                     <?php foreach ($pages as $page) { ?>
                         <?php if ('left' === $page['alignment']) { ?>
@@ -651,47 +686,69 @@ class Page
             <div class="ui container">
                 <div class="ui stackable inverted divided equal height stackable grid">
 
-                    <div class="eight wide column">
+                    <div class="six wide column">
                         <h4 class="ui inverted header">wishthis</h4>
 
                         <div class="ui inverted link list">
                             <div class="item">
                                 <i class="code branch icon"></i>
-                                <div class="content">
-                                    <?php
-                                    global $options;
-
-                                    if (VERSION === $options->version) {
-                                        echo 'v' . VERSION;
-                                    } else {
-                                        echo 'v' . VERSION . ' / ' . 'v' . $options->version;
-                                    }
-                                    ?>
-                                </div>
+                                <div class="content"><?= VERSION ?></div>
                             </div>
+
+                            <a class="item"
+                               href="<?= Page::PAGE_CHANGELOG ?>"
+                               title="<?= __('Changelog') ?>"
+                            >
+                                <i class="newspaper icon"></i>
+                                <div class="content"><?= __('Changelog') ?></div>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="eight wide column">
+                    <div class="five wide column">
                         <h4 class="ui inverted header"><?= __('Contribute') ?></h4>
 
                         <div class="ui inverted link list">
                             <a class="item"
                                href="https://github.com/grandeljay/wishthis"
                                target="_blank"
-                               title="<?= __('GitHub repository') ?>"
+                               title="<?= __('GitHub') ?>"
                             >
                                 <i class="github icon"></i>
-                                <div class="content"><?= __('GitHub repository') ?></div>
+                                <div class="content"><?= __('GitHub') ?></div>
                             </a>
 
                             <a class="item"
                                href="https://www.transifex.com/wishthis/wishthis/"
                                target="_blank"
-                               title="<?= __('Translate') ?>"
+                               title="<?= __('Transifex') ?>"
                             >
                                 <i class="language icon"></i>
-                                <div class="content"><?= __('Translate') ?></div>
+                                <div class="content"><?= __('Transifex') ?></div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="five wide column">
+                        <h4 class="ui inverted header"><?= __('Contact') ?></h4>
+
+                        <div class="ui inverted link list">
+                            <a class="item"
+                               href="https://matrix.to/#/#wishthis:matrix.org"
+                               target="_blank"
+                               title="<?= __('Matrix') ?>"
+                            >
+                                <i class="comment dots icon"></i>
+                                <div class="content"><?= __('Matrix') ?></div>
+                            </a>
+
+                            <a class="item"
+                               href="https://discord.gg/WrUXnpNyza"
+                               target="_blank"
+                               title="<?= __('Discord') ?>"
+                            >
+                                <i class="discord icon"></i>
+                                <div class="content"><?= __('Discord') ?></div>
                             </a>
                         </div>
                     </div>
@@ -704,6 +761,7 @@ class Page
 
     public function bodyEnd(): void
     {
+        $this->footer();
         ?>
         </div><!-- .pusher -->
 

@@ -3,8 +3,10 @@
 /**
  * Various statistics
  *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * @category API
  */
+
+namespace wishthis;
 
 $api      = true;
 $response = array();
@@ -26,17 +28,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['data'] = array();
 
                 foreach ($tables as $table) {
-                    $count = $database
-                             ->query('SELECT COUNT(`id`) AS "count"
-                                     FROM `' . $table . '`;')
-                             ->fetch();
+                    $count = new Cache\Query(
+                        'SELECT COUNT(`id`) AS "count"
+                           FROM `' . $table . '`;',
+                        Duration::DAY
+                    );
 
-                    $response['data'][$table] = $count;
+                    $response['data'][$table] = $count->get();
                 }
             } else {
+                $table = Sanitiser::getTable($_GET['table']);
+
                 $count = $database
-                ->query('SELECT COUNT(`id`) AS "count"
-                           FROM `' . $_GET['table'] . '`;')
+                ->query(
+                    'SELECT COUNT(`id`) AS "count"
+                       FROM `' . $table . '`;'
+                )
                 ->fetch();
 
                 $response['data'] = $count;

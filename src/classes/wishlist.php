@@ -31,9 +31,11 @@ class Wishlist
          * Get Wishlist
          */
         $columns = $database
-        ->query('SELECT *
-                   FROM `wishlists`
-                  WHERE `' . $column . '` = ' . $id_or_hash . ';')
+        ->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `' . $column . '` = ' . $id_or_hash . ';'
+        )
         ->fetch();
 
         if ($columns) {
@@ -56,18 +58,22 @@ class Wishlist
     {
         global $database;
 
-        $SELECT   = isset($sql['SELECT'])   ? $sql['SELECT']   : '*';
-        $FROM     = isset($sql['FROM'])     ? $sql['FROM']     : '`wishes`';
-        $WHERE    = isset($sql['WHERE'])    ? $sql['WHERE']    : '`wishlist` = ' . $this->id;
-        $ORDER_BY = isset($sql['ORDER_BY']) ? $sql['ORDER_BY'] : '`priority` DESC, `title` ASC, `url` ASC';
+        $SELECT    = isset($sql['SELECT'])    ? $sql['SELECT']    : Wish::SELECT;
+        $FROM      = isset($sql['FROM'])      ? $sql['FROM']      : Wish::FROM;
+        $LEFT_JOIN = isset($sql['LEFT_JOIN']) ? $sql['LEFT_JOIN'] : Wish::LEFT_JOIN;
+        $WHERE     = isset($sql['WHERE'])     ? $sql['WHERE']     : '`wishlist` = ' . $this->id;
+        $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
 
         $WHERE .= ' AND (`status` != "' . Wish::STATUS_FULFILLED . '" OR `status` IS NULL)';
 
         $this->wishes = $database
-        ->query('SELECT ' . $SELECT . '
-                   FROM ' . $FROM . '
-                  WHERE ' . $WHERE . '
-               ORDER BY ' . $ORDER_BY . ';')
+        ->query(
+            'SELECT ' . $SELECT . '
+               FROM ' . $FROM . '
+          LEFT JOIN ' . $LEFT_JOIN . '
+              WHERE ' . $WHERE . '
+           ORDER BY ' . $ORDER_BY . ';'
+        )
         ->fetchAll();
 
         foreach ($this->wishes as &$wish) {
@@ -92,7 +98,7 @@ class Wishlist
          * Cards
          */
         ?>
-        <div class="ui three column doubling stackable grid">
+        <div class="ui three column doubling stackable grid wishlist">
             <?php if (!empty($this->wishes)) { ?>
                 <?php foreach ($this->wishes as $wish) { ?>
                     <div class="column">
@@ -101,7 +107,7 @@ class Wishlist
                 <?php } ?>
             <?php } else { ?>
                 <div class="sixteen wide column">
-                    <?= Page::info('This wishlist seems to be empty.', 'Empty'); ?>
+                    <?= Page::info(__('This wishlist seems to be empty.'), __('Empty')); ?>
                 </div>
             <?php } ?>
         </div>

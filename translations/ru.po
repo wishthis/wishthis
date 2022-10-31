@@ -1,0 +1,1512 @@
+# 
+# Translators:
+# Jay Trees, 2022
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
+"POT-Creation-Date: 2022-09-15 19:00+0200\n"
+"PO-Revision-Date: 2022-03-23 12:47+0000\n"
+"Last-Translator: Jay Trees, 2022\n"
+"Language-Team: Russian (https://www.transifex.com/wishthis/teams/134148/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 3.1\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: api/blog.php:37
+#, php-format
+msgid "Posted on %s"
+msgstr "Опубликовано на %s"
+
+#: api/wishlists.php:65
+msgid "Wish request"
+msgstr "Запрос на исполнение желаний"
+
+#: api/wishlists.php:66 pages/login.php:84
+msgid "Hello,"
+msgstr "Привет,"
+
+#. TRANSLATORS: %s: Wishlist name
+#: api/wishlists.php:71
+#, php-format
+msgid "somebody has requested that you add more wishes to your wishlist %s."
+msgstr ""
+"кто-то попросил, чтобы ты добавил больше желаний в свой список желаний %s."
+
+#: api/wishlists.php:75
+msgid "Add wish"
+msgstr "Добавить желание"
+
+#: classes/page.php:132 pages/home.php:26
+msgid ""
+"wishthis is a simple, intuitive and modern wishlist platform to create, "
+"manage and view your wishes for any kind of occasion."
+msgstr ""
+"wishthis - это простая, интуитивно понятная и современная платформа для "
+"создания, управления и просмотра желаний по любому поводу."
+
+#: classes/page.php:213
+msgid ""
+"This is the development environment of wishthis. The database will reset "
+"every day at around 00:00."
+msgstr ""
+"Это среда разработки wishthis. База данных будет обнуляться каждый день "
+"примерно в 00:00."
+
+#: classes/page.php:214
+msgid "Development environment"
+msgstr "Среда развития"
+
+#: classes/page.php:337 classes/page.php:367 pages/login-as.php:57
+msgid "Error"
+msgstr "Ошибка"
+
+#: classes/page.php:338 pages/register.php:92 pages/register.php:95
+msgid "Failure"
+msgstr "Отказ"
+
+#: classes/page.php:339
+msgid "The server did not confirm that the action was successful."
+msgstr "Сервер не подтвердил, что действие было успешным."
+
+#: classes/page.php:340
+msgid "Thanks for nothing"
+msgstr "Спасибо за ничегонеделание"
+
+#: classes/page.php:341
+msgid "Understood"
+msgstr "Понятно"
+
+#: classes/page.php:342 pages/install.php:253 pages/login-as.php:55
+#: pages/profile.php:55 pages/profile.php:119 pages/register.php:136
+msgid "Success"
+msgstr "Успех"
+
+#: classes/page.php:344
+msgid "Close this tab"
+msgstr "Закройте эту вкладку"
+
+#: classes/page.php:345
+msgid "Show wishlist anyway"
+msgstr "Все равно покажи список желаний"
+
+#: classes/page.php:346 classes/page.php:351
+msgid "Really delete?"
+msgstr "Действительно удалить?"
+
+#: classes/page.php:347
+#, php-format
+msgid "Do you really want to delete the wishlist %s?"
+msgstr "Ты действительно хочешь удалить список желаний %s?"
+
+#: classes/page.php:348 classes/page.php:353
+msgid "Yes, delete"
+msgstr "Да, удаляй"
+
+#: classes/page.php:349 classes/page.php:354
+msgid "No, keep"
+msgstr "Нет, продолжай"
+
+#: classes/page.php:352
+msgid "Would you really like to delete to this wish? It will be gone forever."
+msgstr ""
+"Ты действительно хочешь удалиться в это желание? Оно исчезнет навсегда."
+
+#: classes/page.php:356
+msgid "Passwords must match."
+msgstr "Пароли должны совпадать."
+
+#: classes/page.php:358
+msgid "Wishlist successfully renamed."
+msgstr "Wishlist успешно переименован."
+
+#: classes/page.php:359
+msgid "Wishlist successfully deleted."
+msgstr "Wishlist успешно удален."
+
+#: classes/page.php:361
+msgid "Wish successfully created."
+msgstr "Желание успешно создано."
+
+#: classes/page.php:362
+msgid "Wish successfully added."
+msgstr "Желание успешно добавлено."
+
+#: classes/page.php:363
+msgid "Wish information updated."
+msgstr "Информация о желаниях обновлена."
+
+#: classes/page.php:364
+msgid "Don't forget to save your changes."
+msgstr "Не забудь сохранить свои изменения."
+
+#: classes/page.php:365
+msgid "Wish successfully deleted."
+msgstr "Желание успешно удалено."
+
+#: classes/page.php:368
+msgid "Unable to copy to clipboard. There is likely a permission issue."
+msgstr ""
+"Невозможно скопировать в буфер обмена. Скорее всего, существует проблема с "
+"разрешениями."
+
+#: classes/page.php:369
+msgid "Link copied to clipboard."
+msgstr "Ссылка копируется в буфер обмена."
+
+#: classes/page.php:371
+msgid "{name} must have a value"
+msgstr "{name} должен иметь значение"
+
+#: classes/page.php:372
+msgid "{name} must be checked"
+msgstr "{name} необходимо проверить"
+
+#: classes/page.php:373
+msgid "{name} must be a valid e-mail"
+msgstr "{name} должен быть действующий e-mail"
+
+#: classes/page.php:374
+msgid "{name} must be a valid URL"
+msgstr "{name} должен быть действительным URL"
+
+#: classes/page.php:375
+msgid "{name} is not formatted correctly"
+msgstr "{name} отформатирован неправильно"
+
+#: classes/page.php:376
+msgid "{name} must be an integer"
+msgstr "{name} должно быть целым числом"
+
+#: classes/page.php:377
+msgid "{name} must be a decimal number"
+msgstr "{name} должно быть десятичным числом."
+
+#: classes/page.php:378
+msgid "{name} must be set to a number"
+msgstr "{name} должен быть установлен на число."
+
+#: classes/page.php:379
+msgid "{name} must be \"{ruleValue}\""
+msgstr "{name} должен быть \"{ruleValue}\"."
+
+#: classes/page.php:380
+msgid "{name} must be exactly \"{ruleValue}\""
+msgstr "{name} должно быть именно \"{ruleValue}\"."
+
+#: classes/page.php:381
+msgid "{name} cannot be set to \"{ruleValue}\""
+msgstr "{name} не может быть установлен на \"{ruleValue}\"."
+
+#: classes/page.php:382
+msgid "{name} cannot be set to exactly \"{ruleValue}\""
+msgstr "{name} не может быть установлен в точности на \"{ruleValue}\"."
+
+#: classes/page.php:383
+msgid "{name} cannot contain \"{ruleValue}\""
+msgstr "{name} не может содержать \"{ruleValue}\"."
+
+#: classes/page.php:384
+msgid "{name} cannot contain exactly \"{ruleValue}\""
+msgstr "{name} не может содержать в точности \"{ruleValue}\"."
+
+#: classes/page.php:385
+msgid "{name} must contain \"{ruleValue}\""
+msgstr "{name} должен содержать \"{ruleValue}\"."
+
+#: classes/page.php:386
+msgid "{name} must contain exactly \"{ruleValue}\""
+msgstr "{name} должен содержать именно \"{ruleValue}\"."
+
+#: classes/page.php:387 classes/page.php:388
+msgid "{name} must be at least {ruleValue} characters"
+msgstr "{name} должно быть не менее {ruleValue} символов."
+
+#: classes/page.php:389
+msgid "{name} must be exactly {ruleValue} characters"
+msgstr "{name} должно быть ровно {ruleValue} символов."
+
+#: classes/page.php:390
+msgid "{name} cannot be longer than {ruleValue} characters"
+msgstr "{name} не может быть длиннее, чем {ruleValue} символов."
+
+#: classes/page.php:391
+msgid "{name} must match {ruleValue} field"
+msgstr "{name} должен соответствовать полю {ruleValue}."
+
+#: classes/page.php:392
+msgid "{name} must have a different value than {ruleValue} field"
+msgstr "Поле {name} должно иметь другое значение, чем поле {ruleValue}."
+
+#: classes/page.php:393
+msgid "{name} must be a valid credit card number"
+msgstr "{name} должен быть действительным номером кредитной карты."
+
+#: classes/page.php:394
+msgid "{name} must have at least {ruleValue} choices"
+msgstr "У {name} должен быть как минимум {ruleValue} выбор."
+
+#: classes/page.php:395
+msgid "{name} must have exactly {ruleValue} choices"
+msgstr "У {name} должно быть ровно {ruleValue} вариантов."
+
+#: classes/page.php:396
+msgid "{name} must have {ruleValue} or less choices"
+msgstr "{name} должен иметь {ruleValue} или меньше вариантов."
+
+#: classes/page.php:398
+msgctxt "Calendar"
+msgid "Today"
+msgstr "Сегодня"
+
+#: classes/page.php:399
+msgctxt "Calendar"
+msgid "Now"
+msgstr "Сейчас"
+
+#: classes/page.php:400
+msgctxt "Calendar"
+msgid "AM"
+msgstr "AM"
+
+#: classes/page.php:401
+msgctxt "Calendar"
+msgid "PM"
+msgstr "PM"
+
+#: classes/page.php:402
+msgctxt "Calendar"
+msgid "Week"
+msgstr "Неделя"
+
+#: classes/page.php:404 pages/wishlist.php:34
+msgid "Remember list"
+msgstr "Запомнить список"
+
+#: classes/page.php:405
+msgid "Forget list"
+msgstr "Забытый список"
+
+#: classes/page.php:449 pages/home.php:24
+msgid "Make a wish"
+msgstr "Загадайте желание"
+
+#. TRANSLATORS: Changelog: Added
+#: classes/page.php:475 classes/page.php:479 pages/blog.php:11
+#: pages/changelog.php:44 pages/post.php:62
+msgid "Blog"
+msgstr "Блог"
+
+#: classes/page.php:486
+msgid "System"
+msgstr "Система"
+
+#: classes/page.php:492
+msgid "Account"
+msgstr "Счет"
+
+#: classes/page.php:501 pages/home.php:179
+msgid "Wishlists"
+msgstr "Списки желаний"
+
+#: classes/page.php:505 pages/home.php:33 pages/home.php:35
+#: pages/wishlists.php:11
+msgid "My lists"
+msgstr "Мои списки"
+
+#: classes/page.php:510 pages/wishlists-saved.php:11
+msgid "Remembered lists"
+msgstr "Запомнившиеся списки"
+
+#: classes/page.php:520 pages/profile.php:11
+msgid "Profile"
+msgstr "Профиль"
+
+#: classes/page.php:526 pages/login-as.php:11
+msgid "Login as"
+msgstr "Войти как"
+
+#: classes/page.php:532 pages/logout.php:11
+msgid "Logout"
+msgstr "Выход из системы"
+
+#: classes/page.php:538 classes/page.php:542 pages/home.php:79
+#: pages/home.php:81 pages/login-as.php:76 pages/login-as.php:77
+#: pages/login.php:11 pages/login.php:150 pages/login.php:151
+#: pages/register.php:244 pages/register.php:246
+msgid "Login"
+msgstr "Вход"
+
+#: classes/page.php:549 classes/page.php:553 pages/install.php:257
+#: pages/install.php:259 pages/login.php:155 pages/login.php:157
+#: pages/register.php:13 pages/register.php:14
+msgid "Register"
+msgstr "Зарегистрируйся"
+
+#: classes/page.php:563 pages/settings.php:11
+msgid "Settings"
+msgstr "Настройки"
+
+#: classes/page.php:700 classes/page.php:703 pages/changelog.php:11
+msgid "Changelog"
+msgstr "Changelog"
+
+#: classes/page.php:709
+msgid "Contribute"
+msgstr "Внесите свой вклад"
+
+#: classes/page.php:715 classes/page.php:718
+msgid "GitHub"
+msgstr "GitHub"
+
+#: classes/page.php:724 classes/page.php:727
+msgid "Transifex"
+msgstr "Transifex"
+
+#: classes/page.php:733
+msgid "Contact"
+msgstr "Свяжитесь с"
+
+#: classes/page.php:739 classes/page.php:742
+msgid "Matrix"
+msgstr "Матрица"
+
+#: classes/page.php:748 classes/page.php:751
+msgid "Discord"
+msgstr "Дискорд"
+
+#: classes/page.php:788
+#, php-format
+msgid "%s not found"
+msgstr "%s не найдено"
+
+#: classes/page.php:798
+msgid ""
+"The requested Wishlist was not found and likely deleted by its creator."
+msgstr ""
+"Запрашиваемый вишлист не был найден и, скорее всего, удален его создателем."
+
+#: classes/page.php:802
+msgid "The requested Wish was not found."
+msgstr "Запрашиваемое Желание не было найдено."
+
+#: classes/page.php:806
+#, php-format
+msgid "The requested %s was not found."
+msgstr "Запрошенный %s не был найден."
+
+#: classes/wish.php:34
+msgid "Unsure about it"
+msgstr "Не уверен в этом"
+
+#: classes/wish.php:38
+msgid "Nice to have"
+msgstr "Приятно иметь"
+
+#: classes/wish.php:42
+msgid "Would love it"
+msgstr "С удовольствием"
+
+#: classes/wish.php:149
+msgid "Wish temporarily fulfilled"
+msgstr "Временно исполненное желание"
+
+#. TRANSLATORS: %s: Duration (i. e. 30 minutes)
+#: classes/wish.php:154
+#, php-format
+msgid ""
+"If this wish is a product, confirm the order was successful and mark it as "
+"fulfilled here. If you do not confirm this wish as fulfilled, it will become"
+" available again to others after %s."
+msgstr ""
+"Если это желание - продукт, подтверди, что заказ был успешным, и отметь его "
+"как выполненное здесь. Если ты не подтвердишь это желание как выполненное, "
+"оно снова станет доступным для других после %s."
+
+#. TRANSLATORS: %d Amount of minutes
+#: classes/wish.php:157
+#, php-format
+msgid "%d minutes"
+msgstr "%d минут"
+
+#: classes/wish.php:168
+msgid "Confirm"
+msgstr "Подтвердите"
+
+#: classes/wish.php:234 classes/wish.php:237 pages/wishlist.php:65
+msgid "Fulfil wish"
+msgstr "Исполнить желание"
+
+#: classes/wish.php:244 classes/wish.php:247
+msgid "Visit"
+msgstr "Посетите"
+
+#: classes/wish.php:253 classes/wish.php:256 pages/wishlists.php:34
+#: pages/wishlists.php:64 pages/wishlists.php:67
+msgid "Options"
+msgstr "Опции"
+
+#: classes/wish.php:261
+msgid "Mark as fulfilled"
+msgstr "Отметить как выполненное"
+
+#: classes/wish.php:266
+msgid "Edit"
+msgstr "Редактировать"
+
+#: classes/wish.php:271 pages/wishlists.php:75 pages/wishlists.php:77
+msgid "Delete"
+msgstr "Удалить"
+
+#: classes/wish.php:289
+msgid "Wish not found"
+msgstr "Желание не найдено"
+
+#: classes/wishlist.php:110
+msgid "This wishlist seems to be empty."
+msgstr "Этот список желаний, похоже, пуст."
+
+#: classes/wishlist.php:110
+msgid "Empty"
+msgstr "Пустой"
+
+#: classes/wishlist.php:123
+msgid "Wishlist not found"
+msgstr "Wishlist not found"
+
+#: config/config-sample.php:22 config/config.php:22
+msgid "Stable"
+msgstr "Стабильный"
+
+#: config/config-sample.php:27 config/config.php:27
+msgid "Release candidate"
+msgstr "Кандидат на освобождение"
+
+#: functions/getWishlistNameSuggestion.php:30
+msgid "Birthday"
+msgstr "День рождения"
+
+#: functions/getWishlistNameSuggestion.php:32
+msgid "Easter"
+msgstr "Пасха"
+
+#: functions/getWishlistNameSuggestion.php:34
+msgid "Christmas"
+msgstr "Рождество"
+
+#. TRANSLATORS: %s: Language, most likely English
+#: pages/blog.php:22
+#, php-format
+msgid ""
+"The blog is currently only available in %s and not translatable. Please let "
+"me know if you have any ideas to improve this."
+msgstr ""
+"В настоящее время блог доступен только на %s и не переводится. Пожалуйста, "
+"дай мне знать, если у тебя есть идеи по его улучшению."
+
+#: pages/blog.php:25
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: pages/blog.php:59
+msgid "Read more"
+msgstr "Читать далее"
+
+#: pages/blog.php:86 pages/post.php:55
+msgid "Top"
+msgstr "Топ"
+
+#: pages/changelog.php:25 pages/changelog.php:35
+msgid "0.7.0"
+msgstr "0.7.0"
+
+#: pages/changelog.php:26 pages/changelog.php:171
+msgid "0.6.0"
+msgstr "0.6.0"
+
+#: pages/changelog.php:39 pages/changelog.php:175
+msgid "Added"
+msgstr "Добавлено"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:50
+msgid "Dark theme"
+msgstr "Темная тема"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:56
+msgid "Wish products"
+msgstr "Продукты желания"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:62
+msgid "Jump to last edited wishlist from home"
+msgstr "Перейти к последнему отредактированному списку желаний из дома"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:68
+msgid "Quick add wish from home"
+msgstr "Быстрое добавление желания из дома"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:74
+msgid "Button to request more wishes from a users wishlist"
+msgstr ""
+"Кнопка для запроса большего количества желаний из списка желаний "
+"пользователя"
+
+#: pages/changelog.php:79 pages/changelog.php:197
+msgid "Improved"
+msgstr "Улучшенный"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:84
+msgid "Localisation (many new translations added)"
+msgstr "Локализация (добавлено много новых переводов)"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:90
+msgid ""
+"Additional logins are no longer required when switching between wishthis "
+"channels"
+msgstr ""
+"Дополнительные логины больше не требуются при переключении между каналами "
+"wishthis"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:96
+msgid "Remembered wishlists design"
+msgstr "Запоминающийся дизайн списков желаний"
+
+#: pages/changelog.php:101
+msgid "Changed"
+msgstr "Изменено"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:106
+msgid "Changelog is now a page instead of a downloadable markdown file"
+msgstr ""
+"Changelog теперь представляет собой страницу, а не загружаемый markdown-файл"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:112
+msgid ""
+"Wishes can be edited from the wishlist now, without loading another page"
+msgstr ""
+"Теперь желания можно редактировать из списка желаний, не загружая другую "
+"страницу"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:118
+msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
+msgstr "\"Сохраненные списки желаний\" переименованы в \"Запомнить списки\"."
+
+#: pages/changelog.php:123 pages/changelog.php:207
+msgid "Fixed"
+msgstr "Исправлено"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:128
+msgid "Various minor things (typos, menu order, etc)"
+msgstr "Различные мелочи (опечатки, порядок меню и т.д.)"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:134
+msgid "Wish information being updated with 404 content from URL"
+msgstr "Информация о желании обновляется содержимым 404 с URL-адреса"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:140
+msgid "Wish image not showing"
+msgstr "Изображение желания не отображается"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:146
+msgid "An error when saving a wish with a really long URL"
+msgstr "Ошибка при сохранении желания с очень длинным URL-адресом"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:152
+msgid "Redirect errors on Nginx"
+msgstr "Ошибки перенаправления на Nginx"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:158
+msgid "An error when fetching title from an URL containing quotes"
+msgstr "Ошибка при получении заголовка из URL, содержащего кавычки"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:180
+msgid "This changelog"
+msgstr "Этот журнал изменений"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:186
+msgid "Wish properties"
+msgstr "Свойства желания"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:192
+msgid "Button to mark wish as fulfilled"
+msgstr "Кнопка, чтобы отметить желание как выполненное"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:202
+msgid "Card design"
+msgstr "Дизайн карты"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:212
+msgid "Various small bugs"
+msgstr "Различные мелкие ошибки"
+
+#: pages/home.php:11
+msgid "Home"
+msgstr "Главная"
+
+#: pages/home.php:71 pages/home.php:73
+msgid "Register now"
+msgstr "Зарегистрируйся сейчас"
+
+#: pages/home.php:89
+msgid "Use case"
+msgstr "Пример использования"
+
+#: pages/home.php:91
+msgid ""
+"Your birthday is coming up and you just created a wishlist with all the cool"
+" stuff you want. Your friends and family want to make sure you get something"
+" you are happy with so you send them your wishlist link and if anybody "
+"decides to fulfil one of your wishes, it will disappear for everybody else."
+msgstr ""
+"Скоро твой день рождения, и ты только что создал список желаний со всеми "
+"крутыми вещами, которые ты хочешь получить. Твои друзья и семья хотят "
+"убедиться, что ты получишь то, чем будешь доволен, поэтому ты отправляешь им"
+" ссылку на свой список желаний, и если кто-то решит исполнить одно из твоих "
+"желаний, оно исчезнет для всех остальных."
+
+#: pages/home.php:95
+msgid "Why wishthis?"
+msgstr "Почему именно wishthis?"
+
+#: pages/home.php:98
+#, php-format
+msgid ""
+"wishthis is free and open source software. With free I don't just mean, you "
+"don't have to pay money to use it, but you are also not paying with your "
+"personal information and behaviour. Not only can anybody %sview and verify "
+"its code%s, I also encourage you to do so."
+msgstr ""
+"wishthis - это бесплатное программное обеспечение с открытым исходным кодом."
+" Под бесплатностью я подразумеваю не только то, что тебе не нужно платить "
+"деньги за его использование, но и то, что ты не расплачиваешься своей личной"
+" информацией и поведением. Мало того, что любой может %sпросмотреть и "
+"проверить его код%s, я также призываю тебя сделать это."
+
+#: pages/home.php:101
+msgid "As a non-commercial project it remains"
+msgstr "Как некоммерческий проект он остается"
+
+#: pages/home.php:105
+msgid "free of advertisements,"
+msgstr "свободный от рекламных объявлений,"
+
+#: pages/home.php:109
+msgid "without tracking, and"
+msgstr "без отслеживания, и"
+
+#: pages/home.php:113
+msgid "open for feedback and suggestions."
+msgstr "открыт для отзывов и предложений."
+
+#: pages/home.php:119
+msgid "News"
+msgstr "Новости"
+
+#: pages/home.php:166
+msgid "Statistics"
+msgstr "Статистика"
+
+#: pages/home.php:168
+msgid "Join the others and get started now!"
+msgstr "Присоединяйся к остальным и начинай прямо сейчас!"
+
+#: pages/home.php:173 pages/home.php:178 pages/home.php:183
+msgid "N. A."
+msgstr "N. A."
+
+#: pages/home.php:174 pages/wishlist.php:70 pages/wishlists.php:87
+msgid "Wishes"
+msgstr "Пожелания"
+
+#: pages/home.php:184
+msgid "Registered users"
+msgstr "Зарегистрированные пользователи"
+
+#: pages/install.php:15
+msgid "Install"
+msgstr "Установите"
+
+#: pages/install.php:30 pages/install.php:101
+#, php-format
+msgid "Step %d"
+msgstr "Шаг %d"
+
+#: pages/install.php:31
+msgid "Welcome to the wishthis installer."
+msgstr "Добро пожаловать в инсталлятор wishthis."
+
+#: pages/install.php:32
+msgid ""
+"wishthis needs a database to function properly. Please enter your "
+"credentials."
+msgstr ""
+"wishthis нуждается в базе данных для правильного функционирования. "
+"Пожалуйста, введите свои учетные данные."
+
+#: pages/install.php:39
+msgid "Host"
+msgstr "Хозяин"
+
+#: pages/install.php:44 pages/wishlists.php:119
+msgid "Name"
+msgstr "Имя"
+
+#: pages/install.php:49
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: pages/install.php:54 pages/login.php:139 pages/profile.php:143
+#: pages/profile.php:218 pages/profile.php:227 pages/register.php:208
+msgid "Password"
+msgstr "Пароль"
+
+#: pages/install.php:60 pages/install.php:61 pages/install.php:110
+#: pages/install.php:111
+msgid "Continue"
+msgstr "Продолжить"
+
+#: pages/install.php:102
+msgid "Click continue to test the database connection."
+msgstr "Нажми продолжить, чтобы проверить подключение к базе данных."
+
+#: pages/login-as.php:55
+#, php-format
+msgid "Successfully logged in as %s."
+msgstr "Успешно вошел в систему как %s."
+
+#: pages/login-as.php:57
+msgid "User not found!"
+msgstr "Пользователь не найден!"
+
+#: pages/login-as.php:65 pages/login.php:130 pages/profile.php:34
+#: pages/profile.php:184 pages/register.php:190
+msgid "Email"
+msgstr "Пишите на"
+
+#: pages/login.php:44
+msgid "No user could be found with the credentials you provided."
+msgstr ""
+"Не удалось найти пользователя с предоставленными тобой учетными данными."
+
+#: pages/login.php:45
+msgid "Invalid credentials"
+msgstr "Неверные учетные данные"
+
+#: pages/login.php:83
+msgid "Password reset link"
+msgstr "Ссылка для сброса пароля"
+
+#. TRANSLATORS: %s: The wishthis domain
+#: pages/login.php:89
+#, php-format
+msgid ""
+"somebody has requested a password reset for this email address from %s. If "
+"this was you, click the button below to invalidate your current password and"
+" set a new one."
+msgstr ""
+"кто-то запросил сброс пароля для этого адреса электронной почты с %s. Если "
+"это был ты, нажми на кнопку ниже, чтобы аннулировать твой текущий пароль и "
+"установить новый."
+
+#: pages/login.php:93
+msgid "Set new password"
+msgstr "Установите новый пароль"
+
+#: pages/login.php:105
+msgid ""
+"If a match can be found for this email address, a password reset link will "
+"be sent to it."
+msgstr ""
+"Если для этого адреса электронной почты будет найдено соответствие, на него "
+"будет отправлена ссылка для сброса пароля."
+
+#: pages/login.php:106
+msgid "Info"
+msgstr "Информация"
+
+#: pages/login.php:126
+msgid "Credentials"
+msgstr "Кредитные карты"
+
+#: pages/login.php:163
+msgid "Forgot password?"
+msgstr "Забыл пароль?"
+
+#: pages/login.php:165
+msgid ""
+"Consider using a password manager. It will save all your passwords and allow"
+" you to access them with one master password. Never forget a password ever "
+"again."
+msgstr ""
+"Рассмотри возможность использования менеджера паролей. Он сохранит все твои "
+"пароли и позволит тебе получить к ним доступ с помощью одного главного "
+"пароля. Никогда больше не забывай пароли."
+
+#: pages/login.php:181 pages/login.php:182
+msgid "Send email"
+msgstr "Отправить электронное письмо"
+
+#: pages/login.php:190
+msgid ""
+"Please note that you have to enter the email address, you have registered "
+"with."
+msgstr ""
+"Обрати внимание, что ты должен ввести адрес электронной почты, на который ты"
+" зарегистрировался."
+
+#: pages/logout.php:28
+msgid "Goodbye"
+msgstr "До свидания"
+
+#: pages/logout.php:29
+msgid "You have been logged out."
+msgstr "Ты вышел из системы."
+
+#: pages/maintenance.php:11
+msgid "Maintenance"
+msgstr "Техническое обслуживание"
+
+#: pages/maintenance.php:22
+msgid "Temporarily unavailable"
+msgstr "Временно недоступные"
+
+#: pages/maintenance.php:23
+msgid ""
+"Due to maintenance, wishthis is temporarily not available. Please check back"
+" again in a minute."
+msgstr ""
+"В связи с техническим обслуживанием wishthis временно недоступен. "
+"Пожалуйста, проверь еще раз через минуту."
+
+#: pages/parts/wish-add.php:12
+msgid "General"
+msgstr "General"
+
+#: pages/parts/wish-add.php:13
+msgid "Product"
+msgstr "Продукт"
+
+#: pages/parts/wish-add.php:22 pages/wishlists.php:150
+msgid "Title"
+msgstr "Название"
+
+#: pages/parts/wish-add.php:35
+msgid "Description"
+msgstr "Описание"
+
+#: pages/parts/wish-add.php:47
+msgid "URL"
+msgstr "URL"
+
+#: pages/parts/wish-add.php:58
+msgid "Priority"
+msgstr "Приоритет"
+
+#: pages/parts/wish-add.php:63
+msgid "Select priority"
+msgstr "Выберите приоритет"
+
+#: pages/parts/wish-add.php:76
+msgid "Image"
+msgstr "Изображение"
+
+#: pages/parts/wish-add.php:87
+msgid "Properties"
+msgstr "Свойства"
+
+#: pages/parts/wish-add.php:96
+msgid "Is purchasable"
+msgstr "Можно ли приобрести"
+
+#: pages/parts/wish-add.php:112
+msgid "Price"
+msgstr "Цена"
+
+#: pages/parts/wishlist-filter.php:21
+msgid "Filter priorities"
+msgstr "Приоритеты фильтрации"
+
+#: pages/parts/wishlist-filter.php:26
+msgid "Search priorities"
+msgstr "Приоритеты поиска"
+
+#: pages/parts/wishlist-filter.php:33
+msgid "Priorities"
+msgstr "Приоритеты"
+
+#: pages/parts/wishlist-filter.php:39
+msgid "All priorities"
+msgstr "Все приоритеты"
+
+#: pages/parts/wishlist-filter.php:44
+msgid "No priority"
+msgstr "Без приоритета"
+
+#: pages/power.php:11
+msgid "Insufficient power"
+msgstr "Недостаточная мощность"
+
+#: pages/power.php:22
+msgid "Restricted access"
+msgstr "Ограниченный доступ"
+
+#: pages/power.php:23
+#, php-format
+msgid ""
+"You do not have enough power to view this page. You need %s to see this "
+"page, but only have %s."
+msgstr ""
+"У тебя недостаточно энергии для просмотра этой страницы. Тебе нужен %s для "
+"просмотра этой страницы, но у тебя есть только %s."
+
+#: pages/profile.php:19 pages/profile.php:164
+msgid "First name"
+msgstr "Имя"
+
+#: pages/profile.php:24 pages/profile.php:170
+msgid "Last name"
+msgstr "Фамилия"
+
+#: pages/profile.php:29 pages/profile.php:176
+msgid "Nickname"
+msgstr "Прозвище"
+
+#: pages/profile.php:39 pages/profile.php:290
+msgid "Language"
+msgstr "Язык"
+
+#: pages/profile.php:52
+#, php-format
+msgid "%s successfully updated!"
+msgstr "%s успешно обновлен!"
+
+#: pages/profile.php:118
+msgid "It is required for you to login again."
+msgstr "Это необходимо для того, чтобы ты снова вошел в систему."
+
+#: pages/profile.php:139 pages/profile.php:155
+msgid "Personal"
+msgstr "Персональный"
+
+#: pages/profile.php:140
+msgid "Information regarding yourself"
+msgstr "Информация, касающаяся тебя самого"
+
+#: pages/profile.php:144
+msgid "Change your password"
+msgstr "Измени свой пароль"
+
+#: pages/profile.php:147 pages/profile.php:281
+msgid "Preferences"
+msgstr "Предпочтения"
+
+#: pages/profile.php:148
+msgid "Improve your wishthis experience"
+msgstr "Улучши свой опыт работы с wishthis"
+
+#: pages/profile.php:190
+msgid "Birthdate"
+msgstr "Дата рождения"
+
+#: pages/profile.php:197
+msgid "Pick a date"
+msgstr "Выбери дату"
+
+#: pages/profile.php:209 pages/profile.php:210 pages/profile.php:243
+#: pages/profile.php:244 pages/profile.php:336 pages/profile.php:337
+#: pages/settings.php:53 pages/settings.php:54 pages/wishlists.php:213
+#: pages/wishlists.php:214
+msgid "Save"
+msgstr "Сохранить"
+
+#: pages/profile.php:233
+msgid "Password (repeat)"
+msgstr "Пароль (повтор)"
+
+#: pages/profile.php:249
+msgid "Safe password checklist"
+msgstr "Контрольный список безопасных паролей"
+
+#: pages/profile.php:256
+msgid "Long"
+msgstr "Долго"
+
+#: pages/profile.php:257
+msgid "Over eight characters in length."
+msgstr "Более восьми символов в длину."
+
+#. TRANSLATORS: A special character (for a password)
+#: pages/profile.php:268
+msgid "Special"
+msgstr "Специальный"
+
+#: pages/profile.php:271
+msgid "Contains special characters."
+msgstr "Содержит специальные символы."
+
+#: pages/profile.php:315 pages/profile.php:373
+msgid "Channel"
+msgstr "Канал"
+
+#: pages/profile.php:318
+msgid "Select channel"
+msgstr "Выберите канал"
+
+#: pages/profile.php:376
+msgid ""
+"In order to improve the user experience of wishthis, newer versions are "
+"published after an extensive testing period."
+msgstr ""
+"Для того чтобы улучшить пользовательский опыт wishthis, новые версии "
+"публикуются после обширного периода тестирования."
+
+#: pages/profile.php:377
+msgid ""
+"Subscribing to the Stable channel ensures you have the highest possible "
+"stability while using wishthis, minimizing the amount of errors you may "
+"encounter (if any)."
+msgstr ""
+"Подписка на канал Stable гарантирует тебе максимально возможную стабильность"
+" при использовании wishthis, сводя к минимуму количество ошибок, с которыми "
+"ты можешь столкнуться (если они есть)."
+
+#: pages/profile.php:378
+msgid ""
+"If you want to speed up the release of newer versions, consider subscribing "
+"to the Release candidate of wishthis. A newer version is not published "
+"unless the next release candidate has been sufficiently tested."
+msgstr ""
+"Если ты хочешь ускорить выпуск новых версий, рассмотри возможность подписки "
+"на релиз-кандидат wishthis. Более новая версия не публикуется до тех пор, "
+"пока следующий релиз-кандидат не будет достаточно протестирован."
+
+#: pages/profile.php:390
+#, php-format
+msgid "%d more subscriber needed"
+msgid_plural "%d more subscribers needed"
+msgstr[0] "%d требуется больше абонентов"
+msgstr[1] "%d необходимо больше подписчиков"
+msgstr[2] "%d необходимо больше подписчиков"
+msgstr[3] "%d необходимо больше подписчиков"
+
+#: pages/register.php:13
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+#: pages/register.php:14
+msgid "Reset"
+msgstr "Сброс"
+
+#: pages/register.php:32
+msgid "Mercury"
+msgstr "Ртуть"
+
+#: pages/register.php:33
+msgid "Venus"
+msgstr "Венера"
+
+#: pages/register.php:34
+msgid "Earth"
+msgstr "Земля"
+
+#: pages/register.php:35
+msgid "Mars"
+msgstr "Марс"
+
+#: pages/register.php:36
+msgid "Jupiter"
+msgstr "Юпитер"
+
+#: pages/register.php:37
+msgid "Saturn"
+msgstr "Сатурн"
+
+#: pages/register.php:38
+msgid "Uranus"
+msgstr "Уран"
+
+#: pages/register.php:39
+msgid "Neptune"
+msgstr "Нептун"
+
+#: pages/register.php:42
+msgid "Pluto"
+msgstr "Плутон"
+
+#: pages/register.php:43
+msgid "Sun"
+msgstr "Солнце"
+
+#: pages/register.php:52
+#, php-format
+msgid ""
+"%s is not a planet but I'll let it slide, since only a human would make this"
+" kind of mistake."
+msgstr ""
+"%s не является планетой, но я оставлю это без внимания, поскольку только "
+"человек мог бы совершить такую ошибку."
+
+#: pages/register.php:53 pages/register.php:166
+msgid "Invalid planet"
+msgstr "Неверная планета"
+
+#: pages/register.php:92
+msgid "This password reset link has expired, please request a new one."
+msgstr ""
+"Срок действия этой ссылки для сброса пароля истек, пожалуйста, запросите "
+"новую."
+
+#: pages/register.php:95
+msgid ""
+"This password reset link seems to have been manipulated, please request a "
+"new one."
+msgstr ""
+"Похоже, что эта ссылка на сброс пароля была изменена, пожалуйста, запросите "
+"новую."
+
+#: pages/register.php:119
+msgid "An account with this email address already exists."
+msgstr "Учетная запись с таким адресом электронной почты уже существует."
+
+#: pages/register.php:120
+msgid "Invalid email address"
+msgstr "Неверный адрес электронной почты"
+
+#: pages/register.php:136
+msgid "Your account was successfully created."
+msgstr "Твой аккаунт был успешно создан."
+
+#: pages/register.php:146
+msgid "My hopes and dreams"
+msgstr "Мои надежды и мечты"
+
+#: pages/register.php:165
+#, php-format
+msgid ""
+"%s is not a planet in our solar system. Read this for more information: %s."
+msgstr ""
+"%s не является планетой в нашей Солнечной системе. Прочитай это для "
+"получения дополнительной информации: %s."
+
+#: pages/register.php:187
+msgid "Account details"
+msgstr "Детализация счета"
+
+#: pages/register.php:218
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#: pages/register.php:219
+msgid ""
+"Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
+"planet from our solar system."
+msgstr ""
+"Докажи, что ты человек, ящероподобный человек или Zuck-подобное существо. "
+"Назови, пожалуйста, планету из нашей Солнечной системы."
+
+#: pages/register.php:222
+msgid "Planet"
+msgstr "Планета"
+
+#: pages/register.php:229
+msgid ""
+"Robots are obviously from another solar system so this will keep them at "
+"bay."
+msgstr ""
+"Роботы явно из другой солнечной системы, поэтому это будет держать их на "
+"расстоянии."
+
+#: pages/register.php:256
+msgid "About your email address"
+msgstr "О твоем адресе электронной почты"
+
+#: pages/register.php:258
+msgid ""
+"Currently the email address is used as a unique identifier and does not have"
+" to be verified. You may enter a fake address."
+msgstr ""
+"В настоящее время адрес электронной почты используется в качестве "
+"уникального идентификатора и не обязательно должен быть проверен. Ты можешь "
+"ввести поддельный адрес."
+
+#: pages/register.php:259
+msgid ""
+"wishthis is not a commercial project and is not interested in sending you "
+"marketing emails or selling your information to third parties. Although "
+"possible to do otherwise, it is strongly recommend to enter your real email "
+"address in case you need to recover your password or receive important "
+"notifications. These do not exist yet, but some future features and options "
+"might require sending you an email (i. e. when a wish has been fulfilled)."
+msgstr ""
+"wishthis не является коммерческим проектом и не заинтересован в рассылке "
+"тебе маркетинговых писем или продаже твоей информации третьим лицам. "
+"Несмотря на возможность сделать иначе, настоятельно рекомендуется вводить "
+"свой реальный адрес электронной почты на случай, если тебе понадобится "
+"восстановить пароль или получить важные уведомления. Пока таких уведомлений "
+"не существует, но некоторые будущие функции и опции могут потребовать "
+"отправки тебе электронного письма (например, при исполнении желания)."
+
+#. TRANSLATORS: %s: source code is publicly viewable
+#: pages/register.php:264
+#, php-format
+msgid ""
+"Trust is a two way street and wishthis aims to be a transparent, trustworthy"
+" product, which is why the wishthis %s."
+msgstr ""
+"Доверие - это улица с двусторонним движением, и wishthis стремится быть "
+"прозрачным, заслуживающим доверия продуктом, вот почему wishthis %s."
+
+#: pages/register.php:265
+msgid "source code is publicly viewable"
+msgstr "исходный код доступен для публичного просмотра"
+
+#: pages/settings.php:27
+msgid "MJML"
+msgstr "MJML"
+
+#: pages/settings.php:28
+#, php-format
+msgid "MJML is required for sending emails. Visit %s to request API access."
+msgstr ""
+"MJML необходим для отправки электронных писем. Посети %s, чтобы запросить "
+"доступ к API."
+
+#: pages/settings.php:30
+msgid "API"
+msgstr "API"
+
+#: pages/settings.php:33
+msgid "Key"
+msgstr "Ключ"
+
+#: pages/settings.php:42
+msgid "Secret"
+msgstr "Секрет"
+
+#: pages/update.php:11
+msgid "Update"
+msgstr "Обновить"
+
+#: pages/update.php:42
+#, php-format
+msgid "Database successfully migrated to %s."
+msgstr "База данных успешно мигрировала на %s."
+
+#: pages/update.php:67
+msgid "Database migration"
+msgstr "Миграция базы данных"
+
+#: pages/update.php:68
+msgid ""
+"Thank you for updating wishthis! To complete this update, some changes are "
+"required to the database structure."
+msgstr ""
+"Спасибо за обновление wishthis! Чтобы завершить это обновление, необходимо "
+"внести некоторые изменения в структуру базы данных."
+
+#: pages/update.php:73 pages/update.php:76
+#, php-format
+msgid "Migrate to %s"
+msgstr "Мигрируй в %s"
+
+#: pages/wishlist.php:50
+msgid "Careful"
+msgstr "Осторожно"
+
+#: pages/wishlist.php:53
+msgid ""
+"You are viewing your own wishlist! You will be able to see which wishes have"
+" already been fulfilled for you. Don't you want to be surprised?"
+msgstr ""
+"Ты просматриваешь свой собственный список желаний! Ты сможешь увидеть, какие"
+" желания уже были исполнены для тебя. Разве ты не хочешь быть удивленным?"
+
+#: pages/wishlist.php:54
+msgid "It's probably best to just close this tab."
+msgstr "Вероятно, лучше просто закрыть эту вкладку."
+
+#: pages/wishlist.php:62
+msgid "What to do?"
+msgstr "Что делать?"
+
+#: pages/wishlist.php:64
+#, php-format
+msgid ""
+"If you found a wish you would like to fulfil, click the %s button and it "
+"will temporarily become unavailable for others. Make sure to confirm the "
+"fulfilled wish here (i. e. after placing an order), to make the wish "
+"permanently unavailable for everybody else."
+msgstr ""
+"Если ты нашел желание, которое хотел бы исполнить, нажми на кнопку %s, и оно"
+" временно станет недоступным для других. Обязательно подтверди исполненное "
+"желание здесь (то есть после оформления заказа), чтобы сделать его навсегда "
+"недоступным для всех остальных."
+
+#: pages/wishlist.php:92 pages/wishlist.php:106 pages/wishlist.php:121
+msgid "Request more wishes"
+msgstr "Запроси больше желаний"
+
+#: pages/wishlist.php:110
+msgid "A notification has just been sent to the owner of this wishlist."
+msgstr ""
+"Только что владельцу этого списка желаний было отправлено уведомление."
+
+#: pages/wishlist.php:114 pages/wishlist.php:115 pages/wishlist.php:129
+#: pages/wishlist.php:130
+msgid "Ok"
+msgstr "Ок"
+
+#: pages/wishlist.php:125
+msgid ""
+"The wishlist owner has already received a notification recently and has not "
+"been notified again."
+msgstr ""
+"Владелец списка желаний уже получал уведомление недавно и не получал его "
+"снова."
+
+#: pages/wishlists-saved.php:59
+msgid ""
+"Ask somebody to share their wishlist with you and hit the remember button "
+"for it to show up here!"
+msgstr ""
+"Попроси кого-нибудь поделиться с тобой своим списком желаний и нажми кнопку "
+"\"Запомнить\", чтобы он появился здесь!"
+
+#: pages/wishlists-saved.php:59
+msgid "No lists"
+msgstr "Никаких списков"
+
+#: pages/wishlists.php:26
+msgid "Wishlist"
+msgstr "Список пожеланий"
+
+#: pages/wishlists.php:29
+msgid "Loading your wishlists..."
+msgstr "Загружаю твои списки желаний..."
+
+#: pages/wishlists.php:38 pages/wishlists.php:41 pages/wishlists.php:111
+msgid "Create a wishlist"
+msgstr "Создай список желаний"
+
+#: pages/wishlists.php:49 pages/wishlists.php:52 pages/wishlists.php:168
+msgid "Add a wish"
+msgstr "Добавь желание"
+
+#: pages/wishlists.php:57 pages/wishlists.php:60
+msgid "Share"
+msgstr "Поделиться"
+
+#: pages/wishlists.php:70 pages/wishlists.php:72 pages/wishlists.php:156
+#: pages/wishlists.php:157
+msgid "Rename"
+msgstr "Переименовать"
+
+#: pages/wishlists.php:115
+msgid ""
+"Choose a new name for your wishlist. Here's a suggestion to get you started."
+msgstr ""
+"Выбери новое имя для своего списка желаний. Вот предложение для начала."
+
+#: pages/wishlists.php:129 pages/wishlists.php:130
+msgid "Create"
+msgstr "Создай"
+
+#: pages/wishlists.php:132 pages/wishlists.php:133 pages/wishlists.php:159
+#: pages/wishlists.php:160 pages/wishlists.php:187 pages/wishlists.php:188
+#: pages/wishlists.php:216 pages/wishlists.php:217
+msgid "Cancel"
+msgstr "Отмена"
+
+#: pages/wishlists.php:141
+msgid "Rename wishlist"
+msgstr "Переименовать список желаний"
+
+#: pages/wishlists.php:144
+msgid "How would you like to name this wishlist?"
+msgstr "Как бы ты хотела назвать этот список желаний?"
+
+#: pages/wishlists.php:172
+msgid ""
+"Fill the title and/or description to add your new wish. If you just fill out"
+" the URL, wishthis will attempt to auto fill all other fields."
+msgstr ""
+"Заполни название и/или описание, чтобы добавить свое новое желание. Если ты "
+"просто заполнишь URL, wishthis попытается автоматически заполнить все "
+"остальные поля."
+
+#: pages/wishlists.php:184 pages/wishlists.php:185
+msgid "Add"
+msgstr "Добавить"
+
+#: pages/wishlists.php:196
+msgid "Edit wish"
+msgstr "Отредактируй желание"
+
+#: pages/wishlists.php:200
+msgid ""
+"If specified, wishthis will attempt to fetch all missing information from "
+"the URL."
+msgstr ""
+"Если это указано, wishthis попытается получить всю недостающую информацию из"
+" URL."
+
+#: pages/wishlists.php:225
+msgid "URL mismatch"
+msgstr "Несоответствие URL"
+
+#: pages/wishlists.php:229
+msgid ""
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
+msgstr ""
+"URL, который ты ввел, кажется не совсем правильным. Не хочешь ли ты обновить"
+" его на тот, который я нашел?"
+
+#: pages/wishlists.php:230
+#, php-format
+msgid "According to %s, this is the canonical (correct) URL."
+msgstr "Согласно %s, это канонический (правильный) URL."
+
+#: pages/wishlists.php:234
+msgid "Current"
+msgstr "Текущий"
+
+#: pages/wishlists.php:239
+msgid "Proposed"
+msgstr "Предлагаемый"
+
+#: pages/wishlists.php:246 pages/wishlists.php:247
+msgid "Yes, update"
+msgstr "Да, обновление"
+
+#: pages/wishlists.php:249 pages/wishlists.php:250
+msgid "No, leave it"
+msgstr "Нет, оставь это"

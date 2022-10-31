@@ -237,8 +237,7 @@ function tokenizer($TEXT, filename, html5_comments, shebang) {
         newline_before  : false,
         regex_allowed   : false,
         comments_before : [],
-        directives      : {},
-        directive_stack : [],
+        directives      : Object.create(null),
         read_template   : with_eof_error("Unterminated template literal", function(strings) {
             var s = "";
             for (;;) {
@@ -553,16 +552,8 @@ function tokenizer($TEXT, filename, html5_comments, shebang) {
 
     function handle_dot() {
         next();
-        var ch = peek();
-        if (ch == ".") {
-            var op = ".";
-            do {
-                op += ".";
-                next();
-            } while (peek() == ".");
-            return token("operator", op);
-        }
-        return is_digit(ch.charCodeAt(0)) ? read_num(".") : token("punc", ".");
+        if (looking_at("..")) return token("operator", "." + next() + next());
+        return is_digit(peek().charCodeAt(0)) ? read_num(".") : token("punc", ".");
     }
 
     function read_word() {
@@ -635,24 +626,19 @@ function tokenizer($TEXT, filename, html5_comments, shebang) {
     };
 
     next_token.add_directive = function(directive) {
-        S.directive_stack[S.directive_stack.length - 1].push(directive);
-        if (S.directives[directive]) S.directives[directive]++;
-        else S.directives[directive] = 1;
+        S.directives[directive] = true;
     }
 
     next_token.push_directives_stack = function() {
-        S.directive_stack.push([]);
+        S.directives = Object.create(S.directives);
     }
 
     next_token.pop_directives_stack = function() {
-        var directives = S.directive_stack.pop();
-        for (var i = directives.length; --i >= 0;) {
-            S.directives[directives[i]]--;
-        }
+        S.directives = Object.getPrototypeOf(S.directives);
     }
 
     next_token.has_directive = function(directive) {
-        return S.directives[directive] > 0;
+        return !!S.directives[directive];
     }
 
     return next_token;
@@ -699,6 +685,7 @@ function parse($TEXT, options) {
         expression     : false,
         filename       : null,
         html5_comments : true,
+        module         : false,
         shebang        : true,
         strict         : false,
         toplevel       : null,
@@ -795,7 +782,7 @@ function parse($TEXT, options) {
         else if (!optional && !can_insert_semicolon()) expect(";");
     }
 
-    function parenthesised() {
+    function parenthesized() {
         expect("(");
         var exp = expression();
         expect(")");
@@ -820,7 +807,7 @@ function parse($TEXT, options) {
         }
     }
 
-    var statement = embed_tokens(function() {
+    var statement = embed_tokens(function(toplevel) {
         handle_regexp();
         switch (S.token.type) {
           case "string":
@@ -859,15 +846,15 @@ function parse($TEXT, options) {
                 if (S.in_async) return simple_statement();
                 break;
               case "export":
+                if (!toplevel && options.module !== "") unexpected();
                 next();
                 return export_();
               case "import":
                 var token = peek();
-                if (!(token.type == "punc" && /^[(.]$/.test(token.value))) {
-                    next();
-                    return import_();
-                }
-                break;
+                if (token.type == "punc" && /^[(.]$/.test(token.value)) break;
+                if (!toplevel && options.module !== "") unexpected();
+                next();
+                return import_();
               case "let":
                 if (is_vardefs()) {
                     next();
@@ -933,18 +920,18 @@ function parse($TEXT, options) {
                 next();
                 var body = in_loop(statement);
                 expect_token("keyword", "while");
-                var condition = parenthesised();
+                var condition = parenthesized();
                 semicolon(true);
                 return new AST_Do({
                     body      : body,
-                    condition : condition
+                    condition : condition,
                 });
 
               case "while":
                 next();
                 return new AST_While({
-                    condition : parenthesised(),
-                    body      : in_loop(statement)
+                    condition : parenthesized(),
+                    body      : in_loop(statement),
                 });
 
               case "for":
@@ -972,15 +959,13 @@ function parse($TEXT, options) {
                     value = expression();
                     semicolon();
                 }
-                return new AST_Return({
-                    value: value
-                });
+                return new AST_Return({ value: value });
 
               case "switch":
                 next();
                 return new AST_Switch({
-                    expression : parenthesised(),
-                    body       : in_loop(switch_body_)
+                    expression : parenthesized(),
+                    body       : in_loop(switch_body_),
                 });
 
               case "throw":
@@ -989,9 +974,7 @@ function parse($TEXT, options) {
                     croak("Illegal newline after 'throw'");
                 var value = expression();
                 semicolon();
-                return new AST_Throw({
-                    value: value
-                });
+                return new AST_Throw({ value: value });
 
               case "try":
                 next();
@@ -1009,8 +992,8 @@ function parse($TEXT, options) {
                 }
                 next();
                 return new AST_With({
-                    expression : parenthesised(),
-                    body       : statement()
+                    expression : parenthesized(),
+                    body       : statement(),
                 });
             }
         }
@@ -1069,13 +1052,13 @@ function parse($TEXT, options) {
         return stat;
     }
 
-    function has_modifier(name) {
+    function has_modifier(name, no_nlb) {
         if (!is("name", name)) return;
         var token = peek();
         if (!token) return;
         if (is_token(token, "operator", "=")) return;
         if (token.type == "punc" && /^[(;}]$/.test(token.value)) return;
-        if (has_newline_before(token)) return;
+        if (no_nlb && has_newline_before(token)) return;
         return next();
     }
 
@@ -1105,7 +1088,7 @@ function parse($TEXT, options) {
             }
             var start = S.token;
             var fixed = !!has_modifier("static");
-            var async = has_modifier("async");
+            var async = has_modifier("async", true);
             if (is("operator", "*")) {
                 next();
                 var internal = is("name") && /^#/.test(S.token.value);
@@ -1120,6 +1103,18 @@ function parse($TEXT, options) {
                     private: internal,
                     key: key,
                     value: gen,
+                    end: prev(),
+                }));
+                continue;
+            }
+            if (fixed && is("punc", "{")) {
+                props.push(new AST_ClassInit({
+                    start: start,
+                    value: new AST_ClassInitBlock({
+                        start: start,
+                        body: block_(),
+                        end: prev(),
+                    }),
                     end: prev(),
                 }));
                 continue;
@@ -1340,11 +1335,11 @@ function parse($TEXT, options) {
         var loop = S.in_loop;
         var labels = S.labels;
         ++S.in_function;
-        S.in_directives = true;
         S.input.push_directives_stack();
         S.in_loop = 0;
         S.labels = [];
         if (is("punc", "{")) {
+            S.in_directives = true;
             body = block_();
             value = null;
         } else {
@@ -1412,7 +1407,7 @@ function parse($TEXT, options) {
             name: name,
             argnames: argnames,
             rest: argnames.rest || null,
-            body: body
+            body: body,
         });
         if (is_strict) {
             if (name) strict_verify_symbol(name);
@@ -1422,41 +1417,54 @@ function parse($TEXT, options) {
     };
 
     function if_() {
-        var cond = parenthesised(), body = statement(), belse = null;
+        var cond = parenthesized(), body = statement(), alt = null;
         if (is("keyword", "else")) {
             next();
-            belse = statement();
+            alt = statement();
         }
         return new AST_If({
             condition   : cond,
             body        : body,
-            alternative : belse
+            alternative : alt,
         });
     }
 
     function is_alias() {
-        return is("name") || is_identifier_string(S.token.value);
+        return is("name") || is("string") || is_identifier_string(S.token.value);
+    }
+
+    function make_string(token) {
+        return new AST_String({
+            start: token,
+            quote: token.quote,
+            value: token.value,
+            end: token,
+        });
+    }
+
+    function as_path() {
+        var path = S.token;
+        expect_token("string");
+        semicolon();
+        return make_string(path);
     }
 
     function export_() {
         if (is("operator", "*")) {
+            var key = S.token;
+            var alias = key;
             next();
-            var alias = "*";
             if (is("name", "as")) {
                 next();
                 if (!is_alias()) expect_token("name");
-                alias = S.token.value;
+                alias = S.token;
                 next();
             }
             expect_token("name", "from");
-            var path = S.token;
-            expect_token("string");
-            semicolon();
             return new AST_ExportForeign({
-                aliases: [ alias ],
-                keys: [ "*" ],
-                path: path.value,
-                quote: path.quote,
+                aliases: [ make_string(alias) ],
+                keys: [ make_string(key) ],
+                path: as_path(),
             });
         }
         if (is("punc", "{")) {
@@ -1470,26 +1478,20 @@ function parse($TEXT, options) {
                 if (is("name", "as")) {
                     next();
                     if (!is_alias()) expect_token("name");
-                    aliases.push(S.token.value);
+                    aliases.push(S.token);
                     next();
                 } else {
-                    aliases.push(key.value);
+                    aliases.push(key);
                 }
                 if (!is("punc", "}")) expect(",");
             }
             expect("}");
             if (is("name", "from")) {
                 next();
-                var path = S.token;
-                expect_token("string");
-                semicolon();
                 return new AST_ExportForeign({
-                    aliases: aliases,
-                    keys: keys.map(function(token) {
-                        return token.value;
-                    }),
-                    path: path.value,
-                    quote: path.quote,
+                    aliases: aliases.map(make_string),
+                    keys: keys.map(make_string),
+                    path: as_path(),
                 });
             }
             semicolon();
@@ -1497,7 +1499,7 @@ function parse($TEXT, options) {
                 properties: keys.map(function(token, index) {
                     if (!is_token(token, "name")) token_error(token, "Name expected");
                     var sym = _make_symbol(AST_SymbolExport, token);
-                    sym.alias = aliases[index];
+                    sym.alias = make_string(aliases[index]);
                     return sym;
                 }),
             });
@@ -1587,26 +1589,42 @@ function parse($TEXT, options) {
         var all = null;
         var def = as_symbol(AST_SymbolImport, true);
         var props = null;
-        if (def ? (def.key = "", is("punc", ",") && next()) : !is("string")) {
+        var cont;
+        if (def) {
+            def.key = new AST_String({
+                start: def.start,
+                value: "",
+                end: def.end,
+            });
+            if (cont = is("punc", ",")) next();
+        } else {
+            cont = !is("string");
+        }
+        if (cont) {
             if (is("operator", "*")) {
+                var key = S.token;
                 next();
                 expect_token("name", "as");
                 all = as_symbol(AST_SymbolImport);
-                all.key = "*";
+                all.key = make_string(key);
             } else {
                 expect("{");
                 props = [];
                 while (is_alias()) {
                     var alias;
                     if (is_token(peek(), "name", "as")) {
-                        var key = S.token.value;
+                        var key = S.token;
                         next();
                         next();
                         alias = as_symbol(AST_SymbolImport);
-                        alias.key = key;
+                        alias.key = make_string(key);
                     } else {
                         alias = as_symbol(AST_SymbolImport);
-                        alias.key = alias.name;
+                        alias.key = new AST_String({
+                            start: alias.start,
+                            value: alias.name,
+                            end: alias.end,
+                        });
                     }
                     props.push(alias);
                     if (!is("punc", "}")) expect(",");
@@ -1615,15 +1633,11 @@ function parse($TEXT, options) {
             }
         }
         if (all || def || props) expect_token("name", "from");
-        var path = S.token;
-        expect_token("string");
-        semicolon();
         return new AST_Import({
             all: all,
             default: def,
-            path: path.value,
+            path: as_path(),
             properties: props,
-            quote: path.quote,
         });
     }
 
@@ -1801,7 +1815,7 @@ function parse($TEXT, options) {
             ret = new AST_BigInt({ value: value });
             break;
           case "string":
-            ret = new AST_String({ value : value, quote : tok.quote });
+            ret = new AST_String({ value: value, quote: tok.quote });
             break;
           case "regexp":
             ret = new AST_RegExp({ value: value });
@@ -2153,9 +2167,9 @@ function parse($TEXT, options) {
             token_error(sym.start, "Unexpected " + sym.name + " in strict mode");
     }
 
-    function as_symbol(type, noerror) {
+    function as_symbol(type, no_error) {
         if (!is("name")) {
-            if (!noerror) croak("Name expected");
+            if (!no_error) croak("Name expected");
             return null;
         }
         var sym = _make_symbol(type, S.token);
@@ -2391,20 +2405,20 @@ function parse($TEXT, options) {
         return new ctor({ operator: op, expression: expr });
     }
 
-    var expr_op = function(left, min_prec, no_in) {
+    var expr_op = function(left, min_precision, no_in) {
         var op = is("operator") ? S.token.value : null;
         if (op == "in" && no_in) op = null;
-        var prec = op != null ? PRECEDENCE[op] : null;
-        if (prec != null && prec > min_prec) {
+        var precision = op != null ? PRECEDENCE[op] : null;
+        if (precision != null && precision > min_precision) {
             next();
-            var right = expr_op(maybe_unary(no_in), op == "**" ? prec - 1 : prec, no_in);
+            var right = expr_op(maybe_unary(no_in), op == "**" ? precision - 1 : precision, no_in);
             return expr_op(new AST_Binary({
                 start    : left.start,
                 left     : left,
                 operator : op,
                 right    : right,
-                end      : right.end
-            }), min_prec, no_in);
+                end      : right.end,
+            }), min_precision, no_in);
         }
         return left;
     };
@@ -2550,9 +2564,13 @@ function parse($TEXT, options) {
     return function() {
         var start = S.token;
         var body = [];
+        if (options.module) {
+            S.in_async = true;
+            S.input.add_directive("use strict");
+        }
         S.input.push_directives_stack();
         while (!is("eof"))
-            body.push(statement());
+            body.push(statement(true));
         S.input.pop_directives_stack();
         var end = prev() || start;
         var toplevel = options.toplevel;

@@ -8,8 +8,9 @@
 
 namespace wishthis;
 
-$wishlist = new Wishlist($_SESSION['_GET']['hash']);
-$page     = new Page(__FILE__, $wishlist->getTitle());
+$wishlist      = new Wishlist($_GET['hash']);
+$page          = new Page(__FILE__, $wishlist->getTitle());
+$wishlist_user = User::getFromID($wishlist->user);
 
 if (!$wishlist->exists) {
     $page->errorDocument(404, $wishlist);
@@ -27,10 +28,10 @@ $page->navigation();
         <div class="ui stackable grid">
             <div class="column">
 
-                <?php if ($user->isLoggedIn() && $user->id !== intval($wishlist->user)) { ?>
+                <?php if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id !== $wishlist->user) { ?>
                     <button class="ui white small basic labeled icon button save disabled loading">
                         <i class="heart icon"></i>
-                        <span><?= __('Save list') ?></span>
+                        <span><?= __('Remember list') ?></span>
                     </button>
                 <?php } ?>
 
@@ -41,7 +42,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if ($user->isLoggedIn() && $user->id === intval($wishlist->user) && !empty($wishlist->wishes)) { ?>
+        if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user && !empty($wishlist->wishes)) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
@@ -86,10 +87,47 @@ $page->navigation();
             ?>
         </div>
 
+        <div class="ui basic center aligned segment">
+            <button class="ui primary button wishlist-request-wishes" data-locale="<?= $wishlist_user->getLocale() ?>">
+                <?= __('Request more wishes') ?>
+            </button>
+        </div>
+
     </div>
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>
+
+<!-- Wishlist: Request wishes -->
+<div class="ui tiny modal wishlist-request-wishes-notification-sent">
+    <div class="header">
+        <?= __('Request more wishes') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('A notification has just been sent to the owner of this wishlist.') ?></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve primary button" title="<?= __('Ok') ?>">
+            <?= __('Ok') ?>
+        </div>
+    </div>
+</div>
+<div class="ui tiny modal wishlist-request-wishes-notification-notsent">
+    <div class="header">
+        <?= __('Request more wishes') ?>
+    </div>
+    <div class="content">
+        <div class="description">
+            <p><?= __('The wishlist owner has already received a notification recently and has not been notified again.') ?></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve primary button" title="<?= __('Ok') ?>">
+            <?= __('Ok') ?>
+        </div>
+    </div>
+</div>

@@ -59,6 +59,5 @@ if (isset($_POST['mjml_api'], $_POST['api_key'], $_POST['api_secret'])) {
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();
 ?>

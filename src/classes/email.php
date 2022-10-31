@@ -16,14 +16,33 @@ use Qferrer\Mjml\Renderer\ApiRenderer;
 
 class Email
 {
+    private string $mjml = '';
+    private string $contentsTemplate;
+    private string $contentsPart;
+
     public function __construct(
         private string $to,
         private string $subject,
-        private string $mjml
+        private string $template,
+        private string $part
     ) {
+        $this->contentsTemplate = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
+        $this->contentsPart     = file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
+
+        $this->mjml = str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
+
+        /** Set Locale */
+        global $locale;
+
+        $this->mjml = preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . $locale . '">', $this->mjml);
     }
 
-    public function send()
+    public function setPlaceholder(string $placeholder, string $replacement): void
+    {
+        $this->mjml = str_replace($placeholder, $replacement, $this->mjml);
+    }
+
+    public function send(): bool
     {
         global $options;
 
@@ -56,5 +75,7 @@ class Email
         );
 
         $success = mail($to, $subject, $message, $headers);
+
+        return $success;
     }
 }

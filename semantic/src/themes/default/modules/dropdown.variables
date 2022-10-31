@@ -40,7 +40,7 @@
 @menuBorderRadius: @borderRadius;
 @menuTransition: opacity @defaultDuration @defaultEasing;
 @menuMinWidth: e(%("calc(100%% + %d)", @menuBorderWidth * 2));
-@menuZIndex: 103;
+@menuZIndex: 11;
 
 /* Text */
 @textLineHeight: 1em;
@@ -287,6 +287,9 @@
        States
 --------------------*/
 
+/* Addition */
+@additionZIndex: @hoveredZIndex + 1;
+
 /* Hovered */
 @hoveredItemBackground: @transparentBlack;
 @hoveredItemColor: @selectedTextColor;
@@ -345,7 +348,7 @@
 @upwardSelectionVisibleBorderRadius: @selectionVisibleConnectingBorder @selectionVisibleConnectingBorder @borderRadius @borderRadius;
 @upwardMenuBoxShadow: 0 0 3px 0 rgba(0, 0, 0, 0.08);
 @upwardSelectionMenuBoxShadow: 0 -2px 3px 0 rgba(0, 0, 0, 0.08);
-@upwardMenuBorderRadius: @borderRadius @borderRadius 0 0;
+@upwardSelectionMenuBorderRadius: @borderRadius @borderRadius 0 0;
 @upwardSelectionHoverBoxShadow: 0 0 2px 0 rgba(0, 0, 0, 0.05);
 @upwardSelectionVisibleBoxShadow: 0 0 3px 0 rgba(0, 0, 0, 0.08);
 @upwardSelectionActiveHoverBoxShadow: 0 0 3px 0 rgba(0, 0, 0, 0.05);
@@ -362,6 +365,9 @@
 /* Simple */
 @simpleTransitionDuration: @defaultDuration;
 @simpleTransition: opacity @simpleTransitionDuration @defaultEasing;
+@simpleUpwardMenuMargin: 1.5em;
+@simpleUpwardSelectionMenuMargin: 2.5em;
+@simpleUpwardItemMenuMargin: 2.8em;
 
 /* Floating */
 @floatingMenuDistance: 0.5em;
@@ -452,15 +458,6 @@
 @invertedInputHighlightColor: @invertedMutedTextColor;
 
 /* Multiple */
-/*@invertedLabelBackgroundColor: rgba(255, 255, 255, 0.06);
-@invertedLabelBackgroundImage: none;
-@invertedLabelColor: rgba(255, 255, 255, 0.6);
-@invertedLabelBoxShadow: 0 0 0 @labelBorderWidth rgba(255, 255, 255, 0.16) inset;
-
-@invertedLabelHoverBackgroundColor: rgba(255, 255, 255, 0.12);
-@invertedLabelHoverBackgroundImage: none;
-@invertedLabelHoverTextColor: rgba(255, 255, 255, 0.7);*/
-
 @invertedLabelBackgroundColor: rgba(255, 255, 255, 0.7);
 @invertedLabelBackgroundImage: none;
 @invertedLabelColor: rgba(0, 0, 0, 1);

@@ -14,23 +14,61 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $email    = $_POST['email'];
+    $email    = Sanitiser::getEmail($_POST['email']);
     $password = User::generatePassword($_POST['password']);
 
-    $database->query('UPDATE `users`
-                         SET `last_login` = NOW()
-                       WHERE `email` = "' . $email . '"
-                         AND `password` = "' . $password . '"
-    ;');
-    $user = $database->query('SELECT * FROM `users`
-                               WHERE `email`    = "' . $email . '"
-                                 AND `password` = "' . $password . '";')
-                     ->fetch();
+    $database
+    ->query(
+        'UPDATE `users`
+            SET `last_login` = NOW()
+          WHERE `email`      = "' . $email    . '"
+            AND `password`   = "' . $password . '";'
+    );
 
-    $success = false !== $user;
+    $fields = $database
+    ->query(
+        'SELECT *
+           FROM `users`
+          WHERE `email`    = "' . $email . '"
+            AND `password` = "' . $password . '";'
+    )
+    ->fetch();
+
+    $success = is_array($fields);
 
     if ($success) {
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = new User($fields);
+
+        /**
+         * Persisent session
+         */
+        if (isset($_POST['persistent'])) {
+            /** Cookie options */
+            $sessionPassword = md5(time() . rand(-2147483648, 2147483647));
+            $sessionLifetime = 2592000 * 4; // 4 Months
+            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV;
+            $sessionOptions  = array (
+                'domain'   => getCookieDomain(),
+                'expires'  => time() + $sessionLifetime,
+                'httponly' => true,
+                'path'     => '/',
+                'samesite' => 'None',
+                'secure'   => !$sessionIsDev,
+            );
+
+            /** Set cookie */
+            setcookie(COOKIE_PERSISTENT, $sessionPassword, $sessionOptions);
+
+            $database->query(
+                'INSERT INTO `sessions` (
+                    `user`,
+                    `session`
+                ) VALUES (
+                     ' . $_SESSION['user']->id . ',
+                    "' . $sessionPassword . '"
+                );'
+            );
+        }
     } else {
         $page->messages[] = Page::error(
             __('No user could be found with the credentials you provided.'),
@@ -39,46 +77,58 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     }
 }
 
-if (isset($_SESSION['user'])) {
-    redirect('/?page=home');
+if ($_SESSION['user']->isLoggedIn()) {
+    if (isset($_SESSION['REDIRECT_URL'])) {
+        redirect($_SESSION['REDIRECT_URL']);
+    } else {
+        redirect(Page::PAGE_HOME);
+    }
 }
 
 /**
  * Reset
  */
 if (isset($_POST['reset'], $_POST['email'])) {
-    $user = $database
-    ->query('SELECT *
-               FROM `users`
-              WHERE `email` = "' . $_POST['email'] . '";')
-    ->fetch();
+    $userQuery = $database
+    ->query(
+        'SELECT *
+           FROM `users`
+          WHERE `email` = "' . Sanitiser::getEmail($_POST['email']) . '";'
+    );
 
-    if ($user) {
+    $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
+
+    if (isset($user->id)) {
         $token      = sha1(time() . rand(0, 999999));
         $validUntil = time() + 3600;
 
         $database
-        ->query('UPDATE `users`
-                    SET `password_reset_token`       = "' . $token . '",
-                        `password_reset_valid_until` = ' . $validUntil . '
-                  WHERE `id` = ' . $user['id'] . '
-        ;');
-
-        $mjml = file_get_contents(ROOT . '/src/mjml/password-reset.mjml');
-        $mjml = str_replace(
-            'wishthis.online',
-            $_SERVER['HTTP_HOST'],
-            $mjml
+        ->query(
+            'UPDATE `users`
+                SET `password_reset_token`       = "' . $token . '",
+                    `password_reset_valid_until` = "' . date('Y-m-d H:i:s', $validUntil) . '"
+              WHERE `id` = ' . $user->id . ';'
         );
-        $mjml = str_replace(
+
+        $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');
+        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
+        $emailReset->setPlaceholder(
+            'TEXT_PASSWORD_RESET',
+            sprintf(
+                /** TRANSLATORS: %s: The wishthis domain */
+                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.', null, $user),
+                '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
+            )
+        );
+        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password', null, $user));
+        $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
+        $emailReset->setPlaceholder(
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            '/?page=register&password-reset=' . $_POST['email'] . '&token=' . $token,
-            $mjml
+            Page::PAGE_REGISTER . '&password-reset=' . $user->email . '&token=' . $token
         );
 
-        $emailReset = new Email($_POST['email'], __('Password reset link'), $mjml);
         $emailReset->send();
 
         $page->messages[] = Page::info(
@@ -124,18 +174,32 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <input class="ui primary button"
-                                   type="submit"
-                                   name="login"
-                                   value="<?= __('Login') ?>"
-                                   title="<?= __('Login') ?>"
-                            />
-                            <a class="ui tertiary button"
-                               href="/?page=register"
-                               title="<?= __('Register') ?>"
-                            >
-                                <?= __('Register') ?>
-                            </a>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" name="persistent">
+                                    <label><?= __('Keep me logged in') ?></label>
+                                </div>
+                            </div>
+
+                            <div class="inline unstackable fields">
+                               <div class="field">
+                                    <input class="ui primary button"
+                                        type="submit"
+                                        name="login"
+                                        value="<?= __('Login') ?>"
+                                        title="<?= __('Login') ?>"
+                                    />
+                               </div>
+
+                               <div class="field">
+                                    <a class="ui tertiary button"
+                                    href="<?= Page::PAGE_REGISTER ?>"
+                                    title="<?= __('Register') ?>"
+                                    >
+                                        <?= __('Register') ?>
+                                    </a>
+                               </div>
+                            </div>
                         </form>
                     </div>
 
@@ -178,5 +242,4 @@ $page->navigation();
 </main>
 
 <?php
-$page->footer();
 $page->bodyEnd();

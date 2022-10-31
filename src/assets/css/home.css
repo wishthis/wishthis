@@ -1,3 +1,38 @@
+/**
+ * Actions
+ */
+.ui.ui.ui.ui.stackable.grid.actions {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+}
+@media (max-width: 991.9px) {
+    .ui.grid.actions > .column:not(.row) {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .ui.grid.actions > .column:not(.row):first-child {
+        padding-top: 1rem;
+    }
+    .ui.grid.actions > .column:not(.row):last-child {
+        padding-bottom: 1rem;
+    }
+}
+@media (min-width: 992px) {
+    .ui.grid.actions > .column:not(.row) {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .ui.grid.actions > .column:not(.row):first-child {
+        padding-left: 1rem;
+    }
+    .ui.grid.actions > .column:not(.row):last-child {
+        padding-right: 1rem;
+    }
+}
+
+/**
+ * Statistics
+ */
 .ui.statistics {
     flex-direction: column;
     align-items: center;
@@ -9,4 +44,65 @@
 .ui.statistic > .value,
 .ui.statistics .statistic > .value {
     font-variant-numeric: tabular-nums lining-nums slashed-zero;
+}
+
+#text-list {
+    animation: 0.4s 1s ease text-list;
+    animation-fill-mode: forwards;
+}
+@keyframes text-list {
+    0% {
+        opacity: 1;
+        transform: matrix(3.6368233, 0, 0, 3.6368233, 425.48266, 130.09212);
+    }
+
+    100% {
+        opacity: 0;
+        transform: matrix(3.6368233, 0, 0, 3.6368233, 425.48266, 30.092);
+    }
+}
+
+#text-this {
+    animation: 0.4s 1s ease text-this;
+    animation-fill-mode: forwards;
+}
+@keyframes text-this {
+    0% {
+        opacity: 0;
+        transform: matrix(3.6368233, 0, 0, 3.6368233, 425.48266, 135.76144);
+    }
+
+    100% {
+        opacity: 1;
+        transform: matrix(3.6368233, 0, 0, 3.6368233, 425.48266, 35.76144);
+    }
+}
+
+.column.buttons {
+    display: flex !important;
+}
+
+.column.buttons .left.attached.button {
+    flex: 1 1 100%;
+
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+@media (prefers-color-scheme: dark) {
+    .column.buttons .left.attached.button {
+        box-shadow:
+            2px 0 0 0 #fff inset,
+            0 2px 0 0 #fff inset,
+            0 -2px 0 0 #fff inset;
+    }
+}
+.column.buttons .right.attached.button {
+    flex: 0 0 auto;
+}
+@media (prefers-color-scheme: dark) {
+    .column.buttons .right.attached.button {
+        box-shadow: 0 0 0 2px #fff inset;
+    }
 }

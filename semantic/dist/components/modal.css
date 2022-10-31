@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Modal
+ * # Fomantic-UI 2.9.0 - Modal
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -27,7 +27,7 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  border-radius: 0.33333333rem;
+  border-radius: 0.28571429rem;
   -webkit-user-select: text;
      -moz-user-select: text;
       -ms-user-select: text;
@@ -38,12 +38,12 @@
 .ui.modal > i.icon:first-child + *,
 .ui.modal > .dimmer:first-child + *:not(.close),
 .ui.modal > .dimmer:first-child + i.icon + * {
-  border-top-left-radius: 0.33333333rem;
-  border-top-right-radius: 0.33333333rem;
+  border-top-left-radius: 0.28571429rem;
+  border-top-right-radius: 0.28571429rem;
 }
 .ui.modal > :last-child {
-  border-bottom-left-radius: 0.33333333rem;
-  border-bottom-right-radius: 0.33333333rem;
+  border-bottom-left-radius: 0.28571429rem;
+  border-bottom-right-radius: 0.28571429rem;
 }
 .ui.modal > .ui.dimmer {
   border-radius: inherit;
@@ -72,8 +72,10 @@
   height: 2.25rem;
   padding: 0.625rem 0 0 0;
 }
+.ui.modal > .close:focus,
 .ui.modal > .close:hover {
   opacity: 1;
+  outline: none;
 }
 
 /*--------------
@@ -92,7 +94,7 @@
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 }
 .ui.modal > .header:not(.ui) {
-  font-size: 1.41666667rem;
+  font-size: 1.42857143rem;
   line-height: 1.28571429em;
   font-weight: bold;
 }
@@ -155,9 +157,9 @@
 }
 .ui.modal > .content > i.icon + .description,
 .ui.modal > .content > .image + .description {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
   min-width: '';
   width: auto;
   padding-left: 2em;
@@ -172,8 +174,8 @@
 }
 
 /*--------------
-     Actions
----------------*/
+       Actions
+  ---------------*/
 
 .ui.modal > .actions {
   background: #F9FAFB;
@@ -184,8 +186,16 @@
 .ui.modal .actions > .button:not(.fluid) {
   margin-left: 0.75em;
 }
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .actions {
   border-top: none;
+}
+.ui.modal > .left.actions {
+  text-align: left;
+}
+.ui.modal > .left.actions > .button:not(.fluid) {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 .ui.modal > .centered,
 .ui.modal > .center.aligned {
@@ -219,6 +229,16 @@
   .ui.modal:not(.fullscreen) {
     width: 850px;
     margin: 0 0 0 0;
+  }
+  .ui.modal:not(.fullscreen) > .active.dimmer + .close:not(.inside) {
+    pointer-events: none;
+    opacity: 0.1;
+  }
+  .ui.dimmer > .ui.modal:not(.fullscreen) > .close:not(.inside) {
+    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.3), 1px -1px 2px rgba(0, 0, 0, 0.3), -1px 2px 2px rgba(0, 0, 0, 0.3), 1px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  .ui.inverted.dimmer > .ui.modal:not(.fullscreen) > .close:not(.inside) {
+    text-shadow: -1px -1px 2px rgba(255, 255, 255, 0.3), 1px -1px 2px rgba(255, 255, 255, 0.3), -1px 2px 2px rgba(255, 255, 255, 0.3), 1px 2px 2px rgba(255, 255, 255, 0.3);
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -328,10 +348,15 @@
           box-shadow: none !important;
   color: #FFFFFF;
 }
+.ui.ui.modal > .basic.header,
+.ui.ui.modal > .basic.actions,
 .ui.basic.modal > .header,
 .ui.basic.modal > .content,
 .ui.basic.modal > .actions {
   background-color: transparent;
+}
+.ui.modal > .basic.header {
+  border-bottom: none;
 }
 .ui.basic.modal > .header {
   color: #FFFFFF;
@@ -421,6 +446,12 @@
       -ms-flex-pack: start;
           justify-content: flex-start;
   position: fixed;
+}
+.scrolling.dimmable:not(body) > .dimmer {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
 }
 .scrolling.dimmable.dimmed > .dimmer {
   overflow: auto;
@@ -737,11 +768,11 @@
   *******************************/
 
 .ui.inverted.modal {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
 }
 .ui.inverted.modal > .header,
 .ui.inverted.modal > .content {
-  background: rgba(0, 0, 0, 0.9);
+  background: #000000;
   color: #FFFFFF;
 }
 .ui.inverted.modal > .actions {

@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Message
+ * # Fomantic-UI 2.9.0 - Message
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -25,7 +25,7 @@
   transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, -webkit-box-shadow 0.1s ease;
   transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
   transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease, -webkit-box-shadow 0.1s ease;
-  border-radius: 0.33333333rem;
+  border-radius: 0.28571429rem;
   -webkit-box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.22) inset, 0 0 0 0 rgba(0, 0, 0, 0);
           box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.22) inset, 0 0 0 0 rgba(0, 0, 0, 0);
 }
@@ -51,7 +51,7 @@
 
 /* Default font size */
 .ui.message .header:not(.ui) {
-  font-size: 1.16666667em;
+  font-size: 1.14285714em;
 }
 
 /* Paragraph */
@@ -89,7 +89,7 @@
   margin: 0 0 0.3em 1em;
   padding: 0;
 }
-.ui.message .list:not(.ui) li:before {
+.ui.message .list:not(.ui) li::before {
   position: absolute;
   content: '•';
   left: -1em;
@@ -211,7 +211,7 @@
 
 .ui.attached.message {
   margin-bottom: -1px;
-  border-radius: 0.33333333rem 0.33333333rem 0 0;
+  border-radius: 0.28571429rem 0.28571429rem 0 0;
   -webkit-box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.15) inset;
           box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.15) inset;
   margin-left: -1px;
@@ -223,7 +223,7 @@
 }
 .ui.bottom.attached.message {
   margin-top: -1px;
-  border-radius: 0 0 0.33333333rem 0.33333333rem;
+  border-radius: 0 0 0.28571429rem 0.28571429rem;
   -webkit-box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.15) inset, 0 1px 2px 0 rgba(34, 36, 38, 0.15);
           box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.15) inset, 0 1px 2px 0 rgba(34, 36, 38, 0.15);
 }
@@ -332,46 +332,6 @@
 .ui.inverted.negative.message .header {
   color: #E0B4B4;
 }
-.ui.info.message {
-  background-color: #F8FFFF;
-  color: #276F86;
-}
-.ui.info.message,
-.ui.attached.info.message {
-  -webkit-box-shadow: 0 0 0 1px #A9D5DE inset, 0 0 0 0 rgba(0, 0, 0, 0);
-          box-shadow: 0 0 0 1px #A9D5DE inset, 0 0 0 0 rgba(0, 0, 0, 0);
-}
-.ui.floating.info.message {
-  -webkit-box-shadow: 0 0 0 1px #A9D5DE inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
-          box-shadow: 0 0 0 1px #A9D5DE inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
-}
-.ui.info.message .header {
-  color: #0E566C;
-}
-.ui.inverted.info.message,
-.ui.inverted.info.message .header {
-  color: #c6e3e9;
-}
-.ui.warning.message {
-  background-color: #FFFAF3;
-  color: #573A08;
-}
-.ui.warning.message,
-.ui.attached.warning.message {
-  -webkit-box-shadow: 0 0 0 1px #C9BA9B inset, 0 0 0 0 rgba(0, 0, 0, 0);
-          box-shadow: 0 0 0 1px #C9BA9B inset, 0 0 0 0 rgba(0, 0, 0, 0);
-}
-.ui.floating.warning.message {
-  -webkit-box-shadow: 0 0 0 1px #C9BA9B inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
-          box-shadow: 0 0 0 1px #C9BA9B inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
-}
-.ui.warning.message .header {
-  color: #794B02;
-}
-.ui.inverted.warning.message,
-.ui.inverted.warning.message .header {
-  color: #d7ccb5;
-}
 .ui.error.message {
   background-color: #FFF6F6;
   color: #9F3A38;
@@ -392,6 +352,26 @@
 .ui.inverted.error.message .header {
   color: #ecd1d1;
 }
+.ui.info.message {
+  background-color: #F8FFFF;
+  color: #276F86;
+}
+.ui.info.message,
+.ui.attached.info.message {
+  -webkit-box-shadow: 0 0 0 1px #A9D5DE inset, 0 0 0 0 rgba(0, 0, 0, 0);
+          box-shadow: 0 0 0 1px #A9D5DE inset, 0 0 0 0 rgba(0, 0, 0, 0);
+}
+.ui.floating.info.message {
+  -webkit-box-shadow: 0 0 0 1px #A9D5DE inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
+          box-shadow: 0 0 0 1px #A9D5DE inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
+}
+.ui.info.message .header {
+  color: #0E566C;
+}
+.ui.inverted.info.message,
+.ui.inverted.info.message .header {
+  color: #c6e3e9;
+}
 .ui.success.message {
   background-color: #FCFFF5;
   color: #2C662D;
@@ -411,6 +391,26 @@
 .ui.inverted.success.message,
 .ui.inverted.success.message .header {
   color: #b9d1ad;
+}
+.ui.warning.message {
+  background-color: #FFFAF3;
+  color: #573A08;
+}
+.ui.warning.message,
+.ui.attached.warning.message {
+  -webkit-box-shadow: 0 0 0 1px #C9BA9B inset, 0 0 0 0 rgba(0, 0, 0, 0);
+          box-shadow: 0 0 0 1px #C9BA9B inset, 0 0 0 0 rgba(0, 0, 0, 0);
+}
+.ui.floating.warning.message {
+  -webkit-box-shadow: 0 0 0 1px #C9BA9B inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
+          box-shadow: 0 0 0 1px #C9BA9B inset, 0 2px 4px 0 rgba(34, 36, 38, 0.12), 0 2px 10px 0 rgba(34, 36, 38, 0.15);
+}
+.ui.warning.message .header {
+  color: #794B02;
+}
+.ui.inverted.warning.message,
+.ui.inverted.warning.message .header {
+  color: #d7ccb5;
 }
 .ui.primary.message {
   background-color: #DFF0FF;
@@ -656,25 +656,25 @@
   font-size: 1em;
 }
 .ui.mini.message {
-  font-size: 0.75em;
+  font-size: 0.78571429em;
 }
 .ui.tiny.message {
-  font-size: 0.83333333em;
+  font-size: 0.85714286em;
 }
 .ui.small.message {
-  font-size: 0.91666667em;
+  font-size: 0.92857143em;
 }
 .ui.large.message {
-  font-size: 1.16666667em;
+  font-size: 1.14285714em;
 }
 .ui.big.message {
-  font-size: 1.25em;
+  font-size: 1.28571429em;
 }
 .ui.huge.message {
-  font-size: 1.41666667em;
+  font-size: 1.42857143em;
 }
 .ui.massive.message {
-  font-size: 1.75em;
+  font-size: 1.71428571em;
 }
 
 

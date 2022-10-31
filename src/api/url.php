@@ -1,9 +1,9 @@
 <?php
 
 /**
- * url.php
+ * URL
  *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
+ * @category API
  */
 
 namespace wishthis;
@@ -21,8 +21,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $url = new URL(base64_decode($_GET['url']));
 
             $response['data'] = array(
-                'url'      => $url->getPretty(),
-                'isPretty' => $url->isPretty(),
+                'url'            => $url->getPretty(),
+                'url_old'        => $url->url,
+                'url_old_pretty' => $url->isPretty(),
             );
         }
         break;

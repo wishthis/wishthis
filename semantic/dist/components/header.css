@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.8.8 - Header
+ * # Fomantic-UI 2.9.0 - Header
  * http://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -137,13 +137,13 @@ h1.ui.header {
   font-size: 2rem;
 }
 h1.ui.header .sub.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 h2.ui.header {
   font-size: 1.71428571rem;
 }
 h2.ui.header .sub.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 h3.ui.header {
   font-size: 1.28571429rem;
@@ -161,13 +161,13 @@ h5.ui.header {
   font-size: 1rem;
 }
 h5.ui.header .sub.header {
-  font-size: 0.91666667rem;
+  font-size: 0.92857143rem;
 }
 h6.ui.header {
   font-size: 0.85714286rem;
 }
 h6.ui.header .sub.header {
-  font-size: 0.91666667rem;
+  font-size: 0.92857143rem;
 }
 
 /*--------------
@@ -178,19 +178,19 @@ h6.ui.header .sub.header {
   font-size: 0.85714286em;
 }
 .ui.mini.header .sub.header {
-  font-size: 0.91666667rem;
+  font-size: 0.92857143rem;
 }
 .ui.mini.sub.header {
-  font-size: 0.75em;
+  font-size: 0.78571429em;
 }
 .ui.tiny.header {
   font-size: 1em;
 }
 .ui.tiny.header .sub.header {
-  font-size: 0.91666667rem;
+  font-size: 0.92857143rem;
 }
 .ui.tiny.sub.header {
-  font-size: 0.75em;
+  font-size: 0.78571429em;
 }
 .ui.small.header {
   font-size: 1.07142857em;
@@ -199,22 +199,22 @@ h6.ui.header .sub.header {
   font-size: 1rem;
 }
 .ui.small.sub.header {
-  font-size: 0.75em;
+  font-size: 0.78571429em;
 }
 .ui.large.header {
   font-size: 1.71428571em;
 }
 .ui.large.header .sub.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 .ui.large.sub.header {
-  font-size: 0.91666667em;
+  font-size: 0.92857143em;
 }
 .ui.big.header {
   font-size: 1.85714286em;
 }
 .ui.big.header .sub.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 .ui.big.sub.header {
   font-size: 1em;
@@ -224,7 +224,7 @@ h6.ui.header .sub.header {
   min-height: 1em;
 }
 .ui.huge.header .sub.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 .ui.huge.sub.header {
   font-size: 1em;
@@ -234,10 +234,10 @@ h6.ui.header .sub.header {
   min-height: 1em;
 }
 .ui.massive.header .sub.header {
-  font-size: 1.41666667rem;
+  font-size: 1.42857143rem;
 }
 .ui.massive.sub.header {
-  font-size: 1.16666667em;
+  font-size: 1.14285714em;
 }
 
 /*--------------
@@ -246,9 +246,9 @@ h6.ui.header .sub.header {
 
 .ui.sub.header {
   padding: 0;
-  margin-bottom: 0.16666667rem;
+  margin-bottom: 0.14285714rem;
   font-weight: bold;
-  font-size: 0.83333333em;
+  font-size: 0.85714286em;
   text-transform: uppercase;
   color: '';
 }
@@ -262,7 +262,7 @@ h6.ui.header .sub.header {
   text-align: center;
   margin: 2rem 0 1rem;
 }
-.ui.icon.header:after {
+.ui.icon.header::after {
   content: '';
   display: block;
   height: 0;
@@ -272,6 +272,7 @@ h6.ui.header .sub.header {
 .ui.icon.header:first-child {
   margin-top: 0;
 }
+.ui.icon.header > .image.icon,
 .ui.icon.header > .icons,
 .ui.icon.header > i.icon {
   float: none;
@@ -297,6 +298,7 @@ h6.ui.header .sub.header {
 .ui.icon.header > i.square {
   font-size: 2em;
 }
+.ui.block.icon.header > .image.icon,
 .ui.block.icon.header > .icons,
 .ui.block.icon.header > i.icon {
   margin-bottom: 0;
@@ -361,13 +363,13 @@ a.ui.primary.header:hover {
   border-bottom: 2px solid #6435C9;
 }
 .ui.inverted.primary.header.header.header {
-  color: #54C8FF;
+  color: #A291FB;
 }
 a.ui.inverted.primary.header.header.header:hover {
-  color: #21b8ff;
+  color: #745aff;
 }
 .ui.inverted.primary.dividing.header {
-  border-bottom: 2px solid #54C8FF;
+  border-bottom: 2px solid #A291FB;
 }
 .ui.secondary.header {
   color: #1B1C1D;
@@ -639,7 +641,7 @@ a.ui.inverted.black.header.header.header:hover {
 .ui.justified.header {
   text-align: justify;
 }
-.ui.justified.header:after {
+.ui.justified.header::after {
   display: inline-block;
   content: '';
   width: 100%;
@@ -674,11 +676,11 @@ a.ui.inverted.black.header.header.header:hover {
   --------------------*/
 
 .ui.dividing.header {
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.21428571rem;
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 }
 .ui.dividing.header .sub.header {
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.21428571rem;
 }
 .ui.dividing.header i.icon {
   margin-bottom: 0;
@@ -693,35 +695,35 @@ a.ui.inverted.black.header.header.header:hover {
 
 .ui.block.header {
   background: #F3F4F5;
-  padding: 0.75rem 1rem;
+  padding: 0.78571429rem 1rem;
   -webkit-box-shadow: none;
           box-shadow: none;
   border: 1px solid #D4D4D5;
-  border-radius: 0.33333333rem;
+  border-radius: 0.28571429rem;
 }
 .ui.block.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   font-size: 1rem;
 }
 .ui.mini.block.header {
-  font-size: 0.75rem;
+  font-size: 0.78571429rem;
 }
 .ui.tiny.block.header {
-  font-size: 0.83333333rem;
+  font-size: 0.85714286rem;
 }
 .ui.small.block.header {
-  font-size: 0.91666667rem;
+  font-size: 0.92857143rem;
 }
 .ui.large.block.header {
-  font-size: 1.16666667rem;
+  font-size: 1.14285714rem;
 }
 .ui.big.block.header {
-  font-size: 1.25rem;
+  font-size: 1.28571429rem;
 }
 .ui.huge.block.header {
-  font-size: 1.41666667rem;
+  font-size: 1.42857143rem;
 }
 .ui.massive.block.header {
-  font-size: 1.75rem;
+  font-size: 1.71428571rem;
 }
 
 /*-------------------
@@ -730,7 +732,7 @@ a.ui.inverted.black.header.header.header:hover {
 
 .ui.attached.header {
   background: #FFFFFF;
-  padding: 0.75rem 1rem;
+  padding: 0.78571429rem 1rem;
   margin: 0 -1px 0 -1px;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -744,10 +746,10 @@ a.ui.inverted.black.header.header.header:hover {
   border-top: none;
 }
 .ui.top.attached.header {
-  border-radius: 0.33333333rem 0.33333333rem 0 0;
+  border-radius: 0.28571429rem 0.28571429rem 0 0;
 }
 .ui.bottom.attached.header {
-  border-radius: 0 0 0.33333333rem 0.33333333rem;
+  border-radius: 0 0 0.28571429rem 0.28571429rem;
 }
 
 /* Attached Sizes */
@@ -755,25 +757,25 @@ a.ui.inverted.black.header.header.header:hover {
   font-size: 1em;
 }
 .ui.mini.attached.header {
-  font-size: 0.75em;
+  font-size: 0.78571429em;
 }
 .ui.tiny.attached.header {
-  font-size: 0.83333333em;
+  font-size: 0.85714286em;
 }
 .ui.small.attached.header {
-  font-size: 0.91666667em;
+  font-size: 0.92857143em;
 }
 .ui.large.attached.header {
-  font-size: 1.16666667em;
+  font-size: 1.14285714em;
 }
 .ui.big.attached.header {
-  font-size: 1.25em;
+  font-size: 1.28571429em;
 }
 .ui.huge.attached.header {
-  font-size: 1.41666667em;
+  font-size: 1.42857143em;
 }
 .ui.massive.attached.header {
-  font-size: 1.75em;
+  font-size: 1.71428571em;
 }
 
 /*-------------------
