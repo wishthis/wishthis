@@ -54,7 +54,7 @@
     .ui.basic.active.button,
     .ui.basic.buttons .active.button {
         background-color: rgba(255, 255, 255, .08);
-        color: #000 !important;
+        color: #111 !important;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, .7) inset;
     }
 
@@ -103,7 +103,7 @@
 
     /** Buttons */
     .wishlist .ui.card > .extra.buttons {
-        background-color: #000 !important;
+        background-color: #111 !important;
     }
 
     /**
@@ -123,7 +123,7 @@
      * Dimmer
      */
     .ui.dimmer {
-        background-color: rgba(255, 255, 255, .85);
+        background-color: rgba(98, 98, 98, 0.85);
     }
 
     /**
@@ -283,11 +283,26 @@
         border-color: #e0b4b4;
     }
 
+    /** Loading */
+    .ui.loading.form::before {
+        background-color: rgba(17, 17, 17, 0.85);
+    }
+    .ui.loading.form {
+        color: #fff;
+    }
+
     /**
      * Header
      */
     .ui.header {
         color: #fff;
+    }
+
+    /**
+     * Label
+     */
+    .ui.label {
+        filter: brightness(90%);
     }
 
     /**
@@ -352,15 +367,27 @@
     }
 
     /**
+     * Message
+     */
+    .ui.message {
+        background-color: #1b1c1d !important;
+        color: rgba(255, 255, 255, .9);
+    }
+    .ui.error.message,
+    .ui.error.message .header {
+        color: #ecd1d1;
+    }
+
+    /**
      * Modal
      */
     .ui.modal {
-        background-color: #000 !important;
+        background-color: #1b1c1d !important;
     }
 
     .ui.modal > .content,
     .ui.modal > .header {
-        background-color: #000;
+        background-color: #111;
         color: #fff;
     }
 

@@ -1,0 +1,11 @@
+sitemap: /sitemap.xml
+
+user-agent: *
+allow: /
+
+# Blog
+disallow: /src/blog
+
+# User wishlists
+disallow: /wishlist/
+disallow: /?page=wishlist&hash=

@@ -26,41 +26,60 @@ switch ($step) {
         <main>
             <div class="ui hidden divider"></div>
             <div class="ui container">
+                <?= file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
+
+                <h1 class="ui header"><?= $page->title ?></h1>
+
                 <div class="ui segment">
-                    <h1 class="ui header"><?= $page->title ?></h1>
                     <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+
                     <p><?= __('Welcome to the wishthis installer.') ?></p>
+                </div>
+
+                <div class="ui segment">
+                    <h3 class="ui header"><?= __('Database') ?></h3>
+
                     <p><?= __('wishthis needs a database to function properly. Please enter your credentials.') ?></p>
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
-                        <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
-                        <div class="field">
-                            <label><?= __('Host') ?></label>
-                            <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
+                        <div class="ui error message"></div>
+
+                        <div class="equal width fields">
+                            <div class="field">
+                                <label><?= __('Host') ?></label>
+                                <input type="text" name="DATABASE_HOST" placeholder="localhost" value="localhost" />
+                            </div>
+
+                            <div class="field">
+                                <label><?= __('Name') ?></label>
+                                <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
+                            </div>
                         </div>
 
-                        <div class="field">
-                            <label><?= __('Name') ?></label>
-                            <input type="text" name="DATABASE_NAME" placeholder="wishthis" value="wishthis" />
+                        <div class="equal width fields">
+                            <div class="field">
+                                <label><?= __('Username') ?></label>
+                                <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
+                            </div>
+
+                            <div class="field">
+                                <label><?= __('Password') ?></label>
+                                <input type="text" name="DATABASE_PASSWORD" />
+                            </div>
                         </div>
 
-                        <div class="field">
-                            <label><?= __('Username') ?></label>
-                            <input type="text" name="DATABASE_USER" placeholder="root" value="root" />
+                        <div class="inline fields">
+                            <input class="ui primary disabled button"
+                                type="submit"
+                                value="<?= __('Save') ?>"
+                                title="<?= __('Save') ?>"
+                            />
+                            <button class="ui button" id="database-test" type="button">
+                                <?= __('Test connection') ?>
+                            </button>
                         </div>
-
-                        <div class="field">
-                            <label><?= __('Password') ?></label>
-                            <input type="text" name="DATABASE_PASSWORD" />
-                        </div>
-
-                        <input class="ui primary button"
-                               type="submit"
-                               value="<?= __('Continue') ?>"
-                               title="<?= __('Continue') ?>"
-                        />
                     </form>
                 </div>
             </div>
@@ -69,6 +88,10 @@ switch ($step) {
         break;
 
     case 2:
+        /**
+         * Set sitemap path in robots.txt
+         */
+
         /**
          * Cache
          */
@@ -103,7 +126,6 @@ switch ($step) {
                     <p><?= __('Click continue to test the database connection.') ?></p>
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
-                        <input type="hidden" name="install" value="true" />
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
 
                         <input class="ui primary button"

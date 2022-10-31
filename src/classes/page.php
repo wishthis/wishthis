@@ -50,22 +50,22 @@ class Page
         switch ($type) {
             case 'error':
                 $containerClasses[] = 'error icon';
-                $iconClasses[] = 'exclamation triangle';
+                $iconClasses[]      = 'exclamation triangle';
                 break;
 
             case 'warning':
                 $containerClasses[] = 'warning icon';
-                $iconClasses[] = 'exclamation circle';
+                $iconClasses[]      = 'exclamation circle';
                 break;
 
             case 'info':
                 $containerClasses[] = 'info icon';
-                $iconClasses[] = 'info circle';
+                $iconClasses[]      = 'info circle';
                 break;
 
             case 'success':
                 $containerClasses[] = 'success icon';
-                $iconClasses[] = 'check circle';
+                $iconClasses[]      = 'check circle';
                 break;
         }
 
@@ -139,14 +139,14 @@ class Page
 
         $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
-            'home',
             'blog',
-            'post',
+            'changelog',
+            'home',
             'install',
             'login',
             'maintenance',
+            'post',
             'register',
-            'changelog',
             'wishlist',
         );
 
@@ -290,7 +290,7 @@ class Page
              */
 
             /** Fomantic UI */
-            $stylesheetFomantic = 'semantic/dist/semantic.min.css';
+            $stylesheetFomantic         = 'semantic/dist/semantic.min.css';
             $stylesheetFomanticModified = filemtime($stylesheetFomantic);
             ?>
             <link rel="stylesheet"
@@ -300,7 +300,7 @@ class Page
             <?php
 
             /** Default */
-            $stylesheetDefault = 'src/assets/css/default.css';
+            $stylesheetDefault         = 'src/assets/css/default.css';
             $stylesheetDefaultModified = filemtime($stylesheetDefault);
             ?>
             <link rel="stylesheet"
@@ -408,21 +408,21 @@ class Page
 
             <?php
             /** jQuery */
-            $scriptjQuery = 'node_modules/jquery/dist/jquery.min.js';
+            $scriptjQuery         = 'node_modules/jquery/dist/jquery.min.js';
             $scriptjQueryModified = filemtime($scriptjQuery);
             ?>
             <script defer src="/<?= $scriptjQuery ?>?m=<?= $scriptjQueryModified ?>"></script>
             <?php
 
             /** Fomantic */
-            $scriptFomantic = 'semantic/dist/semantic.min.js';
+            $scriptFomantic         = 'semantic/dist/semantic.min.js';
             $scriptFomanticModified = filemtime($scriptFomantic);
             ?>
             <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>"></script>
             <?php
 
             /** Default */
-            $scriptDefault = 'src/assets/js/default.js';
+            $scriptDefault         = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
             ?>
             <script defer src="/<?= $scriptDefault ?>?m=<?= $scriptDefaultModified ?>"></script>
@@ -534,7 +534,7 @@ class Page
                 'icon' => 'sign out alternate',
             );
         } else {
-            $pages[$login] = array(
+            $pages[$login]    = array(
                 'text'      => __('Login'),
                 'alignment' => 'right',
                 'items'     => array(
