@@ -53,3 +53,9 @@
         background-color: rgba(0, 0, 0, 0.6);
     }
 }
+@media (max-width: 767.9px) {
+    .wishlists-saved .content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
