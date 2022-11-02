@@ -475,6 +475,10 @@ body.pushable > .pusher {
     }
 }
 
+.ui.dropdown.filter.priority .ui.menu {
+    z-index: calc(var(--dimmerZIndex) + 3);
+}
+
 /**
  * List
  */
