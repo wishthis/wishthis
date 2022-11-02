@@ -176,6 +176,10 @@
     }
 
     /** Menu */
+    .ui.dropdown .menu > .message:not(.ui) {
+        color: rgba(255, 255, 255, .5);
+    }
+
     .ui.dropdown .menu > .item:first-child {
         border-top-width: 0;
     }
