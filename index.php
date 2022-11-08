@@ -56,8 +56,7 @@ session_start(
     )
 );
 
-/** Backwards compatibility */
-if (!isset($_SESSION['user']) || is_array($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = new User();
 }
 
