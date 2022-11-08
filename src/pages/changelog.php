@@ -75,6 +75,12 @@ $page->navigation();
                                         echo  __('An error when a blog post doesn\'t have a featured image.');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Version number not being stored correctly causing the migration to execute the wrong script.');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
