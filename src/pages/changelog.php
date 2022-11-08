@@ -48,6 +48,12 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Remembered lists design');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
                                         echo __('Translations');
                                     ?>
                                 </li>
