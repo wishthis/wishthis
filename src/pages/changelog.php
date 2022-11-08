@@ -93,6 +93,12 @@ $page->navigation();
                                         echo  __('Version number not being stored correctly causing the migration to execute the wrong script.');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Wishlist filter cut off on mobile');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
