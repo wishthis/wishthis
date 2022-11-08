@@ -1,5 +1,12 @@
 @media (prefers-color-scheme: dark) {
 
+    a {
+        color: #a291fb;
+    }
+    a:hover {
+        color: #745aff;
+    }
+
     /**
      * Button
      */
