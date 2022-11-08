@@ -44,12 +44,12 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
          */
         if (isset($_POST['persistent'])) {
             /** Cookie options */
-            $sessionPassword = md5(time() . rand(-2147483648, 2147483647));
             $sessionLifetime = 2592000 * 4; // 4 Months
-            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV;
+            $sessionExpires  = time() + $sessionLifetime;
+            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
             $sessionOptions  = array (
                 'domain'   => getCookieDomain(),
-                'expires'  => time() + $sessionLifetime,
+                'expires'  => $sessionExpires,
                 'httponly' => true,
                 'path'     => '/',
                 'samesite' => 'None',
@@ -57,15 +57,17 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             );
 
             /** Set cookie */
-            setcookie(COOKIE_PERSISTENT, $sessionPassword, $sessionOptions);
+            setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
 
             $database->query(
                 'INSERT INTO `sessions` (
                     `user`,
-                    `session`
+                    `session`,
+                    `expires`
                 ) VALUES (
                      ' . $_SESSION['user']->id . ',
-                    "' . $sessionPassword . '"
+                    "' . session_id() . '",
+                    "' . date('Y-m-d H:i:s', $sessionExpires) . '"
                 );'
             );
         }

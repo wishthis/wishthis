@@ -92,16 +92,26 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
     $table_sessions_exists = $database->tableExists('sessions');
 
     if ($table_sessions_exists) {
-        $persistent = $database
+        $sessions = $database
         ->query(
             'SELECT *
                FROM `sessions`
               WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
         )
-        ->fetch();
+        ->fetchAll();
 
-        if (false !== $persistent) {
-            $_SESSION['user'] = User::getFromID($persistent['user']);
+        if (false !== $sessions) {
+            $_SESSION['user'] = new User();
+
+            foreach ($sessions as $session) {
+                $expires = strtotime($session['expires']);
+
+                if (time() < $expires) {
+                    $_SESSION['user'] = User::getFromID($session['user']);
+
+                    break;
+                }
+            }
         }
     }
 }
