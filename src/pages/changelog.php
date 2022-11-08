@@ -112,7 +112,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
-                                        echo __('Wish products')
+                                        echo __('Wish properties. You can now mark a wish as purchasable and add a price.')
                                     ?>
                                 </li>
                                 <li>
