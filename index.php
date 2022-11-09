@@ -104,7 +104,7 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
             $_SESSION['user'] = new User();
 
             foreach ($sessions as $session) {
-                $expires = strtotime($session['expires'] ?? time() + 1);
+                $expires = strtotime($session['expires'] ?? date('Y-m-d H:i:s', time() + 1));
 
                 if (time() < $expires) {
                     $_SESSION['user'] = User::getFromID($session['user']);
