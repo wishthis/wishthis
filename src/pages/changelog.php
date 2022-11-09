@@ -91,7 +91,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
-                                        echo  __('Blog not working due to a caching issue');
+                                        echo  __('Caching issue with the blog');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/46" target="_blank">#46</a>
                                 </li>
