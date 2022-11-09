@@ -1,7 +1,7 @@
 <?php
 
 /**
- * power.php
+ * Changelog
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
@@ -22,13 +22,104 @@ $page->navigation();
 
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
-                    <a class="item" data-tab="unreleased"><?= __('0.7.0') ?></a>
+                    <a class="item" data-tab="0-7-1"><?= __('0.7.1') ?></a>
+                    <a class="item" data-tab="0-7-0"><?= __('0.7.0') ?></a>
                     <a class="item" data-tab="0-6-0"><?= __('0.6.0') ?></a>
                 </div>
             </div>
 
             <div class="twelve wide stretched column">
-                <div class="ui tab" data-tab="unreleased">
+            <div class="ui tab" data-tab="0-7-1">
+                    <div class="ui segments">
+
+                        <div class="ui segment">
+                            <h2 class="ui header"><?= __('0.7.1') ?></h2>
+                        </div>
+
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Improved') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('MJML settings page');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/47" target="_blank">#47</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Expired sessions are now invalidated by wishthis instead of relying on the browser to delete the cookies.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Dark theme');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Remembered lists design');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Translations');
+                                    ?>
+                                </li>
+                            </ul>
+
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Label on top of dropdown menu');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/44" target="_blank">#44</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Encoding issue in wish description');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/45" target="_blank">#45</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Caching issue with the blog');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/46" target="_blank">#46</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('An error when a blog post doesn\'t have a featured image.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Version number not being stored correctly causing the migration to execute the wrong script.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Wishlist filter cut off on mobile');
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="ui tab" data-tab="0-7-0">
                     <div class="ui segments">
 
                         <div class="ui segment">
@@ -53,7 +144,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
-                                        echo __('Wish products')
+                                        echo __('Wish properties. You can now mark a wish as purchasable and add a price.')
                                     ?>
                                 </li>
                                 <li>
@@ -223,8 +314,8 @@ $page->navigation();
 
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
     </div>

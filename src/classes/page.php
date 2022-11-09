@@ -309,6 +309,16 @@ class Page
             />
             <?php
 
+            /** Default (Dark) */
+            $stylesheetDefaultDark         = 'src/assets/css/default/dark.css';
+            $stylesheetDefaultDarkModified = filemtime($stylesheetDefaultDark);
+            ?>
+            <link rel="stylesheet"
+                  type="text/css"
+                  href="/<?= $stylesheetDefaultDark ?>?m=<?= $stylesheetDefaultDarkModified ?>"
+            />
+            <?php
+
             /** Page */
             $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
 

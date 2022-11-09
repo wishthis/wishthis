@@ -71,4 +71,19 @@ class Database
 
         return false;
     }
+
+    public function columnExists(string $table_to_check, string $column_to_check): bool
+    {
+        $result = $this
+        ->query(
+            'SELECT *
+               FROM `INFORMATION_SCHEMA`.`COLUMNS`
+              WHERE TABLE_NAME  = "' . $table_to_check . '"
+                AND COLUMN_NAME = "' . $column_to_check . '"'
+        )
+        ->fetch();
+        $exists = false !== $result;
+
+        return $exists;
+    }
 }

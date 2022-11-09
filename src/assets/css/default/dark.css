@@ -1,5 +1,12 @@
 @media (prefers-color-scheme: dark) {
 
+    a {
+        color: #a291fb;
+    }
+    a:hover {
+        color: #745aff;
+    }
+
     /**
      * Button
      */
@@ -176,6 +183,10 @@
     }
 
     /** Menu */
+    .ui.dropdown .menu > .message:not(.ui) {
+        color: rgba(255, 255, 255, .5);
+    }
+
     .ui.dropdown .menu > .item:first-child {
         border-top-width: 0;
     }
@@ -283,6 +294,10 @@
         border-color: #e0b4b4;
     }
 
+    .ui.form .field.field input:autofill {
+        color: rgb(27, 28, 29);
+    }
+
     /** Loading */
     .ui.loading.form::before {
         background-color: rgba(17, 17, 17, 0.85);
@@ -376,6 +391,14 @@
     .ui.error.message,
     .ui.error.message .header {
         color: #ecd1d1;
+    }
+    .ui.info.message,
+    .ui.info.message .header {
+        color: #c6e3e9;
+    }
+    .ui.success.message,
+    .ui.success.message .header {
+        color: #b9d1ad;
     }
 
     /**

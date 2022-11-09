@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-define('VERSION', '0.7.0');
+define('VERSION', '0.7.1');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
 define('COOKIE_PERSISTENT', 'wishthis_persistent');
@@ -56,8 +56,7 @@ session_start(
     )
 );
 
-/** Backwards compatibility */
-if (!isset($_SESSION['user']) || is_array($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = new User();
 }
 
@@ -93,16 +92,27 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
     $table_sessions_exists = $database->tableExists('sessions');
 
     if ($table_sessions_exists) {
-        $persistent = $database
+        $sessions = $database
         ->query(
             'SELECT *
                FROM `sessions`
               WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
         )
-        ->fetch();
+        ->fetchAll();
 
-        if (false !== $persistent) {
-            $_SESSION['user'] = User::getFromID($persistent['user']);
+        if (false !== $sessions) {
+            $_SESSION['user'] = new User();
+
+            foreach ($sessions as $session) {
+                /** Column sessions.expires was added in v0.7.1. */
+                $expires = strtotime($session['expires'] ?? date('Y-m-d H:i:s', time() + 1));
+
+                if (time() < $expires) {
+                    $_SESSION['user'] = User::getFromID($session['user']);
+
+                    break;
+                }
+            }
         }
     }
 }

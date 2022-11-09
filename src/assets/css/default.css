@@ -1,5 +1,3 @@
-@import 'default/dark.css?v=0.7.0';
-
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
@@ -465,17 +463,7 @@ body.pushable > .pusher {
 /**
  * Filter
  */
-.ui.basic.white.button {
-    color: inherit;
-    background-color: #fff;
-}
-@media (prefers-color-scheme: dark) {
-    .ui.basic.white.button {
-        background-color: #222;
-    }
-}
-
-.ui.dropdown.filter.priority .ui.menu {
+.ui.dropdown.filter.priority .menu {
     z-index: calc(var(--dimmerZIndex) + 3);
 }
 
