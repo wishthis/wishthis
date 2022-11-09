@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-11-09 13:06+0100\n"
+"POT-Creation-Date: 2022-11-09 13:18+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -554,7 +554,7 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:94
-msgid "Blog not working due to a caching issue"
+msgid "Caching issue with the blog"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
