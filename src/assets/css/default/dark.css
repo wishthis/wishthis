@@ -388,6 +388,9 @@
     .ui.error.message .header {
         color: #ecd1d1;
     }
+    .ui.info.message {
+        color: #c6e3e9;
+    }
 
     /**
      * Modal
