@@ -59,17 +59,30 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             /** Set cookie */
             setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
 
-            $database->query(
-                'INSERT INTO `sessions` (
-                    `user`,
-                    `session`,
-                    `expires`
-                ) VALUES (
-                     ' . $_SESSION['user']->id . ',
-                    "' . session_id() . '",
-                    "' . date('Y-m-d H:i:s', $sessionExpires) . '"
-                );'
-            );
+            /** Column sessions.expires was added in v0.7.1. */
+            if ($database->columnExists('sessions', 'expires')) {
+                $database->query(
+                    'INSERT INTO `sessions` (
+                        `user`,
+                        `session`,
+                        `expires`
+                    ) VALUES (
+                        ' . $_SESSION['user']->id . ',
+                        "' . session_id() . '",
+                        "' . date('Y-m-d H:i:s', $sessionExpires) . '"
+                    );'
+                );
+            } else {
+                $database->query(
+                    'INSERT INTO `sessions` (
+                        `user`,
+                        `session`,
+                    ) VALUES (
+                         ' . $_SESSION['user']->id . ',
+                        "' . session_id() . '"
+                    );'
+                );
+            }
         }
     } else {
         $page->messages[] = Page::error(
