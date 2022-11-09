@@ -42,6 +42,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Improved */
+                                        echo __('MJML settings page');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/47" target="_blank">#47</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
                                         echo __('Expired sessions are now removed by wishthis instead of relying on the browser to delete them.');
                                     ?>
                                 </li>
