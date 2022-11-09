@@ -84,6 +84,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Blog not working due to a caching issue');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/46" target="_blank">#46</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('An error when a blog post doesn\'t have a featured image.');
                                     ?>
                                 </li>
