@@ -396,6 +396,10 @@
     .ui.info.message .header {
         color: #c6e3e9;
     }
+    .ui.inverted.success.message,
+    .ui.inverted.success.message .header {
+        color: #b9d1ad;
+    }
 
     /**
      * Modal
