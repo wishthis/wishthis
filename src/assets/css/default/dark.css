@@ -294,6 +294,10 @@
         border-color: #e0b4b4;
     }
 
+    .ui.form .field.field input:autofill {
+        color: rgb(27, 28, 29);
+    }
+
     /** Loading */
     .ui.loading.form::before {
         background-color: rgba(17, 17, 17, 0.85);
