@@ -72,8 +72,8 @@ class URL
             if (count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
-                        $rewriteRule  = $parts[1];
-                        $target       = $parts[2];
+                        $rewriteRule = $parts[1];
+                        $target      = $parts[2];
 
                         $regex = str_replace('/', '\/', $rewriteRule);
 
@@ -125,7 +125,7 @@ class URL
 
                         uasort(
                             $getParameters,
-                            function($a, $b) {
+                            function ($a, $b) {
                                 return strlen($a) <=> strlen($b);
                             }
                         );
