@@ -49,7 +49,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Improved */
-                                        echo __('Expired sessions are now removed by wishthis instead of relying on the browser to delete them.');
+                                        echo __('Expired sessions are now invalidated by wishthis instead of relying on the browser to delete the cookies.');
                                     ?>
                                 </li>
                                 <li>
