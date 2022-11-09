@@ -1,5 +1,3 @@
-@import 'default/dark.css?v=0.7.1';
-
 :root {
     --lineHeight: 1.4285;
     --wishPreviewHeight: min(30vh, 224px);
