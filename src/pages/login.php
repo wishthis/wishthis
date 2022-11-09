@@ -76,7 +76,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
                 $database->query(
                     'INSERT INTO `sessions` (
                         `user`,
-                        `session`,
+                        `session`
                     ) VALUES (
                          ' . $_SESSION['user']->id . ',
                         "' . session_id() . '"
