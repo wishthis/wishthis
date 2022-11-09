@@ -388,7 +388,8 @@
     .ui.error.message .header {
         color: #ecd1d1;
     }
-    .ui.info.message {
+    .ui.info.message,
+    .ui.info.message .header {
         color: #c6e3e9;
     }
 
