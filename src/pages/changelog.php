@@ -113,6 +113,12 @@ $page->navigation();
                                         echo  __('Wishlist filter cut off on mobile');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Wish options not selectable after filtering');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
