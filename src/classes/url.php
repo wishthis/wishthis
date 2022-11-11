@@ -11,7 +11,11 @@ namespace wishthis;
 class URL
 {
     /**
-     * Static
+     * Returns the HTTP status code of a URL.
+     *
+     * @param string $url
+     *
+     * @return integer
      */
     public static function getResponseCode(string $url): int
     {
@@ -43,24 +47,41 @@ class URL
     }
 
     /**
-     * Non-Static
+     * The current URL. Can be pretty or not.
+     *
+     * @var string
      */
     public string $url;
 
+    /**
+     * Constructor
+     *
+     * @param string $url
+     */
     public function __construct(string $url)
     {
         $this->url = urldecode($url);
 
-        $_GET = $this->get_GET();
+        $_GET = $this->getGET();
     }
 
+    /**
+     * Returns whether the current URL is pretty.
+     *
+     * @return boolean
+     */
     public function isPretty(): bool
     {
-        $isPretty = 1 === preg_match('/^\/[a-z0-9\/]+/', $this->url);
+        $isPretty = 1 === preg_match('/^\/[a-z0-9\/\-]+$/', $this->url);
 
         return $isPretty;
     }
 
+    /**
+     * Returns the original, un-pretty URL or an empty string on failure.
+     *
+     * @return string
+     */
     public function getPermalink(): string
     {
         $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
@@ -95,10 +116,14 @@ class URL
         return $permalink;
     }
 
+    /**
+     * Returns a pretty version of the current URL.
+     *
+     * @return string
+     */
     public function getPretty(): string
     {
-        $htaccess   = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
-        $pretty_url = '';
+        $htaccess = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
 
         if (!$this->url) {
             return '';
@@ -121,62 +146,73 @@ class URL
                             explode('&', parse_url($target, PHP_URL_QUERY))
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
-                        parse_str($this->url, $getParameters);
 
-                        uasort(
-                            $getParameters,
-                            function ($a, $b) {
-                                return strlen($a) <=> strlen($b);
+                        parse_str(ltrim($target, '/?'), $parameters);
+                        /** */
+
+                        /** Determine a potential URL. */
+                        $potential_url = $rewriteRule;
+
+                        preg_match_all('/\(.+?\)/', $rewriteRule, $groups);
+                        $groups = $groups[0];
+
+                        for ($i = 0; $i < count($groups); $i++) {
+                            foreach ($parameters as $key => $value) {
+                                $replacement = '$' . $i + 1;
+
+                                if ($replacement === $value && isset($_GET[$key])) {
+                                    $potential_url = str_replace(
+                                        $groups[$i],
+                                        $_GET[$key],
+                                        $potential_url
+                                    );
+                                }
                             }
+                        }
+
+                        $match = preg_match(
+                            '/^' . str_replace(array('/'), array('\/'), $rewriteRule) . '$/',
+                            $potential_url
                         );
-                        $getParameters = array_reverse($getParameters, true);
 
-                        preg_match_all('/\(.+?\)/', $rewriteRule, $regexes);
-
-                        $countMatches = 0;
-
-                        foreach ($regexes as $matches) {
-                            foreach ($matches as $match) {
-                                foreach ($getParameters as $key => $value) {
-                                    if (
-                                           preg_match('/^' . $match . '$/', $value)
-                                        && in_array($key, $keys)
-                                        && count($getParameters) === count($keys)
-                                    ) {
-                                        $rewriteRule = str_replace($match, $value, $rewriteRule);
-
-                                        $countMatches++;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if ($countMatches > 0 && $countMatches === count($matches)) {
-                                $pretty_url = '/' . $rewriteRule;
-
-                                if (in_array('L', $flags)) {
-                                    break 3;
-                                }
-                            }
+                        if (1 === $match && count($_GET) === count(explode('/', $rewriteRule))) {
+                            return '/' . $potential_url;
                         }
                         break;
                 }
             }
         }
 
-        return $pretty_url ?: '/?' . $this->url;
+        if ('/?' === substr($this->url, 0, 2)) {
+            return $this->url;
+        }
+
+        return '/?' . $this->url;
     }
 
-    public function get_GET(): array
+    /**
+     * Returns the current URL parameters, even for pretty URLs.
+     *
+     * @return array
+     */
+    public function getGET(): array
     {
-        $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
+        $queryString = $this->url;
         $GET         = array();
 
-        if ($this->isPretty() && $queryString) {
-            parse_str($queryString, $GET);
-        } else {
-            $GET = $_GET;
+        if ($this->isPretty()) {
+            $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
         }
+
+        if (null === $queryString) {
+            return array();
+        }
+
+        if ('/?' === substr($queryString, 0, 2)) {
+            $queryString = substr($queryString, 2);
+        }
+
+        parse_str($queryString, $GET);
 
         return $GET;
     }

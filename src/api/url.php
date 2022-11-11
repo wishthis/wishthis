@@ -18,12 +18,13 @@ if (!isset($page)) {
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['url'])) {
-            $url = new URL(base64_decode($_GET['url']));
+            $url_old = base64_decode($_GET['url']);
+            $url     = new URL($url_old);
 
             $response['data'] = array(
-                'url'            => $url->getPretty(),
-                'url_old'        => $url->url,
-                'url_old_pretty' => $url->isPretty(),
+                'url'           => $url_old,
+                'url_pretty'    => $url->getPretty(),
+                'url_is_pretty' => $url->isPretty(),
             );
         }
         break;

@@ -149,33 +149,24 @@ class Page
         /**
          * Session
          */
-
-        $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
-        $ignorePower = array(
-            'blog',
-            'changelog',
-            'home',
-            'install',
-            'login',
-            'maintenance',
-            'post',
-            'register',
-            'wishlist',
-        );
-
-        if (
-               false === $user->isLoggedIn()
-            && isset($_GET['page'])
-            && false === in_array($_GET['page'], $ignorePower)
-        ) {
-            redirect(Page::PAGE_LOGIN);
-        }
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
         /**
          * Power
          */
-        if (isset($user->power) && $user->power < $this->power) {
+        if (isset($user->power) && $user->power < $this->power && 0 !== $this->power) {
             redirect(Page::PAGE_POWER . '&required=' . $this->power);
+        }
+
+        /**
+         * Login
+         */
+        if (
+               false === $user->isLoggedIn()
+            && isset($_GET['page'])
+            && 0 !== $this->power
+        ) {
+            redirect(Page::PAGE_LOGIN);
         }
 
         /**
@@ -200,7 +191,7 @@ class Page
          * Redirect
          */
         if ($options && $options->getOption('isInstalled') && isset($_GET)) {
-            $url = new URL(http_build_query($_GET));
+            $url = new URL($_SERVER['REQUEST_URI']);
 
             if ($url->url && false === $url->isPretty()) {
                 redirect($url->getPretty());

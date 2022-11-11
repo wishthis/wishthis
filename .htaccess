@@ -10,11 +10,11 @@
   RewriteRule ^([a-z\-]+)$ /?page=$1 [QSA,L]
 
   # Wishlists (My lists)
-  RewriteRule ^(wishlists)/([0-9]+)$ /?page=$1&id=$2 [QSA,L]
-  RewriteRule ^(wishlists)/([0-9]+)/add$ /?page=$1&id=$2&wish_add=true [QSA,L]
+  RewriteRule ^wishlists/([0-9]+)$ /?page=wishlists&id=$1 [QSA,L]
+  RewriteRule ^wishlists/([0-9]+)/add$ /?page=wishlists&id=$1&wish_add=true [QSA,L]
 
   # Wishlist
-  RewriteRule ^(wishlist)/([0-9a-f]{40})$ /?page=$1&hash=$2 [QSA,L]
+  RewriteRule ^wishlist/([0-9a-f]{40})$ /?page=wishlist&hash=$1 [QSA,L]
 
   # Blog Post
   RewriteRule ^blog/([a-z\-0-9]+)$ /?page=post&slug=$1 [QSA,L]

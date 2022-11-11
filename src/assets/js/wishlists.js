@@ -81,7 +81,7 @@ $(function () {
             .then(handleFetchError)
             .then(handleFetchResponse)
             .then(function(response) {
-                window.history.pushState(null, document.title, response.data.url);
+                window.history.pushState(null, document.title, response.data.url_pretty);
 
                 $('.ui.dropdown.filter.priority')
                 .dropdown('restore default value')

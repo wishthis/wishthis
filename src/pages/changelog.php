@@ -43,7 +43,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Improved */
-                                        echo __('Completely reworked the API');
+                                        echo __('Large parts of wishthis have been completely rewritten, such as the API and how pretty URLs work. The aim was to increase security and maintenability.');
                                     ?>
                                 </li>
                             </ul>
