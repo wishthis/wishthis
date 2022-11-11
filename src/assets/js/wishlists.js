@@ -21,6 +21,9 @@ $(function () {
             action    : 'get wishlists',
             method    : 'GET',
             on        : 'now',
+            data      : {
+                'api_token' : api.token,
+            },
             onSuccess : function (response, element, xhr) {
                 wishlists = response.results;
 
@@ -63,7 +66,16 @@ $(function () {
             /** Update URL */
             urlParams.set('id', wishlistValue);
 
-            fetch('/src/api/url.php?url=' + window.btoa(urlParams.toString()), {
+            const params_url = new URLSearchParams(
+                {
+                    'api_token' : api.token,
+                    'module'    : 'url',
+                    'page'      : 'api',
+
+                    'url' : window.btoa(urlParams.toString()),
+                }
+            );
+            fetch('/?' + params_url, {
                 method: 'GET'
             })
             .then(handleFetchError)
@@ -146,7 +158,18 @@ $(function () {
         card.addClass('loading');
         card.attr('data-cache', 'false');
 
-        fetch('/src/api/wishes.php?wish_id=' + card.attr('data-id') + '&wishlist_user=' + wishlist_user, {
+        const params_cache = new URLSearchParams(
+            {
+                'api_token' : api.token,
+                'module'    : 'wishes',
+                'page'      : 'api',
+
+                'wish_id'       : card.attr('data-id'),
+                'wishlist_user' : wishlist_user,
+            }
+        );
+
+        fetch('/?' + params_cache, {
             method: 'GET'
         })
         .then(handleFetchError)
@@ -198,10 +221,11 @@ $(function () {
 
         var formRename = modalRename.find('.form.wishlist-rename');
         var formData   = new URLSearchParams(new FormData(formRename[0]));
+        formData.append('api_token', api.token);
 
-        fetch('/src/api/wishlists.php', {
-            method: 'PUT',
-            body:   formData
+        fetch('/?page=api&module=wishlists', {
+            method : 'PUT',
+            body   : formData,
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
@@ -280,7 +304,9 @@ $(function () {
                         action: 'delete wishlist',
                         method: 'DELETE',
                         data: {
-                            wishlistID: wishlistValue
+                            'api_token' : api.token,
+
+                            'wishlistID' : wishlistValue
                         },
                         on: 'now',
                         onSuccess: function (response, wishlists) {
@@ -323,8 +349,10 @@ $(function () {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                wish_id     : card.attr('data-id'),
-                wish_status : wish_status_fulfilled,
+                'api_token' : api.token,
+
+                'wish_id'     : card.attr('data-id'),
+                'wish_status' : wish_status_fulfilled,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
@@ -362,11 +390,17 @@ $(function () {
         /** Get Wish */
         var wishID = $(this).attr('data-id');
 
-        var wishFormData = new URLSearchParams({
-            'wish_id' : wishID
-        });
+        var wishFormData = new URLSearchParams(
+            {
+                'api_token' : api.token,
+                'module'    : 'wishes',
+                'page'      : 'api',
 
-        fetch('/src/api/wishes.php?' + wishFormData, {
+                'wish_id' : wishID
+            }
+        );
+
+        fetch('/?' + wishFormData, {
             method: 'GET'
         })
         .then(handleFetchError)
@@ -447,7 +481,9 @@ $(function () {
                     action    : 'delete wish',
                     method    : 'DELETE',
                     data      : {
-                        wish_id: card.attr('data-id'),
+                        'api_token' : api.token,
+
+                        'wish_id': card.attr('data-id'),
                     },
                     on        : 'now',
                     onSuccess : function () {
@@ -545,14 +581,15 @@ $(function () {
         .modal({
             autoShow: true,
             onApprove: function (buttonCreate) {
-                const formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
-
                 formWishlistCreate.addClass('loading');
                 buttonCreate.addClass('loading');
 
-                fetch('/src/api/wishlists.php', {
-                    method: 'POST',
-                    body:   formData
+                var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
+                formData.append('api_token', api.token);
+
+                fetch('/?page=api&module=wishlists', {
+                    method : 'POST',
+                    body   : formData
                 })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
@@ -603,7 +640,17 @@ $(function () {
         buttonAddOrSave.addClass('disabled');
 
         if (wishURLCurrent) {
-            fetch('/src/api/wishes.php?wish_url=' + wishURLCurrent, {
+            const params_url = new URLSearchParams(
+                {
+                    'api_token' : api.token,
+                    'module'    : 'wishes',
+                    'page'      : 'api',
+
+                    'wish_url' : wishURLCurrent
+                }
+            );
+
+            fetch('/?=' + params_url, {
                 method: 'GET'
             })
             .then(handleFetchError)
@@ -631,14 +678,18 @@ $(function () {
                         onApprove     : function (buttonUpdate) {
                             inputURL.val(modalValidate.find('input.proposed').val());
 
-                            var formData = new URLSearchParams({
-                                'wish_url_current'  : modalValidate.find('input.current').val(),
-                                'wish_url_proposed' : modalValidate.find('input.proposed').val()
-                            });
-
                             buttonUpdate.addClass('loading');
 
-                            fetch('/src/api/wishes.php', {
+                            const formData = new URLSearchParams(
+                                {
+                                    'api_token' : api.token,
+
+                                    'wish_url_current'  : modalValidate.find('input.current').val(),
+                                    'wish_url_proposed' : modalValidate.find('input.proposed').val(),
+                                }
+                            );
+
+                            fetch('/?page=api&module=wishes', {
                                 method : 'PUT',
                                 body   : formData
                             })
@@ -661,8 +712,9 @@ $(function () {
                     /** Save form edit fields */
                     /** This code block is a duplicate, please refactor */
                     var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
+                    formData.append('api_token', api.token);
 
-                    fetch('/src/api/wishes.php', {
+                    fetch('/?page=api&module=wishes', {
                         method : 'POST',
                         body   : formData
                     })
@@ -692,8 +744,9 @@ $(function () {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */
             var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
+            formData.append('api_token', api.token);
 
-            fetch('/src/api/wishes.php', {
+            fetch('/?page=api&module=wishes', {
                 method : 'POST',
                 body   : formData
             })

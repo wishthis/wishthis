@@ -30,6 +30,29 @@ $page->navigation();
 
             <div class="twelve wide stretched column">
             <div class="ui tab" data-tab="0-7-1">
+                <div class="ui tab" data-tab="1-7-1">
+                    <div class="ui segments">
+
+                        <div class="ui segment">
+                            <h2 class="ui header"><?= __('1.7.1') ?></h2>
+                        </div>
+
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Improved') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Completely reworked the API');
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="ui tab" data-tab="0-7-1">
                     <div class="ui segments">
 
                         <div class="ui segment">

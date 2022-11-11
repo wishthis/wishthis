@@ -145,23 +145,9 @@ $locale = isset($_REQUEST['locale']) ? $_REQUEST['locale'] : \Locale::lookup($lo
 Wish::initialize();
 
 /**
- * API
- */
-if (isset($api)) {
-    return;
-}
-
-/**
  * Pretty URLs
  */
 $url = new URL($_SERVER['REQUEST_URI']);
-
-/**
- * Install
- */
-if (!$options || !$options->getOption('isInstalled')) {
-    $page = 'install';
-}
 
 /**
  * Database Update

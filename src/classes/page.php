@@ -22,6 +22,7 @@ class Page
     /**
      * Static
      */
+    public const PAGE_API             = '/?page=api';
     public const PAGE_BLOG            = '/?page=blog';
     public const PAGE_CHANGELOG       = '/?page=changelog';
     public const PAGE_HOME            = '/?page=home';
@@ -128,14 +129,26 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
+        global $options;
+
         $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
         $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
         $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
         /**
+         * Install
+         */
+        if (!isset($options) || !$options || !$options->getOption('isInstalled')) {
+            global $page;
+
+            if ('api' !== $page) {
+                redirect(Page::PAGE_INSTALL);
+            }
+        }
+
+        /**
          * Session
          */
-        global $options;
 
         $user        = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         $ignorePower = array(
@@ -336,10 +349,14 @@ class Page
             /**
              * Scripts
              */
+            global $options;
             ?>
             <script type="text/javascript">
                 var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
                 var $_GET                   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
+                var api                     = {
+                    'token' : "<?= $options->getOption('api_token'); ?>",
+                };
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';

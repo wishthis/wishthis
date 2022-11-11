@@ -43,6 +43,7 @@ switch ($step) {
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+                        <input type="hidden" name="api_token" value="<?= sha1(ROOT) ?>">
 
                         <div class="ui error message"></div>
 
@@ -246,11 +247,13 @@ switch ($step) {
         );
 
         $database->query(
-            'INSERT INTO `options`
-            (`key`, `value`)
+            'INSERT INTO
+                `options` (`key`, `value`)
             VALUES
-            ("isInstalled", true),
-            ("version", "' . VERSION . '");'
+                ("isInstalled", true),
+                ("version", "' . VERSION . '"),
+                ("api_token", UUID())
+            ;'
         );
 
         /**

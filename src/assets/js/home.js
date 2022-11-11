@@ -2,7 +2,17 @@ $(function() {
     /**
      * Statistics
      */
-    fetch('/src/api/statistics.php?table=all', {
+    const params_statistics = new URLSearchParams(
+        {
+            'api_token' : api.token,
+            'module'    : 'statistics',
+            'page'      : 'api',
+
+            'table'     : 'all',
+        }
+    );
+
+    fetch('/?' + params_statistics, {
         method: 'GET'
     })
     .then(handleFetchError)
@@ -56,7 +66,15 @@ $(function() {
     /**
      * News
      */
-    fetch('/src/api/blog.php', {
+    const params_news = new URLSearchParams(
+        {
+            'api_token' : api.token,
+            'module'    : 'blog',
+            'page'      : 'api',
+        }
+    );
+
+    fetch('/?' + params_news, {
         method: 'GET'
     })
     .then(handleFetchError)

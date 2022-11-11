@@ -18,10 +18,10 @@ $(function() {
      */
     /** API */
     $.fn.api.settings.api = {
-        'get wishlists'      : '/src/api/wishlists.php',
-        'delete wishlist'    : '/src/api/wishlists.php',
-        'update wish status' : '/src/api/wishes.php',
-        'delete wish'        : '/src/api/wishes.php',
+        'get wishlists'      : '/?page=api&module=wishlists',
+        'delete wishlist'    : '/?page=api&module=wishlists',
+        'update wish status' : '/?page=api&module=wishes',
+        'delete wish'        : '/?page=api&module=wishes',
     };
 
     /** Default callbacks */

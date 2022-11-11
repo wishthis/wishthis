@@ -28,12 +28,18 @@ $(function () {
                 return false;
             }
 
-            var paramater = new URLSearchParams({
-                wishlist : wishlist_id,
-                priority : $(this).dropdown('get value'),
-            });
+            const parameter = new URLSearchParams(
+                {
+                    'api_token' : api.token,
+                    'module'    : 'wishlists',
+                    'page'      : 'api',
 
-            fetch('/src/api/wishlists.php?' + paramater, {
+                    'priority' : $(this).dropdown('get value'),
+                    'wishlist' : wishlist_id,
+                }
+            );
+
+            fetch('/?' + parameter, {
                 method : 'GET',
             })
             .then(handleFetchError)

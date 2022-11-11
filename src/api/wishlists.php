@@ -8,12 +8,12 @@
 
 namespace wishthis;
 
-$api      = true;
-$response = array();
+global $page, $database;
 
-ob_start();
-
-require '../../index.php';
+if (!isset($page)) {
+    http_response_code(403);
+    die('Direct access to this location is not allowed.');
+}
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
@@ -170,9 +170,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $response['success'] = true;
         break;
 }
-
-$response['warning'] = ob_get_clean();
-
-header('Content-type: application/json; charset=utf-8');
-echo json_encode($response);
-die();

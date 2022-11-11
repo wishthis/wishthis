@@ -47,8 +47,10 @@ $(function() {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                wish_id     : card.attr('data-id'),
-                wish_status : wish_status_temporary,
+                'api_token' : api.token,
+
+                'wish_id'     : card.attr('data-id'),
+                'wish_status' : wish_status_temporary,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
@@ -66,8 +68,10 @@ $(function() {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                wish_id     : card.attr('data-id'),
-                wish_status : wish_status_unavailable,
+                'api_token' : api.token,
+
+                'wish_id'     : card.attr('data-id'),
+                'wish_status' : wish_status_unavailable,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
@@ -84,10 +88,15 @@ $(function() {
 
         buttonSave.addClass('disabled loading');
 
-        var formData = new URLSearchParams();
-        formData.append('wishlist', $('[data-wishlist]').attr('data-wishlist'));
+        var formData = new URLSearchParams(
+            {
+                'api_token' : api.token,
 
-        fetch('/src/api/wishlists-saved.php', {
+                'wishlist'  : $('[data-wishlist]').attr('data-wishlist'),
+            }
+        );
+
+        fetch('/?page=api&module=wishlists-saved', {
             method : 'POST',
             body   : formData
         })
@@ -110,7 +119,15 @@ $(function() {
     });
 
     /** Determine if list is saved */
-    fetch('/src/api/wishlists-saved.php', {
+    const params_ws_saved = new URLSearchParams(
+        {
+            'api_token' : api.token,
+            'module'    : 'wishlists-saved',
+            'page'      : 'api',
+        }
+    );
+
+    fetch('/?' + params_ws_saved, {
         method : 'GET',
     })
     .then(handleFetchError)
@@ -149,14 +166,18 @@ $(function() {
         var wishlist_id     = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
         var wishlist_locale = buttonRequest.attr('data-locale');
 
-        var formData = new URLSearchParams({
-            'wishlist-id' : wishlist_id,
-            'locale'      : wishlist_locale
-        });
+        var formData = new URLSearchParams(
+            {
+                'api_token'   : api.token,
+
+                'locale'      : wishlist_locale,
+                'wishlist-id' : wishlist_id,
+            }
+        );
 
         buttonRequest.addClass('disabled loading');
 
-        fetch('/src/api/wishlists.php', {
+        fetch('/?page=api&module=wishlists', {
             method : 'POST',
             body   : formData
         })

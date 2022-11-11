@@ -8,13 +8,13 @@
 
 namespace wishthis;
 
-ob_start();
+global $page;
 
-$api = true;
+if (!isset($page)) {
+    http_response_code(403);
+    die('Direct access to this location is not allowed.');
+}
 
-require '../../index.php';
-
-$response      = array();
 $dateFormatter = new \IntlDateFormatter(
     $_SESSION['user']->getLocale(),
     \IntlDateFormatter::MEDIUM,
@@ -43,9 +43,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $response['html']  = $html;
         break;
 }
-
-$response['warning'] = ob_get_clean();
-
-header('Content-type: application/json; charset=utf-8');
-echo json_encode($response);
-die();
