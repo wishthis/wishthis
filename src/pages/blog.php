@@ -1,7 +1,7 @@
 <?php
 
 /**
- * home.php
+ * Blog
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
