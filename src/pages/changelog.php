@@ -74,9 +74,7 @@ $page->navigation();
                                     ?>
                                 </li>
                             </ul>
-                        </div>
 
-                        <div class="ui segment">
                             <h3 class="ui header"><?= __('Improved') ?></h3>
                             <ul>
                                 <li>
@@ -84,6 +82,24 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Improved */
                                         echo __('Large parts of wishthis have been completely rewritten, such as the API and how pretty URLs work. The aim was to increase security and maintenability.');
                                     ?>
+                                </li>
+                            </ul>
+
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Fix wish buttons overflow');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Fix wish price');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
                                 </li>
                             </ul>
                         </div>
