@@ -42,6 +42,7 @@ $(function () {
                 var html = response.results ? response.results : '';
 
                 $('.wishlist-cards').html(html);
+                $('.ui.dropdown.options').dropdown();
             })
             .finally(() => {
                 $(this).removeClass('disabled loading');

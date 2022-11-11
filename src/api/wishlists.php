@@ -24,8 +24,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $user_id   = Sanitiser::getNumber($_SESSION['user']->id);
             $wish_name = Sanitiser::getTitle($_POST['wishlist-name']);
 
-            $database->query('INSERT INTO `wishlists`
-                (
+            $database->query(
+                'INSERT INTO `wishlists` (
                     `user`,
                     `name`,
                     `hash`
@@ -33,8 +33,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                      ' . $user_id . ',
                     "' . $wish_name . '",
                     "' . sha1(time() . $user_id . $wish_name) . '"
-                )
-            ;');
+                );'
+            );
 
             $response['data'] = array(
                 'lastInsertId' => $database->lastInsertId(),
@@ -150,10 +150,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         parse_str(file_get_contents("php://input"), $_PUT);
 
         $database
-        ->query('UPDATE `wishlists`
-                    SET `name` = "' . Sanitiser::getTitle($_PUT['wishlist_title']) . '"
-                  WHERE `id`   =  ' . Sanitiser::getNumber($_PUT['wishlist_id']) . '
-        ;');
+        ->query(
+            'UPDATE `wishlists`
+                SET `name` = "' . Sanitiser::getTitle($_PUT['wishlist_title']) . '"
+              WHERE `id`   =  ' . Sanitiser::getNumber($_PUT['wishlist_id']) . ';'
+        );
 
         $response['success'] = true;
         break;
@@ -161,9 +162,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'DELETE':
         parse_str(file_get_contents("php://input"), $_DELETE);
 
-        $database->query('DELETE FROM `wishlists`
-            WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlistID']) . '
-        ;');
+        $database->query(
+            'DELETE FROM `wishlists`
+                   WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlistID']) . ';'
+        );
 
         $response['success'] = true;
         break;

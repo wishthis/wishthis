@@ -41,9 +41,6 @@ class Options
 
     public function setOption(string $key, string $value): void
     {
-        $key   = Sanitiser::getOption($key);
-        $value = Sanitiser::getText($value);
-
         $optionExists = 0 !== $this->database
         ->query('SELECT *
                    FROM `options`

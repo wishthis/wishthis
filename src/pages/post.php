@@ -11,8 +11,8 @@ namespace wishthis;
 $postSlug      = $_GET['slug'];
 $posts         = Blog::getPreviousCurrentNextPostBySlug($postSlug);
 $post          = $posts['current'];
-$postMediaHTML = isset($post->featured_media) ? Blog::getMediaHTML($post->featured_media) : '';
-$postMedia     = isset($post->featured_media) ? Blog::getMedia($post->featured_media)     : new \stdClss();
+$postMediaHTML = isset($post->featured_media) && 0 !== $post->featured_media ? Blog::getMediaHTML($post->featured_media) : '';
+$postMedia     = isset($post->featured_media) && 0 !== $post->featured_media ? Blog::getMedia($post->featured_media)     : new \stdClass();
 
 $page = new Page(__FILE__, $post->title->rendered);
 

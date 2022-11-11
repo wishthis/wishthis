@@ -44,12 +44,12 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
          */
         if (isset($_POST['persistent'])) {
             /** Cookie options */
-            $sessionPassword = md5(time() . rand(-2147483648, 2147483647));
             $sessionLifetime = 2592000 * 4; // 4 Months
-            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV;
+            $sessionExpires  = time() + $sessionLifetime;
+            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
             $sessionOptions  = array (
                 'domain'   => getCookieDomain(),
-                'expires'  => time() + $sessionLifetime,
+                'expires'  => $sessionExpires,
                 'httponly' => true,
                 'path'     => '/',
                 'samesite' => 'None',
@@ -57,17 +57,32 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             );
 
             /** Set cookie */
-            setcookie(COOKIE_PERSISTENT, $sessionPassword, $sessionOptions);
+            setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
 
-            $database->query(
-                'INSERT INTO `sessions` (
-                    `user`,
-                    `session`
-                ) VALUES (
-                     ' . $_SESSION['user']->id . ',
-                    "' . $sessionPassword . '"
-                );'
-            );
+            /** Column sessions.expires was added in v0.7.1. */
+            if ($database->columnExists('sessions', 'expires')) {
+                $database->query(
+                    'INSERT INTO `sessions` (
+                        `user`,
+                        `session`,
+                        `expires`
+                    ) VALUES (
+                        ' . $_SESSION['user']->id . ',
+                        "' . session_id() . '",
+                        "' . date('Y-m-d H:i:s', $sessionExpires) . '"
+                    );'
+                );
+            } else {
+                $database->query(
+                    'INSERT INTO `sessions` (
+                        `user`,
+                        `session`
+                    ) VALUES (
+                         ' . $_SESSION['user']->id . ',
+                        "' . session_id() . '"
+                    );'
+                );
+            }
         }
     } else {
         $page->messages[] = Page::error(
@@ -209,7 +224,7 @@ $page->navigation();
                         <p><?= __('Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again.') ?></p>
                         <p><?= sprintf('%sBitwarden%s is the most trusted open source password manager.', '<a href="https://bitwarden.com/" target="_blank">', '</a>') ?></p>
 
-                        <?php if ($options->getOption('mjml_api_key') && $options->getOption('mjml_api_secret')) { ?>
+                        <?php if ($options->getOption('mjml_api_application_id') && $options->getOption('mjml_api_secret_key')) { ?>
                             <p>
                                 <form class="ui form reset" method="POST">
                                     <div class="field">
