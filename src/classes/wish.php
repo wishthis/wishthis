@@ -225,7 +225,6 @@ class Wish
                         <a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a>
                     <?php } ?>
                 </div>
-                <div class="description-fade"></div>
             </div>
 
             <div class="extra content buttons">
