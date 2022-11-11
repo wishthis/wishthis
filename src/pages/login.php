@@ -224,7 +224,7 @@ $page->navigation();
                         <p><?= __('Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again.') ?></p>
                         <p><?= sprintf('%sBitwarden%s is the most trusted open source password manager.', '<a href="https://bitwarden.com/" target="_blank">', '</a>') ?></p>
 
-                        <?php if ($options->getOption('mjml_api_key') && $options->getOption('mjml_api_secret')) { ?>
+                        <?php if ($options->getOption('mjml_api_application_id') && $options->getOption('mjml_api_secret_key')) { ?>
                             <p>
                                 <form class="ui form reset" method="POST">
                                     <div class="field">
