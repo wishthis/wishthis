@@ -102,6 +102,11 @@
         color: rgba(255, 255, 255, .9);
     }
 
+    .ui.card .meta,
+    .ui.cards > .card .meta {
+        color: rgba(255, 255, 255, .7);
+    }
+
     /** Description */
     .ui.card > .content > .description,
     .ui.cards > .card > .content > .description {
