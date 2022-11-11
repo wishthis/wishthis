@@ -47,8 +47,8 @@ class Email
         global $options;
 
         $renderer = new ApiRenderer(
-            $options->getOption('mjml_api_key'),
-            $options->getOption('mjml_api_secret')
+            $options->getOption('mjml_api_application_id'),
+            $options->getOption('mjml_api_secret_key')
         );
 
         $html = $this->mjml;
