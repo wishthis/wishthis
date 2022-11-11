@@ -299,11 +299,14 @@
     }
 
     /** Loading */
+    .ui.loading.form {
+        color: #fff;
+    }
     .ui.loading.form::before {
         background-color: rgba(17, 17, 17, 0.85);
     }
-    .ui.loading.form {
-        color: #fff;
+    .ui.segment .ui.loading.form::before {
+        background-color: rgba(27, 28, 29, 0.85);
     }
 
     /**
