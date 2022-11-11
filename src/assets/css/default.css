@@ -278,43 +278,36 @@ figure {
     overflow: hidden;
 }
 
-.wishlist .ui.card > .content > .description-fade {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    height: 4em;
-    width: 100%;
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
-    border-radius: 0.33333333rem;
-}
-
-@media (prefers-color-scheme: dark) {
-    .wishlist .ui.card > .content > .description-fade {
-        background-image: linear-gradient(0deg, rgba(0, 0, 0, 1) 0.75em, rgba(0, 0, 0, 0.9) 45%, rgba(0, 0, 0, 0) 100%);
-    }
-}
-
 /** Buttons */
 .wishlist .ui.card > .extra.buttons {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 0.25em;
 
     background-color: inherit;
     z-index: 2;
 }
+.wishlist .ui.card > .extra.buttons::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 100%;
+
+    height: 4em;
+    width: 100%;
+
+    content: '';
+
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
+}
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.card > .extra.buttons::before {
+        background-image: linear-gradient(0deg, rgba(17, 17, 17, 1) 0.75em, rgba(17, 17, 17, 0.9) 45%, rgba(17, 17, 17, 0) 100%);
+    }
+}
 
 @media (hover: hover) {
-    @media (prefers-reduced-motion: no-preference) {
-        .wishlist .ui.card > .content > .description-fade {
-            transition: 0.2s ease bottom;
-        }
-    }
-    .wishlist .ui.card:hover > .content > .description-fade {
-        bottom: var(--buttonsHeight);
-    }
-
     .wishlist .ui.card > .extra.buttons {
         position: absolute;
         top: unset;
@@ -342,10 +335,8 @@ figure {
 
 .wishlist .ui.card > .extra.buttons > .button {
     flex: 1 1 auto;
-}
-
-.wishlist .ui.card > .extra.buttons > :last-child {
-    margin-right: 0;
+    width: 100%;
+    margin: 0;
 }
 
 /**
