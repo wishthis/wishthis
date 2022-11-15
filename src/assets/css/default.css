@@ -110,6 +110,8 @@ figure {
 }
 
 .wishlist .ui.card > .image > :is(svg, img.preview) {
+    display: block;
+
     height: var(--hoverHeight);
 }
 @media (hover: hover) {
