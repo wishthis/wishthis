@@ -107,6 +107,10 @@
         color: rgba(255, 255, 255, .7);
     }
 
+    .ui.header .sub.header {
+        color: rgba(255, 255, 255, .6);
+    }
+
     /** Description */
     .ui.card > .content > .description,
     .ui.cards > .card > .content > .description {
@@ -116,6 +120,11 @@
     /** Buttons */
     .wishlist .ui.card > .extra.buttons {
         background-color: #111 !important;
+    }
+
+    /** Dimmer */
+    .blurring.dimmable > .inverted.dimmer {
+        background-color: rgba(0, 0, 0, .6);
     }
 
     /**
