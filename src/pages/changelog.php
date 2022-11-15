@@ -38,7 +38,7 @@ $page->navigation();
                             <?php
                                 /** TRANSLATORS: %s: discussions */
                                 echo sprintf(
-                                    __('If you would like to give feedback regarding the roadmap, please refer to the %s on GitHub.'),
+                                    __('If you would like to give feedback regarding the roadmap, please refer to the %s on GitHub, or chat on Matrix or Discord.'),
                                     sprintf(
                                         '<a href="https://github.com/grandeljay/wishthis/discussions" target="_blank">%s</a>',
                                         __('discussions')
@@ -50,7 +50,27 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Filter by price');
+                                ?>
+                                <a href="https://github.com/grandeljay/wishthis/issues/43" target="_blank">#43</a>
+                            </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Bookmarklets');
+                                ?>
+                                <a href="https://github.com/grandeljay/wishthis/issues/49" target="_blank">#49</a>
+                            </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Notifications for fulfilled wishes');
+                                ?>
+                            </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Compact/list view for wishes');
                                 ?>
                             </li>
                         </ul>
