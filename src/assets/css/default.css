@@ -103,6 +103,9 @@ figure {
         background-image: linear-gradient(0deg, rgba(17, 17, 17, 1) 0.75em, rgba(17, 17, 17, 0.9) 45%, rgba(17, 17, 17, 0) 100%);
     }
 }
+.wishlist .ui.fluid.card.stretch.loading::before {
+    height: 100%;
+}
 
 /** Image */
 .wishlist .ui.card > .image {
