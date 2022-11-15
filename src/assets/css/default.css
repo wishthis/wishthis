@@ -266,7 +266,6 @@ figure {
     }
 
     .wishlist .ui.card:hover > .content:not(.extra) {
-        height: calc(1.5 * var(--wishPreviewHeight) - var(--buttonsHeight) - 4px);
         margin-bottom: var(--buttonsHeight);
 
         overflow: auto;
