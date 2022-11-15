@@ -280,6 +280,8 @@ figure {
 
 /** Buttons */
 .wishlist .ui.card > .extra.buttons {
+    position: relative;
+
     display: flex;
     align-items: center;
     flex-direction: column;
