@@ -105,9 +105,21 @@ figure {
 }
 
 /** Image */
+.wishlist .ui.card > .image {
+    --hoverHeight: calc(1em + 3 * var(--padding));
+}
+
+.wishlist .ui.card > .image > :is(svg, img.preview) {
+    height: var(--hoverHeight);
+}
+@media (hover: hover) {
+    .wishlist .ui.card > .image > :is(svg, img.preview) {
+        height: var(--wishPreviewHeight);
+    }
+}
+
 .wishlist .ui.card > .image > svg {
     width: 100%;
-    height: var(--wishPreviewHeight);
 
     color: #f0f0f0;
     background-color: #f4f4f4;
@@ -141,15 +153,13 @@ figure {
         }
     }
     .wishlist .ui.card:hover > .image > svg {
-        height: calc(1em + 3 * var(--padding) - 5px);
+        height: calc(var(--hoverHeight) - 5px);
         padding: 0 !important;
         opacity: 0;
     }
 }
 
 .wishlist .ui.card > .image > img.preview {
-    height: var(--wishPreviewHeight);
-
     object-fit: cover;
     object-position: 50%;
     background-color: #fff;
@@ -172,7 +182,7 @@ figure {
     }
 
     .wishlist .ui.card:hover > .image > img.preview {
-        height: calc(1em + 3 * var(--padding));
+        height: var(--hoverHeight);
     }
 }
 

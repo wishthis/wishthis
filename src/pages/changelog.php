@@ -105,6 +105,16 @@ $page->navigation();
                                 </li>
                             </ul>
 
+                            <h3 class="ui header"><?= __('Changed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Decreased wish height on mobile devices');
+                                    ?>
+                                </li>
+                            </ul>
+
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
                                 <li>
