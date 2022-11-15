@@ -1,6 +1,6 @@
 :root {
     --lineHeight: 1.4285;
-    --wishPreviewHeight: min(30vh, 224px);
+    --wishPreviewHeight: min(30vh, 192px);
     --dimmerZIndex: 100;
 }
 
@@ -75,7 +75,7 @@ figure {
  */
 .wishlist .ui.card {
     --padding: 0.91666667em;
-    --buttonsHeight: calc(1em + 1.50em + 0.78571429em * 2 - 3px);
+    --buttonsHeight: calc((.92857143rem + 0.78571429em * 2) * 2 + 0.25em + 0.75em * 2 - 4px);
 }
 .wishlist .ui.card:focus-within {
     z-index: calc(var(--dimmerZIndex) + 2);
@@ -83,6 +83,25 @@ figure {
 
 .wishlist .ui.fluid.card.stretch {
     height: 100%;
+}
+.wishlist .ui.fluid.card.stretch::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    height: 4em;
+    width: 100%;
+
+    content: '';
+    border-radius: .28571429rem;
+
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
+}
+@media (prefers-color-scheme: dark) {
+    .wishlist .ui.fluid.card.stretch::before {
+        background-image: linear-gradient(0deg, rgba(17, 17, 17, 1) 0.75em, rgba(17, 17, 17, 0.9) 45%, rgba(17, 17, 17, 0) 100%);
+    }
 }
 
 /** Image */
@@ -160,7 +179,7 @@ figure {
 /** Provider */
 .wishlist .ui.card > .image,
 .wishlist .ui.card > .image > span.provider {
-    border-radius: .33333333rem .33333333rem 0 0;
+    border-radius: .28571429rem .28571429rem 0 0;
 }
 
 .wishlist .ui.card > .image > img.favicon,
@@ -247,7 +266,7 @@ figure {
 
 /** Content */
 .wishlist .ui.card > .content:not(.extra) {
-    height: calc(0.75 * var(--wishPreviewHeight));
+    height: 20vh;
 
     overflow: auto;
 }
@@ -288,24 +307,6 @@ figure {
 
     background-color: inherit;
     z-index: 2;
-}
-.wishlist .ui.card > .extra.buttons::before {
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 100%;
-
-    height: 4em;
-    width: 100%;
-
-    content: '';
-
-    background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
-}
-@media (prefers-color-scheme: dark) {
-    .wishlist .ui.card > .extra.buttons::before {
-        background-image: linear-gradient(0deg, rgba(17, 17, 17, 1) 0.75em, rgba(17, 17, 17, 0.9) 45%, rgba(17, 17, 17, 0) 100%);
-    }
 }
 
 @media (hover: hover) {

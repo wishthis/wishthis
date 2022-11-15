@@ -119,7 +119,7 @@
 
     /** Buttons */
     .wishlist .ui.card > .extra.buttons {
-        background-color: #111 !important;
+        background-color: transparent;
     }
 
     /** Dimmer */

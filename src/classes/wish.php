@@ -245,6 +245,13 @@ class Wish
                         <i class="external icon"></i>
                         <?= __('Visit') ?>
                     </a>
+                <?php } else { ?>
+                    <a class="ui small labeled icon disabled button<?= $userIsCurrent ? ' primary' : '' ?>"
+                       title="<?= __('Visit') ?>"
+                    >
+                        <i class="external icon"></i>
+                        <?= __('Visit') ?>
+                    </a>
                 <?php } ?>
 
                 <?php if ($userIsCurrent) { ?>
