@@ -341,6 +341,12 @@ figure {
     margin: 0;
 }
 
+/** Overlay */
+.ui.card .dimmer,
+.ui.cards > .card .dimmer {
+    z-index: calc(var(--dimmerZIndex) + 2);
+}
+
 /**
  * Label
  */

@@ -110,14 +110,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
-                                        echo  __('Fix wish buttons overflow');
-                                    ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
-                                </li>
-                                <li>
-                                    <?php
-                                        /** TRANSLATORS: Changelog: Fixed */
-                                        echo  __('Fix wish price');
+                                        echo  __('Fix various wish UI bugs');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
                                 </li>
