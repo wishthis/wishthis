@@ -12,8 +12,6 @@ $page = new Page(__FILE__, __('Logout'));
 
 $_SESSION['user']->logOut();
 
-redirect(Page::PAGE_HOME);
-
 $page->header();
 $page->bodyStart();
 $page->navigation();
