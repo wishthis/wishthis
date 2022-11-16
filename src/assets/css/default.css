@@ -299,7 +299,7 @@ figure {
         overflow: hidden;
     }
 
-    .wishlist .ui.card:hover > .content:not(.extra) {
+    .ui:not(.one).column .ui.card:hover > .content:not(.extra) {
         margin-bottom: var(--buttonsHeight);
 
         overflow: auto;
