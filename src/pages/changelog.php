@@ -130,6 +130,12 @@ $page->navigation();
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Fix background and color when opening the mobile menu');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
