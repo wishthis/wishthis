@@ -103,6 +103,12 @@ $page->navigation();
                                         echo __('Large parts of wishthis have been completely rewritten, such as the API and how pretty URLs work. The aim was to increase security and maintainability.');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Improved */
+                                        echo __('Changelog now automatically selects the current version, instead of the top most tab.');
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Changed') ?></h3>

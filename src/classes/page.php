@@ -348,6 +348,7 @@ class Page
                 var api                     = {
                     'token' : "<?= $options->getOption('api_token'); ?>",
                 };
+                var version                 = '<?= VERSION ?>';
                 var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
                 var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
                 var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';
