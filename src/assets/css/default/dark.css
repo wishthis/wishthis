@@ -49,20 +49,33 @@
     .ui.basic.button,
     .ui.basic.buttons .button {
         background-color: transparent;
-        color: #f9fafb !important;
+        color: #f9fafb;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, .5) inset;
     }
     .ui.basic.button:hover,
     .ui.basic.buttons .button:hover {
-        color: #fff !important;
+        color: #fff;
         box-shadow: 0 0 0 2px #fff inset !important;
+        background-color: transparent;
     }
 
     .ui.basic.active.button,
     .ui.basic.buttons .active.button {
         background-color: rgba(255, 255, 255, .08);
-        color: #111 !important;
+        color: #111;
         box-shadow: 0 0 0 2px rgba(255, 255, 255, .7) inset;
+    }
+
+    .ui.basic.button:active,
+    .ui.basic.buttons .button:active {
+        background-color: rgba(255, 255, 255, .08);
+        color: #fff;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, .9) inset;
+    }
+
+    .ui.basic.button:focus:hover,
+    .ui.basic.buttons .button:focus:hover {
+        color: #000;
     }
 
     /** Tertiary */
