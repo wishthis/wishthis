@@ -73,6 +73,12 @@ $page->navigation();
                                     echo __('Compact/list view for wishes');
                                 ?>
                             </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Option to delete account');
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </div>
