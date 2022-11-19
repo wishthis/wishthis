@@ -170,7 +170,6 @@ $page->navigation();
                     <p><?= __('Join the others and get started now!') ?></p>
 
                     <div class="ui stackable statistics">
-
                         <div class="statistic" id="wishes">
                             <div class="value"><?= __('N. A.') ?></div>
                             <div class="label"><?= __('Wishes') ?></div>
