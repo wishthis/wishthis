@@ -2,6 +2,7 @@
   "dependencies": {
     "@fontsource/atkinson-hyperlegible": "^4.5.9",
     "@fontsource/raleway": "^4.5.10",
-    "fomantic-ui": "2.9.0"
+    "fomantic-ui": "2.9.0",
+    "html2canvas": "^1.4.1"
   }
 }
