@@ -34,6 +34,10 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         array (
             'ML\\JsonLD\\' => 10,
         ),
+        'J' => 
+        array (
+            'Jaybizzle\\CrawlerDetect\\' => 24,
+        ),
         'H' => 
         array (
             'HtmlParser\\' => 11,
@@ -82,6 +86,10 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
         'ML\\JsonLD\\' => 
         array (
             0 => __DIR__ . '/..' . '/ml/json-ld',
+        ),
+        'Jaybizzle\\CrawlerDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
         'HtmlParser\\' => 
         array (

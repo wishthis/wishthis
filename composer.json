@@ -4,6 +4,7 @@
         "grandel/include-directory": "^0.2.2",
         "qferr/mjml-php": "^1.1",
         "gettext/gettext": "^5.6",
-        "gettext/translator": "^1.1"
+        "gettext/translator": "^1.1",
+        "jaybizzle/crawler-detect": "^1.2"
     }
 }

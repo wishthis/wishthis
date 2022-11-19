@@ -8,6 +8,10 @@
 
 namespace wishthis;
 
+if ($options && $options->getOption('version') === VERSION) {
+    redirect(Page::PAGE_HOME);
+}
+
 $page = new Page(__FILE__, __('Maintenance'));
 $page->header();
 $page->bodyStart();
