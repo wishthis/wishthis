@@ -440,6 +440,23 @@ class Page
             <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>"></script>
             <?php
 
+            /** html2canvas */
+            $CrawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
+
+            if ($CrawlerDetect->isCrawler()) {
+                $scripthtml2canvas1         = 'node_modules/html2canvas/dist/html2canvas.min.js';
+                $scripthtml2canvas1Modified = filemtime($scripthtml2canvas1);
+                ?>
+                <script defer src="/<?= $scripthtml2canvas1 ?>?m=<?= $scripthtml2canvas1Modified ?>"></script>
+                <?php
+
+                $scripthtml2canvas2         = 'src/assets/js/html2canvas.js';
+                $scripthtml2canvas2Modified = filemtime($scripthtml2canvas2);
+                ?>
+                <script defer src="/<?= $scripthtml2canvas2 ?>?m=<?= $scripthtml2canvas2Modified ?>"></script>
+                <?php
+            }
+
             /** Default */
             $scriptDefault         = 'src/assets/js/default.js';
             $scriptDefaultModified = filemtime($scriptDefault);
