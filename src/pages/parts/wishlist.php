@@ -6,9 +6,14 @@
 
 namespace wishthis;
 
-$scriptPart = '/src/assets/js/parts/wishlist-filter.js';
+$scripts = array(
+    '/src/assets/js/parts/wishlist-filter.js',
+    '/src/assets/js/parts/wishlists.js',
+);
 ?>
-<script defer src="<?= $scriptPart ?>?m=<?= filemtime(ROOT . $scriptPart) ?>"></script>
+<?php foreach ($scripts as $script) { ?>
+    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>"></script>
+<?php } ?>
 
 <div>
     <div class="ui stackable grid">
@@ -65,3 +70,9 @@ $scriptPart = '/src/assets/js/parts/wishlist-filter.js';
         </div>
     </div>
 </div>
+
+<?php if (isset($wishlist->id)) { ?>
+    <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>"></div>
+<?php } else { ?>
+    <div class="wishlist-cards"></div>
+<?php } ?>

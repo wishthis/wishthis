@@ -20,7 +20,7 @@ $(function () {
     /**
      * Get Wishlists
      */
-    var wishlists     = [];
+    var wishlists = [];
 
     $('.ui.dropdown.wishlists')
     .dropdown()
@@ -39,15 +39,17 @@ $(function () {
             wishlists = response.results;
 
             dropdown_wishlists.dropdown({
-                values : wishlists
+                'values' : wishlists,
             })
 
             /** Select current/active wishlist */
             if (wishlist.id) {
                 dropdown_wishlists.dropdown('set selected', wishlist.id);
             } else {
-                if (wishlists.length >= 1) {
-                    dropdown_wishlists.dropdown('set selected', Object.values(wishlists)[0]);
+                if (Object.keys(wishlists).length >= 1) {
+                    var first_wishlist_id = Object.keys(wishlists)[0];
+
+                    dropdown_wishlists.dropdown('set selected', first_wishlist_id);
                 }
             }
 

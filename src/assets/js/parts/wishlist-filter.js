@@ -23,7 +23,11 @@ $(function () {
             var dropdown_wishlists  = $('.dropdown.wishlists');
 
             if (dropdown_wishlists.length) {
-                settings.urlData.wishlistid = $('.dropdown.wishlists').dropdown('get value');
+                var dropdown_wishlists_value = dropdown_wishlists.dropdown('get value');
+
+                if (dropdown_wishlists_value) {
+                    settings.urlData.wishlistid = dropdown_wishlists_value;
+                }
             }
 
             if (typeof wistlist_cards_data !== 'undefined') {

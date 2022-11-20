@@ -92,9 +92,7 @@ $page->navigation();
             </div>
         </div>
 
-        <?php include 'parts/wishlist-filter.php' ?>
-
-        <div class="wishlist-cards"></div>
+        <?php include 'parts/wishlist.php' ?>
     </div>
 </main>
 

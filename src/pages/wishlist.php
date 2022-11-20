@@ -69,25 +69,7 @@ $page->navigation();
 
         <h2 class="ui header"><?= __('Wishes') ?></h2>
 
-        <?php include 'parts/wishlist-filter.php' ?>
-
-        <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>">
-            <?php
-            /*
-            echo $wishlist->getCards(
-                array(
-                    'WHERE' => '`wishlist` = ' . $wishlist->id . '
-                       AND (
-                              `status`  = ""
-                           OR `status` IS NULL
-                           OR `status`  < unix_timestamp(CURRENT_TIMESTAMP - INTERVAL ' . Wish::STATUS_TEMPORARY_MINUTES . ' MINUTE)
-                       )
-                       AND (`status` != "' . Wish::STATUS_UNAVAILABLE . '" OR `status` IS NULL)'
-                )
-            );
-            */
-            ?>
-        </div>
+        <?php include 'parts/wishlist.php' ?>
 
         <div class="ui basic center aligned segment">
             <button class="ui primary button wishlist-request-wishes" data-locale="<?= $wishlist_user->getLocale() ?>">
