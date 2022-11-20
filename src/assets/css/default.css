@@ -1,6 +1,6 @@
 :root {
     --lineHeight: 1.4285;
-    --wishPreviewHeight: min(30vh, 192px);
+    --wishPreviewHeight: 192px;
     --dimmerZIndex: 100;
 }
 
@@ -72,11 +72,31 @@ figure {
 }
 
 /**
+ * Wishlist Grid
+ */
+@media (max-width: 767.98px) {
+    .ui.grid > .stackable.stackable.stackable.row > .column,
+    .ui.stackable.grid > .column.grid > .column,
+    .ui.stackable.grid > .column.row > .column,
+    .ui.stackable.grid > .column:not(.row),
+    .ui.stackable.grid > .row > .column,
+    .ui.stackable.grid > .row > .wide.column,
+    .ui.stackable.grid > .wide.column {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.ui.one.column.grid > .column:not(.row, :first-of-type) {
+    padding-top: 0;
+}
+
+/**
  * Wishlist Card
  */
 .wishlist .ui.card {
     --padding: 0.91666667em;
-    --buttonsHeight: calc((.92857143rem + 0.78571429em * 2) * 2 + 0.25em + 0.75em * 2 - 4px);
+    --buttonsHeight: calc((.92857143rem + 0.78571429em * 2) * 2 + 0.25em + 0.75em);
 }
 .wishlist .ui.card:focus-within {
     z-index: calc(var(--dimmerZIndex) + 2);
@@ -85,7 +105,7 @@ figure {
 .wishlist .ui.fluid.card.stretch {
     height: 100%;
 }
-.wishlist .ui.fluid.card.stretch::before {
+.wishlist:not(.one).column .ui.fluid.card.stretch::before {
     position: absolute;
     right: 0;
     left: 0;
@@ -100,12 +120,18 @@ figure {
     background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
 }
 @media (prefers-color-scheme: dark) {
-    .wishlist .ui.fluid.card.stretch::before {
+    .wishlist:not(.one).column .ui.fluid.card.stretch::before {
         background-image: linear-gradient(0deg, rgba(17, 17, 17, 1) 0.75em, rgba(17, 17, 17, 0.9) 45%, rgba(17, 17, 17, 0) 100%);
     }
 }
 .wishlist .ui.fluid.card.stretch.loading::before {
     height: 100%;
+}
+
+.ui.card.horizontal,
+.ui.horizontal.cards > .card {
+    flex-wrap: nowrap;
+    width: auto;
 }
 
 /** Image */
@@ -116,11 +142,14 @@ figure {
 .wishlist .ui.card > .image > :is(svg, img.preview) {
     display: block;
 
+    height: 100%;
+}
+.wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
     height: var(--hoverHeight);
 }
 @media (hover: hover) {
-    .wishlist .ui.card > .image > :is(svg, img.preview) {
-        height: var(--wishPreviewHeight);
+    .wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
+        height: max(var(--hoverHeight), var(--wishPreviewHeight));
     }
 }
 
@@ -158,7 +187,7 @@ figure {
                 0.2s linear opacity;
         }
     }
-    .wishlist .ui.card:hover > .image > svg {
+    .wishlist:not(.one).column .ui.card:hover > .image > svg {
         height: calc(var(--hoverHeight) - 5px);
         padding: 0 !important;
         opacity: 0;
@@ -187,9 +216,18 @@ figure {
         }
     }
 
-    .wishlist .ui.card:hover > .image > img.preview {
+    .wishlist:not(.one).column .ui.card:hover > .image > img.preview {
         height: var(--hoverHeight);
     }
+}
+
+.ui.card.horizontal > .image,
+.ui.horizontal.cards > .card > .image {
+    --sizeCardY: calc(1.28571429em * 1.28571429 + 2em + 3px);
+    --sizeFaviconX: calc(1.25em + var(--padding) * 2);
+
+    width: min(var(--sizeFaviconX), var(--sizeCardY));
+    min-height: var(--sizeCardY);
 }
 
 /** Provider */
@@ -282,9 +320,10 @@ figure {
 
 /** Content */
 .wishlist .ui.card > .content:not(.extra) {
-    height: 20vh;
-
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
 }
 
 @media (hover: hover) {
@@ -296,37 +335,52 @@ figure {
         }
     }
 
-    .wishlist .ui.card > .content:not(.extra) {
+    .wishlist:not(.one).column .ui.card > .content:not(.extra) {
+        height: calc(var(--wishPreviewHeight) * 1.25);
         overflow: hidden;
     }
 
-    .ui:not(.one).column .ui.card:hover > .content:not(.extra) {
+    .wishlist:not(.one).column .ui.card:hover > .content:not(.extra) {
         margin-bottom: var(--buttonsHeight);
-
-        overflow: auto;
     }
 }
 
 .wishlist .ui.card > .content > .header {
+    flex-shrink: 0;
+
     max-height: calc(2 * 1.28571429em);
     overflow: hidden;
 }
 
+.wishlist .ui.card > .content > .description {
+    margin-top: 0;
+    overflow: auto;
+}
+
 /** Buttons */
-.wishlist .ui.card > .extra.buttons {
+.wishlist .ui.card > .extra.buttons,
+.wishlist .ui.card > .content > .extra.buttons {
     position: relative;
 
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     gap: 0.25em;
+    width: 100%;
+
+    padding-top: 0;
 
     background-color: inherit;
     z-index: 2;
 }
 
+.wishlist .ui.card > .content > .extra.buttons {
+    flex-direction: row;
+}
+
 @media (hover: hover) {
-    .wishlist .ui.card > .extra.buttons {
+    .wishlist:not(.one).column .ui.card > .extra.buttons {
         position: absolute;
         top: unset;
         right: 0;
@@ -338,23 +392,25 @@ figure {
         margin-bottom: 0;
     }
     @media (prefers-reduced-motion: no-preference) {
-        .wishlist .ui.card > .extra.buttons {
+        .wishlist:not(.one).column .ui.card > .extra.buttons {
             transition:
                 0.2s ease opacity,
                 0.2s ease bottom;
         }
     }
-    .wishlist .ui.card:hover > .extra.buttons {
+    .wishlist:not(.one).column .ui.card:hover > .extra.buttons {
         opacity: 1;
 
         bottom: 0;
     }
 }
 
-.wishlist .ui.card > .extra.buttons > .button {
-    flex: 1 1 auto;
+.wishlist .ui.card > .extra.buttons > .button,
+.wishlist .ui.card > .content > .extra.buttons > .button {
     width: 100%;
     margin: 0;
+
+    flex: 1 1 auto;
 }
 
 /** Overlay */

@@ -94,12 +94,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'GET':
-        if (isset($_GET['wishlist'], $_GET['priority'])) {
+        if (isset($_GET['wishlist_id'], $_GET['priority'])) {
             /**
-             * Get wishlist cards
+             * Get wishlist cards with priority
              */
-            $wishlist = new Wishlist($_GET['wishlist']);
-            $options  = array();
+            $wishlist = new Wishlist($_GET['wishlist_id']);
+            $options  = array(
+                'style' => $_GET['style'],
+            );
             $where    = array(
                 'wishlist' => '`wishlist` = ' . $wishlist->id,
                 'priority' => '`priority` = ' . $_GET['priority'],
@@ -113,9 +115,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $where['priority'] = '`priority` IS NULL';
             }
 
-            $options = array(
-                'WHERE' => '(' . implode(') AND (', $where) . ')',
-            );
+            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
         } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
@@ -124,23 +124,23 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $user = isset($_GET['userid']) ? User::getFromID($_GET['userid']) : $_SESSION['user'];
 
-            $wishlists = $user->getWishlists();
-            $wishlists = array_map(
-                function ($dataWishlist) {
-                    /**
-                     * Format wishlists to fit FUI dropdown
-                     */
-                    $data          = $dataWishlist;
-                    $data['value'] = $dataWishlist['id'];
-                    $data['text']  = $dataWishlist['name'];
-
-                    $wishlist      = new Wishlist($dataWishlist['id']);
-                    $data['cards'] = $wishlist->getCards();
-
-                    return $data;
-                },
-                $wishlists
+            $wishlists = array();
+            $options   = array(
+                'style' => $_GET['style'],
             );
+
+            foreach ($user->getWishlists() as $wishlist_result) {
+                $wishlist = new Wishlist($wishlist_result['id']);
+
+                $wishlists[$wishlist->id] = array(
+                    'name'  => $wishlist->name,
+                    'value' => $wishlist->id,
+                    'text'  => $wishlist->name,
+
+                    'cards' => $wishlist->getCards($options),
+                    'hash'  => $wishlist->hash,
+                );
+            }
 
             $response['results'] = $wishlists;
         }

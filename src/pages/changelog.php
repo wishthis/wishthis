@@ -70,7 +70,7 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
-                                    echo __('Compact/list view for wishes');
+                                    echo __('Verify wishes are still available when attempting to fulfill them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled.');
                                 ?>
                             </li>
                             <li>
@@ -97,6 +97,12 @@ $page->navigation();
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('A roadmap in the changelog.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Roadmap */
+                                        echo __('Compact/list view for wishes');
                                     ?>
                                 </li>
                             </ul>

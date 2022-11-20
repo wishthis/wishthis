@@ -73,6 +73,7 @@ $page->navigation();
 
         <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>">
             <?php
+            /*
             echo $wishlist->getCards(
                 array(
                     'WHERE' => '`wishlist` = ' . $wishlist->id . '
@@ -84,6 +85,7 @@ $page->navigation();
                        AND (`status` != "' . Wish::STATUS_UNAVAILABLE . '" OR `status` IS NULL)'
                 )
             );
+            */
             ?>
         </div>
 

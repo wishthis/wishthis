@@ -33,6 +33,16 @@
         color: rgba(0, 0, 0, .8);
     }
 
+    .ui.buttons:not(.basic):not(.inverted) > .button:not(.basic):not(.inverted) {
+        box-shadow: 0 0 0 2px #dcddde inset;
+    }
+    .ui.buttons .button {
+        margin: 0 0 0 -2px;
+    }
+    .ui.buttons .button:first-child {
+        margin-left: 0;
+    }
+
     /** Primary */
     .ui.primary.button,
     .ui.primary.buttons .button {

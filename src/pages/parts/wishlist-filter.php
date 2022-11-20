@@ -56,6 +56,12 @@ $scriptPart = '/src/assets/js/parts/wishlist-filter.js';
                 </div>
             </div>
 
+            <input type="hidden" name="style" value="grid" />
+            <div class="ui icon buttons view">
+                <button class="ui button" value="grid"><i class="grip horizontal icon"></i></button>
+                <button class="ui button" value="list"><i class="grip lines icon"></i></button>
+            </div>
+
         </div>
     </div>
 </div>

@@ -7,53 +7,61 @@ $(function () {
     .dropdown({
         match          : 'text',
         fullTextSearch : true,
-        onChange       : function() {
-            $(this).addClass('disabled loading');
+    })
+    .dropdown('set selected', -1)
+    .api({
+        'action'  : 'get wishlists with priority',
+        'urlData' : {
+            'apitoken' : api.token,
+        },
+        beforeSend : function (settings) {
+            settings.urlData.style      = $('input[name="style"]').val();
+            settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');
 
-            var wishlist_id;
+            /** Wishlist ID */
             var wistlist_cards_data = $('.wishlist-cards').attr('data-wishlist')
             var dropdown_wishlists  = $('.dropdown.wishlists');
 
             if (dropdown_wishlists.length) {
-                wishlist_id = $('.dropdown.wishlists').dropdown('get value');
+                settings.urlData.wishlistid = $('.dropdown.wishlists').dropdown('get value');
             }
 
             if (typeof wistlist_cards_data !== 'undefined') {
-                wishlist_id = wistlist_cards_data;
+                settings.urlData.wishlistid = wistlist_cards_data;
             }
+            /** */
 
-            if (!Number.isInteger(parseInt(wishlist_id))) {
-                $(this).removeClass('disabled loading');
+            return settings;
+        },
+        onSuccess  : function (response, dropdown_wishlists, xhr) {
+            var html = response.results ? response.results : '';
 
-                return false;
-            }
-
-            const parameter = new URLSearchParams(
-                {
-                    'api_token' : api.token,
-                    'module'    : 'wishlists',
-                    'page'      : 'api',
-
-                    'priority' : $(this).dropdown('get value'),
-                    'wishlist' : wishlist_id,
-                }
-            );
-
-            fetch('/?' + parameter, {
-                method : 'GET',
-            })
-            .then(handleFetchError)
-            .then(handleFetchResponse)
-            .then(function(response) {
-                var html = response.results ? response.results : '';
-
-                $('.wishlist-cards').html(html);
-                $('.ui.dropdown.options').dropdown();
-            })
-            .finally(() => {
-                $(this).removeClass('disabled loading');
-            });
+            $('.wishlist-cards').html(html);
+            $('.ui.dropdown.options').dropdown();
         }
     });
+
+
+    /**
+     * Style
+     */
+    $('.buttons.view .button[value]').on('click', function() {
+        $('input[name="style"]').val( $(this).val() );
+
+        $('.buttons.view .button[value]').removeClass('active');
+        $(this).addClass('active');
+
+        $('.ui.dropdown.filter.priority').api('query');
+    });
+
+    if ($('.ui.dropdown.wishlists').length === 0) {
+        const orientationIsPortrait = window.matchMedia('(orientation: portrait)');
+
+        if (orientationIsPortrait.matches) {
+            $('.buttons.view .button[value="list"]').trigger('click');
+        } else {
+            $('.buttons.view .button[value="grid"]').trigger('click');
+        }
+    }
 
 });

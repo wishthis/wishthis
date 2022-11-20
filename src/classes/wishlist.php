@@ -83,7 +83,7 @@ class Wishlist
         return $this->wishes;
     }
 
-    public function getCards($options = array()): string
+    public function getCards(array $options = array()): string
     {
         ob_start();
 
@@ -94,24 +94,56 @@ class Wishlist
             $this->wishes = $this->getWishes($options);
         }
 
+        $style = isset($options['style']) ? $options['style'] : 'grid';
+
         /**
          * Cards
          */
-        ?>
-        <div class="ui three column doubling stackable grid wishlist">
-            <?php if (!empty($this->wishes)) { ?>
-                <?php foreach ($this->wishes as $wish) { ?>
-                    <div class="column">
-                        <?= $wish->getCard($this->user) ?>
-                    </div>
-                <?php } ?>
-            <?php } else { ?>
-                <div class="sixteen wide column">
-                    <?= Page::info(__('This wishlist seems to be empty.'), __('Empty')); ?>
+        switch ($style) {
+            case 'list':
+                ?>
+                <div class="ui one column doubling stackable grid wishlist">
+                    <?php if (!empty($this->wishes)) { ?>
+                        <?php foreach ($this->wishes as $wish) { ?>
+                            <div class="column">
+                                <?php
+                                $wish->style = $style;
+
+                                echo $wish->getCard($this->user);
+                                ?>
+                            </div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="sixteen wide column">
+                            <?= Page::info(__('This wishlist seems to be empty.'), __('Empty')); ?>
+                        </div>
+                    <?php } ?>
                 </div>
-            <?php } ?>
-        </div>
-        <?php
+                <?php
+                break;
+
+            default:
+                ?>
+                <div class="ui three column doubling stackable grid wishlist">
+                    <?php if (!empty($this->wishes)) { ?>
+                        <?php foreach ($this->wishes as $wish) { ?>
+                            <div class="column">
+                                <?php
+                                $wish->style = $style;
+
+                                echo $wish->getCard($this->user);
+                                ?>
+                            </div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="sixteen wide column">
+                            <?= Page::info(__('This wishlist seems to be empty.'), __('Empty')); ?>
+                        </div>
+                    <?php } ?>
+                </div>
+                <?php
+                break;
+        }
 
         $html = ob_get_clean();
 
