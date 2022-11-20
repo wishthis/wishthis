@@ -97,6 +97,7 @@ figure {
 .wishlist .ui.card {
     --padding: 0.91666667em;
     --buttonsHeight: calc((.92857143rem + 0.78571429em * 2) * 2 + 0.25em + 0.75em);
+    --hoverHeight: calc(1em + 3 * var(--padding));
 }
 .wishlist .ui.card:focus-within {
     z-index: calc(var(--dimmerZIndex) + 2);
@@ -135,10 +136,6 @@ figure {
 }
 
 /** Image */
-.wishlist .ui.card > .image {
-    --hoverHeight: calc(1em + 3 * var(--padding));
-}
-
 .wishlist .ui.card > .image > :is(svg, img.preview) {
     display: block;
 
@@ -188,7 +185,7 @@ figure {
         }
     }
     .wishlist:not(.one).column .ui.card:hover > .image > svg {
-        height: calc(var(--hoverHeight) - 5px);
+        height: var(--hoverHeight);
         padding: 0 !important;
         opacity: 0;
     }
@@ -325,7 +322,6 @@ figure {
     align-items: flex-start;
     gap: 0.5em;
 }
-
 @media (hover: hover) {
     @media (prefers-reduced-motion: no-preference) {
         .wishlist .ui.card > .content:not(.extra) {
@@ -336,11 +332,16 @@ figure {
     }
 
     .wishlist:not(.one).column .ui.card > .content:not(.extra) {
-        height: calc(var(--wishPreviewHeight) * 1.25);
+        --contentHeight: calc(var(--wishPreviewHeight) * 1.25);
+
+        height: var(--contentHeight);
+
         overflow: hidden;
     }
 
     .wishlist:not(.one).column .ui.card:hover > .content:not(.extra) {
+        height: calc(var(--contentHeight) + 0.75em - 4px);
+
         margin-bottom: var(--buttonsHeight);
     }
 }

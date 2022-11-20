@@ -158,7 +158,7 @@ class Wish
 
             default:
                 ?>
-                <div class="ui blurring dimmable fluid card stretch"
+                <div class="ui blurring dimmable fluid card"
                     data-id="<?= $this->id ?>"
                     data-cache="<?= $generateCache ?>"
                 >
