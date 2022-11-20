@@ -64,6 +64,13 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Allow customising priority colours');
+                                ?>
+                                <a href="https://github.com/grandeljay/wishthis/issues/34" target="_blank">#34</a>
+                            </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Notifications for fulfilled wishes');
                                 ?>
                             </li>
