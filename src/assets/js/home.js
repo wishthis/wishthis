@@ -4,7 +4,7 @@ $(function() {
      */
     const params_statistics = new URLSearchParams(
         {
-            'api_token' : api.token,
+            'api_token' : wishthis.api.token,
             'module'    : 'statistics',
             'page'      : 'api',
 
@@ -68,7 +68,7 @@ $(function() {
      */
     const params_news = new URLSearchParams(
         {
-            'api_token' : api.token,
+            'api_token' : wishthis.api.token,
             'module'    : 'blog',
             'page'      : 'api',
         }

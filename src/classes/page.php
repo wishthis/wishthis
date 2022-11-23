@@ -343,86 +343,149 @@ class Page
             global $options;
             ?>
             <script type="text/javascript">
-                var locale                  = '<?= str_replace('_', '-', $this->language) ?>';
-                var $_GET                   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
-                var api                     = {
+                var wishthis = {};
+
+                /** General */
+                wishthis.version = '<?= VERSION ?>';
+                wishthis.locale  = '<?= str_replace('_', '-', $this->language) ?>';
+                wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
+
+                /** API */
+                wishthis.api                     = {
                     'token' : "<?= $options->getOption('api_token'); ?>",
                 };
-                var version                 = '<?= VERSION ?>';
-                var wish_status_temporary   = '<?= Wish::STATUS_TEMPORARY ?>';
-                var wish_status_unavailable = '<?= Wish::STATUS_UNAVAILABLE ?>';
-                var wish_status_fulfilled   = '<?= Wish::STATUS_FULFILLED ?>';
-                var text                    = {
-                    modal_error_title     : '<?= __('Error') ?>',
-                    modal_failure_title   : '<?= __('Failure') ?>',
-                    modal_failure_content : '<?= __('The server did not confirm that the action was successful.') ?>',
-                    modal_failure_approve : '<?= __('Thanks for nothing') ?>',
-                    modal_warning_approve : '<?= __('Understood') ?>',
-                    modal_success_title   : '<?= __('Success') ?>',
 
-                    modal_wishlist_warning_approve : '<?= __('Close this tab') ?>',
-                    modal_wishlist_warning_deny    : '<?= __('Show wishlist anyway') ?>',
-                    modal_wishlist_delete_title    : '<?= __('Really delete?') ?>',
-                    modal_wishlist_delete          : '<?= sprintf(__('Do you really want to delete the wishlist %s?'), '<strong>WISHLIST_NAME</strong>') ?>',
-                    modal_wishlist_delete_approve  : '<?= __('Yes, delete') ?>',
-                    modal_wishlist_delete_deny     : '<?= __('No, keep') ?>',
+                /** Wish */
+                wishthis.wish = {
+                    'status' : {
+                        'temporary'   : '<?= Wish::STATUS_TEMPORARY ?>',
+                        'unavailable' : '<?= Wish::STATUS_UNAVAILABLE ?>',
+                        'fulfilled'   : '<?= Wish::STATUS_FULFILLED ?>',
+                    }
+                }
 
-                    modal_wish_delete_title   : '<?= __('Really delete?') ?>',
-                    modal_wish_delete         : '<?= __('Would you really like to delete to this wish? It will be gone forever.') ?>',
-                    modal_wish_delete_approve : '<?= __('Yes, delete') ?>',
-                    modal_wish_delete_deny    : '<?= __('No, keep') ?>',
+                /** Strings */
+                wishthis.strings = {
+                    'modal' : {
+                        'error' : {
+                            'title' : '<?= __('Error') ?>',
+                        },
+                        'failure' : {
+                            'title'   : '<?= __('Failure') ?>',
+                            'content' : '<?= __('The server did not confirm that the action was successful.') ?>',
+                            'approve' : '<?= __('Thanks for nothing') ?>',
+                        },
+                        'warning' : {
+                            'approve' : '<?= __('Understood') ?>',
+                        },
+                        'success' : {
+                            'title' : '<?= __('Success') ?>',
+                        },
 
-                    form_profile_password : '<?= __('Passwords must match.') ?>',
+                        'wishlist' : {
+                            'warning' : {
+                                'approve' : '<?= __('Close this tab') ?>',
+                                'deny'    : '<?= __('Show wishlist anyway') ?>',
+                            },
+                            'delete' : {
+                                'title'   : '<?= __('Really delete?') ?>',
+                                'content' : '<?= sprintf(__('Do you really want to delete the wishlist %s?'), '<strong>WISHLIST_NAME</strong>') ?>',
+                                'approve' : '<?= __('Yes, delete') ?>',
+                                'deny'    : '<?= __('No, keep') ?>',
+                            },
+                        },
 
-                    toast_wishlist_rename : '<?= __('Wishlist successfully renamed.') ?>',
-                    toast_wishlist_delete : '<?= __('Wishlist successfully deleted.') ?>',
+                        'wish' : {
+                            'delete' : {
+                                'title'   : '<?= __('Really delete?') ?>',
+                                'content' : '<?= __('Would you really like to delete to this wish? It will be gone forever.') ?>',
+                                'approve' : '<?= __('Yes, delete') ?>',
+                                'deny'    : '<?= __('No, keep') ?>',
+                            }
+                        }
+                    },
 
-                    toast_wish_create : '<?= __('Wish successfully created.') ?>',
-                    toast_wish_add    : '<?= __('Wish successfully added.') ?>',
-                    toast_wish_update : '<?= __('Wish information updated.') ?>',
-                    toast_wish_save   : '<?= __("Don't forget to save your changes.") ?>',
-                    toast_wish_delete : '<?= __('Wish successfully deleted.') ?>',
+                    'form' : {
+                        'profile' : {
+                            'password' : '<?= __('Passwords must match.') ?>',
+                        },
+                        'prompt' : {
+                            'empty'                : '<?= __('{name} must have a value') ?>',
+                            'checked'              : '<?= __('{name} must be checked') ?>',
+                            'email'                : '<?= __('{name} must be a valid e-mail') ?>',
+                            'url'                  : '<?= __('{name} must be a valid URL') ?>',
+                            'regExp'               : '<?= __('{name} is not formatted correctly') ?>',
+                            'integer'              : '<?= __('{name} must be an integer') ?>',
+                            'decimal'              : '<?= __('{name} must be a decimal number') ?>',
+                            'number'               : '<?= __('{name} must be set to a number') ?>',
+                            'is'                   : '<?= __('{name} must be "{ruleValue}"') ?>',
+                            'isExactly'            : '<?= __('{name} must be exactly "{ruleValue}"') ?>',
+                            'not'                  : '<?= __('{name} cannot be set to "{ruleValue}"') ?>',
+                            'notExactly'           : '<?= __('{name} cannot be set to exactly "{ruleValue}"') ?>',
+                            'contain'              : '<?= __('{name} cannot contain "{ruleValue}"') ?>',
+                            'containExactly'       : '<?= __('{name} cannot contain exactly "{ruleValue}"') ?>',
+                            'doesntContain'        : '<?= __('{name} must contain "{ruleValue}"') ?>',
+                            'doesntContainExactly' : '<?= __('{name} must contain exactly "{ruleValue}"') ?>',
+                            'minLength'            : '<?= __('{name} must be at least {ruleValue} characters') ?>',
+                            'length'               : '<?= __('{name} must be at least {ruleValue} characters') ?>',
+                            'exactLength'          : '<?= __('{name} must be exactly {ruleValue} characters') ?>',
+                            'maxLength'            : '<?= __('{name} cannot be longer than {ruleValue} characters') ?>',
+                            'match'                : '<?= __('{name} must match {ruleValue} field') ?>',
+                            'different'            : '<?= __('{name} must have a different value than {ruleValue} field') ?>',
+                            'creditCard'           : '<?= __('{name} must be a valid credit card number') ?>',
+                            'minCount'             : '<?= __('{name} must have at least {ruleValue} choices') ?>',
+                            'exactCount'           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
+                            'maxCount'             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
+                        }
+                    },
 
-                    toast_clipboard_error_title : '<?= __('Error') ?>',
-                    toast_clipboard_error       : '<?= __('Unable to copy to clipboard. There is likely a permission issue.') ?>',
-                    toast_clipboard_success     : '<?= __('Link copied to clipboard.') ?>',
+                    'toast' : {
+                        'wishlist' : {
+                            'rename' : '<?= __('Wishlist successfully renamed.') ?>',
+                            'delete' : '<?= __('Wishlist successfully deleted.') ?>',
+                        },
 
-                    form_prompt_empty                : '<?= __('{name} must have a value') ?>',
-                    form_prompt_checked              : '<?= __('{name} must be checked') ?>',
-                    form_prompt_email                : '<?= __('{name} must be a valid e-mail') ?>',
-                    form_prompt_url                  : '<?= __('{name} must be a valid URL') ?>',
-                    form_prompt_regExp               : '<?= __('{name} is not formatted correctly') ?>',
-                    form_prompt_integer              : '<?= __('{name} must be an integer') ?>',
-                    form_prompt_decimal              : '<?= __('{name} must be a decimal number') ?>',
-                    form_prompt_number               : '<?= __('{name} must be set to a number') ?>',
-                    form_prompt_is                   : '<?= __('{name} must be "{ruleValue}"') ?>',
-                    form_prompt_isExactly            : '<?= __('{name} must be exactly "{ruleValue}"') ?>',
-                    form_prompt_not                  : '<?= __('{name} cannot be set to "{ruleValue}"') ?>',
-                    form_prompt_notExactly           : '<?= __('{name} cannot be set to exactly "{ruleValue}"') ?>',
-                    form_prompt_contain              : '<?= __('{name} cannot contain "{ruleValue}"') ?>',
-                    form_prompt_containExactly       : '<?= __('{name} cannot contain exactly "{ruleValue}"') ?>',
-                    form_prompt_doesntContain        : '<?= __('{name} must contain "{ruleValue}"') ?>',
-                    form_prompt_doesntContainExactly : '<?= __('{name} must contain exactly "{ruleValue}"') ?>',
-                    form_prompt_minLength            : '<?= __('{name} must be at least {ruleValue} characters') ?>',
-                    form_prompt_length               : '<?= __('{name} must be at least {ruleValue} characters') ?>',
-                    form_prompt_exactLength          : '<?= __('{name} must be exactly {ruleValue} characters') ?>',
-                    form_prompt_maxLength            : '<?= __('{name} cannot be longer than {ruleValue} characters') ?>',
-                    form_prompt_match                : '<?= __('{name} must match {ruleValue} field') ?>',
-                    form_prompt_different            : '<?= __('{name} must have a different value than {ruleValue} field') ?>',
-                    form_prompt_creditCard           : '<?= __('{name} must be a valid credit card number') ?>',
-                    form_prompt_minCount             : '<?= __('{name} must have at least {ruleValue} choices') ?>',
-                    form_prompt_exactCount           : '<?= __('{name} must have exactly {ruleValue} choices') ?>',
-                    form_prompt_maxCount             : '<?= __('{name} must have {ruleValue} or less choices') ?>',
+                        'wish' : {
+                            'create' : '<?= __('Wish successfully created.') ?>',
+                            'update' : '<?= __('Wish information updated.') ?>',
+                            'delete' : '<?= __('Wish successfully deleted.') ?>',
+                        },
 
-                    calendar_today   : '<?= _x('Today', 'Calendar') ?>',
-                    calendar_now     : '<?= _x('Now', 'Calendar') ?>',
-                    calendar_am      : '<?= _x('AM', 'Calendar') ?>',
-                    calendar_pm      : '<?= _x('PM', 'Calendar') ?>',
-                    calendar_week_no : '<?= _x('Week', 'Calendar') ?>',
+                        'clipboard' : {
+                            'error' : {
+                                'title'   : '<?= __('Error') ?>',
+                                'content' : '<?= __('Unable to copy to clipboard. There is likely a permission issue.') ?>',
+                            },
+                            'success' : {
+                                'content' : '<?= __('Link copied to clipboard.') ?>',
+                            },
+                        },
+                    },
 
-                    button_wishlist_remember : '<?= __('Remember list') ?>',
-                    button_wishlist_forget   : '<?= __('Forget list') ?>',
-                };
+                    'calendar' : {
+                        'today'   : '<?= _x('Today', 'Calendar') ?>',
+                        'now'     : '<?= _x('Now', 'Calendar') ?>',
+                        'am'      : '<?= _x('AM', 'Calendar') ?>',
+                        'pm'      : '<?= _x('PM', 'Calendar') ?>',
+                        'week_no' : '<?= _x('Week', 'Calendar') ?>',
+                    },
+
+                    'button' : {
+                        'wishlist' : {
+                            'remember' : '<?= __('Remember list') ?>',
+                            'forget'   : '<?= __('Forget list') ?>',
+                        }
+                    },
+
+                    'message' : {
+                        'wishlist' : {
+                            'empty' : {
+                                'header'  : '<?= __('Empty') ?>',
+                                'content' : '<?= __('This wishlist seems to be empty.') ?>',
+                            }
+                        }
+                    },
+                }
             </script>
 
             <?php

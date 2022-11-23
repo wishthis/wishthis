@@ -41,6 +41,39 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $response = array(
                 'info' => $info,
             );
+        } elseif (isset($_GET['wishlist_id'], $_GET['wishlist_style'], $_GET['wish_priority'])) {
+            /**
+             * Get wishes by priority
+             */
+            $wishlist = new Wishlist($_GET['wishlist_id']);
+            $options  = array(
+                'style' => $_GET['wishlist_style'],
+            );
+            $where    = array(
+                'wishlist' => '`wishlist` = ' . $wishlist->id,
+                'priority' => '`priority` = ' . $_GET['wish_priority'],
+            );
+
+            if (-1 === intval($_GET['wish_priority'])) {
+                unset($where['priority']);
+            }
+
+            if (empty($_GET['wish_priority'])) {
+                $where['priority'] = '`priority` IS NULL';
+            }
+
+            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
+
+            $wishes = array_map(
+                function (Wish $wish) use ($wishlist) {
+                    $wish->card = $wish->getCard($wishlist->user);
+
+                    return $wish;
+                },
+                $wishlist->getWishes($options)
+            );
+
+            $response['results'] = $wishes;
         }
         break;
 
@@ -50,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
              * Save wish
              */
             if (
-                   empty($_POST['wish_title'])
+                empty($_POST['wish_title'])
                 && empty($_POST['wish_description'])
                 && empty($_POST['wish_url'])
             ) {
@@ -97,7 +130,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     }
 
                     $response = array(
-                        'info' => $info,
+                    'info' => $info,
                     );
                 }
 
@@ -124,8 +157,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                  * Product
                  */
                 $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
-                            ? 'NULL'
-                            : Sanitiser::getNumber($_POST['wish_price']);
+                        ? 'NULL'
+                        : Sanitiser::getNumber($_POST['wish_price']);
 
                 $database
                 ->query(
@@ -169,7 +202,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     }
 
                     $response = array(
-                        'info' => $info,
+                    'info' => $info,
                     );
                 }
 

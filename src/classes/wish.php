@@ -374,7 +374,7 @@ class Wish
             <?php } ?>
 
             <?php if ($userIsCurrent) { ?>
-                <div class="ui small labeled icon top left pointing dropdown button options"
+                <div class="ui small labeled icon top left pointing dropdown button wish-options disabled"
                     title="<?= __('Options') ?>"
                 >
                     <i class="cog icon"></i>

@@ -51,10 +51,10 @@ class Wishlist
         /**
          * Get Wishes
          */
-        $this->wishes = $this->getWishes();
+        // $this->wishes = $this->getWishes();
     }
 
-    private function getWishes($sql = array()): array
+    public function getWishes($sql = array()): array
     {
         global $database;
 

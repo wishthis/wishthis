@@ -12,7 +12,7 @@ $scripts = array(
 );
 ?>
 <?php foreach ($scripts as $script) { ?>
-    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>"></script>
+    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>" preload="preload"></script>
 <?php } ?>
 
 <div>
@@ -115,8 +115,6 @@ $scripts = array(
         <p><?= __('How would you like to name this wishlist?') ?></p>
 
         <form class="ui form wishlist-rename">
-            <input type="hidden" name="wishlist_id" />
-
             <div class="field">
                 <label><?= __('Title') ?></label>
                 <input type="text" name="wishlist_title" maxlength="128" />
@@ -143,8 +141,6 @@ $scripts = array(
             <p><?= __('Fill the title and/or description to add your new wish. If you just fill out the URL, wishthis will attempt to auto fill all other fields.') ?></p>
 
             <form class="ui form wishlist-wish-add" method="POST">
-                <input type="hidden" name="wishlist_id" />
-
                 <?php include 'wish-add.php' ?>
 
                 <div class="ui error message"></div>
@@ -171,7 +167,6 @@ $scripts = array(
             <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
 
             <form class="ui form wishlist-wish-edit" method="POST">
-                <input type="hidden" name="wishlist_id" />
                 <input type="hidden" name="wish_id" />
 
                 <?php include 'wish-add.php' ?>

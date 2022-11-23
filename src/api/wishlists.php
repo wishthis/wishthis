@@ -118,6 +118,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
+        } elseif (isset($_GET['wishlist_id'])) {
+            /**
+             * Get wishlist by id
+             */
+            $wishlist = new Wishlist($_GET['wishlist_id']);
+
+            $response['results'] = $wishlist;
         } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
             /**
              * Get user wishlists
@@ -136,9 +143,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'name'  => $wishlist->name,
                     'value' => $wishlist->id,
                     'text'  => $wishlist->name,
-
-                    'cards' => $wishlist->getCards($options),
-                    'hash'  => $wishlist->hash,
                 );
             }
 

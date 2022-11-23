@@ -60,7 +60,7 @@ $page->navigation();
                         <?= __('Share') ?>
                     </a>
 
-                    <div class="ui labeled icon top left pointing dropdown button options"
+                    <div class="ui labeled icon top left pointing dropdown disabled button wishlist-options"
                             title="<?= __('Options') ?>"
                     >
                         <i class="cog icon"></i>

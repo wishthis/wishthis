@@ -1,12 +1,5 @@
 $(function () {
     /**
-     * General
-     */
-    var wishlist = {
-        'id' : $_GET.id
-    };
-
-    /**
      * Progress
      */
     var progress  = $('.ui.progress');
@@ -20,45 +13,42 @@ $(function () {
     /**
      * Get Wishlists
      */
-    var wishlists = [];
-
-    $('.ui.dropdown.wishlists')
-    .dropdown()
-    .api({
+    var wishlists     = [];
+    var wishlists_api = {
         'action'  : 'get wishlists',
         'urlData' : {
-            'apitoken' : api.token,
+            'apitoken' : wishthis.api.token,
         },
-        beforeSend : function (settings) {
-            settings.urlData.style = $('input[name="style"]').val();
-
-            return settings;
-        },
-        onSuccess  : function (response, dropdown_wishlists, xhr) {
-            /** Set wishlists */
+        onSuccess : function(response, dropdown_wishlists, xhr) {
+            /** Save response for later use */
             wishlists = response.results;
 
-            dropdown_wishlists.dropdown({
+            /** Setup and populate dropdown */
+            var dropdown_values = {
                 'values' : wishlists,
-            })
+            };
 
-            /** Select current/active wishlist */
-            if (wishlist.id) {
-                dropdown_wishlists.dropdown('set selected', wishlist.id);
-            } else {
-                if (Object.keys(wishlists).length >= 1) {
-                    var first_wishlist_id = Object.keys(wishlists)[0];
+            dropdown_wishlists.dropdown('setup menu', dropdown_values);
 
-                    dropdown_wishlists.dropdown('set selected', first_wishlist_id);
+            /** Select a dropdown item */
+            if (!dropdown_wishlists.dropdown('get value')) {
+                if (wishthis.$_GET.id) {
+                    dropdown_wishlists.dropdown('set selected', wishthis.$_GET.id);
+                } else {
+                    if (Object.keys(wishlists).length >= 1) {
+                        var first_wishlist_id = Object.keys(wishlists)[0];
+
+                        dropdown_wishlists.dropdown('set selected', first_wishlist_id);
+                    }
                 }
             }
 
             /** Open add wish modal */
-            if ($_GET.wish_add) {
+            if (wishthis.$_GET.wish_add) {
                 $('.button.wishlist-wish-add').trigger('click');
             }
 
-            /** Filter wishes */
+            /** Set wishlist style */
             const orientationIsPortrait = window.matchMedia('(orientation: portrait)');
 
             if (orientationIsPortrait.matches) {
@@ -66,108 +56,182 @@ $(function () {
             } else {
                 $('.buttons.view .button[value="grid"]').trigger('click');
             }
-        }
-    })
-    .api('query');
+        },
+    };
 
-    $(document).on('change', '.ui.dropdown.wishlists', function () {
-        return;
+    $('.ui.dropdown.wishlists')
+    .dropdown({
+        onChange : function(wishlist_id, text, $choice) {
+            wishthis.$_GET.id = wishlist_id;
 
-        var wishlist_id = $('.ui.dropdown.wishlists').dropdown('get value');
+            if (wishlist_id) {
+                /** Get wishlist */
+                const get_wishlist = new URLSearchParams(
+                    {
+                        'api_token' : wishthis.api.token,
+                        'module'    : 'wishlists',
+                        'page'      : 'api',
 
-        if (wishlist_id) {
-            wishlist.id = wishlist_id;
+                        'wishlist_id' : wishlist_id,
+                    }
+                );
+                fetch('/?' + get_wishlist, { method: 'GET' })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    var wishlist;
 
-            $('.wishlist-share').attr('href', '/?page=wishlist&hash=' + wishlists[wishlist_id].hash);
+                    /** Set current wishlist */
+                    wishlist = response.results;
 
-            $('.button.wishlist-wish-add').removeClass('disabled');
-            $('.button.wishlist-share').removeClass('disabled');
-            $('.wishlist-rename').removeClass('disabled');
-            $('.wishlist-delete').removeClass('disabled');
+                    /** Set share link */
+                    $('.wishlist-share').attr('href', '/?page=wishlist&hash=' + wishlist.hash);
 
-            /** Update URL */
-            urlParams.set('id', wishlist_id);
+                    /** Enable wishlist options buttons */
+                    $('.button.wishlist-wish-add').removeClass('disabled');
+                    $('.button.wishlist-share').removeClass('disabled');
+                    $('.button.wishlist-options').removeClass('disabled').dropdown();
+                    $('.wishlist-rename').removeClass('disabled');
+                    $('.wishlist-delete').removeClass('disabled');
 
-            const params_url = new URLSearchParams(
-                {
-                    'api_token' : api.token,
-                    'module'    : 'url',
-                    'page'      : 'api',
+                    /** Update URL */
+                    urlParams.set('id', wishlist_id);
 
-                    'url' : window.btoa(urlParams.toString()),
-                }
-            );
-            fetch('/?' + params_url, {
-                method: 'GET'
-            })
-            .then(handleFetchError)
-            .then(handleFetchResponse)
-            .then(function(response) {
-                window.history.pushState(null, document.title, response.data.url_pretty);
+                    const params_url = new URLSearchParams(
+                        {
+                            'api_token' : wishthis.api.token,
+                            'module'    : 'url',
+                            'page'      : 'api',
 
-                $('.ui.dropdown.filter.priority')
-                .dropdown('restore default value')
-                .dropdown('restore default text')
-                .dropdown('set selected', -1);
-            });
-        } else {
-            $('.button.wishlist-wish-add').addClass('disabled');
-            $('.button.wishlist-share').addClass('disabled');
-            $('.wishlist-rename').addClass('disabled');
-            $('.wishlist-delete').addClass('disabled');
-        }
-
-        /**
-         * Cards
-         */
-        if (wishlist.id) {
-            $('.wishlist-cards').html(wishlists[wishlist.id].cards);
-        } else {
-            $('.wishlist-cards').html('');
-        }
-
-        /**
-         * Generate cache
-         */
-        var cards = $('.ui.card[data-cache="true"]');
-
-        if (cards.length > 0) {
-            progress.slideDown();
-            progress.progress('reset');
-            progress.progress('set total', cards.length);
-        }
-
-        var timerInterval = 1200;
-        var timerCache    = setTimeout(
-            function generateCacheCards() {
-                var cards = $('.ui.card[data-cache="true"]');
-
-                if (cards.length > 0) {
-                    cards.each(function (index, card) {
-                        generateCacheCard($(card));
-
-                        if (index >= 0) {
-                            return false;
+                            'url' : window.btoa(urlParams.toString()),
                         }
+                    );
+                    fetch('/?' + params_url, {
+                        method: 'GET'
+                    })
+                    .then(handleFetchError)
+                    .then(handleFetchResponse)
+                    .then(function(response) {
+                        window.history.pushState(null, document.title, response.data.url_pretty);
                     });
 
-                    setTimeout(generateCacheCards, timerInterval);
-                }
-            },
-            0
-        );
+                    /** Get wishlist cards/wishes */
 
-        $('.ui.dropdown.options').dropdown({
-            onChange: function(value, text, choice) {
-                var dropdownOptions = $(this);
+                    /**
+                     * Trigger priorities dropdown
+                     */
+                    // $('.ui.dropdown.filter.priority').api('query');
+                    /** */
+                    /*
+                    const get_wishes = new URLSearchParams(
+                        {
+                            'api_token' : wishthis.api.token,
+                            'module'    : 'wishes',
+                            'page'      : 'api',
 
-                setTimeout(function() {
-                    dropdownOptions.dropdown('restore defaults', true);
-                }, 0);
+                            'wishlist_id'    : wishlist.id,
+                            'wishlist_style' : $('[name="style"]').val(),
+                            'wish_priority'  : -1,
+                        }
+                    );
+                    fetch('/?' + get_wishes, { method: 'GET' })
+                    .then(handleFetchError)
+                    .then(handleFetchResponse)
+                    .then(function(response) {
+                        /** Cards *//*
+                        var wishes         = response.results;
+                        var wishlist_cards = $('.wishlist-cards');
+
+                        wishlist_cards.html('');
+
+                        switch (get_wishes.wishlist_style) {
+                            case 'list':
+                                wishlist_cards.append('<div class="ui one column doubling stackable grid wishlist"></div>');
+                                break;
+
+                            default:
+                                wishlist_cards.append('<div class="ui three column doubling stackable grid wishlist"></div>');
+                                break;
+                        }
+
+                        if (wishes.length > 0) {
+                            wishes.forEach(wish => {
+                                $('.wishlist-cards > .wishlist.grid').append('<div class="column">' + wish.card + '</div>');
+                            });
+                        } else {
+                            $('.wishlist-cards > .wishlist.grid').append(
+                                '<div class="sixteen wide column">' +
+                                    '<div class="ui info icon message">' +
+                                        '<i class="info circle icon"></i> ' +
+                                        '<div class="content">' +
+                                            '<div class="header">' + wishthis.strings.message.wishlist.empty.header + '</div>' +
+                                            '<p>' + wishthis.strings.message.wishlist.empty.content + '</p>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</div>'
+                            );
+                        }
+
+                        $('.ui.dropdown.wish-options').removeClass('disabled').dropdown();
+                    });
+                    */
+                });
+            } else {
+                /** Disable wishlist options buttons */
+                $('.button.wishlist-wish-add').removeClass('disabled');
+                $('.button.wishlist-share').removeClass('disabled');
+                $('.button.wishlist-options').removeClass('disabled');
+                $('.wishlist-rename').removeClass('disabled');
+                $('.wishlist-delete').removeClass('disabled');
             }
-        });
-    });
 
+            /**
+             * Generate cache
+             *//*
+            var cards = $('.ui.card[data-cache="true"]');
+
+            if (cards.length > 0) {
+                progress.slideDown();
+                progress.progress('reset');
+                progress.progress('set total', cards.length);
+            }
+
+            var timerInterval = 1200;
+            var timerCache    = setTimeout(
+                function generateCacheCards() {
+                    var cards = $('.ui.card[data-cache="true"]');
+
+                    if (cards.length > 0) {
+                        cards.each(function (index, card) {
+                            generateCacheCard($(card));
+
+                            if (index >= 0) {
+                                return false;
+                            }
+                        });
+
+                        setTimeout(generateCacheCards, timerInterval);
+                    }
+                },
+                0
+            );
+
+            $('.ui.dropdown.options').dropdown({
+                onChange: function(value, text, choice) {
+                    var dropdownOptions = $(this);
+
+                    setTimeout(function() {
+                        dropdownOptions.dropdown('restore defaults', true);
+                    }, 0);
+                }
+            });
+            */
+        },
+    })
+    .api(wishlists_api)
+    .api('query');
+
+    /*
     function generateCacheCard(card) {
         var href = card.find('.content [href]').prop('href');
 
@@ -183,7 +247,7 @@ $(function () {
 
         const params_cache = new URLSearchParams(
             {
-                'api_token' : api.token,
+                'api_token' : wishthis.api.token,
                 'module'    : 'wishes',
                 'page'      : 'api',
 
@@ -213,6 +277,7 @@ $(function () {
             $('.ui.dropdown.options').dropdown();
         });
     }
+    */
 
     /**
      * Share Wishlist
@@ -222,13 +287,17 @@ $(function () {
 
         var wishlist_href = window.location.origin + $(event.currentTarget).attr('href');
 
-        navigator.clipboard.writeText(wishlist_href).then(function() {
-            $('body').toast({ message: text.toast_clipboard_success });
+        navigator.clipboard
+        .writeText(wishlist_href)
+        .then(function() {
+            $('body').toast({
+                'message' : wishthis.strings.toast.clipboard.success.content,
+            });
         }, function() {
             $('body').toast({
-                class   : 'error',
-                title   : text.toast_clipboard_error_title,
-                message : text.toast_clipboard_error
+                'class'   : 'error',
+                'title'   : wishthis.strings.toast.clipboard.error.title,
+                'message' : wishthis.strings.toast.clipboard.error.content,
             });
         });
 
@@ -244,7 +313,8 @@ $(function () {
 
         var formRename = modalRename.find('.form.wishlist-rename');
         var formData   = new URLSearchParams(new FormData(formRename[0]));
-        formData.append('api_token', api.token);
+        formData.append('api_token', wishthis.api.token);
+        formData.append('wishlist_id', wishthis.$_GET.id);
 
         fetch('/?page=api&module=wishlists', {
             method : 'PUT',
@@ -257,7 +327,7 @@ $(function () {
 
             modalRename.modal('hide');
 
-            $('body').toast({ message: text.toast_wishlist_rename });
+            $('body').toast({ message: wishthis.strings.toast.wishlist.rename });
         })
         .catch(handleFetchCatch)
         .finally(function() {
@@ -275,7 +345,7 @@ $(function () {
         wishlistRenameApprove(buttonApprove);
     });
 
-    $(document).on('click', '.options .wishlist-rename', function() {
+    $(document).on('click', '.wishlist-options .wishlist-rename', function() {
         var modalRename   = $('.modal.wishlist-rename');
         var inputID       = modalRename.find('[name="wishlist_id"]');
         var inputTitle    = modalRename.find('[name="wishlist_title"]');
@@ -306,16 +376,16 @@ $(function () {
 
             modalDefault
             .modal({
-                title    : text.modal_wishlist_delete_title,
+                title    : wishthis.strings.wishlist.delete.title,
                 class    : 'tiny',
-                content  : text.modal_wishlist_delete.replace('WISHLIST_NAME', $('.ui.dropdown.wishlists').dropdown('get text')),
+                content  : wishthis.strings.wishlist.delete.content.replace('WISHLIST_NAME', $('.ui.dropdown.wishlists').dropdown('get text')),
                 actions  : [
                     {
-                        text : text.modal_wishlist_delete_approve,
+                        text : wishthis.strings.wishlist.delete.approve,
                         class: 'approve red'
                     },
                     {
-                        text : text.modal_wishlist_delete_deny,
+                        text : wishthis.strings.wishlist.delete.deny,
                         class: 'deny'
                     },
                 ],
@@ -327,7 +397,7 @@ $(function () {
                         action: 'delete wishlist',
                         method: 'DELETE',
                         data: {
-                            'api_token' : api.token,
+                            'api_token' : wishthis.api.token,
 
                             'wishlistID' : wishlist_id
                         },
@@ -339,7 +409,7 @@ $(function () {
 
                             urlParams.delete('id');
 
-                            $('body').toast({ message:text.toast_wishlist_delete });
+                            $('body').toast({ message : wishthis.strings.toast.wishlist.delete });
 
                             modalDefault.modal('hide');
 
@@ -372,10 +442,10 @@ $(function () {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                'api_token' : api.token,
+                'api_token' : wishthis.api.token,
 
                 'wish_id'     : card.attr('data-id'),
-                'wish_status' : wish_status_fulfilled,
+                'wish_status' : wishthis.strings.wish.status.fulfilled,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
@@ -415,7 +485,7 @@ $(function () {
 
         var wishFormData = new URLSearchParams(
             {
-                'api_token' : api.token,
+                'api_token' : wishthis.api.token,
                 'module'    : 'wishes',
                 'page'      : 'api',
 
@@ -481,16 +551,16 @@ $(function () {
 
         modalDefault
         .modal({
-            title    : text.modal_wish_delete_title,
-            content  : text.modal_wish_delete,
+            title    : wishthis.strings.wish.delete.title,
+            content  : wishthis.strings.wish.delete.content,
             class    : 'tiny',
             actions  : [
                 {
-                    text : text.modal_wish_delete_approve,
+                    text : wishthis.strings.wish.delete.approve,
                     class: 'approve primary'
                 },
                 {
-                    text: text.modal_wish_delete_deny
+                    text: wishthis.strings.wish.delete.deny
                 }
             ],
             autoShow : true,
@@ -504,7 +574,7 @@ $(function () {
                     action    : 'delete wish',
                     method    : 'DELETE',
                     data      : {
-                        'api_token' : api.token,
+                        'api_token' : wishthis.api.token,
 
                         'wish_id': card.attr('data-id'),
                     },
@@ -512,7 +582,7 @@ $(function () {
                     onSuccess : function () {
                         column.fadeOut(800);
 
-                        $('body').toast({ message: text.toast_wish_delete });
+                        $('body').toast({ message: wishthis.strings.toast.wish.delete });
 
                         modalDefault.modal('hide');
 
@@ -570,7 +640,7 @@ $(function () {
             onHide    : function() {
                 /** Ugly URL */
                 if (urlParams.has('wish_add')) {
-                    delete($_GET.wish_add);
+                    delete(wishthis.$_GET.wish_add);
                     urlParams.delete('wish_add');
 
                     window.history.pushState(null, document.title, '?' + urlParams.toString());
@@ -608,7 +678,7 @@ $(function () {
                 buttonCreate.addClass('loading');
 
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
-                formData.append('api_token', api.token);
+                formData.append('api_token', wishthis.api.token);
 
                 fetch('/?page=api&module=wishlists', {
                     method : 'POST',
@@ -621,7 +691,7 @@ $(function () {
 
                     urlParams.set('id', response.data.lastInsertId);
 
-                    $('body').toast({ message: text.toast_wish_create });
+                    $('body').toast({ message: wishthis.strings.toast.wish.create });
 
                     $('.ui.dropdown.wishlists').api('query');
                 })
@@ -665,7 +735,7 @@ $(function () {
         if (wishURLCurrent) {
             const params_url = new URLSearchParams(
                 {
-                    'api_token' : api.token,
+                    'api_token' : wishthis.api.token,
                     'module'    : 'wishes',
                     'page'      : 'api',
 
@@ -705,7 +775,7 @@ $(function () {
 
                             const formData = new URLSearchParams(
                                 {
-                                    'api_token' : api.token,
+                                    'api_token' : wishthis.api.token,
 
                                     'wish_url_current'  : modalValidate.find('input.current').val(),
                                     'wish_url_proposed' : modalValidate.find('input.proposed').val(),
@@ -735,7 +805,8 @@ $(function () {
                     /** Save form edit fields */
                     /** This code block is a duplicate, please refactor */
                     var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-                    formData.append('api_token', api.token);
+                    formData.append('api_token', wishthis.api.token);
+                    formData.append('wishlist_id', wishthis.$_GET.id);
 
                     fetch('/?page=api&module=wishes', {
                         method : 'POST',
@@ -748,7 +819,7 @@ $(function () {
                             return;
                         }
 
-                        $('body').toast({ message: text.toast_wish_update });
+                        $('body').toast({ message: wishthis.strings.toast.wish.update });
 
                         $('.ui.dropdown.wishlists').api('query');
 
@@ -767,7 +838,8 @@ $(function () {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */
             var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-            formData.append('api_token', api.token);
+            formData.append('api_token', wishthis.api.token);
+            formData.append('wishlist_id', wishthis.$_GET.id);
 
             fetch('/?page=api&module=wishes', {
                 method : 'POST',
@@ -780,7 +852,7 @@ $(function () {
                     return;
                 }
 
-                $('body').toast({ message: text.toast_wish_update });
+                $('body').toast({ message: wishthis.strings.toast.wish.update });
 
                 $('.ui.dropdown.wishlists').api('query');
 

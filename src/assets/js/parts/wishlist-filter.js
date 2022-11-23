@@ -8,32 +8,15 @@ $(function () {
         match          : 'text',
         fullTextSearch : true,
     })
-    .dropdown('set selected', -1)
     .api({
-        'action'  : 'get wishlists with priority',
+        'action'  : 'get wishlists by priority',
         'urlData' : {
-            'apitoken' : api.token,
+            'apitoken' : wishthis.api.token,
         },
         beforeSend : function (settings) {
             settings.urlData.style      = $('input[name="style"]').val();
             settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');
-
-            /** Wishlist ID */
-            var wistlist_cards_data = $('.wishlist-cards').attr('data-wishlist')
-            var dropdown_wishlists  = $('.dropdown.wishlists');
-
-            if (dropdown_wishlists.length) {
-                var dropdown_wishlists_value = dropdown_wishlists.dropdown('get value');
-
-                if (dropdown_wishlists_value) {
-                    settings.urlData.wishlistid = dropdown_wishlists_value;
-                }
-            }
-
-            if (typeof wistlist_cards_data !== 'undefined') {
-                settings.urlData.wishlistid = wistlist_cards_data;
-            }
-            /** */
+            settings.urlData.wishlistid = wishthis.$_GET.id;
 
             return settings;
         },
@@ -41,10 +24,10 @@ $(function () {
             var html = response.results ? response.results : '';
 
             $('.wishlist-cards').html(html);
-            $('.ui.dropdown.options').dropdown();
+            $('.ui.dropdown.wish-options').dropdown().removeClass('disabled');
         }
-    });
-
+    })
+    .dropdown('set selected', -1);
 
     /**
      * Style

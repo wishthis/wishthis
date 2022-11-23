@@ -22,7 +22,7 @@ $(function() {
                 rules      : [
                     {
                         type   : 'match[user-password]',
-                        prompt : text.form_profile_password
+                        prompt : wishthis.strings.form.profile.password
                     }
                 ]
             }
