@@ -17,7 +17,7 @@ function getWishlistNameSuggestion(): string
     $startOfEaster    = strtotime('15. April'); // Approximate
     $startOfChristmas = strtotime('24. December');
 
-    if ($user->birthdate) {
+    if (isset($user->birthdate)) {
         $birthdates = explode('-', $user->birthdate);
 
         $birthdate = new \DateTime();
