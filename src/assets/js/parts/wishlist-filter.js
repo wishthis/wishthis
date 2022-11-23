@@ -11,6 +11,12 @@ $(function () {
     .api({
         'action'  : 'get wishlists by priority',
         beforeSend : function (settings) {
+            var wishlist_id = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+
+            if (undefined === wishthis.$_GET.id && wishlist_id.length > 0) {
+                wishthis.$_GET.id = wishlist_id;
+            }
+
             settings.urlData.style      = $('input[name="style"]').val();
             settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');
             settings.urlData.wishlistid = wishthis.$_GET.id;
