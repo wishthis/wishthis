@@ -17,11 +17,6 @@ global $options;
     wishthis.locale  = '<?= str_replace('_', '-', $this->language) ?>';
     wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
 
-    /** API */
-    wishthis.api                     = {
-        'token' : "<?= $options->getOption('api_token'); ?>",
-    };
-
     /** Wish */
     wishthis.wish = {
         'status' : {

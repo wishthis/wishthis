@@ -17,7 +17,6 @@ window.addEventListener("load", (event) => {
     .then(canvas => {
         var data = new URLSearchParams();
         data.append('preview', canvas.toDataURL());
-        data.append('api_token', wishthis.api.token);
         data.append('page', wishthis.$_GET.page);
 
         /** Save page preview */

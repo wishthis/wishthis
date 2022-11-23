@@ -4,11 +4,10 @@ $(function() {
      */
     const params_statistics = new URLSearchParams(
         {
-            'api_token' : wishthis.api.token,
-            'module'    : 'statistics',
-            'page'      : 'api',
+            'module' : 'statistics',
+            'page'   : 'api',
 
-            'table'     : 'all',
+            'table' : 'all',
         }
     );
 
@@ -68,9 +67,8 @@ $(function() {
      */
     const params_news = new URLSearchParams(
         {
-            'api_token' : wishthis.api.token,
-            'module'    : 'blog',
-            'page'      : 'api',
+            'module' : 'blog',
+            'page'   : 'api',
         }
     );
 

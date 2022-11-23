@@ -10,9 +10,6 @@ $(function () {
     })
     .api({
         'action'  : 'get wishlists by priority',
-        'urlData' : {
-            'apitoken' : wishthis.api.token,
-        },
         beforeSend : function (settings) {
             settings.urlData.style      = $('input[name="style"]').val();
             settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');

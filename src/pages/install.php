@@ -43,7 +43,6 @@ switch ($step) {
 
                     <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
                         <input type="hidden" name="step" value="<?= $step + 1; ?>" />
-                        <input type="hidden" name="api_token" value="<?= sha1(ROOT) ?>">
 
                         <div class="ui error message"></div>
 
@@ -251,8 +250,7 @@ switch ($step) {
                 `options` (`key`, `value`)
             VALUES
                 ("isInstalled", true),
-                ("version", "' . VERSION . '"),
-                ("api_token", UUID())
+                ("version", "' . VERSION . '")
             ;'
         );
 

@@ -47,8 +47,6 @@ $(function() {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                'api_token' : wishthis.api.token,
-
                 'wish_id'     : card.attr('data-id'),
                 'wish_status' : wishthis.wish.status.temporary,
             },
@@ -68,8 +66,6 @@ $(function() {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                'api_token' : wishthis.api.token,
-
                 'wish_id'     : card.attr('data-id'),
                 'wish_status' : wishthis.wish.status.unavailable,
             },
@@ -90,9 +86,7 @@ $(function() {
 
         var formData = new URLSearchParams(
             {
-                'api_token' : wishthis.api.token,
-
-                'wishlist'  : $('[data-wishlist]').attr('data-wishlist'),
+                'wishlist' : $('[data-wishlist]').attr('data-wishlist'),
             }
         );
 
@@ -121,9 +115,8 @@ $(function() {
     /** Determine if list is saved */
     const params_ws_saved = new URLSearchParams(
         {
-            'api_token' : wishthis.api.token,
-            'module'    : 'wishlists-saved',
-            'page'      : 'api',
+            'module' : 'wishlists-saved',
+            'page'   : 'api',
         }
     );
 
@@ -168,8 +161,6 @@ $(function() {
 
         var formData = new URLSearchParams(
             {
-                'api_token'   : wishthis.api.token,
-
                 'locale'      : wishlist_locale,
                 'wishlist-id' : wishlist_id,
             }

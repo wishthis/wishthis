@@ -16,9 +16,6 @@ $(function () {
     var wishlists     = [];
     var wishlists_api = {
         'action'  : 'get wishlists',
-        'urlData' : {
-            'apitoken' : wishthis.api.token,
-        },
         onSuccess : function(response, dropdown_wishlists, xhr) {
             /** Save response for later use */
             wishlists = response.results;
@@ -68,9 +65,8 @@ $(function () {
                 /** Get wishlist */
                 const get_wishlist = new URLSearchParams(
                     {
-                        'api_token' : wishthis.api.token,
-                        'module'    : 'wishlists',
-                        'page'      : 'api',
+                        'module' : 'wishlists',
+                        'page'   : 'api',
 
                         'wishlist_id' : wishlist_id,
                     }
@@ -99,9 +95,8 @@ $(function () {
 
                     const params_url = new URLSearchParams(
                         {
-                            'api_token' : wishthis.api.token,
-                            'module'    : 'url',
-                            'page'      : 'api',
+                            'module' : 'url',
+                            'page'   : 'api',
 
                             'url' : window.btoa(urlParams.toString()),
                         }
@@ -125,9 +120,8 @@ $(function () {
                     /*
                     const get_wishes = new URLSearchParams(
                         {
-                            'api_token' : wishthis.api.token,
-                            'module'    : 'wishes',
-                            'page'      : 'api',
+                            'module' : 'wishes',
+                            'page'   : 'api',
 
                             'wishlist_id'    : wishlist.id,
                             'wishlist_style' : $('[name="style"]').val(),
@@ -247,9 +241,8 @@ $(function () {
 
         const params_cache = new URLSearchParams(
             {
-                'api_token' : wishthis.api.token,
-                'module'    : 'wishes',
-                'page'      : 'api',
+                'module' : 'wishes',
+                'page'   : 'api',
 
                 'wish_id'       : card.attr('data-id'),
                 'wishlist_user' : wishlist_user,
@@ -313,7 +306,6 @@ $(function () {
 
         var formRename = modalRename.find('.form.wishlist-rename');
         var formData   = new URLSearchParams(new FormData(formRename[0]));
-        formData.append('api_token', wishthis.api.token);
         formData.append('wishlist_id', wishthis.$_GET.id);
 
         fetch('/?page=api&module=wishlists', {
@@ -397,8 +389,6 @@ $(function () {
                         action: 'delete wishlist',
                         method: 'DELETE',
                         data: {
-                            'api_token' : wishthis.api.token,
-
                             'wishlistID' : wishlist_id
                         },
                         on: 'now',
@@ -442,8 +432,6 @@ $(function () {
             action    : 'update wish status',
             method    : 'PUT',
             data      : {
-                'api_token' : wishthis.api.token,
-
                 'wish_id'     : card.attr('data-id'),
                 'wish_status' : wishthis.strings.wish.status.fulfilled,
             },
@@ -485,9 +473,8 @@ $(function () {
 
         var wishFormData = new URLSearchParams(
             {
-                'api_token' : wishthis.api.token,
-                'module'    : 'wishes',
-                'page'      : 'api',
+                'module' : 'wishes',
+                'page'   : 'api',
 
                 'wish_id' : wishID
             }
@@ -574,9 +561,7 @@ $(function () {
                     action    : 'delete wish',
                     method    : 'DELETE',
                     data      : {
-                        'api_token' : wishthis.api.token,
-
-                        'wish_id': card.attr('data-id'),
+                        'wish_id' : card.attr('data-id'),
                     },
                     on        : 'now',
                     onSuccess : function () {
@@ -678,7 +663,6 @@ $(function () {
                 buttonCreate.addClass('loading');
 
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
-                formData.append('api_token', wishthis.api.token);
 
                 fetch('/?page=api&module=wishlists', {
                     method : 'POST',
@@ -735,9 +719,8 @@ $(function () {
         if (wishURLCurrent) {
             const params_url = new URLSearchParams(
                 {
-                    'api_token' : wishthis.api.token,
-                    'module'    : 'wishes',
-                    'page'      : 'api',
+                    'module' : 'wishes',
+                    'page'   : 'api',
 
                     'wish_url' : wishURLCurrent
                 }
@@ -775,8 +758,6 @@ $(function () {
 
                             const formData = new URLSearchParams(
                                 {
-                                    'api_token' : wishthis.api.token,
-
                                     'wish_url_current'  : modalValidate.find('input.current').val(),
                                     'wish_url_proposed' : modalValidate.find('input.proposed').val(),
                                 }
@@ -805,7 +786,6 @@ $(function () {
                     /** Save form edit fields */
                     /** This code block is a duplicate, please refactor */
                     var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-                    formData.append('api_token', wishthis.api.token);
                     formData.append('wishlist_id', wishthis.$_GET.id);
 
                     fetch('/?page=api&module=wishes', {
@@ -838,7 +818,6 @@ $(function () {
             /** Save form edit fields */
             /** This code block is a duplicate, please refactor */
             var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-            formData.append('api_token', wishthis.api.token);
             formData.append('wishlist_id', wishthis.$_GET.id);
 
             fetch('/?page=api&module=wishes', {

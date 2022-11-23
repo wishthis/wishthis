@@ -17,8 +17,6 @@ class API
     private string $module_path;
     private array $input;
 
-    public string $token;
-
     public function __construct()
     {
         global $options;
@@ -27,43 +25,21 @@ class API
 
         $this->module      = $this->input['module'] ?? '';
         $this->module_path = ROOT . '/src/api/' . $this->module . '.php';
-        $this->token       = $options->getOption('api_token');
-
-        /** For installer */
-        if (empty($this->token)) {
-            $this->token = sha1(ROOT);
-        }
     }
 
     public function do()
     {
         if (file_exists($this->module_path)) {
-            if (!empty(trim($this->input['api_token']))) {
-                if ($this->input['api_token'] === $this->token) {
-                    ob_start();
+            ob_start();
 
-                    $response = array();
+            $response = array();
 
-                    require $this->module_path;
+            require $this->module_path;
 
-                    $response['warning'] = ob_get_clean();
+            $response['warning'] = ob_get_clean();
 
-                    header('Content-type: application/json; charset=utf-8');
-                    echo json_encode($response);
-                } else {
-                    http_response_code(403);
-                    ?>
-                    <h1>Forbidden</h1>
-                    <p>The specified API token "<?= $this->input['api_token'] ?>" is invalid.</p>
-                    <?php
-                }
-            } else {
-                http_response_code(403);
-                ?>
-                <h1>Forbidden</h1>
-                <p>Please specify an API token.</p>
-                <?php
-            }
+            header('Content-type: application/json; charset=utf-8');
+            echo json_encode($response);
         } else {
             http_response_code(404);
             ?>
