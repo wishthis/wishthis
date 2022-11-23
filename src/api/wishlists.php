@@ -132,9 +132,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $user = isset($_GET['userid']) ? User::getFromID($_GET['userid']) : $_SESSION['user'];
 
             $wishlists = array();
-            $options   = array(
-                'style' => $_GET['style'],
-            );
 
             foreach ($user->getWishlists() as $wishlist_result) {
                 $wishlist = new Wishlist($wishlist_result['id']);
