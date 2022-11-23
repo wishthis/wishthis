@@ -6,6 +6,8 @@
  * Returns the current season
  */
 
+namespace wishthis;
+
 function getWishlistNameSuggestion(): string
 {
     $user  = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
