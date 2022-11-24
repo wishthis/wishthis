@@ -9,8 +9,8 @@ $(function () {
         fullTextSearch : true,
     })
     .api({
-        'action'  : 'get wishlists by priority',
-        beforeSend : function (settings) {
+        'action'     : 'get wishlists by priority',
+        'beforeSend' : function (settings) {
             var wishlist_id = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
 
             if (undefined === wishthis.$_GET.id && wishlist_id.length > 0) {
@@ -23,7 +23,7 @@ $(function () {
 
             return settings;
         },
-        onSuccess  : function (response, dropdown_wishlists, xhr) {
+        'onSuccess'  : function (response, dropdown_wishlists, xhr) {
             var html = response.results ? response.results : '';
 
             $('.wishlist-cards').html(html);

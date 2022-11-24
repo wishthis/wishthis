@@ -15,8 +15,8 @@ $(function () {
      */
     var wishlists     = [];
     var wishlists_api = {
-        'action'  : 'get wishlists',
-        onSuccess : function(response, dropdown_wishlists, xhr) {
+        'action'    : 'get wishlists',
+        'onSuccess' : function(response, dropdown_wishlists, xhr) {
             /** Save response for later use */
             wishlists = response.results;
 
