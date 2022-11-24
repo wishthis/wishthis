@@ -18,6 +18,13 @@
 
   # Blog Post
   RewriteRule ^blog/([a-z\-0-9]+)$ /?page=post&slug=$1 [QSA,L]
+
+  # API
+  RewriteRule ^api/([a-zA-Z\-0-9=]+)$ /?page=api&module=$1 [QSA,L]
+
+  RewriteRule ^api/statistics/([a-zA-Z0-9=]+)$ /?page=api&module=statistics&table=$1 [QSA,L]
+  RewriteRule ^api/url/([a-zA-Z0-9=]+)$ /?page=api&module=url&url=$1 [QSA,L]
+  RewriteRule ^api/wishlists/([0-9]+)$ /?page=api&module=wishlists&wishlist_id=$1 [QSA,L]
 </IfModule>
 
 ##-- When caching of gzipped JS and CSS files is used, enable this setting

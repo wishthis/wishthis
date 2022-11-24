@@ -72,9 +72,11 @@ class URL
      */
     public function isPretty(): bool
     {
-        $isPretty = 1 === preg_match('/^\/[a-z0-9\/\-]+$/', $this->url);
+        if ('/?' === substr($this->url, 0, 2)) {
+            return false;
+        }
 
-        return $isPretty;
+        return true;
     }
 
     /**

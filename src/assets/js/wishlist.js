@@ -90,7 +90,7 @@ $(function() {
             }
         );
 
-        fetch('/?page=api&module=wishlists-saved', {
+        fetch('/api/wishlists-saved', {
             method : 'POST',
             body   : formData
         })
@@ -113,14 +113,7 @@ $(function() {
     });
 
     /** Determine if list is saved */
-    const params_ws_saved = new URLSearchParams(
-        {
-            'module' : 'wishlists-saved',
-            'page'   : 'api',
-        }
-    );
-
-    fetch('/?' + params_ws_saved, {
+    fetch('/api/wishlists-saved', {
         method : 'GET',
     })
     .then(handleFetchError)
@@ -168,7 +161,7 @@ $(function() {
 
         buttonRequest.addClass('disabled loading');
 
-        fetch('/?page=api&module=wishlists', {
+        fetch('/api/wishlists', {
             method : 'POST',
             body   : formData
         })

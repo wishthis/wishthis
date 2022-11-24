@@ -148,4 +148,32 @@ global $options;
             }
         },
     }
+
+    /**
+     * Fomantic UI
+     */
+    <?php
+    $api_urls = array(
+        'get wishlists'             => '/?page=api&module=wishlists',
+        'get wishlists by priority' => '/?page=api&module=wishlists&style={style}&wishlist_id={wishlistid}&priority={priority}',
+        'delete wishlist'           => '/?page=api&module=wishlists',
+        'update wish status'        => '/?page=api&module=wishes',
+        'delete wish'               => '/?page=api&module=wishes',
+    );
+    ?>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        /** API */
+        $.fn.api.settings.api = {
+            <?php
+            foreach ($api_urls as $action => $url) {
+                $url    = new URL($url);
+                $pretty = $url->getPretty();
+
+                echo '\'' . $action . '\' : \'' . $pretty . '\',' . PHP_EOL;
+            }
+            ?>
+        };
+    });
+
 </script>

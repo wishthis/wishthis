@@ -10,11 +10,6 @@ namespace wishthis;
 
 global $page, $database;
 
-if (!isset($page)) {
-    http_response_code(403);
-    die('Direct access to this location is not allowed.');
-}
-
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         if (isset($_POST['wishlist-name'], $_SESSION['user']->id)) {
@@ -124,7 +119,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $wishlist = new Wishlist($_GET['wishlist_id']);
 
-            $response['results'] = $wishlist;
+            if ($wishlist->exists) {
+                /** Determine if user is allowed to access wishlist */
+                if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user) {
+                    $response['results'] = $wishlist;
+                } else {
+                    http_response_code(403);
+                }
+            } else {
+                http_response_code(404);
+            }
         } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
             /**
              * Get user wishlists
@@ -165,7 +169,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $database->query(
             'DELETE FROM `wishlists`
-                   WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlistID']) . ';'
+                   WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlist_id']) . ';'
         );
 
         $response['success'] = true;

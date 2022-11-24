@@ -16,14 +16,6 @@ $(function() {
     /**
      * Fomantic UI
      */
-    /** API */
-    $.fn.api.settings.api = {
-        'get wishlists'             : '/?page=api&module=wishlists',
-        'get wishlists by priority' : '/?page=api&module=wishlists&style={style}&wishlist_id={wishlistid}&priority={priority}',
-        'delete wishlist'           : '/?page=api&module=wishlists',
-        'update wish status'        : '/?page=api&module=wishes',
-        'delete wish'               : '/?page=api&module=wishes',
-    };
 
     /** Default callbacks */
     $.fn.api.settings.onResponse = function(response) {
@@ -210,6 +202,7 @@ function handleFetchError(response) {
         console.log(response);
 
         showError(response.statusText);
+
         throw Error(response.statusText);
     }
 

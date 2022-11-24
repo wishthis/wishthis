@@ -28,17 +28,7 @@ $(function () {
             dropdown_wishlists.dropdown('setup menu', dropdown_values);
 
             /** Select a dropdown item */
-            if (!dropdown_wishlists.dropdown('get value')) {
-                if (wishthis.$_GET.id) {
-                    dropdown_wishlists.dropdown('set selected', wishthis.$_GET.id);
-                } else {
-                    if (Object.keys(wishlists).length >= 1) {
-                        var first_wishlist_id = Object.keys(wishlists)[0];
-
-                        dropdown_wishlists.dropdown('set selected', first_wishlist_id);
-                    }
-                }
-            }
+            setDropdownWishlistsSelection();
 
             /** Open add wish modal */
             if (wishthis.$_GET.wish_add) {
@@ -63,15 +53,7 @@ $(function () {
 
             if (wishlist_id) {
                 /** Get wishlist */
-                const get_wishlist = new URLSearchParams(
-                    {
-                        'module' : 'wishlists',
-                        'page'   : 'api',
-
-                        'wishlist_id' : wishlist_id,
-                    }
-                );
-                fetch('/?' + get_wishlist, { method: 'GET' })
+                fetch('/api/wishlists/' + wishlist_id, { method: 'GET' })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
                 .then(function(response) {
@@ -81,7 +63,7 @@ $(function () {
                     wishlist = response.results;
 
                     /** Set share link */
-                    $('.wishlist-share').attr('href', '/?page=wishlist&hash=' + wishlist.hash);
+                    $('.wishlist-share').attr('href', '/wishlist/' + wishlist.hash);
 
                     /** Enable wishlist options buttons */
                     $('.button.wishlist-wish-add').removeClass('disabled');
@@ -93,22 +75,7 @@ $(function () {
                     /** Update URL */
                     urlParams.set('id', wishlist_id);
 
-                    const params_url = new URLSearchParams(
-                        {
-                            'module' : 'url',
-                            'page'   : 'api',
-
-                            'url' : window.btoa(urlParams.toString()),
-                        }
-                    );
-                    fetch('/?' + params_url, {
-                        method: 'GET'
-                    })
-                    .then(handleFetchError)
-                    .then(handleFetchResponse)
-                    .then(function(response) {
-                        window.history.pushState(null, document.title, response.data.url_pretty);
-                    });
+                    updateURL();
 
                     /** Get wishlist cards/wishes */
 
@@ -308,7 +275,7 @@ $(function () {
         var formData   = new URLSearchParams(new FormData(formRename[0]));
         formData.append('wishlist_id', wishthis.$_GET.id);
 
-        fetch('/?page=api&module=wishlists', {
+        fetch('/api/wishlists', {
             method : 'PUT',
             body   : formData,
         })
@@ -360,61 +327,61 @@ $(function () {
     /**
      * Delete Wishlist
      */
-    $(document).on('click', '.options .wishlist-delete', function () {
-        var wishlist_id = $('.ui.dropdown.wishlists').dropdown('get value');
+    $(document).on('click', '.wishlist-options .wishlist-delete', function () {
+        var wishlist_id = wishthis.$_GET.id;
 
         if (wishlist_id) {
             var modalDefault = $('.ui.modal.default');
 
             modalDefault
             .modal({
-                title    : wishthis.strings.wishlist.delete.title,
-                class    : 'tiny',
-                content  : wishthis.strings.wishlist.delete.content.replace('WISHLIST_NAME', $('.ui.dropdown.wishlists').dropdown('get text')),
-                actions  : [
+                'title'    : wishthis.strings.modal.wishlist.delete.title,
+                'class'    : 'tiny',
+                'content'  : wishthis.strings.modal.wishlist.delete.content.replace('WISHLIST_NAME', $('.ui.dropdown.wishlists').dropdown('get text')),
+                'actions'  : [
                     {
-                        text : wishthis.strings.wishlist.delete.approve,
+                        text : wishthis.strings.modal.wishlist.delete.approve,
                         class: 'approve red'
                     },
                     {
-                        text : wishthis.strings.wishlist.delete.deny,
+                        text : wishthis.strings.modal.wishlist.delete.deny,
                         class: 'deny'
                     },
                 ],
-                autoShow : true,
-                onApprove: function (buttonApprove) {
+                'autoShow' : true,
+                'onApprove': function (buttonApprove) {
                     buttonApprove.addClass('loading');
 
-                    $('.ui.dropdown.wishlists').api({
-                        action: 'delete wishlist',
-                        method: 'DELETE',
-                        data: {
-                            'wishlistID' : wishlist_id
-                        },
-                        on: 'now',
-                        onSuccess: function (response, wishlists) {
-                            $('.wishlist-cards .column').fadeOut(800);
-
-                            wishlists.dropdown('clear');
-
-                            urlParams.delete('id');
-
-                            $('body').toast({ message : wishthis.strings.toast.wishlist.delete });
-
-                            modalDefault.modal('hide');
-
-                            setTimeout(() => {
-                                $('.ui.dropdown.wishlists').api('query');
-                            }, 200);
+                    var delete_wishlist = new URLSearchParams(
+                        {
+                            'wishlist_id' : wishlist_id,
                         }
+                    );
+                    fetch('/api/wishlists', {
+                        'method' : 'DELETE',
+                        'body'   : delete_wishlist,
+                    })
+                    .then(handleFetchError)
+                    .then(handleFetchResponse)
+                    .then(function(response) {
+                        $('.wishlist-cards .column').fadeOut(800);
+
+                        urlParams.delete('id');
+                        wishthis.$_GET.id = null;
+                        updateURL();
+                        setDropdownWishlistsSelection();
+
+                        $('.ui.dropdown.wishlists').api('query');
+
+                        modalDefault.modal('hide');
+
+                        $('body').toast({ message : wishthis.strings.toast.wishlist.delete });
+                    })
+                    .catch(handleFetchCatch)
+                    .finally(function() {
+                        buttonApprove.removeClass('loading');
                     });
 
-                    /**
-                     * Return false is currently not working.
-                     *
-                     * @version 2.8.8
-                     * @see     https://github.com/fomantic/Fomantic-UI/issues/2105
-                     */
                     return false;
                 }
             });
@@ -664,7 +631,7 @@ $(function () {
 
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
 
-                fetch('/?page=api&module=wishlists', {
+                fetch('/api/wishlists', {
                     method : 'POST',
                     body   : formData
                 })
@@ -677,7 +644,9 @@ $(function () {
 
                     $('body').toast({ message: wishthis.strings.toast.wish.create });
 
-                    $('.ui.dropdown.wishlists').api('query');
+                    $('.ui.dropdown.wishlists')
+                    .api('query')
+                    .dropdown('set value', response.data.lastInsertId);
                 })
                 .finally(() => {
                     formWishlistCreate.removeClass('loading');
@@ -846,5 +815,34 @@ $(function () {
         }
     }
 
+    /**
+     * Update URL
+     */
+    function updateURL() {
+        fetch('/api/url/' + window.btoa('/?' + urlParams.toString()), { method: 'GET' })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            window.history.pushState(null, document.title, response.data.url_pretty);
+        });
+    }
 
+    /**
+     * Set dropdown wishlists seelction
+     */
+    function setDropdownWishlistsSelection() {
+        var dropdown_wishlists = $('.ui.dropdown.wishlists');
+
+        if (!dropdown_wishlists.dropdown('get value')) {
+            if (wishthis.$_GET.id) {
+                dropdown_wishlists.dropdown('set selected', wishthis.$_GET.id);
+            } else {
+                if (Object.keys(wishlists).length >= 1) {
+                    var first_wishlist_id = Object.keys(wishlists)[0];
+
+                    dropdown_wishlists.dropdown('set selected', first_wishlist_id);
+                }
+            }
+        }
+    }
 });
