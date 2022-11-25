@@ -215,6 +215,9 @@
         background-color: #1b1c1d;
         color: rgba(255, 255, 255, .8);
     }
+    .ui.dropdown .menu .active.item {
+        color: rgba(255, 255, 255, .8);
+    }
 
     .ui.selection.dropdown:hover {
         border-color: rgba(255, 255, 255, .25);
