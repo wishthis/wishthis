@@ -36,12 +36,14 @@ $(function () {
             }
 
             /** Set wishlist style */
-            const orientationIsPortrait = window.matchMedia('(orientation: portrait)');
+            if ($('.buttons.view .active.button[value]').length === 0) {
+                const orientationIsPortrait = window.matchMedia('(orientation: portrait)');
 
-            if (orientationIsPortrait.matches) {
-                $('.buttons.view .button[value="list"]').trigger('click');
-            } else {
-                $('.buttons.view .button[value="grid"]').trigger('click');
+                if (orientationIsPortrait.matches) {
+                    $('.buttons.view .button[value="list"]').trigger('click');
+                } else {
+                    $('.buttons.view .button[value="grid"]').trigger('click');
+                }
             }
         },
     };
