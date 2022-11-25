@@ -44,7 +44,8 @@ class User
     /**
      * Private
      */
-    private string $locale;
+    private string $language;
+    private string $currency;
 
     /**
      * Non-Static
@@ -61,12 +62,12 @@ class User
             }
         }
 
-        /** Set Locale */
-        if (!isset($this->locale)) {
-            $this->locale = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
+        /** Set Language */
+        if (!isset($this->language)) {
+            $this->language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
         }
 
-        $this->setLocale($this->locale);
+        $this->setLocale($this->language);
     }
 
     /**
@@ -84,15 +85,34 @@ class User
         if (file_exists($translationFilepath)) {
             $loader             = new \Gettext\Loader\PoLoader();
             $this->translations = $loader->loadFile($translationFilepath);
+        } else {
+            trigger_error('Unable to find translations for ' . $locale . ', defaulting to ' . DEFAULT_LOCALE . '.', E_USER_NOTICE);
         }
 
         /** Set locale */
-        $this->locale = $locale;
+        $this->language = $locale;
     }
 
     public function getLocale(): string
     {
-        return $this->locale;
+        return $this->language;
+    }
+
+    /**
+     * Set the user currency
+     *
+     * @param string $locale
+     *
+     * @return void
+     */
+    public function setCurrency(string $locale): void
+    {
+        $this->currency = $locale;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
     }
 
     /**

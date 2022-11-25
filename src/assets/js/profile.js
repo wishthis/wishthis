@@ -68,11 +68,14 @@ $(function() {
      * Preferences
      */
 
-    /** Language */
-    $('.ui.dropdown.locale').dropdown({
-        sortSelect     : 'natural',
-        fullTextSearch : true,
-    });
+    /** Locale */
+    var dropdown_locale_settings = {
+        'sortSelect'     : 'natural',
+        'fullTextSearch' : true,
+    };
+
+    $('.ui.dropdown.language').dropdown(dropdown_locale_settings);
+    $('.ui.dropdown.currency').dropdown(dropdown_locale_settings);
 
     /** Channel */
     $('.ui.dropdown.channel').dropdown();

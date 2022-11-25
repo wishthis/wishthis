@@ -108,14 +108,20 @@ $page->navigation();
                                 </li>
                                 <li>
                                     <?php
-                                        /** TRANSLATORS: Changelog: Roadmap */
+                                        /** TRANSLATORS: Changelog: Added */
                                         echo __('Compact/list view for wishes');
                                     ?>
                                 </li>
                                 <li>
                                     <?php
-                                        /** TRANSLATORS: Changelog: Roadmap */
+                                        /** TRANSLATORS: Changelog: Added */
                                         echo __('Option to enable advertisements');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Option to set currency');
                                     ?>
                                 </li>
                             </ul>

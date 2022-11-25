@@ -87,16 +87,34 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     /**
      * Preferences
      */
-    /** Locale */
-    if (isset($_POST['user-locale']) && $_POST['user-locale'] !== $_SESSION['user']->getLocale()) {
-        $_SESSION['user']->setLocale($_POST['user-locale']);
 
-        $set[] = '`locale` = "' . $_SESSION['user']->getLocale() . '"';
+    /** Language */
+    if (isset($_POST['user-language']) && $_POST['user-language'] !== $_SESSION['user']->getLocale()) {
+        $_SESSION['user']->setLocale($_POST['user-language']);
+
+        $set[] = '`language` = "' . $_SESSION['user']->getLocale() . '"';
 
         $page->messages[] = Page::success(
             sprintf(
-                __('Locale successfully updated!'),
-                '<strong>Locale</strong>'
+                /** TRANSLATORS: %s: The new locale */
+                __('Language set to %s.'),
+                '<strong>' . $_SESSION['user']->getLocale() . '</strong>'
+            ),
+            __('Success')
+        );
+    }
+
+    /** Currency */
+    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $_SESSION['user']->getLocale()) {
+        $_SESSION['user']->setCurrency($_POST['user-currency']);
+
+        $set[] = '`currency` = "' . $_SESSION['user']->getCurrency() . '"';
+
+        $page->messages[] = Page::success(
+            sprintf(
+                /** TRANSLATORS: %s: The new locale */
+                __('Currency set to %s.'),
+                '<strong>' . $_SESSION['user']->getCurrency() . '</strong>'
             ),
             __('Success')
         );
@@ -315,23 +333,54 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('Language') ?></label>
 
-                                    <select class="ui search dropdown locale" name="user-locale">
+                                    <select class="ui search dropdown language" name="user-language">
                                         <?php if (!in_array('en_GB', $locales)) { ?>
                                             <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $_SESSION['user']->getLocale()) ?></option>
                                         <?php } ?>
 
                                         <?php foreach ($locales as $locale) { ?>
-                                            <?php if (\Locale::getRegion($locale)) { ?>
-                                                <?php if ($locale === $_SESSION['user']->getLocale()) { ?>
-                                                    <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
-                                                <?php } else { ?>
-                                                    <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
-                                                <?php } ?>
+                                            <?php if ($locale === $_SESSION['user']->getLocale()) { ?>
+                                                <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
+                                            <?php } else { ?>
+                                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
                                 </div>
 
+                                <div class="field">
+                                    <label><?= __('Currency') ?></label>
+
+                                    <select class="ui search dropdown currency" name="user-currency">
+                                        <?php
+                                        $currencies = array();
+                                        ?>
+
+                                        <?php foreach ($locales as $locale) { ?>
+                                            <?php
+                                            $currencyFormatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
+                                            $currencyISO       = $currencyFormatter->getSymbol(\NumberFormatter::INTL_CURRENCY_SYMBOL);
+                                            $currencySymbol    = $currencyFormatter->getSymbol(\NumberFormatter::CURRENCY_SYMBOL);
+                                            $currencyValue     = $currencyISO . ' (' . $currencySymbol . ')';
+
+                                            if (in_array($currencyISO, $currencies, true) || $currencyISO === $currencySymbol) {
+                                                continue;
+                                            } else {
+                                                $currencies[] = $currencyISO;
+                                            }
+                                            ?>
+
+                                            <?php if ($currencyISO === $_SESSION['user']->getCurrency()) { ?>
+                                                <option value="<?= $currencyISO ?>" selected><?= $currencyValue ?></option>
+                                            <?php } else { ?>
+                                                <option value="<?= $currencyISO ?>"><?= $currencyValue ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
                                 <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
                                     <script type="text/javascript">
                                         var CHANNELS = <?= json_encode(CHANNELS) ?>;
