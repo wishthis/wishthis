@@ -77,7 +77,7 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
-                                    echo __('Verify wishes are still available when attempting to fulfill them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled.');
+                                    echo __('Verify wishes are still available when attempting to fulfil them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled.');
                                 ?>
                             </li>
                             <li>
@@ -158,7 +158,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
-                                        echo  __('Fix background and color when opening the mobile menu');
+                                        echo  __('Fix background and colour when opening the mobile menu');
                                     ?>
                                 </li>
                             </ul>
