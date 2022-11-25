@@ -231,6 +231,8 @@ class Page
     public function header(): void
     {
         global $locales;
+
+        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -395,6 +397,22 @@ class Page
                     data-domain="<?= $_SERVER['HTTP_HOST'] ?>"
                     src="https://plausible.io/js/plausible.js">
             </script>
+            <?php
+
+            /** AdSense */
+            $wishthis_hosts = array(
+                'wishthis.localhost',
+                'wishthis.online',
+                'rc.wishthis.online',
+                'dev.wishthis.online',
+            );
+
+            if (in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true) && (true === $user->advertisements || $CrawlerDetect->isCrawler())) {
+                ?>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093703034691766" crossorigin="anonymous"></script>
+                <?php
+            }
+            ?>
 
             <title><?= $this->title ?> - wishthis - <?= __('Make a wish') ?></title>
         </head>

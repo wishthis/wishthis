@@ -112,6 +112,12 @@ $page->navigation();
                                         echo __('Compact/list view for wishes');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Roadmap */
+                                        echo __('Option to enable advertisements');
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Improved') ?></h3>

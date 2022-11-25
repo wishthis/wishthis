@@ -92,4 +92,7 @@ $(function() {
             });
         }
     }
+
+    /** Advertisements */
+    $('.ui.checkbox.advertisements').checkbox();
 });

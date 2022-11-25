@@ -51,6 +51,7 @@ class User
      */
     public int $power                           = 0;
     public ?\Gettext\Translations $translations = null;
+    public bool $advertisements                 = false;
 
     public function __construct(array $fields = array())
     {

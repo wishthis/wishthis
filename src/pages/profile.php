@@ -115,6 +115,18 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
+    /** Advertisements */
+    if (isset($_POST['enable-advertisements'])) {
+        $_SESSION['user']->advertisements = true;
+
+        $set[] = '`advertisements` = TRUE';
+    } else {
+        $_SESSION['user']->advertisements = false;
+
+        $set[] = '`advertisements` = FALSE';
+    }
+
+    /** Save */
     if ($set) {
         $database
         ->query(
@@ -341,6 +353,35 @@ $page->navigation();
                                         </select>
                                     </div>
                                 <?php } ?>
+                            </div>
+
+                            <div class="field">
+                                <label><?= __('Advertisements') ?></label>
+
+                                <div class="ui toggle checkbox advertisements">
+                                    <?php
+                                    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+                                    ?>
+
+                                    <?php if (true === $user->advertisements) { ?>
+                                        <input type="checkbox" name="enable-advertisements" checked="checked" />
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="enable-advertisements" />
+                                    <?php } ?>
+
+                                    <label><?= __('Enable advertisements') ?></label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <p>
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: sponsor me */
+                                        __('Time spent on wishthis is time not doing for-profit work. If you would like to support me but either can\'t or don\'t want to %s, consider selling your body to Google and becoming its product.'),
+                                        '<a href="https://github.com/sponsors/grandeljay" target="_blank">' . __('sponsor me') . '</a>'
+                                    );
+                                    ?>
+                                </p>
                             </div>
 
                             <div class="ui error message"></div>

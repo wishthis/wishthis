@@ -153,6 +153,10 @@
     /**
      * Checkbox
      */
+    .ui.checkbox label,
+    .ui.checkbox + label {
+        color: rgba(255, 255, 255, .9) !important;
+    }
     .ui.toggle.checkbox input:checked ~ label {
         color: #fff !important;
     }
