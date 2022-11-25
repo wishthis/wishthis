@@ -400,7 +400,7 @@ $(function () {
             method    : 'PUT',
             data      : {
                 'wish_id'     : card.attr('data-id'),
-                'wish_status' : wishthis.strings.modal.wish.status.fulfilled,
+                'wish_status' : wishthis.wish.status.fulfilled,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
