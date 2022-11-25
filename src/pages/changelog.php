@@ -22,6 +22,7 @@ $page->navigation();
 
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
+                    <a class="item" data-tab="0-7-2"><?= __('0.7.2') ?></a>
                     <a class="item" data-tab="0-7-1"><?= __('0.7.1') ?></a>
                     <a class="item" data-tab="0-7-0"><?= __('0.7.0') ?></a>
                     <a class="item" data-tab="0-6-0"><?= __('0.6.0') ?></a>
@@ -29,7 +30,29 @@ $page->navigation();
             </div>
 
             <div class="twelve wide stretched column">
-            <div class="ui tab" data-tab="0-7-1">
+                <div class="ui tab" data-tab="0-7-2">
+                    <div class="ui segments">
+
+                        <div class="ui segment">
+                            <h2 class="ui header"><?= __('0.7.2') ?></h2>
+                        </div>
+
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Fix fulfilled wishes showing atfer using filter');
+                                    ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="ui tab" data-tab="0-7-1">
                     <div class="ui segments">
 
                         <div class="ui segment">
