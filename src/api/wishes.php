@@ -50,7 +50,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'style' => $_GET['wishlist_style'],
             );
             $where    = array(
-                'wishlist' => '`wishlist` = ' . $wishlist->id,
                 'priority' => '`priority` = ' . $_GET['wish_priority'],
             );
 
