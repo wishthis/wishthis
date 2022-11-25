@@ -36,13 +36,6 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
             if ($sql) {
                 $database->query($sql);
-
-                $page->messages[] = Page::success(
-                    sprintf(
-                        __('Database successfully migrated to %s.'),
-                        'v' . $version['version']
-                    )
-                );
             }
         }
     }
@@ -50,6 +43,13 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     /** Update version */
     $options->setOption('version', VERSION);
     $options->setOption('updateAvailable', false);
+
+    $page->messages[] = Page::success(
+        sprintf(
+            __('Database successfully migrated to %s.'),
+            'v' . VERSION
+        )
+    );
 }
 
 $page->header();
