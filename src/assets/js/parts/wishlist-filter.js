@@ -5,8 +5,8 @@ $(function () {
      */
     $('.ui.dropdown.filter.priority')
     .dropdown({
-        match          : 'text',
-        fullTextSearch : true,
+        'match'          : 'text',
+        'fullTextSearch' : true,
     })
     .api({
         'action'     : 'get wishlists by priority',
