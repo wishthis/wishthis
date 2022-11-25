@@ -36,8 +36,8 @@ $page->navigation();
                         <h2 class="ui header"><?= __('Roadmap') ?></h2>
                         <p>
                             <?php
-                                /** TRANSLATORS: %s: discussions */
                                 echo sprintf(
+                                    /** TRANSLATORS: %s: discussions */
                                     __('If you would like to give feedback regarding the roadmap, please refer to the %s on GitHub, or chat on Matrix or Discord.'),
                                     sprintf(
                                         '<a href="https://github.com/grandeljay/wishthis/discussions" target="_blank">%s</a>',
