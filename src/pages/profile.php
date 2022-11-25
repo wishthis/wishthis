@@ -382,7 +382,7 @@ $page->navigation();
                                     );
                                     ?>
                                 </p>
-                                <p><?= __('Please remember to add an exception to your ad-blocker and browsers.') ?></p>
+                                <p><?= __('Please remember to add an exception to your ad-blocker and browser.') ?></p>
                             </div>
 
                             <div class="ui error message"></div>
