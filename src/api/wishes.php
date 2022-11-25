@@ -83,7 +83,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
              * Save wish
              */
             if (
-                empty($_POST['wish_title'])
+                   empty($_POST['wish_title'])
                 && empty($_POST['wish_description'])
                 && empty($_POST['wish_url'])
             ) {

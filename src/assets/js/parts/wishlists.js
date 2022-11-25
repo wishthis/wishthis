@@ -400,7 +400,7 @@ $(function () {
             method    : 'PUT',
             data      : {
                 'wish_id'     : card.attr('data-id'),
-                'wish_status' : wishthis.strings.wish.status.fulfilled,
+                'wish_status' : wishthis.strings.modal.wish.status.fulfilled,
             },
             on        : 'now',
             onSuccess : function(response, element, xhr) {
@@ -505,16 +505,16 @@ $(function () {
 
         modalDefault
         .modal({
-            title    : wishthis.strings.wish.delete.title,
-            content  : wishthis.strings.wish.delete.content,
+            title    : wishthis.strings.modal.wish.delete.title,
+            content  : wishthis.strings.modal.wish.delete.content,
             class    : 'tiny',
             actions  : [
                 {
-                    text : wishthis.strings.wish.delete.approve,
+                    text : wishthis.strings.modal.wish.delete.approve,
                     class: 'approve primary'
                 },
                 {
-                    text: wishthis.strings.wish.delete.deny
+                    text: wishthis.strings.modal.wish.delete.deny
                 }
             ],
             autoShow : true,
@@ -752,67 +752,44 @@ $(function () {
                         }
                     });
                 } else {
-                    /** Save form edit fields */
-                    /** This code block is a duplicate, please refactor */
-                    var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-                    formData.append('wishlist_id', wishthis.$_GET.id);
-
-                    fetch('/?page=api&module=wishes', {
-                        method : 'POST',
-                        body   : formData
-                    })
-                    .then(handleFetchError)
-                    .then(handleFetchResponse)
-                    .then(function(response) {
-                        if (!response.lastInsertId) {
-                            return;
-                        }
-
-                        $('body').toast({ message: wishthis.strings.toast.wish.update });
-
-                        $('.ui.dropdown.wishlists').api('query');
-
-                        modalAddOrEdit.modal('hide');
-                    })
-                    .catch(handleFetchCatch)
-                    .finally(function() {
-                        formAddOrEdit.removeClass('loading');
-                        buttonAddOrSave.removeClass('disabled');
-                    });
-                    /** */
+                    insertWish(formAddOrEdit, modalAddOrEdit, buttonAddOrSave);
                 }
             })
             .catch(handleFetchCatch);
         } else {
-            /** Save form edit fields */
-            /** This code block is a duplicate, please refactor */
-            var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
-            formData.append('wishlist_id', wishthis.$_GET.id);
-
-            fetch('/?page=api&module=wishes', {
-                method : 'POST',
-                body   : formData
-            })
-            .then(handleFetchError)
-            .then(handleFetchResponse)
-            .then(function(response) {
-                if (!response.lastInsertId) {
-                    return;
-                }
-
-                $('body').toast({ message: wishthis.strings.toast.wish.update });
-
-                $('.ui.dropdown.wishlists').api('query');
-
-                modalAddOrEdit.modal('hide');
-            })
-            .catch(handleFetchCatch)
-            .finally(function() {
-                formAddOrEdit.removeClass('loading');
-                buttonAddOrSave.removeClass('disabled');
-            });
-            /** */
+            insertWish(formAddOrEdit, modalAddOrEdit, buttonAddOrSave);
         }
+    }
+
+    /**
+     * Insert wish
+     */
+    function insertWish(formAddOrEdit, modalAddOrEdit, buttonAddOrSave) {
+        var formData = new URLSearchParams(new FormData(formAddOrEdit[0]));
+        formData.append('wishlist_id', wishthis.$_GET.id);
+
+        fetch('/api/wishes', {
+            'method' : 'POST',
+            'body'   : formData,
+        })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            if (!response.lastInsertId) {
+                return;
+            }
+
+            $('body').toast({ message: wishthis.strings.toast.wish.update });
+
+            $('.ui.dropdown.wishlists').api('query');
+
+            modalAddOrEdit.modal('hide');
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            formAddOrEdit.removeClass('loading');
+            buttonAddOrSave.removeClass('disabled');
+        });
     }
 
     /**

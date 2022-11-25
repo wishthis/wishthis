@@ -139,9 +139,7 @@ class Page
          * Install
          */
         if (!isset($options) || !$options || !$options->getOption('isInstalled')) {
-            global $page;
-
-            if ('api' !== $page) {
+            if ('api' !== $this->name) {
                 redirect(Page::PAGE_INSTALL);
             }
         }
@@ -190,7 +188,7 @@ class Page
         /**
          * Redirect
          */
-        if ($options && $options->getOption('isInstalled') && isset($_GET)) {
+        if ($options && $options->getOption('isInstalled') && isset($_GET) && 'api' !== $this->name) {
             $url = new URL($_SERVER['REQUEST_URI']);
 
             if ($url->url && false === $url->isPretty()) {
