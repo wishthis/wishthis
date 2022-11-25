@@ -134,6 +134,16 @@
         color: rgba(255, 255, 255, .6);
     }
 
+    .ui.card > .extra,
+    .ui.cards > .card > .extra {
+        color: rgba(255, 255, 255, .7);
+        border-top: 1px solid rgba(255, 255, 255, .15) !important;
+    }
+    .ui.card > .extra,
+    .ui.cards > .card > .extra {
+        color: rgba(255, 255, 255, .7);
+    }
+
     /** Description */
     .ui.card > .content > .description,
     .ui.cards > .card > .content > .description {
