@@ -103,7 +103,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
-                                        echo __('A roadmap in the changelog.');
+                                        echo __('A roadmap in the changelog');
                                     ?>
                                 </li>
                                 <li>

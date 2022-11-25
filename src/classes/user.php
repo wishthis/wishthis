@@ -116,9 +116,11 @@ class User
         global $database;
 
         $wishlists = $database
-        ->query('SELECT *
-                   FROM `wishlists`
-                  WHERE `user` = ' . $this->id . ';')
+        ->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `user` = ' . $this->id . ';'
+        )
         ->fetchAll();
 
         return $wishlists;
@@ -135,12 +137,14 @@ class User
         }
 
         $result = $database
-        ->query('SELECT `ws`.`wishlist`,
-                        `w`.`user`,
-                        `w`.`hash`
-                   FROM `wishlists_saved` `ws`
-                   JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
-                  WHERE `ws`.`user` = ' . $this->id . ';')
+        ->query(
+            'SELECT `ws`.`wishlist`,
+                    `w`.`user`,
+                    `w`.`hash`
+               FROM `wishlists_saved` `ws`
+               JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
+              WHERE `ws`.`user` = ' . $this->id . ';'
+        )
         ->fetchAll();
 
         if ($result) {
