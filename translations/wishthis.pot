@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-11-25 15:32+0100\n"
+"POT-Creation-Date: 2022-11-25 15:38+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -546,7 +546,7 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:80
-msgid "Verify wishes are still available when attempting to fulfill them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled."
+msgid "Verify wishes are still available when attempting to fulfil them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Roadmap
@@ -609,7 +609,7 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:161
-msgid "Fix background and color when opening the mobile menu"
+msgid "Fix background and colour when opening the mobile menu"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
