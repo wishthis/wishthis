@@ -103,6 +103,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
+                                        echo __('Option to set currency');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/43" target="_blank">#43</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
                                         echo __('A roadmap in the changelog');
                                     ?>
                                 </li>
@@ -116,12 +123,6 @@ $page->navigation();
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('Option to enable advertisements');
-                                    ?>
-                                </li>
-                                <li>
-                                    <?php
-                                        /** TRANSLATORS: Changelog: Added */
-                                        echo __('Option to set currency');
                                     ?>
                                 </li>
                             </ul>
