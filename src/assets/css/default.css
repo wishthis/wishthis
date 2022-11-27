@@ -523,6 +523,7 @@ body.pushable > .pusher {
 /**
  * Options
  */
+.ui.dropdown.wishlist-options,
 .ui.dropdown.wish-options {
     text-align: center;
 }
