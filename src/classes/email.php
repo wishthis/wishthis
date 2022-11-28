@@ -12,8 +12,6 @@
 
 namespace wishthis;
 
-use Qferrer\Mjml\Renderer\ApiRenderer;
-
 class Email
 {
     private string $mjml = '';
@@ -46,21 +44,23 @@ class Email
     {
         global $options;
 
-        $renderer = new ApiRenderer(
+        $api      = new \Qferrer\Mjml\Http\CurlApi(
             $options->getOption('mjml_api_application_id'),
             $options->getOption('mjml_api_secret_key')
         );
+        $renderer = new \Qferrer\Mjml\Renderer\ApiRenderer($api);
 
         $html = $this->mjml;
 
-        if (defined('ENV_IS_DEV') && ENV_IS_DEV) {
+        if ('127.0.0.1' === $_SERVER['REMOTE_ADDR']) {
             /**
              * Ignore SSL certificate errors
              */
             try {
                 $html = $renderer->render($this->mjml);
-            } catch (\GuzzleHttp\Exception\RequestException $th) {
+            } catch (\Qferrer\Mjml\Exception\CurlException $th) {
                 error_log($th->getMessage());
+                error_log($this->mjml);
             }
         } else {
             $html = $renderer->render($this->mjml);
