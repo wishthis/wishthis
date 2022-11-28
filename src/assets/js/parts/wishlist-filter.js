@@ -27,7 +27,11 @@ $(function () {
             var html = response.results ? response.results : '';
 
             $('.wishlist-cards').html(html);
-            $('.ui.dropdown.wish-options').dropdown().removeClass('disabled');
+            $('.ui.dropdown.wish-options')
+            .removeClass('disabled')
+            .dropdown({
+                'action' : 'select'
+            });
         }
     })
     .dropdown('set selected', -1);

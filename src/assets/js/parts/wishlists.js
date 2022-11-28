@@ -70,7 +70,11 @@ $(function () {
                     /** Enable wishlist options buttons */
                     $('.button.wishlist-wish-add').removeClass('disabled');
                     $('.button.wishlist-share').removeClass('disabled');
-                    $('.button.wishlist-options').removeClass('disabled').dropdown();
+                    $('.button.wishlist-options')
+                    .removeClass('disabled')
+                    .dropdown({
+                        'action' : 'select'
+                    });
                     $('.wishlist-rename').removeClass('disabled');
                     $('.wishlist-delete').removeClass('disabled');
 
