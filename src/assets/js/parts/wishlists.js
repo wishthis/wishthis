@@ -783,7 +783,7 @@ $(function () {
 
             $('body').toast({ message: wishthis.strings.toast.wish.update });
 
-            $('.ui.dropdown.wishlists').api('query');
+            $('.ui.dropdown.filter.priority').api('query');
 
             modalAddOrEdit.modal('hide');
         })
