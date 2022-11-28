@@ -301,15 +301,11 @@ class CldrData
             }
             // Fix the languages for which we have plurals
             $formerCodes = array(
-                'in' => 'id', // former Indonesian
-                'iw' => 'he', // former Hebrew
-                'ji' => 'yi', // former Yiddish
                 'jw' => 'jv', // former Javanese
                 'mo' => 'ro_MD', // former Moldavian
             );
             $knownMissingLanguages = array(
                 'guw' => 'Gun',
-                'hnj' => 'Mong Njua',
                 'nah' => 'Nahuatl',
                 'smi' => 'Sami',
             );
