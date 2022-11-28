@@ -25,6 +25,7 @@ $page->navigation();
         <div class="ui segment">
             <h2 class="ui header"><?= __('Temporarily unavailable') ?></h2>
             <p><?= __('Due to maintenance, wishthis is temporarily not available. Please check back again in a minute.') ?></p>
+            <p><?= __('If you are the administrator of this site, please log in.') ?></p>
         </div>
     </div>
 </main>
