@@ -226,6 +226,12 @@ figure {
     width: min(var(--sizeFaviconX), var(--sizeCardY));
     min-height: var(--sizeCardY);
 }
+@media (max-width: 512px) {
+    .ui.card.horizontal > .image,
+    .ui.horizontal.cards > .card > .image {
+        display: none;
+    }
+}
 
 /** Provider */
 .wishlist .ui.card > .image,
