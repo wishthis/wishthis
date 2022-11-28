@@ -15,7 +15,7 @@ $scripts = array(
     <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>" preload="preload"></script>
 <?php } ?>
 
-<div>
+<div class="wishlist-filter-wrapper">
     <div class="ui stackable grid">
         <div class="column">
             <div class="flex wishlist-filter">
