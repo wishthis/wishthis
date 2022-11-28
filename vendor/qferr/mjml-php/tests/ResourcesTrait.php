@@ -1,6 +1,6 @@
 <?php
 
-namespace Qferrer\Tests;
+namespace Qferrer\Tests\Mjml;
 
 trait ResourcesTrait
 {

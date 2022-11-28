@@ -7,6 +7,6 @@
   },
   "homepage": "https://github.com/qferr/mjml-php#readme",
   "devDependencies": {
-    "mjml": "^4.9.0"
+    "mjml": "^4.12.0"
   }
 }
