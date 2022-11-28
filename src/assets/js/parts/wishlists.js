@@ -527,13 +527,19 @@ $(function () {
                  * Delete wish
                  */
                 buttonDelete.api({
-                    action    : 'delete wish',
-                    method    : 'DELETE',
-                    data      : {
-                        'wish_id' : card.attr('data-id'),
+                    'action'     : 'delete wish',
+                    'method'     : 'DELETE',
+                    'beforeSend' : function (settings) {
+                        var wish_id = card.attr('data-id');
+
+                        settings.urlData.wishid = wish_id;
+
+                        console.log(wish_id);
+
+                        return settings;
                     },
-                    on        : 'now',
-                    onSuccess : function () {
+                    'on'         : 'now',
+                    'onSuccess'  : function () {
                         column.fadeOut(800);
 
                         $('body').toast({ message: wishthis.strings.toast.wish.delete });
@@ -541,17 +547,11 @@ $(function () {
                         modalDefault.modal('hide');
 
                         setTimeout(() => {
-                            $('.ui.dropdown.wishlists').api('query');
+                            $('.ui.dropdown.filter.priority').api('query');
                         }, 800);
                     },
                 });
 
-                /**
-                 * Return false is currently not working.
-                 *
-                 * @version 2.8.8
-                 * @see     https://github.com/fomantic/Fomantic-UI/issues/2105
-                 */
                 return false;
             }
         });

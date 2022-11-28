@@ -294,15 +294,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'DELETE':
-        parse_str(file_get_contents('php://input'), $_DELETE);
+        $_DELETE = $this->input;
 
         if (isset($_DELETE['wish_id'])) {
             $database->query(
                 'DELETE FROM `wishes`
                        WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wish_id']) . ';'
             );
+
+            $response['success'] = true;
         }
 
-        $response['success'] = true;
         break;
 }

@@ -162,7 +162,7 @@ global $options;
         'get wishlists by priority' => '/?page=api&module=wishlists&style={style}&wishlist_id={wishlistid}&priority={priority}',
         'delete wishlist'           => '/?page=api&module=wishlists',
         'update wish status'        => '/?page=api&module=wishes',
-        'delete wish'               => '/?page=api&module=wishes',
+        'delete wish'               => '/?page=api&module=wishes&wish_id={wishid}',
     );
     ?>
 

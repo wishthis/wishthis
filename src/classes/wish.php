@@ -138,7 +138,10 @@ class Wish
         switch ($this->style) {
             case 'list':
                 ?>
-                <div class="ui horizontal card">
+                <div class="ui horizontal card"
+                    data-id="<?= $this->id ?>"
+                    data-cache="<?= $generateCache ?>"
+                >
                     <?= $this->getCardImage() ?>
 
                     <div class="content">
