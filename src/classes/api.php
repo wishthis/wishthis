@@ -61,7 +61,7 @@ class API
                 break;
 
             default:
-                parse_str(file_get_contents("php://input"), $_INPUT);
+                parse_str(file_get_contents('php://input'), $_INPUT);
 
                 $request_variables = array_merge($request_variables, $_INPUT);
                 break;

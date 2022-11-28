@@ -152,7 +152,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'PUT':
-        parse_str(file_get_contents("php://input"), $_PUT);
+        parse_str(file_get_contents('php://input'), $_PUT);
 
         $database
         ->query(
@@ -165,7 +165,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'DELETE':
-        parse_str(file_get_contents("php://input"), $_DELETE);
+        parse_str(file_get_contents('php://input'), $_DELETE);
 
         $database->query(
             'DELETE FROM `wishlists`
