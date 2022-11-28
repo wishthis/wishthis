@@ -363,6 +363,11 @@ figure {
     margin-top: 0;
     overflow: auto;
 }
+@media (max-width: 512px) {
+    .wishlist .ui.horizontal.card > .content > .description {
+        display: none;
+    }
+}
 
 /** Buttons */
 .wishlist .ui.card > .extra.buttons,
