@@ -21,7 +21,7 @@ class Cache
 
     protected function getAge(): int
     {
-        return time() - filemtime($this->getFilepath());
+        return time() - $this->getLastModified();
     }
 
     protected function getIdentifier(): string
@@ -63,6 +63,11 @@ class Cache
     public function exists(): bool
     {
         return file_exists($this->getFilepath());
+    }
+
+    public function getLastModified(): int
+    {
+        return filemtime($this->getFilepath());
     }
 
     public function generateCache(): bool

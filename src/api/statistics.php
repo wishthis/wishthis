@@ -28,6 +28,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['data'] = array();
 
                 foreach ($tables as $table) {
+                    /** Get count */
                     $count = new Cache\Query(
                         'SELECT COUNT(`id`) AS "count"
                            FROM `' . $table . '`;',
@@ -35,6 +36,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     );
 
                     $response['data'][$table] = $count->get();
+
+                    /** Get last modified */
+                    $user_time_zome = new \IntlDateFormatter(
+                        $_SESSION['user']->getLocale()
+                    );
+                    $user_time_zome = $user_time_zome->getTimeZoneId();
+
+                    $datetimeFormatter            = new \IntlDateFormatter(
+                        $_SESSION['user']->getLocale(),
+                        \IntlDateFormatter::RELATIVE_FULL,
+                        \IntlDateFormatter::SHORT,
+                        $user_time_zome
+                    );
+                    $response['data']['modified'] = $datetimeFormatter->format($count->getLastModified());
                 }
             } else {
                 $table = Sanitiser::getTable($_GET['table']);

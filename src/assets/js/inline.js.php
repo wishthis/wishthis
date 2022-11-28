@@ -147,6 +147,10 @@ global $options;
                 }
             }
         },
+
+        'popup' : {
+            'last_modified' : '<?= __('Last modified') ?>',
+        }
     }
 
     /**
