@@ -75,13 +75,13 @@ figure {
  * Wishlist Grid
  */
 @media (max-width: 767.98px) {
-    .ui.grid > .stackable.stackable.stackable.row > .column,
-    .ui.stackable.grid > .column.grid > .column,
-    .ui.stackable.grid > .column.row > .column,
-    .ui.stackable.grid > .column:not(.row),
-    .ui.stackable.grid > .row > .column,
-    .ui.stackable.grid > .row > .wide.column,
-    .ui.stackable.grid > .wide.column {
+    .ui.grid.wishlists > .stackable.stackable.stackable.row > .column,
+    .ui.stackable.grid.wishlists > .column.grid > .column,
+    .ui.stackable.grid.wishlists > .column.row > .column,
+    .ui.stackable.grid.wishlists > .column:not(.row),
+    .ui.stackable.grid.wishlists > .row > .column,
+    .ui.stackable.grid.wishlists > .row > .wide.column,
+    .ui.stackable.grid.wishlists > .wide.column {
         padding-right: 0;
         padding-left: 0;
     }
