@@ -259,7 +259,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'PUT':
-        parse_str(file_get_contents('php://input'), $_PUT);
+        $_PUT = $this->input;
 
         if (isset($_PUT['wish_id'], $_PUT['wish_status'])) {
             /**
