@@ -48,7 +48,7 @@ $(function() {
         }
 
         if ('' === response.warning) {
-            content = text.modal_failure_content;
+            content = wishthis.strings.modal.failure.content;
         }
 
         $('body')
