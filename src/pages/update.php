@@ -44,6 +44,9 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $options->setOption('version', VERSION);
     $options->setOption('updateAvailable', false);
 
+    /** Update service-worker.js */
+    require ROOT . '/src/assets/js/service-worker.js.php';
+
     $page->messages[] = Page::success(
         sprintf(
             __('Database successfully migrated to %s.'),
