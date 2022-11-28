@@ -5,6 +5,7 @@
         "qferr/mjml-php": "^2.0",
         "gettext/gettext": "^5.6",
         "gettext/translator": "^1.1",
-        "jaybizzle/crawler-detect": "^1.2"
+        "jaybizzle/crawler-detect": "^1.2",
+        "slim/psr7": "^1.6"
     }
 }
