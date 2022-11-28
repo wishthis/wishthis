@@ -451,15 +451,28 @@ p .ui.horizontal.label {
     display: flex;
     flex-flow: row wrap;
 }
+.flex.wishlist-filter {
+    gap: 1rem;
+}
 
 @media (max-width: 767px) {
     .flex {
         flex-direction: column;
     }
+    .flex.wishlist-filter {
+        flex-direction: row;
+    }
 
     .flex > *,
     .flex > .ui.button {
         margin-bottom: 0.5rem;
+    }
+    .flex.wishlist-filter > div {
+        flex: 1 1 auto;
+        margin: 0;
+    }
+    .flex.wishlist-filter > div > div {
+        width: 100%;
     }
 
     .flex :last-child {
