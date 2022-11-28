@@ -150,13 +150,6 @@ class Page
         $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
 
         /**
-         * Power
-         */
-        if (isset($user->power) && $user->power < $this->power && 0 !== $this->power) {
-            redirect(Page::PAGE_POWER . '&required=' . $this->power);
-        }
-
-        /**
          * Login
          */
         if (
@@ -165,6 +158,13 @@ class Page
             && 0 !== $this->power
         ) {
             redirect(Page::PAGE_LOGIN);
+        }
+
+        /**
+         * Power
+         */
+        if (isset($user->power) && $user->power < $this->power && 0 !== $this->power) {
+            redirect(Page::PAGE_POWER . '&required=' . $this->power);
         }
 
         /**
