@@ -381,30 +381,6 @@ $page->navigation();
                             </div>
 
                             <div class="field">
-                                <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
-                                    <script type="text/javascript">
-                                        var CHANNELS = <?= json_encode(CHANNELS) ?>;
-                                    </script>
-
-                                    <div class="field">
-                                        <label><?= __('Channel') ?></label>
-
-                                        <select class="ui search clearable dropdown channel" name="user-channel">
-                                            <option value=""><?= __('Select channel') ?></option>
-
-                                            <?php foreach (CHANNELS as $channel) { ?>
-                                                <?php if ($channel['branch'] === $_SESSION['user']->channel) { ?>
-                                                    <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
-                                                <?php } else { ?>
-                                                    <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                <?php } ?>
-                            </div>
-
-                            <div class="field">
                                 <label><?= __('Advertisements') ?></label>
 
                                 <div class="ui toggle checkbox advertisements">
@@ -478,35 +454,70 @@ $page->navigation();
                     $count_users_rc = reset($count_users_rc);
                     ?>
 
-                    <?php if ($count_users_rc < $count_users_needed) { ?>
-                        <h3 class="ui header"><?= __('Channel') ?></h3>
+                    <div class="ui segment">
+                        <form class="ui form" method="POST">
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="section" value="preferences" />
 
-                        <div class="ui segment">
-                            <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
-                            <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
-                            <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested.') ?></p>
+                            <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
+                                <script type="text/javascript">
+                                    var CHANNELS = <?= json_encode(CHANNELS) ?>;
+                                </script>
 
-                            <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_needed ?>">
-                                <div class="bar">
-                                    <div class="progress"></div>
+                                <div class="field">
+                                    <label><?= __('Channel') ?></label>
+
+                                    <select class="ui search clearable dropdown channel" name="user-channel">
+                                        <option value=""><?= __('Select channel') ?></option>
+
+                                        <?php foreach (CHANNELS as $channel) { ?>
+                                            <?php if ($channel['branch'] === $_SESSION['user']->channel) { ?>
+                                                <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
+                                            <?php } else { ?>
+                                                <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
                                 </div>
-                                <div class="label">
-                                    <?php
-                                    $count_users_needed = $count_users_needed - $count_users_rc;
 
-                                    printf(
-                                        _n(
-                                            '%d more subscriber needed',
-                                            '%d more subscribers needed',
-                                            $count_users_needed
-                                        ),
-                                        $count_users_needed
-                                    )
-                                    ?>
+                                <div class="field">
+                                    <p><?= __('In order to improve the user experience of wishthis, newer versions are published after an extensive testing period.') ?></p>
+                                    <p><?= __('Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any).') ?></p>
+                                    <p><?= __('If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested.') ?></p>
+
+                                    <?php if ($count_users_rc < $count_users_needed) { ?>
+                                        <div class="ui primary progress" data-value="<?= $count_users_rc ?>" data-total="<?= $count_users_needed ?>">
+                                            <div class="bar">
+                                                <div class="progress"></div>
+                                            </div>
+                                            <div class="label">
+                                                <?php
+                                                $count_users_needed = $count_users_needed - $count_users_rc;
+
+                                                printf(
+                                                    _n(
+                                                        '%d more subscriber needed',
+                                                        '%d more subscribers needed',
+                                                        $count_users_needed
+                                                    ),
+                                                    $count_users_needed
+                                                )
+                                                ?>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                 </div>
-                            </div>
-                        </div>
-                    <?php } ?>
+                            <?php } ?>
+
+                            <div class="ui error message"></div>
+
+                            <input class="ui primary button"
+                                type="submit"
+                                value="<?= __('Save') ?>"
+                                title="<?= __('Save') ?>"
+                            />
+                        </form>
+                    </div>
 
                 </div>
 

@@ -65,6 +65,7 @@ $(function() {
     /**
      * Preferences
      */
+    $('.ui.progress').progress();
 
     /** Locale */
     var dropdown_locale_settings = {
