@@ -62,8 +62,6 @@ $(function() {
         }
     });
 
-    $('.ui.progress').progress();
-
     /**
      * Preferences
      */

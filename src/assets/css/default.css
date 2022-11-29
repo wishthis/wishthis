@@ -65,13 +65,6 @@ figure {
 }
 
 /**
- * Progress
- */
-.ui.progress.nolabel:last-child {
-    margin: 0;
-}
-
-/**
  * Wishlist Grid
  */
 @media (max-width: 767.98px) {

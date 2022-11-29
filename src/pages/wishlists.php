@@ -86,12 +86,6 @@ $page->navigation();
 
         <h2 class="ui header"><?= __('Wishes') ?></h2>
 
-        <div class="ui primary progress">
-            <div class="bar">
-                <div class="progress"></div>
-            </div>
-        </div>
-
         <?php include 'parts/wishlist.php' ?>
     </div>
 </main>

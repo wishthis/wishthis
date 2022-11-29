@@ -1,16 +1,5 @@
 $(function () {
     /**
-     * Progress
-     */
-    var progress  = $('.ui.progress');
-
-    progress.progress({
-         onSuccess : function() {
-             $(this).slideUp();
-         }
-     });
-
-    /**
      * Get Wishlists
      */
     var wishlists     = [];
@@ -165,99 +154,10 @@ $(function () {
                 $('.wishlist-rename').removeClass('disabled');
                 $('.wishlist-delete').removeClass('disabled');
             }
-
-            /**
-             * Generate cache
-             *//*
-            var cards = $('.ui.card[data-cache="true"]');
-
-            if (cards.length > 0) {
-                progress.slideDown();
-                progress.progress('reset');
-                progress.progress('set total', cards.length);
-            }
-
-            var timerInterval = 1200;
-            var timerCache    = setTimeout(
-                function generateCacheCards() {
-                    var cards = $('.ui.card[data-cache="true"]');
-
-                    if (cards.length > 0) {
-                        cards.each(function (index, card) {
-                            generateCacheCard($(card));
-
-                            if (index >= 0) {
-                                return false;
-                            }
-                        });
-
-                        setTimeout(generateCacheCards, timerInterval);
-                    }
-                },
-                0
-            );
-
-            $('.ui.dropdown.options').dropdown({
-                onChange: function(value, text, choice) {
-                    var dropdownOptions = $(this);
-
-                    setTimeout(function() {
-                        dropdownOptions.dropdown('restore defaults', true);
-                    }, 0);
-                }
-            });
-            */
         },
     })
     .api(wishlists_api)
     .api('query');
-
-    /*
-    function generateCacheCard(card) {
-        var href = card.find('.content [href]').prop('href');
-
-        if (!href) {
-            return;
-        }
-
-        var wishlist_id = $('.ui.dropdown.wishlists').dropdown('get value') - 1;
-        var wishlist_user = wishlists[wishlist_id].user;
-
-        card.addClass('loading');
-        card.attr('data-cache', 'false');
-
-        const params_cache = new URLSearchParams(
-            {
-                'module' : 'wishes',
-                'page'   : 'api',
-
-                'wish_id'       : card.attr('data-id'),
-                'wishlist_user' : wishlist_user,
-            }
-        );
-
-        fetch('/?' + params_cache, {
-            method: 'GET'
-        })
-        .then(handleFetchError)
-        .then(handleFetchResponse)
-        .then(function(response) {
-            card.replaceWith(response.html.replace('data-cache="true"', 'data-cache="false"'));
-        })
-        .catch(handleFetchCatch)
-        .finally(function() {
-            card.removeClass('loading');
-
-            progress.progress('increment', 1);
-
-            if (progress.progress('get percent') >= 100) {
-                progress.slideUp();
-            }
-
-            $('.ui.dropdown.options').dropdown();
-        });
-    }
-    */
 
     /**
      * Share Wishlist
