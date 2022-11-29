@@ -101,20 +101,28 @@ $page->navigation();
                     ) ?></p>
 
                     <p><?= __('As a non-commercial project it remains') ?></p>
-                    <ul class="ui list">
-                        <li class="item">
-                            <i class="green check icon" aria-hidden="true"></i>
-                            <div class="content"><?= __('free of advertisements,') ?></div>
-                        </li>
-                        <li class="item">
-                            <i class="green check icon" aria-hidden="true"></i>
-                            <div class="content"><?= __('without tracking, and') ?></div>
-                        </li>
-                        <li class="item">
-                            <i class="green check icon" aria-hidden="true"></i>
-                            <div class="content"><?= __('open for feedback and suggestions.') ?></div>
-                        </li>
-                    </ul>
+                    <div class="flex why-wishthis">
+                        <ul class="ui list">
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('free of advertisements') ?></div>
+                            </li>
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('without tracking') ?></div>
+                            </li>
+                        </ul>
+                        <ul class="ui list">
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('privacy focused') ?></div>
+                            </li>
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('open for feedback and suggestions') ?></div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="ui segment">

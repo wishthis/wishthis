@@ -33,6 +33,18 @@
 }
 
 /**
+ * Why wishthis
+ */
+.flex.why-wishthis {
+    --gap: 0.5rem;
+
+    gap: var(--gap);
+}
+.flex.why-wishthis > ul {
+    flex: 0 0 calc(50% - var(--gap) / 2);
+}
+
+/**
  * Statistics
  */
 .ui.statistics {
