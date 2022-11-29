@@ -50,7 +50,7 @@ $(function () {
 
     $('.ui.dropdown.wishlists')
     .dropdown({
-        onChange : function(wishlist_id, text, $choice) {
+        onChange : function(wishlist_id, text, choice) {
             wishthis.$_GET.id = wishlist_id;
 
             if (wishlist_id) {
@@ -82,14 +82,28 @@ $(function () {
                     urlParams.set('id', wishlist_id);
 
                     updateURL();
-
-                    /** Get wishlist cards/wishes */
+                    /** */
 
                     /**
                      * Trigger priorities dropdown
                      */
-                    // $('.ui.dropdown.filter.priority').api('query');
+                    $('.ui.dropdown.filter.priority').api('query');
+
+                    /**
+                     * Very dirty hack to ensure the wishes are going to be
+                     * displayed after the page has laoded.
+                     */
+                    setTimeout(function dropdown_wishlists_api() {
+                        var api_is_complete = $('.ui.dropdown.filter.priority').api('was complete');
+
+                        if ('' === $('.wishlist-cards').html() && api_is_complete) {
+                            $('.ui.dropdown.filter.priority').api('query');
+
+                            setTimeout(dropdown_wishlists_api, 1);
+                        }
+                    }, 1);
                     /** */
+
                     /*
                     const get_wishes = new URLSearchParams(
                         {
