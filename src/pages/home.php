@@ -195,6 +195,51 @@ $page->navigation();
                     </div>
                 </div>
 
+                <?php
+                $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
+                $locale_user    = $_SESSION['user']->getLocale();
+
+                if ($_SESSION['user']->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
+                    ?>
+                    <div class="ui segment">
+                        <h2 class="ui header"><?= __('Hey, you') ?></h2>
+
+                        <p>
+                            <?php
+                            printf(
+                                /** TRANSLATORS: %s: the users display name */
+                                __('Yes, I mean you, %s.'),
+                                $_SESSION['user']->getDisplayName()
+                            );
+                            ?>
+                        </p>
+
+                        <p>
+                            <?php
+                            printf(
+                                /** TRANSLATORS: %1$s: Locale, i. e. German (Germany), %2$s: Locale, i. e. English (United Kingdom) %3$s: preferences */
+                                __('Your browser is telling me that you would like to view pages in %1$s, but your %3$s are set to %2$s.'),
+                                '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>',
+                                '<strong>' . \Locale::getDisplayName($locale_user, $locale_user) . '</strong>',
+                                '<a href="' . PAGE::PAGE_PROFILE . '">' . __('preferences') . '</a>'
+                            );
+                            ?>
+                        </p>
+
+                        <p>
+                            <?php
+                            printf(
+                                /** TRANSLATORS: %s: the users display name */
+                                __('wishthis is available in %1$s different locales and also supports %2$s!'),
+                                '<strong>' . count($locales) . '</strong>',
+                                '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>'
+                            );
+                            ?>
+                        </p>
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </div>
