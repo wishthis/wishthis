@@ -581,3 +581,11 @@ button.item {
 
     background-color: transparent;
 }
+
+/**
+ * Wishlists
+ */
+.ui.selection.dropdown.wishlists.active,
+.ui.selection.dropdown.wishlists.visible {
+    z-index: calc(var(--dimmerZIndex) + 2);
+}
