@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$page = new Page(__FILE__, __('Profile'));
+$page = new Page(__FILE__, __('Profile'), 1);
 
 if (isset($_POST['user-id'], $_POST['section'])) {
     $set              = array();

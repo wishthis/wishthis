@@ -158,7 +158,7 @@ switch ($step) {
                 `password_reset_token`       VARCHAR(128) NULL     NULL,
                 `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
                 `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
-                `power`                      INT          NOT NULL DEFAULT 0,
+                `power`                      INT          NOT NULL DEFAULT 1,
                 `birthdate`                  DATE         NULL     DEFAULT NULL,
                 `language`                   VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
                 `currency`                   VARCHAR(3)   NOT NULL DEFAULT "' . $currencyISO . '",

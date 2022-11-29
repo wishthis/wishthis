@@ -23,4 +23,6 @@ AFTER
 UPDATE
     `users`
 SET
-    `currency` = `language`;
+    `power` = 1
+WHERE
+    `power` = 0;
