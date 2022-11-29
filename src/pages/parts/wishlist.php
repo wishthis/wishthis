@@ -12,7 +12,7 @@ $scripts = array(
 );
 ?>
 <?php foreach ($scripts as $script) { ?>
-    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>" preload="preload"></script>
+    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>"></script>
 <?php } ?>
 
 <div class="wishlist-filter-wrapper">
