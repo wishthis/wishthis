@@ -380,36 +380,6 @@ $page->navigation();
                                 </div>
                             </div>
 
-                            <div class="field">
-                                <label><?= __('Advertisements') ?></label>
-
-                                <div class="ui toggle checkbox advertisements">
-                                    <?php
-                                    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
-                                    ?>
-
-                                    <?php if (true === $user->advertisements) { ?>
-                                        <input type="checkbox" name="enable-advertisements" checked="checked" />
-                                    <?php } else { ?>
-                                        <input type="checkbox" name="enable-advertisements" />
-                                    <?php } ?>
-
-                                    <label><?= __('Enable advertisements') ?></label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <p>
-                                    <?php
-                                    printf(
-                                        /** TRANSLATORS: %s: sponsor me */
-                                        __('Time spent on wishthis is time not doing for-profit work. If you would like to support me but either can\'t or don\'t want to %s, consider selling your body to Google and becoming its product.'),
-                                        '<a href="https://github.com/sponsors/grandeljay" target="_blank">' . __('sponsor me') . '</a>'
-                                    );
-                                    ?>
-                                </p>
-                                <p><?= __('Please remember to add an exception to your ad-blocker and browser.') ?></p>
-                            </div>
-
                             <div class="ui error message"></div>
 
                             <input class="ui primary button"
@@ -508,6 +478,52 @@ $page->navigation();
                                     <?php } ?>
                                 </div>
                             <?php } ?>
+
+                            <div class="ui error message"></div>
+
+                            <input class="ui primary button"
+                                type="submit"
+                                value="<?= __('Save') ?>"
+                                title="<?= __('Save') ?>"
+                            />
+                        </form>
+                    </div>
+
+                    <div class="ui segment">
+                        <form class="ui form" method="POST">
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="section" value="preferences" />
+
+                            <div class="field">
+                                <label><?= __('Advertisements') ?></label>
+
+                                <div class="ui toggle checkbox advertisements">
+                                    <?php
+                                    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+                                    ?>
+
+                                    <?php if (true === $user->advertisements) { ?>
+                                        <input type="checkbox" name="enable-advertisements" checked="checked" />
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="enable-advertisements" />
+                                    <?php } ?>
+
+                                    <label><?= __('Enable advertisements') ?></label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <p>
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: sponsor me */
+                                        __('Time spent on wishthis is time not doing for-profit work. If you would like to support me but either can\'t or don\'t want to %s, consider selling your body to Google and becoming its product.'),
+                                        '<a href="https://github.com/sponsors/grandeljay" target="_blank">' . __('sponsor me') . '</a>'
+                                    );
+                                    ?>
+                                </p>
+                                <p><?= __('Please remember to add an exception to your ad-blocker and browser.') ?></p>
+                            </div>
 
                             <div class="ui error message"></div>
 
