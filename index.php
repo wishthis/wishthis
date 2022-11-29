@@ -56,9 +56,7 @@ session_start(
     )
 );
 
-if (!isset($_SESSION['user'])) {
-    $_SESSION['user'] = new User();
-}
+$_SESSION['user'] = new User();
 
 /**
  * Database
@@ -101,8 +99,6 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database) {
         ->fetchAll();
 
         if (false !== $sessions) {
-            $_SESSION['user'] = new User();
-
             foreach ($sessions as $session) {
                 /** Column sessions.expires was added in v0.7.1. */
                 $expires = strtotime($session['expires'] ?? date('Y-m-d H:i:s', time() + 1));
