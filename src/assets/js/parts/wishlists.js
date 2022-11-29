@@ -701,7 +701,7 @@ $(function () {
                 }
             );
 
-            fetch('/?=' + params_url, {
+            fetch('/?' + params_url, {
                 method: 'GET'
             })
             .then(handleFetchError)
