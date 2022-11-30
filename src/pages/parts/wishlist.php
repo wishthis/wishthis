@@ -19,10 +19,10 @@ $scripts = array(
     <div class="ui stackable grid">
         <div class="column">
             <div class="flex wishlist-filter">
-                <div>
 
+                <div>
                     <div class="ui floating dropdown labeled icon button filter priority">
-                        <input type="hidden" name="filters" />
+                        <input type="hidden" name="priority" />
 
                         <i class="filter icon"></i>
                         <span class="text"><?= __('Filter priorities') ?></span>
@@ -62,18 +62,16 @@ $scripts = array(
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div>
-
                     <input type="hidden" name="style" value="grid" />
                     <div class="ui icon buttons view">
                         <button class="ui button" value="grid"><i class="grip horizontal icon"></i></button>
                         <button class="ui button" value="list"><i class="grip lines icon"></i></button>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
