@@ -103,13 +103,22 @@ $page->navigation();
                     <p><?= __('As a non-commercial project it remains') ?></p>
                     <div class="flex why-wishthis">
                         <ul class="ui list">
-                            <li class="item">
+                            <li class="item" data-content="<?= __('unless you want them') ?>">
                                 <i class="green check icon" aria-hidden="true"></i>
                                 <div class="content"><?= __('free of advertisements') ?></div>
                             </li>
-                            <li class="item">
+                            <?php
+                            $popup_html = sprintf(
+                                /** TRANSLATORS: %s: plausible */
+                                __('see %s'),
+                                '<a href=\'https://plausible.io\' target=\'_blank\'>' . __('plausible') . ' <i class=\'external alternate icon\'></i></a>'
+                            );
+                            ?>
+                            <li class="item" data-html="<?= $popup_html ?>">
                                 <i class="green check icon" aria-hidden="true"></i>
-                                <div class="content"><?= __('without tracking') ?></div>
+                                <div class="content">
+                                    <?= __('without intrusive tracking') ?>
+                                </div>
                             </li>
                         </ul>
                         <ul class="ui list">

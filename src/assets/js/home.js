@@ -1,5 +1,20 @@
 $(function() {
     /**
+     * Popups
+     */
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    /** Why wishthis? */
+    popup_settings_why_wishthis = {
+        'position'  : 'top center',
+        'variation' : isDarkMode ? '' : 'inverted',
+        'hoverable' : true,
+    };
+
+    $('[data-content]').popup(popup_settings_why_wishthis);
+    $('[data-html]').popup(popup_settings_why_wishthis);
+
+    /**
      * Statistics
      */
     fetch('/api/statistics/all', {
@@ -106,5 +121,6 @@ function showStatistic(elementStatistic, amount, timeout, modified) {
         'content'   : modified,
         'position'  : 'right center',
         'variation' : isDarkMode ? '' : 'inverted',
+        'hoverable' : true,
     });
 }
