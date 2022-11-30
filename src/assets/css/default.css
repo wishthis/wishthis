@@ -372,8 +372,6 @@ figure {
     gap: 0.25em;
     width: 100%;
 
-    padding-top: 0;
-
     background-color: inherit;
     z-index: 2;
 }
