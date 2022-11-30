@@ -7,7 +7,7 @@
 namespace wishthis;
 
 $scripts = array(
-    '/src/assets/js/parts/wishlist-filter.js',
+    '/src/assets/js/parts/wishlist-filter-priority.js',
     '/src/assets/js/parts/wishlists.js',
 );
 ?>
