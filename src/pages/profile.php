@@ -105,7 +105,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     }
 
     /** Currency */
-    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $_SESSION['user']->getLocale()) {
+    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $_SESSION['user']->getLocale() && $_POST['user-currency'] !== $_SESSION['user']->getCurrency()) {
         $_SESSION['user']->setCurrency($_POST['user-currency']);
 
         $set[] = '`currency` = "' . $_SESSION['user']->getCurrency() . '"';
