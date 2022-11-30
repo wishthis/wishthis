@@ -50,13 +50,13 @@ const error = new RequestError("Oops", 500, {
   },
   response: {
     status: 500,
-    url: "https://api.github.com/foo"
+    url: "https://api.github.com/foo",
     headers: {
       "x-github-request-id": "1:2:3:4",
     },
     data: {
-      foo: "bar"
-    }
+      foo: "bar",
+    },
   },
 });
 
