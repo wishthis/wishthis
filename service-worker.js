@@ -43,7 +43,7 @@ const assets         = [
     '/src/assets/js/profile.js',
     '/src/assets/js/register.js',
     '/src/assets/js/wishlist.js',
-    '/src/assets/js/parts/wishlist-filter.js',
+    '/src/assets/js/parts/wishlist-filter-priority.js',
     '/src/assets/js/parts/wishlists.js',
     ];
 
@@ -62,4 +62,3 @@ self.addEventListener('fetch', fetchEvent => {
         })
     )
 })
-
