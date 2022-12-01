@@ -175,7 +175,7 @@ class Wish
                                         <div class="sub header">
                                             <?php
                                             printf(
-                                                /** TRANSLATORS: %s: Duration (i. e. 30 minutes) */
+                                                /** TRANSLATORS: %s: Duration (e. g. 30 minutes) */
                                                 __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
                                                 sprintf(
                                                     /** TRANSLATORS: %d Amount of minutes */

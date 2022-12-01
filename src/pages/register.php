@@ -250,7 +250,7 @@ $page->navigation();
             <h2 class="ui header"><?= __('About your email address') ?></h2>
 
             <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
-            <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (i. e. when a wish has been fulfilled).') ?></p>
+            <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
             <p>
                 <?=
                 sprintf(

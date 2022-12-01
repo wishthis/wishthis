@@ -226,7 +226,7 @@ $page->navigation();
                         <p>
                             <?php
                             printf(
-                                /** TRANSLATORS: %1$s: Locale, i. e. German (Germany), %2$s: Locale, i. e. English (United Kingdom) %3$s: preferences */
+                                /** TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g. English (United Kingdom) %3$s: preferences */
                                 __('Your browser is telling me that you would like to view pages in %1$s, but your %3$s are set to %2$s.'),
                                 '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>',
                                 '<strong>' . \Locale::getDisplayName($locale_user, $locale_user) . '</strong>',

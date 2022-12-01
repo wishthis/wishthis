@@ -61,7 +61,7 @@ $page->navigation();
             <div class="ui segment">
                 <h2 class="ui header"><?= __('What to do?') ?></h2>
                 <p><?= sprintf(
-                    __('If you found a wish you would like to fulfil, click the %s button and it will temporarily become unavailable for others. Make sure to confirm the fulfilled wish here (i. e. after placing an order), to make the wish permanently unavailable for everybody else.'),
+                    __('If you found a wish you would like to fulfil, click the %s button and it will temporarily become unavailable for others. Make sure to confirm the fulfilled wish here (e. g. after placing an order), to make the wish permanently unavailable for everybody else.'),
                     '<span class="ui primary tiny horizontal label"><i class="gift icon"></i> ' . __('Fulfil wish') . '</span>'
                 ) ?></p>
             </div>
