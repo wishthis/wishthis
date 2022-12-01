@@ -15,7 +15,7 @@
 .wishlist .ui.card {
     height: 100%;
 }
-.wishlist:not(.one).column .ui.card::before {
+.wishlist .ui.horizontal.card::before {
     position: absolute;
     right: 0;
     left: 0;
@@ -30,7 +30,7 @@
     background-image: linear-gradient(0deg, rgba(255, 255, 255, 1) 0.75em, rgba(255, 255, 255, 0.9) 45%, rgba(255, 255, 255, 0) 100%);
 }
 @media (prefers-color-scheme: dark) {
-    .wishlist:not(.one).column .ui.card::before {
+    .wishlist .ui.horizontal.card::before {
         background-image: linear-gradient(0deg, rgba(27, 28, 29, 1) 0.75em, rgba(27, 28, 29, 0.9) 45%, rgba(27, 28, 29, 0) 100%);
     }
 }
@@ -50,11 +50,11 @@
 
     height: 100%;
 }
-.wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
+.wishlist .ui.horizontal.card > .image > :is(svg, img.preview) {
     height: var(--wishPreviewHeightHover);
 }
 @media (hover: hover) {
-    .wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
+    .wishlist .ui.horizontal.card > .image > :is(svg, img.preview) {
         height: var(--wishPreviewHeight);
     }
 }
@@ -93,7 +93,7 @@
                 0.2s linear opacity;
         }
     }
-    .wishlist:not(.one).column .ui.card:hover > .image > svg {
+    .wishlist .ui.horizontal.card:hover > .image > svg {
         height: var(--wishPreviewHeightHover);
         padding: 0 !important;
         opacity: 0;
@@ -122,7 +122,7 @@
         }
     }
 
-    .wishlist:not(.one).column .ui.card:hover > .image > img.preview {
+    .wishlist .ui.horizontal.card:hover > .image > img.preview {
         height: var(--wishPreviewHeightHover);
     }
 }
@@ -248,7 +248,7 @@
         }
     }
 
-    .wishlist:not(.one).column .ui.card > .content:not(.extra) {
+    .wishlist .ui.horizontal.card > .content:not(.extra) {
         --contentHeight: calc(var(--wishPreviewHeightMobile) * 1.25);
 
         height: var(--contentHeight);
@@ -256,7 +256,7 @@
         overflow: hidden;
     }
 
-    .wishlist:not(.one).column .ui.card:hover > .content:not(.extra) {
+    .wishlist .ui.horizontal.card:hover > .content:not(.extra) {
         height: calc(var(--contentHeight) + 0.75em - 4px);
     }
 }
