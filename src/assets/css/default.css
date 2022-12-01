@@ -88,7 +88,7 @@ figure {
 .wishlist .ui.card {
     --padding: 0.91666667em;
     --buttonsHeight: calc((.92857143rem + 0.78571429em * 2) * 2 + 0.25em + 0.75em);
-    --hoverHeight: calc(1em + 3 * var(--padding));
+    --wishPreviewHeightHover: calc(1em + 3 * var(--padding));
 }
 .wishlist .ui.card:focus-within {
     z-index: calc(var(--dimmerZIndex) + 2);
@@ -133,11 +133,11 @@ figure {
     height: 100%;
 }
 .wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
-    height: var(--hoverHeight);
+    height: var(--wishPreviewHeightHover);
 }
 @media (hover: hover) {
     .wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
-        height: max(var(--hoverHeight), var(--wishPreviewHeight));
+        height: max(var(--wishPreviewHeightHover), var(--wishPreviewHeight));
     }
 }
 
@@ -176,7 +176,7 @@ figure {
         }
     }
     .wishlist:not(.one).column .ui.card:hover > .image > svg {
-        height: var(--hoverHeight);
+        height: var(--wishPreviewHeightHover);
         padding: 0 !important;
         opacity: 0;
     }
@@ -205,7 +205,7 @@ figure {
     }
 
     .wishlist:not(.one).column .ui.card:hover > .image > img.preview {
-        height: var(--hoverHeight);
+        height: var(--wishPreviewHeightHover);
     }
 }
 
