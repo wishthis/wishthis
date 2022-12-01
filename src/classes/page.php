@@ -120,6 +120,7 @@ class Page
     public array $messages  = array();
     public string $link_preview;
     public string $description;
+    public array $stylesheets = array();
 
     /**
      * __construct
@@ -226,6 +227,15 @@ class Page
         if (file_exists($screenshot_filepath)) {
             $this->link_preview = $screenshot_url;
         }
+
+        /**
+         * Stylesheets
+         */
+        $this->stylesheets = array(
+            'fomantic-ui' => 'semantic/dist/semantic.min.css',
+            'default'     => 'src/assets/css/default.css',
+            'dark'        => 'src/assets/css/default/dark.css',
+        );
     }
 
     public function header(): void
@@ -292,47 +302,18 @@ class Page
             /**
              * Stylesheets
              */
+            $stylesheet_page = 'src/assets/css/' . $this->name .  '.css';
 
-            /** Fomantic UI */
-            $stylesheetFomantic         = 'semantic/dist/semantic.min.css';
-            $stylesheetFomanticModified = filemtime($stylesheetFomantic);
-            ?>
-            <link rel="stylesheet"
-                  type="text/css"
-                  href="/<?= $stylesheetFomantic ?>?m=<?= $stylesheetFomanticModified ?>"
-            />
-            <?php
+            if (file_exists($stylesheet_page)) {
+                $this->stylesheets[] = array('page' => $stylesheet_page);
+            }
 
-            /** Default */
-            $stylesheetDefault         = 'src/assets/css/default.css';
-            $stylesheetDefaultModified = filemtime($stylesheetDefault);
-            ?>
-            <link rel="stylesheet"
-                  type="text/css"
-                  href="/<?= $stylesheetDefault ?>?m=<?= $stylesheetDefaultModified ?>"
-            />
-            <?php
-
-            /** Default (Dark) */
-            $stylesheetDefaultDark         = 'src/assets/css/default/dark.css';
-            $stylesheetDefaultDarkModified = filemtime($stylesheetDefaultDark);
-            ?>
-            <link rel="stylesheet"
-                  type="text/css"
-                  href="/<?= $stylesheetDefaultDark ?>?m=<?= $stylesheetDefaultDarkModified ?>"
-            />
-            <?php
-
-            /** Page */
-            $stylesheetPage = 'src/assets/css/' . $this->name .  '.css';
-
-            if (file_exists($stylesheetPage)) {
-                $stylesheetPageModified = filemtime($stylesheetPage);
-
+            foreach ($this->stylesheets as $stylesheet_filepath) {
+                $hash = crc32($stylesheet_filepath);
                 ?>
                 <link rel="stylesheet"
                       type="text/css"
-                      href="/<?= $stylesheetPage ?>?m=<?= $stylesheetPageModified ?>"
+                      href="/<?= $stylesheet_filepath ?>?v=<?= $hash ?>"
                 />
                 <?php
             }
