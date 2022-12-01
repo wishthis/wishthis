@@ -309,7 +309,7 @@ class Page
             }
 
             foreach ($this->stylesheets as $stylesheet_filepath) {
-                $hash = crc32($stylesheet_filepath);
+                $hash = hash_file('crc32', $stylesheet_filepath);
                 ?>
                 <link rel="stylesheet"
                       type="text/css"
