@@ -3,8 +3,10 @@
  */
 .wishlist .ui.card {
     --padding: 0.91666667em;
-    --wishPreviewHeight: 192px;
+    --wishPreviewHeight: max(var(--wishPreviewHeightHover), var(--wishPreviewHeightMobile));
+    --wishPreviewHeightMobile: 192px;
     --wishPreviewHeightHover: calc(1em + 3 * var(--padding));
+    --wishPreviewHeightDifference: calc(var(--wishPreviewHeightMobile) - var(--wishPreviewHeightHover));
 }
 .wishlist .ui.card:focus-within {
     z-index: calc(var(--dimmerZIndex) + 2);
@@ -53,7 +55,7 @@
 }
 @media (hover: hover) {
     .wishlist:not(.one).column .ui.card > .image > :is(svg, img.preview) {
-        height: max(var(--wishPreviewHeightHover), var(--wishPreviewHeight));
+        height: var(--wishPreviewHeight);
     }
 }
 
@@ -247,7 +249,7 @@
     }
 
     .wishlist:not(.one).column .ui.card > .content:not(.extra) {
-        --contentHeight: calc(var(--wishPreviewHeight) * 1.25);
+        --contentHeight: calc(var(--wishPreviewHeightMobile) * 1.25);
 
         height: var(--contentHeight);
 
