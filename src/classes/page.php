@@ -305,7 +305,7 @@ class Page
             $stylesheet_page = 'src/assets/css/' . $this->name .  '.css';
 
             if (file_exists($stylesheet_page)) {
-                $this->stylesheets[] = array('page' => $stylesheet_page);
+                $this->stylesheets['page'] = $stylesheet_page;
             }
 
             foreach ($this->stylesheets as $stylesheet_filepath) {
