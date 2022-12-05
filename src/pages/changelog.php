@@ -24,6 +24,7 @@ $page->navigation();
                 <div class="ui vertical pointing fluid menu profile">
                     <a class="item" data-tab="roadmap"><?= __('Roadmap') ?></a>
                     <a class="item" data-tab="1-0-0"><?= __('1.0.0') ?></a>
+                    <a class="item" data-tab="0-7-3"><?= __('0.7.3') ?></a>
                     <a class="item" data-tab="0-7-2"><?= __('0.7.2') ?></a>
                     <a class="item" data-tab="0-7-1"><?= __('0.7.1') ?></a>
                     <a class="item" data-tab="0-7-0"><?= __('0.7.0') ?></a>
@@ -172,6 +173,26 @@ $page->navigation();
                             </ul>
                         </div>
 
+                    </div>
+                </div>
+
+                <div class="ui tab" data-tab="0-7-3">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h2 class="ui header"><?= __('0.7.3') ?></h2>
+                        </div>
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Fix fulfilled wishes disappearing for wishlist owner');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/58" target="_blank">#58</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

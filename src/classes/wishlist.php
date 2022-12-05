@@ -64,7 +64,23 @@ class Wishlist
         $WHERE     = isset($sql['WHERE'])     ? $sql['WHERE']     : '`wishlist` = ' . $this->id;
         $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
 
-        $WHERE .= ' AND (`status` IS NULL)';
+        /** Determine if user owns the requested wish list */
+        $wish_status = ' AND (`status` IS NULL)';
+
+        if ($_SESSION['user']->isLoggedIn()) {
+            $wishlist_ids = array_map(
+                function ($wishlist_data) {
+                    return intval($wishlist_data['id']);
+                },
+                $_SESSION['user']->getWishlists()
+            );
+
+            if (in_array($this->id, $wishlist_ids, true)) {
+                $wish_status = '';
+            }
+        }
+
+        $WHERE .= $wish_status;
 
         $this->wishes = $database
         ->query(
