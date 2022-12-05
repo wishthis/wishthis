@@ -44,7 +44,7 @@ class User
     /**
      * Private
      */
-    private string $locale = DEFAULT_LOCALE;
+    private string $locale;
 
     /**
      * Non-Static
