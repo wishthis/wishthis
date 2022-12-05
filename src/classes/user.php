@@ -44,7 +44,7 @@ class User
     /**
      * Private
      */
-    private string $language = DEFAULT_LOCALE;
+    private string $language;
     private string $currency;
 
     /**
