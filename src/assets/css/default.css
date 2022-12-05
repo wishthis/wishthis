@@ -28,6 +28,20 @@ figure {
 }
 
 /**
+ * Dialog
+ */
+dialog.ui.active.dimmer {
+    display: none;
+    position: fixed;
+}
+dialog[open].ui.active.dimmer {
+    display: flex;
+}
+dialog[open] > .ui.modal {
+    display: block;
+}
+
+/**
  * Logo
  */
 .ui.menu .item.home > :is(img, svg):not(.ui) {

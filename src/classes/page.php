@@ -714,6 +714,42 @@ class Page
         ?>
         </div><!-- .pusher -->
 
+        <noscript>
+            <dialog open class="ui active dimmer">
+                <div class="ui modal">
+                    <div class="header">
+                        <?= __('JavaScript is disabled') ?>
+                    </div>
+                    <div class="scrolling content">
+                        <div class="description">
+                            <div class="ui header">
+                                <p>
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: the current year */
+                                        __('Welcome to the year %s'),
+                                        date('Y')
+                                    );
+                                    ?>
+                                </p>
+                            </div>
+
+                            <p><?= __('I get it, websites track your every move these days and companies keep coming up with more genius hacks to monitise you.') ?></p>
+                            <p><?= __('But the good news is, wishthis aims to be different. It aims to be transparent and let the user stay in control. Unlike many companies just making claims about being secure and protecting your privacy, wishthis is entirely open source, allowing anybody to simply look up what it does and if they are okay with it. For people who aren\'t familiar with my tech stack and aren\'t able to lookup and understand the wishthis source code: "trust me".') ?></p>
+
+                            <p><?= __('I\'m joking - please remain critical, especially for closed source and/or commercial software. At least you can ask somebody to validate the wishthis code for you! Do you have any questions? Message me! (see footer)') ?></p>
+
+                            <p><?= __('wishthis really needs JavaScript to work, please enable it.') ?></p>
+                        </div>
+                    </div>
+
+                    <form method="dialog" class="actions">
+                        <a class="ui primary button" href="/"><?= __('Reload page') ?></a>
+                        <button class="ui button"><?= __('Close') ?></button>
+                    </form>
+                </div>
+            </dialog>
+        </noscript>
         </body>
         </html>
         <?php
