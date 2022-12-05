@@ -95,7 +95,7 @@ class User
 
     public function getLocale(): string
     {
-        return $this->language;
+        return $this->language ?? DEFAULT_LOCALE;
     }
 
     /**
