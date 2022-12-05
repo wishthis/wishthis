@@ -12,6 +12,6 @@ jobs:
                   addReviewers: true
                   addAssignees: author
                   reviewers:
-                      - grandeljay
+                      - "grandeljay"
                   skipKeywords:
                       - wip
