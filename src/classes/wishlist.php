@@ -64,8 +64,15 @@ class Wishlist
         $WHERE     = isset($sql['WHERE'])     ? $sql['WHERE']     : '`wishlist` = ' . $this->id;
         $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
 
-        /** Determine if user owns the requested wish list */
-        $wish_status = ' AND (`status` IS NULL)';
+        /** Default to showing available wishes */
+        $wish_status = ' AND (
+                `wishes`.`status` IS NULL
+            OR (
+                    `wishes`.`status` != "' . Wish::STATUS_UNAVAILABLE . '"
+                AND `wishes`.`status` != "' . Wish::STATUS_FULFILLED . '"
+                AND `wishes`.`status`  < unix_timestamp(CURRENT_TIMESTAMP - INTERVAL ' . Wish::STATUS_TEMPORARY_MINUTES . ' MINUTE)
+            )
+        )';
 
         if ($_SESSION['user']->isLoggedIn()) {
             $wishlist_ids = array_map(
@@ -75,8 +82,9 @@ class Wishlist
                 $_SESSION['user']->getWishlists()
             );
 
+            /** Show all wishes (except fulfilled) */
             if (in_array($this->id, $wishlist_ids, true)) {
-                $wish_status = '';
+                $wish_status = ' AND (`wishes`.`status` IS NULL OR `wishes`.`status` != "' . Wish::STATUS_FULFILLED . '")';
             }
         }
 
