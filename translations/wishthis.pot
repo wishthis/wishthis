@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-12-05 16:51+0100\n"
+"POT-Creation-Date: 2022-12-05 17:08+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -384,7 +384,7 @@ msgid "Welcome to the year %s"
 msgstr ""
 
 #: classes/page.php:737
-msgid "I get it, websites track your every move these days and companies keep coming up with more genius hacks to monitise you."
+msgid "I get it, websites track your every move these days and companies keep coming up with more genius hacks to monetise you."
 msgstr ""
 
 #: classes/page.php:738
@@ -671,7 +671,7 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:210
-msgid "Fix fulfilled wishes showing atfer using filter"
+msgid "Fix fulfilled wishes showing after using filter"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
