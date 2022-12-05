@@ -207,7 +207,7 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
-                                        echo  __('Fix fulfilled wishes showing atfer using filter');
+                                        echo  __('Fix fulfilled wishes showing after using filter');
                                     ?>
                                 </li>
                             </ul>

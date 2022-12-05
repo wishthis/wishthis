@@ -734,7 +734,7 @@ class Page
                                 </p>
                             </div>
 
-                            <p><?= __('I get it, websites track your every move these days and companies keep coming up with more genius hacks to monitise you.') ?></p>
+                            <p><?= __('I get it, websites track your every move these days and companies keep coming up with more genius hacks to monetise you.') ?></p>
                             <p><?= __('But the good news is, wishthis aims to be different. It aims to be transparent and let the user stay in control. Unlike many companies just making claims about being secure and protecting your privacy, wishthis is entirely open source, allowing anybody to simply look up what it does and if they are okay with it. For people who aren\'t familiar with my tech stack and aren\'t able to lookup and understand the wishthis source code: "trust me".') ?></p>
 
                             <p><?= __('I\'m joking - please remain critical, especially for closed source and/or commercial software. At least you can ask somebody to validate the wishthis code for you! Do you have any questions? Message me! (see footer)') ?></p>
