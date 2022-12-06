@@ -83,11 +83,19 @@ dialog[open] > .ui.modal {
 @media (max-width: 767.98px) {
     .ui.ui.ui.ui.stackable.grid.actions,
     .ui.ui.ui.ui.stackable.grid.wishlist {
-        margin: -1rem !important;
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+    }
+
+    .ui.ui.ui.ui.stackable.compact.grid.actions,
+    .ui.ui.ui.ui.stackable.compact.grid.wishlist {
+        margin-left: -0.5rem !important;
+        margin-right: -0.5rem !important;
     }
 
     .wishlist-filter-wrapper {
-        margin: -1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
     }
 }
 
@@ -117,6 +125,7 @@ p .ui.horizontal.label {
 }
 .flex.wishlist-filter {
     gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 767px) {

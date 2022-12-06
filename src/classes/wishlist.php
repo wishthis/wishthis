@@ -126,7 +126,7 @@ class Wishlist
         switch ($style) {
             case 'list':
                 ?>
-                <div class="ui one column doubling stackable grid wishlist">
+                <div class="ui one column doubling stackable compact grid wishlist">
                     <?php if (!empty($this->wishes)) { ?>
                         <?php foreach ($this->wishes as $wish) { ?>
                             <div class="column">
@@ -148,7 +148,7 @@ class Wishlist
 
             default:
                 ?>
-                <div class="ui three column doubling stackable grid wishlist">
+                <div class="ui three column doubling stackable compact grid wishlist">
                     <?php if (!empty($this->wishes)) { ?>
                         <?php foreach ($this->wishes as $wish) { ?>
                             <div class="column">
