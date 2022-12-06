@@ -240,10 +240,6 @@ class Wish
         ob_start();
         ?>
         <div class="image">
-            <?php if ('grid' === $this->style) { ?>
-                <?= $this->getCardPriority() ?>
-            <?php } ?>
-
             <?php if ($this->image) { ?>
                 <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
                     <?php if (file_exists(ROOT . $this->image)) { ?>
@@ -277,6 +273,8 @@ class Wish
         ob_start();
         ?>
         <div class="header">
+            <?= $this->getCardPriority() ?>
+
             <?php if ($this->url) { ?>
                 <a href="<?= $this->url ?>" target="_blank"><?= $this->title ?></a>
             <?php } else { ?>
