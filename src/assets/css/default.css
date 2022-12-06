@@ -106,10 +106,6 @@ dialog[open] > .ui.modal {
 /**
  * Label
  */
-.ui.label {
-    z-index: calc(var(--dimmerZIndex) + 1);
-}
-
 p .ui.horizontal.label {
     margin: 0;
     cursor: default;

@@ -335,7 +335,7 @@ class Wish
         ob_start();
         ?>
         <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
-            <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> <?= $direction ?> ribbon label">
+            <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> <?= $direction ?> label">
                 <?= self::$priorities[$this->priority]['name'] ?>
             </div>
         <?php } ?>
