@@ -120,7 +120,9 @@ class Page
     public array $messages  = array();
     public string $link_preview;
     public string $description;
+
     public array $stylesheets = array();
+    public array $scripts     = array();
 
     /**
      * __construct
@@ -236,6 +238,23 @@ class Page
             'default'     => 'src/assets/css/default.css',
             'dark'        => 'src/assets/css/default/dark.css',
         );
+
+        /**
+         * Scripts
+         */
+        $this->scripts = array(
+            'j-query'     => 'node_modules/jquery/dist/jquery.min.js',
+            'fomantic-ui' => 'semantic/dist/semantic.min.js',
+            'default'     => 'src/assets/js/default.js',
+        );
+
+        /** html2canvas */
+        $CrawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
+
+        if ($CrawlerDetect->isCrawler()) {
+            $this->scripts['html-2-canvas-1'] = 'node_modules/html2canvas/dist/html2canvas.min.js';
+            $this->scripts['html-2-canvas-2'] = 'src/assets/js/html2canvas.js';
+        }
     }
 
     public function header(): void
@@ -319,56 +338,25 @@ class Page
             }
 
             /**
-             * Inline script
+             * Scripts
              */
+            /** Inline */
             require ROOT . '/src/assets/js/inline.js.php';
 
-            /** jQuery */
-            $scriptjQuery         = 'node_modules/jquery/dist/jquery.min.js';
-            $scriptjQueryModified = filemtime($scriptjQuery);
-            ?>
-            <script defer src="/<?= $scriptjQuery ?>?m=<?= $scriptjQueryModified ?>"></script>
-            <?php
+            /** Files */
+            $script_page = 'src/assets/js/' . $this->name .  '.js';
 
-            /** Fomantic */
-            $scriptFomantic         = 'semantic/dist/semantic.min.js';
-            $scriptFomanticModified = filemtime($scriptFomantic);
-            ?>
-            <script defer src="/<?= $scriptFomantic ?>?m=<?= $scriptFomanticModified ?>"></script>
-            <?php
-
-            /** html2canvas */
-            $CrawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
-
-            if ($CrawlerDetect->isCrawler()) {
-                $scripthtml2canvas1         = 'node_modules/html2canvas/dist/html2canvas.min.js';
-                $scripthtml2canvas1Modified = filemtime($scripthtml2canvas1);
-                ?>
-                <script defer src="/<?= $scripthtml2canvas1 ?>?m=<?= $scripthtml2canvas1Modified ?>"></script>
-                <?php
-
-                $scripthtml2canvas2         = 'src/assets/js/html2canvas.js';
-                $scripthtml2canvas2Modified = filemtime($scripthtml2canvas2);
-                ?>
-                <script defer src="/<?= $scripthtml2canvas2 ?>?m=<?= $scripthtml2canvas2Modified ?>"></script>
-                <?php
+            if (file_exists($script_page)) {
+                $this->scripts['page'] = $script_page;
             }
 
-            /** Default */
-            $scriptDefault         = 'src/assets/js/default.js';
-            $scriptDefaultModified = filemtime($scriptDefault);
-            ?>
-            <script defer src="/<?= $scriptDefault ?>?m=<?= $scriptDefaultModified ?>"></script>
-            <?php
-
-            /** Page */
-            $scriptPage = 'src/assets/js/' . $this->name .  '.js';
-
-            if (file_exists($scriptPage)) {
-                $scriptPageModified = filemtime($scriptPage);
-
+            foreach ($this->scripts as $script_page) {
+                $hash = hash_file('crc32', $script_page);
                 ?>
-                <script defer src="/<?= $scriptPage ?>?m=<?= $scriptPageModified ?>"></script>
+                <script defer
+                        type="text/javascript"
+                        src="/<?= $script_page ?>?v=<?= $hash ?>">
+                </script>
                 <?php
             }
 
@@ -387,10 +375,17 @@ class Page
                 'rc.wishthis.online',
                 'dev.wishthis.online',
             );
+            $CrawlerDetect  = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
 
-            if (in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true) && (true === $user->advertisements || $CrawlerDetect->isCrawler())) {
+            if (
+                   in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
+                && (true === $user->advertisements || $CrawlerDetect->isCrawler())
+            ) {
                 ?>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093703034691766" crossorigin="anonymous"></script>
+                <script async
+                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093703034691766"
+                        crossorigin="anonymous">
+                </script>
                 <?php
             }
             ?>

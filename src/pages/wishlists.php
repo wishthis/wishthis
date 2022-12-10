@@ -8,8 +8,9 @@
 
 namespace wishthis;
 
-$page                = new Page(__FILE__, __('My lists'), 1);
-$page->stylesheets[] = 'src/assets/css/wish-card.css';
+$page                           = new Page(__FILE__, __('My lists'), 1);
+$page->stylesheets['wish-card'] = 'src/assets/css/wish-card.css';
+$page->scripts['wish']          = 'src/assets/js/parts/wish.js';
 $page->header();
 $page->bodyStart();
 $page->navigation();
