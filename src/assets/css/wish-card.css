@@ -270,7 +270,7 @@
         opacity: 0;
     }
 
-    .wishlist .ui.card > .content > .extra.buttons {
+    .wishlist .ui.card:hover > .content > .extra.buttons {
         opacity: 1;
     }
 }
