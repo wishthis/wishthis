@@ -8,9 +8,10 @@
 
 namespace wishthis;
 
-$wishlist      = new Wishlist($_GET['hash']);
-$page          = new Page(__FILE__, $wishlist->getTitle());
-$wishlist_user = User::getFromID($wishlist->user);
+$wishlist            = new Wishlist($_GET['hash']);
+$page                = new Page(__FILE__, $wishlist->getTitle());
+$page->stylesheets[] = 'src/assets/css/wish-card.css';
+$wishlist_user       = User::getFromID($wishlist->user);
 
 if (!$wishlist->exists) {
     $page->errorDocument(404, $wishlist);

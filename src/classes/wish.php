@@ -147,11 +147,6 @@ class Wish
                     <div class="content">
                         <?= $this->getCardPriority() ?>
                         <?= $this->getCardContentHeader() ?>
-
-                        <?php if ($this->price) { ?>
-                            <?= $this->getCardContentMeta($numberFormatter->format($this->price)) ?>
-                        <?php } ?>
-
                         <?= $this->getCardContentDescription() ?>
                         <?= $this->getCardButtons($userIsCurrent) ?>
                     </div>
@@ -203,14 +198,32 @@ class Wish
                             <?= $this->getCardContentHeader() ?>
                         <?php } ?>
 
-                        <?php if ($this->price) { ?>
-                            <?= $this->getCardContentMeta($numberFormatter->format($this->price)) ?>
+                        <?= $this->getCardContentDescription() ?>
+
+                        <?php if (!empty($this->info->favicon) || !empty($this->info->providerName) || $this->price) { ?>
+                            <div class="meta">
+                                <?php if (!empty($this->info->favicon) || !empty($this->info->providerName)) { ?>
+                                    <div class="provider">
+                                        <?php if (!empty($this->info->favicon)) { ?>
+                                            <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
+                                        <?php } ?>
+
+                                        <?php if (!empty($this->info->providerName)) { ?>
+                                            <span class="provider"><?= $this->info->providerName ?></span>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($this->price) { ?>
+                                    <div class="price">
+                                        <?= $numberFormatter->format($this->price) ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         <?php } ?>
 
-                        <?= $this->getCardContentDescription() ?>
+                        <?= $this->getCardButtons($userIsCurrent) ?>
                     </div>
-
-                    <?= $this->getCardButtons($userIsCurrent) ?>
                 </div>
                 <?php
                 break;
@@ -252,14 +265,6 @@ class Wish
                 <?php } ?>
             <?php } else { ?>
                 <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
-            <?php } ?>
-
-            <?php if (isset($this->info->favicon) && $this->info->favicon) { ?>
-                <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
-            <?php } ?>
-
-            <?php if (isset($this->info->providerName) && $this->info->providerName) { ?>
-                <span class="provider"><?= $this->info->providerName ?></span>
             <?php } ?>
         </div>
         <?php
@@ -306,11 +311,11 @@ class Wish
         ?>
         <?php if ($this->description) { ?>
             <div class="description">
-                <?= $this->description ?>
+                <p><?= $this->description ?></p>
             </div>
         <?php } elseif ($this->url && !$this->title) { ?>
             <div class="description">
-                <a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a>
+                <p><a href="<?= $this->url ?>" target="_blank"><?= $this->url ?></a></p>
             </div>
         <?php } ?>
         <?php
@@ -334,7 +339,8 @@ class Wish
         ?>
         <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
             <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> <?= $direction ?> label">
-                <?= self::$priorities[$this->priority]['name'] ?>
+                <i class="heart icon"></i>
+                <span><?= self::$priorities[$this->priority]['name'] ?></span>
             </div>
         <?php } ?>
         <?php
@@ -346,6 +352,27 @@ class Wish
     private function getCardButtons(bool $userIsCurrent): string
     {
         ob_start();
+        ?>
+        <div class="extra content buttons">
+            <button class="ui compact labeled icon button">
+                <i class="stream icon"></i>
+                <span><?= __('Details') ?></span>
+            </button>
+
+            <?php if ($this->url) { ?>
+                <a class="ui compact labeled icon button"
+                   href="<?= $this->url ?>" target="_blank"
+                   title="<?= __('Visit') ?>"
+                >
+                    <i class="external icon"></i>
+                    <span><?= __('Visit') ?></span>
+                </a>
+            <?php } ?>
+        </div>
+        <?php
+        $buttons = ob_get_clean();
+
+        return $buttons;
         ?>
         <div class="extra content buttons">
             <?php if (!$userIsCurrent) { ?>
