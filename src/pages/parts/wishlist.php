@@ -6,15 +6,7 @@
 
 namespace wishthis;
 
-$scripts = array(
-    '/src/assets/js/parts/wishlist-filter-priority.js',
-    '/src/assets/js/parts/wishlists.js',
-);
 ?>
-<?php foreach ($scripts as $script) { ?>
-    <script defer src="<?= $script ?>?m=<?= filemtime(ROOT . $script) ?>"></script>
-<?php } ?>
-
 <div class="wishlist-filter-wrapper">
     <div class="ui stackable grid">
         <div class="column">
