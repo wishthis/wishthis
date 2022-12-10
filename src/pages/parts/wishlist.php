@@ -215,3 +215,12 @@ namespace wishthis;
         </div>
     </div>
 </div>
+
+<!-- Modal: Details -->
+<div class="ui modal details">
+    <div class="header">Header</div>
+
+    <div class="scrolling content">
+        <p>Very long content goes here</p>
+    </div>
+</div>
