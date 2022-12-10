@@ -1,0 +1,16 @@
+/**
+ * Details
+ */
+
+/** Image */
+.ui.modal.wish-details .wish-image {
+    max-width: 100%;
+    max-height: 40vh;
+}
+
+@media (min-width: 768px) {
+    .ui.modal.wish-details .wish-image {
+        max-width: 40%;
+        max-height: 100%;
+    }
+}

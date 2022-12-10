@@ -10,6 +10,7 @@ namespace wishthis;
 
 $wishlist                                  = new Wishlist($_GET['hash']);
 $page                                      = new Page(__FILE__, $wishlist->getTitle());
+$page->stylesheets['wish']                 = 'src/assets/css/wish.css';
 $page->stylesheets['wish-card']            = 'src/assets/css/wish-card.css';
 $page->scripts['wish']                     = 'src/assets/js/parts/wish.js';
 $page->scripts['wishlist-filter-priority'] = 'src/assets/js/parts/wishlist-filter-priority.js';

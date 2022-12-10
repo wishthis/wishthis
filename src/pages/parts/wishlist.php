@@ -217,10 +217,30 @@ namespace wishthis;
 </div>
 
 <!-- Modal: Details -->
-<div class="ui modal details">
-    <div class="header">Header</div>
+<template id="wish-details">
+    <div class="ui large modal wish-details">
+        <div class="header wish-title">
+            <div class="ui fluid placeholder">
+                <div class="line"></div>
+            </div>
+        </div>
 
-    <div class="scrolling content">
-        <p>Very long content goes here</p>
+        <div class="scrolling image content">
+            <div class="wish-image">
+                <div class="ui placeholder">
+                    <div class="image"></div>
+                </div>
+            </div>
+
+            <div class="description wish-description">
+                <div class="ui fluid placeholder">
+                    <div class="paragraph">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</template>
