@@ -466,13 +466,14 @@
      * Modal
      */
     .ui.modal {
-        background-color: #1b1c1d !important;
+        background-color: #1b1c1d;
     }
 
     .ui.modal > .content,
     .ui.modal > .header {
-        background-color: #111;
+        background-color: inherit;
         color: #fff;
+        border-color: #111;
     }
 
     .ui.modal > .actions {
