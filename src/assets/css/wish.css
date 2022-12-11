@@ -13,6 +13,11 @@
         max-height: 100%;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .ui.modal.wish-details .wish-image {
+        filter: brightness(80%);
+    }
+}
 
 .ui.modal.wish-details .wish-image:has(.ui.placeholder) {
     height: 40vh;
@@ -31,4 +36,50 @@
 /** Description */
 .ui.modal.wish-details .wish-image:has(.ui.placeholder) + .description {
     padding-left: 2em;
+}
+
+/** Actions */
+.ui.modal.wish-details > .actions {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.25em;
+    padding: 1rem !important;
+}
+
+.ui.modal.wish-details > .actions .button {
+    margin: 0;
+    flex: 1 1 auto;
+}
+@media (max-width: 1023.9px) {
+    .ui.modal.wish-details > .actions .button {
+        padding: 0.78571429em !important;
+    }
+}
+@media (min-width: 1024px) {
+    .ui.modal.wish-details > .actions .button {
+        flex: 0 1 auto;
+    }
+}
+
+.ui.modal.wish-details > .actions .button i {
+    display: contents;
+}
+@media (min-width: 768px) {
+    .ui.modal.wish-details > .actions .button i {
+        display: none;
+    }
+}
+@media (min-width: 1024px) {
+    .ui.modal.wish-details > .actions .button i {
+        display: inline;
+    }
+}
+
+.ui.modal.wish-details > .actions .button span {
+    display: none;
+}
+@media (min-width: 768px) {
+    .ui.modal.wish-details > .actions .button span {
+        display: inline;
+    }
 }

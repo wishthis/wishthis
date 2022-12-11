@@ -242,5 +242,58 @@ namespace wishthis;
                 </div>
             </div>
         </div>
+
+        <div class="actions">
+            <?php
+            /** Determine if current user is wishlist owner */
+            $url         = new URL($_SERVER['REQUEST_URI']);
+            $wishlist_id = $_GET['id'] ?? $_GET['hash'];
+            $wishlist    = new Wishlist($wishlist_id);
+
+            $userIsCurrent =    $_SESSION['user']->isLoggedIn()
+                             && $_SESSION['user']->id === $wishlist->user;
+            ?>
+
+            <?php if ($userIsCurrent) { ?>
+                <button class="ui disabled primary labeled icon button wish-fulfilled">
+                    <i class="check icon"></i>
+                    <span><?= __('Mark as fulfilled') ?></span>
+                </button>
+            <?php } else { ?>
+                <button class="ui disabled primary labeled icon button wish-fulfil">
+                    <i class="gift icon"></i>
+                    <span><?= __('Fulfil wish') ?></span>
+                </button>
+            <?php } ?>
+
+            <a class="ui disabled labeled icon button wish-visit">
+                <i class="external icon"></i>
+                <span><?= __('Visit') ?></span>
+            </a>
+
+            <?php if ($userIsCurrent) { ?>
+                <div class="ui disabled labeled icon top left pointing dropdown button wish-options">
+                    <i class="cog icon"></i>
+                    <span class="text"><?= __('Options') ?></span>
+
+                    <div class="menu">
+                        <button class="item disabled wish-edit">
+                            <i class="pen icon"></i>
+                            <span><?= __('Edit') ?></span>
+                        </button>
+
+                        <button class="item disabled wish-delete">
+                            <i class="trash icon"></i>
+                            <span><?= __('Delete') ?></span>
+                        </button>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <button class="ui cancel labeled icon button wish-close">
+                <i class="close icon"></i>
+                <span><?= __('Close') ?></span>
+            </button>
+        </div>
     </div>
 </template>
