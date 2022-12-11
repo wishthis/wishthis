@@ -19,7 +19,7 @@ $(function () {
                 'module' : 'wishes',
                 'page'   : 'api',
 
-                'wish_id' : wish_id,
+                'wish_id' : wish_id
             }
         );
 
