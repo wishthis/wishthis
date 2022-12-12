@@ -41,11 +41,11 @@ class Page
     public const PAGE_WISHLISTS_SAVED = '/?page=wishlists-saved';
     public const PAGE_WISHLISTS       = '/?page=wishlists';
 
-    public static function message(string $content = '', string $header = '', string $type = ''): string
+    public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
         ob_start();
 
-        $containerClasses = array('ui', 'message');
+        $containerClasses = array('ui', 'message', $class);
         $iconClasses      = array('ui', 'icon');
 
         switch ($type) {
@@ -93,24 +93,24 @@ class Page
         return ob_get_clean();
     }
 
-    public static function error(string $content, string $header = ''): string
+    public static function error(string $content, string $header = '', string $class = ''): string
     {
-        return self::message($content, $header, 'error');
+        return self::message($content, $header, 'error', $class);
     }
 
-    public static function warning(string $content, string $header = ''): string
+    public static function warning(string $content, string $header = '', string $class = ''): string
     {
-        return self::message($content, $header, 'warning');
+        return self::message($content, $header, 'warning', $class);
     }
 
-    public static function info(string $content, string $header = ''): string
+    public static function info(string $content, string $header = '', string $class = ''): string
     {
-        return self::message($content, $header, 'info');
+        return self::message($content, $header, 'info', $class);
     }
 
-    public static function success(string $content, string $header = ''): string
+    public static function success(string $content, string $header = '', string $class = ''): string
     {
-        return self::message($content, $header, 'success');
+        return self::message($content, $header, 'success', $class);
     }
 
     /**
@@ -255,6 +255,15 @@ class Page
             $this->scripts['html-2-canvas-1'] = 'node_modules/html2canvas/dist/html2canvas.min.js';
             $this->scripts['html-2-canvas-2'] = 'src/assets/js/html2canvas.js';
         }
+
+        /**
+         * Reduce data mode
+         */
+        $this->messages[] = self::info(
+            __('Your device is set to reduce data, some content has been disabled.'),
+            __('Reducing data'),
+            'reduce-data'
+        );
     }
 
     public function header(): void

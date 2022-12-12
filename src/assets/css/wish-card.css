@@ -82,6 +82,11 @@
 
     height: 100%;
 }
+@media (prefers-reduced-data: reduce) {
+    .wishlist .ui.card > .image > :is(svg, img.preview) {
+        display: none;
+    }
+}
 
 .wishlist .ui.card > .image > svg {
     color: #f0f0f0;

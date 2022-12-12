@@ -24,6 +24,8 @@ $page->navigation();
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
+        <?= $page->messages() ?>
+
         <div class="ui segment">
             <div class="ui form">
                 <div class="two fields">

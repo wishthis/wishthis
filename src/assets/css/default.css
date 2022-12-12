@@ -260,3 +260,15 @@ button.item {
 .ui.selection.dropdown.wishlists.visible {
     z-index: calc(var(--dimmerZIndex) + 2);
 }
+
+/**
+ * Messages
+ */
+.ui.message.reduce-data {
+    display: none;
+}
+@media (prefers-reduced-data: reduce) {
+    .ui.message.reduce-data {
+        display: flex;
+    }
+}
