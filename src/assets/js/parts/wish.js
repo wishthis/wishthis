@@ -29,9 +29,33 @@ $(function () {
         .then(function(response) {
             var wish = response.info;
 
-            /** General */
+            /**
+             * Wish
+             */
+            /** Title */
             $('.wish-title').html(wish.title);
-            $('.wish-image').prop('outerHTML', '<img class="image wish-image" src="' + wish.image + '" />');
+
+            /** Image */
+            var wish_image       = wish.image ? wish.image : wishthis.wish.no_image;
+            var wish_image_ext   = wish_image.split('.').pop();
+
+            if ('svg' === wish_image_ext) {
+                fetch(wish_image, { method: 'GET' })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    var svg = $(response).filter(function() { return 'svg' === this.nodeName; });
+
+                    $('.wish-image').html(svg);
+                })
+                .catch(function(response) {
+                    $('.wish-image').html('<img src="' + wish_image + '" />');
+                });
+            } else {
+                $('.wish-image').html('<img src="' + wish_image + '" />');
+            }
+
+            /** Description */
             $('.wish-description').html(wish.description);
         })
         .catch(handleFetchCatch)

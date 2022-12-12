@@ -3,7 +3,10 @@
  */
 
 /** Image */
-.ui.modal.wish-details .wish-image {
+.ui.modal.wish-details .wish-image,
+.ui.modal.wish-details .wish-image is:(img, svg) {
+    height: auto;
+
     max-width: 100%;
     max-height: 40vh;
 }
@@ -19,12 +22,14 @@
     }
 }
 
-.ui.modal.wish-details .wish-image:has(.ui.placeholder) {
-    height: 40vh;
-}
-@media (min-width: 768px) {
+@supports selector(.ui.modal.wish-details .wish-image:has(.ui.placeholder)) {
     .ui.modal.wish-details .wish-image:has(.ui.placeholder) {
-        width: 40%;
+        height: 40vh;
+    }
+    @media (min-width: 768px) {
+        .ui.modal.wish-details .wish-image:has(.ui.placeholder) {
+            width: 40%;
+        }
     }
 }
 

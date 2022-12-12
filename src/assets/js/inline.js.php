@@ -19,7 +19,8 @@ global $options;
 
     /** Wish */
     wishthis.wish = {
-        'status' : {
+        'no_image' : '<?= Wish::NO_IMAGE ?>',
+        'status'   : {
             'temporary'   : '<?= Wish::STATUS_TEMPORARY ?>',
             'unavailable' : '<?= Wish::STATUS_UNAVAILABLE ?>',
             'fulfilled'   : '<?= Wish::STATUS_FULFILLED ?>',

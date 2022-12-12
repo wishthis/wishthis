@@ -226,7 +226,7 @@ namespace wishthis;
         </div>
 
         <div class="scrolling image content">
-            <div class="wish-image">
+            <div class="ui rounded image wish-image">
                 <div class="ui fluid placeholder">
                     <div class="image"></div>
                 </div>

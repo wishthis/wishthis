@@ -210,13 +210,25 @@ function handleFetchError(response) {
 }
 
 function handleFetchResponse(response) {
-    var isText = response.headers.get('content-type')?.includes('text/html');
-    var isJSON = response.headers.get('content-type')?.includes('application/json');
+    var content_type = response.headers.get('content-type');
+    var isText       = false;
+    var isJSON       = false;
+
+    if (content_type) {
+        isText =    content_type.includes('text/html')
+                 || content_type.includes('image/svg+xml');
+
+        isJSON = content_type.includes('application/json');
+    }
 
     if (isText) {
-        return response.text().then(function(text) {
+        return response
+        .text()
+        .then(function(text) {
             if (text.toLowerCase().includes('error') || text.toLowerCase().includes('exception')) {
                 showError(text);
+            } else {
+                return text;
             }
         })
     } else if (isJSON) {
@@ -228,6 +240,8 @@ function handleFetchResponse(response) {
             return json;
         });
     }
+
+    return response;
 }
 
 function handleFetchCatch(error) {
