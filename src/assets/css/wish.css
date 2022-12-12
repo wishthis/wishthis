@@ -46,7 +46,7 @@
 /** Actions */
 .ui.modal.wish-details > .actions {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     gap: 0.25em;
     padding: 1rem !important;
 }
