@@ -305,27 +305,6 @@ $(function () {
     });
 
     /**
-     * Mark as Fulfilled
-     */
-    $(document).on('click', '.wish-fulfilled', function() {
-        var button = $(this);
-        var card   = button.closest('.card');
-
-        button.api({
-            action    : 'update wish status',
-            method    : 'PUT',
-            data      : {
-                'wish_id'     : card.attr('data-id'),
-                'wish_status' : wishthis.wish.status.fulfilled,
-            },
-            on        : 'now',
-            onSuccess : function(response, element, xhr) {
-                card.closest('.column').fadeOut(800);
-            },
-        });
-    });
-
-    /**
      * Edit Wish
      */
     $(document).on('click', '.wish-edit', function (event) {

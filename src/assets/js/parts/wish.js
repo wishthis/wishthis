@@ -1,3 +1,17 @@
+const wish_button_mark_as_fulfilled = '.ui.button.wish-fulfilled';
+
+var wish;
+
+function wish_set_to(wish_data) {
+    wish = wish_data;
+
+    $(wish_button_mark_as_fulfilled).removeClass('disabled');
+}
+
+function wish_unset() {
+    wish = undefined;
+}
+
 $(function () {
 
     /**
@@ -8,7 +22,13 @@ $(function () {
         var wish_details          = wish_details_template.contents().filter(function() { return this.nodeType !== 3; });
 
         /** Show modal */
-        wish_details.modal('show');
+        wish_details
+        .modal({
+            'onHide' : function(modal) {
+                wish_unset();
+            },
+        })
+        .modal('show');
 
         /** Get Wish */
         var card    = $(this).closest('.ui.card.wish');
@@ -27,7 +47,7 @@ $(function () {
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            var wish = response.info;
+            wish_set_to(response.info);
 
             /**
              * Wish
@@ -58,9 +78,36 @@ $(function () {
             /** Description */
             $('.wish-description').html(wish.description);
         })
+        .catch(handleFetchCatch);
+    });
+    /** */
+
+    /**
+     * Mark as fulfilled
+     */
+    $(document).on('click', wish_button_mark_as_fulfilled, function() {
+        const modal_wish_details = $(this).closest('.ui.modal');
+        const mark_as_fulfilled  = {
+            'method' : 'PUT',
+            'body'   : new URLSearchParams({
+                'wish_id'     : wish.id,
+                'wish_status' : wishthis.wish.status.fulfilled,
+            }),
+        }
+
+        $(this).addClass('disabled loading');
+
+        fetch('/api/wishes', mark_as_fulfilled)
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            modal_wish_details.modal('hide');
+
+            $('.ui.dropdown.filter.priority').api('query');
+        })
         .catch(handleFetchCatch)
         .finally(function() {
-
+            $(this).removeClass('disabled loading');
         });
     });
     /** */
