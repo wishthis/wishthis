@@ -1,18 +1,21 @@
+var wishlists = [];
+
 $(function () {
 
     /**
      * Get Wishlists
      */
-    var wishlists     = [];
-    var wishlists_api = {
+    var wishlists_items = [];
+    var wishlists_api   = {
         'action'    : 'get wishlists',
         'onSuccess' : function(response, dropdown_wishlists, xhr) {
             /** Save response for later use */
-            wishlists = response.results;
+            wishlists       = response.wishlists;
+            wishlists_items = response.wishlists_items;
 
             /** Setup and populate dropdown */
             var dropdown_values = {
-                'values' : wishlists,
+                'values' : wishlists_items,
             };
 
             dropdown_wishlists.dropdown('setup menu', dropdown_values);
@@ -704,17 +707,21 @@ $(function () {
      */
     function setDropdownWishlistsSelection() {
         var dropdown_wishlists = $('.ui.dropdown.wishlists');
+        var wishlist_id;
 
         if (!dropdown_wishlists.dropdown('get value')) {
             if (wishthis.$_GET.id) {
-                dropdown_wishlists.dropdown('set selected', wishthis.$_GET.id);
+                wishlist_id = wishthis.$_GET.id;
             } else {
                 if (Object.keys(wishlists).length >= 1) {
                     var first_wishlist_id = Object.keys(wishlists)[0];
 
-                    dropdown_wishlists.dropdown('set selected', first_wishlist_id);
+                    wishlist_id = first_wishlist_id;
                 }
             }
+
+            wishlist = wishlists[wishlist_id];
+            dropdown_wishlists.dropdown('set selected', wishlist.id);
         }
     }
 

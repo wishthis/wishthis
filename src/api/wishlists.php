@@ -135,19 +135,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $user = isset($_GET['userid']) ? User::getFromID($_GET['userid']) : $_SESSION['user'];
 
-            $wishlists = array();
+            $wishlists       = array();
+            $wishlists_items = array();
 
             foreach ($user->getWishlists() as $wishlist_result) {
                 $wishlist = new Wishlist($wishlist_result['id']);
 
-                $wishlists[$wishlist->id] = array(
+                $wishlists[$wishlist->id]       = $wishlist;
+                $wishlists_items[$wishlist->id] = array(
                     'name'  => $wishlist->name,
                     'value' => $wishlist->id,
                     'text'  => $wishlist->name,
                 );
             }
 
-            $response['results'] = $wishlists;
+            $response['wishlists']       = $wishlists;
+            $response['wishlists_items'] = $wishlists_items;
         }
         break;
 
