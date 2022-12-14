@@ -31,15 +31,18 @@ global $options;
     wishthis.strings = {
         'modal' : {
             'error' : {
-                'title' : '<?= __('Error') ?>',
-            },
-            'failure' : {
-                'title'   : '<?= __('Failure') ?>',
-                'content' : '<?= __('The server did not confirm that the action was successful.') ?>',
+                'title'   : '<?= __('Error') ?>',
+                'content' : '<?= __('Something went wrong, that\'s all I know.') ?>',
                 'approve' : '<?= __('Thanks for nothing') ?>',
             },
-            'warning' : {
-                'approve' : '<?= __('Understood') ?>',
+            'failure' : {
+                'title'   : '<?= __('Unexpected output') ?>',
+                'content' : [
+                    '<?= __('Your request likely succeeded but the server did not confirm that the action was successful.') ?>',
+                    '<?= __('For nerds: The API returned HTTP 200, there was no (error) output, yet the response is still not as expected.') ?>',
+                    '<?= __('In any case, please report this.') ?>',
+                ],
+                'approve' : '<?= __('Ok then') ?>',
             },
             'success' : {
                 'title' : '<?= __('Success') ?>',

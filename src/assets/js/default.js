@@ -22,54 +22,38 @@ $(function() {
         return response;
     }
     $.fn.api.settings.successTest = function(response) {
-        return response.status == 'OK' || response.results || response.success || false;
+        return 'OK' === response.status || response.success || false;
     }
     $.fn.api.settings.onComplete = function(response, element, xhr) {
         element.removeClass('loading');
     }
     $.fn.api.settings.onFailure = function(response, element, xhr) {
-        var content = '';
+        var modal_failure_content = '';
 
-        if ('string' === typeof response) {
-            content = response.replace('<br />', '');
+        if ('string' === typeof response && response) {
+            modal_failure_content = response.replace('<br />', '');
+        } else {
+            modal_failure_content = wishthis.strings.modal.failure.content;
         }
 
-        if ('' === response.warning) {
-            content = wishthis.strings.modal.failure.content;
-        }
-
-        $('body')
-        .modal({
-            autoShow : true,
-            title    : wishthis.strings.modal.failure.title,
-            content  : content,
-            class    : 'small',
-            actions  : [
-                {
-                    text  : wishthis.strings.modal.failure.approve,
-                    class : 'primary'
-                }
-            ]
-        });
+        showFailure(
+            wishthis.strings.modal.failure.title,
+            modal_failure_content,
+        );
     }
     $.fn.api.settings.onError = function(response, element, xhr) {
-        if ('string' === typeof response) {
-            response = response.replace('<br />', '');
+        var modal_error_content = '';
+
+        if ('string' === typeof response && response) {
+            modal_error_content = response.replace('<br />', '');
+        } else {
+            modal_error_content = wishthis.strings.modal.error.content;
         }
 
-        $('body')
-        .modal({
-            title   : wishthis.strings.modal.error.title,
-            content : response,
-            class   : 'small',
-            actions : [
-                {
-                    text : wishthis.strings.modal.failure.approve,
-                    class: 'primary'
-                }
-            ],
-            autoShow: true
-        });
+        showError(
+            wishthis.strings.modal.error.title,
+            modal_error_content,
+        );
     }
     /** */
 
@@ -188,7 +172,10 @@ function handleFetchError(response) {
         console.log('handleFetchError');
         console.log(response);
 
-        showError(response.statusText);
+        showError(
+            wishthis.strings.modal.error.title,
+            response.statusText
+        );
 
         throw Error(response.statusText);
     }
@@ -213,7 +200,10 @@ function handleFetchResponse(response) {
         .text()
         .then(function(text) {
             if (text.toLowerCase().includes('error') || text.toLowerCase().includes('exception')) {
-                showError(text);
+                showError(
+                    wishthis.strings.modal.error.title,
+                    text
+                );
             } else {
                 return text;
             }
@@ -221,7 +211,10 @@ function handleFetchResponse(response) {
     } else if (isJSON) {
         return response.json().then(function(json) {
             if (json.warning) {
-                showWarning(json.warning)
+                showFailure(
+                    wishthis.strings.modal.failure.title,
+                    json.warning
+                );
             }
 
             return json;
@@ -237,40 +230,66 @@ function handleFetchCatch(error) {
     return error;
 }
 
-function showError(error) {
-    error = error.replace('<br />', '');
-
-    $('body')
-    .modal({
-        title             : 'Error',
-        content           : error,
-        class             : 'small',
-        actions           : [
+function showError(title = '', content = '') {
+    var modal_error = {
+        'class'         : 'small',
+        'autoShow'      : true,
+        'allowMultiple' : true,
+        'actions'       : [
             {
-                text  : wishthis.strings.modal.failure.approve,
-                class : 'primary'
+                'text'  : wishthis.strings.modal.error.approve,
+                'class' : 'primary',
             }
         ],
-        autoShow      : true,
-        allowMultiple : true
-    });
+    };
+
+    if (title) {
+        modal_error.title = title;
+    } else {
+        modal_error.title = wishthis.strings.modal.error.title;
+    }
+
+    if (Array.isArray(content)) {
+        modal_error.content = '';
+
+        content.forEach(paragraph => {
+            modal_error.content += '<p>' + paragraph + '</p>';
+        });
+    } else {
+        modal_error.content = content;
+    }
+
+    $('body').modal(modal_error);
 }
 
-function showWarning(warning) {
-    warning = warning.replace('<br />', '');
-
-    $('body')
-    .modal({
-        title         : 'Warning',
-        content       : warning,
-        class         : 'small',
-        actions       : [
+function showFailure(title = '', content = '') {
+    var modal_failure = {
+        'class'         : 'small',
+        'autoShow'      : true,
+        'allowMultiple' : true,
+        'actions'       : [
             {
-                text  : wishthis.strings.modal.warning.approve,
-                class : 'primary'
+                'text'  : wishthis.strings.modal.failure.approve,
+                'class' : 'primary',
             }
         ],
-        autoShow      : true,
-        allowMultiple : true
-    });
+    };
+
+    if (title) {
+        modal_failure.title = title;
+    } else {
+        modal_failure.title = wishthis.strings.modal.failure.title;
+    }
+
+    if (Array.isArray(content)) {
+        modal_failure.content = '';
+
+        content.forEach(paragraph => {
+            modal_failure.content += '<p>' + paragraph + '</p>';
+        });
+    } else {
+        modal_failure.content = content;
+    }
+
+    $('body').modal(modal_failure);
 }
