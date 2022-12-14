@@ -10,7 +10,8 @@ if ('serviceWorker' in navigator) {
     })
 }
 
-const urlParams = new URLSearchParams(wishthis.$_GET);
+const urlParams  = new URLSearchParams(wishthis.$_GET);
+const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 $(function() {
     /**
@@ -162,6 +163,17 @@ $(function() {
         $('.menu.sidebar').sidebar('show');
     });
 
+    /**
+     * Popups
+     */
+    popup_settings_default = {
+        'position'  : 'top center',
+        'variation' : isDarkMode ? '' : 'inverted',
+        'hoverable' : true,
+    };
+
+    $('[data-content]').popup(popup_settings_default);
+    $('[data-html]').popup(popup_settings_default);
 });
 
 /**

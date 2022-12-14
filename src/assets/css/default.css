@@ -272,3 +272,11 @@ button.item {
         display: flex;
     }
 }
+
+/**
+ * Icons
+ */
+i.small.small.small.icon,
+i.small.small.small.icons {
+    vertical-align: baseline;
+}

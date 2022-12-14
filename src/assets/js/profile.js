@@ -1,6 +1,9 @@
 $(function() {
     $('.menu.profile .item').tab();
 
+    /**
+     * Personal
+     */
     $('.ui.calendar').calendar({
         type           : 'date',
         firstDayOfWeek : 1,
@@ -12,6 +15,10 @@ $(function() {
             'user-email' : 'email',
         }
     });
+
+    /**
+     * Password
+     */
     $('[data-tab="password"] .ui.form').form({
         fields: {
             'user-password'        : ['minLength[8]', 'empty'],

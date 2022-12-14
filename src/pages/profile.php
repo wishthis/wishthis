@@ -230,8 +230,11 @@ $page->navigation();
                                     <input type="email" name="user-email" value="<?= $_SESSION['user']->email ?>" />
                                 </div>
 
-                                <div class="field">
-                                    <label><?= __('Birthdate') ?></label>
+                                <div class="field" data-content="<?= __('Used to suggest a wishlist called "Birthday", if it\'s coming up.') ?>">
+                                    <label>
+                                        <?= __('Birthdate') ?>
+                                        <i class="ui small circular info icon"></i>
+                                    </label>
 
                                     <div class="ui calendar">
                                         <div class="ui input left icon">
