@@ -266,7 +266,7 @@ namespace wishthis;
                 </button>
             <?php } ?>
 
-            <a class="ui disabled labeled icon button wish-visit">
+            <a class="ui disabled labeled icon button wish-visit" target="_blank">
                 <i class="external icon"></i>
                 <span><?= __('Visit') ?></span>
             </a>
