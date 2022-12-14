@@ -72,4 +72,10 @@ class API
 
         return $request_variables;
     }
+
+    private function response(int $http_code): void
+    {
+        http_response_code($http_code);
+        die();
+    }
 }

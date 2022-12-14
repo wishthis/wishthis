@@ -133,7 +133,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get user wishlists
              */
-            $user = isset($_GET['userid']) ? User::getFromID($_GET['userid']) : $_SESSION['user'];
+            $user = $_SESSION['user'];
+
+            if (!$user->isLoggedIn()) {
+                $this->response(403);
+            }
 
             $wishlists       = array();
             $wishlists_items = array();
