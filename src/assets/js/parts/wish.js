@@ -1,4 +1,5 @@
 const wish_button_mark_as_fulfilled = '.ui.button.wish-fulfilled';
+const wish_button_visit             = '.ui.button.wish-visit';
 
 var wish;
 
@@ -6,6 +7,12 @@ function wish_set_to(wish_data) {
     wish = wish_data;
 
     $(wish_button_mark_as_fulfilled).removeClass('disabled');
+
+    if (wish.url) {
+        $(wish_button_visit)
+        .attr('href', wish.url)
+        .removeClass('disabled');
+    }
 }
 
 function wish_unset() {
