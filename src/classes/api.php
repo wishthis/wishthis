@@ -32,11 +32,14 @@ class API
         if (file_exists($this->module_path)) {
             ob_start();
 
-            $response = array();
+            $response = array(
+                'success' => false,
+            );
 
             require $this->module_path;
 
             $response['warning'] = ob_get_clean();
+            $response['success'] = true;
 
             header('Content-type: application/json; charset=utf-8');
             echo json_encode($response);
