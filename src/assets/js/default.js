@@ -27,19 +27,6 @@ $(function() {
     $.fn.api.settings.onComplete = function(response, element, xhr) {
         element.removeClass('loading');
     }
-    $.fn.api.settings.onSuccess = function(response, element, xhr) {
-        element.dropdown({
-            values : response.results
-        })
-
-        if (wishthis.$_GET.id) {
-            element.dropdown('set selected', wishthis.$_GET.id);
-        } else {
-            if (response.results[0]) {
-                element.dropdown('set selected', response.results[0].value);
-            }
-        }
-    }
     $.fn.api.settings.onFailure = function(response, element, xhr) {
         var content = '';
 

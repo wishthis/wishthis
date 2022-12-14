@@ -354,7 +354,7 @@ class Wish
         ob_start();
         ?>
         <div class="extra content buttons">
-            <button class="ui compact labeled icon button details">
+            <button class="ui compact labeled icon button wish-details">
                 <i class="stream icon"></i>
                 <span><?= __('Details') ?></span>
             </button>

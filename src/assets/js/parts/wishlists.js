@@ -1,4 +1,5 @@
 $(function () {
+
     /**
      * Get Wishlists
      */
@@ -72,11 +73,6 @@ $(function () {
 
                     updateURL();
                     /** */
-
-                    /**
-                     * Trigger priorities dropdown
-                     */
-                    $('.ui.dropdown.filter.priority').api('query');
 
                     /**
                      * Very dirty hack to ensure the wishes are going to be
@@ -742,4 +738,5 @@ $(function () {
             }
         }
     }
+
 });
