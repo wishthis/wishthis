@@ -86,11 +86,17 @@
 }
 
 .wishlist .ui.horizontal.card > .image {
+    display: none;
     position: relative;
     height: inherit;
 
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+@media (min-width: 512px) {
+    .wishlist .ui.horizontal.card > .image {
+        display: block;
+    }
 }
 
 .wishlist .ui.card > .image > :is(svg, img.preview) {
