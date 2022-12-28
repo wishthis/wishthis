@@ -49,7 +49,6 @@
         }
     }
 }
-
 .wishlist .ui.card > .image::before {
     content: '';
     position: absolute;
@@ -86,10 +85,17 @@
     }
 }
 
+.wishlist .ui.horizontal.card > .image {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .wishlist .ui.card > .image > :is(svg, img.preview) {
     display: block;
 
     height: 100%;
+
+    border-radius: inherit;
 }
 @media (prefers-reduced-data: reduce) {
     .wishlist .ui.card > .image > :is(svg, img.preview) {
