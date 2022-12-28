@@ -326,6 +326,10 @@
     .wishlist .ui.card > .content > .extra.buttons {
         flex-wrap: wrap;
     }
+
+    .wishlist .ui.horizontal.card > .content > .extra.buttons {
+        width: max-content;
+    }
 }
 
 .wishlist .ui.card > .content > .extra.buttons > .ui.button {
