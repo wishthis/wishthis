@@ -86,6 +86,8 @@
 }
 
 .wishlist .ui.horizontal.card > .image {
+    position: relative;
+
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -158,7 +160,6 @@
     flex-flow: column nowrap;
     gap: 0.5em;
 
-    width: 100%;
     height: 100%;
 
     z-index: 1;
@@ -178,10 +179,13 @@
         text-shadow: 0.02em 0.02em 0.12em #222;
     }
 }
-
 .ui.card > .content::after,
 .ui.cards > .card > .content::after {
     display: none;
+}
+
+.wishlist .ui.horizontal.card > .content:not(.extra) {
+    width: calc(100% - 150px);
 }
 
 .wishlist .ui.card > .content > .header {
