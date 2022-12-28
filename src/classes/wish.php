@@ -135,99 +135,78 @@ class Wish
             $generateCache = 'false';
         }
 
-        switch ($this->style) {
-            case 'list':
-                ?>
-                <div class="ui horizontal card"
-                    data-id="<?= $this->id ?>"
-                    data-cache="<?= $generateCache ?>"
-                >
-                    <?= $this->getCardImage() ?>
-
-                    <div class="content">
-                        <?= $this->getCardPriority() ?>
-                        <?= $this->getCardContentHeader() ?>
-                        <?= $this->getCardContentDescription() ?>
-                        <?= $this->getCardButtons($userIsCurrent) ?>
-                    </div>
-                </div>
-                <?php
-                break;
-
-            default:
-                ?>
-                <div class="ui blurring dimmable fluid card wish"
-                    data-id="<?= $this->id ?>"
-                    data-cache="<?= $generateCache ?>"
-                >
-                    <div class="ui inverted dimmer">
-                        <div class="content">
-                            <div class="center">
-                                <div class="ui icon header">
-                                <i class="history icon"></i>
-                                    <div class="content">
-                                        <?= __('Wish temporarily fulfilled') ?>
-                                        <div class="sub header">
-                                            <?php
-                                            printf(
-                                                /** TRANSLATORS: %s: Duration (e. g. 30 minutes) */
-                                                __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
-                                                sprintf(
-                                                    /** TRANSLATORS: %d Amount of minutes */
-                                                    '<strong>' . __('%d minutes') . '</strong>',
-                                                    self::STATUS_TEMPORARY_MINUTES
-                                                )
-                                            )
-                                            ?>
-                                        </div>
-                                    </div>
+        $card_style = 'list' === $this->style ? 'horizontal card' : 'card';
+        ?>
+        <div class="ui blurring dimmable fluid <?= $card_style ?> wish"
+            data-id="<?= $this->id ?>"
+            data-cache="<?= $generateCache ?>"
+        >
+            <div class="ui inverted dimmer">
+                <div class="content">
+                    <div class="center">
+                        <div class="ui icon header">
+                        <i class="history icon"></i>
+                            <div class="content">
+                                <?= __('Wish temporarily fulfilled') ?>
+                                <div class="sub header">
+                                    <?php
+                                    printf(
+                                        /** TRANSLATORS: %s: Duration (e. g. 30 minutes) */
+                                        __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
+                                        sprintf(
+                                            /** TRANSLATORS: %d Amount of minutes */
+                                            '<strong>' . __('%d minutes') . '</strong>',
+                                            self::STATUS_TEMPORARY_MINUTES
+                                        )
+                                    )
+                                    ?>
                                 </div>
-
-                                <button class="ui positive labeled icon button confirm">
-                                    <i class="check double icon"></i>
-                                    <?= __('Confirm') ?>
-                                </button>
                             </div>
                         </div>
+
+                        <button class="ui positive labeled icon button confirm">
+                            <i class="check double icon"></i>
+                            <?= __('Confirm') ?>
+                        </button>
                     </div>
+                </div>
+            </div>
 
-                    <?= $this->getCardImage() ?>
+            <?= $this->getCardImage() ?>
 
-                    <div class="content">
-                        <?php if ($this->title) { ?>
-                            <?= $this->getCardContentHeader() ?>
-                        <?php } ?>
+            <div class="content">
+                <?php if ($this->title) { ?>
+                    <?= $this->getCardContentHeader() ?>
+                <?php } ?>
 
-                        <?= $this->getCardContentDescription() ?>
+                <?= $this->getCardContentDescription() ?>
 
-                        <?php if (!empty($this->info->favicon) || !empty($this->info->providerName) || $this->price) { ?>
-                            <div class="meta">
-                                <?php if (!empty($this->info->favicon) || !empty($this->info->providerName)) { ?>
-                                    <div class="provider">
-                                        <?php if (!empty($this->info->favicon)) { ?>
-                                            <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
-                                        <?php } ?>
-
-                                        <?php if (!empty($this->info->providerName)) { ?>
-                                            <span class="provider"><?= $this->info->providerName ?></span>
-                                        <?php } ?>
-                                    </div>
+                <?php if (!empty($this->info->favicon) || !empty($this->info->providerName) || $this->price) { ?>
+                    <div class="meta">
+                        <?php if (!empty($this->info->favicon) || !empty($this->info->providerName)) { ?>
+                            <div class="provider">
+                                <?php if (!empty($this->info->favicon)) { ?>
+                                    <img class="favicon" src="<?= $this->info->favicon ?>" loading="lazy" />
                                 <?php } ?>
 
-                                <?php if ($this->price) { ?>
-                                    <div class="price">
-                                        <?= $numberFormatter->format($this->price) ?>
-                                    </div>
+                                <?php if (!empty($this->info->providerName)) { ?>
+                                    <span class="provider"><?= $this->info->providerName ?></span>
                                 <?php } ?>
                             </div>
                         <?php } ?>
 
-                        <?= $this->getCardButtons($userIsCurrent) ?>
+                        <?php if ($this->price) { ?>
+                            <div class="price">
+                                <?= $numberFormatter->format($this->price) ?>
+                            </div>
+                        <?php } ?>
                     </div>
-                </div>
-                <?php
-                break;
-        }
+                <?php } ?>
+
+                <?= $this->getCardButtons($userIsCurrent) ?>
+            </div>
+        </div>
+        <?php
 
         $html = ob_get_clean();
 
@@ -326,19 +305,10 @@ class Wish
 
     private function getCardPriority(): string
     {
-        switch ($this->style) {
-            case 'list':
-                $direction = 'left';
-                break;
-
-            default:
-                $direction = 'right';
-                break;
-        }
         ob_start();
         ?>
         <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
-            <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> <?= $direction ?> label">
+            <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> right label">
                 <i class="heart icon"></i>
                 <span><?= self::$priorities[$this->priority]['name'] ?></span>
             </div>
