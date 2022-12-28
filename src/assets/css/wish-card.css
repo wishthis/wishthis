@@ -87,6 +87,7 @@
 
 .wishlist .ui.horizontal.card > .image {
     position: relative;
+    height: inherit;
 
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
