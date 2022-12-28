@@ -187,6 +187,7 @@
 
 .wishlist .ui.horizontal.card > .content:not(.extra) {
     width: calc(100% - 150px);
+    height: inherit;
 }
 
 .wishlist .ui.card > .content > .header {
