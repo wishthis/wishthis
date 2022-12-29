@@ -222,6 +222,7 @@ namespace wishthis;
         <div class="header wish-title">
             <div class="ui fluid placeholder">
                 <div class="line"></div>
+                <div class="line"></div>
             </div>
         </div>
 
