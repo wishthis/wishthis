@@ -33,14 +33,13 @@
     }
 }
 
-@supports selector(.ui.modal.wish-details .wish-image:has(.ui.placeholder)) {
+.ui.modal.wish-details .wish-image:has(.ui.placeholder) {
+    height: 40vh;
+    width: 100%;
+}
+@media (min-width: 768px) {
     .ui.modal.wish-details .wish-image:has(.ui.placeholder) {
-        height: 40vh;
-    }
-    @media (min-width: 768px) {
-        .ui.modal.wish-details .wish-image:has(.ui.placeholder) {
-            width: 40%;
-        }
+        width: 40%;
     }
 }
 
