@@ -218,7 +218,7 @@ namespace wishthis;
 
 <!-- Modal: Details -->
 <template id="wish-details">
-    <div class="ui large modal wish-details">
+    <div class="ui modal wish-details">
         <div class="header wish-title">
             <div class="ui fluid placeholder">
                 <div class="line"></div>

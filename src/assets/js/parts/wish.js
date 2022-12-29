@@ -35,7 +35,8 @@ $(function () {
                 wish_unset();
             },
         })
-        .modal('show');
+        .modal('show')
+        .addClass(wish_details_size);
 
         /** Get Wish */
         var card    = $(this).closest('.ui.card.wish');
