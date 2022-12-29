@@ -32,6 +32,12 @@ $(function () {
         /** Show modal */
         wish_details
         .modal({
+            'onVisible' : function() {
+                /** Dirty hack to change the default display: block to flex. */
+                setTimeout(() => {
+                    $(this).css('display', '');
+                }, 1000);
+            },
             'onHide' : function(modal) {
                 wish_unset();
             },
