@@ -27,6 +27,7 @@ $(function () {
     $(document).on('click', '.ui.button.wish-details', function() {
         var wish_details_template = $('template#wish-details').clone(true, true);
         var wish_details          = wish_details_template.contents().filter(function() { return this.nodeType !== 3; });
+        var wish_details_size     = window.matchMedia('(max-width: 768px)').matches ? 'overlay fullscreen' : 'large';
 
         /** Show modal */
         wish_details
