@@ -2,7 +2,7 @@
  * Details
  */
 .ui.modal.wish-details.overlay.fullscreen {
-	display: flex !important;
+    display: flex !important;
     flex-direction: column;
     justify-content: space-between;
 
