@@ -15,8 +15,10 @@
 
 /** Image */
 .ui.modal.wish-details .wish-image {
+    --imageHeight: 40vh;
+
     width: 100%;
-    max-height: 40vh;
+    max-height: var(--imageHeight);
 }
 @media (min-width: 768px) {
     .ui.modal.wish-details .wish-image {
@@ -38,6 +40,9 @@
 /** Placeholder */
 .ui.modal.wish-details .wish-image .ui.placeholder {
     height: 100%;
+}
+.ui.modal.wish-details .wish-image .ui.placeholder .image:not(.header):not(.ui):not(.icon) {
+	height: var(--imageHeight);
 }
 
 /** Description */
