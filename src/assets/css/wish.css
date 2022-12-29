@@ -1,6 +1,16 @@
 /**
  * Details
  */
+.ui.modal.wish-details.overlay.fullscreen {
+	display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+}
+.ui.modal.wish-details.overlay.fullscreen > .content.content.content {
+	min-height: 0;
+}
 
 /** Image */
 .ui.modal.wish-details .wish-image,
