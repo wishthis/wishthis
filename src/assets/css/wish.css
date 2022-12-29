@@ -51,6 +51,7 @@
 
 /** Description */
 .ui.modal.wish-details .wish-image:has(.ui.placeholder) + .description {
+    width: 100%;
     padding-left: 2em;
 }
 
