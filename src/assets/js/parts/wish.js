@@ -33,7 +33,10 @@ $(function () {
         wish_details
         .modal({
             'onVisible' : function() {
-                /** Dirty hack to change the default display: block to display: flex. */
+                /**
+                 * Dirty hack to change the default `display: block;` to
+                 * `display: flex;` (using CSS).
+                 */
                 setTimeout(() => {
                     $(this).css('display', '');
                 }, 0);
