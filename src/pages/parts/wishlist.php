@@ -156,32 +156,34 @@ namespace wishthis;
 </div>
 
 <!-- Wishlist: Edit a wish -->
-<div class="ui modal wishlist-wish-edit">
-    <div class="header">
-        <?= __('Edit wish') ?>
-    </div>
-    <div class="content">
-        <div class="description">
-            <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
+<template id="wish-edit">
+    <div class="ui modal wishlist-wish-edit">
+        <div class="header">
+            <?= __('Edit wish') ?>
+        </div>
+        <div class="content">
+            <div class="description">
+                <p><?= __('If specified, wishthis will attempt to fetch all missing information from the URL.') ?></p>
 
-            <form class="ui form wishlist-wish-edit" method="POST">
-                <input type="hidden" name="wish_id" />
+                <form class="ui form wishlist-wish-edit" method="POST">
+                    <input type="hidden" name="wish_id" />
 
-                <?php include 'wish-add.php' ?>
+                    <?php include 'wish-add.php' ?>
 
-                <div class="ui error message"></div>
-            </form>
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui primary approve button" title="<?= __('Save') ?>">
+                <?= __('Save') ?>
+            </div>
+            <div class="ui deny button" title="<?= __('Cancel') ?>">
+                <?= __('Cancel') ?>
+            </div>
         </div>
     </div>
-    <div class="actions">
-        <div class="ui primary approve button" title="<?= __('Save') ?>">
-            <?= __('Save') ?>
-        </div>
-        <div class="ui deny button" title="<?= __('Cancel') ?>">
-            <?= __('Cancel') ?>
-        </div>
-    </div>
-</div>
+</template>
 
 <!-- Wish: Validate -->
 <div class="ui small modal validate">

@@ -1,3 +1,7 @@
+/**
+ * The currently selected wishlist.
+ */
+var wishlist;
 var wishlists = [];
 
 $(function () {
@@ -305,91 +309,6 @@ $(function () {
                 }
             });
         }
-    });
-
-    /**
-     * Edit Wish
-     */
-    $(document).on('click', '.wish-edit', function (event) {
-        validateURL = true;
-
-        /** Form */
-        var formEdit = $('.form.wishlist-wish-edit');
-        formEdit.addClass('loading');
-        formEdit.trigger('reset');
-        formEdit.find('.dropdown').dropdown('restore defaults');
-        formEdit.find('.item').tab('change tab', 'general');
-
-        /** Checkbox */
-        formEdit
-        .find('.checkbox')
-        .checkbox({
-            onChecked   : function() {
-                formEdit.find('.item[data-tab="product"]').removeClass('disabled');
-            },
-            onUnchecked : function() {
-                formEdit.find('.item[data-tab="product"]').addClass('disabled');
-            },
-        })
-        .checkbox('uncheck');
-
-        /** Get Wish */
-        var wishID = $(this).attr('data-id');
-
-        var wishFormData = new URLSearchParams(
-            {
-                'module' : 'wishes',
-                'page'   : 'api',
-
-                'wish_id' : wishID
-            }
-        );
-
-        fetch('/?' + wishFormData, {
-            method: 'GET'
-        })
-        .then(handleFetchError)
-        .then(handleFetchResponse)
-        .then(function(response) {
-            var wish = response.info;
-
-            /** General */
-            $('[name="wish_id"]').val(wish.id);
-            $('[name="wish_title"]').val(wish.title);
-            $('[name="wish_description"]').val(wish.description);
-            $('[name="wish_image"]').val(wish.image);
-            $('[name="wish_url"]').val(wish.url);
-            $('.ui.selection.dropdown.priority').dropdown('set selected', wish.priority);
-
-            if (wish.is_purchasable) {
-                formEdit.find('.checkbox').checkbox('check');
-            } else {
-                formEdit.find('.checkbox').checkbox('uncheck');
-            }
-
-            /** Product */
-            $('[name="wish_price"]').val(wish.price);
-        })
-        .catch(handleFetchCatch)
-        .finally(function() {
-            formEdit.removeClass('loading');
-        });
-
-        /** Save wish */
-        var modalWishlistWishEdit = $('.ui.modal.wishlist-wish-edit');
-
-        modalWishlistWishEdit.find('[name="wishlist_id"]').val($('.ui.dropdown.wishlists').dropdown('get value'));
-        modalWishlistWishEdit
-        .modal({
-            autoShow  : true,
-            onApprove : function (buttonSave) {
-                validateWishURL(formEdit, buttonSave, modalWishlistWishEdit, validateURL);
-
-                return false;
-            }
-        });
-
-        event.preventDefault();
     });
 
     /**

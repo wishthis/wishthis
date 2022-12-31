@@ -1,5 +1,7 @@
 const wish_button_mark_as_fulfilled = '.ui.button.wish-fulfilled';
 const wish_button_visit             = '.ui.button.wish-visit';
+const wish_button_options           = '.ui.button.wish-options';
+const wish_button_options_edit      = wish_button_options + ' .item.wish-edit';
 
 var wish;
 
@@ -13,6 +15,16 @@ function wish_set_to(wish_data) {
         .attr('href', wish.url)
         .removeClass('disabled');
     }
+
+    /**
+     * Options
+     */
+    $(wish_button_options)
+    .dropdown()
+    .removeClass('disabled');
+
+    /** Edit */
+    $(wish_button_options_edit).removeClass('disabled');
 }
 
 function wish_unset() {
@@ -37,9 +49,7 @@ $(function () {
                  * Dirty hack to change the default `display: block;` to
                  * `display: flex;` (using CSS).
                  */
-                setTimeout(() => {
-                    $(this).css('display', '');
-                }, 0);
+                setTimeout(() => { $(this).css('display', ''); }, 0);
             },
             'onHide' : function(modal) {
                 wish_unset();
@@ -128,6 +138,68 @@ $(function () {
             $(this).removeClass('disabled loading');
         });
     });
+    /** */
+
+    /**
+     * Options: Edit
+     */
+    $(document).on('click', wish_button_options_edit, function() {
+        var wish_edit_template = $('template#wish-edit').clone(true, true);
+        var wish_edit          = wish_edit_template.contents().filter(function() { return this.nodeType !== 3; });
+
+        /**
+         * Initialise
+         */
+        /** Checkbox */
+        const checkbox_is_purchasable = wish_edit.find('.ui.checkbox.wish-is-purchasable');
+
+        checkbox_is_purchasable
+        .checkbox({
+            onChecked   : function() {
+                wish_edit.find('.item[data-tab="product"]').removeClass('disabled');
+            },
+            onUnchecked : function() {
+                wish_edit.find('.item[data-tab="product"]').addClass('disabled');
+            },
+        });
+
+        /**
+         * Set values
+         */
+        /**
+         * Save global-scope wish since it will be unset when the wish-details
+         * modal is closed.
+         */
+        var wish_local = wish;
+
+        wish_edit.modal('show');
+
+        /** Initialise Tabs */
+        wish_edit.find('.item[data-tab]')
+        .tab();
+
+        /** General */
+        $('[name="wish_id"]').val(wish_local.id);
+        $('[name="wish_title"]').val(wish_local.title);
+        $('[name="wish_description"]').val(wish_local.description);
+        $('[name="wish_image"]').val(wish_local.image);
+        $('[name="wish_url"]').val(wish_local.url);
+        $('.ui.selection.dropdown.priority').dropdown('set selected', wish_local.priority);
+
+        if (wish_local.is_purchasable) {
+            checkbox_is_purchasable.checkbox('check');
+        } else {
+            checkbox_is_purchasable.checkbox('uncheck');
+        }
+
+        /** Product */
+        $('[name="wish_price"]').val(wish_local.price);
+    });
+    /** */
+
+    /**
+     * Options: Delete
+     */
     /** */
 
 });

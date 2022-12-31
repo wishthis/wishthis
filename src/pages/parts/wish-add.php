@@ -13,7 +13,7 @@ namespace wishthis;
     <a class="item disabled" data-tab="product"><?= __('Product') ?></a>
 </div>
 
-<div class="ui tab" data-tab="general">
+<div class="ui tab active" data-tab="general">
     <div class="ui two column grid">
         <div class="stackable row">
             <div class="column">
@@ -22,10 +22,8 @@ namespace wishthis;
                     <label><?= __('Title') ?></label>
 
                     <div class="ui input">
-                        <input type="text"
-                               name="wish_title"
-                               placeholder="<?= $wish->title ?? '' ?>"
-                               value="<?= $wish->title ?? '' ?>"
+                        <input type     ="text"
+                               name     ="wish_title"
                                maxlength="128"
                         />
                     </div>
@@ -35,7 +33,7 @@ namespace wishthis;
                     <label><?= __('Description') ?></label>
 
                     <div class="ui input">
-                        <textarea name="wish_description" placeholder="<?= $wish->description ?? '' ?>"><?= $wish->description ?? '' ?></textarea>
+                        <textarea name="wish_description"></textarea>
                     </div>
                 </div>
 
@@ -46,10 +44,8 @@ namespace wishthis;
                 <div class="field">
                     <label><?= __('URL') ?></label>
 
-                    <input type="url"
-                           name="wish_url"
-                           placeholder="<?= $wish->url ?? '' ?>"
-                           value="<?= $wish->url ?? '' ?>"
+                    <input type     ="url"
+                           name     ="wish_url"
                            maxlength="255"
                     />
                 </div>
@@ -58,16 +54,12 @@ namespace wishthis;
                     <label><?= __('Priority') ?></label>
 
                     <select class="ui selection clearable dropdown priority"
-                            name="wish_priority"
+                            name ="wish_priority"
                     >
                         <option value=""><?= __('Select priority') ?></option>
 
                         <?php foreach (Wish::$priorities as $priority => $item) { ?>
-                            <?php if (isset($wish->priority) && $wish->priority === $priority) { ?>
-                                <option value="<?= $priority ?>" selected><?= $item['name'] ?></option>
-                            <?php } else { ?>
-                                <option value="<?= $priority ?>"><?= $item['name'] ?></option>
-                            <?php } ?>
+                            <option value="<?= $priority ?>"><?= $item['name'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -75,10 +67,8 @@ namespace wishthis;
                 <div class="field">
                     <label><?= __('Image') ?></label>
 
-                    <input type="url"
-                           name="wish_image"
-                           placeholder="<?= $wish->image ?? '' ?>"
-                           value="<?= $wish->image ?? '' ?>"
+                    <input type     ="url"
+                           name     ="wish_image"
                            maxlength="255"
                     />
                 </div>
@@ -87,11 +77,10 @@ namespace wishthis;
                     <label><?= __('Properties') ?></label>
 
                     <div class="field">
-                        <div class="ui checkbox">
+                        <div class="ui checkbox wish-is-purchasable">
 
                             <input type="checkbox"
-                                name="wish_is_purchasable"
-                                <?= isset($wish->is_purchasable) && $wish->is_purchasable ? 'checked' : '' ?>
+                                   name="wish_is_purchasable"
                             />
                             <label><?= __('Is purchasable') ?></label>
                         </div>
@@ -111,10 +100,8 @@ namespace wishthis;
                 <div class="field">
                     <label><?= __('Price') ?></label>
 
-                    <input type="text"
-                           name="wish_price"
-                           placeholder="<?= $wish->price ?? '' ?>"
-                           value="<?= $wish->price ?? '' ?>"
+                    <input type     ="text"
+                           name     ="wish_price"
                            maxlength="9"
                     />
                 </div>
