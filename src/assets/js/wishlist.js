@@ -14,11 +14,11 @@ $(function() {
             closable: false,
             actions : [
                 {
-                    text : wishthis.strings.wishlist.warning.approve,
+                    text : wishthis.strings.modal.wishlist.warning.approve,
                     class: 'approve primary'
                 },
                 {
-                    text : wishthis.strings.wishlist.warning.deny,
+                    text : wishthis.strings.modal.wishlist.warning.deny,
                     class: 'deny'
                 }
             ],

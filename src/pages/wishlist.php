@@ -47,7 +47,7 @@ $page->navigation();
         /**
          * Warn the wishlist creator
          */
-        if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user && !empty($wishlist->wishes)) { ?>
+        if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
