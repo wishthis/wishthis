@@ -146,6 +146,7 @@ $(function () {
     $(document).on('click', wish_button_options_edit, function() {
         var wish_edit_template = $('template#wish-edit').clone(true, true);
         var wish_edit          = wish_edit_template.contents().filter(function() { return this.nodeType !== 3; });
+        var wish_edit_size     = window.matchMedia('(max-width: 768px)').matches ? 'overlay fullscreen' : 'large';
 
         /**
          * Initialise
@@ -172,7 +173,9 @@ $(function () {
          */
         var wish_local = wish;
 
-        wish_edit.modal('show');
+        wish_edit
+        .modal('show')
+        .addClass(wish_edit_size);
 
         /** Initialise Tabs */
         wish_edit.find('.item[data-tab]')
