@@ -6,9 +6,9 @@ const assets         = [
     '/src/assets/css/home.css',
     '/src/assets/css/install.css',
     '/src/assets/css/post.css',
+    '/src/assets/css/wish-card.css',
     '/src/assets/css/wish.css',
     '/src/assets/css/wishlists-saved.css',
-    '/src/assets/css/wishlists.css',
     '/src/assets/css/default/dark.css',
     '/src/assets/img/favicon.png',
     '/src/assets/img/favicon.svg',
@@ -43,6 +43,7 @@ const assets         = [
     '/src/assets/js/profile.js',
     '/src/assets/js/register.js',
     '/src/assets/js/wishlist.js',
+    '/src/assets/js/parts/wish.js',
     '/src/assets/js/parts/wishlist-filter-priority.js',
     '/src/assets/js/parts/wishlists.js',
     ];
@@ -62,3 +63,4 @@ self.addEventListener('fetch', fetchEvent => {
         })
     )
 })
+
