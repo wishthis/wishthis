@@ -182,7 +182,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wish_price
                     );',
                     array(
-                        'wish_id'    => $wish_id,
+                        'wish_id'    => $wish->id,
                         'wish_price' => $wish_price,
                     )
                 );
