@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<ruleset name="wishthis">
+<ruleset name="PSR12-WordPress">
     <description>PSR-12 coding standard with some WordPress flavour.</description>
 
      <!-- Include the whole PSR12 standard -->
@@ -13,6 +13,8 @@
     <rule ref='Generic.Formatting.MultipleStatementAlignment.NotSameWarning' />
     <rule ref='PEAR.Functions.FunctionCallSignature.CloseBracketLine' />
     <rule ref='PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket' />
+    <rule ref='WordPress.Arrays.ArrayIndentation.ItemNotAligned' />
+    <rule ref='WordPress.Arrays.CommaAfterArrayItem.NoComma' />
     <rule ref='WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned' />
     <rule ref='WordPress.PHP.StrictComparisons.LooseComparison' />
     <rule ref='WordPress.PHP.YodaConditions.NotYoda' />
