@@ -177,11 +177,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $database
         ->query(
             'UPDATE `wishlists`
-                SET `name` = :wishlist_name,
+                SET `name` = :wishlist_name
               WHERE `id`   = :wishlist_id',
             array(
                 'wishlist_name' => Sanitiser::getTitle($_PUT['wishlist_title']),
-                'wishlist_id'   => Sanitiser::getTitle($_PUT['wishlist_id']),
+                'wishlist_id'   => Sanitiser::getNumber($_PUT['wishlist_id']),
             )
         );
 

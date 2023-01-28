@@ -9,9 +9,11 @@ class Sanitiser
         return $text;
     }
 
-    public static function getNumber(mixed $valueToSanitise): float
+    public static function getNumber(mixed $valueToSanitise): float|int
     {
-        return floatval(preg_replace('/[^0-9\.]+/', '', $valueToSanitise));
+        $number = preg_replace('/[^0-9\.]+/', '', $valueToSanitise);
+
+        return $number;
     }
 
     public static function getPage(mixed $valueToSanitise): string
