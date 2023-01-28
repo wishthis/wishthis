@@ -107,7 +107,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $wishlist = new Wishlist($_GET['wishlist_id']);
             $options  = array(
-                'style' => $_GET['style'],
+                'style'        => $_GET['style'],
+                'placeholders' => array(),
             );
             $where    = array(
                 'wishlist' => '`wishlist` = ' . $wishlist->id,

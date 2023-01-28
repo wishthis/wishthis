@@ -29,7 +29,7 @@ class Database
         public string $password,
     ) {
         $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
-        $options = array();
+        $options = array('placeholders' => array());
 
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }

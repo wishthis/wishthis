@@ -57,7 +57,7 @@ class Wishlist
         // $this->wishes = $this->getWishes();
     }
 
-    public function getWishes($options = array()): array
+    public function getWishes(array $options = array('placeholders' => array())): array
     {
         global $database;
 
@@ -115,7 +115,7 @@ class Wishlist
         return $this->wishes;
     }
 
-    public function getCards(array $options = array()): string
+    public function getCards(array $options = array('placeholders' => array())): string
     {
         ob_start();
 
