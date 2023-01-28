@@ -501,7 +501,7 @@ class Page
                         'text' => __('Login'),
                         'url'  => Page::PAGE_LOGIN,
                         'icon' => 'sign in alternate',
-                    )
+                    ),
                 ),
             );
             $pages[$register] = array(
@@ -512,7 +512,7 @@ class Page
                         'text' => __('Register'),
                         'url'  => Page::PAGE_REGISTER,
                         'icon' => 'user plus alternate',
-                    )
+                    ),
                 ),
             );
         }
