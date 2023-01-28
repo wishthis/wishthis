@@ -174,6 +174,9 @@ $(function () {
         var wish_local = wish;
 
         wish_edit
+        .modal({
+            'onApprove' : wishSave,
+        })
         .modal('show')
         .addClass(wish_edit_size);
 
@@ -183,6 +186,7 @@ $(function () {
 
         /** General */
         $('[name="wish_id"]').val(wish_local.id);
+        $('[name="wishlist_id"]').val(wish_local.wishlist);
         $('[name="wish_title"]').val(wish_local.title);
         $('[name="wish_description"]').val(wish_local.description);
         $('[name="wish_image"]').val(wish_local.image);
@@ -197,8 +201,38 @@ $(function () {
 
         /** Product */
         $('[name="wish_price"]').val(wish_local.price);
+
+        /**
+         * Save values
+         */
+        function wishSave() {
+            const form_wish_edit = '.ui.form.wishlist-wish-edit';
+
+            $(form_wish_edit).addClass('loading');
+
+            var wish_data = new URLSearchParams(
+                new FormData(
+                    wish_edit.find(form_wish_edit)[0]
+                )
+            );
+
+            fetch('/api/wishes', {
+                'method' : 'POST',
+                'body'   : wish_data,
+            })
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(response) {
+                wish_edit.modal('hide');
+
+                $('body').toast({ message: wishthis.strings.toast.wish.update });
+
+                $('.ui.dropdown.filter.priority').api('query');
+            });
+
+            return false;
+        }
     });
-    /** */
 
     /**
      * Options: Delete

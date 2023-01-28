@@ -167,6 +167,7 @@ namespace wishthis;
 
                 <form class="ui form wishlist-wish-edit" method="POST">
                     <input type="hidden" name="wish_id" />
+                    <input type="hidden" name="wishlist_id" />
 
                     <?php include 'wish-add.php' ?>
 
