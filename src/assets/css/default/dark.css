@@ -359,7 +359,7 @@
     .ui.loading.form::before {
         background-color: rgba(17, 17, 17, 0.85);
     }
-    .ui.segment .ui.loading.form::before {
+    :is(.ui.segment, .ui.modal) .ui.loading.form::before {
         background-color: rgba(27, 28, 29, 0.85);
     }
 
