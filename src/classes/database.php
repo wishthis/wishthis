@@ -48,6 +48,10 @@ class Database
                     $statement->bindValue($name, $value, \PDO::PARAM_INT);
                     break;
 
+                case 'NULL':
+                    $statement->bindValue($name, $value, \PDO::PARAM_NULL);
+                    break;
+
                 default:
                     $statement->bindValue($name, $value, \PDO::PARAM_STR);
                     break;

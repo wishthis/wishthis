@@ -95,7 +95,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_description    = Sanitiser::getText($_POST['wish_description']);
             $wish_image          = Sanitiser::getURL($_POST['wish_image']);
             $wish_url            = Sanitiser::getURL($_POST['wish_url']);
-            $wish_priority       = !empty(Sanitiser::getNumber($_POST['wish_priority'])) ? Sanitiser::getNumber($_POST['wish_priority']) : 'NULL';
+            $wish_priority       = !empty(Sanitiser::getNumber($_POST['wish_priority'])) ? Sanitiser::getNumber($_POST['wish_priority']) : null;
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
             if (Wish::NO_IMAGE === $wish_image) {
@@ -136,10 +136,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)                                   ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
-                $wish_description = empty($wish_description)                             ? 'NULL' : '"' . $wish_description           . '"';
-                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? 'NULL' : '"' . $wish_image                 . '"';
-                $wish_url         = empty($wish_url)                                     ? 'NULL' : '"' . $wish_url                   . '"';
+                $wish_title       = empty($wish_title)                                   ? null : substr($wish_title, 0, 128);
+                $wish_description = empty($wish_description)                             ? null : $wish_description          ;
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image                ;
+                $wish_url         = empty($wish_url)                                     ? null : $wish_url                  ;
 
                 $database
                 ->query(
@@ -168,7 +168,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                  * Product
                  */
                 $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
-                            ? 'NULL'
+                            ? null
                             : Sanitiser::getNumber($_POST['wish_price']);
 
                 $database
@@ -222,10 +222,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)                                   ? 'NULL' : '"' . substr($wish_title, 0, 128) . '"';
-                $wish_description = empty($wish_description)                             ? 'NULL' : '"' . $wish_description           . '"';
-                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? 'NULL' : '"' . $wish_image                 . '"';
-                $wish_url         = empty($wish_url)                                     ? 'NULL' : '"' . $wish_url                   . '"';
+                $wish_title       = empty($wish_title)                                   ? null : substr($wish_title, 0, 128);
+                $wish_description = empty($wish_description)                             ? null : $wish_description          ;
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image                ;
+                $wish_url         = empty($wish_url)                                     ? null : $wish_url                  ;
 
                 $database
                 ->query(
