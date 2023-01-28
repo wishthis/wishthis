@@ -97,7 +97,7 @@ class Database
         ->query(
             'SELECT *
                FROM `INFORMATION_SCHEMA`.`COLUMNS`
-              WHERE `TABLE_NAME`  = :table_name,
+              WHERE `TABLE_NAME`  = :table_name
                 AND `COLUMN_NAME` = :column_name',
             array(
                 'table_name'  => $table_to_check,

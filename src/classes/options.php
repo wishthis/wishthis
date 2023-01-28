@@ -60,7 +60,7 @@ class Options
         if ($optionExists) {
             $this->database->query(
                 'UPDATE `options`
-                    SET `value` = :option_value,
+                    SET `value` = :option_value
                   WHERE `key`   = :option_key;',
                 array(
                     'option_value' => $value,

@@ -21,7 +21,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     ->query(
         'UPDATE `users`
             SET `last_login` = NOW()
-          WHERE `email`      = :user_email,
+          WHERE `email`      = :user_email
             AND `password`   = :user_password;',
         array(
             'user_email'    => $email,
@@ -33,7 +33,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     ->query(
         'SELECT *
            FROM `users`
-          WHERE `email`      = :user_email,
+          WHERE `email`      = :user_email
             AND `password`   = :user_password;',
         array(
             'user_email'    => $email,
