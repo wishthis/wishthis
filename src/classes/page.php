@@ -209,6 +209,11 @@ class Page
         /**
          * Development environment notice
          */
+        /**
+         * Temporarily deactivate this
+         *
+         * @see https://wishthis.online/blog/looking-for-testers
+         **//*
         if (
                defined('ENV_IS_DEV')
             && true === ENV_IS_DEV
@@ -219,6 +224,7 @@ class Page
                 __('Development environment')
             );
         }
+        */
 
         /**
          * Link preview
