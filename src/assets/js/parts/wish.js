@@ -44,6 +44,16 @@ $(function () {
         /** Show modal */
         wish_details
         .modal({
+            'onShow'    : function() {
+                var user_is_current = wishlist && wishlist.user === parseInt($('[name="user-id"]').val());
+
+                if (user_is_current) {
+                    $('.ui.button.wish-fulfil').remove();
+                } else {
+                    $('.ui.button.wish-fulfilled').remove();
+                    $('.ui.dropdown.wish-options').remove();
+                }
+            },
             'onVisible' : function() {
                 /**
                  * Dirty hack to change the default `display: block;` to
