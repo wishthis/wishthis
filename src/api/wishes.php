@@ -96,7 +96,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_image          = Sanitiser::getURL($_POST['wish_image']);
             $wish_url            = Sanitiser::getURL($_POST['wish_url']);
             $wish_priority       = !empty(Sanitiser::getNumber($_POST['wish_priority'])) ? Sanitiser::getNumber($_POST['wish_priority']) : 'NULL';
-            $wish_is_purchasable = isset($_POST['wish_is_purchasable']) ? 'true' : 'false';
+            $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
             if (Wish::NO_IMAGE === $wish_image) {
                 $wish_image = '';
@@ -150,7 +150,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             `image`          = :wish_image,
                             `url`            = :wish_url,
                             `priority`       = :wish_priority,
-                            `is_purchasable` = :wish_is_purchasable,
+                            `is_purchasable` = :wish_is_purchasable
                       WHERE `id`             = :wish_id',
                     array(
                         'wishlist_id'         => $wish->wishlist,

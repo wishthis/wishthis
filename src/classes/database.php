@@ -37,7 +37,24 @@ class Database
     public function query(string $query, array $placeholders = array()): \PDOStatement
     {
         $statement = $this->pdo->prepare($query, array(\PDO::FETCH_ASSOC));
-        $statement->execute($placeholders);
+
+        foreach ($placeholders as $name => $value) {
+            switch (gettype($value)) {
+                case 'boolean':
+                    $statement->bindValue($name, $value, \PDO::PARAM_BOOL);
+                    break;
+
+                case 'integer':
+                    $statement->bindValue($name, $value, \PDO::PARAM_INT);
+                    break;
+
+                default:
+                    $statement->bindValue($name, $value, \PDO::PARAM_STR);
+                    break;
+            }
+        }
+
+        $statement->execute();
 
         $this->lastInsertId = $this->pdo->lastInsertId();
 
