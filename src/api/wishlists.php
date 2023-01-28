@@ -89,7 +89,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             SET `notification_sent` = CURRENT_TIMESTAMP
                           WHERE `id` = :wishlist_id;',
                         array(
-                            'wishlist_id' = $wishlist['id'],
+                            'wishlist_id' => $wishlist['id'],
                         )
                     );
                 }
@@ -177,7 +177,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         ->query(
             'UPDATE `wishlists`
                 SET `name` = :wishlist_name,
-              WHERE `id`   = :wishlist_id'
+              WHERE `id`   = :wishlist_id',
             array(
                 'wishlist_name' => Sanitiser::getTitle($_PUT['wishlist_title']),
                 'wishlist_id'   => Sanitiser::getTitle($_PUT['wishlist_id']),
