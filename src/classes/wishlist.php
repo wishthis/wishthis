@@ -23,8 +23,7 @@ class Wishlist
         if (is_numeric($id_or_hash)) {
             $column = 'id';
         } elseif (is_string($id_or_hash)) {
-            $column     = 'hash';
-            $id_or_hash = '"' . $id_or_hash . '"';
+            $column = 'hash';
         }
 
         /**

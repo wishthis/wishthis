@@ -9,13 +9,13 @@
 namespace wishthis;
 
 $wishlist                                  = new Wishlist($_GET['hash']);
+$wishlist_user                             = User::getFromID($wishlist->user);
 $page                                      = new Page(__FILE__, $wishlist->getTitle());
 $page->stylesheets['wish']                 = 'src/assets/css/wish.css';
 $page->stylesheets['wish-card']            = 'src/assets/css/wish-card.css';
 $page->scripts['wish']                     = 'src/assets/js/parts/wish.js';
 $page->scripts['wishlist-filter-priority'] = 'src/assets/js/parts/wishlist-filter-priority.js';
 $page->scripts['wishlists']                = 'src/assets/js/parts/wishlists.js';
-$wishlist_user                             = User::getFromID($wishlist->user);
 
 if (!$wishlist->exists) {
     $page->errorDocument(404, $wishlist);
