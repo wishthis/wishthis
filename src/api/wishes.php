@@ -168,8 +168,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                  * Product
                  */
                 $wish_price = empty($_POST['wish_price']) || 'false' === $wish_is_purchasable
-                        ? 'NULL'
-                        : Sanitiser::getNumber($_POST['wish_price']);
+                            ? 'NULL'
+                            : Sanitiser::getNumber($_POST['wish_price']);
 
                 $database
                 ->query(
