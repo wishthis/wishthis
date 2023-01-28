@@ -93,7 +93,10 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$_SESSION['user']->isLog
     ->query(
         'SELECT *
            FROM `sessions`
-          WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+          WHERE `session` = :session;',
+        array(
+            'session' => $_COOKIE[COOKIE_PERSISTENT]
+        )
     )
     ->fetchAll();
 

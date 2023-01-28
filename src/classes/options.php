@@ -27,9 +27,14 @@ class Options
 
         try {
             $option = $this->database->query(
-                'SELECT * FROM `options`
-                 WHERE `key` = "' . Sanitiser::getOption($key) . '";'
-            )->fetch();
+                'SELECT *
+                   FROM `options`
+                  WHERE `key` = :option_key',
+                array(
+                    'option_key' => Sanitiser::getOption($key),
+                )
+            )
+            ->fetch();
 
             $value = $option['value'] ?? '';
         } catch (\Throwable $th) {
@@ -42,21 +47,37 @@ class Options
     public function setOption(string $key, string $value): void
     {
         $optionExists = 0 !== $this->database
-        ->query('SELECT *
-                   FROM `options`
-                  WHERE `key` = "' . $key . '";')
+        ->query(
+            'SELECT *
+               FROM `options`
+              WHERE `key` = :option_key;',
+            array(
+                'option_key' => $key,
+            )
+        )
         ->rowCount();
 
         if ($optionExists) {
-            $this->database->query('UPDATE `options`
-                                       SET `value` = "' . $value . '"
-                                     WHERE `key`   = "' . $key . '"
-                           ;');
+            $this->database->query(
+                'UPDATE `options`
+                    SET `value` = :option_value,
+                  WHERE `key`   = :option_key;',
+                array(
+                    'option_value' => $value,
+                    'option_key'   => $key,
+                )
+            );
         } else {
-            $this->database->query('INSERT INTO `options`
-                                   (`key`, `value`) VALUES
-                                   ("' . $key . '", "' . $value . '")
-                           ;');
+            $this->database->query(
+                'INSERT INTO `options`
+                    (`key`, `value`)
+                VALUES
+                    (:option_key, :option_value);',
+                array(
+                    'option_key'   => $key,
+                    'option_value' => $value,
+                )
+            );
         }
     }
 }

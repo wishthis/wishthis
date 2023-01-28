@@ -12,11 +12,12 @@ class Query extends Cache
      * Private
      */
     private \wishthis\Database $database;
+    private array $placeholders = array();
 
     /**
      * Public
      */
-    public function __construct(string $url, int $maxAge = \wishthis\Duration::YEAR)
+    public function __construct(string $url, array $placeholders = array(), int $maxAge = \wishthis\Duration::YEAR)
     {
         global $database;
 
@@ -33,7 +34,8 @@ class Query extends Cache
         $response = $this->exists() ? json_decode(file_get_contents($filepath), true) : array();
 
         if (true === $this->generateCache()) {
-            $pdoStatement = $this->database->query($this->url);
+            $pdoStatement = $this->database
+            ->query($this->url, $this->placeholders);
 
             if (false !== $pdoStatement) {
                 if (1 === $pdoStatement->rowCount()) {

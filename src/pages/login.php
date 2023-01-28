@@ -21,16 +21,24 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     ->query(
         'UPDATE `users`
             SET `last_login` = NOW()
-          WHERE `email`      = "' . $email    . '"
-            AND `password`   = "' . $password . '";'
+          WHERE `email`      = :user_email,
+            AND `password`   = :user_password;',
+        array(
+            'user_email'    => $email,
+            'user_password' => $password,
+        )
     );
 
     $fields = $database
     ->query(
         'SELECT *
            FROM `users`
-          WHERE `email`    = "' . $email . '"
-            AND `password` = "' . $password . '";'
+          WHERE `email`      = :user_email,
+            AND `password`   = :user_password;',
+        array(
+            'user_email'    => $email,
+            'user_password' => $password,
+        )
     )
     ->fetch();
 
@@ -67,10 +75,15 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
                         `session`,
                         `expires`
                     ) VALUES (
-                        ' . $_SESSION['user']->id . ',
-                        "' . session_id() . '",
-                        "' . date('Y-m-d H:i:s', $sessionExpires) . '"
-                    );'
+                        :user_id,
+                        :session_id,
+                        :session_expires
+                    );',
+                    array(
+                        'user_id'         => $_SESSION['user']->id,
+                        'session_id'      => session_id(),
+                        'session_expires' => date('Y-m-d H:i:s', $sessionExpires),
+                    )
                 );
             } else {
                 $database->query(
@@ -78,9 +91,13 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
                         `user`,
                         `session`
                     ) VALUES (
-                         ' . $_SESSION['user']->id . ',
-                        "' . session_id() . '"
-                    );'
+                        :user_id,
+                        :session_id
+                    );',
+                    array(
+                        'user_id'    => $_SESSION['user']->id,
+                        'session_id' => session_id(),
+                    )
                 );
             }
         }
@@ -108,7 +125,10 @@ if (isset($_POST['reset'], $_POST['email'])) {
     ->query(
         'SELECT *
            FROM `users`
-          WHERE `email` = "' . Sanitiser::getEmail($_POST['email']) . '";'
+          WHERE `email` = :user_email;',
+        array(
+            'user_email' => Sanitiser::getEmail($_POST['email']),
+        )
     );
 
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
@@ -120,9 +140,13 @@ if (isset($_POST['reset'], $_POST['email'])) {
         $database
         ->query(
             'UPDATE `users`
-                SET `password_reset_token`       = "' . $token . '",
-                    `password_reset_valid_until` = "' . date('Y-m-d H:i:s', $validUntil) . '"
-              WHERE `id` = ' . $user->id . ';'
+                SET `password_reset_token`       = :user_password_reset_token,
+                    `password_reset_valid_until` = :user_reset_valid_until
+              WHERE `id` = ' . $user->id . ';',
+            array(
+                'user_password_reset_token' => $token,
+                'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),
+            )
         );
 
         $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');

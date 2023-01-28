@@ -23,7 +23,10 @@ class User
         ->query(
             'SELECT *
                FROM `users`
-              WHERE `id` = ' . $user_id
+              WHERE `id` = :user_id',
+            array(
+                'user_id' => $user_id,
+            )
         );
 
         if (false !== $userQuery) {
@@ -139,7 +142,10 @@ class User
         ->query(
             'SELECT *
                FROM `wishlists`
-              WHERE `user` = ' . $this->id . ';'
+              WHERE `user` = :user_id;',
+            array(
+                'user_id' => $this->id,
+            )
         )
         ->fetchAll();
 
@@ -163,7 +169,10 @@ class User
                     `w`.`hash`
                FROM `wishlists_saved` `ws`
                JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
-              WHERE `ws`.`user` = ' . $this->id . ';'
+              WHERE `ws`.`user` = :user_id;',
+            array(
+                'user_id' => $this->id,
+            )
         )
         ->fetchAll();
 
@@ -190,7 +199,10 @@ class User
             $persistent = $database
             ->query(
                 'DELETE FROM `sessions`
-                       WHERE `session` = "' . $_COOKIE[COOKIE_PERSISTENT] . '";'
+                       WHERE `session` = :session;',
+                array(
+                    'session' => $_COOKIE[COOKIE_PERSISTENT],
+                )
             );
         }
 

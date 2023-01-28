@@ -34,7 +34,10 @@ class Wishlist
         ->query(
             'SELECT *
                FROM `wishlists`
-              WHERE `' . $column . '` = ' . $id_or_hash . ';'
+              WHERE `' . $column . '` = :id_or_hash;',
+            array(
+                'id_or_hash' => $id_or_hash,
+            )
         )
         ->fetch();
 
@@ -54,15 +57,19 @@ class Wishlist
         // $this->wishes = $this->getWishes();
     }
 
-    public function getWishes($sql = array()): array
+    public function getWishes($options = array()): array
     {
         global $database;
 
-        $SELECT    = isset($sql['SELECT'])    ? $sql['SELECT']    : Wish::SELECT;
-        $FROM      = isset($sql['FROM'])      ? $sql['FROM']      : Wish::FROM;
-        $LEFT_JOIN = isset($sql['LEFT_JOIN']) ? $sql['LEFT_JOIN'] : Wish::LEFT_JOIN;
-        $WHERE     = isset($sql['WHERE'])     ? $sql['WHERE']     : '`wishlist` = ' . $this->id;
-        $ORDER_BY  = isset($sql['ORDER_BY'])  ? $sql['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
+        if (!isset($options['WHERE'])) {
+            $options['placeholders']['wishlist_id'] = $this->id;
+        }
+
+        $SELECT    = isset($options['SELECT'])    ? $options['SELECT']    : Wish::SELECT;
+        $FROM      = isset($options['FROM'])      ? $options['FROM']      : Wish::FROM;
+        $LEFT_JOIN = isset($options['LEFT_JOIN']) ? $options['LEFT_JOIN'] : Wish::LEFT_JOIN;
+        $WHERE     = isset($options['WHERE'])     ? $options['WHERE']     : '`wishlist` = :wishlist_id';
+        $ORDER_BY  = isset($options['ORDER_BY'])  ? $options['ORDER_BY']  : '`priority` DESC, `url` ASC, `title` ASC';
 
         /** Default to showing available wishes */
         $wish_status = ' AND (
@@ -92,11 +99,12 @@ class Wishlist
 
         $this->wishes = $database
         ->query(
-            'SELECT ' . $SELECT . '
-               FROM ' . $FROM . '
-          LEFT JOIN ' . $LEFT_JOIN . '
-              WHERE ' . $WHERE . '
-           ORDER BY ' . $ORDER_BY . ';'
+            '  SELECT ' . $SELECT . '
+                FROM ' . $FROM . '
+            LEFT JOIN ' . $LEFT_JOIN . '
+                WHERE ' . $WHERE . '
+            ORDER BY ' . $ORDER_BY . ';',
+            $options['placeholders']
         )
         ->fetchAll();
 

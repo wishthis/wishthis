@@ -16,7 +16,7 @@ class Wish
     public const SELECT    = '`wishes`.*, `products`.`price`';
     public const FROM      = '`wishes`';
     public const LEFT_JOIN = '`products` ON `wishes`.`id` = `products`.`wish`';
-    public const WHERE     = '`wishes`.`id` = %d;';
+    public const WHERE     = '`wishes`.`id` = :wish_id;';
 
     public const NO_IMAGE = '/src/assets/img/no-image.svg';
 
@@ -80,10 +80,13 @@ class Wish
             $id      = $idOrColumns;
             $columns = $database
             ->query(
-                'SELECT ' . self::SELECT    . '
-                   FROM ' . self::FROM      . '
-              LEFT JOIN ' . self::LEFT_JOIN . '
-                  WHERE ' . sprintf(self::WHERE, $id)
+                '  SELECT ' . self::SELECT    . '
+                     FROM ' . self::FROM      . '
+                LEFT JOIN ' . self::LEFT_JOIN . '
+                    WHERE ' . self::WHERE,
+                array(
+                    'wish_id' => $id,
+                )
             )
             ->fetch();
         } elseif (is_array($idOrColumns)) {

@@ -17,7 +17,10 @@ if (isset($_POST['email'])) {
     ->query(
         'SELECT *
            FROM `users`
-          WHERE `email` = "' . $email . '";'
+          WHERE `email` = :user_email;',
+        array(
+            'user_email' => $email,
+        )
     );
 
     $success = false !== $userQuery;

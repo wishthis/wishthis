@@ -32,7 +32,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             'column' => 'email',
             'key'    => 'user-email',
             'label'  => __('Email'),
-        )
+        ),
     );
     $loginRequired    = false;
 
@@ -150,7 +150,10 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         ->query(
             'UPDATE `users`
                 SET ' . implode(',', $set) . '
-              WHERE `id` = ' . Sanitiser::getNumber($_POST['user-id'])
+              WHERE `id` = :user_id',
+            array(
+                'user_id' => Sanitiser::getNumber($_POST['user-id']),
+            )
         );
     }
 

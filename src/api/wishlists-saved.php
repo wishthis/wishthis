@@ -29,7 +29,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ->query(
                 'SELECT *
                    FROM `wishlists_saved`
-                  WHERE `wishlist` = ' . Sanitiser::getNumber($_POST['wishlist']) . ';'
+                  WHERE `wishlist` = :wishlist_id',
+                array(
+                    'wishlist_id' => Sanitiser::getNumber($_POST['wishlist'])
+                )
             )
             ->fetch();
 
@@ -38,7 +41,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $database
                 ->query(
                     'DELETE FROM `wishlists_saved`
-                           WHERE `wishlist` = ' . Sanitiser::getNumber($_POST['wishlist']) . ';'
+                           WHERE `wishlist` = :wishlist_id',
+                    array(
+                        'wishlist_id' => Sanitiser::getNumber($_POST['wishlist'])
+                    )
                 );
 
                 $response['action'] = 'deleted';
@@ -50,9 +56,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         `user`,
                         `wishlist`
                     ) VALUES (
-                        ' . $_SESSION['user']->id . ',
-                        ' . Sanitiser::getNumber($_POST['wishlist']) . '
-                    );'
+                        :user_id,
+                        :wishlist_id
+                    );',
+                    array(
+                        'user_id'     => $_SESSION['user']->id,
+                        'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
+                    )
                 );
 
                 $response['action'] = 'created';

@@ -16,8 +16,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Create
              */
-            $user_id   = Sanitiser::getNumber($_SESSION['user']->id);
-            $wish_name = Sanitiser::getTitle($_POST['wishlist-name']);
+            $user_id       = Sanitiser::getNumber($_SESSION['user']->id);
+            $wishlist_name = Sanitiser::getTitle($_POST['wishlist-name']);
+            $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
             $database->query(
                 'INSERT INTO `wishlists` (
@@ -25,10 +26,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     `name`,
                     `hash`
                 ) VALUES (
-                     ' . $user_id . ',
-                    "' . $wish_name . '",
-                    "' . sha1(time() . $user_id . $wish_name) . '"
-                );'
+                    :user_id,
+                    :wishlist_name,
+                    :wishlist_hash
+                );',
+                array(
+                    'user_id'       => $user_id,
+                    'wishlist_name' => $wishlist_name,
+                    'wishlist_hash' => $wishlist_hash,
+                )
             );
 
             $response['data'] = array(
@@ -38,15 +44,18 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Request more wishes
              */
-            $wishlistID = Sanitiser::getNumber($_POST['wishlist-id']);
+            $wishlist_id = Sanitiser::getNumber($_POST['wishlist-id']);
 
             /** Get last notification time */
             $wishlistQuery = $database
             ->query(
                 'SELECT *
                    FROM `wishlists`
-                  WHERE `id` = ' . $wishlistID . '
-                    AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);'
+                  WHERE `id` = :wishlist_id
+                    AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);',
+                array(
+                    'wishlist_id' => $wishlist_id,
+                )
             );
 
             $wishlist = $wishlistQuery->fetch();
@@ -78,7 +87,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     ->query(
                         'UPDATE `wishlists`
                             SET `notification_sent` = CURRENT_TIMESTAMP
-                          WHERE `id` = ' . $wishlist['id'] . ';'
+                          WHERE `id` = :wishlist_id;',
+                        array(
+                            'wishlist_id' = $wishlist['id'],
+                        )
                     );
                 }
             }
@@ -164,8 +176,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $database
         ->query(
             'UPDATE `wishlists`
-                SET `name` = "' . Sanitiser::getTitle($_PUT['wishlist_title']) . '"
-              WHERE `id`   =  ' . Sanitiser::getNumber($_PUT['wishlist_id']) . ';'
+                SET `name` = :wishlist_name,
+              WHERE `id`   = :wishlist_id'
+            array(
+                'wishlist_name' => Sanitiser::getTitle($_PUT['wishlist_title']),
+                'wishlist_id'   => Sanitiser::getTitle($_PUT['wishlist_id']),
+            )
         );
 
         $response['success'] = true;
@@ -176,7 +192,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $database->query(
             'DELETE FROM `wishlists`
-                   WHERE `id` = ' . Sanitiser::getNumber($_DELETE['wishlist_id']) . ';'
+                   WHERE `id` = :wishlist_id;',
+            array(
+                'wishlist_id' => Sanitiser::getNumber($_DELETE['wishlist_id']),
+            )
         );
 
         $response['success'] = true;

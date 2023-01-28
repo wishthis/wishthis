@@ -32,6 +32,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     $count = new Cache\Query(
                         'SELECT COUNT(`id`) AS "count"
                            FROM `' . $table . '`;',
+                        array(),
                         Duration::DAY
                     );
 

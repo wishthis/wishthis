@@ -16,7 +16,12 @@ $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
 $page = new Page(__FILE__, $pageTitle);
 
 if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
-    $users      = $database->query('SELECT * FROM `users`;')->fetchAll();
+    $users      = $database
+    ->query(
+        'SELECT *
+           FROM `users`;'
+    )
+    ->fetchAll();
     $emails     = array_map(
         function ($user) {
             return $user['email'];
@@ -67,8 +72,12 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
             $userQuery = $database
             ->query(
                 'SELECT * FROM `users`
-                  WHERE `email`                = "' . $user_email . '"
-                    AND `password_reset_token` = "' . $user_token . '";'
+                  WHERE `email`                = :user_email,
+                    AND `password_reset_token` = :user_password_reset_token',
+                array(
+                    'user_email'                => $user_email,
+                    'user_password_reset_token' => $user_token,
+                )
             );
 
             if (false !== $userQuery) {
@@ -78,10 +87,14 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     $database
                     ->query(
                         'UPDATE `users`
-                                SET `password`                   = "' . User::generatePassword($_POST['password']) . '",
+                                SET `password`                   = :user_password,
                                     `password_reset_token`       = NULL,
                                     `password_reset_valid_until` = NULL
-                              WHERE `id`                         = ' . $user->id . ';'
+                              WHERE `id`                         = :user_id;',
+                        array(
+                            'user_password' => User::generatePassword($_POST['password']),
+                            'user_id'       => $user->id,
+                        )
                     );
 
                     $page->messages[] = Page::success(
@@ -105,10 +118,14 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         `password`,
                         `power`
                     ) VALUES (
-                        "' . $user_email . '",
-                        "' . User::generatePassword($_POST['password']) . '",
+                        :user_email,
+                        :user_password,
                         100
-                    );'
+                    );',
+                    array(
+                        'user_email'    => $user_email,
+                        'user_password' => User::generatePassword($_POST['password']),
+                    )
                 );
                 $userRegistered = true;
             } else {
@@ -123,9 +140,13 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                             `email`,
                             `password`
                         ) VALUES (
-                            "' . $user_email . '",
-                            "' . User::generatePassword($_POST['password']) . '"
-                        );'
+                            :user_email,
+                            :user_password
+                        );',
+                        array(
+                            'user_email'    => $user_email,
+                            'user_password' => User::generatePassword($_POST['password']),
+                        )
                     );
                     $userRegistered = true;
 
@@ -138,8 +159,9 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          * Insert default wishlist
          */
         if ($userRegistered) {
-            $userID       = $database->lastInsertID();
-            $wishlistName = Sanitiser::getTitle(__('My hopes and dreams'));
+            $user_id       = $database->lastInsertID();
+            $wishlist_name = Sanitiser::getTitle(__('My hopes and dreams'));
+            $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
             $database
             ->query(
@@ -148,10 +170,15 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     `name`,
                     `hash`
                 ) VALUES (
-                    ' . $userID . ',
-                    "' . $wishlistName . '",
-                    "' . sha1(time() . $userID . $wishlistName) . '"
-                );'
+                    :wishlist_user_id,
+                    :wishlist_name,
+                    :wishlist_hash
+                );',
+                array(
+                    'wishlist_user_id' => $user_id,
+                    'wishlist_name'    => $wishlist_name,
+                    'wishlist_hash'    => $wishlist_hash,
+                )
             );
         }
     } else {

@@ -34,12 +34,10 @@ class Database
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query): \PDOStatement
+    public function query(string $query, array $placeholders = array()): \PDOStatement
     {
-        $statement = $this->pdo->query(
-            $query,
-            \PDO::FETCH_ASSOC
-        );
+        $statement = $this->pdo->prepare($query, array(\PDO::FETCH_ASSOC));
+        $statement->execute($placeholders);
 
         $this->lastInsertId = $this->pdo->lastInsertId();
 
@@ -78,8 +76,12 @@ class Database
         ->query(
             'SELECT *
                FROM `INFORMATION_SCHEMA`.`COLUMNS`
-              WHERE TABLE_NAME  = "' . $table_to_check . '"
-                AND COLUMN_NAME = "' . $column_to_check . '"'
+              WHERE `TABLE_NAME`  = :table_name,
+                AND `COLUMN_NAME` = :column_name',
+            array(
+                'table_name'  => $table_to_check,
+                'column_name' => $column_to_check,
+            )
         )
         ->fetch();
         $exists = false !== $result;

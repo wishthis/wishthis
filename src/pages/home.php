@@ -43,9 +43,12 @@ $page->navigation();
                                      FROM `wishes`
                                      JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
                                      JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
-                                    WHERE `users`.`id` = ' . $_SESSION['user']->id . '
+                                    WHERE `users`.`id` = :user_id
                                  ORDER BY `wishes`.`edited` DESC
-                                    LIMIT 1;'
+                                    LIMIT 1;',
+                                array(
+                                    'user_id' => $_SESSION['user']->id,
+                                )
                             );
 
                             if (false !== $lastWishlistQuery && 1 === $lastWishlistQuery->rowCount()) {
