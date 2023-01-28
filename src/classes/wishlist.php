@@ -44,7 +44,11 @@ class Wishlist
             $this->exists = true;
 
             foreach ($columns as $key => $value) {
-                $this->$key = $value;
+                if ('string' === gettype($value)) {
+                    $this->$key = Sanitiser::render($value);
+                } else {
+                    $this->$key = $value;
+                }
             }
         } else {
             return;
