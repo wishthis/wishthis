@@ -52,6 +52,13 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
+                                    echo __('Allow customising priority colours');
+                                ?>
+                                <a href="https://github.com/grandeljay/wishthis/issues/34" target="_blank">#34</a>
+                            </li>
+                            <li>
+                                <?php
+                                    /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Filter by price');
                                 ?>
                                 <a href="https://github.com/grandeljay/wishthis/issues/43" target="_blank">#43</a>
@@ -66,9 +73,9 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
-                                    echo __('Allow customising priority colours');
+                                    echo __('Delete account option');
                                 ?>
-                                <a href="https://github.com/grandeljay/wishthis/issues/34" target="_blank">#34</a>
+                                <a href="https://github.com/grandeljay/wishthis/issues/69" target="_blank">#69</a>
                             </li>
                             <li>
                                 <?php
