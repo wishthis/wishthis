@@ -177,6 +177,12 @@ $page->navigation();
                                         echo  __('Fix background and colour when opening the mobile menu');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Marking wish as fulfilled');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
