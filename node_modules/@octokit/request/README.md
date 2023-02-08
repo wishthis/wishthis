@@ -3,7 +3,7 @@
 > Send parameterized requests to GitHub’s APIs with sensible defaults in browsers and Node
 
 [![@latest](https://img.shields.io/npm/v/@octokit/request.svg)](https://www.npmjs.com/package/@octokit/request)
-[![Build Status](https://github.com/octokit/request.js/workflows/Test/badge.svg)](https://github.com/octokit/request.js/actions?query=workflow%3ATest+branch%3Amaster)
+[![Build Status](https://github.com/octokit/request.js/workflows/Test/badge.svg)](https://github.com/octokit/request.js/actions?query=workflow%3ATest+branch%3Amain)
 
 `@octokit/request` is a request library for browsers & node that makes it easier
 to interact with [GitHub’s REST API](https://developer.github.com/v3/) and
@@ -71,10 +71,10 @@ request("POST /repos/{owner}/{repo}/issues/{number}/labels", {
 Browsers
 </th><td width=100%>
 Load <code>@octokit/request</code> directly from <a href="https://cdn.skypack.dev">cdn.skypack.dev</a>
-        
+
 ```html
 <script type="module">
-import { request } from "https://cdn.skypack.dev/@octokit/request";
+  import { request } from "https://cdn.skypack.dev/@octokit/request";
 </script>
 ```
 
