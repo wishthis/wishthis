@@ -297,13 +297,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_status = Sanitiser::getStatus($_PUT['wish_status']);
             $wish_id     = Sanitiser::getNumber($_PUT['wish_id']);
 
-            if (Wish::STATUS_TEMPORARY === $status) {
-                $status = time();
+            if (Wish::STATUS_TEMPORARY === $wish_status) {
+                $wish_status = time();
             }
 
             $database->query(
                 'UPDATE `wishes`
-                    SET `status` = :wish_status,
+                    SET `status` = :wish_status
                   WHERE `id`     = :wish_id',
                 array(
                     'wish_status' => $wish_status,

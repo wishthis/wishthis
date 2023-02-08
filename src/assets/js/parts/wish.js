@@ -1,4 +1,5 @@
 const wish_button_mark_as_fulfilled = '.ui.button.wish-fulfilled';
+const wish_button_fulfil_wish       = '.ui.button.wish-fulfil';
 const wish_button_visit             = '.ui.button.wish-visit';
 const wish_button_options           = '.ui.button.wish-options';
 const wish_button_options_edit      = wish_button_options + ' .item.wish-edit';
@@ -9,11 +10,14 @@ function wish_set_to(wish_data) {
     wish = wish_data;
 
     $(wish_button_mark_as_fulfilled).removeClass('disabled');
+    $(wish_button_fulfil_wish).removeClass('disabled');
 
     if (wish.url) {
         $(wish_button_visit)
         .attr('href', wish.url)
         .removeClass('disabled');
+    } else {
+        $(wish_button_visit).remove();
     }
 
     /**
@@ -124,6 +128,36 @@ $(function () {
      * Mark as fulfilled
      */
     $(document).on('click', wish_button_mark_as_fulfilled, function() {
+        const modal_wish_details = $(this).closest('.ui.modal');
+        const mark_as_fulfilled  = {
+            'method' : 'PUT',
+            'body'   : new URLSearchParams({
+                'wish_id'     : wish.id,
+                'wish_status' : wishthis.wish.status.fulfilled,
+            }),
+        }
+
+        $(this).addClass('disabled loading');
+
+        fetch('/api/wishes', mark_as_fulfilled)
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            modal_wish_details.modal('hide');
+
+            $('.ui.dropdown.filter.priority').api('query');
+        })
+        .catch(handleFetchCatch)
+        .finally(function() {
+            $(this).removeClass('disabled loading');
+        });
+    });
+    /** */
+
+    /**
+     * Fulfill wish
+     */
+    $(document).on('click', wish_button_fulfil_wish, function() {
         const modal_wish_details = $(this).closest('.ui.modal');
         const mark_as_fulfilled  = {
             'method' : 'PUT',

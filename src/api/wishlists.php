@@ -142,6 +142,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
             } else {
                 http_response_code(404);
             }
+        } elseif (isset($_GET['wishlist_hash'])) {
+            /**
+             * Get wishlist by hash
+             */
+            $wishlist = new Wishlist($_GET['wishlist_hash']);
+
+            if ($wishlist->exists) {
+                $response['results'] = $wishlist;
+            } else {
+                http_response_code(404);
+            }
         } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
             /**
              * Get user wishlists

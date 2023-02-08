@@ -33,6 +33,18 @@ $(function() {
     }
 
     /**
+     * Get wishlist by hash
+     */
+    if (!wishlist && wishthis.$_GET.hash) {
+        fetch('/api/wishlists/' + wishthis.$_GET.hash, { method: 'GET' })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+           wishlist = response.results;
+        });
+    }
+
+    /**
      * Fulfil wish
      */
     $(document).on('click', '.ui.button.fulfil', function() {
