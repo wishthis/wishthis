@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "composer/ca-bundle",
-            "version": "1.3.4",
-            "version_normalized": "1.3.4.0",
+            "version": "1.3.5",
+            "version_normalized": "1.3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "69098eca243998b53eed7a48d82dedd28b447cd5"
+                "reference": "74780ccf8c19d6acb8d65c5f39cd72110e132bbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/69098eca243998b53eed7a48d82dedd28b447cd5",
-                "reference": "69098eca243998b53eed7a48d82dedd28b447cd5",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/74780ccf8c19d6acb8d65c5f39cd72110e132bbd",
+                "reference": "74780ccf8c19d6acb8d65c5f39cd72110e132bbd",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
                 "symfony/phpunit-bridge": "^4.2 || ^5",
                 "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
             },
-            "time": "2022-10-12T12:08:29+00:00",
+            "time": "2023-01-11T08:27:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -61,7 +61,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.3.4"
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.5"
             },
             "funding": [
                 {
@@ -81,17 +81,17 @@
         },
         {
             "name": "embed/embed",
-            "version": "v4.4.6",
-            "version_normalized": "4.4.6.0",
+            "version": "v4.4.7",
+            "version_normalized": "4.4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/Embed.git",
-                "reference": "9cb2dff5c82201bbf653b7396d533d1914ff4517"
+                "reference": "72ea7eb8226008dd10834bc0c9becc708f7a7871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/9cb2dff5c82201bbf653b7396d533d1914ff4517",
-                "reference": "9cb2dff5c82201bbf653b7396d533d1914ff4517",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/72ea7eb8226008dd10834bc0c9becc708f7a7871",
+                "reference": "72ea7eb8226008dd10834bc0c9becc708f7a7871",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
             "suggest": {
                 "symfony/css-selector": "If you want to get elements using css selectors"
             },
-            "time": "2022-10-02T15:13:01+00:00",
+            "time": "2022-12-12T14:45:19+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -153,7 +153,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/oscarotero/Embed/issues",
-                "source": "https://github.com/oscarotero/Embed/tree/v4.4.6"
+                "source": "https://github.com/oscarotero/Embed/tree/v4.4.7"
             },
             "funding": [
                 {
@@ -506,17 +506,17 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.112",
-            "version_normalized": "1.2.112.0",
+            "version": "v1.2.113",
+            "version_normalized": "1.2.113.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "2c555ce35a07a5c1c808cee7d5bb52c41a4c7b2f"
+                "reference": "6710b75871da2b718550c2bc33388315a3b20151"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/2c555ce35a07a5c1c808cee7d5bb52c41a4c7b2f",
-                "reference": "2c555ce35a07a5c1c808cee7d5bb52c41a4c7b2f",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/6710b75871da2b718550c2bc33388315a3b20151",
+                "reference": "6710b75871da2b718550c2bc33388315a3b20151",
                 "shasum": ""
             },
             "require": {
@@ -525,7 +525,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^4.8|^5.5|^6.5|^9.4"
             },
-            "time": "2022-10-05T21:52:44+00:00",
+            "time": "2023-02-02T21:01:40+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -555,7 +555,7 @@
             ],
             "support": {
                 "issues": "https://github.com/JayBizzle/Crawler-Detect/issues",
-                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.2.112"
+                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.2.113"
             },
             "install-path": "../jaybizzle/crawler-detect"
         },
@@ -671,17 +671,17 @@
         },
         {
             "name": "oscarotero/html-parser",
-            "version": "v0.1.6",
-            "version_normalized": "0.1.6.0",
+            "version": "v0.1.7",
+            "version_normalized": "0.1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/html-parser.git",
-                "reference": "b61e92f634d0dc184339d24630a6968d3ac64ded"
+                "reference": "0c5b619bdc7ac061f06a667d913e2af708ee3231"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/html-parser/zipball/b61e92f634d0dc184339d24630a6968d3ac64ded",
-                "reference": "b61e92f634d0dc184339d24630a6968d3ac64ded",
+                "url": "https://api.github.com/repos/oscarotero/html-parser/zipball/0c5b619bdc7ac061f06a667d913e2af708ee3231",
+                "reference": "0c5b619bdc7ac061f06a667d913e2af708ee3231",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +691,7 @@
                 "friendsofphp/php-cs-fixer": "^2.11",
                 "phpunit/phpunit": "^8.0"
             },
-            "time": "2020-11-19T17:43:46+00:00",
+            "time": "2022-12-17T09:48:58+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -721,7 +721,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/oscarotero/html-parser/issues",
-                "source": "https://github.com/oscarotero/html-parser/tree/v0.1.6"
+                "source": "https://github.com/oscarotero/html-parser/tree/v0.1.7"
             },
             "install-path": "../oscarotero/html-parser"
         },

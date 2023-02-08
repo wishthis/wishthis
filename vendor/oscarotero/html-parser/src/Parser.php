@@ -26,7 +26,7 @@ class Parser
         $detected = $encoding ?? mb_detect_encoding($html);
         
         if ($detected) {
-            $html = mb_convert_encoding($html, 'HTML-ENTITIES', $detected);
+            $html = mb_encode_numericentity($html, [0x80, 0xFFFFFF, 0, -1], $detected);
         }
 
         $document = self::createDOMDocument($html);
