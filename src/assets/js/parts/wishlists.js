@@ -312,67 +312,6 @@ $(function () {
     });
 
     /**
-     * Delete Wish
-     */
-    $(document).on('click', '.wish-delete', function () {
-        var buttonDelete = $(this);
-        var card         = buttonDelete.closest('.ui.card');
-        var column       = card.closest('.column');
-        var modalDefault = $('.ui.modal.default');
-
-        modalDefault
-        .modal({
-            title    : wishthis.strings.modal.wish.delete.title,
-            content  : wishthis.strings.modal.wish.delete.content,
-            class    : 'tiny',
-            actions  : [
-                {
-                    text : wishthis.strings.modal.wish.delete.approve,
-                    class: 'approve primary'
-                },
-                {
-                    text: wishthis.strings.modal.wish.delete.deny
-                }
-            ],
-            autoShow : true,
-            onApprove: function (buttonApprove) {
-                buttonApprove.addClass('loading');
-
-                /**
-                 * Delete wish
-                 */
-                buttonDelete.api({
-                    'action'     : 'delete wish',
-                    'method'     : 'DELETE',
-                    'beforeSend' : function (settings) {
-                        var wish_id = card.attr('data-id');
-
-                        settings.urlData.wishid = wish_id;
-
-                        console.log(wish_id);
-
-                        return settings;
-                    },
-                    'on'         : 'now',
-                    'onSuccess'  : function () {
-                        column.fadeOut(800);
-
-                        $('body').toast({ message: wishthis.strings.toast.wish.delete });
-
-                        modalDefault.modal('hide');
-
-                        setTimeout(() => {
-                            $('.ui.dropdown.filter.priority').api('query');
-                        }, 800);
-                    },
-                });
-
-                return false;
-            }
-        });
-    });
-
-    /**
      * Add wish
      */
     $(document).on('click', '.button.wishlist-wish-add', function () {

@@ -3,6 +3,7 @@ const wish_button_fulfil_wish       = '.ui.button.wish-fulfil';
 const wish_button_visit             = '.ui.button.wish-visit';
 const wish_button_options           = '.ui.button.wish-options';
 const wish_button_options_edit      = wish_button_options + ' .item.wish-edit';
+const wish_button_options_delete    = wish_button_options + ' .item.wish-delete';
 
 var wish;
 
@@ -29,6 +30,9 @@ function wish_set_to(wish_data) {
 
     /** Edit */
     $(wish_button_options_edit).removeClass('disabled');
+
+    /** Delete */
+    $(wish_button_options_delete).removeClass('disabled');
 }
 
 function wish_unset() {
@@ -281,6 +285,67 @@ $(function () {
     /**
      * Options: Delete
      */
+    $(document).on('click', wish_button_options_delete, function() {
+        var button_delete = $(this);
+        var card         = button_delete.closest('.ui.card');
+        var column       = card.closest('.column');
+
+        /**
+         * Save global-scope wish since it will be unset when the wish-details
+         * modal is closed.
+         */
+        var wish_local = wish;
+
+        $('body')
+        .modal({
+            'title'     : wishthis.strings.modal.wish.delete.title,
+            'content'   : wishthis.strings.modal.wish.delete.content,
+            'class'     : 'tiny',
+            'actions'   : [
+                {
+                    'text'  : wishthis.strings.modal.wish.delete.approve,
+                    'class' : 'approve primary'
+                },
+                {
+                    'text' : wishthis.strings.modal.wish.delete.deny
+                }
+            ],
+            'onApprove' : function (button_approve) {
+                /**
+                 * Delete wish
+                 */
+                var modal = button_approve.closest('.ui.modal');
+
+                button_approve.addClass('loading');
+
+                var wish_delete = new URLSearchParams({
+                    'wish_id' : wish_local.id
+                });
+
+                fetch('/api/wishes', {
+                    'method' : 'DELETE',
+                    'body'   : wish_delete,
+                })
+                .then(handleFetchError)
+                .then(handleFetchResponse)
+                .then(function(response) {
+                    column.fadeOut(200);
+
+                    $('body').toast({ message: wishthis.strings.toast.wish.delete });
+
+                    modal.modal('hide');
+
+                    setTimeout(() => {
+                        $('.ui.dropdown.filter.priority').api('query');
+                    }, 200);
+                });
+
+                return false;
+            }
+        })
+        .modal('show');
+
+    });
     /** */
 
 });
