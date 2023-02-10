@@ -1,15 +1,15 @@
 # 
 # Translators:
 # Jay Trees, 2022
-# hiob, 2022
+# hiob, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-11-25 15:38+0100\n"
+"POT-Creation-Date: 2023-01-28 15:14+0100\n"
 "PO-Revision-Date: 2022-03-23 12:47+0000\n"
-"Last-Translator: hiob, 2022\n"
+"Last-Translator: hiob, 2023\n"
 "Language-Team: French (https://www.transifex.com/wishthis/teams/134148/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,261 +26,285 @@ msgstr ""
 msgid "Posted on %s"
 msgstr "Posté le %s"
 
-#: api/wishlists.php:60
+#: api/wishlists.php:69
 msgid "Wish request"
 msgstr "Demande de souhait"
 
-#: api/wishlists.php:61 pages/login.php:129
+#: api/wishlists.php:70 pages/login.php:153
 msgid "Hello,"
 msgstr "Bonjour,"
 
 #. TRANSLATORS: %s: Wishlist name
-#: api/wishlists.php:66
+#: api/wishlists.php:75
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
 msgstr ""
 "quelqu'un a demandé que vous ajoutiez plus de souhaits à votre liste de "
 "souhaits %s."
 
-#: api/wishlists.php:70
+#: api/wishlists.php:79
 msgid "Add wish"
 msgstr "Ajouter un souhait"
 
-#: assets/js/inline.js.php:33 assets/js/inline.js.php:118
-#: pages/login-as.php:57
+#: assets/js/inline.js.php:34 assets/js/inline.js.php:122
+#: pages/login-as.php:60
 msgid "Error"
 msgstr "Erreur"
 
-#: assets/js/inline.js.php:36 pages/register.php:92 pages/register.php:95
-msgid "Failure"
-msgstr "Échec"
+#: assets/js/inline.js.php:35
+msgid "Something went wrong, that's all I know."
+msgstr "Quelque chose s'est mal passé, c'est tout ce que je sais."
 
-#: assets/js/inline.js.php:37
-msgid "The server did not confirm that the action was successful."
-msgstr "Le serveur n'a pas confirmé que l'action a réussi."
-
-#: assets/js/inline.js.php:38
+#: assets/js/inline.js.php:36
 msgid "Thanks for nothing"
 msgstr "Merci pour rien"
 
-#: assets/js/inline.js.php:41
-msgid "Understood"
-msgstr "Compris"
+#: assets/js/inline.js.php:39
+msgid "Unexpected output"
+msgstr "Sortie inattendue"
 
-#: assets/js/inline.js.php:44 pages/install.php:279 pages/login-as.php:55
-#: pages/profile.php:50 pages/profile.php:101 pages/profile.php:145
-#: pages/register.php:132
+#: assets/js/inline.js.php:41
+msgid ""
+"Your request likely succeeded but the server did not confirm that the action"
+" was successful."
+msgstr ""
+"Votre demande a probablement réussi mais le serveur n'a pas confirmé que "
+"l'action a réussi."
+
+#: assets/js/inline.js.php:42
+msgid ""
+"For nerds: The API returned HTTP 200, there was no (error) output, yet the "
+"response is still not as expected."
+msgstr ""
+"Pour les nerds : l'API a renvoyé HTTP 200, il n'y a pas eu de sortie "
+"(d'erreur), mais la réponse n'est toujours pas celle attendue."
+
+#: assets/js/inline.js.php:43
+msgid "In any case, please report this."
+msgstr "Dans tous les cas, merci de le signaler."
+
+#: assets/js/inline.js.php:45
+msgid "Ok then"
+msgstr "Alors ok"
+
+#: assets/js/inline.js.php:48 pages/install.php:283 pages/login-as.php:58
+#: pages/profile.php:50 pages/profile.php:103 pages/profile.php:119
+#: pages/profile.php:166 pages/register.php:153
 msgid "Success"
 msgstr "Succès"
 
-#: assets/js/inline.js.php:49
+#: assets/js/inline.js.php:53
 msgid "Close this tab"
 msgstr "Ferme cet onglet"
 
-#: assets/js/inline.js.php:50
+#: assets/js/inline.js.php:54
 msgid "Show wishlist anyway"
 msgstr "Afficher quand même la liste de souhaits"
 
-#: assets/js/inline.js.php:53 assets/js/inline.js.php:62
+#: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
 msgstr "Vraiment supprimer ?"
 
-#: assets/js/inline.js.php:54
+#: assets/js/inline.js.php:58
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
 msgstr "Voulez-vous vraiment supprimer la liste de souhaits %s?"
 
-#: assets/js/inline.js.php:55 assets/js/inline.js.php:64
+#: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
 msgstr "Oui, supprimer"
 
-#: assets/js/inline.js.php:56 assets/js/inline.js.php:65
+#: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
 msgstr "Non garder"
 
-#: assets/js/inline.js.php:63
+#: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
 msgstr ""
 "Souhaitez-vous vraiment supprimer ce souhait ? Il le sera pour toujours."
 
-#: assets/js/inline.js.php:72
+#: assets/js/inline.js.php:76
 msgid "Passwords must match."
 msgstr "Les mots de passe doivent correspondre."
 
-#: assets/js/inline.js.php:75
+#: assets/js/inline.js.php:79
 msgid "{name} must have a value"
 msgstr "{name} doit avoir une valeur"
 
-#: assets/js/inline.js.php:76
+#: assets/js/inline.js.php:80
 msgid "{name} must be checked"
 msgstr "{name} doit être vérifié"
 
-#: assets/js/inline.js.php:77
+#: assets/js/inline.js.php:81
 msgid "{name} must be a valid e-mail"
 msgstr "{name} doit être un e-mail valide"
 
-#: assets/js/inline.js.php:78
+#: assets/js/inline.js.php:82
 msgid "{name} must be a valid URL"
 msgstr "{name} doit être une URL valide"
 
-#: assets/js/inline.js.php:79
+#: assets/js/inline.js.php:83
 msgid "{name} is not formatted correctly"
 msgstr "{name} n'est pas formaté correctement"
 
-#: assets/js/inline.js.php:80
+#: assets/js/inline.js.php:84
 msgid "{name} must be an integer"
 msgstr "{name} doit être un nombre entier"
 
-#: assets/js/inline.js.php:81
+#: assets/js/inline.js.php:85
 msgid "{name} must be a decimal number"
 msgstr "{name} doit être un nombre décimal"
 
-#: assets/js/inline.js.php:82
+#: assets/js/inline.js.php:86
 msgid "{name} must be set to a number"
 msgstr "{name} doit être défini sur un nombre"
 
-#: assets/js/inline.js.php:83
+#: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
 msgstr "{name} doit être \"{ruleValue}\""
 
-#: assets/js/inline.js.php:84
+#: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
 msgstr "{name} doit être exactement \"{ruleValue}\""
 
-#: assets/js/inline.js.php:85
+#: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
 msgstr "{name} ne peut pas être défini sur \"{ruleValue}\""
 
-#: assets/js/inline.js.php:86
+#: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
 msgstr "{name} ne peut pas être défini exactement sur \"{ruleValue}\""
 
-#: assets/js/inline.js.php:87
+#: assets/js/inline.js.php:91
 msgid "{name} cannot contain \"{ruleValue}\""
 msgstr "{name} ne peut pas contenir \"{ruleValue}\""
 
-#: assets/js/inline.js.php:88
+#: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
 msgstr "{name} ne peut pas contenir exactement \"{ruleValue}\""
 
-#: assets/js/inline.js.php:89
+#: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
 msgstr "{name} doit contenir \"{ruleValue}\""
 
-#: assets/js/inline.js.php:90
+#: assets/js/inline.js.php:94
 msgid "{name} must contain exactly \"{ruleValue}\""
 msgstr "{name} doit contenir exactement \"{ruleValue}\""
 
-#: assets/js/inline.js.php:91 assets/js/inline.js.php:92
+#: assets/js/inline.js.php:95 assets/js/inline.js.php:96
 msgid "{name} must be at least {ruleValue} characters"
 msgstr "{name} doit comporter au moins {ruleValue} caractères."
 
-#: assets/js/inline.js.php:93
+#: assets/js/inline.js.php:97
 msgid "{name} must be exactly {ruleValue} characters"
 msgstr "{name} doit être exactement de {ruleValue} caractères"
 
-#: assets/js/inline.js.php:94
+#: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
 msgstr "{name} ne peut pas être plus long que {ruleValue} caractères"
 
-#: assets/js/inline.js.php:95
+#: assets/js/inline.js.php:99
 msgid "{name} must match {ruleValue} field"
 msgstr "{name} doit correspondre au champ {ruleValue}"
 
-#: assets/js/inline.js.php:96
+#: assets/js/inline.js.php:100
 msgid "{name} must have a different value than {ruleValue} field"
 msgstr "{name} doit avoir une valeur différente de celle du champ {ruleValue}"
 
-#: assets/js/inline.js.php:97
+#: assets/js/inline.js.php:101
 msgid "{name} must be a valid credit card number"
 msgstr "{name} doit être un numéro de carte de crédit valide"
 
-#: assets/js/inline.js.php:98
+#: assets/js/inline.js.php:102
 msgid "{name} must have at least {ruleValue} choices"
 msgstr "{name} doit avoir au moins {ruleValue} choix"
 
-#: assets/js/inline.js.php:99
+#: assets/js/inline.js.php:103
 msgid "{name} must have exactly {ruleValue} choices"
 msgstr "{name} doit avoir exactement {ruleValue} choix"
 
-#: assets/js/inline.js.php:100
+#: assets/js/inline.js.php:104
 msgid "{name} must have {ruleValue} or less choices"
 msgstr "{name} doit avoir {ruleValue} ou moins de choix"
 
-#: assets/js/inline.js.php:106
+#: assets/js/inline.js.php:110
 msgid "Wishlist successfully renamed."
 msgstr "La liste de souhaits a été renommée avec succès."
 
-#: assets/js/inline.js.php:107
+#: assets/js/inline.js.php:111
 msgid "Wishlist successfully deleted."
 msgstr "Liste de souhaits supprimée avec succès."
 
-#: assets/js/inline.js.php:111
+#: assets/js/inline.js.php:115
 msgid "Wish successfully created."
 msgstr "Le souhait a été créé avec succès."
 
-#: assets/js/inline.js.php:112
+#: assets/js/inline.js.php:116
 msgid "Wish information updated."
 msgstr "Informations du souhaits mises à jour."
 
-#: assets/js/inline.js.php:113
+#: assets/js/inline.js.php:117
 msgid "Wish successfully deleted."
 msgstr "Souhait supprimé avec succès."
 
-#: assets/js/inline.js.php:119
+#: assets/js/inline.js.php:123
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr ""
 "Impossible de copier dans le presse-papiers. Il y a probablement un problème"
 " d'autorisation."
 
-#: assets/js/inline.js.php:122
+#: assets/js/inline.js.php:126
 msgid "Link copied to clipboard."
 msgstr "Lien copié dans le presse-papiers."
 
-#: assets/js/inline.js.php:128
+#: assets/js/inline.js.php:132
 msgctxt "Calendar"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: assets/js/inline.js.php:129
+#: assets/js/inline.js.php:133
 msgctxt "Calendar"
 msgid "Now"
 msgstr "Maintenant"
 
-#: assets/js/inline.js.php:130
+#: assets/js/inline.js.php:134
 msgctxt "Calendar"
 msgid "AM"
 msgstr "AM"
 
-#: assets/js/inline.js.php:131
+#: assets/js/inline.js.php:135
 msgctxt "Calendar"
 msgid "PM"
 msgstr "PM"
 
-#: assets/js/inline.js.php:132
+#: assets/js/inline.js.php:136
 msgctxt "Calendar"
 msgid "Week"
 msgstr "Semaine"
 
-#: assets/js/inline.js.php:137 pages/wishlist.php:34
+#: assets/js/inline.js.php:141 pages/wishlist.php:39
 msgid "Remember list"
 msgstr "Se souvenir de la liste"
 
-#: assets/js/inline.js.php:138
+#: assets/js/inline.js.php:142
 msgid "Forget list"
 msgstr "Oublier la liste"
 
-#: assets/js/inline.js.php:145 classes/wishlist.php:118
-#: classes/wishlist.php:140
+#: assets/js/inline.js.php:149 classes/wishlist.php:150
+#: classes/wishlist.php:172
 msgid "Empty"
 msgstr "Vide"
 
-#: assets/js/inline.js.php:146 classes/wishlist.php:118
-#: classes/wishlist.php:140
+#: assets/js/inline.js.php:150 classes/wishlist.php:150
+#: classes/wishlist.php:172
 msgid "This wishlist seems to be empty."
 msgstr "Cette liste de souhaits semble être vide."
 
-#: classes/page.php:135 pages/home.php:26
+#: assets/js/inline.js.php:156
+msgid "Last modified"
+msgstr "Dernière modification"
+
+#: classes/page.php:138 pages/home.php:26
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
@@ -289,7 +313,7 @@ msgstr ""
 "moderne pour créer, gérer et afficher vos souhaits pour tout type "
 "d'occasion."
 
-#: classes/page.php:215
+#: classes/page.php:218
 msgid ""
 "This is the development environment of wishthis. The database will reset "
 "every day at around 00:00."
@@ -297,115 +321,188 @@ msgstr ""
 "C'est l'environnement de développement de wishthis. La base de données se "
 "réinitialisera tous les jours vers 00h00."
 
-#: classes/page.php:216
+#: classes/page.php:219
 msgid "Development environment"
 msgstr "Environnement de développement"
 
-#: classes/page.php:417 pages/home.php:24
+#: classes/page.php:263
+msgid "Your device is set to reduce data, some content has been disabled."
+msgstr ""
+"Votre appareil est configuré pour réduire les données, certains contenus ont"
+" été désactivés."
+
+#: classes/page.php:264
+msgid "Reducing data"
+msgstr "Réduire les données"
+
+#: classes/page.php:402 pages/home.php:24
 msgid "Make a wish"
 msgstr "Faites un vœu"
 
 #. TRANSLATORS: Changelog: Added
-#: classes/page.php:443 classes/page.php:447 pages/blog.php:11
-#: pages/changelog.php:279 pages/post.php:62
+#: classes/page.php:428 classes/page.php:432 pages/blog.php:11
+#: pages/changelog.php:327 pages/post.php:62
 msgid "Blog"
 msgstr "Blog"
 
-#: classes/page.php:454
+#: classes/page.php:439
 msgid "System"
 msgstr "Système"
 
-#: classes/page.php:460
+#: classes/page.php:445
 msgid "Account"
 msgstr "Compte"
 
-#: classes/page.php:469 pages/home.php:180
+#: classes/page.php:454 pages/home.php:200
 msgid "Wishlists"
 msgstr "Listes de souhaits"
 
-#: classes/page.php:473 pages/home.php:33 pages/home.php:35
+#: classes/page.php:458 pages/home.php:33 pages/home.php:35
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "Mes listes"
 
-#: classes/page.php:478 pages/wishlists-saved.php:11
+#: classes/page.php:463 pages/wishlists-saved.php:11
 msgid "Remembered lists"
 msgstr "Listes mémorisées"
 
-#: classes/page.php:488 pages/profile.php:11
+#: classes/page.php:473 pages/profile.php:11
 msgid "Profile"
 msgstr "Profil"
 
-#: classes/page.php:494 pages/login-as.php:11
+#: classes/page.php:479 pages/login-as.php:11
 msgid "Login as"
 msgstr "Se connecter en tant que"
 
-#: classes/page.php:500 pages/logout.php:11
+#: classes/page.php:485 pages/logout.php:11
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: classes/page.php:506 classes/page.php:510 pages/home.php:79
-#: pages/home.php:81 pages/login-as.php:76 pages/login-as.php:77
-#: pages/login.php:11 pages/login.php:204 pages/login.php:205
-#: pages/register.php:238 pages/register.php:240
+#: classes/page.php:491 classes/page.php:495 pages/home.php:82
+#: pages/home.php:84 pages/login-as.php:79 pages/login-as.php:80
+#: pages/login.php:11 pages/login.php:228 pages/login.php:229
+#: pages/register.php:265 pages/register.php:267
 msgid "Login"
 msgstr "Connexion"
 
-#: classes/page.php:517 classes/page.php:521 pages/install.php:283
-#: pages/install.php:285 pages/login.php:212 pages/login.php:214
+#: classes/page.php:502 classes/page.php:506 pages/install.php:287
+#: pages/install.php:289 pages/login.php:236 pages/login.php:238
 #: pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "S'inscrire"
 
-#: classes/page.php:531 pages/settings.php:11
+#: classes/page.php:516 pages/settings.php:11
 msgid "Settings"
 msgstr "Réglages"
 
-#: classes/page.php:668 classes/page.php:671 pages/changelog.php:11
+#: classes/page.php:653 classes/page.php:656 pages/changelog.php:11
 msgid "Changelog"
 msgstr "Journal des modifications"
 
-#: classes/page.php:677
+#: classes/page.php:662
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: classes/page.php:683 classes/page.php:686
+#: classes/page.php:668 classes/page.php:671
 msgid "GitHub"
 msgstr "GitHub"
 
-#: classes/page.php:692 classes/page.php:695
+#: classes/page.php:677 classes/page.php:680
 msgid "Transifex"
 msgstr "Transifex"
 
-#: classes/page.php:701
+#: classes/page.php:686
 msgid "Contact"
 msgstr "Contact"
 
-#: classes/page.php:707 classes/page.php:710
+#: classes/page.php:692 classes/page.php:695
 msgid "Matrix"
 msgstr "Matrix"
 
-#: classes/page.php:716 classes/page.php:719
+#: classes/page.php:701 classes/page.php:704
 msgid "Discord"
 msgstr "Discord"
 
-#: classes/page.php:756
+#: classes/page.php:725
+msgid "JavaScript is disabled"
+msgstr "JavaScript est désactivé"
+
+#. TRANSLATORS: %s: the current year
+#: classes/page.php:734
+#, php-format
+msgid "Welcome to the year %s"
+msgstr "Bienvenue dans l'année %s"
+
+#: classes/page.php:741
+msgid ""
+"I get it, websites track your every move these days and companies keep "
+"coming up with more genius hacks to monetise you."
+msgstr ""
+"Je comprends, les sites Web suivent chacun de vos mouvements ces jours-ci et"
+" les entreprises continuent de proposer de plus en plus de hacks géniaux "
+"pour vous monétiser."
+
+#: classes/page.php:742
+msgid ""
+"But the good news is, wishthis aims to be different. It aims to be "
+"transparent and let the user stay in control. Unlike many companies just "
+"making claims about being secure and protecting your privacy, wishthis is "
+"entirely open source, allowing anybody to simply look up what it does and if"
+" they are okay with it. For people who aren't familiar with my tech stack "
+"and aren't able to lookup and understand the wishthis source code: \"trust "
+"me\"."
+msgstr ""
+"Mais la bonne nouvelle est que wishthis veut être différent. Il vise à être "
+"transparent et à laisser l'utilisateur garder le contrôle. Contrairement à "
+"de nombreuses entreprises qui prétendent simplement être sécurisées et "
+"protéger votre vie privée, wishthis est entièrement open source, permettant "
+"à quiconque de simplement rechercher ce qu'il fait et s'il est d'accord avec"
+" cela. Pour les personnes qui ne connaissent pas ma pile technologique et "
+"qui ne sont pas en mesure de rechercher et de comprendre le code source de "
+"wishthis : \"faites-moi confiance\"."
+
+#: classes/page.php:744
+msgid ""
+"I'm joking - please remain critical, especially for closed source and/or "
+"commercial software. At least you can ask somebody to validate the wishthis "
+"code for you! Do you have any questions? Message me! (see footer)"
+msgstr ""
+"Je plaisante - s'il vous plaît, restez critique, en particulier pour les "
+"logiciels à code source fermé et/ou commerciaux. Au moins, vous pouvez "
+"demander à quelqu'un de valider le code wishthis pour vous ! Avez-vous des "
+"questions? Envoyez moi un message ! (voir pied de page)"
+
+#: classes/page.php:746
+msgid "wishthis really needs JavaScript to work, please enable it."
+msgstr ""
+"wishthis a vraiment besoin de JavaScript pour fonctionner, veuillez "
+"l'activer."
+
+#: classes/page.php:751
+msgid "Reload page"
+msgstr "Recharger la page"
+
+#: classes/page.php:752 pages/parts/wishlist.php:299
+msgid "Close"
+msgstr "Fermer"
+
+#: classes/page.php:777
 #, php-format
 msgid "%s not found"
 msgstr "%s non trouvé"
 
-#: classes/page.php:766
+#: classes/page.php:787
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 "La liste de souhaits demandée n'a pas été trouvée et a probablement été "
 "supprimée par son créateur."
 
-#: classes/page.php:770
+#: classes/page.php:791
 msgid "The requested Wish was not found."
 msgstr "Le souhait demandé n'a pas été trouvé."
 
-#: classes/page.php:774
+#: classes/page.php:795
 #, php-format
 msgid "The requested %s was not found."
 msgstr "Le %s demandé n'a pas été trouvé."
@@ -422,12 +519,12 @@ msgstr "Agréable à avoir"
 msgid "Would love it"
 msgstr "J'adorerais ça !"
 
-#: classes/wish.php:171
+#: classes/wish.php:153
 msgid "Wish temporarily fulfilled"
 msgstr "Souhait temporairement exaucé"
 
-#. TRANSLATORS: %s: Duration (i. e. 30 minutes)
-#: classes/wish.php:176
+#. TRANSLATORS: %s: Duration (e. g. 30 minutes)
+#: classes/wish.php:158
 #, php-format
 msgid ""
 "If this wish is a product, confirm the order was successful and mark it as "
@@ -439,54 +536,32 @@ msgstr ""
 "redeviendra disponible pour les autres après %s."
 
 #. TRANSLATORS: %d Amount of minutes
-#: classes/wish.php:179
+#: classes/wish.php:161
 #, php-format
 msgid "%d minutes"
 msgstr "%d minutes"
 
-#: classes/wish.php:190
+#: classes/wish.php:172
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: classes/wish.php:223
+#: classes/wish.php:221
 msgid "Wish not found"
 msgstr "Souhait non trouvé"
 
-#: classes/wish.php:352 classes/wish.php:355 pages/wishlist.php:65
-msgid "Fulfil wish"
-msgstr "Exaucer le souhait"
+#: classes/wish.php:332
+msgid "Details"
+msgstr "Détails"
 
-#: classes/wish.php:362 classes/wish.php:365 classes/wish.php:369
-#: classes/wish.php:372
-msgid "Visit"
-msgstr "Visiter"
-
-#: classes/wish.php:378 classes/wish.php:381 pages/wishlists.php:34
-#: pages/wishlists.php:64 pages/wishlists.php:67
-msgid "Options"
-msgstr "Options"
-
-#: classes/wish.php:386
-msgid "Mark as fulfilled"
-msgstr "Marque comme exaucé"
-
-#: classes/wish.php:391
-msgid "Edit"
-msgstr "Modifier"
-
-#: classes/wish.php:396 pages/wishlists.php:75 pages/wishlists.php:77
-msgid "Delete"
-msgstr "Supprimer"
-
-#: classes/wishlist.php:155
+#: classes/wishlist.php:187
 msgid "Wishlist not found"
 msgstr "Liste de souhaits non trouvée"
 
-#: config/config-sample.php:22 config/config.php:22
+#: config/config-sample.php:22 config/config.php:38
 msgid "Stable"
 msgstr "Stable"
 
-#: config/config-sample.php:27 config/config.php:27
+#: config/config-sample.php:27 config/config.php:43
 msgid "Release candidate"
 msgstr "Version candidate"
 
@@ -528,27 +603,36 @@ msgstr "Lire la suite"
 msgid "Top"
 msgstr "Haut"
 
-#: pages/changelog.php:25 pages/changelog.php:36
+#: pages/changelog.php:25 pages/changelog.php:38
 msgid "Roadmap"
 msgstr "Feuille de route"
 
-#: pages/changelog.php:26 pages/changelog.php:97
-msgid "1.7.1"
-msgstr "1.7.1"
+#: pages/changelog.php:26 pages/changelog.php:99
+msgid "1.0.0"
+msgstr "1.0.0"
 
-#: pages/changelog.php:27 pages/changelog.php:174
+#: pages/changelog.php:27 pages/changelog.php:182
+msgid "0.7.3"
+msgstr "0.7.3"
+
+#: pages/changelog.php:28 pages/changelog.php:202
+msgid "0.7.2"
+msgstr "0.7.2"
+
+#: pages/changelog.php:29 pages/changelog.php:222
 msgid "0.7.1"
 msgstr "0.7.1"
 
-#: pages/changelog.php:28 pages/changelog.php:270
+#: pages/changelog.php:30 pages/changelog.php:318
 msgid "0.7.0"
 msgstr "0.7.0"
 
-#: pages/changelog.php:29 pages/changelog.php:412
+#: pages/changelog.php:31 pages/changelog.php:460
 msgid "0.6.0"
 msgstr "0.6.0"
 
-#: pages/changelog.php:41
+#. TRANSLATORS: %s: discussions
+#: pages/changelog.php:43
 #, php-format
 msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
@@ -557,32 +641,32 @@ msgstr ""
 "Si vous souhaitez donner votre avis sur la feuille de route, veuillez vous "
 "référer au %s sur GitHub, ou discuter sur Matrix ou Discord."
 
-#: pages/changelog.php:44
+#: pages/changelog.php:46
 msgid "discussions"
 msgstr "discussions"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:53
+#: pages/changelog.php:55
 msgid "Filter by price"
 msgstr "Filtrer par prix"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:60
+#: pages/changelog.php:62
 msgid "Bookmarklets"
 msgstr "Signets"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:67
+#: pages/changelog.php:69
 msgid "Allow customising priority colours"
 msgstr "Autoriser la personnalisation des couleurs de priorité"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:74
+#: pages/changelog.php:76
 msgid "Notifications for fulfilled wishes"
 msgstr "Notifications pour les souhaits exaucés"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:80
+#: pages/changelog.php:82
 msgid ""
 "Verify wishes are still available when attempting to fulfil them. "
 "Alternatively, a heartbeat which checks if all the wishes are still "
@@ -593,36 +677,41 @@ msgstr ""
 "souhaits restent non exaucés."
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:86
+#: pages/changelog.php:88
 msgid "Option to delete account"
 msgstr "Possibilité de supprimer le compte"
 
-#: pages/changelog.php:101 pages/changelog.php:274 pages/changelog.php:416
+#: pages/changelog.php:103 pages/changelog.php:322 pages/changelog.php:464
 msgid "Added"
 msgstr "Ajouté"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:106
+#: pages/changelog.php:108
+msgid "Option to set currency"
+msgstr "Option pour définir la devise"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:115
 msgid "A roadmap in the changelog"
 msgstr "Une feuille de route dans le journal des modifications"
 
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:112
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:121
 msgid "Compact/list view for wishes"
 msgstr "Vue compacte/liste pour les souhaits"
 
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:118
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:127
 msgid "Option to enable advertisements"
 msgstr "Option pour activer les publicités"
 
-#: pages/changelog.php:123 pages/changelog.php:178 pages/changelog.php:320
-#: pages/changelog.php:438
+#: pages/changelog.php:132 pages/changelog.php:226 pages/changelog.php:368
+#: pages/changelog.php:486
 msgid "Improved"
 msgstr "Amélioré"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:128
+#: pages/changelog.php:137
 msgid ""
 "Large parts of wishthis have been completely rewritten, such as the API and "
 "how pretty URLs work. The aim was to increase security and maintainability."
@@ -632,7 +721,7 @@ msgstr ""
 "sécurité et la maintenabilité."
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:134
+#: pages/changelog.php:143
 msgid ""
 "Changelog now automatically selects the current version, instead of the top "
 "most tab."
@@ -640,39 +729,51 @@ msgstr ""
 "Le journal des modifications sélectionne désormais automatiquement la "
 "version actuelle, au lieu de l'onglet le plus haut."
 
-#: pages/changelog.php:139 pages/changelog.php:342
+#: pages/changelog.php:148 pages/changelog.php:390
 msgid "Changed"
 msgstr "Modifié"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:144
+#: pages/changelog.php:153
 msgid "Decreased wish height on mobile devices"
 msgstr "Diminution de la hauteur des souhaits sur les appareils mobiles"
 
-#: pages/changelog.php:149 pages/changelog.php:213 pages/changelog.php:364
-#: pages/changelog.php:448
+#: pages/changelog.php:158 pages/changelog.php:185 pages/changelog.php:205
+#: pages/changelog.php:261 pages/changelog.php:412 pages/changelog.php:496
 msgid "Fixed"
 msgstr "Corrigé"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:154
+#: pages/changelog.php:163
 msgid "Fix various wish UI bugs"
 msgstr "Correction de divers bugs de l'interface utilisateur de souhait"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:161
+#: pages/changelog.php:170
 msgid "Fix background and colour when opening the mobile menu"
 msgstr ""
 "Correction de l'arrière-plan et de la couleur lors de l'ouverture du menu "
 "mobile"
 
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:190
+msgid "Fix fulfilled wishes disappearing for wishlist owner"
+msgstr ""
+"Correction de la disparition des souhaits exaucés pour le propriétaire de la"
+" liste de souhaits"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:210
+msgid "Fix fulfilled wishes showing after using filter"
+msgstr "Correction des souhaits exaucés après l'utilisation du filtre"
+
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:183
+#: pages/changelog.php:231
 msgid "MJML settings page"
 msgstr "Page des paramètres MJML"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:190
+#: pages/changelog.php:238
 msgid ""
 "Expired sessions are now invalidated by wishthis instead of relying on the "
 "browser to delete the cookies."
@@ -682,42 +783,42 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:196 pages/changelog.php:285
+#: pages/changelog.php:244 pages/changelog.php:333
 msgid "Dark theme"
 msgstr "Thème sombre"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:202
+#: pages/changelog.php:250
 msgid "Remembered lists design"
 msgstr "Conception des listes mémorisées"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:208
+#: pages/changelog.php:256
 msgid "Translations"
 msgstr "Traductions"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:218
+#: pages/changelog.php:266
 msgid "Label on top of dropdown menu"
 msgstr "Libellé en haut du menu déroulant"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:225
+#: pages/changelog.php:273
 msgid "Encoding issue in wish description"
 msgstr "Problème d'encodage dans la description du souhait"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:232
+#: pages/changelog.php:280
 msgid "Caching issue with the blog"
 msgstr "Problème de cache avec le blog"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:239
+#: pages/changelog.php:287
 msgid "An error when a blog post doesn't have a featured image."
 msgstr "Une erreur lorsqu'un article de blog n'a pas d'image en vedette."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:245
+#: pages/changelog.php:293
 msgid ""
 "Version number not being stored correctly causing the migration to execute "
 "the wrong script."
@@ -726,17 +827,17 @@ msgstr ""
 "migration exécute le mauvais script."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:251
+#: pages/changelog.php:299
 msgid "Wishlist filter cut off on mobile"
 msgstr "Filtre de liste de souhaits coupé sur mobile"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:257
+#: pages/changelog.php:305
 msgid "Wish options not selectable after filtering"
 msgstr "Options de souhait non sélectionnables après filtrage"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:291
+#: pages/changelog.php:339
 msgid ""
 "Wish properties. You can now mark a wish as purchasable and add a price."
 msgstr ""
@@ -744,34 +845,34 @@ msgstr ""
 "achetable et ajouter un prix."
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:297
+#: pages/changelog.php:345
 msgid "Jump to last edited wishlist from home"
 msgstr "Accéder à la dernière liste de souhaits modifiée depuis l'accueil"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:303
+#: pages/changelog.php:351
 msgid "Quick add wish from home"
 msgstr "Ajouter rapidement un souhait depuis l'accueil"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:309
+#: pages/changelog.php:357
 msgid "Button to request more wishes from a users wishlist"
 msgstr ""
 "Bouton pour demander plus de souhaits à partir de la liste de souhaits "
 "d'utilisateurs"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:315
+#: pages/changelog.php:363
 msgid "Option to stay logged in"
 msgstr "Possibilité de rester connecté"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:325
+#: pages/changelog.php:373
 msgid "Localisation (many new translations added)"
 msgstr "Localisation (de nombreuses nouvelles traductions ajoutées)"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:331
+#: pages/changelog.php:379
 msgid ""
 "Additional logins are no longer required when switching between wishthis "
 "channels"
@@ -780,19 +881,19 @@ msgstr ""
 "entre les canaux wishthis"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:337
+#: pages/changelog.php:385
 msgid "Remembered wishlists design"
 msgstr "Conception de listes de souhaits mémorisées"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:347
+#: pages/changelog.php:395
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr ""
 "Le journal des modifications est maintenant une page au lieu d'un fichier "
 "markdown téléchargeable."
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:353
+#: pages/changelog.php:401
 msgid ""
 "Wishes can be edited from the wishlist now, without loading another page"
 msgstr ""
@@ -800,66 +901,66 @@ msgstr ""
 "maintenant, sans charger une autre page."
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:359
+#: pages/changelog.php:407
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
 msgstr "\"Listes de souhaits enregistrées\" a été renommé \"Listes mémorisées\"."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:369
+#: pages/changelog.php:417
 msgid "Various minor things (typos, menu order, etc)"
 msgstr "Diverses choses mineures (fautes de frappe, ordre des menus, etc.)"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:375
+#: pages/changelog.php:423
 msgid "Wish information being updated with 404 content from URL"
 msgstr ""
 "Les informations de souhaits sont mises à jour avec le contenu 404 de l'URL"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:381
+#: pages/changelog.php:429
 msgid "Wish image not showing"
 msgstr "L'image du souhait ne s'affiche pas"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:387
+#: pages/changelog.php:435
 msgid "An error when saving a wish with a really long URL"
 msgstr ""
 "Une erreur lors de l'enregistrement d'un souhait avec une URL très longue"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:393
+#: pages/changelog.php:441
 msgid "Redirect errors on Nginx"
 msgstr "Erreurs de redirection sur Nginx"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:399
+#: pages/changelog.php:447
 msgid "An error when fetching title from an URL containing quotes"
 msgstr ""
 "Une erreur lors de la récupération du titre d'une URL contenant des "
 "guillemets"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:421
+#: pages/changelog.php:469
 msgid "This changelog"
 msgstr "Ce journal des modifications"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:427
+#: pages/changelog.php:475
 msgid "Wish properties"
 msgstr "Propriétés souhaitées"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:433
+#: pages/changelog.php:481
 msgid "Button to mark wish as fulfilled"
 msgstr "Bouton pour marquer le souhait comme exaucé"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:443
+#: pages/changelog.php:491
 msgid "Card design"
 msgstr "Conception de la carte"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:453
+#: pages/changelog.php:501
 msgid "Various small bugs"
 msgstr "Divers petits bogues"
 
@@ -867,15 +968,15 @@ msgstr "Divers petits bogues"
 msgid "Home"
 msgstr "Accueil"
 
-#: pages/home.php:71 pages/home.php:73
+#: pages/home.php:74 pages/home.php:76
 msgid "Register now"
 msgstr "S'inscrire maintenant"
 
-#: pages/home.php:89
+#: pages/home.php:92
 msgid "Use case"
 msgstr "Cas d'utilisation"
 
-#: pages/home.php:91
+#: pages/home.php:94
 msgid ""
 "Your birthday is coming up and you just created a wishlist with all the cool"
 " stuff you want. Your friends and family want to make sure you get something"
@@ -888,11 +989,11 @@ msgstr ""
 "vous leur envoyez le lien de votre liste de souhaits et si quelqu'un décide "
 "d'exaucer l'un de vos souhaits, il disparaîtra pour tous les autres."
 
-#: pages/home.php:95
+#: pages/home.php:98
 msgid "Why wishthis?"
 msgstr "Pourquoi wishthis ?"
 
-#: pages/home.php:98
+#: pages/home.php:101
 #, php-format
 msgid ""
 "wishthis is free and open source software. With free I don't just mean, you "
@@ -906,45 +1007,97 @@ msgstr ""
 "comportement.%s Non seulement n'importe qui peut voir et vérifier son code "
 "%s, mais je vous encourage également à le faire."
 
-#: pages/home.php:103
+#: pages/home.php:106
 msgid "As a non-commercial project it remains"
 msgstr "En tant que projet non commercial, il reste"
 
-#: pages/home.php:107
-msgid "free of advertisements,"
-msgstr "sans publicité,"
+#: pages/home.php:109
+msgid "unless you want them"
+msgstr "à moins que vous ne les voulez"
 
 #: pages/home.php:111
-msgid "without tracking, and"
-msgstr "sans suivi,"
+msgid "free of advertisements"
+msgstr "sans publicité"
 
-#: pages/home.php:115
-msgid "open for feedback and suggestions."
+#. TRANSLATORS: %s: plausible
+#: pages/home.php:116
+#, php-format
+msgid "see %s"
+msgstr "voir %s"
+
+#: pages/home.php:117
+msgid "plausible"
+msgstr "plausible"
+
+#: pages/home.php:123
+msgid "without intrusive tracking"
+msgstr "sans suivi intrusif"
+
+#: pages/home.php:130
+msgid "privacy focused"
+msgstr "axé sur la confidentialité"
+
+#: pages/home.php:134
+msgid "open for feedback and suggestions"
 msgstr "ouvert aux commentaires et aux suggestions."
 
-#: pages/home.php:121
+#: pages/home.php:141
 msgid "News"
 msgstr "Nouvelles"
 
-#: pages/home.php:168
+#: pages/home.php:188
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: pages/home.php:170
+#: pages/home.php:190
 msgid "Join the others and get started now!"
 msgstr "Rejoignez les autres et lancez-vous dès maintenant !"
 
-#: pages/home.php:174 pages/home.php:179 pages/home.php:184
+#: pages/home.php:194 pages/home.php:199 pages/home.php:204
 msgid "N. A."
 msgstr "N / A."
 
-#: pages/home.php:175 pages/wishlist.php:70 pages/wishlists.php:87
+#: pages/home.php:195 pages/wishlist.php:75 pages/wishlists.php:94
 msgid "Wishes"
 msgstr "Souhaits"
 
-#: pages/home.php:185
+#: pages/home.php:205
 msgid "Registered users"
 msgstr "Utilisateurs enregistrés"
+
+#: pages/home.php:217
+msgid "Hey, you"
+msgstr "Hey, vous"
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:223
+#, php-format
+msgid "Yes, I mean you, %s."
+msgstr "Oui, je veux dire vous, %s."
+
+#. TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g.
+#. English (United Kingdom) %3$s: preferences
+#: pages/home.php:233
+#, php-format
+msgid ""
+"Your browser is telling me that you would like to view pages in %1$s, but "
+"your %3$s are set to %2$s."
+msgstr ""
+"Votre navigateur me dit que vous aimeriez afficher les pages en %1$s, mais "
+"votre %3$s est réglé sur %2$s."
+
+#: pages/home.php:236
+msgid "preferences"
+msgstr "préférences"
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:245
+#, php-format
+msgid ""
+"wishthis is available in %1$s different locales and also supports %2$s!"
+msgstr ""
+"wishthis est disponible dans %1$s différents paramètres régionaux et prend "
+"également en charge %2$s !"
 
 #: pages/install.php:15
 msgid "Install"
@@ -975,7 +1128,7 @@ msgstr ""
 msgid "Host"
 msgstr "Hôte"
 
-#: pages/install.php:56 pages/parts/wishlist.php:91
+#: pages/install.php:56 pages/parts/wishlist.php:89
 msgid "Name"
 msgstr "Nom"
 
@@ -983,15 +1136,17 @@ msgstr "Nom"
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: pages/install.php:68 pages/login.php:184 pages/profile.php:169
-#: pages/profile.php:244 pages/profile.php:253 pages/register.php:202
+#: pages/install.php:68 pages/login.php:208 pages/profile.php:190
+#: pages/profile.php:268 pages/profile.php:277 pages/register.php:229
 msgid "Password"
 msgstr "Mot de passe"
 
 #: pages/install.php:76 pages/install.php:77 pages/parts/wishlist.php:179
-#: pages/parts/wishlist.php:180 pages/profile.php:235 pages/profile.php:236
-#: pages/profile.php:269 pages/profile.php:270 pages/profile.php:391
-#: pages/profile.php:392 pages/settings.php:53 pages/settings.php:54
+#: pages/parts/wishlist.php:180 pages/profile.php:259 pages/profile.php:260
+#: pages/profile.php:293 pages/profile.php:294 pages/profile.php:393
+#: pages/profile.php:394 pages/profile.php:492 pages/profile.php:493
+#: pages/profile.php:538 pages/profile.php:539 pages/settings.php:53
+#: pages/settings.php:54
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -1007,36 +1162,36 @@ msgstr "Cliquez sur continuer pour tester la connexion à la base de données."
 msgid "Continue"
 msgstr "Continuer"
 
-#: pages/login-as.php:55
+#: pages/login-as.php:58
 #, php-format
 msgid "Successfully logged in as %s."
 msgstr "Connexion réussie en tant que %s."
 
-#: pages/login-as.php:57
+#: pages/login-as.php:60
 msgid "User not found!"
 msgstr "Utilisateur non trouvé !"
 
-#: pages/login-as.php:65 pages/login.php:175 pages/profile.php:34
-#: pages/profile.php:210 pages/register.php:184
+#: pages/login-as.php:68 pages/login.php:199 pages/profile.php:34
+#: pages/profile.php:231 pages/register.php:211
 msgid "Email"
 msgstr "E-mail"
 
-#: pages/login.php:89
+#: pages/login.php:106
 msgid "No user could be found with the credentials you provided."
 msgstr ""
 "Aucun utilisateur n'a pu être trouvé avec les informations d'identification "
 "que vous avez fournies."
 
-#: pages/login.php:90
+#: pages/login.php:107
 msgid "Invalid credentials"
 msgstr "les informations d'identification invalides"
 
-#: pages/login.php:128
+#: pages/login.php:152
 msgid "Password reset link"
 msgstr "Lien de réinitialisation du mot de passe"
 
 #. TRANSLATORS: %s: The wishthis domain
-#: pages/login.php:134
+#: pages/login.php:158
 #, php-format
 msgid ""
 "somebody has requested a password reset for this email address from %s. If "
@@ -1047,11 +1202,11 @@ msgstr ""
 "e-mail à %s. Si c'était vous, cliquez sur le bouton ci-dessous pour "
 "invalider votre mot de passe actuel et en définir un nouveau."
 
-#: pages/login.php:138
+#: pages/login.php:162
 msgid "Set new password"
 msgstr "Définir un nouveau mot de passe"
 
-#: pages/login.php:150
+#: pages/login.php:174
 msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
@@ -1059,23 +1214,23 @@ msgstr ""
 "Si une correspondance peut être trouvée pour cette adresse e-mail, un lien "
 "de réinitialisation du mot de passe lui sera envoyé."
 
-#: pages/login.php:151
+#: pages/login.php:175
 msgid "Info"
 msgstr "Info"
 
-#: pages/login.php:171
+#: pages/login.php:195
 msgid "Credentials"
 msgstr "Identifiants"
 
-#: pages/login.php:195
+#: pages/login.php:219
 msgid "Keep me logged in"
 msgstr "Rester connecté"
 
-#: pages/login.php:222
+#: pages/login.php:246
 msgid "Forgot password?"
 msgstr "Mot de passe oublié?"
 
-#: pages/login.php:224
+#: pages/login.php:248
 msgid ""
 "Consider using a password manager. It will save all your passwords and allow"
 " you to access them with one master password. Never forget a password ever "
@@ -1085,11 +1240,11 @@ msgstr ""
 "vos mots de passe et vous permettra d'y accéder avec un seul mot de passe "
 "principal. N'oubliez plus jamais un mot de passe."
 
-#: pages/login.php:240 pages/login.php:241
+#: pages/login.php:264 pages/login.php:265
 msgid "Send email"
 msgstr "Envoyer un e-mail"
 
-#: pages/login.php:249
+#: pages/login.php:273
 msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
@@ -1121,6 +1276,10 @@ msgstr ""
 "En raison d'une maintenance, wishthis n'est temporairement pas disponible. "
 "Veuillez réessayer dans une minute."
 
+#: pages/maintenance.php:28
+msgid "If you are the administrator of this site, please log in."
+msgstr "Si vous êtes l'administrateur de ce site, veuillez vous connecter."
+
 #: pages/parts/wish-add.php:12
 msgid "General"
 msgstr "Général"
@@ -1129,102 +1288,102 @@ msgstr "Général"
 msgid "Product"
 msgstr "Produit"
 
-#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:119
+#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:117
 msgid "Title"
 msgstr "Titre"
 
-#: pages/parts/wish-add.php:35
+#: pages/parts/wish-add.php:33
 msgid "Description"
 msgstr "Description"
 
-#: pages/parts/wish-add.php:47
+#: pages/parts/wish-add.php:45
 msgid "URL"
 msgstr "URL"
 
-#: pages/parts/wish-add.php:58
+#: pages/parts/wish-add.php:54
 msgid "Priority"
 msgstr "Priorité"
 
-#: pages/parts/wish-add.php:63
+#: pages/parts/wish-add.php:59
 msgid "Select priority"
 msgstr "sélectionner la priorité"
 
-#: pages/parts/wish-add.php:76
+#: pages/parts/wish-add.php:68
 msgid "Image"
 msgstr "Image"
 
-#: pages/parts/wish-add.php:87
+#: pages/parts/wish-add.php:77
 msgid "Properties"
 msgstr "Propriétés"
 
-#: pages/parts/wish-add.php:96
+#: pages/parts/wish-add.php:85
 msgid "Is purchasable"
 msgstr "est achetable"
 
-#: pages/parts/wish-add.php:112
+#: pages/parts/wish-add.php:101
 msgid "Price"
 msgstr "Prix"
 
-#: pages/parts/wishlist.php:26
+#: pages/parts/wishlist.php:20
 msgid "Filter priorities"
 msgstr "Priorités de filtrage"
 
-#: pages/parts/wishlist.php:31
+#: pages/parts/wishlist.php:25
 msgid "Search priorities"
 msgstr "Priorités de recherche"
 
-#: pages/parts/wishlist.php:38
+#: pages/parts/wishlist.php:32
 msgid "Priorities"
 msgstr "Priorités"
 
-#: pages/parts/wishlist.php:44
+#: pages/parts/wishlist.php:38
 msgid "All priorities"
 msgstr "Toutes les priorités"
 
-#: pages/parts/wishlist.php:49
+#: pages/parts/wishlist.php:43
 msgid "No priority"
 msgstr "Pas de priorité"
 
-#: pages/parts/wishlist.php:83 pages/wishlists.php:38 pages/wishlists.php:41
+#: pages/parts/wishlist.php:81 pages/wishlists.php:45 pages/wishlists.php:48
 msgid "Create a wishlist"
 msgstr "Créer une liste de souhaits"
 
-#: pages/parts/wishlist.php:87
+#: pages/parts/wishlist.php:85
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
 msgstr ""
 "Choisissez un nouveau nom pour votre liste de souhaits. Voici une suggestion"
 " pour vous aider à démarrer."
 
-#: pages/parts/wishlist.php:100 pages/parts/wishlist.php:101
+#: pages/parts/wishlist.php:98 pages/parts/wishlist.php:99
 msgid "Create"
 msgstr "Créer"
 
-#: pages/parts/wishlist.php:103 pages/parts/wishlist.php:104
-#: pages/parts/wishlist.php:128 pages/parts/wishlist.php:129
-#: pages/parts/wishlist.php:154 pages/parts/wishlist.php:155
+#: pages/parts/wishlist.php:101 pages/parts/wishlist.php:102
+#: pages/parts/wishlist.php:126 pages/parts/wishlist.php:127
+#: pages/parts/wishlist.php:152 pages/parts/wishlist.php:153
 #: pages/parts/wishlist.php:182 pages/parts/wishlist.php:183
 msgid "Cancel"
 msgstr "Annuler"
 
-#: pages/parts/wishlist.php:112
+#: pages/parts/wishlist.php:110
 msgid "Rename wishlist"
 msgstr "Renommer la liste de souhaits"
 
-#: pages/parts/wishlist.php:115
+#: pages/parts/wishlist.php:113
 msgid "How would you like to name this wishlist?"
 msgstr "Comment voudriez-vous nommer cette liste de souhaits ?"
 
-#: pages/parts/wishlist.php:125 pages/parts/wishlist.php:126
-#: pages/wishlists.php:70 pages/wishlists.php:72
+#: pages/parts/wishlist.php:123 pages/parts/wishlist.php:124
+#: pages/wishlists.php:77 pages/wishlists.php:79
 msgid "Rename"
 msgstr "Renommer"
 
-#: pages/parts/wishlist.php:137 pages/wishlists.php:49 pages/wishlists.php:52
+#: pages/parts/wishlist.php:135 pages/wishlists.php:56 pages/wishlists.php:59
 msgid "Add a wish"
 msgstr "Ajouter un souhait"
 
-#: pages/parts/wishlist.php:141
+#: pages/parts/wishlist.php:139
 msgid ""
 "Fill the title and/or description to add your new wish. If you just fill out"
 " the URL, wishthis will attempt to auto fill all other fields."
@@ -1233,15 +1392,15 @@ msgstr ""
 " Si vous remplissez simplement l'URL, wishthis tentera de remplir "
 "automatiquement tous les autres champs."
 
-#: pages/parts/wishlist.php:151 pages/parts/wishlist.php:152
+#: pages/parts/wishlist.php:149 pages/parts/wishlist.php:150
 msgid "Add"
 msgstr "Ajouter"
 
-#: pages/parts/wishlist.php:163
+#: pages/parts/wishlist.php:162
 msgid "Edit wish"
 msgstr "Modifier le souhait"
 
-#: pages/parts/wishlist.php:167
+#: pages/parts/wishlist.php:166
 msgid ""
 "If specified, wishthis will attempt to fetch all missing information from "
 "the URL."
@@ -1249,11 +1408,11 @@ msgstr ""
 "Si spécifiée, wishthis tentera de récupérer toutes les informations "
 "manquantes à partir de l'URL."
 
-#: pages/parts/wishlist.php:191
+#: pages/parts/wishlist.php:192
 msgid "URL mismatch"
 msgstr "Non-concordance d'URL"
 
-#: pages/parts/wishlist.php:195
+#: pages/parts/wishlist.php:196
 msgid ""
 "The URL you have entered does not seem quite right. Would you like to update"
 " it with the one I found?"
@@ -1261,26 +1420,51 @@ msgstr ""
 "L'URL que vous avez saisie ne semble pas tout à fait correcte. Souhaitez-"
 "vous la mettre à jour avec celle trouvée ?"
 
-#: pages/parts/wishlist.php:196
+#: pages/parts/wishlist.php:197
 #, php-format
 msgid "According to %s, this is the canonical (correct) URL."
 msgstr "Selon %s, il s'agit de l'URL canonique (correcte)."
 
-#: pages/parts/wishlist.php:200
+#: pages/parts/wishlist.php:201
 msgid "Current"
 msgstr "Actuel"
 
-#: pages/parts/wishlist.php:205
+#: pages/parts/wishlist.php:206
 msgid "Proposed"
 msgstr "Proposé"
 
-#: pages/parts/wishlist.php:212 pages/parts/wishlist.php:213
+#: pages/parts/wishlist.php:213 pages/parts/wishlist.php:214
 msgid "Yes, update"
 msgstr "Oui, mettre à jour"
 
-#: pages/parts/wishlist.php:215 pages/parts/wishlist.php:216
+#: pages/parts/wishlist.php:216 pages/parts/wishlist.php:217
 msgid "No, leave it"
 msgstr "Non, laissez-le"
+
+#: pages/parts/wishlist.php:264
+msgid "Mark as fulfilled"
+msgstr "Marque comme exaucé"
+
+#: pages/parts/wishlist.php:269 pages/wishlist.php:70
+msgid "Fulfil wish"
+msgstr "Exaucer le souhait"
+
+#: pages/parts/wishlist.php:275
+msgid "Visit"
+msgstr "Visiter"
+
+#: pages/parts/wishlist.php:281 pages/wishlists.php:41 pages/wishlists.php:71
+#: pages/wishlists.php:74
+msgid "Options"
+msgstr "Options"
+
+#: pages/parts/wishlist.php:286
+msgid "Edit"
+msgstr "Modifier"
+
+#: pages/parts/wishlist.php:291 pages/wishlists.php:82 pages/wishlists.php:84
+msgid "Delete"
+msgstr "Supprimer"
 
 #: pages/power.php:11
 msgid "Insufficient power"
@@ -1299,15 +1483,15 @@ msgstr ""
 "Vous n'avez pas assez de puissance pour afficher cette page. Vous devez "
 "avoir %spour voir cette page, mais vous n'avez que %s."
 
-#: pages/profile.php:19 pages/profile.php:190
+#: pages/profile.php:19 pages/profile.php:211
 msgid "First name"
 msgstr "Prénom"
 
-#: pages/profile.php:24 pages/profile.php:196
+#: pages/profile.php:24 pages/profile.php:217
 msgid "Last name"
 msgstr "Nom de famille"
 
-#: pages/profile.php:29 pages/profile.php:202
+#: pages/profile.php:29 pages/profile.php:223
 msgid "Nickname"
 msgstr "Surnom :"
 
@@ -1316,89 +1500,144 @@ msgstr "Surnom :"
 msgid "%s successfully updated!"
 msgstr "%s mis à jour avec succès !"
 
-#: pages/profile.php:98
-msgid "Locale successfully updated!"
-msgstr "Paramètres régionaux mis à jour avec succès !"
+#. TRANSLATORS: %s: The new locale
+#: pages/profile.php:100
+#, php-format
+msgid "Language set to %s."
+msgstr "Langue définie sur %s."
 
-#: pages/profile.php:144
+#. TRANSLATORS: %s: The new locale
+#: pages/profile.php:116
+#, php-format
+msgid "Currency set to %s."
+msgstr "Devise définie sur %s."
+
+#: pages/profile.php:165
 msgid "It is required for you to login again."
 msgstr "Il vous est nécessaire de vous reconnecter."
 
-#: pages/profile.php:165 pages/profile.php:181
+#: pages/profile.php:186 pages/profile.php:202
 msgid "Personal"
 msgstr "Personnel"
 
-#: pages/profile.php:166
+#: pages/profile.php:187
 msgid "Information regarding yourself"
 msgstr "Informations vous concernant"
 
-#: pages/profile.php:170
+#: pages/profile.php:191
 msgid "Change your password"
 msgstr "Changez votre mot de passe"
 
-#: pages/profile.php:173 pages/profile.php:307
+#: pages/profile.php:194 pages/profile.php:331
 msgid "Preferences"
 msgstr "Préférences"
 
-#: pages/profile.php:174
+#: pages/profile.php:195
 msgid "Improve your wishthis experience"
 msgstr "Améliorez votre expérience de wishthis"
 
-#: pages/profile.php:216
+#: pages/profile.php:236
+msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
+msgstr ""
+"Utilisé pour suggérer une liste de souhaits appelée \"Anniversaire\", si "
+"elle arrive."
+
+#: pages/profile.php:238
 msgid "Birthdate"
 msgstr "Date de naissance"
 
-#: pages/profile.php:223
+#: pages/profile.php:247
 msgid "Pick a date"
 msgstr "Choisissez une date"
 
-#: pages/profile.php:259
+#: pages/profile.php:283
 msgid "Password (repeat)"
 msgstr "Mot de passe (répéter)"
 
-#: pages/profile.php:275
+#: pages/profile.php:299
 msgid "Safe password checklist"
 msgstr "Liste de contrôle du mot de passe sécurisé"
 
-#: pages/profile.php:282
+#: pages/profile.php:306
 msgid "Long"
 msgstr "Long"
 
-#: pages/profile.php:283
+#: pages/profile.php:307
 msgid "Over eight characters in length."
 msgstr "Plus de huit caractères de long."
 
 #. TRANSLATORS: A special character (for a password)
-#: pages/profile.php:294
+#: pages/profile.php:318
 msgid "Special"
 msgstr "Spécial"
 
-#: pages/profile.php:297
+#: pages/profile.php:321
 msgid "Contains special characters."
 msgstr "Contient des caractères spéciaux."
 
-#: pages/profile.php:316
+#: pages/profile.php:340
 msgid "Language"
 msgstr "Langue"
 
-#: pages/profile.php:341 pages/profile.php:432
+#: pages/profile.php:358
+msgid "Currency"
+msgstr "Devise"
+
+#: pages/profile.php:444
 msgid "Channel"
 msgstr "Canal"
 
-#: pages/profile.php:344
+#: pages/profile.php:447
 msgid "Select channel"
 msgstr "Sélectionne le canal"
 
-#: pages/profile.php:359
+#: pages/profile.php:460
+msgid ""
+"In order to improve the user experience of wishthis, newer versions are "
+"published after an extensive testing period."
+msgstr ""
+"Afin d'améliorer l'expérience utilisateur de wishthis, de nouvelles versions"
+" sont publiées après une longue période de test."
+
+#: pages/profile.php:461
+msgid ""
+"Subscribing to the Stable channel ensures you have the highest possible "
+"stability while using wishthis, minimizing the amount of errors you may "
+"encounter (if any)."
+msgstr ""
+"L'abonnement au canal Stable vous garantit la plus grande stabilité possible"
+" lors de l'utilisation de wishthis, minimisant ainsi le nombre d'erreurs que"
+" vous pourriez rencontrer (le cas échéant)."
+
+#: pages/profile.php:462
+msgid ""
+"If you want to speed up the release of newer versions, consider subscribing "
+"to the Release candidate of wishthis. A newer version is not published "
+"unless the next release candidate has been sufficiently tested."
+msgstr ""
+"Si vous souhaitez accélérer la sortie de nouvelles versions, pensez à vous "
+"abonner à la version candidate de wishthis. Une version plus récente n'est "
+"pas publiée tant que la prochaine version candidate n'a pas été suffisamment"
+" testée."
+
+#: pages/profile.php:475
+#, php-format
+msgid "%d more subscriber needed"
+msgid_plural "%d more subscribers needed"
+msgstr[0] "%d plus d'abonnés nécessaires"
+msgstr[1] "%d il faut plus d'abonnés"
+msgstr[2] "%d a besoin plus d'abonnés"
+
+#: pages/profile.php:504
 msgid "Advertisements"
 msgstr "Publicités"
 
-#: pages/profile.php:372
+#: pages/profile.php:517
 msgid "Enable advertisements"
 msgstr "Activer les publicités"
 
 #. TRANSLATORS: %s: sponsor me
-#: pages/profile.php:380
+#: pages/profile.php:526
 #, php-format
 msgid ""
 "Time spent on wishthis is time not doing for-profit work. If you would like "
@@ -1410,46 +1649,15 @@ msgstr ""
 "pouvez pas ou ne voulez pas %s, envisagez de vendre votre corps à Google et "
 "de devenir son produit."
 
-#: pages/profile.php:381
+#: pages/profile.php:527
 msgid "sponsor me"
 msgstr "sponsorisez moi"
 
-#: pages/profile.php:435
-msgid ""
-"In order to improve the user experience of wishthis, newer versions are "
-"published after an extensive testing period."
+#: pages/profile.php:531
+msgid "Please remember to add an exception to your ad-blocker and browser."
 msgstr ""
-"Afin d'améliorer l'expérience utilisateur de wishthis, de nouvelles versions"
-" sont publiées après une longue période de test."
-
-#: pages/profile.php:436
-msgid ""
-"Subscribing to the Stable channel ensures you have the highest possible "
-"stability while using wishthis, minimizing the amount of errors you may "
-"encounter (if any)."
-msgstr ""
-"L'abonnement au canal Stable vous garantit la plus grande stabilité possible"
-" lors de l'utilisation de wishthis, minimisant ainsi le nombre d'erreurs que"
-" vous pourriez rencontrer (le cas échéant)."
-
-#: pages/profile.php:437
-msgid ""
-"If you want to speed up the release of newer versions, consider subscribing "
-"to the Release candidate of wishthis. A newer version is not published "
-"unless the next release candidate has been sufficiently tested."
-msgstr ""
-"Si vous souhaitez accélérer la sortie de nouvelles versions, pensez à vous "
-"abonner à la version candidate de wishthis. Une version plus récente n'est "
-"pas publiée tant que la prochaine version candidate n'a pas été suffisamment"
-" testée."
-
-#: pages/profile.php:449
-#, php-format
-msgid "%d more subscriber needed"
-msgid_plural "%d more subscribers needed"
-msgstr[0] "%d plus d'abonnés nécessaires"
-msgstr[1] "%d il faut plus d'abonnés"
-msgstr[2] "%d a besoin plus d'abonnés"
+"N'oubliez pas d'ajouter une exception à votre bloqueur de publicités et à "
+"votre navigateur."
 
 #: pages/register.php:13
 msgid "Reset password"
@@ -1459,47 +1667,47 @@ msgstr "Réinitialiser le mot de passe"
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: pages/register.php:32
+#: pages/register.php:37
 msgid "Mercury"
 msgstr "Mercure"
 
-#: pages/register.php:33
+#: pages/register.php:38
 msgid "Venus"
 msgstr "Vénus"
 
-#: pages/register.php:34
+#: pages/register.php:39
 msgid "Earth"
 msgstr "Terre"
 
-#: pages/register.php:35
+#: pages/register.php:40
 msgid "Mars"
 msgstr "Mars"
 
-#: pages/register.php:36
+#: pages/register.php:41
 msgid "Jupiter"
 msgstr "Jupiter"
 
-#: pages/register.php:37
+#: pages/register.php:42
 msgid "Saturn"
 msgstr "Saturne"
 
-#: pages/register.php:38
+#: pages/register.php:43
 msgid "Uranus"
 msgstr "Uranus"
 
-#: pages/register.php:39
+#: pages/register.php:44
 msgid "Neptune"
 msgstr "Neptune"
 
-#: pages/register.php:42
+#: pages/register.php:47
 msgid "Pluto"
 msgstr "Pluton"
 
-#: pages/register.php:43
+#: pages/register.php:48
 msgid "Sun"
 msgstr "Soleil"
 
-#: pages/register.php:52
+#: pages/register.php:57
 #, php-format
 msgid ""
 "%s is not a planet but I'll let it slide, since only a human would make this"
@@ -1508,17 +1716,21 @@ msgstr ""
 "%s n'est pas une planète mais je vais laisser couler, puisque seul un humain"
 " ferait ce genre d'erreur."
 
-#: pages/register.php:53 pages/register.php:160
+#: pages/register.php:58 pages/register.php:187
 msgid "Invalid planet"
 msgstr "planète invalide"
 
-#: pages/register.php:92
+#: pages/register.php:105
 msgid "This password reset link has expired, please request a new one."
 msgstr ""
 "Ce lien de réinitialisation de mot de passe a expiré, veuillez en demander "
 "un nouveau."
 
-#: pages/register.php:95
+#: pages/register.php:105 pages/register.php:108
+msgid "Failure"
+msgstr "Échec"
+
+#: pages/register.php:108
 msgid ""
 "This password reset link seems to have been manipulated, please request a "
 "new one."
@@ -1526,23 +1738,23 @@ msgstr ""
 "Ce lien de réinitialisation de mot de passe semble avoir été manipulé, "
 "veuillez en demander un nouveau."
 
-#: pages/register.php:117
+#: pages/register.php:134
 msgid "An account with this email address already exists."
 msgstr "Un compte avec cette adresse e-mail existe déjà."
 
-#: pages/register.php:118
+#: pages/register.php:135
 msgid "Invalid email address"
 msgstr "Adresse e-mail invalide"
 
-#: pages/register.php:132
+#: pages/register.php:153
 msgid "Your account was successfully created."
 msgstr "Votre compte a été créé avec succès."
 
-#: pages/register.php:142
+#: pages/register.php:163
 msgid "My hopes and dreams"
 msgstr "Mes espoirs et mes rêves"
 
-#: pages/register.php:159
+#: pages/register.php:186
 #, php-format
 msgid ""
 "%s is not a planet in our solar system. Read this for more information: %s."
@@ -1550,15 +1762,15 @@ msgstr ""
 "%s n'est pas une planète de notre système solaire. Lisez cela pour plus "
 "d'informations: %s."
 
-#: pages/register.php:181
+#: pages/register.php:208
 msgid "Account details"
 msgstr "Détails du compte"
 
-#: pages/register.php:212
+#: pages/register.php:239
 msgid "Authentication"
 msgstr "Authentification"
 
-#: pages/register.php:213
+#: pages/register.php:240
 msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
@@ -1566,11 +1778,11 @@ msgstr ""
 "Prouvez que vous êtes un humain, un lézard ou une créature ressemblant à "
 "Zuck. Veuillez nommer une planète de notre système solaire."
 
-#: pages/register.php:216
+#: pages/register.php:243
 msgid "Planet"
 msgstr "Planète"
 
-#: pages/register.php:223
+#: pages/register.php:250
 msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
@@ -1578,11 +1790,11 @@ msgstr ""
 "Les robots viennent évidemment d'un autre système solaire, donc cela les "
 "tiendra à distance."
 
-#: pages/register.php:250
+#: pages/register.php:277
 msgid "About your email address"
 msgstr "À propos de votre adresse e-mail"
 
-#: pages/register.php:252
+#: pages/register.php:279
 msgid ""
 "Currently the email address is used as a unique identifier and does not have"
 " to be verified. You may enter a fake address."
@@ -1590,26 +1802,26 @@ msgstr ""
 "Actuellement, l'adresse e-mail est utilisée comme identifiant unique et n'a "
 "pas besoin d'être vérifiée. Vous pouvez entrer une fausse adresse."
 
-#: pages/register.php:253
+#: pages/register.php:280
 msgid ""
 "wishthis is not a commercial project and is not interested in sending you "
 "marketing emails or selling your information to third parties. Although "
 "possible to do otherwise, it is strongly recommend to enter your real email "
 "address in case you need to recover your password or receive important "
 "notifications. These do not exist yet, but some future features and options "
-"might require sending you an email (i. e. when a wish has been fulfilled)."
+"might require sending you an email (e. g. when a wish has been fulfilled)."
 msgstr ""
-"wishthis n'est pas un projet commercial et n'est pas intéressé à vous "
-"envoyer des e-mails marketing ou à vendre vos informations à des tiers. Bien"
-" qu'il soit possible de faire autrement, il est fortement recommandé de "
-"saisir votre adresse e-mail réelle au cas où vous auriez besoin de récupérer"
-" votre mot de passe ou de recevoir des notifications importantes. Celles-ci "
-"n'existent pas encore, mais certaines fonctionnalités et options futures "
-"pourraient nécessiter l'envoi d'un e-mail (c'est-à-dire lorsqu'un souhait a "
-"été exaucé)."
+"wishthis n'est pas un projet commercial et ne souhaite pas vous envoyer des "
+"e-mails marketing ou à vendre vos informations à des tiers. Bien qu'il soit "
+"possible de faire autrement, il est fortement recommandé de saisir votre "
+"adresse e-mail réelle au cas où vous auriez besoin de récupérer votre mot de"
+" passe ou de recevoir des notifications importantes. Celles-ci n'existent "
+"pas encore, mais certaines fonctionnalités et options futures pourraient "
+"nécessiter l'envoi d'un e-mail (par exemple, lorsqu'un souhait a été "
+"exaucé)."
 
 #. TRANSLATORS: %s: source code
-#: pages/register.php:258
+#: pages/register.php:285
 #, php-format
 msgid ""
 "Trust is a two way street and wishthis aims to be a transparent, trustworthy"
@@ -1619,7 +1831,7 @@ msgstr ""
 "transparent et digne de confiance, c'est pourquoi le %s de wishthis est "
 "visible publiquement."
 
-#: pages/register.php:259
+#: pages/register.php:286
 msgid "source code"
 msgstr "code source"
 
@@ -1646,16 +1858,16 @@ msgstr "Clef secrète"
 msgid "Update"
 msgstr "Mise à jour"
 
-#: pages/update.php:42
+#: pages/update.php:52
 #, php-format
 msgid "Database successfully migrated to %s."
 msgstr "La base de données a été migrée avec succès vers %s."
 
-#: pages/update.php:67
+#: pages/update.php:71
 msgid "Database migration"
 msgstr "Migration de la base de données"
 
-#: pages/update.php:68
+#: pages/update.php:72
 msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
@@ -1664,16 +1876,16 @@ msgstr ""
 "certaines modifications sont nécessaires à la structure de la base de "
 "données."
 
-#: pages/update.php:73 pages/update.php:76
+#: pages/update.php:77 pages/update.php:80
 #, php-format
 msgid "Migrate to %s"
 msgstr "Migrer vers %s"
 
-#: pages/wishlist.php:50
+#: pages/wishlist.php:55
 msgid "Careful"
 msgstr "Attention"
 
-#: pages/wishlist.php:53
+#: pages/wishlist.php:58
 msgid ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
 " already been fulfilled for you. Don't you want to be surprised?"
@@ -1681,44 +1893,44 @@ msgstr ""
 "Vous consultez votre propre liste de souhaits ! Vous pourrez voir quels "
 "souhaits ont déjà été exaucés pour vous. Ne voulez-vous pas être surpris ?"
 
-#: pages/wishlist.php:54
+#: pages/wishlist.php:59
 msgid "It's probably best to just close this tab."
 msgstr "Il est probablement préférable de fermer cet onglet."
 
-#: pages/wishlist.php:62
+#: pages/wishlist.php:67
 msgid "What to do?"
 msgstr "Que faire ?"
 
-#: pages/wishlist.php:64
+#: pages/wishlist.php:69
 #, php-format
 msgid ""
 "If you found a wish you would like to fulfil, click the %s button and it "
 "will temporarily become unavailable for others. Make sure to confirm the "
-"fulfilled wish here (i. e. after placing an order), to make the wish "
+"fulfilled wish here (e. g. after placing an order), to make the wish "
 "permanently unavailable for everybody else."
 msgstr ""
-"Si vous avez trouvé un souhait que vous aimeriez réaliser, cliquez sur le "
-"bouton %s et il deviendra temporairement indisponible pour les autres. "
-"Assurez-vous de confirmer ici le souhait exaucé (c'est-à-dire après avoir "
+"Si vous avez trouvé un souhait que vous aimeriez exaucer, cliquez sur le "
+"bouton %set il deviendra temporairement indisponible pour les autres. "
+"Assurez-vous de confirmer ici le souhait exaucé (par exemple après avoir "
 "passé une commande), afin de rendre le souhait définitivement indisponible "
 "pour tout le monde."
 
-#: pages/wishlist.php:76 pages/wishlist.php:90 pages/wishlist.php:105
+#: pages/wishlist.php:81 pages/wishlist.php:95 pages/wishlist.php:110
 msgid "Request more wishes"
 msgstr "Demander plus de souhaits"
 
-#: pages/wishlist.php:94
+#: pages/wishlist.php:99
 msgid "A notification has just been sent to the owner of this wishlist."
 msgstr ""
 "Une notification vient d'être envoyée au propriétaire de cette liste de "
 "souhaits."
 
-#: pages/wishlist.php:98 pages/wishlist.php:99 pages/wishlist.php:113
-#: pages/wishlist.php:114
+#: pages/wishlist.php:103 pages/wishlist.php:104 pages/wishlist.php:118
+#: pages/wishlist.php:119
 msgid "Ok"
 msgstr "Ok"
 
-#: pages/wishlist.php:109
+#: pages/wishlist.php:114
 msgid ""
 "The wishlist owner has already received a notification recently and has not "
 "been notified again."
@@ -1738,14 +1950,14 @@ msgstr ""
 msgid "No lists"
 msgstr "Aucune liste"
 
-#: pages/wishlists.php:26
+#: pages/wishlists.php:33
 msgid "Wishlist"
 msgstr "Liste de souhaits"
 
-#: pages/wishlists.php:29
+#: pages/wishlists.php:36
 msgid "Loading your wishlists..."
 msgstr "Chargement de vos listes de souhaits..."
 
-#: pages/wishlists.php:57 pages/wishlists.php:60
+#: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
 msgstr "Partager"
