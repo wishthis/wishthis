@@ -26,3 +26,8 @@ SET
     `power` = 1
 WHERE
     `power` = 0;
+
+ALTER TABLE
+    `users` CHANGE COLUMN `password_reset_token` `password_reset_token` VARCHAR(40) NULL DEFAULT NULL
+AFTER
+    `password`;
