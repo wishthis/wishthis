@@ -95,7 +95,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_description    = Sanitiser::getText($_POST['wish_description']);
             $wish_image          = Sanitiser::getURL($_POST['wish_image']);
             $wish_url            = Sanitiser::getURL($_POST['wish_url']);
-            $wish_priority       = !empty(Sanitiser::getNumber($_POST['wish_priority'])) ? Sanitiser::getNumber($_POST['wish_priority']) : null;
+            $wish_priority       = !empty($_POST['wish_priority']) ? Sanitiser::getNumber($_POST['wish_priority']) : null;
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
             if (Wish::NO_IMAGE === $wish_image) {
@@ -262,7 +262,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                  * Product
                  */
                 $wish_id    = $database->lastInsertId();
-                $wish_price = Sanitiser::getNumber($_POST['wish_price']);
+                $wish_price = !empty($_POST['wish_price']) ? Sanitiser::getNumber($_POST['wish_price']) : null;
 
                 if ($wish_price > 0) {
                     $database
