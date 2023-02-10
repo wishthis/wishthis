@@ -88,7 +88,7 @@ $(function () {
                     setTimeout(function dropdown_wishlists_api() {
                         var api_is_complete = $('.ui.dropdown.filter.priority').api('was complete');
 
-                        if ('' === $('.wishlist-cards').html() && api_is_complete) {
+                        if ($('.ui.column.wishlist > .column').length > 0 && api_is_complete) {
                             $('.ui.dropdown.filter.priority').api('query');
 
                             setTimeout(dropdown_wishlists_api, 1);
