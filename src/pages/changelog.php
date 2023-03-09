@@ -167,6 +167,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo  __('Temporary fulfilled wish does not become available again after 30 minutes, except when viewing as the owner of the list.');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/71" target="_blank">#71</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Fix various wish UI bugs');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
