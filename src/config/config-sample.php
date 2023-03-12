@@ -44,3 +44,10 @@ define(
         ),
     )
 );
+
+/**
+ * plausible
+ *
+ * Whether to make calls to plausible.io.
+ */
+define('PLAUSIBLE', false);

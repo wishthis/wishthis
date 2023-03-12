@@ -376,12 +376,14 @@ class Page
             }
 
             /** plausible */
-            ?>
-            <script defer
-                    data-domain="<?= $_SERVER['HTTP_HOST'] ?>"
-                    src="https://plausible.io/js/plausible.js">
-            </script>
-            <?php
+            if (defined('PLAUSIBLE') && true === PLAUSIBLE) {
+                ?>
+                <script defer
+                        data-domain="<?= $_SERVER['HTTP_HOST'] ?>"
+                        src="https://plausible.io/js/plausible.js">
+                </script>
+                <?php
+            }
 
             /** AdSense */
             $wishthis_hosts = array(
