@@ -118,6 +118,17 @@ $page->navigation();
                                     <a href="https://github.com/grandeljay/wishthis/issues/64" target="_blank">#64</a>
                                 </li>
                             </ul>
+
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('A fatal error when the CHANNELS constant is removed from the config');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/74" target="_blank">#74</a>
+                                </li>
+                            </ul>
                         </div>
 
                     </div>

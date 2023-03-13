@@ -19,10 +19,12 @@ function redirect(string $target)
     $isHostInChannel  = false;
 
     /** Determine if host is a defined channel */
-    foreach (CHANNELS as $channel) {
-        if ($channel['host'] === $_SERVER['HTTP_HOST']) {
-            $isHostInChannel = true;
-            break;
+    if (defined('CHANNELS') && is_array(CHANNELS)) {
+        foreach (CHANNELS as $channel) {
+            if ($channel['host'] === $_SERVER['HTTP_HOST']) {
+                $isHostInChannel = true;
+                break;
+            }
         }
     }
 
