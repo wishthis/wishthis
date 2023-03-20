@@ -6,6 +6,8 @@
  * Usually, the wishthis installer will create the config.php for you.
  */
 
+namespace wishthis;
+
 /**
  * Database
  *

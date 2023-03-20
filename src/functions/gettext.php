@@ -2,11 +2,9 @@
 
 /**
  * Gettext
- *
- * @author Jay Trees <github.jay@grandel.anonaddy.me>
  */
 
-use wishthis\User;
+namespace wishthis;
 
 function __(string $text, string $context = null, User $user = null): string
 {
