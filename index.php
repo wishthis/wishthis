@@ -21,18 +21,12 @@ require 'vendor/autoload.php';
 $include = new \Grandel\IncludeDirectory(__DIR__ . '/src/functions');
 
 spl_autoload_register(
-    function (string $fullClass) {
-        /** Only include classes from this namespace */
-        if (__NAMESPACE__ === substr($fullClass, 0, strlen(__NAMESPACE__))) {
-            $fullClass = substr($fullClass, strlen(__NAMESPACE__));
-        } else {
-            return false;
+    function (string $absoluteNamespace) {
+        if (__NAMESPACE__ !== substr($absoluteNamespace, 0, strlen(__NAMESPACE__))) {
+            return;
         }
 
-        $parts = explode('\\', $fullClass);
-        $class = implode('/', $parts);
-
-        $filepath = ROOT . '/src/classes/' . strtolower($class) . '.php';
+        $filepath = ROOT . '/src/classes/' . $absoluteNamespace . '.php';
 
         require $filepath;
     }
@@ -95,7 +89,7 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$_SESSION['user']->isLog
            FROM `sessions`
           WHERE `session` = :session;',
         array(
-            'session' => $_COOKIE[COOKIE_PERSISTENT]
+            'session' => $_COOKIE[COOKIE_PERSISTENT],
         )
     )
     ->fetchAll();
