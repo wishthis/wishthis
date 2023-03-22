@@ -58,7 +58,7 @@ class Database
             }
         }
 
-        $statement->execute();
+        $successful = $statement->execute();
 
         $this->lastInsertId = $this->pdo->lastInsertId();
 

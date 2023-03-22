@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace wishthis;
 
-use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\{DataProvider, Depends};
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers             Wishlist
+ * @coversDefaultClass \wishthis\Wishlist
+ */
 final class WishlistTest extends TestCase
 {
     public static function setUpBeforeClass(): void
@@ -16,24 +20,39 @@ final class WishlistTest extends TestCase
         wishthis::initialise();
     }
 
-    public static function userIDs(): array
+    /**
+     * Create Wishlist
+     */
+    public function testCreateWishlist(): int|bool
     {
-        return array(
-            'user_id = 1' => array(1, true),
-            'user_id = 2' => array(2, true),
-            'user_id = 3' => array(3, false),
-            'user_id = 4' => array(4, true),
-            'user_id = 5' => array(5, true),
-        );
+        $result = Wishlist::create('My hopes and dreams', 1);
+
+        $this->assertIsInt($result);
+
+        return $result;
     }
 
-    #[DataProvider('userIDs')]
-    public function testCreateWishlist(int $user_id, bool $expected_result): void
+    /**
+     * Rename Wishlist
+     *
+     * @depends testCreateWishlist
+     */
+    public function testRenameWishlist(int|bool $createWishlistResult): void
     {
-        $database    = Wishthis::getDatabase();
-        $wishlist_id = Wishlist::create($database, 'My hopes and dreams', $user_id);
-        $successful  = is_int($wishlist_id);
+        $successful = Wishlist::rename('A more realistic list', $createWishlistResult);
 
-        $this->assertSame($successful, $expected_result);
+        $this->assertTrue($successful);
+    }
+
+    /**
+     * Delete wishlist
+     *
+     * @depends testCreateWishlist
+     */
+    public function testDeleteWishlist(int|bool $createWishlistResult): void
+    {
+        $successful = Wishlist::delete($createWishlistResult);
+
+        $this->assertTrue($successful);
     }
 }

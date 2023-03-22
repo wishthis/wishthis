@@ -13,33 +13,18 @@ global $page, $database;
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         if (isset($_POST['wishlist-name'], $_SESSION['user']->id)) {
-            /**
-             * Create
-             */
-            $user_id       = Sanitiser::getNumber($_SESSION['user']->id);
-            $wishlist_name = Sanitiser::getTitle($_POST['wishlist-name']);
-            $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
+            $result = Wishlist::Create($_POST['wishlist-name'], $_SESSION['user']->id);
 
-            $database->query(
-                'INSERT INTO `wishlists` (
-                    `user`,
-                    `name`,
-                    `hash`
-                ) VALUES (
-                    :user_id,
-                    :wishlist_name,
-                    :wishlist_hash
-                );',
-                array(
-                    'user_id'       => $user_id,
-                    'wishlist_name' => $wishlist_name,
-                    'wishlist_hash' => $wishlist_hash,
-                )
-            );
+            if (false === $result) {
+                $response['success'] = false;
+            }
 
-            $response['data'] = array(
-                'lastInsertId' => $database->lastInsertId(),
-            );
+            if (is_int($result)) {
+                $response['success'] = true;
+                $response['data']    = array(
+                    'lastInsertId' => $result,
+                );
+            }
         } elseif (isset($_POST['wishlist-id'])) {
             /**
              * Request more wishes
@@ -202,14 +187,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'DELETE':
         $_DELETE = $this->input;
 
-        $database->query(
-            'DELETE FROM `wishlists`
-                   WHERE `id` = :wishlist_id;',
-            array(
-                'wishlist_id' => Sanitiser::getNumber($_DELETE['wishlist_id']),
-            )
-        );
+        $response['success'] = Wishlist::delete($_DELETE['wishlist_id']);
 
-        $response['success'] = true;
         break;
 }

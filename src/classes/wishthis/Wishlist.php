@@ -21,8 +21,10 @@ class Wishlist
      *
      * @return int|false
      */
-    public static function create(Database $database, string $name, int $user_id = 0): int|false
+    public static function create(string $name, int $user_id = 0): int|false
     {
+        $database = Wishthis::getDatabase();
+
         if (0 === $user_id) {
             if (isset($_SESSION['user']->id)) {
                 $user_id = $_SESSION['user']->id;
@@ -62,6 +64,69 @@ class Wishlist
         }
 
         return false;
+    }
+
+    /**
+     * Renames a wishlist.
+     *
+     * Returns true when the specified wishlist was renamed. Returns false on
+     * failure or when the wishlist was not renamed, because it already has the
+     * specified name.
+     *
+     * @param string  $name        The new name for the wishlist.
+     * @param integer $wishlist_id ID of the wishlist to rename.
+     *
+     * @return boolean
+     */
+    public static function rename(string $name, int $wishlist_id): bool
+    {
+        $database = Wishthis::getDatabase();
+
+        $result = $database
+        ->query(
+            'UPDATE `wishlists`
+                SET `name` = :wishlist_name
+              WHERE `id`   = :wishlist_id',
+            array(
+                'wishlist_name' => Sanitiser::getTitle($name),
+                'wishlist_id'   => Sanitiser::getNumber($wishlist_id),
+            )
+        );
+
+
+        if (false === $result || 0 === $result->rowCount()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a wishlist.
+     *
+     * Returns whether deleting the wishlist was successful.
+     *
+     * @param integer $wishlist_id The ID of the wishlist to deletet.
+     *
+     * @return boolean
+     */
+    public static function delete(int $wishlist_id): bool
+    {
+        $database = Wishthis::getDatabase();
+
+        $result = $database->query(
+            'DELETE FROM `wishlists`
+                   WHERE `id` = :wishlist_id;',
+            array(
+                'wishlist_id' => Sanitiser::getNumber($wishlist_id),
+            )
+        );
+
+        if (false === $result || 0 === $result->rowCount()) {
+            return false;
+        }
+
+        return true;
     }
 
     public array $wishes = array();
