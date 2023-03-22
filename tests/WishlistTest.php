@@ -23,7 +23,7 @@ final class WishlistTest extends TestCase
     /**
      * Create Wishlist
      */
-    public function testCreateWishlist(): int|bool
+    public function testCreateWishlist(): int
     {
         $result = Wishlist::create('My hopes and dreams', 1);
 
@@ -37,7 +37,7 @@ final class WishlistTest extends TestCase
      *
      * @depends testCreateWishlist
      */
-    public function testRenameWishlist(int|bool $createWishlistResult): void
+    public function testRenameWishlist(int $createWishlistResult): void
     {
         $successful = Wishlist::rename('A more realistic list', $createWishlistResult);
 
@@ -49,7 +49,7 @@ final class WishlistTest extends TestCase
      *
      * @depends testCreateWishlist
      */
-    public function testDeleteWishlist(int|bool $createWishlistResult): void
+    public function testDeleteWishlist(int $createWishlistResult): void
     {
         $successful = Wishlist::delete($createWishlistResult);
 
