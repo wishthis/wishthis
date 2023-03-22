@@ -170,18 +170,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'PUT':
         $_PUT = $this->input;
 
-        $database
-        ->query(
-            'UPDATE `wishlists`
-                SET `name` = :wishlist_name
-              WHERE `id`   = :wishlist_id',
-            array(
-                'wishlist_name' => Sanitiser::getTitle($_PUT['wishlist_title']),
-                'wishlist_id'   => Sanitiser::getNumber($_PUT['wishlist_id']),
-            )
-        );
+        $response['success'] = Wishlist::rename($_PUT['wishlist_title'], $_PUT['wishlist_id']);
 
-        $response['success'] = true;
         break;
 
     case 'DELETE':

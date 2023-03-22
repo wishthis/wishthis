@@ -13,13 +13,11 @@ class Wishlist
     /**
      * Creates a new wishlist for the user.
      *
-     * Returns the wishlist ID or false on failure.
-     *
      * @param Database $database MySQL database to use.
      * @param string   $name     Name of the wishlist to create.
      * @param int      $user_id  User (ID) to create the wishlist for.
      *
-     * @return int|false
+     * @return int|false         The wishlist ID or false on failure.
      */
     public static function create(string $name, int $user_id = 0): int|false
     {
@@ -69,14 +67,13 @@ class Wishlist
     /**
      * Renames a wishlist.
      *
-     * Returns true when the specified wishlist was renamed. Returns false on
-     * failure or when the wishlist was not renamed, because it already has the
-     * specified name.
-     *
      * @param string  $name        The new name for the wishlist.
      * @param integer $wishlist_id ID of the wishlist to rename.
      *
-     * @return boolean
+     * @return boolean             True when the specified wishlist was renamed.
+     *                             False on failure or when the wishlist was not
+     *                             renamed, because it already has the specified
+     *                             name.
      */
     public static function rename(string $name, int $wishlist_id): bool
     {
@@ -104,11 +101,9 @@ class Wishlist
     /**
      * Deletes a wishlist.
      *
-     * Returns whether deleting the wishlist was successful.
-     *
      * @param integer $wishlist_id The ID of the wishlist to deletet.
      *
-     * @return boolean
+     * @return boolean Returns whether deleting the wishlist was successful.
      */
     public static function delete(int $wishlist_id): bool
     {
