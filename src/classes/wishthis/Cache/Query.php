@@ -19,7 +19,7 @@ class Query extends Cache
      */
     public function __construct(string $url, array $placeholders = array(), int $maxAge = \wishthis\Duration::YEAR)
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         parent::__construct($url, $maxAge);
 

@@ -86,7 +86,7 @@ class URL
      */
     public function getPermalink(): string
     {
-        $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
+        $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents('./.htaccess'));
         $permalink = '';
 
         foreach ($htaccess as $index => $line) {
@@ -125,7 +125,7 @@ class URL
      */
     public function getPretty(): string
     {
-        $htaccess = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
+        $htaccess = preg_split('/\r\n|\r|\n/', file_get_contents('./.htaccess'));
 
         if (!$this->url) {
             return '';

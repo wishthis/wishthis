@@ -17,11 +17,12 @@ function redirect(string $target)
      */
     $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
     $isHostInChannel  = false;
+    $host             = $_SERVER['HTTP_HOST'] ?? '';
 
     /** Determine if host is a defined channel */
     if (defined('CHANNELS') && is_array(CHANNELS)) {
         foreach (CHANNELS as $channel) {
-            if ($channel['host'] === $_SERVER['HTTP_HOST']) {
+            if ($channel['host'] === $host) {
                 $isHostInChannel = true;
                 break;
             }
@@ -56,7 +57,9 @@ function redirect(string $target)
         }
     }
 
-    if ($target !== $_SERVER['REQUEST_URI']) {
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+
+    if ($target !== $request_uri) {
         header('Location: ' . $target);
         die();
     }

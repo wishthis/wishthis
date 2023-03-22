@@ -42,7 +42,7 @@ foreach ($wishlists as $wishlist_saved) {
                             <div class="column">
                                 <a class="header" href="<?= $wishlist_href ?>">
                                     <div class="ui rounded bordered fluid image">
-                                        <?= file_get_contents(ROOT . '/' . Wish::NO_IMAGE) ?>
+                                        <?= file_get_contents('./' . Wish::NO_IMAGE) ?>
                                     </div>
                                 </a>
 

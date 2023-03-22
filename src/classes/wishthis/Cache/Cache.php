@@ -17,7 +17,7 @@ class Cache
      * Protected
      */
     protected string $url;
-    protected string $directory = ROOT . '/src/cache';
+    protected string $directory = './src/cache';
 
     protected function getAge(): int
     {

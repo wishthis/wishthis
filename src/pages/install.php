@@ -8,6 +8,8 @@
 
 namespace wishthis;
 
+$options = Wishthis::getOptions();
+
 if ($options && $options->getOption('isInstalled')) {
     redirect(Page::PAGE_HOME);
 }
@@ -26,7 +28,7 @@ switch ($step) {
         <main>
             <div class="ui hidden divider"></div>
             <div class="ui container">
-                <?= file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
+                <?= file_get_contents('./src/assets/img/logo.svg') ?>
 
                 <h1 class="ui header"><?= $page->title ?></h1>
 
@@ -160,7 +162,7 @@ switch ($step) {
                 `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
                 `power`                      INT          NOT NULL DEFAULT 1,
                 `birthdate`                  DATE         NULL     DEFAULT NULL,
-                `language`                   VARCHAR(5)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
+                `language`                   VARCHAR(5)   NOT NULL DEFAULT "' . Wishthis::DEFAULT_LOCALE . '",
                 `currency`                   VARCHAR(3)   NOT NULL DEFAULT "' . $currencyISO . '",
                 `name_first`                 VARCHAR(32)  NULL     DEFAULT NULL,
                 `name_last`                  VARCHAR(32)  NULL     DEFAULT NULL,

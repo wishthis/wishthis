@@ -116,7 +116,7 @@ class Page
     /**
      * Non-Static
      */
-    public string $language = DEFAULT_LOCALE;
+    public string $language = Wishthis::DEFAULT_LOCALE;
     public array $messages  = array();
     public string $link_preview;
     public string $description;
@@ -132,11 +132,13 @@ class Page
      */
     public function __construct(string $filepath, public string $title = 'wishthis', public int $power = 0)
     {
-        global $options;
+        $options = Wishthis::getOptions();
+
+        $host = $_SERVER['HTTP_HOST'] ?? '';
 
         $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
         $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
-        $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
+        $this->link_preview = 'https://' . $host . '/src/assets/img/link-previews/default.png';
 
         /**
          * Install
@@ -192,19 +194,12 @@ class Page
          * Redirect
          */
         if ($options && $options->getOption('isInstalled') && isset($_GET) && 'api' !== $this->name) {
-            $url = new URL($_SERVER['REQUEST_URI']);
+            $url = new URL($_SERVER['REQUEST_URI'] ?? '');
 
             if ($url->url && false === $url->isPretty()) {
                 redirect($url->getPretty());
             }
         }
-
-        /**
-         * Locale
-         */
-        global $locale;
-
-        $this->language = $locale;
 
         /**
          * Development environment notice
@@ -229,8 +224,9 @@ class Page
         /**
          * Link preview
          */
-        $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
-        $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
+        $host                = $_SERVER['HTTP_HOST'] ?? '';
+        $screenshot_filepath = './src/assets/img/screenshots/' . $this->name . '.png';
+        $screenshot_url      = 'https://' . $host . '/src/assets/img/screenshots/' . $this->name . '.png';
 
         if (file_exists($screenshot_filepath)) {
             $this->link_preview = $screenshot_url;
@@ -274,12 +270,10 @@ class Page
 
     public function header(): void
     {
-        global $locales;
-
         $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
         ?>
         <!DOCTYPE html>
-        <html lang="<?= $this->language ?>">
+        <html lang="<?= \Locale::getDefault() ?>">
         <head>
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -291,33 +285,36 @@ class Page
             <meta property="og:image" content="<?= $this->link_preview ?>" />
 
             <meta property="og:description" content="<?= $this->description ?>" />
-            <meta property="og:locale" content="<?= $this->language ?>" />
+            <meta property="og:locale" content="<?= \Locale::getDefault() ?>" />
             <meta property="og:site_name" content="wishthis" />
 
             <meta name="twitter:card" content="summary_large_image" />
-            <meta property="twitter:domain" content="<?= $_SERVER['HTTP_HOST'] ?>" />
-            <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?>" />
+            <meta property="twitter:domain" content="<?= $_SERVER['HTTP_HOST'] ?? '' ?>" />
+            <meta property="twitter:url" content="https://<?= $_SERVER['HTTP_HOST'] ?? '' ?>" />
             <meta name="twitter:title" content="<?= $this->title ?>" />
             <meta name="twitter:description" content="<?= $this->description ?>" />
             <meta name="twitter:image" content="<?= $this->link_preview ?>" />
 
-            <?php foreach ($locales as $locale) { ?>
-                <?php if ($locale !== $this->language) { ?>
+            <?php foreach (Wishthis::getLocales() as $locale) { ?>
+                <?php if (\Locale::getDefault() !== $locale) { ?>
                     <meta property="og:locale:alternate" content="<?= $locale ?>" />
                 <?php } ?>
             <?php } ?>
 
             <link rel="manifest" href="/manifest.json" />
             <?php
+            $request_uri = $_SERVER['REQUEST_URI'] ?? '';
             if (defined('CHANNELS') && is_array(CHANNELS)) {
                 $channels = CHANNELS;
                 $stable   = reset($channels);
+                $host     = $stable['host'] ?? '';
                 ?>
-                <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
+                <link rel="canonical" href="https://<?= $host . $request_uri ?>" />
                 <?php
             } else {
+                $host = $_SERVER['HTTP_HOST'] ?? '';
                 ?>
-                <link rel="canonical" href="https://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" />
+                <link rel="canonical" href="https://<?= $host . $request_uri ?>" />
                 <?php
             }
             ?>
@@ -356,7 +353,7 @@ class Page
              * Scripts
              */
             /** Inline */
-            require ROOT . '/src/assets/js/inline.js.php';
+            require './src/assets/js/inline.js.php';
 
             /** Files */
             $script_page = 'src/assets/js/' . $this->name .  '.js';
@@ -395,7 +392,7 @@ class Page
             $CrawlerDetect  = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
 
             if (
-                   in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
+                   in_array($_SERVER['HTTP_HOST'] ?? '', $wishthis_hosts, true)
                 && (true === $user->advertisements || $CrawlerDetect->isCrawler())
             ) {
                 ?>
@@ -530,9 +527,9 @@ class Page
         ksort($pages);
 
         if ('home' === $this->name) {
-            $logo = file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
+            $logo = file_get_contents('./src/assets/img/logo-animation.svg');
         } else {
-            $logo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
+            $logo = file_get_contents('./src/assets/img/logo.svg');
         }
         ?>
 
@@ -653,7 +650,7 @@ class Page
                         <div class="ui inverted link list">
                             <div class="item">
                                 <i class="code branch icon"></i>
-                                <div class="content"><?= VERSION ?></div>
+                                <div class="content"><?= Wishthis::VERSION ?></div>
                             </div>
 
                             <a class="item"

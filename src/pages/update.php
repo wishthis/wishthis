@@ -14,7 +14,7 @@ $page = new Page(__FILE__, __('Update'), 100);
  * Update
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-    $versions_directory = ROOT . '/src/update';
+    $versions_directory = './src/update';
     $versions_contents  = scandir($versions_directory);
     $versions           = array();
 
@@ -45,7 +45,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $options->setOption('updateAvailable', false);
 
     /** Update service-worker.js */
-    require ROOT . '/src/assets/js/service-worker.js.php';
+    require './src/assets/js/service-worker.js.php';
 
     $page->messages[] = Page::success(
         sprintf(

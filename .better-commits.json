@@ -1,0 +1,111 @@
+{
+	"check_status": true,
+	"commit_type": {
+		"enable": true,
+		"initial_value": "feat",
+		"infer_type_from_branch": true,
+		"options": [
+			{
+				"value": "feat",
+				"label": "feat"
+			},
+			{
+				"value": "fix",
+				"label": "fix"
+			},
+			{
+				"value": "style",
+				"label": "style"
+			},
+			{
+				"value": "docs",
+				"label": "docs"
+			},
+			{
+				"value": "refactor",
+				"label": "refactor"
+			},
+			{
+				"value": "perf",
+				"label": "perf"
+			},
+			{
+				"value": "test",
+				"label": "test"
+			},
+			{
+				"value": "chore",
+				"label": "chore"
+			},
+			{
+				"value": "",
+				"label": "none"
+			}
+		]
+	},
+	"commit_scope": {
+		"enable": true,
+		"initial_value": "",
+		"options": [
+			{
+				"value": "api",
+				"label": "api"
+			},
+			{
+				"value": "dependency",
+				"label": "dependency"
+			},
+			{
+				"value": "workflow",
+				"label": "workflow"
+			},
+			{
+				"value": "configuration",
+				"label": "configuration"
+			},
+			{
+				"value": "localisation",
+				"label": "localisation"
+			},
+			{
+				"value": "wishlist",
+				"label": "wishlist"
+			},
+			{
+				"value": "wish",
+				"label": "wish"
+			},
+			{
+				"value": "",
+				"label": "none"
+			}
+		]
+	},
+	"check_ticket": {
+		"infer_ticket": true,
+		"confirm_ticket": true,
+		"add_to_title": true,
+		"append_hashtag": false
+	},
+	"commit_title": {
+		"max_size": 70
+	},
+	"commit_body": {
+		"enable": true,
+		"required": false
+	},
+	"commit_footer": {
+		"enable": true,
+		"initial_value": [],
+		"options": [
+			"closes",
+			"breaking-change",
+			"deprecated"
+		]
+	},
+	"breaking_change": {
+		"add_exclamation_to_title": true
+	},
+	"confirm_commit": true,
+	"check_ticket.append_hashtag": true
+}

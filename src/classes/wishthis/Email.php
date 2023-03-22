@@ -24,15 +24,13 @@ class Email
         private string $template,
         private string $part
     ) {
-        $this->contentsTemplate = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
-        $this->contentsPart     = file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
+        $this->contentsTemplate = file_get_contents('./src/mjml/' . $this->template . '.mjml');
+        $this->contentsPart     = file_get_contents('./src/mjml/parts/' . $this->part . '.mjml');
 
         $this->mjml = str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
 
         /** Set Locale */
-        global $locale;
-
-        $this->mjml = preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . $locale . '">', $this->mjml);
+        $this->mjml = preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . \Locale::getDefault() . '">', $this->mjml);
     }
 
     public function setPlaceholder(string $placeholder, string $replacement): void

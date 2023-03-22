@@ -15,9 +15,9 @@ class User
     /**
      * Static
      */
-    public static function getFromID(int $user_id): self
+    public static function getFromID(int $user_id): self|false
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         $userQuery = $database
         ->query(
@@ -29,14 +29,19 @@ class User
             )
         );
 
-        if (false !== $userQuery) {
-            $fields = $userQuery->fetch();
-            $user   = new User($fields);
-
-            return $user;
+        if (false === $userQuery) {
+            return false;
         }
 
-        throw new Exception('Unable to find user with ID ' . $user_id . '. Does it exist?');
+        $fields = $userQuery->fetch();
+
+        if (false === $fields) {
+            return false;
+        }
+
+        $user = new User($fields);
+
+        return $user;
     }
 
     public static function generatePassword(string $plainPassword): string
@@ -47,7 +52,6 @@ class User
     /**
      * Private
      */
-    private string $language;
     private string $currency;
 
     /**
@@ -64,13 +68,6 @@ class User
                 $this->$key = $value;
             }
         }
-
-        /** Set Language */
-        if (!isset($this->language)) {
-            $this->language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
-        }
-
-        $this->setLocale($this->language);
     }
 
     /**
@@ -80,26 +77,26 @@ class User
      *
      * @return void
      */
-    public function setLocale(string $locale): void
-    {
-        /** Load Translation */
-        $translationFilepath = ROOT . '/translations/' . $locale . '.po';
-
-        if (file_exists($translationFilepath)) {
-            $loader             = new \Gettext\Loader\PoLoader();
-            $this->translations = $loader->loadFile($translationFilepath);
-        } else {
-            trigger_error('Unable to find translations for ' . $locale . ', defaulting to ' . DEFAULT_LOCALE . '.', E_USER_NOTICE);
-        }
-
-        /** Set locale */
-        $this->language = $locale;
-    }
-
-    public function getLocale(): string
-    {
-        return $this->language ?? DEFAULT_LOCALE;
-    }
+    // public function setLocale(string $locale): void
+    // {
+    //     /** Load Translation */
+    //     $translationFilepath = './translations/' . $locale . '.po';
+    //
+    //     if (file_exists($translationFilepath)) {
+    //         $loader             = new \Gettext\Loader\PoLoader();
+    //         $this->translations = $loader->loadFile($translationFilepath);
+    //     } else {
+    //         trigger_error('Unable to find translations for ' . $locale . ', defaulting to ' . Wishthis::DEFAULT_LOCALE . '.', E_USER_NOTICE);
+    //     }
+    //
+    //     /** Set locale */
+    //     $this->language = $locale;
+    // }
+    //
+    // public function getLocale(): string
+    // {
+    //     return $this->language ?? Wishthis::DEFAULT_LOCALE;
+    // }
 
     /**
      * Set the user currency
@@ -108,15 +105,15 @@ class User
      *
      * @return void
      */
-    public function setCurrency(string $locale): void
-    {
-        $this->currency = $locale;
-    }
-
-    public function getCurrency(): string
-    {
-        return $this->currency;
-    }
+    // public function setCurrency(string $locale): void
+    // {
+    //     $this->currency = \Locale::getDefault();
+    // }
+    //
+    // public function getCurrency(): string
+    // {
+    //     return $this->currency;
+    // }
 
     /**
      * Return whether the current user is logged in.
@@ -136,7 +133,7 @@ class User
      */
     public function getWishlists(): array
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         $wishlists = $database
         ->query(
@@ -154,7 +151,7 @@ class User
 
     public function getSavedWishlists(): array
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         $wishlists = array();
 
@@ -194,7 +191,7 @@ class User
     {
         /** Destroy session */
         if (isset($_COOKIE[COOKIE_PERSISTENT])) {
-            global $database;
+            $database = Wishthis::getDatabase();
 
             $persistent = $database
             ->query(

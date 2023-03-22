@@ -20,10 +20,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_POST['preview'], $_POST['page'])) {
             $preview          = substr($_POST['preview'], 22); // data:image/png;base64,
             $preview          = base64_decode($preview);
-            $preview_filepath = ROOT . '/src/assets/img/screenshots/' . $_POST['page'] . '.png';
+            $preview_filepath = './src/assets/img/screenshots/' . $_POST['page'] . '.png';
             $preview_create   = false;
 
-            $page_filepath = ROOT . 'src/pages/' . $_POST['page'] . '.php';
+            $page_filepath = './src/pages/' . $_POST['page'] . '.php';
             $page          = new Page($page_filepath);
 
             if (file_exists($preview_filepath)) {

@@ -340,11 +340,11 @@ $page->navigation();
                                     <label><?= __('Language') ?></label>
 
                                     <select class="ui search dropdown language" name="user-language">
-                                        <?php if (!in_array('en_GB', $locales)) { ?>
-                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $_SESSION['user']->getLocale()) ?></option>
+                                        <?php if (!in_array('en_GB', Wishthis::getLocales())) { ?>
+                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', \Locale::getDefault()) ?></option>
                                         <?php } ?>
 
-                                        <?php foreach ($locales as $locale) { ?>
+                                        <?php foreach (Wishthis::getLocales() as $locale) { ?>
                                             <?php if ($locale === $_SESSION['user']->getLocale()) { ?>
                                                 <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
                                             <?php } else { ?>
@@ -362,7 +362,7 @@ $page->navigation();
                                         $currencies = array();
                                         ?>
 
-                                        <?php foreach ($locales as $locale) { ?>
+                                        <?php foreach (Wishthis::getLocales() as $locale) { ?>
                                             <?php
                                             $currencyFormatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
                                             $currencyISO       = $currencyFormatter->getSymbol(\NumberFormatter::INTL_CURRENCY_SYMBOL);

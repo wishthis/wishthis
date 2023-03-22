@@ -13,7 +13,7 @@ global $options;
     var wishthis = {};
 
     /** General */
-    wishthis.version = '<?= VERSION ?>';
+    wishthis.version = '<?= Wishthis::VERSION ?>';
     wishthis.locale  = '<?= str_replace('_', '-', $this->language) ?>';
     wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
 

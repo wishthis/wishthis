@@ -12,7 +12,7 @@ $css   = array_map(
     function ($stylesheet) {
         return '/src/assets/css/' . $stylesheet;
     },
-    scandir(ROOT . '/src/assets/css')
+    scandir('./src/assets/css')
 );
 $css[] = '/src/assets/css/default/dark.css';
 
@@ -21,13 +21,13 @@ $img = array_merge(
         function ($image) {
             return '/src/assets/img/' . $image;
         },
-        scandir(ROOT . '/src/assets/img')
+        scandir('./src/assets/img')
     ),
     array_map(
         function ($favicon) {
             return '/src/assets/img/favicon/' . $favicon;
         },
-        scandir(ROOT . '/src/assets/img/favicon')
+        scandir('./src/assets/img/favicon')
     )
 );
 
@@ -36,13 +36,13 @@ $js = array_merge(
         function ($script) {
             return '/src/assets/js/' . $script;
         },
-        scandir(ROOT . '/src/assets/js')
+        scandir('./src/assets/js')
     ),
     array_map(
         function ($script) {
             return '/src/assets/js/parts/' . $script;
         },
-        scandir(ROOT . '/src/assets/js/parts')
+        scandir('./src/assets/js/parts')
     )
 );
 
@@ -81,4 +81,4 @@ self.addEventListener('fetch', fetchEvent => {
 })
 
 <?php
-file_put_contents(ROOT . '/service-worker.js', ob_get_clean());
+file_put_contents('./service-worker.js', ob_get_clean());

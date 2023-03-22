@@ -1,4 +1,5 @@
-*.code-workspace
+/*.code-workspace
+/phpunit.log
 
 /src/cache/*
 
@@ -16,5 +17,4 @@
 /node_modules/sax
 /node_modules/@octokit
 
-/.vscode
 /src/config/config.php

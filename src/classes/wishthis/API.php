@@ -24,7 +24,7 @@ class API
         $this->input = $this->getRequestVariables();
 
         $this->module      = $this->input['module'] ?? '';
-        $this->module_path = ROOT . '/src/api/' . $this->module . '.php';
+        $this->module_path = './src/api/' . $this->module . '.php';
     }
 
     public function do()

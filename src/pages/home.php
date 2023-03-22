@@ -208,10 +208,10 @@ $page->navigation();
                 </div>
 
                 <?php
-                $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
-                $locale_user    = $_SESSION['user']->getLocale();
+                $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : Wishthis::DEFAULT_LOCALE;
+                //$locale_user    = $_SESSION['user']->getLocale();
 
-                if ($_SESSION['user']->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
+                if ($_SESSION['user']->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, Wishthis::getLocales(), true)) {
                     ?>
                     <div class="ui segment">
                         <h2 class="ui header"><?= __('Hey, you') ?></h2>
@@ -243,7 +243,7 @@ $page->navigation();
                             printf(
                                 /** TRANSLATORS: %s: the users display name */
                                 __('wishthis is available in %1$s different locales and also supports %2$s!'),
-                                '<strong>' . count($locales) . '</strong>',
+                                '<strong>' . count(Wishthis::getLocales()) . '</strong>',
                                 '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>'
                             );
                             ?>

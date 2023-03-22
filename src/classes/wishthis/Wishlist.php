@@ -10,13 +10,67 @@ namespace wishthis;
 
 class Wishlist
 {
+    /**
+     * Creates a new wishlist for the user.
+     *
+     * Returns the wishlist ID or false on failure.
+     *
+     * @param Database $database MySQL database to use.
+     * @param string   $name     Name of the wishlist to create.
+     * @param int      $user_id  User (ID) to create the wishlist for.
+     *
+     * @return int|false
+     */
+    public static function create(Database $database, string $name, int $user_id = 0): int|false
+    {
+        if (0 === $user_id) {
+            if (isset($_SESSION['user']->id)) {
+                $user_id = $_SESSION['user']->id;
+            } else {
+                new \RuntimeException('User ID could not be determined automatically, please specify the ID.');
+            }
+        }
+
+        $user = User::getFromID($user_id);
+
+        if (false === $user) {
+            return false;
+        }
+
+        $name = Sanitiser::getTitle($name);
+        $hash = sha1(time() . $user_id . $name);
+
+        $create_wishlist = $database->query(
+            'INSERT INTO `wishlists` (
+                `user`,
+                `name`,
+                `hash`
+            ) VALUES (
+                :user_id,
+                :wishlist_name,
+                :wishlist_hash
+            );',
+            array(
+                'user_id'       => $user_id,
+                'wishlist_name' => $name,
+                'wishlist_hash' => $hash,
+            )
+        );
+
+        if (false !== $create_wishlist) {
+            return $database->lastInsertId();
+        }
+
+        return false;
+    }
+
     public array $wishes = array();
 
     public bool $exists = false;
 
     public function __construct(int|string $id_or_hash)
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         $column;
 
@@ -62,7 +116,7 @@ class Wishlist
 
     public function getWishes(array $options = array('placeholders' => array())): array
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         if (!isset($options['WHERE'])) {
             $options['placeholders']['wishlist_id'] = $this->id;

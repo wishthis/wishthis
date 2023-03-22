@@ -72,7 +72,7 @@ class Wish
 
     public function __construct(int|array $idOrColumns, bool $generateCache = false)
     {
-        global $database;
+        $database = Wishthis::getDatabase();
 
         $columns = array();
 
@@ -237,8 +237,8 @@ class Wish
         <div class="image">
             <?php if ($this->image) { ?>
                 <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
-                    <?php if (file_exists(ROOT . $this->image)) { ?>
-                        <?= file_get_contents(ROOT . $this->image) ?>
+                    <?php if (file_exists('.' . $this->image)) { ?>
+                        <?= file_get_contents('.' . $this->image) ?>
                     <?php } else { ?>
                         <?= file_get_contents($this->image) ?>
                     <?php } ?>
@@ -246,7 +246,7 @@ class Wish
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                 <?php } ?>
             <?php } else { ?>
-                <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
+                <?= file_get_contents('.' . self::NO_IMAGE) ?>
             <?php } ?>
         </div>
         <?php
