@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace wishthis;
 
-use PHPUnit\Framework\Attributes\{DataProvider, Depends};
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 /**
