@@ -374,7 +374,7 @@ msgstr "Зареєструватися"
 
 #: classes/page.php:522 pages/settings.php:11
 msgid "Settings"
-msgstr "Налаштування"
+msgstr "Налаштування "
 
 #: classes/page.php:659 classes/page.php:662 pages/changelog.php:11
 msgid "Changelog"
