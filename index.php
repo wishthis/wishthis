@@ -26,7 +26,7 @@ spl_autoload_register(
             return;
         }
 
-        $absoluteNamespace = str_replace('\\\\', '/', $absoluteNamespace);
+        $absoluteNamespace = str_replace('\\', '/', $absoluteNamespace);
 
         $filepath = ROOT . '/src/classes/' . $absoluteNamespace . '.php';
 
