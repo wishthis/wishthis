@@ -128,6 +128,12 @@ $page->navigation();
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/74" target="_blank">#74</a>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Fulfilled wishes disappearing for wishlist owners');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 

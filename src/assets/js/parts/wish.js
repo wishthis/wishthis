@@ -167,7 +167,7 @@ $(function () {
             'method' : 'PUT',
             'body'   : new URLSearchParams({
                 'wish_id'     : wish.id,
-                'wish_status' : wishthis.wish.status.fulfilled,
+                'wish_status' : wishthis.wish.status.unavailable,
             }),
         }
 
