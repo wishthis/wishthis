@@ -29,14 +29,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 foreach ($tables as $table) {
                     /** Get count */
-                    $count = new Cache\Query(
+                    $countQuery = new Cache\Query(
                         'SELECT COUNT(`id`) AS "count"
                            FROM `' . $table . '`;',
                         array(),
                         Duration::DAY
                     );
 
-                    $response['data'][$table] = $count->get();
+                    $count                    = $countQuery->get();
+                    $response['data'][$table] = $count;
 
                     /** Get last modified */
                     $user_time_zome = new \IntlDateFormatter(
@@ -50,7 +51,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         \IntlDateFormatter::SHORT,
                         $user_time_zome
                     );
-                    $response['data']['modified'] = $datetimeFormatter->format($count->getLastModified());
+                    $response['data']['modified'] = $datetimeFormatter->format($countQuery->getLastModified());
                 }
             } else {
                 $table = Sanitiser::getTable($_GET['table']);
