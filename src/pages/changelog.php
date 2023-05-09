@@ -117,6 +117,13 @@ $page->navigation();
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/64" target="_blank">#64</a>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Configuration flag to disable user registrations');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/70" target="_blank">#70</a>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>

@@ -53,3 +53,8 @@ define(
  * Whether to make calls to plausible.io.
  */
 define('PLAUSIBLE', false);
+
+/**
+ * Miscellaneous
+ */
+define('DISABLE_USER_REGISTRATION', false);

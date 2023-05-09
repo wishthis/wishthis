@@ -199,95 +199,109 @@ $page->navigation();
 
         <?= $page->messages() ?>
 
-        <div class="ui segment">
-            <form class="ui form" method="POST">
-                <div class="ui divided relaxed stackable two column grid">
+        <?php
+        if (defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
+            ?>
+            <div class="ui segment">
+                <h2 class="ui header"><?= __('Registration disabled') ?></h2>
 
-                    <div class="row">
-                        <div class="column">
-                            <h2 class="ui header"><?= __('Account details') ?></h2>
+                <p><?= __('The owner of this site has disabled user registrations.') ?></p>
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="ui segment">
+                <form class="ui form" method="POST">
+                    <div class="ui divided relaxed stackable two column grid">
 
-                            <div class="field">
-                                <label><?= __('Email') ?></label>
+                        <div class="row">
+                            <div class="column">
+                                <h2 class="ui header"><?= __('Account details') ?></h2>
 
-                                <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
-                                    <?php if (isset($_GET['password-reset'])) { ?>
-                                        <input type="email"
-                                               name="email"
-                                               placeholder="john.doe@domain.tld"
-                                               value="<?= $_GET['password-reset'] ?>"
-                                               readonly
-                                        />
-                                    <?php } else { ?>
-                                        <input type="email" name="email" placeholder="john.doe@domain.tld" />
-                                    <?php } ?>
-                                    <i class="envelope icon"></i>
+                                <div class="field">
+                                    <label><?= __('Email') ?></label>
+
+                                    <div class="ui left icon input<?= isset($_GET['password-reset']) ? ' disabled' : '' ?>">
+                                        <?php if (isset($_GET['password-reset'])) { ?>
+                                            <input type="email"
+                                                name="email"
+                                                placeholder="john.doe@domain.tld"
+                                                value="<?= $_GET['password-reset'] ?>"
+                                                readonly
+                                            />
+                                        <?php } else { ?>
+                                            <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                        <?php } ?>
+                                        <i class="envelope icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label><?= __('Password') ?></label>
+
+                                    <div class="ui left icon input">
+                                        <input type="password" name="password" />
+                                        <i class="key icon"></i>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="field">
-                                <label><?= __('Password') ?></label>
+                            <div class="column">
+                                <h2 class="ui header"><?= __('Authentication') ?></h2>
+                                <p><?= __('Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system.') ?></p>
 
-                                <div class="ui left icon input">
-                                    <input type="password" name="password" />
-                                    <i class="key icon"></i>
+                                <div class="field">
+                                    <label><?= __('Planet') ?></label>
+
+                                    <div class="ui left icon input">
+                                        <input type="text" name="planet" />
+                                        <i class="globe icon"></i>
+                                    </div>
                                 </div>
+                                <p><?= __('Robots are obviously from another solar system so this will keep them at bay.') ?></p>
                             </div>
                         </div>
 
-                        <div class="column">
-                            <h2 class="ui header"><?= __('Authentication') ?></h2>
-                            <p><?= __('Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system.') ?></p>
+                        <div class="row">
+                            <div class="sixteen wide column">
+                                <div class="ui error message"></div>
 
-                            <div class="field">
-                                <label><?= __('Planet') ?></label>
-
-                                <div class="ui left icon input">
-                                    <input type="text" name="planet" />
-                                    <i class="globe icon"></i>
-                                </div>
+                                <input class="ui primary button"
+                                    type="submit"
+                                    value="<?= $buttonSubmit ?>"
+                                    title="<?= $buttonSubmit ?>"
+                                />
+                                <a class="ui tertiary button"
+                                href="<?= Page::PAGE_LOGIN ?>"
+                                title="<?= __('Login') ?>"
+                                >
+                                    <?= __('Login') ?>
+                                </a>
                             </div>
-                            <p><?= __('Robots are obviously from another solar system so this will keep them at bay.') ?></p>
                         </div>
+
                     </div>
+                </form>
+            </div>
 
-                    <div class="row">
-                        <div class="sixteen wide column">
-                            <div class="ui error message"></div>
+            <div class="ui segment">
+                <h2 class="ui header"><?= __('About your email address') ?></h2>
 
-                            <input class="ui primary button"
-                                   type="submit"
-                                   value="<?= $buttonSubmit ?>"
-                                   title="<?= $buttonSubmit ?>"
-                            />
-                            <a class="ui tertiary button"
-                               href="<?= Page::PAGE_LOGIN ?>"
-                               title="<?= __('Login') ?>"
-                            >
-                                <?= __('Login') ?>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-        </div>
-
-        <div class="ui segment">
-            <h2 class="ui header"><?= __('About your email address') ?></h2>
-
-            <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
-            <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
-            <p>
-                <?=
-                sprintf(
-                    /** TRANSLATORS: %s: source code */
-                    __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s is publicly viewable.'),
-                    '<a href="https://github.com/grandeljay/wishthis" target="_blank">' . __('source code') . '</a>'
-                )
-                ?>
-            </p>
-        </div>
+                <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
+                <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
+                <p>
+                    <?=
+                    sprintf(
+                        /** TRANSLATORS: %s: source code */
+                        __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s is publicly viewable.'),
+                        '<a href="https://github.com/grandeljay/wishthis" target="_blank">' . __('source code') . '</a>'
+                    )
+                    ?>
+                </p>
+            </div>
+            <?php
+        }
+        ?>
 
     </div>
 </main>
