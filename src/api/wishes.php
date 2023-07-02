@@ -318,7 +318,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $database->query(
                 'UPDATE `wishes`
-                    SET `url` = :wish_url_proposed,
+                    SET `url` = :wish_url_proposed
                   WHERE `url` = :wish_url_current',
                 array(
                     'wish_url_proposed' => Sanitiser::getURL($_PUT['wish_url_proposed']),
