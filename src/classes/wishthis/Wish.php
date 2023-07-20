@@ -178,7 +178,7 @@ class Wish
             <?= $this->getCardImage() ?>
 
             <div class="content">
-                <?php if ($this->title) { ?>
+                <?php if ($this->title || $this->priority) { ?>
                     <?= $this->getCardContentHeader() ?>
                 <?php } ?>
 
