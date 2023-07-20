@@ -91,11 +91,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
-            $wish_title          = Sanitiser::getTitle($_POST['wish_title']);
-            $wish_description    = Sanitiser::getText($_POST['wish_description']);
-            $wish_image          = Sanitiser::getURL($_POST['wish_image']);
-            $wish_url            = Sanitiser::getURL($_POST['wish_url']);
-            $wish_priority       = !empty($_POST['wish_priority']) ? Sanitiser::getNumber($_POST['wish_priority']) : null;
+            $wish_title          = addslashes(filter_input(INPUT_POST, 'wish_title', FILTER_SANITIZE_SPECIAL_CHARS));
+            $wish_description    = addslashes(filter_input(INPUT_POST, 'wish_description', FILTER_SANITIZE_SPECIAL_CHARS));
+            $wish_image          = addslashes(filter_input(INPUT_POST, 'wish_image', FILTER_SANITIZE_URL));
+            $wish_url            = addslashes(filter_input(INPUT_POST, 'wish_url', FILTER_SANITIZE_URL));
+            $wish_priority       = addslashes(filter_input(INPUT_POST, 'wish_priority', FILTER_SANITIZE_NUMBER_INT));
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
             if (Wish::NO_IMAGE === $wish_image) {

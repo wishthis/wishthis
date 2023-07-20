@@ -113,8 +113,8 @@ class Wish
                 }
             }
 
-            $this->title       = Sanitiser::render($this->title ?? '');
-            $this->description = Sanitiser::render($this->description ?? '');
+            $this->title       = stripslashes($this->title       ?? '');
+            $this->description = stripslashes($this->description ?? '');
         }
     }
 
