@@ -100,7 +100,8 @@ namespace wishthis;
                 <div class="field">
                     <label><?= __('Price') ?></label>
 
-                    <input type     ="text"
+                    <input type     ="number"
+                           step     ="0.01"
                            name     ="wish_price"
                            maxlength="9"
                     />
