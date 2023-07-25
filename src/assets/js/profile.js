@@ -104,4 +104,10 @@ $(function() {
 
     /** Advertisements */
     $('.ui.checkbox.advertisements').checkbox();
+
+    /**
+     * Account
+     */
+    $('.ui.checkbox.account-delete').checkbox();
+
 });

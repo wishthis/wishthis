@@ -74,13 +74,6 @@ $page->navigation();
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
-                                    echo __('Delete account option');
-                                ?>
-                                <a href="https://github.com/grandeljay/wishthis/issues/69" target="_blank">#69</a>
-                            </li>
-                            <li>
-                                <?php
-                                    /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Notifications for fulfilled wishes');
                                 ?>
                             </li>
@@ -88,12 +81,6 @@ $page->navigation();
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Verify wishes are still available when attempting to fulfil them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled.');
-                                ?>
-                            </li>
-                            <li>
-                                <?php
-                                    /** TRANSLATORS: Changelog: Roadmap */
-                                    echo __('Option to delete account');
                                 ?>
                             </li>
                         </ul>
@@ -116,6 +103,13 @@ $page->navigation();
                                         echo __('Configuration flag to disable plausible.io calls');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/64" target="_blank">#64</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Add account delete option');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/69" target="_blank">#69</a>
                                 </li>
                                 <li>
                                     <?php

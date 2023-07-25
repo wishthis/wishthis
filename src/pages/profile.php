@@ -166,6 +166,16 @@ if (isset($_POST['user-id'], $_POST['section'])) {
             __('Success')
         );
     }
+
+    /**
+     * Account
+     */
+    if (isset($_POST['account-delete'])) {
+        $_SESSION['user']->delete();
+        $_SESSION['user']->logOut();
+
+        redirect(Page::PAGE_HOME);
+    }
 }
 
 $page->header();
@@ -193,6 +203,10 @@ $page->navigation();
                     <div class="item" data-tab="preferences">
                         <div class="ui small header"><?= __('Preferences') ?></div>
                         <p><?= __('Improve your wishthis experience') ?></p>
+                    </div>
+                    <div class="item" data-tab="account">
+                        <div class="ui small header"><?= __('Account') ?></div>
+                        <p><?= __('Configuration for your account') ?></p>
                     </div>
                 </div>
             </div>
@@ -541,6 +555,35 @@ $page->navigation();
                         </form>
                     </div>
 
+                </div>
+
+                <div class="ui tab" data-tab="account">
+                    <h2 class="ui header"><?= __('Account') ?></h2>
+
+                    <div class="ui segment">
+                        <form class="ui form" method="POST">
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="section" value="account" />
+
+                            <div class="field">
+                                <label><?= __('Delete account') ?></label>
+
+                                <div class="ui checkbox account-delete">
+                                    <input type="checkbox" name="account-delete">
+
+                                    <label><?= __('Delete this account completely and irreversibly') ?></label>
+                                </div>
+                            </div>
+
+                            <div class="ui error message"></div>
+
+                            <input class="ui negative button"
+                                type="submit"
+                                value="<?= __('Delete account') ?>"
+                                title="<?= __('Delete account') ?>"
+                            />
+                        </form>
+                    </div>
                 </div>
 
             </div>

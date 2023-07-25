@@ -212,4 +212,17 @@ class User
         /** Delete cookie */
         setcookie(COOKIE_PERSISTENT, '', time() - 3600, '/', getCookieDomain());
     }
+
+    public function delete(): void
+    {
+        global $database;
+
+        $database->query(
+            'DELETE FROM `users`
+                   WHERE `id` = :user_id',
+            array(
+                'user_id' => $this->id,
+            )
+        );
+    }
 }

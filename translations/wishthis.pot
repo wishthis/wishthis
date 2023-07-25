@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2023-05-09 16:42+0200\n"
+"POT-Creation-Date: 2023-07-25 12:49+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -303,7 +303,7 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Added
 #: classes/wishthis/Page.php:436 classes/wishthis/Page.php:440
-#: pages/blog.php:11 pages/changelog.php:395 pages/post.php:62
+#: pages/blog.php:11 pages/changelog.php:389 pages/post.php:62
 msgid "Blog"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: classes/wishthis/Page.php:453
+#: classes/wishthis/Page.php:453 pages/profile.php:208 pages/profile.php:561
 msgid "Account"
 msgstr ""
 
@@ -528,31 +528,31 @@ msgstr ""
 msgid "Roadmap"
 msgstr ""
 
-#: pages/changelog.php:26 pages/changelog.php:107
+#: pages/changelog.php:26 pages/changelog.php:94
 msgid "1.1.0"
 msgstr ""
 
-#: pages/changelog.php:27 pages/changelog.php:154
+#: pages/changelog.php:27 pages/changelog.php:148
 msgid "1.0.0"
 msgstr ""
 
-#: pages/changelog.php:28 pages/changelog.php:250
+#: pages/changelog.php:28 pages/changelog.php:244
 msgid "0.7.3"
 msgstr ""
 
-#: pages/changelog.php:29 pages/changelog.php:270
+#: pages/changelog.php:29 pages/changelog.php:264
 msgid "0.7.2"
 msgstr ""
 
-#: pages/changelog.php:30 pages/changelog.php:290
+#: pages/changelog.php:30 pages/changelog.php:284
 msgid "0.7.1"
 msgstr ""
 
-#: pages/changelog.php:31 pages/changelog.php:386
+#: pages/changelog.php:31 pages/changelog.php:380
 msgid "0.7.0"
 msgstr ""
 
-#: pages/changelog.php:32 pages/changelog.php:528
+#: pages/changelog.php:32 pages/changelog.php:522
 msgid "0.6.0"
 msgstr ""
 
@@ -583,297 +583,292 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:77
-msgid "Delete account option"
-msgstr ""
-
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:84
 msgid "Notifications for fulfilled wishes"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:90
+#: pages/changelog.php:83
 msgid "Verify wishes are still available when attempting to fulfil them. Alternatively, a heartbeat which checks if all the wishes are still unfulfilled."
 msgstr ""
 
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:96
-msgid "Option to delete account"
-msgstr ""
-
-#: pages/changelog.php:111 pages/changelog.php:158 pages/changelog.php:390
-#: pages/changelog.php:532
+#: pages/changelog.php:98 pages/changelog.php:152 pages/changelog.php:384
+#: pages/changelog.php:526
 msgid "Added"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:116
+#: pages/changelog.php:103
 msgid "Configuration flag to disable plausible.io calls"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:123
+#: pages/changelog.php:110
+msgid "Add account delete option"
+msgstr ""
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:117
 msgid "Configuration flag to disable user registrations"
 msgstr ""
 
-#: pages/changelog.php:129 pages/changelog.php:213 pages/changelog.php:253
-#: pages/changelog.php:273 pages/changelog.php:329 pages/changelog.php:480
-#: pages/changelog.php:564
+#: pages/changelog.php:123 pages/changelog.php:207 pages/changelog.php:247
+#: pages/changelog.php:267 pages/changelog.php:323 pages/changelog.php:474
+#: pages/changelog.php:558
 msgid "Fixed"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:134
+#: pages/changelog.php:128
 msgid "A fatal error when the CHANNELS constant is removed from the config"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:141
+#: pages/changelog.php:135
 msgid "Fulfilled wishes disappearing for wishlist owners"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:163
+#: pages/changelog.php:157
 msgid "Option to set currency"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:170
+#: pages/changelog.php:164
 msgid "A roadmap in the changelog"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:176
+#: pages/changelog.php:170
 msgid "Compact/list view for wishes"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:182
+#: pages/changelog.php:176
 msgid "Option to enable advertisements"
 msgstr ""
 
-#: pages/changelog.php:187 pages/changelog.php:294 pages/changelog.php:436
-#: pages/changelog.php:554
+#: pages/changelog.php:181 pages/changelog.php:288 pages/changelog.php:430
+#: pages/changelog.php:548
 msgid "Improved"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:192
+#: pages/changelog.php:186
 msgid "Large parts of wishthis have been completely rewritten, such as the API and how pretty URLs work. The aim was to increase security and maintainability."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:198
+#: pages/changelog.php:192
 msgid "Changelog now automatically selects the current version, instead of the top most tab."
 msgstr ""
 
-#: pages/changelog.php:203 pages/changelog.php:458
+#: pages/changelog.php:197 pages/changelog.php:452
 msgid "Changed"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:208
+#: pages/changelog.php:202
 msgid "Decreased wish height on mobile devices"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:218
+#: pages/changelog.php:212
 msgid "Temporary fulfilled wish does not become available again after 30 minutes, except when viewing as the owner of the list."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:225
+#: pages/changelog.php:219
 msgid "Fix various wish UI bugs"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:232
+#: pages/changelog.php:226
 msgid "Fix background and colour when opening the mobile menu"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:238
+#: pages/changelog.php:232
 msgid "Marking wish as fulfilled"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:258
+#: pages/changelog.php:252
 msgid "Fix fulfilled wishes disappearing for wishlist owner"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:278
+#: pages/changelog.php:272
 msgid "Fix fulfilled wishes showing after using filter"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:299
+#: pages/changelog.php:293
 msgid "MJML settings page"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:306
+#: pages/changelog.php:300
 msgid "Expired sessions are now invalidated by wishthis instead of relying on the browser to delete the cookies."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:312 pages/changelog.php:401
+#: pages/changelog.php:306 pages/changelog.php:395
 msgid "Dark theme"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:318
+#: pages/changelog.php:312
 msgid "Remembered lists design"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:324
+#: pages/changelog.php:318
 msgid "Translations"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:334
+#: pages/changelog.php:328
 msgid "Label on top of dropdown menu"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:341
+#: pages/changelog.php:335
 msgid "Encoding issue in wish description"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:348
+#: pages/changelog.php:342
 msgid "Caching issue with the blog"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:355
+#: pages/changelog.php:349
 msgid "An error when a blog post doesn't have a featured image."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:361
+#: pages/changelog.php:355
 msgid "Version number not being stored correctly causing the migration to execute the wrong script."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:367
+#: pages/changelog.php:361
 msgid "Wishlist filter cut off on mobile"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:373
+#: pages/changelog.php:367
 msgid "Wish options not selectable after filtering"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:407
+#: pages/changelog.php:401
 msgid "Wish properties. You can now mark a wish as purchasable and add a price."
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:413
+#: pages/changelog.php:407
 msgid "Jump to last edited wishlist from home"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:419
+#: pages/changelog.php:413
 msgid "Quick add wish from home"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:425
+#: pages/changelog.php:419
 msgid "Button to request more wishes from a users wishlist"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:431
+#: pages/changelog.php:425
 msgid "Option to stay logged in"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:441
+#: pages/changelog.php:435
 msgid "Localisation (many new translations added)"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:447
+#: pages/changelog.php:441
 msgid "Additional logins are no longer required when switching between wishthis channels"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:453
+#: pages/changelog.php:447
 msgid "Remembered wishlists design"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:463
+#: pages/changelog.php:457
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:469
+#: pages/changelog.php:463
 msgid "Wishes can be edited from the wishlist now, without loading another page"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:475
+#: pages/changelog.php:469
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:485
+#: pages/changelog.php:479
 msgid "Various minor things (typos, menu order, etc)"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:491
+#: pages/changelog.php:485
 msgid "Wish information being updated with 404 content from URL"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:497
+#: pages/changelog.php:491
 msgid "Wish image not showing"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:503
+#: pages/changelog.php:497
 msgid "An error when saving a wish with a really long URL"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:509
+#: pages/changelog.php:503
 msgid "Redirect errors on Nginx"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:515
+#: pages/changelog.php:509
 msgid "An error when fetching title from an URL containing quotes"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:537
+#: pages/changelog.php:531
 msgid "This changelog"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:543
+#: pages/changelog.php:537
 msgid "Wish properties"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:549
+#: pages/changelog.php:543
 msgid "Button to mark wish as fulfilled"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:559
+#: pages/changelog.php:553
 msgid "Card design"
 msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:569
+#: pages/changelog.php:563
 msgid "Various small bugs"
 msgstr ""
 
@@ -1019,16 +1014,16 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: pages/install.php:68 pages/login.php:208 pages/profile.php:190
-#: pages/profile.php:268 pages/profile.php:277 pages/register.php:240
+#: pages/install.php:68 pages/login.php:208 pages/profile.php:200
+#: pages/profile.php:282 pages/profile.php:291 pages/register.php:240
 msgid "Password"
 msgstr ""
 
 #: pages/install.php:76 pages/install.php:77 pages/parts/wishlist.php:184
-#: pages/parts/wishlist.php:185 pages/profile.php:259 pages/profile.php:260
-#: pages/profile.php:293 pages/profile.php:294 pages/profile.php:393
-#: pages/profile.php:394 pages/profile.php:492 pages/profile.php:493
-#: pages/profile.php:538 pages/profile.php:539 pages/settings.php:53
+#: pages/parts/wishlist.php:185 pages/profile.php:273 pages/profile.php:274
+#: pages/profile.php:307 pages/profile.php:308 pages/profile.php:407
+#: pages/profile.php:408 pages/profile.php:506 pages/profile.php:507
+#: pages/profile.php:552 pages/profile.php:553 pages/settings.php:53
 #: pages/settings.php:54
 msgid "Save"
 msgstr ""
@@ -1055,7 +1050,7 @@ msgid "User not found!"
 msgstr ""
 
 #: pages/login-as.php:68 pages/login.php:199 pages/profile.php:34
-#: pages/profile.php:231 pages/register.php:222
+#: pages/profile.php:245 pages/register.php:222
 msgid "Email"
 msgstr ""
 
@@ -1320,15 +1315,15 @@ msgstr ""
 msgid "You do not have enough power to view this page. You need %s to see this page, but only have %s."
 msgstr ""
 
-#: pages/profile.php:19 pages/profile.php:211
+#: pages/profile.php:19 pages/profile.php:225
 msgid "First name"
 msgstr ""
 
-#: pages/profile.php:24 pages/profile.php:217
+#: pages/profile.php:24 pages/profile.php:231
 msgid "Last name"
 msgstr ""
 
-#: pages/profile.php:29 pages/profile.php:223
+#: pages/profile.php:29 pages/profile.php:237
 msgid "Nickname"
 msgstr ""
 
@@ -1353,118 +1348,130 @@ msgstr ""
 msgid "It is required for you to login again."
 msgstr ""
 
-#: pages/profile.php:186 pages/profile.php:202
+#: pages/profile.php:196 pages/profile.php:216
 msgid "Personal"
 msgstr ""
 
-#: pages/profile.php:187
+#: pages/profile.php:197
 msgid "Information regarding yourself"
 msgstr ""
 
-#: pages/profile.php:191
+#: pages/profile.php:201
 msgid "Change your password"
 msgstr ""
 
-#: pages/profile.php:194 pages/profile.php:331
+#: pages/profile.php:204 pages/profile.php:345
 msgid "Preferences"
 msgstr ""
 
-#: pages/profile.php:195
+#: pages/profile.php:205
 msgid "Improve your wishthis experience"
 msgstr ""
 
-#: pages/profile.php:236
+#: pages/profile.php:209
+msgid "Configuration for your account"
+msgstr ""
+
+#: pages/profile.php:250
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
 msgstr ""
 
-#: pages/profile.php:238
+#: pages/profile.php:252
 msgid "Birthdate"
 msgstr ""
 
-#: pages/profile.php:247
+#: pages/profile.php:261
 msgid "Pick a date"
 msgstr ""
 
-#: pages/profile.php:283
+#: pages/profile.php:297
 msgid "Password (repeat)"
 msgstr ""
 
-#: pages/profile.php:299
+#: pages/profile.php:313
 msgid "Safe password checklist"
 msgstr ""
 
-#: pages/profile.php:306
+#: pages/profile.php:320
 msgid "Long"
 msgstr ""
 
-#: pages/profile.php:307
+#: pages/profile.php:321
 msgid "Over eight characters in length."
 msgstr ""
 
 #. TRANSLATORS: A special character (for a password)
-#: pages/profile.php:318
+#: pages/profile.php:332
 msgid "Special"
 msgstr ""
 
-#: pages/profile.php:321
+#: pages/profile.php:335
 msgid "Contains special characters."
 msgstr ""
 
-#: pages/profile.php:340
+#: pages/profile.php:354
 msgid "Language"
 msgstr ""
 
-#: pages/profile.php:358
+#: pages/profile.php:372
 msgid "Currency"
 msgstr ""
 
-#: pages/profile.php:444
+#: pages/profile.php:458
 msgid "Channel"
 msgstr ""
 
-#: pages/profile.php:447
+#: pages/profile.php:461
 msgid "Select channel"
 msgstr ""
 
-#: pages/profile.php:460
+#: pages/profile.php:474
 msgid "In order to improve the user experience of wishthis, newer versions are published after an extensive testing period."
 msgstr ""
 
-#: pages/profile.php:461
+#: pages/profile.php:475
 msgid "Subscribing to the Stable channel ensures you have the highest possible stability while using wishthis, minimizing the amount of errors you may encounter (if any)."
 msgstr ""
 
-#: pages/profile.php:462
+#: pages/profile.php:476
 msgid "If you want to speed up the release of newer versions, consider subscribing to the Release candidate of wishthis. A newer version is not published unless the next release candidate has been sufficiently tested."
 msgstr ""
 
-#: pages/profile.php:475
+#: pages/profile.php:489
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
 msgstr[0] ""
 msgstr[1] ""
 
-#: pages/profile.php:504
+#: pages/profile.php:518
 msgid "Advertisements"
 msgstr ""
 
-#: pages/profile.php:517
+#: pages/profile.php:531
 msgid "Enable advertisements"
 msgstr ""
 
 #. TRANSLATORS: %s: sponsor me
-#: pages/profile.php:526
+#: pages/profile.php:540
 #, php-format
 msgid "Time spent on wishthis is time not doing for-profit work. If you would like to support me but either can't or don't want to %s, consider selling your body to Google and becoming its product."
 msgstr ""
 
-#: pages/profile.php:527
+#: pages/profile.php:541
 msgid "sponsor me"
 msgstr ""
 
-#: pages/profile.php:531
+#: pages/profile.php:545
 msgid "Please remember to add an exception to your ad-blocker and browser."
+msgstr ""
+
+#: pages/profile.php:569 pages/profile.php:582 pages/profile.php:583
+msgid "Delete account"
+msgstr ""
+
+#: pages/profile.php:574
+msgid "Delete this account completely and irreversibly"
 msgstr ""
 
 #: pages/register.php:13
