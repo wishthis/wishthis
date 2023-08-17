@@ -72,6 +72,10 @@ $(function () {
             'onHide' : function(modal) {
                 wish_unset();
             },
+            'onHidden' : function() {
+                $(this).modal('destroy');
+                $(this).remove();
+            }
         })
         .modal('show')
         .addClass(wish_details_size);
