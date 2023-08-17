@@ -266,7 +266,7 @@ class Headers implements HeadersInterface
      */
     protected function validateHeaderName($name): void
     {
-        if (!is_string($name) || preg_match("@^[!#$%&'*+.^_`|~0-9A-Za-z-]+$@", $name) !== 1) {
+        if (!is_string($name) || preg_match("@^[!#$%&'*+.^_`|~0-9A-Za-z-]+$@D", $name) !== 1) {
             throw new InvalidArgumentException('Header name must be an RFC 7230 compatible string.');
         }
     }
@@ -286,7 +286,7 @@ class Headers implements HeadersInterface
             );
         }
 
-        $pattern = "@^[ \t\x21-\x7E\x80-\xFF]*$@";
+        $pattern = "@^[ \t\x21-\x7E\x80-\xFF]*$@D";
         foreach ($items as $item) {
             $hasInvalidType = !is_numeric($item) && !is_string($item);
             $rejected = $hasInvalidType || preg_match($pattern, (string) $item) !== 1;
