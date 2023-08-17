@@ -204,7 +204,7 @@ $(function () {
          * Initialise
          */
         /** Checkbox */
-        const checkbox_is_purchasable = wish_edit.find('.ui.checkbox.wish-is-purchasable');
+        var checkbox_is_purchasable = wish_edit.find('.ui.checkbox.wish-is-purchasable');
 
         checkbox_is_purchasable
         .checkbox({
@@ -238,7 +238,9 @@ $(function () {
 
         /** Initialise Tabs */
         wish_edit.find('.item[data-tab]')
-        .tab();
+        .tab({
+            'context' : '.wishlist-wish-edit'
+        });
 
         /** General */
         var decoded_title       = $('<div>').html(wish_local.title).text();

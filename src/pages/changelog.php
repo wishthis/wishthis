@@ -131,6 +131,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Switching to wish "product" tab breaks view');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/83" target="_blank">#83</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Special characters not being displayed properly');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/80" target="_blank">#80</a>
