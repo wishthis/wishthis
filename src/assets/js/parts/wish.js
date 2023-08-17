@@ -228,6 +228,10 @@ $(function () {
         wish_edit
         .modal({
             'onApprove' : wishSave,
+            'onHidden'  : function() {
+                $(this).modal('destroy');
+                $(this).remove();
+            }
         })
         .modal('show')
         .addClass(wish_edit_size);
