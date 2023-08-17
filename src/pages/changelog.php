@@ -131,6 +131,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Special characters not being displayed properly');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/80" target="_blank">#80</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('A fatal error when the CHANNELS constant is removed from the config');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/74" target="_blank">#74</a>
