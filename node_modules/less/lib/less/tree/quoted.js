@@ -5,7 +5,7 @@ var node_1 = tslib_1.__importDefault(require("./node"));
 var variable_1 = tslib_1.__importDefault(require("./variable"));
 var property_1 = tslib_1.__importDefault(require("./property"));
 var Quoted = function (str, content, escaped, index, currentFileInfo) {
-    this.escaped = (escaped == null) ? true : escaped;
+    this.escaped = (escaped === undefined) ? true : escaped;
     this.value = content || '';
     this.quote = str.charAt(0);
     this._index = index;

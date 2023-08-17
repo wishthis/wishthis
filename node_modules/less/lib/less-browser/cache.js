@@ -31,7 +31,7 @@ exports.default = (function (window, options, logger) {
             var timestamp = cache && cache.getItem(path + ":timestamp");
             var vars = cache && cache.getItem(path + ":vars");
             modifyVars = modifyVars || {};
-            vars = vars || "{}"; // if not set, treat as the JSON representation of an empty object
+            vars = vars || '{}'; // if not set, treat as the JSON representation of an empty object
             if (timestamp && webInfo.lastModified &&
                 (new Date(webInfo.lastModified).valueOf() ===
                     new Date(timestamp).valueOf()) &&

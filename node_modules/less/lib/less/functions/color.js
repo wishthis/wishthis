@@ -127,6 +127,23 @@ colorFunctions = {
         }
     },
     hsla: function (h, s, l, a) {
+        var m1;
+        var m2;
+        function hue(h) {
+            h = h < 0 ? h + 1 : (h > 1 ? h - 1 : h);
+            if (h * 6 < 1) {
+                return m1 + (m2 - m1) * h * 6;
+            }
+            else if (h * 2 < 1) {
+                return m2;
+            }
+            else if (h * 3 < 2) {
+                return m1 + (m2 - m1) * (2 / 3 - h) * 6;
+            }
+            else {
+                return m1;
+            }
+        }
         try {
             if (h instanceof color_1.default) {
                 if (s) {
@@ -137,29 +154,12 @@ colorFunctions = {
                 }
                 return new color_1.default(h.rgb, a, 'hsla');
             }
-            var m1_1;
-            var m2_1;
-            function hue(h) {
-                h = h < 0 ? h + 1 : (h > 1 ? h - 1 : h);
-                if (h * 6 < 1) {
-                    return m1_1 + (m2_1 - m1_1) * h * 6;
-                }
-                else if (h * 2 < 1) {
-                    return m2_1;
-                }
-                else if (h * 3 < 2) {
-                    return m1_1 + (m2_1 - m1_1) * (2 / 3 - h) * 6;
-                }
-                else {
-                    return m1_1;
-                }
-            }
             h = (number(h) % 360) / 360;
             s = clamp(number(s));
             l = clamp(number(l));
             a = clamp(number(a));
-            m2_1 = l <= 0.5 ? l * (s + 1) : l + s - l * s;
-            m1_1 = l * 2 - m2_1;
+            m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s;
+            m1 = l * 2 - m2;
             var rgb = [
                 hue(h + 1 / 3) * 255,
                 hue(h) * 255,

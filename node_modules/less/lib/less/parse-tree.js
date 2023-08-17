@@ -54,7 +54,7 @@ function default_1(SourceMapBuilder) {
             }
             result.imports = [];
             for (var file in this.imports.files) {
-                if (this.imports.files.hasOwnProperty(file) && file !== this.imports.rootFilename) {
+                if (Object.prototype.hasOwnProperty.call(this.imports.files, file) && file !== this.imports.rootFilename) {
                     result.imports.push(file);
                 }
             }
@@ -65,5 +65,4 @@ function default_1(SourceMapBuilder) {
     return ParseTree;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=parse-tree.js.map

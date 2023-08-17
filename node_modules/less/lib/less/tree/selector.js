@@ -4,6 +4,8 @@ var tslib_1 = require("tslib");
 var node_1 = tslib_1.__importDefault(require("./node"));
 var element_1 = tslib_1.__importDefault(require("./element"));
 var less_error_1 = tslib_1.__importDefault(require("../less-error"));
+var utils = tslib_1.__importStar(require("../utils"));
+var parser_1 = tslib_1.__importDefault(require("../parser/parser"));
 var Selector = function (elements, extendList, condition, index, currentFileInfo, visibilityInfo) {
     this.extendList = extendList;
     this.condition = condition;
@@ -31,7 +33,7 @@ Selector.prototype = Object.assign(new node_1.default(), {
     createDerived: function (elements, extendList, evaldCondition) {
         elements = this.getElements(elements);
         var newSelector = new Selector(elements, extendList || this.extendList, null, this.getIndex(), this.fileInfo(), this.visibilityInfo());
-        newSelector.evaldCondition = (evaldCondition != null) ? evaldCondition : this.evaldCondition;
+        newSelector.evaldCondition = (!utils.isNullOrUndefined(evaldCondition)) ? evaldCondition : this.evaldCondition;
         newSelector.mediaEmpty = this.mediaEmpty;
         return newSelector;
     },
@@ -40,7 +42,7 @@ Selector.prototype = Object.assign(new node_1.default(), {
             return [new element_1.default('', '&', false, this._index, this._fileInfo)];
         }
         if (typeof els === 'string') {
-            this.parse.parseNode(els, ['selector'], this._index, this._fileInfo, function (err, result) {
+            new parser_1.default(this.parse.context, this.parse.importManager, this._fileInfo, this._index).parseNode(els, ['selector'], function (err, result) {
                 if (err) {
                     throw new less_error_1.default({
                         index: err.index,
@@ -82,7 +84,7 @@ Selector.prototype = Object.assign(new node_1.default(), {
         }
         var elements = this.elements.map(function (v) {
             return v.combinator.value + (v.value.value || v.value);
-        }).join('').match(/[,&#\*\.\w-]([\w-]|(\\.))*/g);
+        }).join('').match(/[,&#*.\w-]([\w-]|(\\.))*/g);
         if (elements) {
             if (elements[0] === '&') {
                 elements.shift();

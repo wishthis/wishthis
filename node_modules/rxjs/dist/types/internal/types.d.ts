@@ -10,7 +10,13 @@ declare global {
         readonly observable: symbol;
     }
 }
-/** OPERATOR INTERFACES */
+/**
+ * A function type interface that describes a function that accepts one parameter `T`
+ * and returns another parameter `R`.
+ *
+ * Usually used to describe {@link OperatorFunction} - it always takes a single
+ * parameter (the source Observable) and returns another Observable.
+ */
 export interface UnaryFunction<T, R> {
     (source: T): R;
 }
@@ -50,7 +56,6 @@ export interface TimeInterval<T> {
      */
     interval: number;
 }
-/** SUBSCRIPTION INTERFACES */
 export interface Unsubscribable {
     unsubscribe(): void;
 }
@@ -81,7 +86,6 @@ export declare type ObservableLike<T> = InteropObservable<T>;
 export interface InteropObservable<T> {
     [Symbol.observable]: () => Subscribable<T>;
 }
-/** NOTIFICATIONS */
 /**
  * A notification representing a "next" from an observable.
  * Can be used with {@link dematerialize}.
@@ -112,7 +116,6 @@ export interface CompleteNotification {
  * Valid observable notification types.
  */
 export declare type ObservableNotification<T> = NextNotification<T> | ErrorNotification | CompleteNotification;
-/** OBSERVER INTERFACES */
 export interface NextObserver<T> {
     closed?: boolean;
     next: (value: T) => void;
@@ -132,14 +135,45 @@ export interface CompletionObserver<T> {
     complete: () => void;
 }
 export declare type PartialObserver<T> = NextObserver<T> | ErrorObserver<T> | CompletionObserver<T>;
+/**
+ * An object interface that defines a set of callback functions a user can use to get
+ * notified of any set of {@link Observable}
+ * {@link guide/glossary-and-semantics#notification notification} events.
+ *
+ * For more info, please refer to {@link guide/observer this guide}.
+ */
 export interface Observer<T> {
+    /**
+     * A callback function that gets called by the producer during the subscription when
+     * the producer "has" the `value`. It won't be called if `error` or `complete` callback
+     * functions have been called, nor after the consumer has unsubscribed.
+     *
+     * For more info, please refer to {@link guide/glossary-and-semantics#next this guide}.
+     */
     next: (value: T) => void;
+    /**
+     * A callback function that gets called by the producer if and when it encountered a
+     * problem of any kind. The errored value will be provided through the `err` parameter.
+     * This callback can't be called more than one time, it can't be called if the
+     * `complete` callback function have been called previously, nor it can't be called if
+     * the consumer has unsubscribed.
+     *
+     * For more info, please refer to {@link guide/glossary-and-semantics#error this guide}.
+     */
     error: (err: any) => void;
+    /**
+     * A callback function that gets called by the producer if and when it has no more
+     * values to provide (by calling `next` callback function). This means that no error
+     * has happened. This callback can't be called more than one time, it can't be called
+     * if the `error` callback function have been called previously, nor it can't be called
+     * if the consumer has unsubscribed.
+     *
+     * For more info, please refer to {@link guide/glossary-and-semantics#complete this guide}.
+     */
     complete: () => void;
 }
 export interface SubjectLike<T> extends Observer<T>, Subscribable<T> {
 }
-/** SCHEDULER INTERFACES */
 export interface SchedulerLike extends TimestampProvider {
     schedule<T>(work: (this: SchedulerAction<T>, state: T) => void, delay: number, state: T): Subscription;
     schedule<T>(work: (this: SchedulerAction<T>, state?: T) => void, delay: number, state?: T): Subscription;

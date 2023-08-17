@@ -1,3 +1,4 @@
+import { ThrottleConfig } from './throttle';
 import { MonoTypeOperatorFunction, SchedulerLike } from '../types';
 /**
  * Emits a value from the source Observable, then ignores subsequent source
@@ -43,10 +44,10 @@ import { MonoTypeOperatorFunction, SchedulerLike } from '../types';
  * internally by the optional `scheduler`.
  * @param scheduler The {@link SchedulerLike} to use for
  * managing the timers that handle the throttling. Defaults to {@link asyncScheduler}.
- * @param config a configuration object to define `leading` and
+ * @param config A configuration object to define `leading` and
  * `trailing` behavior. Defaults to `{ leading: true, trailing: false }`.
  * @return A function that returns an Observable that performs the throttle
  * operation to limit the rate of emissions from the source.
  */
-export declare function throttleTime<T>(duration: number, scheduler?: SchedulerLike, config?: import("./throttle").ThrottleConfig): MonoTypeOperatorFunction<T>;
+export declare function throttleTime<T>(duration: number, scheduler?: SchedulerLike, config?: ThrottleConfig): MonoTypeOperatorFunction<T>;
 //# sourceMappingURL=throttleTime.d.ts.map

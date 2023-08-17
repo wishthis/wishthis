@@ -6,7 +6,7 @@ var color_1 = tslib_1.__importDefault(require("../tree/color"));
 var expression_1 = tslib_1.__importDefault(require("../tree/expression"));
 var quoted_1 = tslib_1.__importDefault(require("../tree/quoted"));
 var url_1 = tslib_1.__importDefault(require("../tree/url"));
-exports.default = (function (environment) {
+exports.default = (function () {
     return { 'svg-gradient': function (direction) {
             var stops;
             var gradientDirectionSvg;

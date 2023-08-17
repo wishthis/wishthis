@@ -16,6 +16,7 @@ var mathFunctions = {
     acos: 'rad'
 };
 for (var f in mathFunctions) {
+    // eslint-disable-next-line no-prototype-builtins
     if (mathFunctions.hasOwnProperty(f)) {
         mathFunctions[f] = math_helper_js_1.default.bind(null, Math[f], mathFunctions[f]);
     }

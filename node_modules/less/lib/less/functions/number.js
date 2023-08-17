@@ -5,6 +5,7 @@ var dimension_1 = tslib_1.__importDefault(require("../tree/dimension"));
 var anonymous_1 = tslib_1.__importDefault(require("../tree/anonymous"));
 var math_helper_js_1 = tslib_1.__importDefault(require("./math-helper.js"));
 var minMax = function (isMin, args) {
+    var _this = this;
     args = Array.prototype.slice.call(args);
     switch (args.length) {
         case 0: throw { type: 'Argument', message: 'one or more arguments required' };
@@ -51,7 +52,7 @@ var minMax = function (isMin, args) {
     if (order.length == 1) {
         return order[0];
     }
-    args = order.map(function (a) { return a.toCSS(this.context); }).join(this.context.compress ? ',' : ', ');
+    args = order.map(function (a) { return a.toCSS(_this.context); }).join(this.context.compress ? ',' : ', ');
     return new anonymous_1.default((isMin ? 'min' : 'max') + "(" + args + ")");
 };
 exports.default = {
@@ -61,7 +62,7 @@ exports.default = {
             args[_i] = arguments[_i];
         }
         try {
-            return minMax(true, args);
+            return minMax.call(this, true, args);
         }
         catch (e) { }
     },
@@ -71,7 +72,7 @@ exports.default = {
             args[_i] = arguments[_i];
         }
         try {
-            return minMax(false, args);
+            return minMax.call(this, false, args);
         }
         catch (e) { }
     },

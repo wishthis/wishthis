@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+/* eslint-disable no-prototype-builtins */
 var node_1 = tslib_1.__importDefault(require("./node"));
 var unit_conversions_1 = tslib_1.__importDefault(require("../data/unit-conversions"));
 var unit_1 = tslib_1.__importDefault(require("./unit"));
@@ -22,6 +23,8 @@ Dimension.prototype = Object.assign(new node_1.default(), {
     accept: function (visitor) {
         this.unit = visitor.visit(this.unit);
     },
+    // remove when Nodes have JSDoc types
+    // eslint-disable-next-line no-unused-vars
     eval: function (context) {
         return this;
     },
@@ -72,7 +75,7 @@ Dimension.prototype = Object.assign(new node_1.default(), {
             else {
                 other = other.convertTo(this.unit.usedUnits());
                 if (context.strictUnits && other.unit.toString() !== unit.toString()) {
-                    throw new Error("Incompatible units. Change the units or use the unit function. "
+                    throw new Error('Incompatible units. Change the units or use the unit function. '
                         + ("Bad units: '" + unit.toString() + "' and '" + other.unit.toString() + "'."));
                 }
                 value = this._operate(context, op, this.value, other.value);
@@ -130,7 +133,6 @@ Dimension.prototype = Object.assign(new node_1.default(), {
             conversions = derivedConversions;
         }
         applyUnit = function (atomicUnit, denominator) {
-            /* jshint loopfunc:true */
             if (group.hasOwnProperty(atomicUnit)) {
                 if (denominator) {
                     value = value / (group[atomicUnit] / group[targetUnit]);

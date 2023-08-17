@@ -85,6 +85,7 @@ var lessc_helper = {
     }
 };
 // Exports helper functions
+// eslint-disable-next-line no-prototype-builtins
 for (var h in lessc_helper) {
     if (lessc_helper.hasOwnProperty(h)) {
         exports[h] = lessc_helper[h];

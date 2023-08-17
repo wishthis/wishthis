@@ -1,9 +1,33 @@
 import { MonoTypeOperatorFunction, ObservableInput } from '../types';
+/**
+ * An object interface used by {@link throttle} or {@link throttleTime} that ensure
+ * configuration options of these operators.
+ *
+ * @see {@link throttle}
+ * @see {@link throttleTime}
+ */
 export interface ThrottleConfig {
+    /**
+     * If `true`, the resulting Observable will emit the first value from the source
+     * Observable at the **start** of the "throttling" process (when starting an
+     * internal timer that prevents other emissions from the source to pass through).
+     * If `false`, it will not emit the first value from the source Observable at the
+     * start of the "throttling" process.
+     *
+     * If not provided, defaults to: `true`.
+     */
     leading?: boolean;
+    /**
+     * If `true`, the resulting Observable will emit the last value from the source
+     * Observable at the **end** of the "throttling" process (when ending an internal
+     * timer that prevents other emissions from the source to pass through).
+     * If `false`, it will not emit the last value from the source Observable at the
+     * end of the "throttling" process.
+     *
+     * If not provided, defaults to: `false`.
+     */
     trailing?: boolean;
 }
-export declare const defaultThrottleConfig: ThrottleConfig;
 /**
  * Emits a value from the source Observable, then ignores subsequent source
  * values for a duration determined by another Observable, then repeats this
@@ -42,11 +66,11 @@ export declare const defaultThrottleConfig: ThrottleConfig;
  * @see {@link sample}
  * @see {@link throttleTime}
  *
- * @param durationSelector A function
- * that receives a value from the source Observable, for computing the silencing
- * duration for each source value, returned as an Observable or a Promise.
- * @param config a configuration object to define `leading` and `trailing` behavior. Defaults
- * to `{ leading: true, trailing: false }`.
+ * @param durationSelector A function that receives a value from the source
+ * Observable, for computing the silencing duration for each source value,
+ * returned as an `ObservableInput`.
+ * @param config A configuration object to define `leading` and `trailing`
+ * behavior. Defaults to `{ leading: true, trailing: false }`.
  * @return A function that returns an Observable that performs the throttle
  * operation to limit the rate of emissions from the source.
  */

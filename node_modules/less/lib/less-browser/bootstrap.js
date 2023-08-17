@@ -1,19 +1,18 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
 /**
  * Kicks off less and compiles any stylesheets
  * used in the browser distributed version of less
  * to kick-start less using the browser api
  */
-/* global window, document */
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
 var default_options_1 = tslib_1.__importDefault(require("../less/default-options"));
 var add_default_options_1 = tslib_1.__importDefault(require("./add-default-options"));
 var index_1 = tslib_1.__importDefault(require("./index"));
 var options = default_options_1.default();
 if (window.less) {
     for (var key in window.less) {
-        if (window.less.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(window.less, key)) {
             options[key] = window.less[key];
         }
     }

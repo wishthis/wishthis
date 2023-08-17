@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * The reason why Node is a class and other nodes simply do not extend
  * from Node (since we're transpiling) is due to this issue:
  *
- * https://github.com/less/less.js/issues/3434
+ * @see https://github.com/less/less.js/issues/3434
  */
 var Node = /** @class */ (function () {
     function Node() {
@@ -51,6 +51,8 @@ var Node = /** @class */ (function () {
     Node.prototype.toCSS = function (context) {
         var strs = [];
         this.genCSS(context, {
+            // remove when genCSS has JSDoc types
+            // eslint-disable-next-line no-unused-vars
             add: function (chunk, fileInfo, index) {
                 strs.push(chunk);
             },
@@ -120,19 +122,19 @@ var Node = /** @class */ (function () {
     };
     // Returns true if this node represents root of ast imported by reference
     Node.prototype.blocksVisibility = function () {
-        if (this.visibilityBlocks == null) {
+        if (this.visibilityBlocks === undefined) {
             this.visibilityBlocks = 0;
         }
         return this.visibilityBlocks !== 0;
     };
     Node.prototype.addVisibilityBlock = function () {
-        if (this.visibilityBlocks == null) {
+        if (this.visibilityBlocks === undefined) {
             this.visibilityBlocks = 0;
         }
         this.visibilityBlocks = this.visibilityBlocks + 1;
     };
     Node.prototype.removeVisibilityBlock = function () {
-        if (this.visibilityBlocks == null) {
+        if (this.visibilityBlocks === undefined) {
             this.visibilityBlocks = 0;
         }
         this.visibilityBlocks = this.visibilityBlocks - 1;

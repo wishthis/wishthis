@@ -39,7 +39,7 @@ function default_1(environment, ParseTree, ImportManager) {
             }
             else {
                 var filename = options.filename || 'input';
-                var entryPath = filename.replace(/[^\/\\]*$/, '');
+                var entryPath = filename.replace(/[^/\\]*$/, '');
                 rootFileInfo = {
                     filename: filename,
                     rewriteUrls: context_1.rewriteUrls,
@@ -84,5 +84,4 @@ function default_1(environment, ParseTree, ImportManager) {
     return parse;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=parse.js.map

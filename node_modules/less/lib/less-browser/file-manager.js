@@ -1,5 +1,4 @@
 "use strict";
-/* global window, XMLHttpRequest */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var abstract_file_manager_js_1 = tslib_1.__importDefault(require("../less/environment/abstract-file-manager.js"));
@@ -61,7 +60,7 @@ FileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(), 
     clearFileCache: function () {
         fileCache = {};
     },
-    loadFile: function (filename, currentDirectory, options, environment) {
+    loadFile: function (filename, currentDirectory, options) {
         // TODO: Add prefix support like less-node?
         // What about multiple paths?
         if (currentDirectory && !this.isPathAbsolute(filename)) {

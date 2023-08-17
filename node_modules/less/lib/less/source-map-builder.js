@@ -70,5 +70,4 @@ function default_1(SourceMapOutput, environment) {
     return SourceMapBuilder;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=source-map-builder.js.map

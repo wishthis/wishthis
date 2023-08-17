@@ -14,7 +14,7 @@ var NamespaceValue = function (ruleCall, lookups, index, fileInfo) {
 NamespaceValue.prototype = Object.assign(new node_1.default(), {
     type: 'NamespaceValue',
     eval: function (context) {
-        var i, j, name, rules = this.value.eval(context);
+        var i, name, rules = this.value.eval(context);
         for (i = 0; i < this.lookups.length; i++) {
             name = this.lookups[i];
             /**

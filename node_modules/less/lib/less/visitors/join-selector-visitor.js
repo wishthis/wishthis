@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+/* eslint-disable no-unused-vars */
+/**
+ * @todo - Remove unused when JSDoc types are added for visitor methods
+ */
 var visitor_1 = tslib_1.__importDefault(require("./visitor"));
 var JoinSelectorVisitor = /** @class */ (function () {
     function JoinSelectorVisitor() {
