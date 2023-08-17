@@ -108,6 +108,13 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 $page->messages[] = Page::error(__('This password reset link seems to have been manipulated, please request a new one.'), __('Failure'));
             }
         } else {
+            $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
+            $locale_user    = DEFAULT_LOCALE;
+
+            if (in_array($locale_browser, $locales, true)) {
+                $locale_user = $locale_browser;
+            }
+
             /**
              * Register
              */
@@ -116,15 +123,18 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     'INSERT INTO `users` (
                         `email`,
                         `password`,
-                        `power`
+                        `power`,
+                        `language`
                     ) VALUES (
                         :user_email,
                         :user_password,
-                        100
+                        100,
+                        :user_language
                     );',
                     array(
                         'user_email'    => $user_email,
                         'user_password' => User::generatePassword($_POST['password']),
+                        'user_language' => $locale_user,
                     )
                 );
                 $userRegistered = true;
@@ -138,14 +148,17 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     $database->query(
                         'INSERT INTO `users` (
                             `email`,
-                            `password`
+                            `password`,
+                            `language`
                         ) VALUES (
                             :user_email,
-                            :user_password
+                            :user_password,
+                            :user_language
                         );',
                         array(
                             'user_email'    => $user_email,
                             'user_password' => User::generatePassword($_POST['password']),
+                            'user_language' => $locale_user,
                         )
                     );
                     $userRegistered = true;
