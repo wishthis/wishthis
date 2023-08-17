@@ -98,6 +98,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_priority       = filter_input(INPUT_POST, 'wish_priority', FILTER_SANITIZE_NUMBER_INT);
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
 
+            if ('' === $wish_priority) {
+                $wish_priority = null;
+            }
+
             if (Wish::NO_IMAGE === $wish_image) {
                 $wish_image = '';
             }
