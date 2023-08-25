@@ -173,7 +173,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          */
         if ($userRegistered) {
             $user_id       = $database->lastInsertID();
-            $wishlist_name = Sanitiser::getTitle(__('My hopes and dreams'));
+            $wishlist_name = addslashes(filter_var(__('My hopes and dreams'), FILTER_SANITIZE_SPECIAL_CHARS));
             $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
             $database

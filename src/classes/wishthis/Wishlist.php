@@ -44,8 +44,8 @@ class Wishlist
             $this->exists = true;
 
             foreach ($columns as $key => $value) {
-                if ('string' === gettype($value)) {
-                    $this->$key = Sanitiser::render($value);
+                if (is_string($value)) {
+                    $this->$key = html_entity_decode($value);
                 } else {
                     $this->$key = $value;
                 }

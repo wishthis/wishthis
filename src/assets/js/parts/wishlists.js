@@ -47,7 +47,8 @@ $(function () {
 
     $('.ui.dropdown.wishlists')
     .dropdown({
-        onChange : function(wishlist_id, text, choice) {
+        'preserveHTML' : false,
+        'onChange'     : function(wishlist_id, text, choice) {
             wishthis.$_GET.id = wishlist_id;
 
             if (wishlist_id) {
