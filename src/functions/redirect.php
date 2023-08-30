@@ -10,7 +10,7 @@ use wishthis\User;
 
 function redirect(string $target)
 {
-    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+    $user = User::getCurrent();
 
     /**
      * Redirect user based on channel setting

@@ -9,6 +9,7 @@
 namespace wishthis;
 
 $page = new Page(__FILE__, __('Profile'), 1);
+$user = User::getCurrent();
 
 if (isset($_POST['user-id'], $_POST['section'])) {
     $set              = array();
@@ -37,10 +38,10 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     $loginRequired    = false;
 
     foreach ($formFieldsString as $field) {
-        if (!empty($_POST[$field['key']]) && $_POST[$field['key']] !== $_SESSION['user']->{$field['column']}) {
+        if (!empty($_POST[$field['key']]) && $_POST[$field['key']] !== $user->{$field['column']}) {
             $set[] = '`' . $field['column'] . '` = "' . $_POST[$field['key']] . '"';
 
-            $_SESSION['user']->{$field['column']} = $_POST[$field['key']];
+            $user->{$field['column']} = $_POST[$field['key']];
 
             $page->messages[] = Page::success(
                 sprintf(
@@ -52,7 +53,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
-    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $_SESSION['user']->email) {
+    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $user->email) {
         $loginRequired = true;
     }
 
@@ -61,13 +62,13 @@ if (isset($_POST['user-id'], $_POST['section'])) {
      */
     if (isset($_POST['user-birthdate'])) {
         if (empty($_POST['user-birthdate'])) {
-            $_SESSION['user']->birthdate = null;
+            $user->birthdate = null;
 
             $set[] = '`birthdate` = NULL';
         } else {
-            $_SESSION['user']->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
+            $user->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
 
-            $set[] = '`birthdate` = "' . $_SESSION['user']->birthdate . '"';
+            $set[] = '`birthdate` = "' . $user->birthdate . '"';
         }
     }
 
@@ -89,57 +90,57 @@ if (isset($_POST['user-id'], $_POST['section'])) {
      */
 
     /** Language */
-    if (isset($_POST['user-language']) && $_POST['user-language'] !== $_SESSION['user']->getLocale()) {
-        $_SESSION['user']->setLocale($_POST['user-language']);
+    if (isset($_POST['user-language']) && $_POST['user-language'] !== $user->getLocale()) {
+        $user->setLocale($_POST['user-language']);
 
-        $set[] = '`language` = "' . $_SESSION['user']->getLocale() . '"';
+        $set[] = '`language` = "' . $user->getLocale() . '"';
 
         $page->messages[] = Page::success(
             sprintf(
                 /** TRANSLATORS: %s: The new locale */
                 __('Language set to %s.'),
-                '<strong>' . $_SESSION['user']->getLocale() . '</strong>'
+                '<strong>' . $user->getLocale() . '</strong>'
             ),
             __('Success')
         );
     }
 
     /** Currency */
-    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $_SESSION['user']->getLocale() && $_POST['user-currency'] !== $_SESSION['user']->getCurrency()) {
-        $_SESSION['user']->setCurrency($_POST['user-currency']);
+    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $user->getLocale() && $_POST['user-currency'] !== $user->getCurrency()) {
+        $user->setCurrency($_POST['user-currency']);
 
-        $set[] = '`currency` = "' . $_SESSION['user']->getCurrency() . '"';
+        $set[] = '`currency` = "' . $user->getCurrency() . '"';
 
         $page->messages[] = Page::success(
             sprintf(
                 /** TRANSLATORS: %s: The new locale */
                 __('Currency set to %s.'),
-                '<strong>' . $_SESSION['user']->getCurrency() . '</strong>'
+                '<strong>' . $user->getCurrency() . '</strong>'
             ),
             __('Success')
         );
     }
 
     /** Channel */
-    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $_SESSION['user']->channel) {
+    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->channel) {
         if (empty($_POST['user-channel'])) {
-            $_SESSION['user']->channel = null;
+            $user->channel = null;
 
             $set[] = '`channel` = NULL';
         } else {
-            $_SESSION['user']->channel = $_POST['user-channel'];
+            $user->channel = $_POST['user-channel'];
 
-            $set[] = '`channel` = "' . $_SESSION['user']->channel . '"';
+            $set[] = '`channel` = "' . $user->channel . '"';
         }
     }
 
     /** Advertisements */
     if (isset($_POST['enable-advertisements'])) {
-        $_SESSION['user']->advertisements = true;
+        $user->advertisements = true;
 
         $set[] = '`advertisements` = TRUE';
     } else {
-        $_SESSION['user']->advertisements = false;
+        $user->advertisements = false;
 
         $set[] = '`advertisements` = FALSE';
     }
@@ -171,8 +172,8 @@ if (isset($_POST['user-id'], $_POST['section'])) {
      * Account
      */
     if (isset($_POST['account-delete'])) {
-        $_SESSION['user']->delete();
-        $_SESSION['user']->logOut();
+        $user->delete();
+        $user->logOut();
 
         redirect(Page::PAGE_HOME);
     }
@@ -217,26 +218,26 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="personal" />
 
                             <div class="three fields">
                                 <div class="field">
                                     <label><?= __('First name') ?></label>
 
-                                    <input type="text" name="user-name-first" value="<?= $_SESSION['user']->name_first ?>" />
+                                    <input type="text" name="user-name-first" value="<?= $user->name_first ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Last name') ?></label>
 
-                                    <input type="text" name="user-name-last" value="<?= $_SESSION['user']->name_last ?>" />
+                                    <input type="text" name="user-name-last" value="<?= $user->name_last ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Nickname') ?></label>
 
-                                    <input type="text" name="user-name-nick" value="<?= $_SESSION['user']->name_nick ?>" />
+                                    <input type="text" name="user-name-nick" value="<?= $user->name_nick ?>" />
                                 </div>
                             </div>
 
@@ -244,7 +245,7 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('Email') ?></label>
 
-                                    <input type="email" name="user-email" value="<?= $_SESSION['user']->email ?>" />
+                                    <input type="email" name="user-email" value="<?= $user->email ?>" />
                                 </div>
 
                                 <div class="field" data-content="<?= __('Used to suggest a wishlist called "Birthday", if it\'s coming up.') ?>">
@@ -259,7 +260,7 @@ $page->navigation();
                                             <input type="text"
                                                 name="user-birthdate"
                                                 placeholder="<?= __('Pick a date') ?>"
-                                                value="<?= $_SESSION['user']->birthdate ?>"
+                                                value="<?= $user->birthdate ?>"
                                             />
                                         </div>
                                     </div>
@@ -283,7 +284,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="password" />
 
                             <div class="two fields">
@@ -346,7 +347,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="two fields">
@@ -355,14 +356,14 @@ $page->navigation();
 
                                     <select class="ui search dropdown language" name="user-language">
                                         <?php if (!in_array('en_GB', $locales)) { ?>
-                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $_SESSION['user']->getLocale()) ?></option>
+                                            <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $user->getLocale()) ?></option>
                                         <?php } ?>
 
                                         <?php foreach ($locales as $locale) { ?>
-                                            <?php if ($locale === $_SESSION['user']->getLocale()) { ?>
-                                                <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
+                                            <?php if ($locale === $user->getLocale()) { ?>
+                                                <option value="<?= $locale ?>" selected><?= \Locale::getDisplayName($locale, $user->getLocale()) ?></option>
                                             <?php } else { ?>
-                                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $_SESSION['user']->getLocale()) ?></option>
+                                                <option value="<?= $locale ?>"><?= \Locale::getDisplayName($locale, $user->getLocale()) ?></option>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
@@ -390,7 +391,7 @@ $page->navigation();
                                             }
                                             ?>
 
-                                            <?php if ($currencyISO === $_SESSION['user']->getCurrency()) { ?>
+                                            <?php if ($currencyISO === $user->getCurrency()) { ?>
                                                 <option value="<?= $currencyISO ?>" selected><?= $currencyValue ?></option>
                                             <?php } else { ?>
                                                 <option value="<?= $currencyISO ?>"><?= $currencyValue ?></option>
@@ -446,7 +447,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
@@ -461,7 +462,7 @@ $page->navigation();
                                         <option value=""><?= __('Select channel') ?></option>
 
                                         <?php foreach (CHANNELS as $channel) { ?>
-                                            <?php if ($channel['branch'] === $_SESSION['user']->channel) { ?>
+                                            <?php if ($channel['branch'] === $user->channel) { ?>
                                                 <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
                                             <?php } else { ?>
                                                 <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
@@ -511,7 +512,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="field">
@@ -519,7 +520,7 @@ $page->navigation();
 
                                 <div class="ui toggle checkbox advertisements">
                                     <?php
-                                    $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+                                    $user = isset($user->id) ? $user : new User();
                                     ?>
 
                                     <?php if (true === $user->advertisements) { ?>
@@ -562,7 +563,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
                             <input type="hidden" name="section" value="account" />
 
                             <div class="field">

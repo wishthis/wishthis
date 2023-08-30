@@ -120,12 +120,14 @@ class Wishlist
             )
         )';
 
-        if ($_SESSION['user']->isLoggedIn()) {
+        $user = User::getCurrent();
+
+        if ($user->isLoggedIn()) {
             $wishlist_ids = array_map(
                 function ($wishlist_data) {
                     return intval($wishlist_data['id']);
                 },
-                $_SESSION['user']->getWishlists()
+                $user->getWishlists()
             );
 
             /** Show all wishes (except fulfilled) */

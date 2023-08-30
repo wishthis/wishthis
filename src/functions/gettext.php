@@ -9,7 +9,7 @@ namespace wishthis;
 function __(string $text, string $context = null, User $user = null): string
 {
     if (null === $user) {
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
     }
 
     if (null !== $user->translations) {

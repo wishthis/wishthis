@@ -34,7 +34,7 @@ class Database
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query, array $placeholders = array()): \PDOStatement
+    public function query(string $query, array $placeholders = array()): \PDOStatement|false
     {
         $statement = $this->pdo->prepare($query, array(\PDO::FETCH_ASSOC));
 

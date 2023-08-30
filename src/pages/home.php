@@ -12,6 +12,8 @@ $page = new Page(__FILE__, __('Home'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
+
+$user = User::getCurrent();
 ?>
 
 <main>
@@ -26,7 +28,7 @@ $page->navigation();
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
                     <div class="ui two column doubling stackable centered grid actions">
-                        <?php if ($_SESSION['user']->isLoggedIn()) { ?>
+                        <?php if ($user->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
                                    href="<?= Page::PAGE_WISHLISTS ?>"
@@ -47,7 +49,7 @@ $page->navigation();
                                  ORDER BY `wishes`.`edited` DESC
                                     LIMIT 1;',
                                 array(
-                                    'user_id' => $_SESSION['user']->id,
+                                    'user_id' => $user->id,
                                 )
                             );
 
@@ -209,9 +211,9 @@ $page->navigation();
 
                 <?php
                 $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
-                $locale_user    = $_SESSION['user']->getLocale();
+                $locale_user    = $user->getLocale();
 
-                if ($_SESSION['user']->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
+                if ($user->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
                     ?>
                     <div class="ui segment">
                         <h2 class="ui header"><?= __('Hey, you') ?></h2>
@@ -221,7 +223,7 @@ $page->navigation();
                             printf(
                                 /** TRANSLATORS: %s: the users display name */
                                 __('Yes, I mean you, %s.'),
-                                $_SESSION['user']->getDisplayName()
+                                $user->getDisplayName()
                             );
                             ?>
                         </p>

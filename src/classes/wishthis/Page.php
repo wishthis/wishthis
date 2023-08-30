@@ -153,7 +153,7 @@ class Page
         /**
          * Session
          */
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
 
         /**
          * Login
@@ -279,7 +279,7 @@ class Page
     {
         global $locales;
 
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -424,7 +424,7 @@ class Page
 
     public function navigation(): void
     {
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
 
         $wishlists = Navigation::Wishlists->value;
         $blog      = Navigation::Blog->value;

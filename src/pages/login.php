@@ -14,94 +14,13 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $email    = Sanitiser::getEmail($_POST['email']);
-    $password = User::passwordToHash($_POST['password']);
+    $user_email               = \filter_input(\INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $user_password            = User::passwordToHash($_POST['password']);
+    $user_login_is_persistent = isset($_POST['persistent']);
 
-    $database
-    ->query(
-        'UPDATE `users`
-            SET `last_login` = NOW()
-          WHERE `email`      = :user_email
-            AND `password`   = :user_password;',
-        array(
-            'user_email'    => $email,
-            'user_password' => $password,
-        )
-    );
+    $user->login($user_email, $user_password, $user_login_is_persistent);
 
-    $fields = $database
-    ->query(
-        'SELECT *
-           FROM `users`
-          WHERE `email`      = :user_email
-            AND `password`   = :user_password;',
-        array(
-            'user_email'    => $email,
-            'user_password' => $password,
-        )
-    )
-    ->fetch();
-
-    $success = is_array($fields);
-
-    if ($success) {
-        $_SESSION['user'] = new User($fields);
-
-        /**
-         * Persisent session
-         */
-        if (isset($_POST['persistent'])) {
-            /** Cookie options */
-            $sessionLifetime = 2592000 * 4; // 4 Months
-            $sessionExpires  = time() + $sessionLifetime;
-            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
-            $sessionOptions  = array (
-                'domain'   => getCookieDomain(),
-                'expires'  => $sessionExpires,
-                'httponly' => true,
-                'path'     => '/',
-                'samesite' => 'None',
-                'secure'   => !$sessionIsDev,
-            );
-
-            /** Set cookie */
-            setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
-
-            /** Column sessions.expires was added in v0.7.1. */
-            if ($database->columnExists('sessions', 'expires')) {
-                $database->query(
-                    'INSERT INTO `sessions` (
-                        `user`,
-                        `session`,
-                        `expires`
-                    ) VALUES (
-                        :user_id,
-                        :session_id,
-                        :session_expires
-                    );',
-                    array(
-                        'user_id'         => $_SESSION['user']->id,
-                        'session_id'      => session_id(),
-                        'session_expires' => date('Y-m-d H:i:s', $sessionExpires),
-                    )
-                );
-            } else {
-                $database->query(
-                    'INSERT INTO `sessions` (
-                        `user`,
-                        `session`
-                    ) VALUES (
-                        :user_id,
-                        :session_id
-                    );',
-                    array(
-                        'user_id'    => $_SESSION['user']->id,
-                        'session_id' => session_id(),
-                    )
-                );
-            }
-        }
-    } else {
+    if (!$user->isLoggedIn()) {
         $page->messages[] = Page::error(
             __('No user could be found with the credentials you provided.'),
             __('Invalid credentials'),
@@ -109,7 +28,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     }
 }
 
-if ($_SESSION['user']->isLoggedIn()) {
+if ($user->isLoggedIn()) {
     if (isset($_SESSION['REDIRECT_URL'])) {
         redirect($_SESSION['REDIRECT_URL']);
     } else {

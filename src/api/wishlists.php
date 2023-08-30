@@ -10,13 +10,15 @@ namespace wishthis;
 
 global $page, $database;
 
+$user = User::getCurrent();
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        if (isset($_POST['wishlist-name'], $_SESSION['user']->id)) {
+        if (isset($_POST['wishlist-name'], $user->id)) {
             /**
              * Create
              */
-            $user_id       = Sanitiser::getNumber($_SESSION['user']->id);
+            $user_id       = Sanitiser::getNumber($user->id);
             $wishlist_name = Sanitiser::getTitle($_POST['wishlist-name']);
             $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
@@ -134,7 +136,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             if ($wishlist->exists) {
                 /** Determine if user is allowed to access wishlist */
-                if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user) {
+                if ($user->isLoggedIn() && $user->id === $wishlist->user) {
                     $response['results'] = $wishlist;
                 } else {
                     http_response_code(403);
@@ -153,11 +155,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
             } else {
                 http_response_code(404);
             }
-        } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
+        } elseif (isset($_GET['userid']) || isset($user->id)) {
             /**
              * Get user wishlists
              */
-            $user = $_SESSION['user'];
+            $user = $user;
 
             if (!$user->isLoggedIn()) {
                 $this->response(403);

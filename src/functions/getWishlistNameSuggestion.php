@@ -10,7 +10,7 @@ namespace wishthis;
 
 function getWishlistNameSuggestion(): string
 {
-    $user  = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+    $user  = User::getCurrent();
     $now   = time();
     $month = date('n');
     $name  = '';

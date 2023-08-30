@@ -41,6 +41,16 @@ class User
         return sha1($plainPassword);
     }
 
+    public static function getCurrent(): self {
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['user'] = new self();
+        }
+
+        $user = $_SESSION['user'];
+
+        return $user;
+    }
+
     /**
      * The users unique ID.
      *
@@ -235,7 +245,7 @@ class User
      */
     public function isLoggedIn(): bool
     {
-        return isset($_SESSION['user']->id) && $_SESSION['user']->id >= 1;
+        return isset($this->id) && $this->id >= 1;
     }
 
     /**
@@ -300,6 +310,117 @@ class User
             ?: $this->email;
     }
 
+    /**
+     * Attempts to log in the user. Return whether it was successful or not.
+     *
+     * @return bool Whether the log in was successful.
+     */
+    public function logIn(string $email = '', string $password = '', bool $user_login_is_persistent = false): bool {
+        global $database;
+
+        $login_was_successful = false;
+
+        if ('' === $email && '' === $password && isset($this->email, $this->password)) {
+            $email    = $this->email;
+            $password = $this->password;
+        }
+
+        /**
+         * Update the `last_login` column before fetching the user, so it's up
+         * to date for the session and later usage.
+         *
+         * If this fails, we are assuming the user credentials are wrong or that
+         * the user does not exist.
+         */
+        $update_last_login = $database
+        ->query(
+            'UPDATE `users`
+                SET `last_login` = NOW()
+              WHERE `email`      = :user_email
+                AND `password`   = :user_password;',
+            array(
+                'user_email'    => $email,
+                'user_password' => $password,
+            )
+        );
+
+        /**
+         * Updating the `last_login` column in the database has failed and we
+         * are now assuming that the credentials are wrong or that the user does
+         * not exist.
+         */
+        if (false === $update_last_login) {
+            return $login_was_successful;
+        }
+
+        /**
+         * The credentials seem fine, so we are fetching the user fields now.
+         */
+        $user_database_fields = $database
+        ->query(
+            'SELECT *
+               FROM `users`
+              WHERE `email`      = :user_email
+                AND `password`   = :user_password;',
+            array(
+                'user_email'    => $email,
+                'user_password' => $password,
+            )
+        )
+        ->fetch();
+
+        /**
+         * Create a `User` object instance and assign it for later use.
+         */
+        if (\is_array($user_database_fields)) {
+            $this->__construct($user_database_fields);
+
+            $_SESSION['user'] = $this;
+
+            $login_was_successful = true;
+        }
+
+        /**
+         * Make the session persist
+         */
+        if ($user_login_is_persistent) {
+            /** Cookie options */
+            $sessionLifetime = 2592000 * 4; // 4 Months
+            $sessionExpires  = time() + $sessionLifetime;
+            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
+            $sessionOptions  = array (
+                'domain'   => getCookieDomain(),
+                'expires'  => $sessionExpires,
+                'httponly' => true,
+                'path'     => '/',
+                'samesite' => 'None',
+                'secure'   => !$sessionIsDev,
+            );
+
+            /** Set cookie */
+            setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
+
+            $database->query(
+                'INSERT INTO `sessions` (
+                    `user`,
+                    `session`,
+                    `expires`
+                ) VALUES (
+                    :user_id,
+                    :session_id,
+                    :session_expires
+                );',
+                array(
+                    'user_id'         => $this->id,
+                    'session_id'      => session_id(),
+                    'session_expires' => date('Y-m-d H:i:s', $sessionExpires),
+                )
+            );
+        }
+
+        return $login_was_successful;
+    }
+
     public function logOut(): void
     {
         /** Destroy session */
@@ -334,5 +455,13 @@ class User
                 'user_id' => $this->id,
             )
         );
+    }
+
+    public function getEmail(): string {
+        return $this->email;
+    }
+
+    public function getPassword(): string {
+        return $this->password;
     }
 }

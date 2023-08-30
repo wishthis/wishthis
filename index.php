@@ -48,14 +48,11 @@ if (file_exists($configPath)) {
  */
 session_start(
     array(
-        'name'           => 'wishthis',
-        'read_and_close' => true,
+        'name' => 'wishthis'
     )
 );
 
-if (!isset($_SESSION['user'])) {
-    $_SESSION['user'] = new User();
-}
+$user = User::getCurrent();
 
 /**
  * Database
@@ -85,7 +82,7 @@ if (
 /**
  * Persistent (stay logged in)
  */
-if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$_SESSION['user']->isLoggedIn()) {
+if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$user->isLoggedIn()) {
     $sessions = $database
     ->query(
         'SELECT *
@@ -102,7 +99,7 @@ if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$_SESSION['user']->isLog
             $expires = strtotime($session['expires']);
 
             if (time() < $expires) {
-                $_SESSION['user'] = User::getFromID($session['user']);
+                $user = User::getFromID($session['user']);
 
                 break;
             }
@@ -130,7 +127,7 @@ $locales = array_filter(
     )
 );
 
-$locale = isset($_REQUEST['locale']) ? $_REQUEST['locale'] : \Locale::lookup($locales, $_SESSION['user']->getLocale(), false, 'en_GB');
+$locale = isset($_REQUEST['locale']) ? $_REQUEST['locale'] : \Locale::lookup($locales, $user->getLocale(), false, 'en_GB');
 
 /**
  * Wish

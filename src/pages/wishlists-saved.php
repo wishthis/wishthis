@@ -13,7 +13,9 @@ $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$wishlists         = $_SESSION['user']->getSavedWishlists();
+$user = User::getCurrent();
+
+$wishlists         = $user->getSavedWishlists();
 $wishlists_by_user = array();
 
 foreach ($wishlists as $wishlist_saved) {

@@ -6,10 +6,11 @@
 
 namespace wishthis;
 
+$user = User::getCurrent();
 ?>
 
-<?php if ($_SESSION['user']->isLoggedIn()) { ?>
-    <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+<?php if ($user->isLoggedIn()) { ?>
+    <input type="hidden" name="user-id" value="<?= $user->id ?>" />
 <?php } ?>
 
 <div class="wishlist-filter-wrapper">
