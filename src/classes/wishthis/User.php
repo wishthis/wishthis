@@ -96,9 +96,9 @@ class User
     /**
      * A unix timestamp of the users birthdate.
      *
-     * @var int
+     * @var int|null
      */
-    private int $birthdate;
+    private ?int $birthdate;
 
     /**
      * More accurately, this is the users locale (e. g. `en_GB`).
@@ -161,17 +161,17 @@ class User
             $this->id                         = $fields['id'];
             $this->email                      = $fields['email'];
             $this->password                   = $fields['password'];
-            $this->password_reset_token       = $fields['password_reset_token'];
-            $this->password_reset_valid_until = $fields['password_reset_valid_until'];
-            $this->last_login                 = $fields['last_login'];
+            $this->password_reset_token       = $fields['password_reset_token'] ?? '';
+            $this->password_reset_valid_until = \strtotime($fields['password_reset_valid_until']);
+            $this->last_login                 = \strtotime($fields['last_login']);
             $this->power                      = $fields['power'];
             $this->birthdate                  = $fields['birthdate'];
             $this->language                   = $fields['language'];
             $this->currency                   = $fields['currency'];
-            $this->name_first                 = $fields['name_first'];
-            $this->name_last                  = $fields['name_last'];
-            $this->name_nick                  = $fields['name_nick'];
-            $this->channel                    = $fields['channel'];
+            $this->name_first                 = $fields['name_first'] ?? '';
+            $this->name_last                  = $fields['name_last'] ?? '';
+            $this->name_nick                  = $fields['name_nick'] ?? '';
+            $this->channel                    = $fields['channel'] ?? '';
             $this->advertisements             = $fields['advertisements'];
         }
 

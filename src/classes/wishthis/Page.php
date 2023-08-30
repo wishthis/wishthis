@@ -114,8 +114,11 @@ class Page
     }
 
     /**
-     * Non-Static
+     * The page name. Is used for the HTML `title` and `h1` tags.
+     *
+     * @var string
      */
+    private string $name;
     public string $language = DEFAULT_LOCALE;
     public array $messages  = array();
     public string $link_preview;
