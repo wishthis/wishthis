@@ -48,7 +48,8 @@ if (file_exists($configPath)) {
  */
 session_start(
     array(
-        'name' => 'wishthis',
+        'name'           => 'wishthis',
+        'read_and_close' => true,
     )
 );
 

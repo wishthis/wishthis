@@ -12,9 +12,6 @@ namespace wishthis;
 
 class User
 {
-    /**
-     * Static
-     */
     public static function getFromID(int $user_id): self
     {
         global $database;
@@ -36,7 +33,7 @@ class User
             return $user;
         }
 
-        throw new Exception('Unable to find user with ID ' . $user_id . '. Does it exist?');
+        throw new \Exception('Unable to find user with ID ' . $user_id . '. Does it exist?');
     }
 
     public static function generatePassword(string $plainPassword): string
@@ -45,24 +42,137 @@ class User
     }
 
     /**
-     * Private
+     * The users unique ID.
+     *
+     * @var int
+     */
+    private int $id;
+
+    /**
+     * The users unique email address. They are not verified and may be made
+     * up.
+     *
+     * @var string
+     */
+    private string $email;
+
+    /**
+     * The users hashed password.
+     *
+     * @var string
+     */
+    private string $password;
+
+    /**
+     * The users password reset token.
+     *
+     * @var string
+     */
+    private string $password_reset_token;
+
+    /**
+     * A unix timestamp indicating until when the users password reset token is
+     * valid.
+     *
+     * @var int
+     */
+    private int $password_reset_valid_until;
+
+    /**
+     * A unix timestamp of when the user has logged in last.
+     *
+     * @var int
+     */
+    private int $last_login;
+
+    /**
+     * The users power. Administrator have 100, users 1 and unregistered guests
+     * 0.
+     *
+     * @var int
+     */
+    private int $power = 0;
+
+    /**
+     * A unix timestamp of the users birthdate.
+     *
+     * @var int
+     */
+    private int $birthdate;
+
+    /**
+     * More accurately, this is the users locale (e. g. `en_GB`).
+     *
+     * @var string
      */
     private string $language;
+
+    /**
+     * The users currency (e. g. `EUR`).
+     *
+     * @var string
+     */
     private string $currency;
+
+    /**
+     * The users first name.
+     *
+     * @var string
+     */
+    private string $name_first;
+
+    /**
+     * The users last name.
+     *
+     * @var string
+     */
+    private string $name_last;
+
+    /**
+     * The users nick name.
+     *
+     * @var string
+     */
+    private string $name_nick;
+
+    /**
+     * The users preferred release channel. Usually `stable` or
+     * `release-candidate` but can also be unset if not defined.
+     *
+     * @var string
+     */
+    private string $channel;
+
+    /**
+     * Whether the user consented to seeing advertisements.
+     *
+     * @var bool
+     */
+    private bool $advertisements = false;
 
     /**
      * Non-Static
      */
-    public int $power                           = 0;
     public ?\Gettext\Translations $translations = null;
-    public bool $advertisements                 = false;
 
     public function __construct(array $fields = array())
     {
         if (!empty($fields)) {
-            foreach ($fields as $key => $value) {
-                $this->$key = $value;
-            }
+            $this->id                         = $fields['id'];
+            $this->email                      = $fields['email'];
+            $this->password                   = $fields['password'];
+            $this->password_reset_token       = $fields['password_reset_token'];
+            $this->password_reset_valid_until = $fields['password_reset_valid_until'];
+            $this->last_login                 = $fields['last_login'];
+            $this->power                      = $fields['power'];
+            $this->birthdate                  = $fields['birthdate'];
+            $this->language                   = $fields['language'];
+            $this->currency                   = $fields['currency'];
+            $this->name_first                 = $fields['name_first'];
+            $this->name_last                  = $fields['name_last'];
+            $this->name_nick                  = $fields['name_nick'];
+            $this->channel                    = $fields['channel'];
+            $this->advertisements             = $fields['advertisements'];
         }
 
         /** Set Language */

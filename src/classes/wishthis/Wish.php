@@ -50,16 +50,78 @@ class Wish
      */
     private Cache\Embed $cache;
 
-    /** General */
-    public int $id;
-    public int $wishlist;
-    public ?string $title;
-    public ?string $description;
-    public ?string $image;
-    public ?string $url;
-    public ?int $priority;
-    public bool $is_purchasable;
-    public ?string $status;
+    /**
+     * The unique wish id.
+     *
+     * @var int
+     */
+    private int $id;
+
+    /**
+     * The wishlist id for this wish.
+     *
+     * TODO: rename this to wishlist_id (the database column too).
+     *
+     * @var int
+     */
+    private int $wishlist;
+
+    /**
+     * The wish title.
+     *
+     * @var string|null
+     */
+    private string $title;
+
+    /**
+     * The wish description.
+     *
+     * @var string|null
+     */
+    private string $description;
+
+    /**
+     * The wish image url.
+     *
+     * @var string|null
+     */
+    private string $image;
+
+    /**
+     * The wish (product) url.
+     *
+     * @var string|null
+     */
+    private string $url;
+
+    /**
+     * The wish priority
+     *
+     * @var int|null
+     */
+    private ?int $priority;
+
+    /**
+     * The wish status.
+     *
+     * @var string|null
+     */
+    private ?string $status;
+
+    /**
+     * Whether this wish is purchasable.
+     *
+     * @var bool
+     */
+    private bool $is_purchasable;
+
+    /**
+     * A unix timestamp of when this wish was last edited.
+     *
+     * @var int
+     */
+    private int $edited;
+
     public string $style = 'grid';
 
     /** Product */
@@ -96,9 +158,16 @@ class Wish
         if ($columns) {
             $this->exists = true;
 
-            foreach ($columns as $key => $value) {
-                $this->$key = $value;
-            }
+            $this->id             = $columns['id'];
+            $this->wishlist       = $columns['wishlist'];
+            $this->title          = $columns['title'];
+            $this->description    = $columns['description'];
+            $this->image          = $columns['image'];
+            $this->url            = $columns['url'];
+            $this->priority       = $columns['priority'];
+            $this->status         = $columns['status'];
+            $this->is_purchasable = $columns['is_purchasable'];
+            $this->edited         = $columns['edited'];
 
             $this->info = new \stdClass();
 

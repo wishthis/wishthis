@@ -10,6 +10,44 @@ namespace wishthis;
 
 class Wishlist
 {
+    /**
+     * The unique wishlist id.
+     *
+     * @var int
+     */
+    private int $id;
+
+    /**
+     * The user id this wishlist belongs to.
+     *
+     * TODO: rename this to user_id (the database column too).
+     *
+     * @var int
+     */
+    private int $user;
+
+    /**
+     * The wishlist name.
+     *
+     * @var string
+     */
+    private string $name;
+
+    /**
+     * The unique wishlist hash.
+     *
+     * @var string
+     */
+    private string $hash;
+
+    /**
+     * A unix timestamp of when the last notification was sent to the wishlist
+     * owner.
+     *
+     * @var int
+     */
+    private int $notification_send;
+
     public array $wishes = array();
 
     public bool $exists = false;
@@ -43,13 +81,11 @@ class Wishlist
         if ($columns) {
             $this->exists = true;
 
-            foreach ($columns as $key => $value) {
-                if (is_string($value)) {
-                    $this->$key = html_entity_decode($value);
-                } else {
-                    $this->$key = $value;
-                }
-            }
+            $this->id                = $columns['id'];
+            $this->user              = $columns['user'];
+            $this->name              = html_entity_decode($columns['name']);
+            $this->hash              = $columns['hash'];
+            $this->notification_send = $columns['notification_send'];
         } else {
             return;
         }
