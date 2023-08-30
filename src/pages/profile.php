@@ -79,7 +79,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         && !empty($_POST['user-password-repeat'])
         && $_POST['user-password'] === $_POST['user-password-repeat']
     ) {
-        $set[] = '`password` = "' . User::generatePassword($_POST['user-password']) . '"';
+        $set[] = '`password` = "' . User::passwordToHash($_POST['user-password']) . '"';
 
         $loginRequired = true;
     }

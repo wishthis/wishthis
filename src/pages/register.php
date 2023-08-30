@@ -92,7 +92,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     `password_reset_valid_until` = NULL
                               WHERE `id`                         = :user_id;',
                         array(
-                            'user_password' => User::generatePassword($_POST['password']),
+                            'user_password' => User::passwordToHash($_POST['password']),
                             'user_id'       => $user->id,
                         )
                     );
@@ -133,7 +133,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     );',
                     array(
                         'user_email'    => $user_email,
-                        'user_password' => User::generatePassword($_POST['password']),
+                        'user_password' => User::passwordToHash($_POST['password']),
                         'user_language' => $locale_user,
                     )
                 );
@@ -157,7 +157,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         );',
                         array(
                             'user_email'    => $user_email,
-                            'user_password' => User::generatePassword($_POST['password']),
+                            'user_password' => User::passwordToHash($_POST['password']),
                             'user_language' => $locale_user,
                         )
                     );

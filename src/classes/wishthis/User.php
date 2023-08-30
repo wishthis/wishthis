@@ -36,7 +36,7 @@ class User
         throw new \Exception('Unable to find user with ID ' . $user_id . '. Does it exist?');
     }
 
-    public static function generatePassword(string $plainPassword): string
+    public static function passwordToHash(string $plainPassword): string
     {
         return sha1($plainPassword);
     }

@@ -15,7 +15,7 @@ $page = new Page(__FILE__, __('Login'));
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     $email    = Sanitiser::getEmail($_POST['email']);
-    $password = User::generatePassword($_POST['password']);
+    $password = User::passwordToHash($_POST['password']);
 
     $database
     ->query(
