@@ -52,8 +52,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
 
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
 
-    if (isset($user->getId())) {
-        $token      = sha1(time() . rand(0, 999999));
+    $token      = sha1(time() . rand(0, 999999));
         $validUntil = time() + 3600;
 
         $database
@@ -93,7 +92,6 @@ if (isset($_POST['reset'], $_POST['email'])) {
             __('If a match can be found for this email address, a password reset link will be sent to it.'),
             __('Info')
         );
-    }
 }
 
 $page->header();

@@ -14,7 +14,7 @@ $user = User::getCurrent();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        if (isset($_POST['wishlist-name'], $user->getId())) {
+        if (isset($_POST['wishlist-name'])) {
             /**
              * Create
              */
@@ -155,7 +155,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             } else {
                 http_response_code(404);
             }
-        } elseif (isset($_GET['userid']) || isset($user->getId())) {
+        } elseif (isset($_GET['userid'])) {
             /**
              * Get user wishlists
              */
