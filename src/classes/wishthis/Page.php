@@ -169,7 +169,7 @@ class Page
         /**
          * Power
          */
-        if (isset($user->power) && $user->power < $this->power && 0 !== $this->power) {
+        if ($user->getPower() < $this->power && 0 !== $this->power) {
             redirect(Page::PAGE_POWER . '&required=' . $this->power);
         }
 
@@ -184,7 +184,7 @@ class Page
         );
 
         if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
-            if (100 === $user->power) {
+            if (100 === $user->getPower()) {
                 redirect(Page::PAGE_UPDATE);
             } else {
                 redirect(Page::PAGE_MAINTENANCE);
@@ -485,7 +485,7 @@ class Page
                 'url'  => Page::PAGE_PROFILE,
                 'icon' => 'user circle alternate',
             );
-            if (100 === $user->power) {
+            if (100 === $user->getPower()) {
                 $pages[$account]['items'][] = array(
                     'text' => __('Login as'),
                     'url'  => Page::PAGE_LOGIN_AS,
@@ -522,7 +522,7 @@ class Page
             );
         }
 
-        if (isset($user->power) && 100 === $user->power) {
+        if (100 === $user->getPower()) {
             $pages[$system]['items'][] = array(
                 'text' => __('Settings'),
                 'url'  => Page::PAGE_SETTINGS,

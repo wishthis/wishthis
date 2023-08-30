@@ -38,7 +38,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $preview_create = true;
             }
 
-            if ($preview_create && $user->power >= $page->power) {
+            if ($preview_create && $user->getPower() >= $page->power) {
                 file_put_contents($preview_filepath, $preview);
             }
         }

@@ -22,7 +22,7 @@ $user = User::getCurrent();
 
         <div class="ui segment">
             <h2 class="ui header"><?= __('Restricted access') ?></h2>
-            <p><?= sprintf(__('You do not have enough power to view this page. You need %s to see this page, but only have %s.'), '<strong>' . $_GET['required'] . '</strong>', '<strong>' . $user->power . '</strong>') ?></p>
+            <p><?= sprintf(__('You do not have enough power to view this page. You need %s to see this page, but only have %s.'), '<strong>' . $_GET['required'] . '</strong>', '<strong>' . $user->getPower() . '</strong>') ?></p>
         </div>
     </div>
 </main>
