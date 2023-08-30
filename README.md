@@ -18,7 +18,7 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 ## :heavy_check_mark: Requirements
 
 -   Apache or Nginx
--   PHP 8.1
+-   PHP 8.1 - PHP 8.2
     -   [intl](https://www.php.net/manual/en/book.intl.php)
 -   MySQL/MariaDB
 -   [MJML](https://mjml.io/api) api keys (not required and used for rendering emails. Make sure [sendmail](https://www.php.net/manual/en/mail.configuration.php) is configured properly.)
