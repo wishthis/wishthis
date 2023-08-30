@@ -49,7 +49,7 @@ $user = User::getCurrent();
                                  ORDER BY `wishes`.`edited` DESC
                                     LIMIT 1;',
                                 array(
-                                    'user_id' => $user->id,
+                                    'user_id' => $user->getId(),
                                 )
                             );
 

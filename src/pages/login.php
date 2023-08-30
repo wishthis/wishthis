@@ -52,7 +52,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
 
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
 
-    if (isset($user->id)) {
+    if (isset($user->getId())) {
         $token      = sha1(time() . rand(0, 999999));
         $validUntil = time() + 3600;
 
@@ -61,7 +61,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
             'UPDATE `users`
                 SET `password_reset_token`       = :user_password_reset_token,
                     `password_reset_valid_until` = :user_reset_valid_until
-              WHERE `id` = ' . $user->id . ';',
+              WHERE `id` = ' . $user->getId() . ';',
             array(
                 'user_password_reset_token' => $token,
                 'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),

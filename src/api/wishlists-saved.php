@@ -62,7 +62,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wishlist_id
                     );',
                     array(
-                        'user_id'     => $user->id,
+                        'user_id'     => $user->getId(),
                         'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
                     )
                 );

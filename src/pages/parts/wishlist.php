@@ -10,7 +10,7 @@ $user = User::getCurrent();
 ?>
 
 <?php if ($user->isLoggedIn()) { ?>
-    <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+    <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
 <?php } ?>
 
 <div class="wishlist-filter-wrapper">

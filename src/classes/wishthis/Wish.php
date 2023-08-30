@@ -197,7 +197,7 @@ class Wish
             $userCard->getLocale() . '@currency=' . $userCard->getCurrency(),
             \NumberFormatter::CURRENCY
         );
-        $userIsCurrent   = isset($userCurrent->id) && $userCurrent->id === $userCard->id;
+        $userIsCurrent   = isset($userCurrent->getId()) && $userCurrent->getId() === $userCard->getId();
 
         /**
          * Card

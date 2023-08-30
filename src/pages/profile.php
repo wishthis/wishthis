@@ -218,7 +218,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="personal" />
 
                             <div class="three fields">
@@ -284,7 +284,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="password" />
 
                             <div class="two fields">
@@ -347,7 +347,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="two fields">
@@ -447,7 +447,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
@@ -512,17 +512,13 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="field">
                                 <label><?= __('Advertisements') ?></label>
 
                                 <div class="ui toggle checkbox advertisements">
-                                    <?php
-                                    $user = isset($user->id) ? $user : new User();
-                                    ?>
-
                                     <?php if (true === $user->advertisements) { ?>
                                         <input type="checkbox" name="enable-advertisements" checked="checked" />
                                     <?php } else { ?>
@@ -563,7 +559,7 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->id ?>" />
+                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="account" />
 
                             <div class="field">

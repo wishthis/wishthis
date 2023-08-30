@@ -93,7 +93,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                               WHERE `id`                         = :user_id;',
                         array(
                             'user_password' => User::passwordToHash($_POST['password']),
-                            'user_id'       => $user->id,
+                            'user_id'       => $user->getId(),
                         )
                     );
 
