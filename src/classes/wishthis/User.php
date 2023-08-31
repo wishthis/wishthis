@@ -175,7 +175,7 @@ class User
             $this->password_reset_valid_until = \strtotime($fields['password_reset_valid_until']);
             $this->last_login                 = \strtotime($fields['last_login']);
             $this->power                      = $fields['power'];
-            $this->birthdate                  = $fields['birthdate'];
+            $this->birthdate                  = \strtotime($fields['birthdate'] ?? 0);
             $this->language                   = $fields['language'];
             $this->currency                   = $fields['currency'];
             $this->name_first                 = $fields['name_first'] ?? '';
