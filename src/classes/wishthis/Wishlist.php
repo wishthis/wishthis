@@ -104,7 +104,7 @@ class Wishlist
         $this->user              = $wishlist_data['user'];
         $this->name              = $wishlist_data['name'];
         $this->hash              = $wishlist_data['hash'];
-        $this->notification_sent = $wishlist_data['notification_sent'] ?? 0;
+        $this->notification_sent = $wishlist_data['notification_sent'] ? \strtotime($wishlist_data['notification_sent']) : 0;
     }
 
     public function getWishes(array $options = array('placeholders' => array())): array
