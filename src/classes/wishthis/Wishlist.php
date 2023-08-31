@@ -46,54 +46,19 @@ class Wishlist
      *
      * @var int
      */
-    private int $notification_send;
+    private int $notification_sent;
 
     public array $wishes = array();
 
     public bool $exists = false;
 
-    public function __construct(int|string $id_or_hash)
+    public function __construct(array $wishlist_data)
     {
-        global $database;
-
-        $column;
-
-        if (is_numeric($id_or_hash)) {
-            $column = 'id';
-        } elseif (is_string($id_or_hash)) {
-            $column = 'hash';
-        }
-
-        /**
-         * Get Wishlist
-         */
-        $columns = $database
-        ->query(
-            'SELECT *
-               FROM `wishlists`
-              WHERE `' . $column . '` = :id_or_hash;',
-            array(
-                'id_or_hash' => $id_or_hash,
-            )
-        )
-        ->fetch();
-
-        if ($columns) {
-            $this->exists = true;
-
-            $this->id                = $columns['id'];
-            $this->user              = $columns['user'];
-            $this->name              = html_entity_decode($columns['name']);
-            $this->hash              = $columns['hash'];
-            $this->notification_send = $columns['notification_send'];
-        } else {
-            return;
-        }
-
-        /**
-         * Get Wishes
-         */
-        // $this->wishes = $this->getWishes();
+        $this->id                = $wishlist_data['id'];
+        $this->user              = $wishlist_data['user'];
+        $this->name              = $wishlist_data['name'];
+        $this->hash              = $wishlist_data['hash'];
+        $this->notification_sent = $wishlist_data['notification_sent'] ?? 0;
     }
 
     public function getWishes(array $options = array('placeholders' => array())): array
@@ -232,5 +197,30 @@ class Wishlist
         }
 
         return $title;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->user;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getHash(): string
+    {
+        return $this->hash;
+    }
+
+    public function getNotificationSent(): int
+    {
+        return $this->notification_sent;
     }
 }

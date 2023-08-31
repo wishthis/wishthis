@@ -75,8 +75,8 @@ $user = User::getCurrent();
     </div>
 </div>
 
-<?php if (isset($wishlist->id)) { ?>
-    <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>"></div>
+<?php if (isset($wishlist)) { ?>
+    <div class="wishlist-cards" data-wishlist="<?= $wishlist->getId() ?>"></div>
 <?php } else { ?>
     <div class="wishlist-cards"></div>
 <?php } ?>

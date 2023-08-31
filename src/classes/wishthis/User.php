@@ -41,7 +41,8 @@ class User
         return sha1($plainPassword);
     }
 
-    public static function getCurrent(): self {
+    public static function getCurrent(): self
+    {
         if (!isset($_SESSION['user'])) {
             $_SESSION['user'] = new self();
         }
@@ -250,7 +251,6 @@ class User
 
     /**
      * Returns a list of the users wishlists.
-     * Defaults to the currently logged in user.
      *
      * @return array
      */
@@ -315,7 +315,8 @@ class User
      *
      * @return bool Whether the log in was successful.
      */
-    public function logIn(string $email = '', string $password = '', bool $user_login_is_persistent = false): bool {
+    public function logIn(string $email = '', string $password = '', bool $user_login_is_persistent = false): bool
+    {
         global $database;
 
         $login_was_successful = false;
@@ -388,7 +389,7 @@ class User
             $sessionLifetime = 2592000 * 4; // 4 Months
             $sessionExpires  = time() + $sessionLifetime;
             $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
-            $sessionOptions  = array (
+            $sessionOptions  = array(
                 'domain'   => getCookieDomain(),
                 'expires'  => $sessionExpires,
                 'httponly' => true,
@@ -457,19 +458,23 @@ class User
         );
     }
 
-    public function getId(): int {
+    public function getId(): int
+    {
         return $this->id;
     }
 
-    public function getEmail(): string {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
-    public function getPassword(): string {
+    public function getPassword(): string
+    {
         return $this->password;
     }
 
-    public function getPower(): int {
+    public function getPower(): int
+    {
         return $this->power;
     }
 }
