@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-$wishlist                                  = new Wishlist($_GET['hash']);
+$wishlist                                  = Wishlist::getFromHash($_GET['hash']);
 $wishlist_user                             = User::getFromID($wishlist->user);
 $page                                      = new Page(__FILE__, $wishlist->getTitle());
 $page->stylesheets['wish']                 = 'src/assets/css/wish.css';

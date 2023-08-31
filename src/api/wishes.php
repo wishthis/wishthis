@@ -45,7 +45,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get wishes by priority
              */
-            $wishlist                                 = new Wishlist($_GET['wishlist_id']);
+            $wishlist                                 = Wishlist::getFromId($_GET['wishlist_id']);
             $options                                  = array(
                 'style' => $_GET['wishlist_style'],
             );

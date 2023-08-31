@@ -37,7 +37,7 @@ foreach ($wishlists as $wishlist_saved) {
                     <div class="ui four column doubling stackable grid wishlists-saved">
                         <?php foreach ($wishlists_saved as $wishlist_saved) { ?>
                             <?php
-                            $wishlist      = new Wishlist($wishlist_saved['wishlist']);
+                            $wishlist      = Wishlist::getFromId($wishlist_saved['wishlist']);
                             $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->hash;
                             ?>
 

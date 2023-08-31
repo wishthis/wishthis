@@ -10,6 +10,52 @@ namespace wishthis;
 
 class Wishlist
 {
+    public static function getFromId(int $id): self|false
+    {
+        global $database;
+
+        $wishlistQuery = $database->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `wishlists`.`id` = :wishlist_id',
+            array(
+                'wishlist_id' => $id,
+            )
+        );
+
+        if (false === $wishlistQuery) {
+            return false;
+        }
+
+        $wishlistData = $wishlistQuery->fetch();
+        $wishlist     = new Wishlist($wishlistData);
+
+        return $wishlist;
+    }
+
+    public static function getFromHash(string $hash): self
+    {
+        global $database;
+
+        $wishlistQuery = $database->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `wishlists`.`hash` = :wishlist_hash',
+            array(
+                'wishlist_hash' => $hash,
+            )
+        );
+
+        if (false === $wishlistQuery) {
+            return false;
+        }
+
+        $wishlistData = $wishlistQuery->fetch();
+        $wishlist     = new Wishlist($wishlistData);
+
+        return $wishlist;
+    }
+
     /**
      * The unique wishlist id.
      *

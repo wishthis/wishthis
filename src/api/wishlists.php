@@ -111,7 +111,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get wishlist cards with priority
              */
-            $wishlist = new Wishlist($_GET['wishlist_id']);
+            $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
             $options  = array(
                 'style'        => $_GET['style'],
                 'placeholders' => array(),
@@ -135,7 +135,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get wishlist by id
              */
-            $wishlist = new Wishlist($_GET['wishlist_id']);
+            $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
 
             if ($wishlist->exists) {
                 /** Determine if user is allowed to access wishlist */
@@ -151,7 +151,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get wishlist by hash
              */
-            $wishlist = new Wishlist($_GET['wishlist_hash']);
+            $wishlist = Wishlist::getFromHash($_GET['wishlist_hash']);
 
             if ($wishlist->exists) {
                 $response['results'] = $wishlist;
