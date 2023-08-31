@@ -38,7 +38,7 @@ foreach ($wishlists as $wishlist_saved) {
                         <?php foreach ($wishlists_saved as $wishlist_saved) { ?>
                             <?php
                             $wishlist      = Wishlist::getFromId($wishlist_saved['wishlist']);
-                            $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->hash;
+                            $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->getHash();
                             ?>
 
                             <div class="column">
