@@ -7,16 +7,19 @@
     <rule ref="PSR12" />
 
     <!-- Include some rules I want to enforce -->
-    <rule ref='Generic.Arrays.DisallowShortArraySyntax.Found' />
     <rule ref='Generic.Commenting.DocComment.ShortNotCapital' />
     <rule ref='Generic.Formatting.MultipleStatementAlignment.IncorrectWarning' />
     <rule ref='Generic.Formatting.MultipleStatementAlignment.NotSameWarning' />
+    <rule ref='NormalizedArrays.Arrays.ArrayBraceSpacing' />
+    <rule ref='NormalizedArrays.Arrays.CommaAfterLast' />
     <rule ref='PEAR.Functions.FunctionCallSignature.CloseBracketLine' />
     <rule ref='PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket' />
+    <rule ref='Universal.Arrays.DisallowShortArraySyntax' />
+    <rule ref='Universal.Operators.StrictComparisons' />
+    <rule ref='Universal.WhiteSpace.CommaSpacing' />
+    <rule ref='WordPress.Arrays.ArrayDeclarationSpacing' />
     <rule ref='WordPress.Arrays.ArrayIndentation.ItemNotAligned' />
-    <rule ref='WordPress.Arrays.CommaAfterArrayItem.NoComma' />
     <rule ref='WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned' />
-    <rule ref='WordPress.PHP.StrictComparisons.LooseComparison' />
     <rule ref='WordPress.PHP.YodaConditions.NotYoda' />
 
     <!-- Exclude some rules -->
