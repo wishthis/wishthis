@@ -39,6 +39,12 @@ Download the code using the [stable branch](https://github.com/grandeljay/wishth
 
 Note: You will have to manually update wishthis by replacing all files with the changes from the `stable` branch.
 
+### Attention! The installer is broken in `v1.0.0`!
+
+To work around this, you can manually create a `/src/config/config.php` (please copy the `/src/config/config-sample.php`) and **remove** the part with the database information (currently four php constants).
+
+The installer should appear now. Make sure the `config.php` is writeable. After the isntallation has complete you can make the config read-only again.
+
 ## :trophy: Contributing
 
 ### As a tester
