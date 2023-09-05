@@ -48,7 +48,7 @@ if (file_exists($configPath)) {
  */
 session_start(
     array(
-        'name' => 'wishthis'
+        'name' => 'wishthis',
     )
 );
 
