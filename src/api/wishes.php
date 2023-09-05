@@ -110,7 +110,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
                 /** Update wish */
-                $wish = new Wish($_POST['wish_id']);
+                $wish = Wish::getFromId($_POST['wish_id']);
 
                 /** Update wish information */
                 if (!empty($wish_url)) {
@@ -160,14 +160,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             `is_purchasable` = :wish_is_purchasable
                       WHERE `id`             = :wish_id',
                     array(
-                        'wishlist_id'         => $wish->wishlist,
+                        'wishlist_id'         => $wish->getWishlistId(),
                         'wish_title'          => $wish_title,
                         'wish_description'    => $wish_description,
                         'wish_image'          => $wish_image,
                         'wish_url'            => $wish_url,
                         'wish_priority'       => $wish_priority,
                         'wish_is_purchasable' => $wish_is_purchasable,
-                        'wish_id'             => $wish->id,
+                        'wish_id'             => $wish->getId(),
                     )
                 );
 
@@ -189,12 +189,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wish_price
                     );',
                     array(
-                        'wish_id'    => $wish->id,
+                        'wish_id'    => $wish->getId(),
                         'wish_price' => $wish_price,
                     )
                 );
 
-                $response['lastInsertId'] = $wish->id;
+                $response['lastInsertId'] = $wish->getId();
             } elseif (isset($_POST['wishlist_id'])) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];

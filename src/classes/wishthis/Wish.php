@@ -407,4 +407,14 @@ class Wish
 
         return $wishArray;
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getWishlistId(): int
+    {
+        return $this->wishlist;
+    }
 }
