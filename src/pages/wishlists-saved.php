@@ -19,6 +19,10 @@ $wishlists         = $user->getSavedWishlists();
 $wishlists_by_user = array();
 
 foreach ($wishlists as $wishlist_saved) {
+    if (!isset($wishlist_saved['user'])) {
+        continue;
+    }
+
     $wishlists_by_user[$wishlist_saved['user']][] = $wishlist_saved;
 }
 ?>
