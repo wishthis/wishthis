@@ -284,17 +284,17 @@ class User
 
         $result = $database
         ->query(
-            'SELECT `ws`.`wishlist`,
-                    `w`.`user`,
-                    `w`.`hash`
-               FROM `wishlists_saved` `ws`
-               JOIN `wishlists`       `w`  ON `w`.`id` = `ws`.`wishlist`
-              WHERE `ws`.`user` = :user_id;',
+            '  SELECT `wishlists_saved`.`wishlist`,
+                      `wishlists`.`user`,
+                      `wishlists`.`hash`
+                 FROM `wishlists_saved`
+            LEFT JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
+                WHERE `wishlists_saved`.`user` = :user_id;',
             array(
                 'user_id' => $this->id,
             )
         )
-        ->fetchAll();
+        ->fetchAll(\PDO::FETCH_ASSOC);
 
         if ($result) {
             $wishlists = $result;

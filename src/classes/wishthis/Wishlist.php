@@ -238,7 +238,7 @@ class Wishlist
     {
         $title = __('Wishlist not found');
 
-        if ($this->exists) {
+        if ($this->name) {
             $title = $this->name;
         }
 
