@@ -17,10 +17,12 @@ if (!isset($page)) {
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['wish_id'])) {
-            $wish = new Wish($_GET['wish_id'], true);
+        $getWish = isset($_GET['wish_id']);
 
-            $response['info'] = $wish;
+        if ($getWish) {
+            $wish = Wish::getFromId($_GET['wish_id']);
+
+            $response['info'] = $wish->serialise();
 
             if (isset($_GET['wishlist_user'])) {
                 $response['html'] = $wish->getCard($_GET['wishlist_user']);

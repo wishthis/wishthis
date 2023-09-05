@@ -168,8 +168,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $wishlistName = $wishlist->getName();
 
                 $wishlists[]      = array(
-                    'id'   => $wishlistId,
-                    'hash' => $wishlist->getHash(),
+                    'id'     => $wishlistId,
+                    'hash'   => $wishlist->getHash(),
+                    'userId' => $wishlist->getUserId(),
                 );
                 $wishlistsItems[] = array(
                     'name'  => $wishlistName,

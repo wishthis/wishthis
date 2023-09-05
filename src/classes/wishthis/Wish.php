@@ -45,10 +45,33 @@ class Wish
         );
     }
 
+    public static function getFromId(int $wishId): self|false
+    {
+        global $database;
+
+        $wishQuery = $database->query(
+            'SELECT *
+               FROM `wishes`
+              WHERE `wishes`.`id` = :wish_id',
+            array(
+                'wish_id' => $wishId,
+            )
+        );
+
+        if (false === $wishQuery) {
+            return false;
+        }
+
+        $wishData = $wishQuery->fetch();
+        $wish     = new self($wishData);
+
+        return $wish;
+    }
+
     /**
      * Non-Static
      */
-    private Cache\Embed $cache;
+    private ?Cache\Embed $cache = null;
 
     /**
      * The unique wish id.
@@ -132,59 +155,18 @@ class Wish
 
     public bool $exists = false;
 
-    public function __construct(int|array $idOrColumns, bool $generateCache = false)
+    public function __construct(array $wishData)
     {
-        global $database;
-
-        $columns = array();
-
-        if (is_numeric($idOrColumns)) {
-            $id      = $idOrColumns;
-            $columns = $database
-            ->query(
-                '  SELECT ' . self::SELECT    . '
-                     FROM ' . self::FROM      . '
-                LEFT JOIN ' . self::LEFT_JOIN . '
-                    WHERE ' . self::WHERE,
-                array(
-                    'wish_id' => $id,
-                )
-            )
-            ->fetch();
-        } elseif (is_array($idOrColumns)) {
-            $columns = $idOrColumns;
-        }
-
-        if ($columns) {
-            $this->exists = true;
-
-            $this->id             = $columns['id'];
-            $this->wishlist       = $columns['wishlist'];
-            $this->title          = $columns['title']       ?? '';
-            $this->description    = $columns['description'] ?? '';
-            $this->image          = $columns['image'] ?? '';
-            $this->url            = $columns['url'] ?? '';
-            $this->priority       = $columns['priority'];
-            $this->status         = $columns['status'];
-            $this->is_purchasable = $columns['is_purchasable'];
-            $this->edited         = $columns['edited'] ? \strtotime($columns['edited']) : null;
-
-            $this->info = new \stdClass();
-
-            if ($this->url) {
-                $this->cache = new Cache\Embed($this->url);
-                $this->info  = $this->cache->get($generateCache);
-            }
-
-            foreach ($columns as $key => $value) {
-                if (empty($value) && isset($this->info->$key)) {
-                    $this->$key = $this->info->$key;
-                }
-            }
-
-            $this->title       = stripslashes($this->title       ?? '');
-            $this->description = stripslashes($this->description ?? '');
-        }
+        $this->id             = $wishData['id'];
+        $this->wishlist       = $wishData['wishlist'];
+        $this->title          = stripslashes($wishData['title']       ?? '');
+        $this->description    = stripslashes($wishData['description'] ?? '');
+        $this->image          = $wishData['image'] ?? '';
+        $this->url            = $wishData['url'] ?? '';
+        $this->priority       = $wishData['priority'];
+        $this->status         = $wishData['status'];
+        $this->is_purchasable = $wishData['is_purchasable'];
+        $this->edited         = $wishData['edited'] ? \strtotime($wishData['edited']) : null;
     }
 
     public function getCard(int $ofUser): string
@@ -202,7 +184,7 @@ class Wish
         /**
          * Card
          */
-        if ($this->url) {
+        if ($this->url && $this->cache) {
             $generateCache = $this->cache->generateCache() ? 'true' : 'false';
         } else {
             $generateCache = 'false';
@@ -406,5 +388,23 @@ class Wish
         $buttons = ob_get_clean();
 
         return $buttons;
+    }
+
+    public function serialise(): array
+    {
+        $wishArray = array(
+            'id'             => $this->id,
+            'wishlist'       => $this->wishlist,
+            'title'          => $this->title,
+            'description'    => $this->description,
+            'image'          => $this->image,
+            'url'            => $this->url,
+            'priority'       => $this->priority,
+            'status'         => $this->status,
+            'is_purchasable' => $this->is_purchasable,
+            'edited'         => $this->edited,
+        );
+
+        return $wishArray;
     }
 }

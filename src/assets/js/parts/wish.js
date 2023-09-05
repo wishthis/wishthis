@@ -53,7 +53,7 @@ $(function () {
         wish_details
         .modal({
             'onShow'    : function() {
-                var user_is_current = wishlist && wishlist.user === parseInt($('[name="user-id"]').val());
+                var user_is_current = wishlist && wishlist.userId === parseInt($('[name="user-id"]').val());
 
                 if (user_is_current) {
                     $('.ui.button.wish-fulfil').remove();
