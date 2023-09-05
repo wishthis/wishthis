@@ -117,7 +117,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'placeholders' => array(),
             );
             $where    = array(
-                'wishlist' => '`wishlist` = ' . $wishlist->id,
+                'wishlist' => '`wishlist` = ' . $wishlist->getId(),
                 'priority' => '`priority` = ' . $_GET['priority'],
             );
 
@@ -137,10 +137,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
 
-            if ($wishlist->exists) {
-                /** Determine if user is allowed to access wishlist */
-                if ($user->isLoggedIn() && $user->getId() === $wishlist->user) {
-                    $response['results'] = $wishlist;
+            /** Determine if user is allowed to access wishlist */
+            if ($wishlist instanceof Wishlist) {
+                if ($user->isLoggedIn() && $user->getId() === $wishlist->getUserId()) {
+                    $response['results'] = $wishlist->getCards();
                 } else {
                     http_response_code(403);
                 }
@@ -167,16 +167,19 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $wishlistId   = $wishlist->getId();
                 $wishlistName = $wishlist->getName();
 
-                $wishlists[$wishlistId]      = $wishlist;
-                $wishlistsItems[$wishlistId] = array(
+                $wishlists[]      = array(
+                    'id'   => $wishlistId,
+                    'hash' => $wishlist->getHash(),
+                );
+                $wishlistsItems[] = array(
                     'name'  => $wishlistName,
                     'value' => $wishlistId,
                     'text'  => $wishlistName,
                 );
             }
 
-            $response['wishlists']       = $wishlists;
-            $response['wishlists_items'] = $wishlistsItems;
+            $response['wishlists']      = $wishlists;
+            $response['wishlistsItems'] = $wishlistsItems;
         }
         break;
 

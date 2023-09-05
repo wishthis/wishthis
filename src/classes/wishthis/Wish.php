@@ -118,14 +118,14 @@ class Wish
     /**
      * A unix timestamp of when this wish was last edited.
      *
-     * @var int
+     * @var int|null
      */
-    private int $edited;
+    private ?int $edited;
 
     public string $style = 'grid';
 
     /** Product */
-    public ?float $price;
+    public ?float $price = null;
 
     /** Other */
     public \stdClass $info;
@@ -160,14 +160,14 @@ class Wish
 
             $this->id             = $columns['id'];
             $this->wishlist       = $columns['wishlist'];
-            $this->title          = $columns['title'];
-            $this->description    = $columns['description'];
-            $this->image          = $columns['image'];
-            $this->url            = $columns['url'];
+            $this->title          = $columns['title']       ?? '';
+            $this->description    = $columns['description'] ?? '';
+            $this->image          = $columns['image'] ?? '';
+            $this->url            = $columns['url'] ?? '';
             $this->priority       = $columns['priority'];
             $this->status         = $columns['status'];
             $this->is_purchasable = $columns['is_purchasable'];
-            $this->edited         = $columns['edited'];
+            $this->edited         = $columns['edited'] ? \strtotime($columns['edited']) : null;
 
             $this->info = new \stdClass();
 

@@ -9,20 +9,20 @@ $(function () {
     /**
      * Get Wishlists
      */
-    var wishlists_items = [];
-    var wishlists_api   = {
+    var wishlistsItems = [];
+    var wishlistsApi   = {
         'action'    : 'get wishlists',
-        'onSuccess' : function(response, dropdown_wishlists, xhr) {
+        'onSuccess' : function(response, dropdownWishlists, xhr) {
             /** Save response for later use */
-            wishlists       = response.wishlists;
-            wishlists_items = response.wishlists_items;
+            wishlists      = response.wishlists;
+            wishlistsItems = response.wishlistsItems;
 
             /** Setup and populate dropdown */
-            var dropdown_values = {
-                'values' : wishlists_items,
+            var dropdownValues = {
+                'values' : wishlistsItems,
             };
 
-            dropdown_wishlists.dropdown('setup menu', dropdown_values);
+            dropdownWishlists.dropdown('setup menu', dropdownValues);
 
             /** Select a dropdown item */
             setDropdownWishlistsSelection();
@@ -57,13 +57,15 @@ $(function () {
                 .then(handleFetchError)
                 .then(handleFetchResponse)
                 .then(function(response) {
-                    var wishlist;
-
-                    /** Set current wishlist */
-                    wishlist = response.results;
+                    /** Set currently selected wishlist */
+                    wishlists.forEach(wishlistI => {
+                        if (wishlistI.id === parseInt(wishlist_id)) {
+                            wishlist = wishlistI;
+                        }
+                    });
 
                     /** Set share link */
-                    $('.wishlist-share').attr('href', '/wishlist/' + wishlist.hash);
+                    $('.wishlist-share').attr('href', '/wishlist/' + $(wishlist).prop('hash'));
 
                     /** Enable wishlist options buttons */
                     $('.button.wishlist-wish-add').removeClass('disabled');
@@ -160,7 +162,7 @@ $(function () {
             }
         },
     })
-    .api(wishlists_api)
+    .api(wishlistsApi)
     .api('query');
 
     /**
@@ -572,15 +574,16 @@ $(function () {
             if (wishthis.$_GET.id) {
                 wishlist_id = wishthis.$_GET.id;
             } else {
-                if (Object.keys(wishlists).length >= 1) {
-                    var first_wishlist_id = Object.keys(wishlists)[0];
+                if (wishlists.length >= 1) {
+                    wishlist = $(wishlists).first();
+
+                    var first_wishlist_id = wishlist.prop('id');
 
                     wishlist_id = first_wishlist_id;
                 }
             }
 
-            wishlist = wishlists[wishlist_id];
-            dropdown_wishlists.dropdown('set selected', wishlist.id);
+            dropdown_wishlists.dropdown('set selected', wishlist_id);
         }
     }
 
