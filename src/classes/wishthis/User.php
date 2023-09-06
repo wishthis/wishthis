@@ -1,8 +1,6 @@
 <?php
 
 /**
- * user.php
- *
  * A wishthis user.
  *
  * @author Jay Trees <github.jay@grandel.anonaddy.me>
@@ -107,9 +105,9 @@ class User
     /**
      * A unix timestamp of the users birthdate.
      *
-     * @var int|null
+     * @var string
      */
-    private ?int $birthdate;
+    private string $birthdate;
 
     /**
      * More accurately, this is the users locale (e. g. `en_GB`).
@@ -176,7 +174,7 @@ class User
             $this->password_reset_valid_until = \strtotime($fields['password_reset_valid_until']);
             $this->last_login                 = \strtotime($fields['last_login']);
             $this->power                      = $fields['power'];
-            $this->birthdate                  = \strtotime($fields['birthdate'] ?? 0);
+            $this->birthdate                  = $fields['birthdate'] ?? '';
             $this->language                   = $fields['language'];
             $this->currency                   = $fields['currency'];
             $this->name_first                 = $fields['name_first'] ?? '';
@@ -476,5 +474,50 @@ class User
     public function getPower(): int
     {
         return $this->power;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->name_first;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->name_last;
+    }
+
+    public function getNickName(): string
+    {
+        return $this->name_nick;
+    }
+
+    public function getBirthdate(): string
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(string $birthdate): void
+    {
+        $this->birthdate = $birthdate;
+    }
+
+    public function getChannel(): string
+    {
+        return $this->channel;
+    }
+
+    public function setChannel(string $channel): void
+    {
+        $this->channel = $channel;
+    }
+
+    public function getAdvertisements(): bool
+    {
+        return $this->advertisements;
+    }
+
+    public function setAdvertisements(bool $advertisements): void
+    {
+        $this->advertisements = $advertisements;
     }
 }

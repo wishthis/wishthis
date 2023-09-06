@@ -53,7 +53,7 @@ if (isset($_POST['user-id'], $_POST['section'])) {
         }
     }
 
-    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $user->email) {
+    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $user->getEmail()) {
         $loginRequired = true;
     }
 
@@ -62,13 +62,13 @@ if (isset($_POST['user-id'], $_POST['section'])) {
      */
     if (isset($_POST['user-birthdate'])) {
         if (empty($_POST['user-birthdate'])) {
-            $user->birthdate = null;
+            $user->setBirthdate('');
 
             $set[] = '`birthdate` = NULL';
         } else {
-            $user->birthdate = date('Y-m-d', strtotime($_POST['user-birthdate']));
+            $user->setBirthdate($_POST['user-birthdate']);
 
-            $set[] = '`birthdate` = "' . $user->birthdate . '"';
+            $set[] = '`birthdate` = "' . $_POST['user-birthdate'] . '"';
         }
     }
 
@@ -122,25 +122,25 @@ if (isset($_POST['user-id'], $_POST['section'])) {
     }
 
     /** Channel */
-    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->channel) {
+    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->getChannel()) {
         if (empty($_POST['user-channel'])) {
-            $user->channel = null;
+            $user->setChannel('');
 
             $set[] = '`channel` = NULL';
         } else {
-            $user->channel = $_POST['user-channel'];
+            $user->setChannel($_POST['user-channel']);
 
-            $set[] = '`channel` = "' . $user->channel . '"';
+            $set[] = '`channel` = "' . $_POST['user-channel'] . '"';
         }
     }
 
     /** Advertisements */
     if (isset($_POST['enable-advertisements'])) {
-        $user->advertisements = true;
+        $user->setAdvertisements(true);
 
         $set[] = '`advertisements` = TRUE';
     } else {
-        $user->advertisements = false;
+        $user->setAdvertisements(false);
 
         $set[] = '`advertisements` = FALSE';
     }
@@ -225,19 +225,19 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('First name') ?></label>
 
-                                    <input type="text" name="user-name-first" value="<?= $user->name_first ?>" />
+                                    <input type="text" name="user-name-first" value="<?= $user->getFirstName() ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Last name') ?></label>
 
-                                    <input type="text" name="user-name-last" value="<?= $user->name_last ?>" />
+                                    <input type="text" name="user-name-last" value="<?= $user->getLastName() ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Nickname') ?></label>
 
-                                    <input type="text" name="user-name-nick" value="<?= $user->name_nick ?>" />
+                                    <input type="text" name="user-name-nick" value="<?= $user->getNickName() ?>" />
                                 </div>
                             </div>
 
@@ -245,7 +245,7 @@ $page->navigation();
                                 <div class="field">
                                     <label><?= __('Email') ?></label>
 
-                                    <input type="email" name="user-email" value="<?= $user->email ?>" />
+                                    <input type="email" name="user-email" value="<?= $user->getEmail() ?>" />
                                 </div>
 
                                 <div class="field" data-content="<?= __('Used to suggest a wishlist called "Birthday", if it\'s coming up.') ?>">
@@ -260,7 +260,7 @@ $page->navigation();
                                             <input type="text"
                                                 name="user-birthdate"
                                                 placeholder="<?= __('Pick a date') ?>"
-                                                value="<?= $user->birthdate ?>"
+                                                value="<?= $user->getBirthdate() ?>"
                                             />
                                         </div>
                                     </div>
@@ -462,7 +462,7 @@ $page->navigation();
                                         <option value=""><?= __('Select channel') ?></option>
 
                                         <?php foreach (CHANNELS as $channel) { ?>
-                                            <?php if ($channel['branch'] === $user->channel) { ?>
+                                            <?php if ($channel['branch'] === $user->getChannel()) { ?>
                                                 <option value="<?= $channel['branch'] ?>" selected><?= $channel['label'] ?></option>
                                             <?php } else { ?>
                                                 <option value="<?= $channel['branch'] ?>"><?= $channel['label'] ?></option>
@@ -519,7 +519,7 @@ $page->navigation();
                                 <label><?= __('Advertisements') ?></label>
 
                                 <div class="ui toggle checkbox advertisements">
-                                    <?php if (true === $user->advertisements) { ?>
+                                    <?php if (true === $user->getAdvertisements()) { ?>
                                         <input type="checkbox" name="enable-advertisements" checked="checked" />
                                     <?php } else { ?>
                                         <input type="checkbox" name="enable-advertisements" />
