@@ -10,11 +10,6 @@ namespace wishthis;
 
 global $page, $database;
 
-if (!isset($page)) {
-    http_response_code(403);
-    die('Direct access to this location is not allowed.');
-}
-
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         $success = false;
@@ -32,6 +27,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
             echo $th->getMessage();
         }
 
-        $response['success'] = $success;
+        $response['dbTestSuccess'] = $success;
         break;
 }

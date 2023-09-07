@@ -16,7 +16,7 @@ $(function() {
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            if (response.success) {
+            if (response.dbTestSuccess) {
                 $('input[type="submit"]').removeClass('disabled');
 
                 form.form('remove errors');
