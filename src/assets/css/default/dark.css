@@ -564,4 +564,44 @@
     .ui.steps .step .description {
         color: rgba(255, 255, 255, .9);
     }
+
+    /**
+     * Table
+     */
+    .ui.table {
+        background-color: #333;
+        color: rgba(255, 255, 255, .9);
+        border: none;
+    }
+
+    .ui.ui.table > tbody > tr > th,
+    .ui.ui.table > thead > tr > th,
+    .ui.ui.table > tr > th {
+        background-color: rgba(0, 0, 0, .15);
+        border-color: rgba(255, 255, 255, .1);
+        color: rgba(255, 255, 255, .9);
+    }
+
+    .ui.ui.table td.positive,
+    .ui.ui.ui.ui.table tr.positive {
+        background-color: #a3c293;
+        color: #2c662d;
+    }
+
+    .ui.ui.table td.negative,
+    .ui.ui.ui.ui.table tr.negative {
+        background-color: #e0b4b4;
+        color: #9f3a38;
+    }
+
+    .ui.celled.table > tbody > tr > td,
+    .ui.celled.table > tr > td {
+        border-left: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .ui.table > tbody > tr > td,
+    .ui.table > tfoot > tr > td,
+    .ui.table > tr > td {
+        border-color: rgba(255, 255, 255, .1);
+    }
 }

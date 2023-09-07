@@ -130,6 +130,12 @@ $page->navigation();
                                         echo __('Amazon links are now automatically converted to affiliate links to help support wishthis financially.');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Prerequisite check during installation');
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
