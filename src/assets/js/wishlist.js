@@ -41,6 +41,7 @@ $(function() {
         .then(handleFetchResponse)
         .then(function(response) {
            wishlist = response.results;
+           console.log(wishlist);
         });
     }
 
