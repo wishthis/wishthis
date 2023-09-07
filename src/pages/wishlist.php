@@ -9,7 +9,7 @@
 namespace wishthis;
 
 $wishlist                                  = Wishlist::getFromHash($_GET['hash']);
-$wishlist_user                             = User::getFromID($wishlist->user);
+$wishlist_user                             = User::getFromID($wishlist->getUserId());
 $page                                      = new Page(__FILE__, $wishlist->getTitle());
 $page->stylesheets['wish']                 = 'src/assets/css/wish.css';
 $page->stylesheets['wish-card']            = 'src/assets/css/wish-card.css';
@@ -35,7 +35,7 @@ $user = User::getCurrent();
         <div class="ui stackable grid">
             <div class="column">
 
-                <?php if ($user->isLoggedIn() && $user->getId() !== $wishlist->user) { ?>
+                <?php if ($user->isLoggedIn() && $user->getId() !== $wishlist->getUserId()) { ?>
                     <button class="ui white small basic labeled icon button save disabled loading">
                         <i class="heart icon"></i>
                         <span><?= __('Remember list') ?></span>
@@ -49,7 +49,7 @@ $user = User::getCurrent();
         /**
          * Warn the wishlist creator
          */
-        if ($user->isLoggedIn() && $user->getId() === $wishlist->user) { ?>
+        if ($user->isLoggedIn() && $user->getId() === $wishlist->getUserId()) { ?>
             <div class="ui icon warning message wishlist-own">
                 <i class="exclamation triangle icon"></i>
                 <div class="content">
