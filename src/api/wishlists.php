@@ -148,12 +148,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 http_response_code(404);
             }
         } elseif ($getWishlistFromHash) {
-            /**
-             * Get wishlist by hash
-             */
             $wishlist = Wishlist::getFromHash($_GET['wishlist_hash']);
 
-            if ($wishlist->exists) {
+            if ($wishlist instanceof Wishlist) {
                 $response['results'] = $wishlist;
             } else {
                 http_response_code(404);

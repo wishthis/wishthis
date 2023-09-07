@@ -17,7 +17,7 @@ $page->scripts['wish']                     = 'src/assets/js/parts/wish.js';
 $page->scripts['wishlist-filter-priority'] = 'src/assets/js/parts/wishlist-filter-priority.js';
 $page->scripts['wishlists']                = 'src/assets/js/parts/wishlists.js';
 
-if (!$wishlist->exists) {
+if (false === $wishlist) {
     $page->errorDocument(404, $wishlist);
 }
 

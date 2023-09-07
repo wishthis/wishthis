@@ -33,7 +33,7 @@ class Wishlist
         return $wishlist;
     }
 
-    public static function getFromHash(string $hash): self
+    public static function getFromHash(string $hash): self|false
     {
         global $database;
 
