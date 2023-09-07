@@ -44,7 +44,7 @@ $user = User::getCurrent();
                                     <?= __('All priorities') ?>
                                 </div>
 
-                                <div class="item" data-value="">
+                                <div class="item" data-value="0">
                                     <i class="ui white empty circular label"></i>
                                     <?= __('No priority') ?>
                                 </div>

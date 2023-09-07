@@ -198,7 +198,7 @@ class Wish
             $userCard->getLocale() . '@currency=' . $userCard->getCurrency(),
             \NumberFormatter::CURRENCY
         );
-        $userIsCurrent   = $userCurrent->getId() === $userCard->getId();
+        $userIsCurrent   = $userCurrent->isLoggedIn() && $userCurrent->getId() === $userCard->getId();
 
         /**
          * Card

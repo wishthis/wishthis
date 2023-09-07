@@ -108,45 +108,36 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $getOwnWishlists              = $user->isLoggedIn();
 
         if ($getWishlistCardsFromPriority) {
-            /**
-             * Get wishlist cards with priority
-             */
             $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
-            $options  = array(
+
+            if (false === $wishlist) {
+                http_response_code(404);
+            }
+
+            $priorityAll  = -1;
+            $priorityNone = 0;
+            $priority     = (int) $_GET['priority'] ?? $priorityAll;
+
+            $options = array(
                 'style'        => $_GET['style'],
                 'placeholders' => array(),
             );
-            $where    = array(
+            $where   = array(
                 'wishlist' => '`wishlist` = ' . $wishlist->getId(),
-                'priority' => '`priority` = ' . $_GET['priority'],
+                'priority' => '`priority` = ' . $priority,
             );
 
-            if (-1 === $_GET['priority']) {
+            if ($priorityAll === $priority) {
                 unset($where['priority']);
             }
 
-            if (empty($_GET['priority'])) {
-                $where['priority'] = '`priority` IS NULL';
+            if ($priorityNone === $priority) {
+                $where['priority'] = '`priority` IS NULL OR `priority` = 0';
             }
 
             $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
-            /**
-             * Get wishlist by id
-             */
-            $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
-
-            /** Determine if user is allowed to access wishlist */
-            if ($wishlist instanceof Wishlist) {
-                if ($user->isLoggedIn() && $user->getId() === $wishlist->getUserId()) {
-                    $response['results'] = $wishlist->getCards();
-                } else {
-                    http_response_code(403);
-                }
-            } else {
-                http_response_code(404);
-            }
         } elseif ($getWishlistFromHash) {
             $wishlist = Wishlist::getFromHash($_GET['wishlist_hash']);
 
