@@ -124,6 +124,12 @@ $page->navigation();
                                         echo __('After creating an account your language is automatically set to your browser\'s (if it is available), instead of defaulting to en_GB.');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Amazon links are now automatically converted to affiliate links to help support wishthis financially.');
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>

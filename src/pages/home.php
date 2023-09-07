@@ -105,7 +105,7 @@ $user = User::getCurrent();
                         '</a>'
                     ) ?></p>
 
-                    <p><?= __('As a non-commercial project it remains') ?></p>
+                    <p><?= __('As an open source project it remains') ?></p>
                     <div class="flex why-wishthis">
                         <ul class="ui list">
                             <li class="item" data-content="<?= __('unless you want them') ?>">
@@ -137,6 +137,7 @@ $user = User::getCurrent();
                             </li>
                         </ul>
                     </div>
+                    <p><?= __('Plese note that wishthis automatically converts amazon links to affiliate links to help support the project financially.') ?></p>
                 </div>
 
                 <div class="ui segment">

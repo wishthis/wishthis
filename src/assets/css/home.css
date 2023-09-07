@@ -39,6 +39,7 @@
     --gap: 0.5rem;
 
     gap: var(--gap);
+    margin-bottom: 1em;
 }
 .flex.why-wishthis > ul {
     flex: 0 0 calc(50% - var(--gap) / 2);

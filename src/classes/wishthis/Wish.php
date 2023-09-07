@@ -68,6 +68,25 @@ class Wish
         return $wish;
     }
 
+    public static function getAffiliateLink(string $url): string
+    {
+        $urlParts = parse_url($url);
+
+        if (isset($urlParts['query'])) {
+            \parse_str($urlParts['query'], $urlParameters);
+        } else {
+            $urlParameters = array();
+        }
+
+        if (\str_contains($urlParts['host'], 'amazon')) {
+            $urlParameters['tag'] = 'grandel-21';
+            $urlParts['query']    = \http_build_query($urlParameters);
+            $url                  = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'] . '?' . $urlParts['query'];
+        }
+
+        return $url;
+    }
+
     /**
      * Non-Static
      */
