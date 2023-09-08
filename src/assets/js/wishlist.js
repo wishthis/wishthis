@@ -33,15 +33,16 @@ $(function() {
     }
 
     /**
-     * Get wishlist by hash
+     * Get wishlist by Id
      */
     if (!wishlist && wishthis.$_GET.hash) {
-        fetch('/api/wishlists/' + wishthis.$_GET.hash, { method: 'GET' })
+        var wishlistId = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+
+        fetch('/api/wishlists/' + wishlistId, { method: 'GET' })
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
            wishlist = response.results;
-           console.log(wishlist);
         });
     }
 
