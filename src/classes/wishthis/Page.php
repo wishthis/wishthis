@@ -770,7 +770,7 @@ class Page
         <?php
     }
 
-    public function errorDocument(int $statusCode, object $objectNotFound): void
+    public function errorDocument(int $statusCode, string $fullyQualifiedClass): void
     {
         http_response_code($statusCode);
 
@@ -778,7 +778,7 @@ class Page
         $this->bodyStart();
         $this->navigation();
 
-        $class     = new \ReflectionClass($objectNotFound);
+        $class     = new \ReflectionClass($fullyQualifiedClass);
         $className = $class->getShortName();
         ?>
         <main>

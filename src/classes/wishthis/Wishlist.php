@@ -46,12 +46,13 @@ class Wishlist
             )
         );
 
-        if (false === $wishlistQuery) {
+        $wishlistData = $wishlistQuery->fetch();
+
+        if (false === $wishlistData) {
             return false;
         }
 
-        $wishlistData = $wishlistQuery->fetch();
-        $wishlist     = new Wishlist($wishlistData);
+        $wishlist = new Wishlist($wishlistData);
 
         return $wishlist;
     }

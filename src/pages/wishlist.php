@@ -8,7 +8,13 @@
 
 namespace wishthis;
 
-$wishlist                                  = Wishlist::getFromHash($_GET['hash']);
+$wishlist = Wishlist::getFromHash($_GET['hash']);
+
+if (false === $wishlist) {
+    $page = new Page(__FILE__, 'Wishlist not found');
+    $page->errorDocument(404, Wishlist::class);
+}
+
 $wishlist_user                             = User::getFromID($wishlist->getUserId());
 $page                                      = new Page(__FILE__, $wishlist->getTitle());
 $page->stylesheets['wish']                 = 'src/assets/css/wish.css';
@@ -16,11 +22,6 @@ $page->stylesheets['wish-card']            = 'src/assets/css/wish-card.css';
 $page->scripts['wish']                     = 'src/assets/js/parts/wish.js';
 $page->scripts['wishlist-filter-priority'] = 'src/assets/js/parts/wishlist-filter-priority.js';
 $page->scripts['wishlists']                = 'src/assets/js/parts/wishlists.js';
-
-if (false === $wishlist) {
-    $page->errorDocument(404, $wishlist);
-}
-
 $page->header();
 $page->bodyStart();
 $page->navigation();
