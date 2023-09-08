@@ -399,7 +399,7 @@ class Page
 
             if (
                    in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
-                && (true === $user->advertisements || $CrawlerDetect->isCrawler())
+                && (true === $user->getAdvertisements() || $CrawlerDetect->isCrawler())
             ) {
                 ?>
                 <script async
