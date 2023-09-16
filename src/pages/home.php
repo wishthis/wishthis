@@ -137,7 +137,7 @@ $user = User::getCurrent();
                             </li>
                         </ul>
                     </div>
-                    <p><?= __('Plese note that wishthis automatically converts amazon links to affiliate links to help support the project financially.') ?></p>
+                    <p><?= __('Please note that wishthis automatically converts amazon links to affiliate links to help support the project financially.') ?></p>
                 </div>
 
                 <div class="ui segment">
