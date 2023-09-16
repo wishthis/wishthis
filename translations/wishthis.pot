@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2023-09-07 16:31+0200\n"
+"POT-Creation-Date: 2023-09-16 14:46+0200\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -263,7 +263,7 @@ msgctxt "Calendar"
 msgid "Week"
 msgstr ""
 
-#: assets/js/inline.js.php:141 pages/wishlist.php:41
+#: assets/js/inline.js.php:141 pages/wishlist.php:42
 msgid "Remember list"
 msgstr ""
 
@@ -271,13 +271,13 @@ msgstr ""
 msgid "Forget list"
 msgstr ""
 
-#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:202
-#: classes/wishthis/Wishlist.php:224
+#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
 msgid "Empty"
 msgstr ""
 
-#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:202
-#: classes/wishthis/Wishlist.php:224
+#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
 msgid "This wishlist seems to be empty."
 msgstr ""
 
@@ -474,19 +474,19 @@ msgstr ""
 msgid "Wish not found"
 msgstr ""
 
-#: classes/wishthis/Wish.php:403 pages/wishlist.php:72
+#: classes/wishthis/Wish.php:403 pages/wishlist.php:73
 msgid "Details"
 msgstr ""
 
-#: classes/wishthis/Wishlist.php:239
+#: classes/wishthis/Wishlist.php:240
 msgid "Wishlist not found"
 msgstr ""
 
-#: config/config-sample.php:40
+#: config/config-sample.php:40 config/config.php:40
 msgid "Stable"
 msgstr ""
 
-#: config/config-sample.php:45
+#: config/config-sample.php:45 config/config.php:45
 msgid "Release candidate"
 msgstr ""
 
@@ -957,7 +957,7 @@ msgid "open for feedback and suggestions"
 msgstr ""
 
 #: pages/home.php:140
-msgid "Plese note that wishthis automatically converts amazon links to affiliate links to help support the project financially."
+msgid "Please note that wishthis automatically converts amazon links to affiliate links to help support the project financially."
 msgstr ""
 
 #: pages/home.php:144
@@ -976,7 +976,7 @@ msgstr ""
 msgid "N. A."
 msgstr ""
 
-#: pages/home.php:198 pages/wishlist.php:78 pages/wishlists.php:94
+#: pages/home.php:198 pages/wishlist.php:79 pages/wishlists.php:94
 msgid "Wishes"
 msgstr ""
 
@@ -1346,7 +1346,7 @@ msgstr ""
 msgid "Mark as fulfilled"
 msgstr ""
 
-#: pages/parts/wishlist.php:264 pages/wishlist.php:73
+#: pages/parts/wishlist.php:264 pages/wishlist.php:74
 msgid "Fulfil wish"
 msgstr ""
 
@@ -1719,41 +1719,41 @@ msgstr ""
 msgid "Migrate to %s"
 msgstr ""
 
-#: pages/wishlist.php:57
+#: pages/wishlist.php:58
 msgid "Careful"
 msgstr ""
 
-#: pages/wishlist.php:60
+#: pages/wishlist.php:61
 msgid "You are viewing your own wishlist! You will be able to see which wishes have already been fulfilled for you. Don't you want to be surprised?"
 msgstr ""
 
-#: pages/wishlist.php:61
+#: pages/wishlist.php:62
 msgid "It's probably best to just close this tab."
 msgstr ""
 
-#: pages/wishlist.php:69
+#: pages/wishlist.php:70
 msgid "What to do?"
 msgstr ""
 
-#: pages/wishlist.php:71
+#: pages/wishlist.php:72
 #, php-format
 msgid "If you found a wish you would like to fulfil, open the wish %s and then click the %s button and it will be unavailable for everybody else."
 msgstr ""
 
-#: pages/wishlist.php:84 pages/wishlist.php:98 pages/wishlist.php:113
+#: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
 msgid "Request more wishes"
 msgstr ""
 
-#: pages/wishlist.php:102
+#: pages/wishlist.php:103
 msgid "A notification has just been sent to the owner of this wishlist."
 msgstr ""
 
-#: pages/wishlist.php:106 pages/wishlist.php:107 pages/wishlist.php:121
-#: pages/wishlist.php:122
+#: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
+#: pages/wishlist.php:123
 msgid "Ok"
 msgstr ""
 
-#: pages/wishlist.php:117
+#: pages/wishlist.php:118
 msgid "The wishlist owner has already received a notification recently and has not been notified again."
 msgstr ""
 
