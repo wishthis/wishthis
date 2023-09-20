@@ -51,7 +51,7 @@ final class CreateWishTest extends TestCase
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
             array(
-                'wish_title'  => '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890',
+                'wish_title'  => '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
                 'wishlist_id' => $this->testWishlistId,
             )
         );
@@ -113,6 +113,24 @@ final class CreateWishTest extends TestCase
             \CURLOPT_POST,
             array(
                 'wish_url'    => 'https://www.amazon.com/Red-SA500-NAS-NAND-Internal/dp/B07YFGG261',
+                'wishlist_id' => $this->testWishlistId,
+            )
+        );
+        $this->assertNotFalse($apiResponse);
+
+        $json = \json_decode($apiResponse, true);
+        $this->assertNotNull($json);
+        $this->assertTrue($json['success']);
+        $this->assertEmpty($json['warning'], 'There has been unexpected output.');
+    }
+
+    public function testUrlOver255Chars(): void
+    {
+        $apiResponse = $this->apiRequest(
+            'http://wishthis.online.localhost/api/wishes',
+            \CURLOPT_POST,
+            array(
+                'wish_url'    => 'https://www.amazon.com/Red-SA500-NAS-NAND-Internal/dp/B07YFGG261?012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
                 'wishlist_id' => $this->testWishlistId,
             )
         );
