@@ -45,6 +45,24 @@ final class CreateWishTest extends TestCase
         $this->assertEmpty($json['warning'], 'There has been unexpected output.');
     }
 
+    public function testTitleOver128Chars(): void
+    {
+        $apiResponse = $this->apiRequest(
+            'http://wishthis.online.localhost/api/wishes',
+            \CURLOPT_POST,
+            array(
+                'wish_title'  => '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890',
+                'wishlist_id' => $this->testWishlistId,
+            )
+        );
+        $this->assertNotFalse($apiResponse);
+
+        $json = \json_decode($apiResponse, true);
+        $this->assertNotNull($json);
+        $this->assertTrue($json['success']);
+        $this->assertEmpty($json['warning'], 'There has been unexpected output.');
+    }
+
     /**
      * Move this into a different testing class
      *
