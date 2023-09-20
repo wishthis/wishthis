@@ -230,7 +230,7 @@ $page->navigation();
                             <ul>
                                 <li>
                                     <?php
-                                        /** TRANSLATORS: Changelog: Fixed */
+                                        /** TRANSLATORS: Changelog: Changed */
                                         echo  __('Decreased wish height on mobile devices');
                                     ?>
                                 </li>
