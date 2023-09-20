@@ -61,6 +61,18 @@ class URL
     public function __construct(string $url)
     {
         $this->url = urldecode($url);
+        $this->url = str_replace('index.php', '', $this->url);
+
+        while (\str_contains($this->url, '//')) {
+            $this->url = \str_replace('//', '/', $this->url);
+        }
+
+        if (1 === \preg_match('/(http|https):\//', $this->url, $matches)) {
+            $match    = $matches[0] ?? '';
+            $protocol = $matches[1] ?? $_SERVER['REQUEST_SCHEME'] ?? 'http';
+
+            $this->url = str_replace($match, $protocol . '://', $this->url);
+        }
 
         $_GET = $this->getGET();
     }
@@ -87,7 +99,7 @@ class URL
     public function getPermalink(): string
     {
         $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
-        $permalink = '';
+        $permalink = $this->url;
 
         foreach ($htaccess as $index => $line) {
             $parts = explode(chr(32), trim($line));
@@ -95,7 +107,7 @@ class URL
             if (count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
-                        $rewriteRule = $parts[1];
+                        $rewriteRule = \substr($parts[1], 1);
                         $target      = $parts[2];
 
                         $regex = str_replace('/', '\/', $rewriteRule);
