@@ -82,4 +82,4 @@ To setup your development environment you currently have two possibilities:
 
 1. Docker
 
-    An unofficial Docker image is available on Docker Hub: [hiob/wishthis](https://hub.docker.com/r/hiob/wishthis), thanks [Hiobi](https://github.com/Hiobi)!
+    An official Docker image is also available: https://github.com/wishthis/docker. It's created and maintained by [Hiobi](https://github.com/Hiobi), thanks!
