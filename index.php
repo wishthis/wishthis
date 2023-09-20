@@ -154,10 +154,13 @@ if ($options && $options->getOption('isInstalled')) {
 if (!isset($page)) {
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 }
-$pagePath = 'src/pages/' . $page . '.php';
+$pagePath    = 'src/pages/' . $page . '.php';
+$pagePathAlt = 'src/pages/' . $page . '/' . $page . '.php';
 
 if (file_exists($pagePath)) {
     require $pagePath;
+} elseif (\file_exists($pagePathAlt)) {
+    require $pagePathAlt;
 } else {
     http_response_code(404);
     ?>

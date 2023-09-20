@@ -103,7 +103,7 @@ class User
     private int $power = 0;
 
     /**
-     * A unix timestamp of the users birthdate.
+     * The users birthdate, formatted as `YYYY-MM-DD`.
      *
      * @var string
      */
@@ -461,9 +461,44 @@ class User
         return $this->id;
     }
 
+    public function getNameFirst(): string
+    {
+        return $this->name_first;
+    }
+
+    public function setNameFirst(string $nameFirst): void
+    {
+        $this->name_first = $nameFirst;
+    }
+
+    public function getNameLast(): string
+    {
+        return $this->name_last;
+    }
+
+    public function setNameLast(string $nameLast): void
+    {
+        $this->name_last = $nameLast;
+    }
+
+    public function getNameNick(): string
+    {
+        return $this->name_nick;
+    }
+
+    public function setNameNick(string $nameNick): void
+    {
+        $this->name_nick = $nameNick;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     public function getPassword(): string
@@ -474,21 +509,6 @@ class User
     public function getPower(): int
     {
         return $this->power;
-    }
-
-    public function getFirstName(): string
-    {
-        return $this->name_first;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->name_last;
-    }
-
-    public function getNickName(): string
-    {
-        return $this->name_nick;
     }
 
     public function getBirthdate(): string

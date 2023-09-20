@@ -11,173 +11,7 @@ namespace wishthis;
 $page = new Page(__FILE__, __('Profile'), 1);
 $user = User::getCurrent();
 
-if (isset($_POST['user-id'], $_POST['section'])) {
-    $set              = array();
-    $formFieldsString = array(
-        array(
-            'column' => 'name_first',
-            'key'    => 'user-name-first',
-            'label'  => __('First name'),
-        ),
-        array(
-            'column' => 'name_last',
-            'key'    => 'user-name-last',
-            'label'  => __('Last name'),
-        ),
-        array(
-            'column' => 'name_nick',
-            'key'    => 'user-name-nick',
-            'label'  => __('Nickname'),
-        ),
-        array(
-            'column' => 'email',
-            'key'    => 'user-email',
-            'label'  => __('Email'),
-        ),
-    );
-    $loginRequired    = false;
-
-    foreach ($formFieldsString as $field) {
-        if (!empty($_POST[$field['key']]) && $_POST[$field['key']] !== $user->{$field['column']}) {
-            $set[] = '`' . $field['column'] . '` = "' . $_POST[$field['key']] . '"';
-
-            $user->{$field['column']} = $_POST[$field['key']];
-
-            $page->messages[] = Page::success(
-                sprintf(
-                    __('%s successfully updated!'),
-                    '<strong>' . $field['label'] . '</strong>'
-                ),
-                __('Success')
-            );
-        }
-    }
-
-    if (!empty($_POST['user-email']) && $_POST['user-email'] !== $user->getEmail()) {
-        $loginRequired = true;
-    }
-
-    /**
-     * Personal
-     */
-    if (isset($_POST['user-birthdate'])) {
-        if (empty($_POST['user-birthdate'])) {
-            $user->setBirthdate('');
-
-            $set[] = '`birthdate` = NULL';
-        } else {
-            $user->setBirthdate($_POST['user-birthdate']);
-
-            $set[] = '`birthdate` = "' . $_POST['user-birthdate'] . '"';
-        }
-    }
-
-    /**
-     * Password
-     */
-    if (
-           !empty($_POST['user-password'])
-        && !empty($_POST['user-password-repeat'])
-        && $_POST['user-password'] === $_POST['user-password-repeat']
-    ) {
-        $set[] = '`password` = "' . User::passwordToHash($_POST['user-password']) . '"';
-
-        $loginRequired = true;
-    }
-
-    /**
-     * Preferences
-     */
-
-    /** Language */
-    if (isset($_POST['user-language']) && $_POST['user-language'] !== $user->getLocale()) {
-        $user->setLocale($_POST['user-language']);
-
-        $set[] = '`language` = "' . $user->getLocale() . '"';
-
-        $page->messages[] = Page::success(
-            sprintf(
-                /** TRANSLATORS: %s: The new locale */
-                __('Language set to %s.'),
-                '<strong>' . $user->getLocale() . '</strong>'
-            ),
-            __('Success')
-        );
-    }
-
-    /** Currency */
-    if (isset($_POST['user-currency']) && $_POST['user-currency'] !== $user->getLocale() && $_POST['user-currency'] !== $user->getCurrency()) {
-        $user->setCurrency($_POST['user-currency']);
-
-        $set[] = '`currency` = "' . $user->getCurrency() . '"';
-
-        $page->messages[] = Page::success(
-            sprintf(
-                /** TRANSLATORS: %s: The new locale */
-                __('Currency set to %s.'),
-                '<strong>' . $user->getCurrency() . '</strong>'
-            ),
-            __('Success')
-        );
-    }
-
-    /** Channel */
-    if (isset($_POST['user-channel']) && $_POST['user-channel'] !== $user->getChannel()) {
-        if (empty($_POST['user-channel'])) {
-            $user->setChannel('');
-
-            $set[] = '`channel` = NULL';
-        } else {
-            $user->setChannel($_POST['user-channel']);
-
-            $set[] = '`channel` = "' . $_POST['user-channel'] . '"';
-        }
-    }
-
-    /** Advertisements */
-    if (isset($_POST['enable-advertisements'])) {
-        $user->setAdvertisements(true);
-
-        $set[] = '`advertisements` = TRUE';
-    } else {
-        $user->setAdvertisements(false);
-
-        $set[] = '`advertisements` = FALSE';
-    }
-
-    /** Save */
-    if ($set) {
-        $database
-        ->query(
-            'UPDATE `users`
-                SET ' . implode(',', $set) . '
-              WHERE `id` = :user_id',
-            array(
-                'user_id' => Sanitiser::getNumber($_POST['user-id']),
-            )
-        );
-    }
-
-    if ($loginRequired) {
-        session_destroy();
-        unset($_SESSION);
-
-        $page->messages[] = Page::warning(
-            __('It is required for you to login again.'),
-            __('Success')
-        );
-    }
-
-    /**
-     * Account
-     */
-    if (isset($_POST['account-delete'])) {
-        $user->delete();
-        $user->logOut();
-
-        redirect(Page::PAGE_HOME);
-    }
-}
+require __DIR__  . '/profile-handle-post.php';
 
 $page->header();
 $page->bodyStart();
@@ -218,26 +52,25 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="personal" />
 
                             <div class="three fields">
                                 <div class="field">
                                     <label><?= __('First name') ?></label>
 
-                                    <input type="text" name="user-name-first" value="<?= $user->getFirstName() ?>" />
+                                    <input type="text" name="user-name-first" value="<?= $user->getNameFirst() ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Last name') ?></label>
 
-                                    <input type="text" name="user-name-last" value="<?= $user->getLastName() ?>" />
+                                    <input type="text" name="user-name-last" value="<?= $user->getNameLast() ?>" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Nickname') ?></label>
 
-                                    <input type="text" name="user-name-nick" value="<?= $user->getNickName() ?>" />
+                                    <input type="text" name="user-name-nick" value="<?= $user->getNameNick() ?>" />
                                 </div>
                             </div>
 
@@ -284,20 +117,19 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="password" />
 
                             <div class="two fields">
                                 <div class="field">
                                     <label><?= __('Password') ?></label>
 
-                                    <input type="password" name="user-password" autocomplete="new-password" />
+                                    <input type="password" name="user-password" placeholder="1234isnotarealpassword" autocomplete="new-password" />
                                 </div>
 
                                 <div class="field">
                                     <label><?= __('Password (repeat)') ?></label>
 
-                                    <input type="password" name="user-password-repeat" autocomplete="new-password" />
+                                    <input type="password" name="user-password-repeat" placeholder="1234isnotarealpassword" autocomplete="new-password" />
                                 </div>
                             </div>
 
@@ -347,7 +179,6 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="two fields">
@@ -447,7 +278,6 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
@@ -512,7 +342,6 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="preferences" />
 
                             <div class="field">
@@ -559,7 +388,6 @@ $page->navigation();
 
                     <div class="ui segment">
                         <form class="ui form" method="POST">
-                            <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
                             <input type="hidden" name="section" value="account" />
 
                             <div class="field">
