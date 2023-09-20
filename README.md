@@ -28,14 +28,14 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 ### Git (recommended)
 
 ```
-git clone -b stable https://github.com/grandeljay/wishthis.git .
+git clone -b stable https://github.com/wishthis/wishthis.git .
 ```
 
 Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.
 
 ### Manual
 
-Download the code using the [stable branch](https://github.com/grandeljay/wishthis/tree/stable) and upload it to your server.
+Download the code using the [stable branch](https://github.com/wishthis/wishthis/tree/stable) and upload it to your server.
 
 Note: You will have to manually update wishthis by replacing all files with the changes from the `stable` branch.
 
