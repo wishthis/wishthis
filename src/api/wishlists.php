@@ -68,7 +68,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 /** Send email */
                 $user  = User::getFromID($wishlist['user']);
-                $email = new Email($user->email, __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
+                $email = new Email($user->getEmail(), __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
                 $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
                 $email->setPlaceholder(
                     'TEXT_WISHLIST_REQUEST_WISHES',
