@@ -152,7 +152,7 @@ class URL
                         $rewriteRule = $parts[1];
                         $rewriteRule = ltrim($rewriteRule, '^');
                         $rewriteRule = rtrim($rewriteRule, '$');
-                        $target      = $parts[2];
+                        $target      = ltrim($parts[2], '/?');
                         $keys        = array_map(
                             function ($item) {
                                 return explode('=', $item)[0];
@@ -161,7 +161,7 @@ class URL
                         );
                         $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
 
-                        parse_str(ltrim($target, '/?'), $parameters);
+                        \parse_str(\parse_url($target, PHP_URL_QUERY), $parameters);
                         /** */
 
                         /** Determine a potential URL. */
