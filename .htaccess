@@ -7,25 +7,25 @@
   RewriteBase /
 
   # Page
-  RewriteRule ^([a-z\-]+)$ /?page=$1 [QSA,L]
+  RewriteRule ^([a-z\-]+)$ /index.php?page=$1 [QSA,L]
 
   # Wishlists (My lists)
-  RewriteRule ^wishlists/([0-9]+)$ /?page=wishlists&id=$1 [QSA,L]
-  RewriteRule ^wishlists/([0-9]+)/add$ /?page=wishlists&id=$1&wish_add=true [QSA,L]
+  RewriteRule ^wishlists/([0-9]+)$ /index.php?page=wishlists&id=$1 [QSA,L]
+  RewriteRule ^wishlists/([0-9]+)/add$ /index.php?page=wishlists&id=$1&wish_add=true [QSA,L]
 
   # Wishlist
-  RewriteRule ^wishlist/([0-9a-f]{40})$ /?page=wishlist&hash=$1 [QSA,L]
+  RewriteRule ^wishlist/([0-9a-f]{40})$ /index.php?page=wishlist&hash=$1 [QSA,L]
 
   # Blog Post
-  RewriteRule ^blog/([a-z\-0-9]+)$ /?page=post&slug=$1 [QSA,L]
+  RewriteRule ^blog/([a-z\-0-9]+)$ /index.php?page=post&slug=$1 [QSA,L]
 
   # API
-  RewriteRule ^api/([a-zA-Z\-0-9=]+)$ /?page=api&module=$1 [QSA,L]
+  RewriteRule ^api/([a-zA-Z\-0-9=]+)$ /index.php?page=api&module=$1 [QSA,L]
 
-  RewriteRule ^api/statistics/([a-zA-Z0-9=]+)$ /?page=api&module=statistics&table=$1 [QSA,L]
-  RewriteRule ^api/url/([a-zA-Z0-9=]+)$ /?page=api&module=url&url=$1 [QSA,L]
-  RewriteRule ^api/wishlists/([0-9]+)$ /?page=api&module=wishlists&wishlist_id=$1 [QSA,L]
-  RewriteRule ^api/wishlists/([0-9a-f]{40})$ /?page=api&module=wishlists&wishlist_hash=$1 [QSA,L]
+  RewriteRule ^api/statistics/([a-zA-Z0-9=]+)$ /index.php?page=api&module=statistics&table=$1 [QSA,L]
+  RewriteRule ^api/url/([a-zA-Z0-9=]+)$ /index.php?page=api&module=url&url=$1 [QSA,L]
+  RewriteRule ^api/wishlists/([0-9]+)$ /index.php?page=api&module=wishlists&wishlist_id=$1 [QSA,L]
+  RewriteRule ^api/wishlists/([0-9a-f]{40})$ /index.php?page=api&module=wishlists&wishlist_hash=$1 [QSA,L]
 </IfModule>
 
 ##-- When caching of gzipped JS and CSS files is used, enable this setting
