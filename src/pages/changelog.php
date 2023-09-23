@@ -167,6 +167,12 @@ $page->navigation();
                                         echo __('Fulfilled wishes disappearing for wishlist owners');
                                     ?>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Deprecated notices on PHP 8.2');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
 
