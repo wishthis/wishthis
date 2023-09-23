@@ -125,6 +125,10 @@ $user = User::getCurrent();
                                     <?= __('without intrusive tracking') ?>
                                 </div>
                             </li>
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('transparent') ?></div>
+                            </li>
                         </ul>
                         <ul class="ui list">
                             <li class="item">
