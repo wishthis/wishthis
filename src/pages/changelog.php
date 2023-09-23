@@ -143,6 +143,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('RewriteRules which caused HTTP 404 errors');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/93" target="_blank">#93</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Switching to wish "product" tab breaks view');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/83" target="_blank">#83</a>
