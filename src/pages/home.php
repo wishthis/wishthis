@@ -137,7 +137,18 @@ $user = User::getCurrent();
                             </li>
                         </ul>
                     </div>
-                    <p><?= __('Please note that wishthis automatically converts amazon links to affiliate links to help support the project financially.') ?></p>
+                    <p><?= __('What you should also know') ?></p>
+                    <div>
+                        <ul class="ui list">
+                            <li class="item">
+                                <i class="orange info icon" aria-hidden="true"></i>
+                                <div class="content">
+                                    <?= __('affiliate links') ?>
+                                    <p><?= __('amazon links are automatically converted to affiliate links to help support the project financially.') ?></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="ui segment">
