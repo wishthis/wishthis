@@ -22,24 +22,24 @@ class Page
     /**
      * Static
      */
-    public const PAGE_API             = '/?page=api';
-    public const PAGE_BLOG            = '/?page=blog';
-    public const PAGE_CHANGELOG       = '/?page=changelog';
-    public const PAGE_HOME            = '/?page=home';
-    public const PAGE_INSTALL         = '/?page=install';
-    public const PAGE_LOGIN_AS        = '/?page=login-as';
-    public const PAGE_LOGIN           = '/?page=login';
-    public const PAGE_LOGOUT          = '/?page=logout';
-    public const PAGE_MAINTENANCE     = '/?page=maintenance';
-    public const PAGE_POST            = '/?page=post';
-    public const PAGE_POWER           = '/?page=power';
-    public const PAGE_PROFILE         = '/?page=profile';
-    public const PAGE_REGISTER        = '/?page=register';
-    public const PAGE_SETTINGS        = '/?page=settings';
-    public const PAGE_UPDATE          = '/?page=update';
-    public const PAGE_WISHLIST        = '/?page=wishlist';
-    public const PAGE_WISHLISTS_SAVED = '/?page=wishlists-saved';
-    public const PAGE_WISHLISTS       = '/?page=wishlists';
+    public const PAGE_API             = '/index.php?page=api';
+    public const PAGE_BLOG            = '/index.php?page=blog';
+    public const PAGE_CHANGELOG       = '/index.php?page=changelog';
+    public const PAGE_HOME            = '/index.php?page=home';
+    public const PAGE_INSTALL         = '/index.php?page=install';
+    public const PAGE_LOGIN_AS        = '/index.php?page=login-as';
+    public const PAGE_LOGIN           = '/index.php?page=login';
+    public const PAGE_LOGOUT          = '/index.php?page=logout';
+    public const PAGE_MAINTENANCE     = '/index.php?page=maintenance';
+    public const PAGE_POST            = '/index.php?page=post';
+    public const PAGE_POWER           = '/index.php?page=power';
+    public const PAGE_PROFILE         = '/index.php?page=profile';
+    public const PAGE_REGISTER        = '/index.php?page=register';
+    public const PAGE_SETTINGS        = '/index.php?page=settings';
+    public const PAGE_UPDATE          = '/index.php?page=update';
+    public const PAGE_WISHLIST        = '/index.php?page=wishlist';
+    public const PAGE_WISHLISTS_SAVED = '/index.php?page=wishlists-saved';
+    public const PAGE_WISHLISTS       = '/index.php?page=wishlists';
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
