@@ -108,7 +108,7 @@ $user = User::getCurrent();
                     <p><?= __('As an open source project it remains') ?></p>
                     <div class="flex why-wishthis">
                         <ul class="ui list">
-                            <li class="item" data-content="<?= __('unless you want them') ?>">
+                            <li class="item">
                                 <i class="green check icon" aria-hidden="true"></i>
                                 <div class="content"><?= __('free of advertisements') ?></div>
                             </li>
