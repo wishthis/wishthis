@@ -57,9 +57,14 @@
 /** Actions */
 .ui.modal.wish-details > .actions {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     gap: 0.25em;
     padding: 1rem !important;
+}
+@media (min-width: 768px) {
+    .ui.modal.wish-details > .actions {
+        flex-direction: row;
+    }
 }
 
 .ui.modal.wish-details > .actions .button {
@@ -74,28 +79,5 @@
 @media (min-width: 1024px) {
     .ui.modal.wish-details > .actions .button {
         flex: 0 1 auto;
-    }
-}
-
-.ui.modal.wish-details > .actions .button i {
-    display: contents;
-}
-@media (min-width: 768px) {
-    .ui.modal.wish-details > .actions .button i {
-        display: none;
-    }
-}
-@media (min-width: 1024px) {
-    .ui.modal.wish-details > .actions .button i {
-        display: inline;
-    }
-}
-
-.ui.modal.wish-details > .actions .button span {
-    display: none;
-}
-@media (min-width: 768px) {
-    .ui.modal.wish-details > .actions .button span {
-        display: inline;
     }
 }
