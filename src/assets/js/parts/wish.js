@@ -55,8 +55,6 @@ $(function () {
             'onShow'    : function() {
                 var user_is_current = wishlist && wishlist.userId === parseInt($('[name="user-id"]').val());
 
-                console.log('user_is_current', user_is_current);
-
                 if (user_is_current) {
                     $('.ui.button.wish-fulfil').remove();
                 } else {
