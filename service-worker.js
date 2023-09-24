@@ -1,5 +1,4 @@
-
-const service_worker = 'wishthis';
+const service_worker = 'wishthis-v1.1.0';
 const assets         = [
     '/src/assets/css/blog.css',
     '/src/assets/css/default.css',
@@ -63,4 +62,3 @@ self.addEventListener('fetch', fetchEvent => {
         })
     )
 })
-
