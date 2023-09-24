@@ -57,8 +57,14 @@ self.addEventListener('install', installEvent => {
 
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
-        caches.match(fetchEvent.request).then(res => {
-            return res || fetch(fetchEvent.request);
+        caches.open(service_worker).then(cache => {
+            return cache.match(fetchEvent.request).then(response => {
+                const fetchPromise = fetch(fetchEvent.request).then(networkResponse => {
+                    cache.put(fetchEvent.request, networkResponse.clone());
+                    return networkResponse;
+                });
+                return response || fetchPromise;
+            });
         })
-    )
-})
+    );
+});
