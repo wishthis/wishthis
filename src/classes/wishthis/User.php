@@ -499,7 +499,7 @@ class User
 
     public function getEmail(): string
     {
-        return $this->email;
+        return $this->email ?? '';
     }
 
     public function setEmail(string $email): void
