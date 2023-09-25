@@ -33,7 +33,7 @@ var Import = function (path, features, options, index, currentFileInfo, visibili
     }
     else {
         var pathValue = this.getPath();
-        if (pathValue && /[#\.\&\?]css([\?;].*)?$/.test(pathValue)) {
+        if (pathValue && /[#.&?]css([?;].*)?$/.test(pathValue)) {
             this.css = true;
         }
     }

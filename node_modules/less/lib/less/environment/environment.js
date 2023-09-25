@@ -28,7 +28,7 @@ var Environment = /** @class */ (function () {
         if (!filename) {
             logger_1.default.warn('getFileManager called with no filename.. Please report this issue. continuing.');
         }
-        if (currentDirectory == null) {
+        if (currentDirectory === undefined) {
             logger_1.default.warn('getFileManager called with null directory.. Please report this issue. continuing.');
         }
         var fileManagers = this.fileManagers;

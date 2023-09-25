@@ -145,5 +145,4 @@ function default_1(input, fail) {
     return chunks;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=chunker.js.map

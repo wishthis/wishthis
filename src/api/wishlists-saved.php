@@ -15,12 +15,14 @@ if (!isset($page)) {
     die('Direct access to this location is not allowed.');
 }
 
+$user = User::getCurrent();
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         /**
          * Get
          */
-        $response['data'] = $_SESSION['user']->getSavedWishlists();
+        $response['data'] = $user->getSavedWishlists();
         break;
 
     case 'POST':
@@ -60,7 +62,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wishlist_id
                     );',
                     array(
-                        'user_id'     => $_SESSION['user']->id,
+                        'user_id'     => $user->getId(),
                         'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
                     )
                 );

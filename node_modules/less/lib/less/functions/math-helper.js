@@ -6,7 +6,7 @@ var MathHelper = function (fn, unit, n) {
     if (!(n instanceof dimension_1.default)) {
         throw { type: 'Argument', message: 'argument must be a number' };
     }
-    if (unit == null) {
+    if (unit === null) {
         unit = n.unit;
     }
     else {

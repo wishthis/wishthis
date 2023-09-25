@@ -7,5 +7,15 @@
         "gettext/translator": "^1.1",
         "jaybizzle/crawler-detect": "^1.2",
         "slim/psr7": "^1.6"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "wp-coding-standards/wpcs": "^3.0",
+        "phpunit/phpunit": "10"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

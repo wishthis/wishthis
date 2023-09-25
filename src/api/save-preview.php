@@ -15,6 +15,8 @@ if (!isset($page)) {
     die('Direct access to this location is not allowed.');
 }
 
+$user = User::getCurrent();
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         if (isset($_POST['preview'], $_POST['page'])) {
@@ -36,7 +38,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $preview_create = true;
             }
 
-            if ($preview_create && $_SESSION['user']->power >= $page->power) {
+            if ($preview_create && $user->getPower() >= $page->power) {
                 file_put_contents($preview_filepath, $preview);
             }
         }

@@ -17,10 +17,12 @@ if (!isset($page)) {
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['wish_id'])) {
-            $wish = new Wish($_GET['wish_id'], true);
+        $getWish = isset($_GET['wish_id']);
 
-            $response['info'] = $wish;
+        if ($getWish) {
+            $wish = Wish::getFromId($_GET['wish_id']);
+
+            $response['info'] = $wish->serialise();
 
             if (isset($_GET['wishlist_user'])) {
                 $response['html'] = $wish->getCard($_GET['wishlist_user']);
@@ -45,7 +47,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             /**
              * Get wishes by priority
              */
-            $wishlist                                 = new Wishlist($_GET['wishlist_id']);
+            $wishlist                                 = Wishlist::getFromId($_GET['wishlist_id']);
             $options                                  = array(
                 'style' => $_GET['wishlist_style'],
             );
@@ -91,12 +93,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
-            $wish_title          = addslashes(filter_input(INPUT_POST, 'wish_title', FILTER_SANITIZE_SPECIAL_CHARS));
-            $wish_description    = addslashes(filter_input(INPUT_POST, 'wish_description', FILTER_SANITIZE_SPECIAL_CHARS));
-            $wish_image          = addslashes(filter_input(INPUT_POST, 'wish_image', FILTER_SANITIZE_URL));
-            $wish_url            = addslashes(filter_input(INPUT_POST, 'wish_url', FILTER_SANITIZE_URL));
+            $wish_title          = addslashes(filter_input(INPUT_POST, 'wish_title', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
+            $wish_description    = addslashes(filter_input(INPUT_POST, 'wish_description', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
+            $wish_image          = addslashes(filter_input(INPUT_POST, 'wish_image', FILTER_SANITIZE_URL) ?? '');
+            $wish_url            = addslashes(filter_input(INPUT_POST, 'wish_url', FILTER_SANITIZE_URL) ?? '');
             $wish_priority       = filter_input(INPUT_POST, 'wish_priority', FILTER_SANITIZE_NUMBER_INT);
             $wish_is_purchasable = isset($_POST['wish_is_purchasable']);
+
+            if ('' === $wish_priority) {
+                $wish_priority = null;
+            }
 
             if (Wish::NO_IMAGE === $wish_image) {
                 $wish_image = '';
@@ -104,7 +110,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             if (isset($_POST['wish_id'], $_POST['wishlist_id'])) {
                 /** Update wish */
-                $wish = new Wish($_POST['wish_id']);
+                $wish = Wish::getFromId($_POST['wish_id']);
 
                 /** Update wish information */
                 if (!empty($wish_url)) {
@@ -136,11 +142,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)                                   ? null : substr($wish_title, 0, 128);
-                $wish_description = empty($wish_description)                             ? null : $wish_description          ;
-                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image                ;
-                $wish_url         = empty($wish_url)                                     ? null : $wish_url                  ;
-                $wish_priority    = empty($wish_priority)                                ? null : $wish_priority             ;
+                $wish_title       = empty($wish_title) ? null : substr($wish_title, 0, 128);
+                $wish_description = empty($wish_description) ? null : $wish_description;
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image;
+                $wish_url         = empty($wish_url) ? null : substr(Wish::getAffiliateLink($wish_url), 0, 255);
+                $wish_priority    = empty($wish_priority) ? null : $wish_priority;
 
                 $database
                 ->query(
@@ -154,14 +160,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             `is_purchasable` = :wish_is_purchasable
                       WHERE `id`             = :wish_id',
                     array(
-                        'wishlist_id'         => $wish->wishlist,
+                        'wishlist_id'         => $wish->getWishlistId(),
                         'wish_title'          => $wish_title,
                         'wish_description'    => $wish_description,
                         'wish_image'          => $wish_image,
                         'wish_url'            => $wish_url,
                         'wish_priority'       => $wish_priority,
                         'wish_is_purchasable' => $wish_is_purchasable,
-                        'wish_id'             => $wish->id,
+                        'wish_id'             => $wish->getId(),
                     )
                 );
 
@@ -183,12 +189,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wish_price
                     );',
                     array(
-                        'wish_id'    => $wish->id,
+                        'wish_id'    => $wish->getId(),
                         'wish_price' => $wish_price,
                     )
                 );
 
-                $response['lastInsertId'] = $wish->id;
+                $response['lastInsertId'] = $wish->getId();
             } elseif (isset($_POST['wishlist_id'])) {
                 /** Insert wish */
                 $wishlist_id = $_POST['wishlist_id'];
@@ -223,10 +229,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title)                                   ? null : substr($wish_title, 0, 128);
-                $wish_description = empty($wish_description)                             ? null : $wish_description          ;
-                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image                ;
-                $wish_url         = empty($wish_url)                                     ? null : $wish_url                  ;
+                $wish_title       = empty($wish_title) ? null : substr($wish_title, 0, 128) ;
+                $wish_description = empty($wish_description) ? null : $wish_description ;
+                $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image ;
+                $wish_url         = empty($wish_url) ? null : substr(Wish::getAffiliateLink($wish_url), 0, 255);
 
                 $database
                 ->query(

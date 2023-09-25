@@ -22,24 +22,24 @@ class Page
     /**
      * Static
      */
-    public const PAGE_API             = '/?page=api';
-    public const PAGE_BLOG            = '/?page=blog';
-    public const PAGE_CHANGELOG       = '/?page=changelog';
-    public const PAGE_HOME            = '/?page=home';
-    public const PAGE_INSTALL         = '/?page=install';
-    public const PAGE_LOGIN_AS        = '/?page=login-as';
-    public const PAGE_LOGIN           = '/?page=login';
-    public const PAGE_LOGOUT          = '/?page=logout';
-    public const PAGE_MAINTENANCE     = '/?page=maintenance';
-    public const PAGE_POST            = '/?page=post';
-    public const PAGE_POWER           = '/?page=power';
-    public const PAGE_PROFILE         = '/?page=profile';
-    public const PAGE_REGISTER        = '/?page=register';
-    public const PAGE_SETTINGS        = '/?page=settings';
-    public const PAGE_UPDATE          = '/?page=update';
-    public const PAGE_WISHLIST        = '/?page=wishlist';
-    public const PAGE_WISHLISTS_SAVED = '/?page=wishlists-saved';
-    public const PAGE_WISHLISTS       = '/?page=wishlists';
+    public const PAGE_API             = '/index.php?page=api';
+    public const PAGE_BLOG            = '/index.php?page=blog';
+    public const PAGE_CHANGELOG       = '/index.php?page=changelog';
+    public const PAGE_HOME            = '/index.php?page=home';
+    public const PAGE_INSTALL         = '/index.php?page=install';
+    public const PAGE_LOGIN_AS        = '/index.php?page=login-as';
+    public const PAGE_LOGIN           = '/index.php?page=login';
+    public const PAGE_LOGOUT          = '/index.php?page=logout';
+    public const PAGE_MAINTENANCE     = '/index.php?page=maintenance';
+    public const PAGE_POST            = '/index.php?page=post';
+    public const PAGE_POWER           = '/index.php?page=power';
+    public const PAGE_PROFILE         = '/index.php?page=profile';
+    public const PAGE_REGISTER        = '/index.php?page=register';
+    public const PAGE_SETTINGS        = '/index.php?page=settings';
+    public const PAGE_UPDATE          = '/index.php?page=update';
+    public const PAGE_WISHLIST        = '/index.php?page=wishlist';
+    public const PAGE_WISHLISTS_SAVED = '/index.php?page=wishlists-saved';
+    public const PAGE_WISHLISTS       = '/index.php?page=wishlists';
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
@@ -114,8 +114,11 @@ class Page
     }
 
     /**
-     * Non-Static
+     * The page name. Is used for the HTML `title` and `h1` tags.
+     *
+     * @var string
      */
+    private string $name;
     public string $language = DEFAULT_LOCALE;
     public array $messages  = array();
     public string $link_preview;
@@ -138,6 +141,11 @@ class Page
         $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
         $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
+        $timeAnHourAgo = time() - 3600;
+        $timezone      = date('T', $timeAnHourAgo);
+        $expires       = date('D, d M Y H:i:s', $timeAnHourAgo) . ' ' . $timezone;
+        header('Expires: ' . $expires);
+
         /**
          * Install
          */
@@ -150,7 +158,7 @@ class Page
         /**
          * Session
          */
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
 
         /**
          * Login
@@ -166,7 +174,7 @@ class Page
         /**
          * Power
          */
-        if (isset($user->power) && $user->power < $this->power && 0 !== $this->power) {
+        if ($user->getPower() < $this->power && 0 !== $this->power) {
             redirect(Page::PAGE_POWER . '&required=' . $this->power);
         }
 
@@ -181,7 +189,7 @@ class Page
         );
 
         if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
-            if (100 === $user->power) {
+            if (100 === $user->getPower()) {
                 redirect(Page::PAGE_UPDATE);
             } else {
                 redirect(Page::PAGE_MAINTENANCE);
@@ -276,7 +284,7 @@ class Page
     {
         global $locales;
 
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
         ?>
         <!DOCTYPE html>
         <html lang="<?= $this->language ?>">
@@ -396,7 +404,7 @@ class Page
 
             if (
                    in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
-                && (true === $user->advertisements || $CrawlerDetect->isCrawler())
+                && (true === $user->getAdvertisements() || $CrawlerDetect->isCrawler())
             ) {
                 ?>
                 <script async
@@ -421,7 +429,7 @@ class Page
 
     public function navigation(): void
     {
-        $user = isset($_SESSION['user']->id) ? $_SESSION['user'] : new User();
+        $user = User::getCurrent();
 
         $wishlists = Navigation::Wishlists->value;
         $blog      = Navigation::Blog->value;
@@ -482,7 +490,7 @@ class Page
                 'url'  => Page::PAGE_PROFILE,
                 'icon' => 'user circle alternate',
             );
-            if (100 === $user->power) {
+            if (100 === $user->getPower()) {
                 $pages[$account]['items'][] = array(
                     'text' => __('Login as'),
                     'url'  => Page::PAGE_LOGIN_AS,
@@ -519,7 +527,7 @@ class Page
             );
         }
 
-        if (isset($user->power) && 100 === $user->power) {
+        if (100 === $user->getPower()) {
             $pages[$system]['items'][] = array(
                 'text' => __('Settings'),
                 'url'  => Page::PAGE_SETTINGS,
@@ -767,7 +775,7 @@ class Page
         <?php
     }
 
-    public function errorDocument(int $statusCode, object $objectNotFound): void
+    public function errorDocument(int $statusCode, string $fullyQualifiedClass): void
     {
         http_response_code($statusCode);
 
@@ -775,7 +783,7 @@ class Page
         $this->bodyStart();
         $this->navigation();
 
-        $class     = new \ReflectionClass($objectNotFound);
+        $class     = new \ReflectionClass($fullyQualifiedClass);
         $className = $class->getShortName();
         ?>
         <main>

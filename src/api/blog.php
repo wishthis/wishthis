@@ -15,8 +15,10 @@ if (!isset($page)) {
     die('Direct access to this location is not allowed.');
 }
 
+$user = User::getCurrent();
+
 $dateFormatter = new \IntlDateFormatter(
-    $_SESSION['user']->getLocale(),
+    $user->getLocale(),
     \IntlDateFormatter::MEDIUM,
     \IntlDateFormatter::NONE
 );

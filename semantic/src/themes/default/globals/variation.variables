@@ -38,6 +38,7 @@
 @variationButtonWrapping: true;
 @variationButtonWrapped: true;
 @variationButtonSpaced: true;
+@variationButtonConsequences: positive, negative;
 @variationButtonSizes: @variationAllSizes;
 @variationButtonColors: @variationAllColors;
 
@@ -90,7 +91,8 @@
 @variationIconAliases: true;
 @variationIconOutline: true;
 @variationIconBrand: true;
-@variationIconThin: true; /* Font Awesome Pro only */
+@variationIconThin: false; /* Font Awesome Pro only */
+@variationIconDuotone: false; /* Font Awesome Pro only */
 @variationIconDisabled: true;
 @variationIconInverted: true;
 @variationIconLoading: true;
@@ -125,6 +127,7 @@
 @variationInputDisabled: true;
 @variationInputInverted: true;
 @variationInputStates: @variationAllStates;
+@variationInputInvalid: true;
 @variationInputTransparent: true;
 @variationInputCorner: true;
 @variationInputLoading: true;
@@ -149,6 +152,7 @@
 @variationLabelBasic: true;
 @variationLabelAttached: true;
 @variationLabelFluid: true;
+@variationLabelCentered: true;
 @variationLabelSizes: @variationAllSizes;
 @variationLabelColors: @variationAllColors;
 
@@ -229,6 +233,7 @@
 @variationSegmentSecondary: true;
 @variationSegmentTertiary: true;
 @variationSegmentAttached: true;
+@variationSegmentSeamless: true;
 @variationSegmentFitted: true;
 @variationSegmentScrolling: true;
 @variationSegmentScrollingShort: true;
@@ -256,7 +261,6 @@
 @variationTextSizes: @variationAllSizes;
 @variationTextColors: @variationAllColors;
 
-
 /*******************************
            Collections
 *******************************/
@@ -271,6 +275,7 @@
 @variationFormTransparent: true;
 @variationFormLoading: true;
 @variationFormStates: @variationAllStates;
+@variationFormInvalid: true;
 @variationFormRequired: true;
 @variationFormInline: true;
 @variationFormGrouped: true;
@@ -290,6 +295,7 @@
 @variationGridDivided: true;
 @variationGridVertical: true;
 @variationGridAligned: true;
+@variationGridAttached: true;
 @variationGridStretched: true;
 @variationGridJustified: true;
 @variationGridReversed: true;
@@ -321,6 +327,8 @@
 @variationMenuAttached: true;
 @variationMenuIcon: true;
 @variationMenuEqualWidth: true;
+@variationMenuWrapping: true;
+@variationMenuWrapped: true;
 @variationMenuSizes: @variationAllSizes;
 @variationMenuColors: @variationAllColors;
 
@@ -381,7 +389,6 @@
 @variationTableOverflowingVeryLong: true;
 @variationTableSizes: @variationAllSizes;
 @variationTableColors: @variationAllColors;
-
 
 /*******************************
              Views
@@ -473,9 +480,9 @@
 @variationStatisticFloated: true;
 @variationStatisticHorizontal: true;
 @variationStatisticEqualWidth: true;
+@variationStatisticFluid: true;
 @variationStatisticSizes: @variationAllSizes;
 @variationStatisticColors: @variationAllColors;
-
 
 /*******************************
             Modules
@@ -566,6 +573,7 @@
 @variationFlyoutLeft: true;
 @variationFlyoutRight: true;
 @variationFlyoutOverlay: true;
+@variationFlyoutScrolling: true;
 
 /* Modal */
 @variationModalInverted: true;
@@ -605,6 +613,7 @@
 @variationPopupFluid: true;
 @variationPopupFlowing: true;
 @variationPopupFixed: true;
+@variationPopupMultiline: true;
 @variationPopupSizes: @variationAllSizes;
 @variationPopupColors: @variationAllColors;
 
@@ -713,6 +722,8 @@
 /* Transition */
 @variationTransitionDisabled: true;
 @variationTransitionLoading: true;
+@variationTransitionLooping: true;
+@variationTransitionInverted: true;
 @variationTransitionBrowse: true;
 @variationTransitionDrop: true;
 @variationTransitionFade: true;
@@ -729,6 +740,8 @@
 @variationTransitionPulse: true;
 @variationTransitionJiggle: true;
 @variationTransitionGlow: true;
+@variationTransitionPulsating: true;
+@variationTransitionColors: @variationAllColors;
 
 /* Emojis */
 @variationEmojiColons: true;

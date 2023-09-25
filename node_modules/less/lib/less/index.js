@@ -92,5 +92,4 @@ function default_1(environment, fileManagers) {
     return api;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=index.js.map

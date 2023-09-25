@@ -69,13 +69,14 @@ Unit.prototype = Object.assign(new node_1.default(), {
         var mapUnit;
         var groupName;
         mapUnit = function (atomicUnit) {
-            /* jshint loopfunc:true */
+            // eslint-disable-next-line no-prototype-builtins
             if (group.hasOwnProperty(atomicUnit) && !result[groupName]) {
                 result[groupName] = atomicUnit;
             }
             return atomicUnit;
         };
         for (groupName in unit_conversions_1.default) {
+            // eslint-disable-next-line no-prototype-builtins
             if (unit_conversions_1.default.hasOwnProperty(groupName)) {
                 group = unit_conversions_1.default[groupName];
                 this.map(mapUnit);
@@ -98,6 +99,7 @@ Unit.prototype = Object.assign(new node_1.default(), {
         this.numerator = [];
         this.denominator = [];
         for (atomicUnit in counter) {
+            // eslint-disable-next-line no-prototype-builtins
             if (counter.hasOwnProperty(atomicUnit)) {
                 var count = counter[atomicUnit];
                 if (count > 0) {

@@ -19,6 +19,9 @@ $page->bodyStart();
 $step = isset($_POST['step']) ? $_POST['step'] : 1;
 
 switch ($step) {
+    /**
+     * Test the database credentials
+     */
     case 1:
         session_destroy();
         unset($_SESSION);
@@ -87,9 +90,136 @@ switch ($step) {
         <?php
         break;
 
+    /**
+     * Check prerequisites
+     */
     case 2:
+        $prerequisites = array(
+            array(
+                'filename'  => __('PHP Version >= 8.1'),
+                'icon'      => 'php',
+                'condition' => \version_compare(\PHP_VERSION, '8.1', '>='),
+                'label'     => __('Compatible'),
+            ),
+            array(
+                'filename'  => __('PHP Version < 8.3'),
+                'icon'      => 'php',
+                'condition' => \version_compare(\PHP_VERSION, '8.3', '<'),
+                'label'     => __('Compatible'),
+            ),
+            array(
+                'filename'  => 'PHP Extension: Intl',
+                'icon'      => 'php',
+                'condition' => \extension_loaded('intl'),
+                'label'     => __('Activated'),
+            ),
+
+            array(
+                'filename'  => '/src/cache',
+                'icon'      => 'folder',
+                'condition' => \file_exists(ROOT . '/src/cache') && \is_dir(ROOT . '/src/cache'),
+                'label'     => __('Exists'),
+            ),
+            array(
+                'filename'  => '/src/cache',
+                'icon'      => 'folder',
+                'condition' => \is_writeable(ROOT . '/src/cache'),
+                'label'     => __('Writeable'),
+            ),
+
+            array(
+                'filename'  => '/src/config',
+                'icon'      => 'folder',
+                'condition' => \file_exists(ROOT . '/src/config') && \is_dir(ROOT . '/src/config'),
+                'label'     => __('Exists'),
+            ),
+            array(
+                'filename'  => '/src/config',
+                'icon'      => 'folder',
+                'condition' => \is_writeable(ROOT . '/src/config'),
+                'label'     => __('Writeable'),
+            ),
+            array(
+                'filename'  => '/src/config/config.php',
+                'icon'      => 'file',
+                'condition' => !\file_exists('/src/config/config.php'),
+                'label'     => __('Doesn\'t exist (yet)'),
+            ),
+        );
+
+        foreach ($_POST as $key => $value) {
+            if ('DATABASE' === substr($key, 0, 8)) {
+                $_SESSION[$key] = $value;
+            }
+        }
+        ?>
+        <main>
+            <div class="ui hidden divider"></div>
+            <div class="ui container">
+                <?= file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
+
+                <h1 class="ui header"><?= $page->title ?></h1>
+
+                <div class="ui segment">
+                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+
+                    <p><?= __('Make sure all prerequisites are met or the installation may fail in the next step.') ?></p>
+                </div>
+
+                <div class="ui segment">
+                    <h3 class="ui header"><?= __('Prerequisites check') ?></h3>
+
+                    <table class="ui celled striped table">
+                        <thead>
+                            <tr>
+                                <th colspan="3"><?= __('Installation prerequisites') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($prerequisites as $prerequisite) { ?>
+                                <tr class="<?= $prerequisite['condition'] ? 'positive' : 'negative' ?>">
+                                    <td>
+                                        <i class="<?= $prerequisite['icon'] ?> icon"></i><?= $prerequisite['filename'] ?>
+                                    </td>
+                                    <td class="collapsing">
+                                        <?php if ($prerequisite['condition']) { ?>
+                                            <i class="green checkmark icon"></i>
+                                        <?php } else { ?>
+                                            <i class="red close icon"></i>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="collapsing">
+                                        <?= $prerequisite['label'] ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+
+                    <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
+                        <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+
+                        <div class="ui error message"></div>
+
+                        <div class="inline fields">
+                            <input class="ui primary button"
+                                type="submit"
+                                value="<?= __('Install wishthis') ?>"
+                                title="<?= __('Install wishthis') ?>"
+                            />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <?php
+        break;
+    /**
+     * Perform installation
+     */
+    case 3:
         /**
-         * Set sitemap path in robots.txt
+         * To do: Set absolute sitemap path in robots.txt.
          */
 
         /**
@@ -107,40 +237,28 @@ switch ($step) {
         $configDirectory  = 'src/config';
         $configPath       = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
-        $configContents   = str_replace('config-sample.php', 'config.php', file_get_contents($configSamplePath));
+        $configContents   = file_get_contents($configSamplePath);
 
-        foreach ($_POST as $key => $value) {
+        foreach ($_SESSION as $key => $value) {
             if ('DATABASE' === substr($key, 0, 8)) {
                 $configContents = preg_replace('/(' . $key . '.+?\').*?(\')/', '$1' . $value . '$2', $configContents);
             }
         }
 
-        file_put_contents($configPath, $configContents);
-        ?>
-        <main>
-            <div class="ui hidden divider"></div>
-            <div class="ui container">
-                <div class="ui segment">
-                    <h1 class="ui header"><?= $page->title ?></h1>
-                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
-                    <p><?= __('Click continue to test the database connection.') ?></p>
+        \file_put_contents($configPath, $configContents);
 
-                    <form class="ui form" action="<?= Page::PAGE_INSTALL ?>" method="POST">
-                        <input type="hidden" name="step" value="<?= $step + 1; ?>" />
+        /**
+         * Database
+         */
+        $database = new Database(
+            $_SESSION['DATABASE_HOST'],
+            $_SESSION['DATABASE_NAME'],
+            $_SESSION['DATABASE_USER'],
+            $_SESSION['DATABASE_PASSWORD']
+        );
+        $database->connect();
+        unset($_SESSION);
 
-                        <input class="ui primary button"
-                               type="submit"
-                               value="<?= __('Continue') ?>"
-                               title="<?= __('Continue') ?>"
-                        />
-                    </form>
-                </div>
-            </div>
-        </main>
-        <?php
-        break;
-
-    case 3:
         $database->query('SET foreign_key_checks = 0;');
 
         /**

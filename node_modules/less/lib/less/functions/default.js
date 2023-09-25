@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var keyword_1 = tslib_1.__importDefault(require("../tree/keyword"));
+var utils = tslib_1.__importStar(require("../utils"));
 var defaultFunc = {
     eval: function () {
         var v = this.value_;
@@ -9,7 +10,7 @@ var defaultFunc = {
         if (e) {
             throw e;
         }
-        if (v != null) {
+        if (!utils.isNullOrUndefined(v)) {
             return v ? keyword_1.default.True : keyword_1.default.False;
         }
     },

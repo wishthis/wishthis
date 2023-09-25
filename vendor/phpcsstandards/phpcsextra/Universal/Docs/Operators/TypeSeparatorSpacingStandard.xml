@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<documentation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://phpcsstandards.github.io/PHPCSDevTools/phpcsdocs.xsd"
+    title="Type Separator Spacing"
+    >
+    <standard>
+    <![CDATA[
+    There should be no spacing around the union type separator or the intersection type separator.
+
+    This applies to all locations where type declarations can be used, i.e. property types, parameter types and return types.
+    ]]>
+    </standard>
+    <code_comparison>
+        <code title="Valid: No space around the separators.">
+        <![CDATA[
+function foo(
+    int<em>|</em>string $paramA,
+    TypeA<em>&</em>TypeB $paramB
+): int<em>|</em>false {}
+        ]]>
+        </code>
+        <code title="Invalid: Space around the separators.">
+        <![CDATA[
+function foo(
+    int<em> | </em>string $paramA,
+    TypeA<em> & </em>TypeB $paramB
+): int<em>
+   |
+   </em>false {}
+        ]]>
+        </code>
+    </code_comparison>
+</documentation>

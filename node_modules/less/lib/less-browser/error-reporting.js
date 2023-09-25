@@ -12,7 +12,7 @@ exports.default = (function (window, less, options) {
         var content;
         var errors = [];
         var filename = e.filename || rootHref;
-        var filenameNoPath = filename.match(/([^\/]+(\?.*)?)$/)[1];
+        var filenameNoPath = filename.match(/([^/]+(\?.*)?)$/)[1];
         elem.id = id;
         elem.className = 'less-error-message';
         content = "<h3>" + (e.type || 'Syntax') + "Error: " + (e.message || 'There is an error in your .less file') +
@@ -106,7 +106,7 @@ exports.default = (function (window, less, options) {
             node.parentNode.removeChild(node);
         }
     }
-    function removeErrorConsole(path) {
+    function removeErrorConsole() {
         // no action
     }
     function removeError(path) {

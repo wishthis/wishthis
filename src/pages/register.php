@@ -92,8 +92,8 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                                     `password_reset_valid_until` = NULL
                               WHERE `id`                         = :user_id;',
                         array(
-                            'user_password' => User::generatePassword($_POST['password']),
-                            'user_id'       => $user->id,
+                            'user_password' => User::passwordToHash($_POST['password']),
+                            'user_id'       => $user->getId(),
                         )
                     );
 
@@ -108,6 +108,13 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 $page->messages[] = Page::error(__('This password reset link seems to have been manipulated, please request a new one.'), __('Failure'));
             }
         } else {
+            $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
+            $locale_user    = DEFAULT_LOCALE;
+
+            if (in_array($locale_browser, $locales, true)) {
+                $locale_user = $locale_browser;
+            }
+
             /**
              * Register
              */
@@ -116,15 +123,18 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     'INSERT INTO `users` (
                         `email`,
                         `password`,
-                        `power`
+                        `power`,
+                        `language`
                     ) VALUES (
                         :user_email,
                         :user_password,
-                        100
+                        100,
+                        :user_language
                     );',
                     array(
                         'user_email'    => $user_email,
-                        'user_password' => User::generatePassword($_POST['password']),
+                        'user_password' => User::passwordToHash($_POST['password']),
+                        'user_language' => $locale_user,
                     )
                 );
                 $userRegistered = true;
@@ -138,14 +148,17 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     $database->query(
                         'INSERT INTO `users` (
                             `email`,
-                            `password`
+                            `password`,
+                            `language`
                         ) VALUES (
                             :user_email,
-                            :user_password
+                            :user_password,
+                            :user_language
                         );',
                         array(
                             'user_email'    => $user_email,
-                            'user_password' => User::generatePassword($_POST['password']),
+                            'user_password' => User::passwordToHash($_POST['password']),
+                            'user_language' => $locale_user,
                         )
                     );
                     $userRegistered = true;
@@ -160,7 +173,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
          */
         if ($userRegistered) {
             $user_id       = $database->lastInsertID();
-            $wishlist_name = Sanitiser::getTitle(__('My hopes and dreams'));
+            $wishlist_name = addslashes(filter_var(__('My hopes and dreams'), FILTER_SANITIZE_SPECIAL_CHARS));
             $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
             $database
@@ -288,7 +301,7 @@ $page->navigation();
                 <h2 class="ui header"><?= __('About your email address') ?></h2>
 
                 <p><?= __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.') ?></p>
-                <p><?= __('wishthis is not a commercial project and is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
+                <p><?= __('wishthis is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
                 <p>
                     <?=
                     sprintf(

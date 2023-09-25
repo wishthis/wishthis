@@ -18,7 +18,7 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 ## :heavy_check_mark: Requirements
 
 -   Apache or Nginx
--   PHP 8.1
+-   PHP 8.1 - PHP 8.2
     -   [intl](https://www.php.net/manual/en/book.intl.php)
 -   MySQL/MariaDB
 -   [MJML](https://mjml.io/api) api keys (not required and used for rendering emails. Make sure [sendmail](https://www.php.net/manual/en/mail.configuration.php) is configured properly.)
@@ -28,16 +28,26 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 ### Git (recommended)
 
 ```
-git clone -b stable https://github.com/grandeljay/wishthis.git .
+git clone -b stable https://github.com/wishthis/wishthis.git .
 ```
 
 Note: after pulling updates for a new version you might be prompted to update the database schema in the wishthis user interface (if necessary). Make sure you are logged in.
 
 ### Manual
 
-Download the code using the [stable branch](https://github.com/grandeljay/wishthis/tree/stable) and upload it to your server.
+Download the code using the [stable branch](https://github.com/wishthis/wishthis/tree/stable) and upload it to your server.
 
 Note: You will have to manually update wishthis by replacing all files with the changes from the `stable` branch.
+
+### Note
+
+Make sure wishthis is setup via a domain directly and not running inside a sub-folder.
+
+### Attention! The installer is broken in `v1.0.0`!
+
+To work around this, you can manually create a `/src/config/config.php` (please copy the `/src/config/config-sample.php`) and **remove** the part with the database information (currently four php constants).
+
+The installer should appear now. Make sure the `config.php` is writeable. After the isntallation has complete you can make the config read-only again.
 
 ## :trophy: Contributing
 
@@ -72,4 +82,4 @@ To setup your development environment you currently have two possibilities:
 
 1. Docker
 
-    An unofficial Docker image is available on Docker Hub: [hiob/wishthis](https://hub.docker.com/r/hiob/wishthis), thanks [Hiobi](https://github.com/Hiobi)!
+    An official Docker image is also available: https://github.com/wishthis/docker. It's created and maintained by [Hiobi](https://github.com/Hiobi), thanks!

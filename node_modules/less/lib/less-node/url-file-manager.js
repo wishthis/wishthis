@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+/* eslint-disable no-unused-vars */
+/**
+ * @todo - remove top eslint rule when FileManagers have JSDoc type
+ * and are TS-type-checked
+ */
 var isUrlRe = /^(?:https?:)?\/\//i;
 var url_1 = tslib_1.__importDefault(require("url"));
 var request;

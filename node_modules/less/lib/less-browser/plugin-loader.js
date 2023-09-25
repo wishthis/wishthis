@@ -1,8 +1,9 @@
 "use strict";
-// TODO: Add tests for browser @plugin
-/* global window */
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
+/**
+ * @todo Add tests for browser `@plugin`
+ */
 var abstract_plugin_loader_js_1 = tslib_1.__importDefault(require("../less/environment/abstract-plugin-loader.js"));
 /**
  * Browser Plugin Loader

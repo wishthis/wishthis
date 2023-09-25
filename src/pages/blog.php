@@ -14,8 +14,9 @@ $page->bodyStart();
 $page->navigation();
 
 $posts = Blog::getPosts();
+$user = User::getCurrent();
 
-if ('en' !== \Locale::getPrimaryLanguage($_SESSION['user']->getLocale())) {
+if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
     $page->messages[] = Page::warning(
         sprintf(
             /** TRANSLATORS: %s: Language, most likely English */
@@ -37,7 +38,7 @@ if ('en' !== \Locale::getPrimaryLanguage($_SESSION['user']->getLocale())) {
             <?php foreach ($posts as $post) { ?>
                 <?php
                 $dateFormatter  = new \IntlDateFormatter(
-                    $_SESSION['user']->getLocale(),
+                    $user->getLocale(),
                     \IntlDateFormatter::MEDIUM,
                     \IntlDateFormatter::NONE
                 );

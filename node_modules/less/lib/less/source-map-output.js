@@ -105,6 +105,7 @@ function default_1(environment) {
             this._sourceMapGenerator = new this._sourceMapGeneratorConstructor({ file: this._outputFilename, sourceRoot: null });
             if (this._outputSourceFiles) {
                 for (var filename in this._contentsMap) {
+                    // eslint-disable-next-line no-prototype-builtins
                     if (this._contentsMap.hasOwnProperty(filename)) {
                         var source = this._contentsMap[filename];
                         if (this._contentsIgnoredCharsMap[filename]) {
@@ -134,5 +135,4 @@ function default_1(environment) {
     return SourceMapOutput;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=source-map-output.js.map

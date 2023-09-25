@@ -129,6 +129,12 @@ exports.default = (function () {
         skipWhitespace(1);
         return tok;
     };
+    parserInput.$peekChar = function (tok) {
+        if (input.charAt(parserInput.i) !== tok) {
+            return null;
+        }
+        return tok;
+    };
     parserInput.$str = function (tok) {
         var tokLength = tok.length;
         // https://jsperf.com/string-startswith/21
@@ -157,13 +163,14 @@ exports.default = (function () {
                 case '\r':
                 case '\n':
                     break;
-                case startChar:
+                case startChar: {
                     var str = input.substr(currentPosition, i + 1);
                     if (!loc && loc !== 0) {
                         skipWhitespace(i + 1);
                         return str;
                     }
                     return [startChar, str];
+                }
                 default:
             }
         }
@@ -193,7 +200,6 @@ exports.default = (function () {
             testChar = function (char) { return tok.test(char); };
         }
         do {
-            var prevChar = void 0;
             var nextChar = input.charAt(i);
             if (blockDepth === 0 && testChar(nextChar)) {
                 returnVal = input.substr(lastPos, i - lastPos);
@@ -260,7 +266,7 @@ exports.default = (function () {
                         break;
                     case '}':
                     case ')':
-                    case ']':
+                    case ']': {
                         var expected = blockStack.pop();
                         if (nextChar === expected) {
                             blockDepth--;
@@ -271,13 +277,13 @@ exports.default = (function () {
                             returnVal = expected;
                             loop = false;
                         }
+                    }
                 }
                 i++;
                 if (i > length) {
                     loop = false;
                 }
             }
-            prevChar = nextChar;
         } while (loop);
         return returnVal ? returnVal : null;
     };

@@ -11,6 +11,8 @@ return array(
     'Qferrer\\Mjml\\' => array($vendorDir . '/qferr/mjml-php/src'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
+    'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => array($vendorDir . '/dealerdirect/phpcodesniffer-composer-installer/src'),
     'ML\\JsonLD\\' => array($vendorDir . '/ml/json-ld'),
     'Jaybizzle\\CrawlerDetect\\' => array($vendorDir . '/jaybizzle/crawler-detect/src'),
     'HtmlParser\\' => array($vendorDir . '/oscarotero/html-parser/src'),
@@ -19,5 +21,6 @@ return array(
     'Gettext\\' => array($vendorDir . '/gettext/gettext/src', $vendorDir . '/gettext/translator/src'),
     'Fig\\Http\\Message\\' => array($vendorDir . '/fig/http-message-util/src'),
     'Embed\\' => array($vendorDir . '/embed/embed/src'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
 );

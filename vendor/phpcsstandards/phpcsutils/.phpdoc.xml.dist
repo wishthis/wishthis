@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+    configVersion="3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://www.phpdoc.org"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
+>
+
+    <title>PHPCSUtils</title>
+
+    <paths>
+        <output>docs/phpdoc/</output>
+        <cache>build/docs/structure/</cache>
+    </paths>
+
+    <version number="latest">
+        <api format="php">
+            <source dsn=".">
+                <path>phpcsutils-autoload.php</path>
+                <path>PHPCSUtils</path>
+            </source>
+            <ignore hidden="true" symlinks="true">
+                <path>PHPCSUtils/Internal/**/*</path>
+            </ignore>
+            <visibility>public</visibility>
+            <visibility>protected</visibility>
+            <ignore-tags>
+                <ignore-tag>codeCoverageIgnore</ignore-tag>
+                <ignore-tag>phpcs</ignore-tag>
+            </ignore-tags>
+        </api>
+    </version>
+
+    <template name="default"/>
+
+</phpdocumentor>

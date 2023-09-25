@@ -12,6 +12,8 @@ $page = new Page(__FILE__, __('Home'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
+
+$user = User::getCurrent();
 ?>
 
 <main>
@@ -26,7 +28,7 @@ $page->navigation();
                     <p><?= __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.') ?></p>
 
                     <div class="ui two column doubling stackable centered grid actions">
-                        <?php if ($_SESSION['user']->isLoggedIn()) { ?>
+                        <?php if ($user->isLoggedIn()) { ?>
                             <div class="column">
                                 <a class="ui fluid primary button"
                                    href="<?= Page::PAGE_WISHLISTS ?>"
@@ -47,7 +49,7 @@ $page->navigation();
                                  ORDER BY `wishes`.`edited` DESC
                                     LIMIT 1;',
                                 array(
-                                    'user_id' => $_SESSION['user']->id,
+                                    'user_id' => $user->getId(),
                                 )
                             );
 
@@ -103,10 +105,10 @@ $page->navigation();
                         '</a>'
                     ) ?></p>
 
-                    <p><?= __('As a non-commercial project it remains') ?></p>
+                    <p><?= __('As an open source project it remains') ?></p>
                     <div class="flex why-wishthis">
                         <ul class="ui list">
-                            <li class="item" data-content="<?= __('unless you want them') ?>">
+                            <li class="item">
                                 <i class="green check icon" aria-hidden="true"></i>
                                 <div class="content"><?= __('free of advertisements') ?></div>
                             </li>
@@ -123,6 +125,10 @@ $page->navigation();
                                     <?= __('without intrusive tracking') ?>
                                 </div>
                             </li>
+                            <li class="item">
+                                <i class="green check icon" aria-hidden="true"></i>
+                                <div class="content"><?= __('transparent') ?></div>
+                            </li>
                         </ul>
                         <ul class="ui list">
                             <li class="item">
@@ -132,6 +138,18 @@ $page->navigation();
                             <li class="item">
                                 <i class="green check icon" aria-hidden="true"></i>
                                 <div class="content"><?= __('open for feedback and suggestions') ?></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p><?= __('What you should also know') ?></p>
+                    <div>
+                        <ul class="ui list">
+                            <li class="item">
+                                <i class="orange info icon" aria-hidden="true"></i>
+                                <div class="content">
+                                    <?= __('affiliate links') ?>
+                                    <p><?= __('amazon links are automatically converted to affiliate links to help support the project financially.') ?></p>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -209,9 +227,9 @@ $page->navigation();
 
                 <?php
                 $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
-                $locale_user    = $_SESSION['user']->getLocale();
+                $locale_user    = $user->getLocale();
 
-                if ($_SESSION['user']->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
+                if ($user->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
                     ?>
                     <div class="ui segment">
                         <h2 class="ui header"><?= __('Hey, you') ?></h2>
@@ -221,7 +239,7 @@ $page->navigation();
                             printf(
                                 /** TRANSLATORS: %s: the users display name */
                                 __('Yes, I mean you, %s.'),
-                                $_SESSION['user']->getDisplayName()
+                                $user->getDisplayName()
                             );
                             ?>
                         </p>

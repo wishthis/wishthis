@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.flattenArray = exports.merge = exports.copyOptions = exports.defaults = exports.clone = exports.copyArray = exports.getLocation = void 0;
+exports.isNullOrUndefined = exports.flattenArray = exports.merge = exports.copyOptions = exports.defaults = exports.clone = exports.copyArray = exports.getLocation = void 0;
 var tslib_1 = require("tslib");
 /* jshint proto: true */
 var Constants = tslib_1.__importStar(require("./constants"));
@@ -34,7 +34,7 @@ exports.copyArray = copyArray;
 function clone(obj) {
     var cloned = {};
     for (var prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
+        if (Object.prototype.hasOwnProperty.call(obj, prop)) {
             cloned[prop] = obj[prop];
         }
     }
@@ -99,7 +99,7 @@ function copyOptions(obj1, obj2) {
 exports.copyOptions = copyOptions;
 function merge(obj1, obj2) {
     for (var prop in obj2) {
-        if (obj2.hasOwnProperty(prop)) {
+        if (Object.prototype.hasOwnProperty.call(obj2, prop)) {
             obj1[prop] = obj2[prop];
         }
     }
@@ -122,4 +122,8 @@ function flattenArray(arr, result) {
     return result;
 }
 exports.flattenArray = flattenArray;
+function isNullOrUndefined(val) {
+    return val === null || val === undefined;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
 //# sourceMappingURL=utils.js.map

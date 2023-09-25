@@ -14,6 +14,7 @@ var function_registry_1 = tslib_1.__importDefault(require("../functions/function
 var default_1 = tslib_1.__importDefault(require("../functions/default"));
 var debug_info_1 = tslib_1.__importDefault(require("./debug-info"));
 var utils = tslib_1.__importStar(require("../utils"));
+var parser_1 = tslib_1.__importDefault(require("../parser/parser"));
 var Ruleset = function (selectors, rules, strictImports, visibilityInfo) {
     this.selectors = selectors;
     this.rules = rules;
@@ -42,7 +43,6 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
         }
     },
     eval: function (context) {
-        var that = this;
         var selectors;
         var selCnt;
         var selector;
@@ -74,7 +74,9 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
                     selector = selectors[i];
                     toParseSelectors[i] = selector.toCSS(context);
                 }
-                this.parse.parseNode(toParseSelectors.join(','), ["selectors"], selectors[0].getIndex(), selectors[0].fileInfo(), function (err, result) {
+                var startingIndex = selectors[0].getIndex();
+                var selectorFileInfo = selectors[0].fileInfo();
+                new parser_1.default(context, this.parse.importManager, selectorFileInfo, startingIndex).parseNode(toParseSelectors.join(','), ['selectors'], function (err, result) {
                     if (result) {
                         selectors = utils.flattenArray(result);
                     }
@@ -265,6 +267,7 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
                 if (r.type === 'Import' && r.root && r.root.variables) {
                     var vars = r.root.variables();
                     for (var name_1 in vars) {
+                        // eslint-disable-next-line no-prototype-builtins
                         if (vars.hasOwnProperty(name_1)) {
                             hash[name_1] = r.root.variable(name_1);
                         }
@@ -319,7 +322,7 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
         function transformDeclaration(decl) {
             if (decl.value instanceof anonymous_1.default && !decl.parsed) {
                 if (typeof decl.value.value === 'string') {
-                    this.parse.parseNode(decl.value.value, ['value', 'important'], decl.value.getIndex(), decl.fileInfo(), function (err, result) {
+                    new parser_1.default(this.parse.context, this.parse.importManager, decl.fileInfo(), decl.value.getIndex()).parseNode(decl.value.value, ['value', 'important'], function (err, result) {
                         if (err) {
                             decl.parsed = true;
                         }
@@ -648,7 +651,7 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
                 // non parent reference elements just get added
                 if (el.value !== '&') {
                     var nestedSelector = findNestedSelector(el);
-                    if (nestedSelector != null) {
+                    if (nestedSelector !== null) {
                         // merge the current list of non parent selector elements
                         // on to the current list of selectors to add
                         mergeElementsOnToSelectors(currentElements, newSelectors);

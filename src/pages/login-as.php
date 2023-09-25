@@ -9,6 +9,7 @@
 namespace wishthis;
 
 $page = new Page(__FILE__, __('Login as'), 100);
+$user = User::getCurrent();
 
 if (isset($_POST['email'])) {
     $email = Sanitiser::getEmail($_POST['email']);
@@ -28,7 +29,8 @@ if (isset($_POST['email'])) {
     if ($success) {
         $fields = $userQuery->fetch();
 
-        $_SESSION['user'] = new User($fields);
+        $user = new User($fields);
+        $user->logIn();
     }
 }
 
@@ -55,7 +57,7 @@ $users = $database
         <?php
         if (isset($success)) {
             if ($success) {
-                echo Page::success(sprintf(__('Successfully logged in as %s.'), $_SESSION['user']->email), __('Success'));
+                echo Page::success(sprintf(__('Successfully logged in as %s.'), $user->email), __('Success'));
             } else {
                 echo Page::error(__('User not found!'), __('Error'));
             }

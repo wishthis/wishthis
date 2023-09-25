@@ -28,8 +28,10 @@ var value_1 = tslib_1.__importDefault(require("./value"));
 var javascript_1 = tslib_1.__importDefault(require("./javascript"));
 var assignment_1 = tslib_1.__importDefault(require("./assignment"));
 var condition_1 = tslib_1.__importDefault(require("./condition"));
+var query_in_parens_1 = tslib_1.__importDefault(require("./query-in-parens"));
 var paren_1 = tslib_1.__importDefault(require("./paren"));
 var media_1 = tslib_1.__importDefault(require("./media"));
+var container_1 = tslib_1.__importDefault(require("./container"));
 var unicode_descriptor_1 = tslib_1.__importDefault(require("./unicode-descriptor"));
 var negative_1 = tslib_1.__importDefault(require("./negative"));
 var extend_1 = tslib_1.__importDefault(require("./extend"));
@@ -68,6 +70,8 @@ exports.default = {
     Condition: condition_1.default,
     Paren: paren_1.default,
     Media: media_1.default,
+    Container: container_1.default,
+    QueryInParens: query_in_parens_1.default,
     UnicodeDescriptor: unicode_descriptor_1.default,
     Negative: negative_1.default,
     Extend: extend_1.default,

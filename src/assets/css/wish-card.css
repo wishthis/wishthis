@@ -349,24 +349,6 @@
     }
 }
 
-.wishlist .ui.card > .content > .extra.buttons > .ui.labeled.icon.button > i.icon {
-    display: contents;
-}
-@media (min-width: 512px) {
-    .wishlist .ui.card > .content > .extra.buttons > .ui.labeled.icon.button > i.icon {
-        display: revert;
-    }
-}
-
-.wishlist .ui.card > .content > .extra.buttons > .ui.labeled.icon.button > span {
-    display: none;
-}
-@media (min-width: 512px) {
-    .wishlist .ui.card > .content > .extra.buttons > .ui.labeled.icon.button > span {
-        display: revert;
-    }
-}
-
 /** Overlay */
 .ui.card .dimmer,
 .ui.cards > .card .dimmer {

@@ -13,10 +13,16 @@ $page->header();
 $page->bodyStart();
 $page->navigation();
 
-$wishlists         = $_SESSION['user']->getSavedWishlists();
+$user = User::getCurrent();
+
+$wishlists         = $user->getSavedWishlists();
 $wishlists_by_user = array();
 
 foreach ($wishlists as $wishlist_saved) {
+    if (!isset($wishlist_saved['user'])) {
+        continue;
+    }
+
     $wishlists_by_user[$wishlist_saved['user']][] = $wishlist_saved;
 }
 ?>
@@ -35,8 +41,8 @@ foreach ($wishlists as $wishlist_saved) {
                     <div class="ui four column doubling stackable grid wishlists-saved">
                         <?php foreach ($wishlists_saved as $wishlist_saved) { ?>
                             <?php
-                            $wishlist      = new Wishlist($wishlist_saved['wishlist']);
-                            $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->hash;
+                            $wishlist      = Wishlist::getFromId($wishlist_saved['wishlist']);
+                            $wishlist_href = Page::PAGE_WISHLIST . '&hash=' . $wishlist->getHash();
                             ?>
 
                             <div class="column">

@@ -28,13 +28,17 @@ class Database
         public string $user,
         public string $password,
     ) {
+    }
+
+    public function connect(): void
+    {
         $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
         $options = array('placeholders' => array());
 
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query, array $placeholders = array()): \PDOStatement
+    public function query(string $query, array $placeholders = array()): \PDOStatement|false
     {
         $statement = $this->pdo->prepare($query, array(\PDO::FETCH_ASSOC));
 

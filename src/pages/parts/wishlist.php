@@ -6,10 +6,11 @@
 
 namespace wishthis;
 
+$user = User::getCurrent();
 ?>
 
-<?php if ($_SESSION['user']->isLoggedIn()) { ?>
-    <input type="hidden" name="user-id" value="<?= $_SESSION['user']->id ?>" />
+<?php if ($user->isLoggedIn()) { ?>
+    <input type="hidden" name="user-id" value="<?= $user->getId() ?>" />
 <?php } ?>
 
 <div class="wishlist-filter-wrapper">
@@ -43,7 +44,7 @@ namespace wishthis;
                                     <?= __('All priorities') ?>
                                 </div>
 
-                                <div class="item" data-value="">
+                                <div class="item" data-value="0">
                                     <i class="ui white empty circular label"></i>
                                     <?= __('No priority') ?>
                                 </div>
@@ -74,8 +75,8 @@ namespace wishthis;
     </div>
 </div>
 
-<?php if (isset($wishlist->id)) { ?>
-    <div class="wishlist-cards" data-wishlist="<?= $wishlist->id ?>"></div>
+<?php if (isset($wishlist)) { ?>
+    <div class="wishlist-cards" data-wishlist="<?= $wishlist->getId() ?>"></div>
 <?php } else { ?>
     <div class="wishlist-cards"></div>
 <?php } ?>

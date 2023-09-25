@@ -10,13 +10,15 @@ namespace wishthis;
 
 global $page, $database;
 
+$user = User::getCurrent();
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        if (isset($_POST['wishlist-name'], $_SESSION['user']->id)) {
+        if (isset($_POST['wishlist-name'])) {
             /**
              * Create
              */
-            $user_id       = Sanitiser::getNumber($_SESSION['user']->id);
+            $user_id       = Sanitiser::getNumber($user->getId());
             $wishlist_name = Sanitiser::getTitle($_POST['wishlist-name']);
             $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
 
@@ -66,7 +68,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                 /** Send email */
                 $user  = User::getFromID($wishlist['user']);
-                $email = new Email($user->email, __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
+                $email = new Email($user->getEmail(), __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
                 $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
                 $email->setPlaceholder(
                     'TEXT_WISHLIST_REQUEST_WISHES',
@@ -101,84 +103,77 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'GET':
-        if (isset($_GET['wishlist_id'], $_GET['priority'])) {
-            /**
-             * Get wishlist cards with priority
-             */
-            $wishlist = new Wishlist($_GET['wishlist_id']);
-            $options  = array(
+        $getWishlistCardsFromPriority = isset($_GET['wishlist_id'], $_GET['priority']);
+        $getWishlistFromHash          = isset($_GET['wishlist_hash']);
+        $getOwnWishlists              = $user->isLoggedIn();
+
+        if ($getWishlistCardsFromPriority) {
+            $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
+
+            if (false === $wishlist) {
+                http_response_code(404);
+            }
+
+            $priorityAll  = -1;
+            $priorityNone = 0;
+            $priority     = (int) $_GET['priority'] ?? $priorityAll;
+
+            $options = array(
                 'style'        => $_GET['style'],
                 'placeholders' => array(),
             );
-            $where    = array(
-                'wishlist' => '`wishlist` = ' . $wishlist->id,
-                'priority' => '`priority` = ' . $_GET['priority'],
+            $where   = array(
+                'wishlist' => '`wishlist` = ' . $wishlist->getId(),
+                'priority' => '`priority` = ' . $priority,
             );
 
-            if (-1 == $_GET['priority']) {
+            if ($priorityAll === $priority) {
                 unset($where['priority']);
             }
 
-            if (empty($_GET['priority'])) {
-                $where['priority'] = '`priority` IS NULL';
+            if ($priorityNone === $priority) {
+                $where['priority'] = '`priority` IS NULL OR `priority` = 0';
             }
 
             $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
-        } elseif (isset($_GET['wishlist_id'])) {
-            /**
-             * Get wishlist by id
-             */
-            $wishlist = new Wishlist($_GET['wishlist_id']);
+        } elseif ($getWishlistFromHash) {
+            $wishlist = Wishlist::getFromHash($_GET['wishlist_hash']);
 
-            if ($wishlist->exists) {
-                /** Determine if user is allowed to access wishlist */
-                if ($_SESSION['user']->isLoggedIn() && $_SESSION['user']->id === $wishlist->user) {
-                    $response['results'] = $wishlist;
-                } else {
-                    http_response_code(403);
-                }
+            if ($wishlist instanceof Wishlist) {
+                $response['results'] = array(
+                    'id'     => $wishlist->getId(),
+                    'hash'   => $wishlist->getHash(),
+                    'userId' => $wishlist->getUserId(),
+                );
+                ;
             } else {
                 http_response_code(404);
             }
-        } elseif (isset($_GET['wishlist_hash'])) {
-            /**
-             * Get wishlist by hash
-             */
-            $wishlist = new Wishlist($_GET['wishlist_hash']);
+        } elseif ($getOwnWishlists) {
+            $wishlists      = array();
+            $wishlistsItems = array();
 
-            if ($wishlist->exists) {
-                $response['results'] = $wishlist;
-            } else {
-                http_response_code(404);
-            }
-        } elseif (isset($_GET['userid']) || isset($_SESSION['user']->id)) {
-            /**
-             * Get user wishlists
-             */
-            $user = $_SESSION['user'];
+            foreach ($user->getWishlists() as $wishlistData) {
+                $wishlist     = new Wishlist($wishlistData);
+                $wishlistId   = $wishlist->getId();
+                $wishlistName = $wishlist->getName();
 
-            if (!$user->isLoggedIn()) {
-                $this->response(403);
-            }
-
-            $wishlists       = array();
-            $wishlists_items = array();
-
-            foreach ($user->getWishlists() as $wishlist_result) {
-                $wishlist = new Wishlist($wishlist_result['id']);
-
-                $wishlists[$wishlist->id]       = $wishlist;
-                $wishlists_items[$wishlist->id] = array(
-                    'name'  => $wishlist->name,
-                    'value' => $wishlist->id,
-                    'text'  => $wishlist->name,
+                $wishlists[]      = array(
+                    'id'     => $wishlistId,
+                    'hash'   => $wishlist->getHash(),
+                    'userId' => $wishlist->getUserId(),
+                );
+                $wishlistsItems[] = array(
+                    'name'  => $wishlistName,
+                    'value' => $wishlistId,
+                    'text'  => $wishlistName,
                 );
             }
 
-            $response['wishlists']       = $wishlists;
-            $response['wishlists_items'] = $wishlists_items;
+            $response['wishlists']      = $wishlists;
+            $response['wishlistsItems'] = $wishlistsItems;
         }
         break;
 

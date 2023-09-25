@@ -56,6 +56,7 @@ Call.prototype = Object.assign(new node_1.default(), {
                 exitCalc();
             }
             catch (e) {
+                // eslint-disable-next-line no-prototype-builtins
                 if (e.hasOwnProperty('line') && e.hasOwnProperty('column')) {
                     throw e;
                 }

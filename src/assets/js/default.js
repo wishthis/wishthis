@@ -1,15 +1,3 @@
-/**
- * Service Worker
- */
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-    navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(res => console.log('wishthis service worker registered'))
-        .catch(err => console.log('wishthis service worker not registered', err))
-    })
-}
-
 const urlParams  = new URLSearchParams(wishthis.$_GET);
 const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 

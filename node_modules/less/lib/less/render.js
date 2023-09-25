@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var utils = tslib_1.__importStar(require("./utils"));
-function default_1(environment, ParseTree, ImportManager) {
+function default_1(environment, ParseTree) {
     var render = function (input, options, callback) {
         if (typeof options === 'function') {
             callback = options;
@@ -44,5 +44,4 @@ function default_1(environment, ParseTree, ImportManager) {
     return render;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=render.js.map

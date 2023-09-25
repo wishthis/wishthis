@@ -1,10 +1,10 @@
 /*!
- * # Fomantic-UI 2.9.0 - Site
- * http://github.com/fomantic/Fomantic-UI/
+ * # Fomantic-UI 2.9.2 - Site
+ * https://github.com/fomantic/Fomantic-UI/
  *
  *
  * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * https://opensource.org/licenses/MIT
  *
  */
 
@@ -97,7 +97,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   min-width: 320px;
-  background: #FFFFFF;
+  background: #fff;
   font-family: 'Raleway', sans-serif;
   font-size: 14pt;
   line-height: 1.4285em;
@@ -167,12 +167,11 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/*-------------------
+/* -------------------
         Links
---------------------*/
-
+-------------------- */
 a {
-  color: #6435C9;
+  color: #6435c9;
   text-decoration: none;
 }
 a:hover {
@@ -211,10 +210,11 @@ body ::-webkit-scrollbar-thumb:hover {
 }
 body .ui {
   
-/* firefox : first color thumb, second track*/
+/* firefox: first color thumb, second track */
   scrollbar-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.1);
   scrollbar-width: thin;
 }
+
 /* Inverted UI */
 body .ui.inverted:not(.dimmer)::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
@@ -230,7 +230,7 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
 }
 body .ui.inverted:not(.dimmer) {
   
-/* firefox : first color thumb, second track */
+/* firefox: first color thumb, second track */
   scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);
 }
 
@@ -241,34 +241,12 @@ body .ui.inverted:not(.dimmer) {
 
 
 /* Site */
-::-webkit-selection {
-  background-color: #CCE2FF;
-  color: rgba(0, 0, 0, 0.87);
-}
-::-moz-selection {
-  background-color: #CCE2FF;
-  color: rgba(0, 0, 0, 0.87);
-}
 ::selection {
-  background-color: #CCE2FF;
+  background-color: #cce2ff;
   color: rgba(0, 0, 0, 0.87);
 }
 
 /* Form */
-textarea::-webkit-selection,
-input::-webkit-selection {
-  background-color: rgba(100, 100, 100, 0.4);
-  color: rgba(0, 0, 0, 0.87);
-}
-textarea::-moz-selection,
-input::-moz-selection {
-  background-color: rgba(100, 100, 100, 0.4);
-  color: rgba(0, 0, 0, 0.87);
-}
-textarea::-moz-selection, input::-moz-selection {
-  background-color: rgba(100, 100, 100, 0.4);
-  color: rgba(0, 0, 0, 0.87);
-}
 textarea::selection,
 input::selection {
   background-color: rgba(100, 100, 100, 0.4);

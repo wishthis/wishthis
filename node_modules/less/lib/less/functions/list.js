@@ -137,9 +137,9 @@ exports.default = {
             if (keyName) {
                 newRules.push(new declaration_1.default(keyName, key, false, false, this.index, this.currentFileInfo));
             }
-            rules.push(new ruleset_1.default([new (selector_1.default)([new element_1.default("", '&')])], newRules, rs.strictImports, rs.visibilityInfo()));
+            rules.push(new ruleset_1.default([new (selector_1.default)([new element_1.default('', '&')])], newRules, rs.strictImports, rs.visibilityInfo()));
         }
-        return new ruleset_1.default([new (selector_1.default)([new element_1.default("", '&')])], rules, rs.strictImports, rs.visibilityInfo()).eval(this.context);
+        return new ruleset_1.default([new (selector_1.default)([new element_1.default('', '&')])], rules, rs.strictImports, rs.visibilityInfo()).eval(this.context);
     }
 };
 //# sourceMappingURL=list.js.map

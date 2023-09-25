@@ -89,5 +89,4 @@ function default_1(root, options) {
     return evaldRoot;
 }
 exports.default = default_1;
-;
 //# sourceMappingURL=transform-tree.js.map

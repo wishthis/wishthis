@@ -6,7 +6,6 @@ var throttle_1 = require("./throttle");
 var timer_1 = require("../observable/timer");
 function throttleTime(duration, scheduler, config) {
     if (scheduler === void 0) { scheduler = async_1.asyncScheduler; }
-    if (config === void 0) { config = throttle_1.defaultThrottleConfig; }
     var duration$ = timer_1.timer(duration, scheduler);
     return throttle_1.throttle(function () { return duration$; }, config);
 }

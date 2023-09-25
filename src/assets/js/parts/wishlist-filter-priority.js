@@ -11,10 +11,10 @@ $(function () {
     .api({
         'action'     : 'get wishlists by priority',
         'beforeSend' : function (settings) {
-            var wishlist_id = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+            var wishlistId = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
 
-            if (undefined === wishthis.$_GET.id && wishlist_id.length > 0) {
-                wishthis.$_GET.id = wishlist_id;
+            if (undefined === wishthis.$_GET.id && undefined !== wishlistId && wishlistId.length > 0) {
+                wishthis.$_GET.id = wishlistId;
             }
 
             settings.urlData.style      = $('input[name="style"]').val();

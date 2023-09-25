@@ -18,7 +18,7 @@ var AbstractFileManager = /** @class */ (function () {
         return filename.slice(0, j + 1);
     };
     AbstractFileManager.prototype.tryAppendExtension = function (path, ext) {
-        return /(\.[a-z]*$)|([\?;].*)$/.test(path) ? path : path + ext;
+        return /(\.[a-z]*$)|([?;].*)$/.test(path) ? path : path + ext;
     };
     AbstractFileManager.prototype.tryAppendLessExtension = function (path) {
         return this.tryAppendExtension(path, '.less');
@@ -67,14 +67,20 @@ var AbstractFileManager = /** @class */ (function () {
         }
         return diff;
     };
-    // helper function, not part of API
+    /**
+     * Helper function, not part of API.
+     * This should be replaceable by newer Node / Browser APIs
+     *
+     * @param {string} url
+     * @param {string} baseUrl
+     */
     AbstractFileManager.prototype.extractUrlParts = function (url, baseUrl) {
         // urlParts[1] = protocol://hostname/ OR /
         // urlParts[2] = / if path relative to host base
         // urlParts[3] = directories
         // urlParts[4] = filename
         // urlParts[5] = parameters
-        var urlPartsRegex = /^((?:[a-z-]+:)?\/{2}(?:[^\/\?#]*\/)|([\/\\]))?((?:[^\/\\\?#]*[\/\\])*)([^\/\\\?#]*)([#\?].*)?$/i;
+        var urlPartsRegex = /^((?:[a-z-]+:)?\/{2}(?:[^/?#]*\/)|([/\\]))?((?:[^/\\?#]*[/\\])*)([^/\\?#]*)([#?].*)?$/i;
         var urlParts = url.match(urlPartsRegex);
         var returner = {};
         var rawDirectories = [];

@@ -118,10 +118,49 @@ $page->navigation();
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/70" target="_blank">#70</a>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('After creating an account your language is automatically set to your browser\'s (if it is available), instead of defaulting to en_GB.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Amazon links are now automatically converted to affiliate links to help support wishthis financially.');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Added */
+                                        echo __('Prerequisite check during installation');
+                                    ?>
+                                </li>
                             </ul>
 
                             <h3 class="ui header"><?= __('Fixed') ?></h3>
                             <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('RewriteRules which caused HTTP 404 errors');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/93" target="_blank">#93</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Switching to wish "product" tab breaks view');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/83" target="_blank">#83</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Special characters not being displayed properly');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/80" target="_blank">#80</a>
+                                </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
@@ -133,6 +172,22 @@ $page->navigation();
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Fulfilled wishes disappearing for wishlist owners');
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Deprecated notices on PHP 8.2');
+                                    ?>
+                                </li>
+                            </ul>
+
+                            <h3 class="ui header"><?= __('Changed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Changed */
+                                        echo  __('Added button labels for mobile devices');
                                     ?>
                                 </li>
                             </ul>
@@ -198,7 +253,7 @@ $page->navigation();
                             <ul>
                                 <li>
                                     <?php
-                                        /** TRANSLATORS: Changelog: Fixed */
+                                        /** TRANSLATORS: Changelog: Changed */
                                         echo  __('Decreased wish height on mobile devices');
                                     ?>
                                 </li>

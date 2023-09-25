@@ -23,7 +23,7 @@ Attribute.prototype = Object.assign(new node_1.default(), {
             value += (this.value.toCSS ? this.value.toCSS(context) : this.value);
         }
         if (this.cif) {
-            value = value + " " + this.cif;
+            value = value + ' ' + this.cif;
         }
         return "[" + value + "]";
     }

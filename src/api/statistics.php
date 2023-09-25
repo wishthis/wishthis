@@ -15,6 +15,8 @@ if (!isset($page)) {
     die('Direct access to this location is not allowed.');
 }
 
+$user = User::getCurrent();
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['table'])) {
@@ -41,12 +43,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                     /** Get last modified */
                     $user_time_zome = new \IntlDateFormatter(
-                        $_SESSION['user']->getLocale()
+                        $user->getLocale()
                     );
                     $user_time_zome = $user_time_zome->getTimeZoneId();
 
                     $datetimeFormatter            = new \IntlDateFormatter(
-                        $_SESSION['user']->getLocale(),
+                        $user->getLocale(),
                         \IntlDateFormatter::RELATIVE_FULL,
                         \IntlDateFormatter::SHORT,
                         $user_time_zome

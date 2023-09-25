@@ -9,7 +9,7 @@ var copyFromOriginal = function copyFromOriginal(original, destination, properti
         return;
     }
     for (var i = 0; i < propertiesToCopy.length; i++) {
-        if (original.hasOwnProperty(propertiesToCopy[i])) {
+        if (Object.prototype.hasOwnProperty.call(original, propertiesToCopy[i])) {
             destination[propertiesToCopy[i]] = original[propertiesToCopy[i]];
         }
     }

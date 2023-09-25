@@ -10,54 +10,102 @@ namespace wishthis;
 
 class Wishlist
 {
+    public static function getFromId(int $id): self|false
+    {
+        global $database;
+
+        $wishlistQuery = $database->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `wishlists`.`id` = :wishlist_id',
+            array(
+                'wishlist_id' => $id,
+            )
+        );
+
+        if (false === $wishlistQuery) {
+            return false;
+        }
+
+        $wishlistData = $wishlistQuery->fetch();
+        $wishlist     = new Wishlist($wishlistData);
+
+        return $wishlist;
+    }
+
+    public static function getFromHash(string $hash): self|false
+    {
+        global $database;
+
+        $wishlistQuery = $database->query(
+            'SELECT *
+               FROM `wishlists`
+              WHERE `wishlists`.`hash` = :wishlist_hash',
+            array(
+                'wishlist_hash' => $hash,
+            )
+        );
+
+        $wishlistData = $wishlistQuery->fetch();
+
+        if (false === $wishlistData) {
+            return false;
+        }
+
+        $wishlist = new Wishlist($wishlistData);
+
+        return $wishlist;
+    }
+
+    /**
+     * The unique wishlist id.
+     *
+     * @var int
+     */
+    private int $id;
+
+    /**
+     * The user id this wishlist belongs to.
+     *
+     * TODO: rename this to user_id (the database column too).
+     *
+     * @var int
+     */
+    private int $user;
+
+    /**
+     * The wishlist name.
+     *
+     * @var string
+     */
+    private string $name;
+
+    /**
+     * The unique wishlist hash.
+     *
+     * @var string
+     */
+    private string $hash;
+
+    /**
+     * A unix timestamp of when the last notification was sent to the wishlist
+     * owner.
+     *
+     * @var int
+     */
+    private int $notification_sent;
+
     public array $wishes = array();
 
     public bool $exists = false;
 
-    public function __construct(int|string $id_or_hash)
+    public function __construct(array $wishlist_data)
     {
-        global $database;
-
-        $column;
-
-        if (is_numeric($id_or_hash)) {
-            $column = 'id';
-        } elseif (is_string($id_or_hash)) {
-            $column = 'hash';
-        }
-
-        /**
-         * Get Wishlist
-         */
-        $columns = $database
-        ->query(
-            'SELECT *
-               FROM `wishlists`
-              WHERE `' . $column . '` = :id_or_hash;',
-            array(
-                'id_or_hash' => $id_or_hash,
-            )
-        )
-        ->fetch();
-
-        if ($columns) {
-            $this->exists = true;
-
-            foreach ($columns as $key => $value) {
-                if ('string' === gettype($value)) {
-                    $this->$key = Sanitiser::render($value);
-                } else {
-                    $this->$key = $value;
-                }
-            }
-        } else {
-            return;
-        }
-
-        /**
-         * Get Wishes
-         */
-        // $this->wishes = $this->getWishes();
+        $this->id                = $wishlist_data['id'];
+        $this->user              = $wishlist_data['user'];
+        $this->name              = $wishlist_data['name'];
+        $this->hash              = $wishlist_data['hash'];
+        $this->notification_sent = $wishlist_data['notification_sent'] ? \strtotime($wishlist_data['notification_sent']) : 0;
     }
 
     public function getWishes(array $options = array('placeholders' => array())): array
@@ -84,12 +132,14 @@ class Wishlist
             )
         )';
 
-        if ($_SESSION['user']->isLoggedIn()) {
+        $user = User::getCurrent();
+
+        if ($user->isLoggedIn()) {
             $wishlist_ids = array_map(
                 function ($wishlist_data) {
                     return intval($wishlist_data['id']);
                 },
-                $_SESSION['user']->getWishlists()
+                $user->getWishlists()
             );
 
             /** Show all wishes (except fulfilled) */
@@ -189,10 +239,35 @@ class Wishlist
     {
         $title = __('Wishlist not found');
 
-        if ($this->exists) {
+        if ($this->name) {
             $title = $this->name;
         }
 
         return $title;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->user;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getHash(): string
+    {
+        return $this->hash;
+    }
+
+    public function getNotificationSent(): int
+    {
+        return $this->notification_sent;
     }
 }

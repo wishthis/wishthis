@@ -1,13 +1,9 @@
 import { operate } from '../util/lift';
 import { createOperatorSubscriber } from './OperatorSubscriber';
 import { innerFrom } from '../observable/innerFrom';
-export const defaultThrottleConfig = {
-    leading: true,
-    trailing: false,
-};
-export function throttle(durationSelector, config = defaultThrottleConfig) {
+export function throttle(durationSelector, config) {
     return operate((source, subscriber) => {
-        const { leading, trailing } = config;
+        const { leading = true, trailing = false } = config !== null && config !== void 0 ? config : {};
         let hasValue = false;
         let sendValue = null;
         let throttled = null;

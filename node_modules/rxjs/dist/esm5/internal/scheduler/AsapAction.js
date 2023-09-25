@@ -26,7 +26,9 @@ var AsapAction = (function (_super) {
         var actions = scheduler.actions;
         if (id != null && ((_a = actions[actions.length - 1]) === null || _a === void 0 ? void 0 : _a.id) !== id) {
             immediateProvider.clearImmediate(id);
-            scheduler._scheduled = undefined;
+            if (scheduler._scheduled === id) {
+                scheduler._scheduled = undefined;
+            }
         }
         return undefined;
     };

@@ -28,7 +28,7 @@ define('ENV_IS_DEV', false);
 /**
  * Channels
  *
- * It's save to delete this if you are self-hosting. Alternatively you can
+ * It's safe to delete this if you are self-hosting. Alternatively you can
  * replace these branches and domains with your own.
  */
 define(

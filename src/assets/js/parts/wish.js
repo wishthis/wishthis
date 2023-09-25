@@ -53,7 +53,7 @@ $(function () {
         wish_details
         .modal({
             'onShow'    : function() {
-                var user_is_current = wishlist && wishlist.user === parseInt($('[name="user-id"]').val());
+                var user_is_current = wishlist && wishlist.userId === parseInt($('[name="user-id"]').val());
 
                 if (user_is_current) {
                     $('.ui.button.wish-fulfil').remove();
@@ -72,6 +72,10 @@ $(function () {
             'onHide' : function(modal) {
                 wish_unset();
             },
+            'onHidden' : function() {
+                $(this).modal('destroy');
+                $(this).remove();
+            }
         })
         .modal('show')
         .addClass(wish_details_size);
@@ -200,7 +204,7 @@ $(function () {
          * Initialise
          */
         /** Checkbox */
-        const checkbox_is_purchasable = wish_edit.find('.ui.checkbox.wish-is-purchasable');
+        var checkbox_is_purchasable = wish_edit.find('.ui.checkbox.wish-is-purchasable');
 
         checkbox_is_purchasable
         .checkbox({
@@ -224,13 +228,19 @@ $(function () {
         wish_edit
         .modal({
             'onApprove' : wishSave,
+            'onHidden'  : function() {
+                $(this).modal('destroy');
+                $(this).remove();
+            }
         })
         .modal('show')
         .addClass(wish_edit_size);
 
         /** Initialise Tabs */
         wish_edit.find('.item[data-tab]')
-        .tab();
+        .tab({
+            'context' : '.wishlist-wish-edit'
+        });
 
         /** General */
         var decoded_title       = $('<div>').html(wish_local.title).text();

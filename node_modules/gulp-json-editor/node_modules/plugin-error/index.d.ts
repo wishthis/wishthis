@@ -5,25 +5,36 @@ declare namespace PluginError {
      * @param error Base error
      * @param options Error options
      */
-    new <E extends Error>(plugin: string, error: E, options?: Options): PluginError<E>;
+    new <E extends Error>(
+      plugin: string,
+      error: E,
+      options?: Options
+    ): PluginError<E>;
 
     /**
      * @param plugin Plugin name
      * @param error Base error or error message
      * @param options Error options
      */
-    new <E extends Error = Error>(plugin: string, error: E | string, options: Options): PluginError<E | {[K in keyof E]: undefined}>;
+    new <E extends Error = Error>(
+      plugin: string,
+      error: E | string,
+      options: Options
+    ): PluginError<E | { [K in keyof E]: undefined }>;
 
     /**
      * @param plugin Plugin name
      * @param error Base error, error message, or options with message
      */
-    new <E extends Error = Error>(plugin: string, error: E | string | (Options & {message: string})): PluginError<E | {[K in keyof E]: undefined}>;
+    new <E extends Error = Error>(
+      plugin: string,
+      error: E | string | (Options & { message: string })
+    ): PluginError<E | { [K in keyof E]: undefined }>;
 
     /**
      * @param options Options with plugin name and message
      */
-    new(options: Options & {plugin: string, message: string}): PluginError;
+    new (options: Options & { plugin: string; message: string }): PluginError;
   }
 
   interface Options {
@@ -41,7 +52,6 @@ declare namespace PluginError {
      * File name where the error occurred
      */
     fileName?: string;
-
 
     /**
      * Line number where the error occurred

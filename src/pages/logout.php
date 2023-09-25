@@ -9,8 +9,8 @@
 namespace wishthis;
 
 $page = new Page(__FILE__, __('Logout'));
-
-$_SESSION['user']->logOut();
+$user = User::getCurrent();
+$user->logOut();
 
 $page->header();
 $page->bodyStart();
