@@ -432,7 +432,7 @@ class User
         if (isset($_COOKIE[COOKIE_PERSISTENT])) {
             global $database;
 
-            $persistent = $database
+            $database
             ->query(
                 'DELETE FROM `sessions`
                        WHERE `session` = :session;',
