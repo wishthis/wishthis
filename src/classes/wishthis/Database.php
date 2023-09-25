@@ -28,6 +28,10 @@ class Database
         public string $user,
         public string $password,
     ) {
+    }
+
+    public function connect(): void
+    {
         $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8';
         $options = array('placeholders' => array());
 

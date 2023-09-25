@@ -256,6 +256,7 @@ switch ($step) {
             $_SESSION['DATABASE_USER'],
             $_SESSION['DATABASE_PASSWORD']
         );
+        $database->connect();
         unset($_SESSION);
 
         $database->query('SET foreign_key_checks = 0;');

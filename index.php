@@ -72,6 +72,7 @@ if (
         DATABASE_USER,
         DATABASE_PASSWORD
     );
+    $database->connect();
 
     /**
      * Options
