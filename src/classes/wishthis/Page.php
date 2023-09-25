@@ -141,6 +141,11 @@ class Page
         $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
         $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
+        $timeAnHourAgo = time() - 3600;
+        $timezone      = date('T', $timeAnHourAgo);
+        $expires       = date('D, d M Y H:i:s', $timeAnHourAgo) . ' ' . $timezone;
+        header('Expires: ' . $expires);
+
         /**
          * Install
          */
