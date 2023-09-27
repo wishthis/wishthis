@@ -107,7 +107,7 @@ class URL
             if (count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
-                        $rewriteRule = \substr($parts[1], 1);
+                        $rewriteRule = $parts[1];
                         $target      = $parts[2];
 
                         $regex = str_replace('/', '\/', $rewriteRule);
