@@ -2,7 +2,7 @@ $(function() {
     /**
      * Statistics
      */
-    fetch('/api/statistics/all', {
+    fetch('/index.php?page=api&module=statistics&table=all', {
         method: 'GET'
     })
     .then(handleFetchError)
@@ -56,7 +56,7 @@ $(function() {
     /**
      * News
      */
-    fetch('/api/blog', {
+    fetch('/index.php?page=api&module=blog', {
         method: 'GET'
     })
     .then(handleFetchError)

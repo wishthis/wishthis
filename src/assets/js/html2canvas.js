@@ -20,7 +20,7 @@ window.addEventListener("load", (event) => {
         data.append('page', wishthis.$_GET.page);
 
         /** Save page preview */
-        fetch('/api/save-preview', {
+        fetch('/index.php?page=api&module=save-preview', {
             method : 'POST',
             body   : data
         })
