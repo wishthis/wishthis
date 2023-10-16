@@ -1,26 +1,314 @@
 # 
 # Translators:
-# Jay Trees, 2022
+# Jay Trees, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-06-09 12:25+0200\n"
-"PO-Revision-Date: 2022-03-23 12:47+0000\n"
-"Last-Translator: Jay Trees, 2022\n"
-"Language-Team: Estonian (Estonia) (https://www.transifex.com/wishthis/teams/134148/et_EE/)\n"
+"POT-Creation-Date: 2023-09-25 13:23+0200\n"
+"PO-Revision-Date: 2023-09-25 11:41+0000\n"
+"Last-Translator: Jay Trees, 2023\n"
+"Language-Team: Estonian (Estonia) (https://app.transifex.com/wishthis/teams/134148/et_EE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: et_EE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:116 pages/home.php:26
+#: api/blog.php:39
+#, php-format
+msgid "Posted on %s"
+msgstr "Posted on %s"
+
+#: api/wishlists.php:71
+msgid "Wish request"
+msgstr "Wish request"
+
+#: api/wishlists.php:72 pages/login.php:71
+msgid "Hello,"
+msgstr "Tere,"
+
+#. TRANSLATORS: %s: Wishlist name
+#: api/wishlists.php:77
+#, php-format
+msgid "somebody has requested that you add more wishes to your wishlist %s."
+msgstr "Keegi on palunud, et te lisaksite oma wishlist %s rohkem soove. ."
+
+#: api/wishlists.php:81
+msgid "Add wish"
+msgstr "Lisa soov"
+
+#: assets/js/inline.js.php:34 assets/js/inline.js.php:122
+#: pages/login-as.php:62
+msgid "Error"
+msgstr "Viga"
+
+#: assets/js/inline.js.php:35
+msgid "Something went wrong, that's all I know."
+msgstr "Midagi läks valesti, see on kõik, mida ma tean."
+
+#: assets/js/inline.js.php:36
+msgid "Thanks for nothing"
+msgstr "Tänud mitte millegi eest"
+
+#: assets/js/inline.js.php:39
+msgid "Unexpected output"
+msgstr "Ootamatu väljund"
+
+#: assets/js/inline.js.php:41
+msgid ""
+"Your request likely succeeded but the server did not confirm that the action"
+" was successful."
+msgstr ""
+"Teie taotlus tõenäoliselt õnnestus, kuid server ei kinnitanud, et tegevus "
+"oli edukas."
+
+#: assets/js/inline.js.php:42
+msgid ""
+"For nerds: The API returned HTTP 200, there was no (error) output, yet the "
+"response is still not as expected."
+msgstr ""
+"Nohikutele: API tagastas HTTP 200, (viga)väljundit ei olnud, kuid vastus ei "
+"ole ikka veel ootuspärane."
+
+#: assets/js/inline.js.php:43
+msgid "In any case, please report this."
+msgstr "Igal juhul palun teatage sellest."
+
+#: assets/js/inline.js.php:45
+msgid "Ok then"
+msgstr "Okei, siis"
+
+#: assets/js/inline.js.php:48 pages/install.php:401 pages/login-as.php:60
+#: pages/profile/profile-handle-post-password.php:32
+#: pages/profile/profile-handle-post-personal.php:34
+#: pages/profile/profile-handle-post-personal.php:64
+#: pages/profile/profile-handle-post-personal.php:94
+#: pages/profile/profile-handle-post-personal.php:124
+#: pages/profile/profile-handle-post-preferences.php:41
+#: pages/profile/profile-handle-post-preferences.php:78
+#: pages/profile/profile-handle-post-preferences.php:116
+#: pages/profile/profile-handle-post-preferences.php:135
+#: pages/profile/profile-handle-post-preferences.php:164
+#: pages/register.php:166
+msgid "Success"
+msgstr "Edu"
+
+#: assets/js/inline.js.php:53
+msgid "Close this tab"
+msgstr "Sulge see vahekaart"
+
+#: assets/js/inline.js.php:54
+msgid "Show wishlist anyway"
+msgstr "Näita soovinimekirja niikuinii"
+
+#: assets/js/inline.js.php:57 assets/js/inline.js.php:66
+msgid "Really delete?"
+msgstr "Tõesti kustutada?"
+
+#: assets/js/inline.js.php:58
+#, php-format
+msgid "Do you really want to delete the wishlist %s?"
+msgstr "Kas sa tõesti tahad kustutada soovide nimekirja %s?"
+
+#: assets/js/inline.js.php:59 assets/js/inline.js.php:68
+msgid "Yes, delete"
+msgstr "Jah, kustutada"
+
+#: assets/js/inline.js.php:60 assets/js/inline.js.php:69
+msgid "No, keep"
+msgstr "Ei, hoia"
+
+#: assets/js/inline.js.php:67
+msgid "Would you really like to delete to this wish? It will be gone forever."
+msgstr "Kas sa tõesti soovid selle soovi kustutada? See kaob igaveseks."
+
+#: assets/js/inline.js.php:76
+msgid "Passwords must match."
+msgstr "Paroolid peavad vastama."
+
+#: assets/js/inline.js.php:79
+msgid "{name} must have a value"
+msgstr "{name} peab olema väärtus"
+
+#: assets/js/inline.js.php:80
+msgid "{name} must be checked"
+msgstr "{name} tuleb kontrollida"
+
+#: assets/js/inline.js.php:81
+msgid "{name} must be a valid e-mail"
+msgstr "{name} peab olema kehtiv e-posti aadress"
+
+#: assets/js/inline.js.php:82
+msgid "{name} must be a valid URL"
+msgstr "{name} peab olema kehtiv URL"
+
+#: assets/js/inline.js.php:83
+msgid "{name} is not formatted correctly"
+msgstr "{name} ei ole õigesti vormistatud."
+
+#: assets/js/inline.js.php:84
+msgid "{name} must be an integer"
+msgstr "{name} peab olema täisarv"
+
+#: assets/js/inline.js.php:85
+msgid "{name} must be a decimal number"
+msgstr "{name} peab olema kümnendarv."
+
+#: assets/js/inline.js.php:86
+msgid "{name} must be set to a number"
+msgstr "{name} peab olema seatud numbriks."
+
+#: assets/js/inline.js.php:87
+msgid "{name} must be \"{ruleValue}\""
+msgstr "{name} peab olema \"{ruleValue}\""
+
+#: assets/js/inline.js.php:88
+msgid "{name} must be exactly \"{ruleValue}\""
+msgstr "{name} peab olema täpselt \"{ruleValue}\""
+
+#: assets/js/inline.js.php:89
+msgid "{name} cannot be set to \"{ruleValue}\""
+msgstr "{name} ei saa määrata \"{ruleValue}\""
+
+#: assets/js/inline.js.php:90
+msgid "{name} cannot be set to exactly \"{ruleValue}\""
+msgstr "{name} ei saa määrata täpselt \"{ruleValue}\""
+
+#: assets/js/inline.js.php:91
+msgid "{name} cannot contain \"{ruleValue}\""
+msgstr "{name} ei saa sisaldada \"{ruleValue}\""
+
+#: assets/js/inline.js.php:92
+msgid "{name} cannot contain exactly \"{ruleValue}\""
+msgstr "{name} ei saa sisaldada täpselt \"{ruleValue}\""
+
+#: assets/js/inline.js.php:93
+msgid "{name} must contain \"{ruleValue}\""
+msgstr "{name} peab sisaldama \"{ruleValue}\""
+
+#: assets/js/inline.js.php:94
+msgid "{name} must contain exactly \"{ruleValue}\""
+msgstr "{name} peab sisaldama täpselt \"{ruleValue}\"."
+
+#: assets/js/inline.js.php:95 assets/js/inline.js.php:96
+msgid "{name} must be at least {ruleValue} characters"
+msgstr "{name} peab olema vähemalt {ruleValue} tähemärki."
+
+#: assets/js/inline.js.php:97
+msgid "{name} must be exactly {ruleValue} characters"
+msgstr "{name} peab olema täpselt {ruleValue} tähemärki."
+
+#: assets/js/inline.js.php:98
+msgid "{name} cannot be longer than {ruleValue} characters"
+msgstr "{name} ei tohi olla pikem kui {ruleValue} tähemärki."
+
+#: assets/js/inline.js.php:99
+msgid "{name} must match {ruleValue} field"
+msgstr "{name} peab vastama {ruleValue} väljale."
+
+#: assets/js/inline.js.php:100
+msgid "{name} must have a different value than {ruleValue} field"
+msgstr "{name} peab omama teistsugust väärtust kui {ruleValue} väli"
+
+#: assets/js/inline.js.php:101
+msgid "{name} must be a valid credit card number"
+msgstr "{name} peab olema kehtiv krediitkaardi number."
+
+#: assets/js/inline.js.php:102
+msgid "{name} must have at least {ruleValue} choices"
+msgstr "{name} peab olema vähemalt {ruleValue} valikuvõimalusi."
+
+#: assets/js/inline.js.php:103
+msgid "{name} must have exactly {ruleValue} choices"
+msgstr "{name} peab olema täpselt {ruleValue} valikuvõimalus."
+
+#: assets/js/inline.js.php:104
+msgid "{name} must have {ruleValue} or less choices"
+msgstr "{name} peab olema {ruleValue} või vähem valikuid"
+
+#: assets/js/inline.js.php:110
+msgid "Wishlist successfully renamed."
+msgstr "Soovide nimekiri edukalt ümbernimetatud."
+
+#: assets/js/inline.js.php:111
+msgid "Wishlist successfully deleted."
+msgstr "Soovide nimekiri edukalt kustutatud."
+
+#: assets/js/inline.js.php:115
+msgid "Wish successfully created."
+msgstr "Soov edukalt loodud."
+
+#: assets/js/inline.js.php:116
+msgid "Wish information updated."
+msgstr "Soovide andmed on ajakohastatud."
+
+#: assets/js/inline.js.php:117
+msgid "Wish successfully deleted."
+msgstr "Soov edukalt kustutatud."
+
+#: assets/js/inline.js.php:123
+msgid "Unable to copy to clipboard. There is likely a permission issue."
+msgstr ""
+"Ei saa kopeerida lõikelauale. Tõenäoliselt on tegemist õiguste probleemiga."
+
+#: assets/js/inline.js.php:126
+msgid "Link copied to clipboard."
+msgstr "Link kopeeritud lõikelauale."
+
+#: assets/js/inline.js.php:132
+msgctxt "Calendar"
+msgid "Today"
+msgstr "Täna"
+
+#: assets/js/inline.js.php:133
+msgctxt "Calendar"
+msgid "Now"
+msgstr "Nüüd"
+
+#: assets/js/inline.js.php:134
+msgctxt "Calendar"
+msgid "AM"
+msgstr "AM"
+
+#: assets/js/inline.js.php:135
+msgctxt "Calendar"
+msgid "PM"
+msgstr "PM"
+
+#: assets/js/inline.js.php:136
+msgctxt "Calendar"
+msgid "Week"
+msgstr "Nädal"
+
+#: assets/js/inline.js.php:141 pages/wishlist.php:42
+msgid "Remember list"
+msgstr "Pidage meeles nimekirja"
+
+#: assets/js/inline.js.php:142
+msgid "Forget list"
+msgstr "Unustage nimekiri"
+
+#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
+msgid "Empty"
+msgstr "Tühi"
+
+#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
+msgid "This wishlist seems to be empty."
+msgstr "See wishlist näib olevat tühi."
+
+#: assets/js/inline.js.php:156
+msgid "Last modified"
+msgstr "Viimati muudetud"
+
+#: classes/wishthis/Page.php:141 pages/home.php:28
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
@@ -28,500 +316,714 @@ msgstr ""
 "wishthis on lihtne, intuitiivne ja kaasaegne soovinimekirja platvorm, et "
 "luua, hallata ja vaadata oma soove mis tahes puhuks."
 
-#: classes/page.php:194
-msgid ""
-"This is the development environment of wishthis. The database will reset "
-"every day at around 00:00."
+#: classes/wishthis/Page.php:277
+msgid "Your device is set to reduce data, some content has been disabled."
 msgstr ""
-"See on wishthise arenduskeskkond. Andmebaas lähtestatakse iga päev umbes "
-"kell 00:00."
+"Teie seade on seadistatud andmete vähendamiseks, osa sisust on keelatud."
 
-#: classes/page.php:195
-msgid "Development environment"
-msgstr "Arenduskeskkond"
+#: classes/wishthis/Page.php:278
+msgid "Reducing data"
+msgstr "Andmete vähendamine"
 
-#: classes/page.php:318
-msgid "No wishlist selected."
-msgstr "Soovide nimekiri ei ole valitud."
+#: classes/wishthis/Page.php:418 pages/home.php:26
+msgid "Make a wish"
+msgstr "Tee soov"
 
-#: classes/page.php:320 classes/page.php:350 pages/login-as.php:40
-msgid "Error"
-msgstr "Viga"
-
-#: classes/page.php:321 pages/register.php:83 pages/register.php:86
-msgid "Failure"
-msgstr "Ebaõnnestumine"
-
-#: classes/page.php:322
-msgid "The server did not confirm that the action was successful."
-msgstr "Server ei kinnitanud, et tegevus oli edukas."
-
-#: classes/page.php:323
-msgid "Thanks for nothing"
-msgstr "Tänud mitte millegi eest"
-
-#: classes/page.php:324
-msgid "Understood"
-msgstr "Arusaadav"
-
-#: classes/page.php:325 pages/install.php:229 pages/login-as.php:38
-#: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
-#: pages/wish.php:37
-msgid "Success"
-msgstr "Edu"
-
-#: classes/page.php:327
-msgid "Close this tab"
-msgstr "Sulge see vahekaart"
-
-#: classes/page.php:328
-msgid "Show wishlist anyway"
-msgstr "Näita soovinimekirja niikuinii"
-
-#: classes/page.php:329 classes/page.php:334
-msgid "Really delete?"
-msgstr "Tõesti kustutada?"
-
-#: classes/page.php:330
-#, php-format
-msgid "Do you really want to delete the wishlist %s?"
-msgstr "Kas sa tõesti tahad kustutada soovide nimekirja %s?"
-
-#: classes/page.php:331 classes/page.php:336
-msgid "Yes, delete"
-msgstr "Jah, kustutada"
-
-#: classes/page.php:332 classes/page.php:337
-msgid "No, keep"
-msgstr "Ei, hoia"
-
-#: classes/page.php:335
-msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "Kas sa tõesti soovid selle soovi kustutada? See kaob igaveseks."
-
-#: classes/page.php:339
-msgid "Passwords must match."
-msgstr "Paroolid peavad vastama."
-
-#: classes/page.php:341
-msgid "Wishlist successfully renamed."
-msgstr "Soovide nimekiri edukalt ümbernimetatud."
-
-#: classes/page.php:342
-msgid "Wishlist successfully deleted."
-msgstr "Soovide nimekiri edukalt kustutatud."
-
-#: classes/page.php:344
-msgid "Wish successfully created."
-msgstr "Soov edukalt loodud."
-
-#: classes/page.php:345
-msgid "Wish successfully added."
-msgstr "Soov edukalt lisatud."
-
-#: classes/page.php:346
-msgid "Wish information updated."
-msgstr "Soovide andmed on ajakohastatud."
-
-#: classes/page.php:347
-msgid "Don't forget to save your changes."
-msgstr "Ärge unustage oma muudatusi salvestada."
-
-#: classes/page.php:348
-msgid "Wish successfully deleted."
-msgstr "Soov edukalt kustutatud."
-
-#: classes/page.php:351
-msgid "Unable to copy to clipboard. There is likely a permission issue."
-msgstr ""
-"Ei saa kopeerida lõikelauale. Tõenäoliselt on tegemist õiguste probleemiga."
-
-#: classes/page.php:352
-msgid "Link copied to clipboard."
-msgstr "Link kopeeritud lõikelauale."
-
-#: classes/page.php:354
-msgid "{name} must have a value"
-msgstr "{name} peab olema väärtus"
-
-#: classes/page.php:355
-msgid "{name} must be checked"
-msgstr "{name} tuleb kontrollida"
-
-#: classes/page.php:356
-msgid "{name} must be a valid e-mail"
-msgstr "{name} peab olema kehtiv e-posti aadress"
-
-#: classes/page.php:357
-msgid "{name} must be a valid URL"
-msgstr "{name} peab olema kehtiv URL"
-
-#: classes/page.php:358
-msgid "{name} is not formatted correctly"
-msgstr "{name} ei ole õigesti vormistatud."
-
-#: classes/page.php:359
-msgid "{name} must be an integer"
-msgstr "{name} peab olema täisarv"
-
-#: classes/page.php:360
-msgid "{name} must be a decimal number"
-msgstr "{name} peab olema kümnendarv."
-
-#: classes/page.php:361
-msgid "{name} must be set to a number"
-msgstr "{name} peab olema seatud numbriks."
-
-#: classes/page.php:362
-msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} peab olema \"{ruleValue}\""
-
-#: classes/page.php:363
-msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} peab olema täpselt \"{ruleValue}\""
-
-#: classes/page.php:364
-msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} ei saa määrata \"{ruleValue}\""
-
-#: classes/page.php:365
-msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} ei saa määrata täpselt \"{ruleValue}\""
-
-#: classes/page.php:366
-msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} ei saa sisaldada \"{ruleValue}\""
-
-#: classes/page.php:367
-msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} ei saa sisaldada täpselt \"{ruleValue}\""
-
-#: classes/page.php:368
-msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} peab sisaldama \"{ruleValue}\""
-
-#: classes/page.php:369
-msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} peab sisaldama täpselt \"{ruleValue}\"."
-
-#: classes/page.php:370 classes/page.php:371
-msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} peab olema vähemalt {ruleValue} tähemärki."
-
-#: classes/page.php:372
-msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} peab olema täpselt {ruleValue} tähemärki."
-
-#: classes/page.php:373
-msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} ei tohi olla pikem kui {ruleValue} tähemärki."
-
-#: classes/page.php:374
-msgid "{name} must match {ruleValue} field"
-msgstr "{name} peab vastama {ruleValue} väljale."
-
-#: classes/page.php:375
-msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} peab omama teistsugust väärtust kui {ruleValue} väli"
-
-#: classes/page.php:376
-msgid "{name} must be a valid credit card number"
-msgstr "{name} peab olema kehtiv krediitkaardi number."
-
-#: classes/page.php:377
-msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} peab olema vähemalt {ruleValue} valikuvõimalusi."
-
-#: classes/page.php:378
-msgid "{name} must have exactly {ruleValue} choices"
-msgstr "{name} peab olema täpselt {ruleValue} valikuvõimalus."
-
-#: classes/page.php:379
-msgid "{name} must have {ruleValue} or less choices"
-msgstr "{name} peab olema {ruleValue} või vähem valikuid"
-
-#: classes/page.php:381
-msgctxt "Calendar"
-msgid "Today"
-msgstr "Täna"
-
-#: classes/page.php:382
-msgctxt "Calendar"
-msgid "Now"
-msgstr "Nüüd"
-
-#: classes/page.php:383
-msgctxt "Calendar"
-msgid "AM"
-msgstr "AM"
-
-#: classes/page.php:384
-msgctxt "Calendar"
-msgid "PM"
-msgstr "PM"
-
-#: classes/page.php:385
-msgctxt "Calendar"
-msgid "Week"
-msgstr "Nädal"
-
-#: classes/page.php:387 pages/profile.php:209 pages/profile.php:210
-#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:336
-#: pages/profile.php:337 pages/settings.php:53 pages/settings.php:54
-#: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
-msgid "Save"
-msgstr "Salvesta"
-
-#: classes/page.php:388
-msgid "Saved"
-msgstr "Salvestatud"
-
-#: classes/page.php:457 classes/page.php:461 pages/blog.php:11
-#: pages/changelog.php:41
+#. TRANSLATORS: Changelog: Added
+#: classes/wishthis/Page.php:444 classes/wishthis/Page.php:448
+#: pages/blog.php:11 pages/changelog.php:444 pages/post.php:62
 msgid "Blog"
 msgstr "Blogi"
 
-#: classes/page.php:468
+#: classes/wishthis/Page.php:455
 msgid "System"
 msgstr "Süsteem"
 
-#: classes/page.php:474
+#: classes/wishthis/Page.php:461 pages/profile/profile.php:43
+#: pages/profile/profile.php:387
 msgid "Account"
 msgstr "Konto"
 
-#: classes/page.php:483 pages/home.php:105
+#: classes/wishthis/Page.php:470 pages/home.php:218
 msgid "Wishlists"
 msgstr "Soovide nimekirjad"
 
-#: classes/page.php:487 pages/home.php:33 pages/home.php:35
+#: classes/wishthis/Page.php:474 pages/home.php:35 pages/home.php:37
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "Minu nimekirjad"
 
-#: classes/page.php:492 pages/wishlists-saved.php:11
-msgid "Saved lists"
-msgstr "Salvestatud nimekirjad"
+#: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
+msgid "Remembered lists"
+msgstr "Remembered loetleb"
 
-#: classes/page.php:502 pages/profile.php:11
+#: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
 msgstr "Profiil"
 
-#: classes/page.php:508 pages/login-as.php:11
+#: classes/wishthis/Page.php:495 pages/login-as.php:11
 msgid "Login as"
 msgstr "Logi sisse kui"
 
-#: classes/page.php:514 pages/logout.php:11
+#: classes/wishthis/Page.php:501 pages/logout.php:11
 msgid "Logout"
 msgstr "Väljalogimine"
 
-#: classes/page.php:520 classes/page.php:524 pages/home.php:50
-#: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
-#: pages/login.php:11 pages/login.php:130 pages/login.php:131
-#: pages/register.php:229 pages/register.php:231
+#: classes/wishthis/Page.php:507 classes/wishthis/Page.php:511
+#: pages/home.php:84 pages/home.php:86 pages/login-as.php:81
+#: pages/login-as.php:82 pages/login.php:11 pages/login.php:145
+#: pages/login.php:146 pages/register.php:289 pages/register.php:291
 msgid "Login"
 msgstr "Logi sisse"
 
-#: classes/page.php:531 classes/page.php:535 pages/install.php:233
-#: pages/install.php:235 pages/login.php:135 pages/login.php:137
-#: pages/register.php:13 pages/register.php:14
+#: classes/wishthis/Page.php:518 classes/wishthis/Page.php:522
+#: pages/install.php:405 pages/install.php:407 pages/login.php:153
+#: pages/login.php:155 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registreeri"
 
-#: classes/page.php:545 pages/settings.php:11
+#: classes/wishthis/Page.php:532 pages/settings.php:11
 msgid "Settings"
 msgstr "Seaded"
 
-#: classes/page.php:558
-msgid "wishthis logo"
-msgstr "wishthis logo"
-
-#: classes/page.php:692 pages/changelog.php:11
+#: classes/wishthis/Page.php:669 classes/wishthis/Page.php:672
+#: pages/changelog.php:11
 msgid "Changelog"
 msgstr "Changelog"
 
-#: classes/page.php:698
+#: classes/wishthis/Page.php:678
 msgid "Contribute"
 msgstr "Panustage"
 
-#: classes/page.php:704 classes/page.php:707
-msgid "GitHub repository"
-msgstr "GitHubi repositoorium"
+#: classes/wishthis/Page.php:684 classes/wishthis/Page.php:687
+msgid "GitHub"
+msgstr "GitHub"
 
-#: classes/page.php:713 classes/page.php:716
-msgid "Translate"
-msgstr "Tõlgi"
+#: classes/wishthis/Page.php:693 classes/wishthis/Page.php:696
+msgid "Transifex"
+msgstr "Transifex"
 
-#: classes/page.php:752
+#: classes/wishthis/Page.php:702
+msgid "Contact"
+msgstr "Kontakt"
+
+#: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
+msgid "Matrix"
+msgstr "Maatriks"
+
+#: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
+msgid "Discord"
+msgstr "Discord"
+
+#: classes/wishthis/Page.php:741
+msgid "JavaScript is disabled"
+msgstr "JavaScript on välja lülitatud"
+
+#. TRANSLATORS: %s: the current year
+#: classes/wishthis/Page.php:750
+#, php-format
+msgid "Welcome to the year %s"
+msgstr "Tere tulemast aastasse %s"
+
+#: classes/wishthis/Page.php:757
+msgid ""
+"I get it, websites track your every move these days and companies keep "
+"coming up with more genius hacks to monetise you."
+msgstr ""
+"Ma saan aru, et veebilehed jälgivad tänapäeval iga sinu liigutust ja "
+"ettevõtted leiavad üha uusi geniaalseid häkke, et sind rahaks teha."
+
+#: classes/wishthis/Page.php:758
+msgid ""
+"But the good news is, wishthis aims to be different. It aims to be "
+"transparent and let the user stay in control. Unlike many companies just "
+"making claims about being secure and protecting your privacy, wishthis is "
+"entirely open source, allowing anybody to simply look up what it does and if"
+" they are okay with it. For people who aren't familiar with my tech stack "
+"and aren't able to lookup and understand the wishthis source code: \"trust "
+"me\"."
+msgstr ""
+"Kuid hea uudis on see, et wishthis soovib olla teistsugune. Selle eesmärk on"
+" olla läbipaistev ja lasta kasutajal säilitada kontroll. Erinevalt paljudest"
+" ettevõtetest, kes lihtsalt väidavad, et nad on turvalised ja kaitsevad teie"
+" privaatsust, on wishthis täielikult avatud lähtekoodiga, mis võimaldab "
+"kõigil lihtsalt vaadata, mida see teeb ja kas see on neile vastuvõetav. "
+"Inimeste jaoks, kes ei ole tuttav minu tehnoloogilise korstnaga ja ei suuda "
+"wishthise lähtekoodi üles otsida ja sellest aru saada: \"usaldage mind\"."
+
+#: classes/wishthis/Page.php:760
+msgid ""
+"I'm joking - please remain critical, especially for closed source and/or "
+"commercial software. At least you can ask somebody to validate the wishthis "
+"code for you! Do you have any questions? Message me! (see footer)"
+msgstr ""
+"Ma teen nalja - palun jääge kriitiliseks, eriti suletud lähtekoodiga ja/või "
+"kommertstarkvara puhul. Vähemalt võite paluda kedagi, et ta valideeriks teie"
+" eest wishthis koodi! Kas teil on küsimusi? Saatke mulle sõnum! (vt "
+"joonealust)"
+
+#: classes/wishthis/Page.php:762
+msgid "wishthis really needs JavaScript to work, please enable it."
+msgstr ""
+"wishthis vajab töötamiseks tõesti JavaScripti, palun lülitage see sisse."
+
+#: classes/wishthis/Page.php:767
+msgid "Reload page"
+msgstr "Laadige leht uuesti"
+
+#: classes/wishthis/Page.php:768 pages/parts/wishlist.php:291
+msgid "Close"
+msgstr "Sulge"
+
+#: classes/wishthis/Page.php:793
 #, php-format
 msgid "%s not found"
 msgstr "%s ei leitud"
 
-#: classes/page.php:762
+#: classes/wishthis/Page.php:803
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 "Taotletud soovinimekirja ei leitud ja selle looja on selle tõenäoliselt "
 "kustutanud."
 
-#: classes/page.php:766
+#: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
 msgstr "Soovitud soovi ei leitud."
 
-#: classes/page.php:770
+#: classes/wishthis/Page.php:811
 #, php-format
 msgid "The requested %s was not found."
 msgstr "Taotletud %s ei leitud."
 
-#: classes/wish.php:27
+#: classes/wishthis/Wish.php:34
 msgid "Unsure about it"
 msgstr "Ei ole selles kindel"
 
-#: classes/wish.php:31
+#: classes/wishthis/Wish.php:38
 msgid "Nice to have"
 msgstr "Tore, et on"
 
-#: classes/wish.php:35
+#: classes/wishthis/Wish.php:42
 msgid "Would love it"
 msgstr "See meeldiks"
 
-#: classes/wish.php:129
+#: classes/wishthis/Wish.php:224
 msgid "Wish temporarily fulfilled"
 msgstr "Soov ajutiselt täidetud"
 
-#: classes/wish.php:130
+#. TRANSLATORS: %s: Duration (e. g. 30 minutes)
+#: classes/wishthis/Wish.php:229
 #, php-format
 msgid ""
 "If this wish is a product, confirm the order was successful and mark it as "
 "fulfilled here. If you do not confirm this wish as fulfilled, it will become"
-" available again to others after %d minutes."
+" available again to others after %s."
 msgstr ""
 "Kui see soov on toode, kinnitage, et tellimus oli edukas, ja märkige see "
-"siin täidetuks. Kui te ei kinnita seda soovi täidetuks, muutub see teistele "
-"uuesti kättesaadavaks pärast %d minutit."
+"siin täidetuks. Kui te ei kinnita seda soovi täidetuks, muutub see pärast %s"
+" uuesti kättesaadavaks teistele."
 
-#: classes/wish.php:136
+#. TRANSLATORS: %d Amount of minutes
+#: classes/wishthis/Wish.php:232
+#, php-format
+msgid "%d minutes"
+msgstr "%d protokoll"
+
+#: classes/wishthis/Wish.php:243
 msgid "Confirm"
 msgstr "Kinnitage"
 
-#: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
-msgid "Fulfil wish"
-msgstr "Täita soov"
-
-#: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
-#: pages/wish.php:90
-msgid "Visit"
-msgstr "Külasta"
-
-#: classes/wish.php:203 classes/wish.php:206 pages/wishlists.php:32
-#: pages/wishlists.php:62 pages/wishlists.php:65
-msgid "Options"
-msgstr "Valikud"
-
-#: classes/wish.php:211
-msgid "Mark as fulfilled"
-msgstr "Märgista kui täidetud"
-
-#: classes/wish.php:216
-msgid "Edit"
-msgstr "Muuda"
-
-#: classes/wish.php:221 pages/wishlists.php:73 pages/wishlists.php:75
-msgid "Delete"
-msgstr "Kustuta"
-
-#: classes/wish.php:239
+#: classes/wishthis/Wish.php:292
 msgid "Wish not found"
 msgstr "Soov ei leitud"
 
-#: classes/wishlist.php:117
+#: classes/wishthis/Wish.php:403 pages/wishlist.php:73
+msgid "Details"
+msgstr "Üksikasjad"
+
+#: classes/wishthis/Wishlist.php:240
 msgid "Wishlist not found"
 msgstr "Soovide nimekirja ei leitud"
 
-#: config/config-sample.php:22 config/config.php:22
+#: config/config-sample.php:40 config/config.php:40
 msgid "Stable"
 msgstr "Stabiilne"
 
-#: config/config-sample.php:27 config/config.php:27
+#: config/config-sample.php:45 config/config.php:45
 msgid "Release candidate"
 msgstr "Vabastamiskandidaat"
 
-#: functions/getWishlistNameSuggestion.php:31
+#: functions/getWishlistNameSuggestion.php:32
 msgid "Birthday"
 msgstr "Sünnipäev"
 
-#: functions/getWishlistNameSuggestion.php:33
+#: functions/getWishlistNameSuggestion.php:34
 msgid "Easter"
 msgstr "Lihavõtted"
 
-#: functions/getWishlistNameSuggestion.php:35
+#: functions/getWishlistNameSuggestion.php:36
 msgid "Christmas"
 msgstr "Jõulud"
 
-#: pages/blog.php:47
+#: pages/api.php:11 pages/settings.php:30
+msgid "API"
+msgstr "API"
+
+#. TRANSLATORS: %s: Language, most likely English
+#: pages/blog.php:23
+#, php-format
+msgid ""
+"The blog is currently only available in %s and not translatable. Please let "
+"me know if you have any ideas to improve this."
+msgstr ""
+"Blogi on praegu saadaval ainult aadressil %s ja ei ole tõlgitav. Palun andke"
+" mulle teada, kui teil on ideid selle parandamiseks."
+
+#: pages/blog.php:26
+msgid "Warning"
+msgstr "Hoiatus"
+
+#: pages/blog.php:60
 msgid "Read more"
 msgstr "Loe edasi"
 
-#: pages/changelog.php:25 pages/changelog.php:35
-msgid "Unreleased"
-msgstr "Avaldamata"
+#: pages/blog.php:87 pages/post.php:55
+msgid "Top"
+msgstr "Top"
 
-#: pages/changelog.php:26 pages/changelog.php:69
+#: pages/changelog.php:25 pages/changelog.php:39
+msgid "Roadmap"
+msgstr "Teekaart"
+
+#: pages/changelog.php:26 pages/changelog.php:94
+msgid "1.1.0"
+msgstr "1.1.0"
+
+#: pages/changelog.php:27 pages/changelog.php:203
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#: pages/changelog.php:28 pages/changelog.php:299
+msgid "0.7.3"
+msgstr "0.7.3"
+
+#: pages/changelog.php:29 pages/changelog.php:319
+msgid "0.7.2"
+msgstr "0.7.2"
+
+#: pages/changelog.php:30 pages/changelog.php:339
+msgid "0.7.1"
+msgstr "0.7.1"
+
+#: pages/changelog.php:31 pages/changelog.php:435
+msgid "0.7.0"
+msgstr "0.7.0"
+
+#: pages/changelog.php:32 pages/changelog.php:577
 msgid "0.6.0"
 msgstr "0.6.0"
 
-#: pages/changelog.php:39 pages/changelog.php:73
+#. TRANSLATORS: %s: discussions
+#: pages/changelog.php:44
+#, php-format
+msgid ""
+"If you would like to give feedback regarding the roadmap, please refer to "
+"the %s on GitHub, or chat on Matrix or Discord."
+msgstr ""
+"Kui soovite anda tagasisidet tegevuskava kohta, vaadake palun GitHubi "
+"veebilehte %s või vestle Matrixi või Discordi kaudu."
+
+#: pages/changelog.php:47
+msgid "discussions"
+msgstr "arutelud"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:56
+msgid "Allow customising priority colours"
+msgstr "Võimaldab prioriteetsete värvide kohandamist"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:63
+msgid "Filter by price"
+msgstr "Filtreeri hinna järgi"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:70
+msgid "Bookmarklets"
+msgstr "Järjehoidjad"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:77
+msgid "Notifications for fulfilled wishes"
+msgstr "Teated täidetud soovide kohta"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:83
+msgid ""
+"Verify wishes are still available when attempting to fulfil them. "
+"Alternatively, a heartbeat which checks if all the wishes are still "
+"unfulfilled."
+msgstr ""
+"Kontrollige, kas soovid on veel saadaval, kui püüate neid täita. "
+"Alternatiivina südamelöök, mis kontrollib, kas kõik soovid on veel täitmata."
+
+#: pages/changelog.php:98 pages/changelog.php:207 pages/changelog.php:439
+#: pages/changelog.php:581
 msgid "Added"
 msgstr "Lisatud"
 
-#: pages/changelog.php:44 pages/changelog.php:80
-msgid "Improved"
-msgstr "Parandatud"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:103
+msgid "Configuration flag to disable plausible.io calls"
+msgstr "Konfigureerimislipp, et keelata plausible.io kõned"
 
-#: pages/changelog.php:46
-msgid "Localisation (many new translations added)"
-msgstr "Lokaliseerimine (lisatud palju uusi tõlkeid)"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:110
+msgid "Add account delete option"
+msgstr "Lisa konto kustutamise võimalus"
 
-#: pages/changelog.php:47
-msgid "Saved wish information is not updated if the url can not be found"
-msgstr "Salvestatud soovide andmeid ei uuendata, kui url ei ole leitav."
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:117
+msgid "Configuration flag to disable user registrations"
+msgstr "Kasutajate registreerimise keelamise konfiguratsioonilipp"
 
-#: pages/changelog.php:48
-msgid "URL handling"
-msgstr "URL-i käsitlemine"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:124
+msgid ""
+"After creating an account your language is automatically set to your "
+"browser's (if it is available), instead of defaulting to en_GB."
+msgstr ""
+"Pärast konto loomist seatakse teie keel automaatselt teie brauseri keeleks "
+"(kui see on saadaval), selle asemel, et vaikimisi valida en_GB."
 
-#: pages/changelog.php:51
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:130
+msgid ""
+"Amazon links are now automatically converted to affiliate links to help "
+"support wishthis financially."
+msgstr ""
+"Amazoni lingid on nüüd automaatselt muudetud affiliate linkideks, et aidata "
+"wishthis't rahaliselt toetada."
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:136
+msgid "Prerequisite check during installation"
+msgstr "Eeltingimuste kontroll paigaldamise ajal"
+
+#: pages/changelog.php:141 pages/changelog.php:262 pages/changelog.php:302
+#: pages/changelog.php:322 pages/changelog.php:378 pages/changelog.php:529
+#: pages/changelog.php:613
+msgid "Fixed"
+msgstr "Fixed"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:146
+msgid "RewriteRules which caused HTTP 404 errors"
+msgstr "RewriteRules, mis põhjustasid HTTP 404 vigu"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:153
+msgid "Switching to wish \"product\" tab breaks view"
+msgstr "Üleminek soovile \"toode\" vahekaart katkestab vaateid"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:160
+msgid "Special characters not being displayed properly"
+msgstr "Erimärke ei kuvata korralikult"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:167
+msgid "A fatal error when the CHANNELS constant is removed from the config"
+msgstr "Fataalne viga, kui CHANNELS-konstant eemaldatakse konfiguratsioonist"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:174
+msgid "Fulfilled wishes disappearing for wishlist owners"
+msgstr "Täidetud soovide kadumine wishlist omanike jaoks"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:180
+msgid "Deprecated notices on PHP 8.2"
+msgstr "Vananenud teated PHP 8.2 puhul"
+
+#: pages/changelog.php:185 pages/changelog.php:252 pages/changelog.php:507
 msgid "Changed"
 msgstr "Muudetud"
 
-#: pages/changelog.php:53
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:190
+msgid "Added button labels for mobile devices"
+msgstr "Lisatud nuppude sildid mobiilseadmete jaoks"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:212
+msgid "Option to set currency"
+msgstr "Valuuta seadmise võimalus"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:219
+msgid "A roadmap in the changelog"
+msgstr "Teekaart Changelog"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:225
+msgid "Compact/list view for wishes"
+msgstr "Kompaktne/loetelu vaade soovide jaoks"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:231
+msgid "Option to enable advertisements"
+msgstr "Võimalus lubada reklaami"
+
+#: pages/changelog.php:236 pages/changelog.php:343 pages/changelog.php:485
+#: pages/changelog.php:603
+msgid "Improved"
+msgstr "Parandatud"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:241
+msgid ""
+"Large parts of wishthis have been completely rewritten, such as the API and "
+"how pretty URLs work. The aim was to increase security and maintainability."
+msgstr ""
+"Suur osa wishthis'ist on täielikult ümber kirjutatud, näiteks API ja see, "
+"kuidas ilusad URL-id töötavad. Eesmärk oli suurendada turvalisust ja "
+"hooldatavust."
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:247
+msgid ""
+"Changelog now automatically selects the current version, instead of the top "
+"most tab."
+msgstr ""
+"Changelog valib nüüd automaatselt praeguse versiooni, mitte kõige ülemise "
+"vahekaardi."
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:257
+msgid "Decreased wish height on mobile devices"
+msgstr "Vähenenud soovide kõrgus mobiilseadmetes"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:267
+msgid ""
+"Temporary fulfilled wish does not become available again after 30 minutes, "
+"except when viewing as the owner of the list."
+msgstr ""
+"Ajutine täidetud soov ei muutu 30 minuti pärast uuesti kättesaadavaks, välja"
+" arvatud nimekirja omanikuna vaatamisel."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:274
+msgid "Fix various wish UI bugs"
+msgstr "Erinevate soovide UI vigade parandamine"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:281
+msgid "Fix background and colour when opening the mobile menu"
+msgstr "Fikseeri taust ja värv mobiilimenüü avamisel"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:287
+msgid "Marking wish as fulfilled"
+msgstr "Soovide märkimine täidetuks"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:307
+msgid "Fix fulfilled wishes disappearing for wishlist owner"
+msgstr "Fikseeri täidetud soovide kadumine wishlist omaniku jaoks"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:327
+msgid "Fix fulfilled wishes showing after using filter"
+msgstr "Fix täidetud soovide näitamine pärast filtri kasutamist"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:348
+msgid "MJML settings page"
+msgstr "MJML-i seadete lehekülg"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:355
+msgid ""
+"Expired sessions are now invalidated by wishthis instead of relying on the "
+"browser to delete the cookies."
+msgstr ""
+"Aegunud sessioonid tunnistab wishthis nüüd kehtetuks, selle asemel, et "
+"loota, et brauser kustutab küpsised."
+
+#. TRANSLATORS: Changelog: Improved
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:361 pages/changelog.php:450
+msgid "Dark theme"
+msgstr "Tume teema"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:367
+msgid "Remembered lists design"
+msgstr "Remembered loetleb disaini"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:373
+msgid "Translations"
+msgstr "Tõlked"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:383
+msgid "Label on top of dropdown menu"
+msgstr "Silt rippmenüü ülaosas"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:390
+msgid "Encoding issue in wish description"
+msgstr "Kodeerimisprobleem soovide kirjelduses"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:397
+msgid "Caching issue with the blog"
+msgstr "Caching probleem blogi"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:404
+msgid "An error when a blog post doesn't have a featured image."
+msgstr "Viga, kui blogipostitusel ei ole eelistatud pilti."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:410
+msgid ""
+"Version number not being stored correctly causing the migration to execute "
+"the wrong script."
+msgstr ""
+"Versiooninumber ei ole õigesti salvestatud, mis põhjustab migratsioonil vale"
+" skripti käivitamist."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:416
+msgid "Wishlist filter cut off on mobile"
+msgstr "wishlist filtri väljalülitamine mobiilis"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:422
+msgid "Wish options not selectable after filtering"
+msgstr "Soovide valikud ei ole pärast filtreerimist valitavad"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:456
+msgid ""
+"Wish properties. You can now mark a wish as purchasable and add a price."
+msgstr ""
+"Soovide omadused. Nüüd saate märkida soovi ostetavaks ja lisada hinna."
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:462
+msgid "Jump to last edited wishlist from home"
+msgstr "Jump to last edited wishlist from home"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:468
+msgid "Quick add wish from home"
+msgstr "Kiire lisamise soov kodust"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:474
+msgid "Button to request more wishes from a users wishlist"
+msgstr "Nupp, et taotleda kasutajatelt rohkem soove wishlist"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:480
+msgid "Option to stay logged in"
+msgstr "Võimalus jääda sisselogimiseks"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:490
+msgid "Localisation (many new translations added)"
+msgstr "Lokaliseerimine (lisatud palju uusi tõlkeid)"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:496
+msgid ""
+"Additional logins are no longer required when switching between wishthis "
+"channels"
+msgstr ""
+"Tarkuse kanalite vahel vahetamisel ei ole enam vaja täiendavaid "
+"sisselogimisi."
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:502
+msgid "Remembered wishlists design"
+msgstr "Remembered wishlists disain"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:512
 msgid "Changelog is now a page instead of a downloadable markdown file"
-msgstr "Changelog on nüüd lehekülg allalaaditava markdown faili asemel"
+msgstr "Changelog on nüüd lehekülg allalaaditava markdown-faili asemel."
 
-#: pages/changelog.php:56 pages/changelog.php:85
-msgid "Fixed"
-msgstr "Fikseeritud"
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:518
+msgid ""
+"Wishes can be edited from the wishlist now, without loading another page"
+msgstr ""
+"Soovide muutmine on nüüd võimalik wishlist, ilma teise lehekülje "
+"laadimiseta."
 
-#: pages/changelog.php:58
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:524
+msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
+msgstr "\"Salvestatud wishlists\" on ümbernimetatud \"Mäleta nimekirju\"."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:534
 msgid "Various minor things (typos, menu order, etc)"
 msgstr "Mitmesugused väiksemad asjad (trükivigad, menüü järjestus jne)"
 
-#: pages/changelog.php:75
-msgid "This changelog"
-msgstr "See muudatuste päevik"
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:540
+msgid "Wish information being updated with 404 content from URL"
+msgstr "Sooviteave, mida uuendatakse 404 sisuga URL-ist"
 
-#: pages/changelog.php:76
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:546
+msgid "Wish image not showing"
+msgstr "Soovipilt ei näita"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:552
+msgid "An error when saving a wish with a really long URL"
+msgstr "Viga väga pika URL-iga soovi salvestamisel"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:558
+msgid "Redirect errors on Nginx"
+msgstr "Nginxi ümbersuunamisvead"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:564
+msgid "An error when fetching title from an URL containing quotes"
+msgstr "Viga pealkirja otsingul URL-ist, mis sisaldab jutumärke, viga"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:586
+msgid "This changelog"
+msgstr "See Changelog"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:592
 msgid "Wish properties"
 msgstr "Soovide omadused"
 
-#: pages/changelog.php:77
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:598
 msgid "Button to mark wish as fulfilled"
 msgstr "Nupp, millega märkida soov täidetuks"
 
-#: pages/changelog.php:82
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:608
 msgid "Card design"
 msgstr "Kaardi kujundus"
 
-#: pages/changelog.php:87
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:618
 msgid "Various small bugs"
 msgstr "Erinevad väikesed vead"
 
@@ -529,19 +1031,15 @@ msgstr "Erinevad väikesed vead"
 msgid "Home"
 msgstr "Kodu"
 
-#: pages/home.php:24
-msgid "Make a wish"
-msgstr "Tee soov"
-
-#: pages/home.php:42 pages/home.php:44
+#: pages/home.php:76 pages/home.php:78
 msgid "Register now"
 msgstr "Registreeru nüüd"
 
-#: pages/home.php:60
+#: pages/home.php:94
 msgid "Use case"
 msgstr "Kasutusjuhtum"
 
-#: pages/home.php:62
+#: pages/home.php:96
 msgid ""
 "Your birthday is coming up and you just created a wishlist with all the cool"
 " stuff you want. Your friends and family want to make sure you get something"
@@ -554,11 +1052,11 @@ msgstr ""
 "soovinimekirja lingi ja kui keegi otsustab ühe su soovidest täita, kaob see "
 "kõigi teiste jaoks."
 
-#: pages/home.php:66
+#: pages/home.php:100
 msgid "Why wishthis?"
 msgstr "Miks wishthis?"
 
-#: pages/home.php:69
+#: pages/home.php:103
 #, php-format
 msgid ""
 "wishthis is free and open source software. With free I don't just mean, you "
@@ -571,56 +1069,131 @@ msgstr ""
 "maksa ka oma isiklike andmete ja käitumisega. Mitte ainult ei saa igaüks "
 "%svaadata ja kontrollida selle koodi%s, ma ka julgustan teid seda tegema."
 
-#: pages/home.php:72
-msgid "As a non-commercial project it remains"
-msgstr "Mittekaubandusliku projektina jääb see"
+#: pages/home.php:108
+msgid "As an open source project it remains"
+msgstr "Avatud lähtekoodiga projektina jääb see"
 
-#: pages/home.php:76
-msgid "free of advertisements,"
-msgstr "reklaamivaba,"
+#: pages/home.php:113
+msgid "free of advertisements"
+msgstr "reklaamivaba"
 
-#: pages/home.php:80
-msgid "without tracking, and"
-msgstr "ilma jälgimiseta ja"
+#. TRANSLATORS: %s: plausible
+#: pages/home.php:118
+#, php-format
+msgid "see %s"
+msgstr "vt %s"
 
-#: pages/home.php:84
-msgid "open for feedback and suggestions."
-msgstr "avatud tagasisidele ja ettepanekutele."
+#: pages/home.php:119
+msgid "plausible"
+msgstr "usutav"
 
-#: pages/home.php:92
+#: pages/home.php:125
+msgid "without intrusive tracking"
+msgstr "ilma pealetükkiva jälgimiseta"
+
+#: pages/home.php:130
+msgid "transparent"
+msgstr "läbipaistev"
+
+#: pages/home.php:136
+msgid "privacy focused"
+msgstr "eraelu puutumatusele keskendunud"
+
+#: pages/home.php:140
+msgid "open for feedback and suggestions"
+msgstr "avatud tagasisidele ja ettepanekutele"
+
+#: pages/home.php:144
+msgid "What you should also know"
+msgstr "Mida peaksite samuti teadma"
+
+#: pages/home.php:150
+msgid "affiliate links"
+msgstr "affiliate lingid"
+
+#: pages/home.php:151
+msgid ""
+"amazon links are automatically converted to affiliate links to help support "
+"the project financially."
+msgstr ""
+"amazon lingid on automaatselt muudetud affiliate linkideks, et aidata "
+"projekti rahaliselt toetada."
+
+#: pages/home.php:159
+msgid "News"
+msgstr "Uudised"
+
+#: pages/home.php:206
 msgid "Statistics"
 msgstr "Statistika"
 
-#: pages/home.php:94
+#: pages/home.php:208
 msgid "Join the others and get started now!"
 msgstr "Ühinege teistega ja alustage kohe!"
 
-#: pages/home.php:99 pages/home.php:104 pages/home.php:109
+#: pages/home.php:212 pages/home.php:217 pages/home.php:222
 msgid "N. A."
 msgstr "N. A."
 
-#: pages/home.php:100 pages/wishlist.php:69 pages/wishlists.php:85
+#: pages/home.php:213 pages/wishlist.php:79 pages/wishlists.php:94
 msgid "Wishes"
 msgstr "Soovid"
 
-#: pages/home.php:110
+#: pages/home.php:223
 msgid "Registered users"
 msgstr "Registreeritud kasutajad"
+
+#: pages/home.php:235
+msgid "Hey, you"
+msgstr "Hei, sa..."
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:241
+#, php-format
+msgid "Yes, I mean you, %s."
+msgstr "Jah, ma mõtlen sind, %s."
+
+#. TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g.
+#. English (United Kingdom) %3$s: preferences
+#: pages/home.php:251
+#, php-format
+msgid ""
+"Your browser is telling me that you would like to view pages in %1$s, but "
+"your %3$s are set to %2$s."
+msgstr ""
+"Teie veebilehitseja ütleb mulle, et soovite vaadata lehekülgi aadressil "
+"%1$s, kuid teie %3$s on seatud aadressile %2$s."
+
+#: pages/home.php:254
+msgid "preferences"
+msgstr "eelistused"
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:263
+#, php-format
+msgid ""
+"wishthis is available in %1$s different locales and also supports %2$s!"
+msgstr ""
+"wishthis on saadaval %1$s erinevates kohalikes keeltes ja toetab ka %2$s!"
 
 #: pages/install.php:15
 msgid "Install"
 msgstr "Paigaldage"
 
-#: pages/install.php:30 pages/install.php:101
+#: pages/install.php:37 pages/install.php:164
 #, php-format
 msgid "Step %d"
 msgstr "Samm %d"
 
-#: pages/install.php:31
+#: pages/install.php:39
 msgid "Welcome to the wishthis installer."
 msgstr "Tere tulemast wishthis paigaldaja juurde."
 
-#: pages/install.php:32
+#: pages/install.php:43
+msgid "Database"
+msgstr "Andmebaas"
+
+#: pages/install.php:45
 msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
@@ -628,59 +1201,129 @@ msgstr ""
 "wishthis vajab korralikult toimimiseks andmebaasi. Palun sisestage oma "
 "volitused."
 
-#: pages/install.php:39
+#: pages/install.php:54
 msgid "Host"
 msgstr "Vastuvõtja"
 
-#: pages/install.php:44 pages/wishlists.php:117
+#: pages/install.php:59 pages/parts/wishlist.php:95
 msgid "Name"
 msgstr "Nimi"
 
-#: pages/install.php:49
+#: pages/install.php:66
 msgid "Username"
 msgstr "Kasutajanimi"
 
-#: pages/install.php:54 pages/login.php:119 pages/profile.php:143
-#: pages/profile.php:218 pages/profile.php:227 pages/register.php:193
+#: pages/install.php:71 pages/login.php:125 pages/profile/profile.php:35
+#: pages/profile/profile.php:116 pages/profile/profile.php:124
+#: pages/register.php:253
 msgid "Password"
 msgstr "Parool"
 
-#: pages/install.php:60 pages/install.php:61 pages/install.php:110
-#: pages/install.php:111
-msgid "Continue"
-msgstr "Jätka"
+#: pages/install.php:79 pages/install.php:80 pages/parts/wishlist.php:185
+#: pages/parts/wishlist.php:186 pages/profile/profile.php:107
+#: pages/profile/profile.php:108 pages/profile/profile.php:140
+#: pages/profile/profile.php:141 pages/profile/profile.php:239
+#: pages/profile/profile.php:240 pages/profile/profile.php:337
+#: pages/profile/profile.php:338 pages/profile/profile.php:378
+#: pages/profile/profile.php:379 pages/settings.php:53 pages/settings.php:54
+msgid "Save"
+msgstr "Salvesta"
 
-#: pages/install.php:102
-msgid "Click continue to test the database connection."
-msgstr "Andmebaasiühenduse testimiseks klõpsake nuppu continue."
+#: pages/install.php:83
+msgid "Test connection"
+msgstr "Testühendus"
 
-#: pages/login-as.php:38
+#: pages/install.php:99
+msgid "PHP Version >= 8.1"
+msgstr "PHP versioon &gt;= 8.1"
+
+#: pages/install.php:102 pages/install.php:108
+msgid "Compatible"
+msgstr "Ühilduv"
+
+#: pages/install.php:105
+msgid "PHP Version < 8.3"
+msgstr "PHP versioon &lt; 8.3"
+
+#: pages/install.php:114
+msgid "Activated"
+msgstr "Aktiveeritud"
+
+#: pages/install.php:121 pages/install.php:134
+msgid "Exists"
+msgstr "Olemas"
+
+#: pages/install.php:127 pages/install.php:140
+msgid "Writeable"
+msgstr "Kirjutatav"
+
+#: pages/install.php:146
+msgid "Doesn't exist (yet)"
+msgstr "Ei ole (veel) olemas"
+
+#: pages/install.php:166
+msgid ""
+"Make sure all prerequisites are met or the installation may fail in the next"
+" step."
+msgstr ""
+"Veenduge, et kõik eeltingimused on täidetud, sest vastasel juhul võib "
+"paigaldamine järgmises etapis ebaõnnestuda."
+
+#: pages/install.php:170
+msgid "Prerequisites check"
+msgstr "Eelduste kontroll"
+
+#: pages/install.php:175
+msgid "Installation prerequisites"
+msgstr "Paigaldamise eeldused"
+
+#: pages/install.php:207 pages/install.php:208
+msgid "Install wishthis"
+msgstr "Paigaldage wishthis"
+
+#: pages/login-as.php:60
 #, php-format
 msgid "Successfully logged in as %s."
 msgstr "Edukalt sisse logitud kui %s."
 
-#: pages/login-as.php:40
+#: pages/login-as.php:62
 msgid "User not found!"
 msgstr "Kasutajat ei leitud!"
 
-#: pages/login-as.php:48 pages/login.php:110 pages/profile.php:34
-#: pages/profile.php:184 pages/register.php:175
+#: pages/login-as.php:70 pages/login.php:116 pages/profile/profile.php:79
+#: pages/register.php:235
 msgid "Email"
 msgstr "E-post"
 
-#: pages/login.php:36
+#: pages/login.php:25
 msgid "No user could be found with the credentials you provided."
 msgstr "Ühtegi kasutajat ei leitud teie poolt antud volitustega."
 
-#: pages/login.php:37
+#: pages/login.php:26
 msgid "Invalid credentials"
 msgstr "Väärad volitused"
 
-#: pages/login.php:81
+#: pages/login.php:70
 msgid "Password reset link"
 msgstr "Salasõna lähtestamise link"
 
-#: pages/login.php:85
+#. TRANSLATORS: %s: The wishthis domain
+#: pages/login.php:76
+#, php-format
+msgid ""
+"somebody has requested a password reset for this email address from %s. If "
+"this was you, click the button below to invalidate your current password and"
+" set a new one."
+msgstr ""
+"keegi on taotlenud selle e-posti aadressi parooli lähtestamist aadressilt "
+"%s. Kui see olid teie, klõpsake allolevat nuppu, et tühistada oma praegune "
+"parool ja määrata uus."
+
+#: pages/login.php:80
+msgid "Set new password"
+msgstr "Uue salasõna määramine"
+
+#: pages/login.php:92
 msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
@@ -688,19 +1331,23 @@ msgstr ""
 "Kui selle e-posti aadressi kohta leitakse vastavus, saadetakse sellele "
 "aadressile parooli lähetuslink."
 
-#: pages/login.php:86
+#: pages/login.php:93
 msgid "Info"
 msgstr "Info"
 
-#: pages/login.php:106
+#: pages/login.php:112
 msgid "Credentials"
 msgstr "Volitused"
 
-#: pages/login.php:143
+#: pages/login.php:136
+msgid "Keep me logged in"
+msgstr "Hoidke mind sisse logitud"
+
+#: pages/login.php:163
 msgid "Forgot password?"
 msgstr "Unustasid salasõna?"
 
-#: pages/login.php:145
+#: pages/login.php:165
 msgid ""
 "Consider using a password manager. It will save all your passwords and allow"
 " you to access them with one master password. Never forget a password ever "
@@ -710,11 +1357,11 @@ msgstr ""
 "võimaldab teile juurdepääsu neile ühe peaparooliga. Ärge unustage enam "
 "kunagi parooli."
 
-#: pages/login.php:161 pages/login.php:162
+#: pages/login.php:181 pages/login.php:182
 msgid "Send email"
 msgstr "Saada e-kiri"
 
-#: pages/login.php:170
+#: pages/login.php:190
 msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
@@ -722,23 +1369,23 @@ msgstr ""
 "Pange tähele, et peate sisestama e-posti aadressi, millega olete "
 "registreerunud."
 
-#: pages/logout.php:28
+#: pages/logout.php:24
 msgid "Goodbye"
 msgstr "Hüvasti"
 
-#: pages/logout.php:29
+#: pages/logout.php:25
 msgid "You have been logged out."
 msgstr "Teid on välja logitud."
 
-#: pages/maintenance.php:11
+#: pages/maintenance.php:15
 msgid "Maintenance"
 msgstr "Hooldus"
 
-#: pages/maintenance.php:22
+#: pages/maintenance.php:26
 msgid "Temporarily unavailable"
 msgstr "Ajutiselt kättesaamatu"
 
-#: pages/maintenance.php:23
+#: pages/maintenance.php:27
 msgid ""
 "Due to maintenance, wishthis is temporarily not available. Please check back"
 " again in a minute."
@@ -746,63 +1393,201 @@ msgstr ""
 "Seoses hooldustöödega ei ole wishthis ajutiselt saadaval. Palun kontrollige "
 "uuesti mõne minuti pärast."
 
-#: pages/parts/wish-add.php:17 pages/wishlists.php:148
+#: pages/maintenance.php:28
+msgid "If you are the administrator of this site, please log in."
+msgstr "Kui olete selle saidi administraator, logige sisse."
+
+#: pages/parts/wish-add.php:12
+msgid "General"
+msgstr "Üldine"
+
+#: pages/parts/wish-add.php:13
+msgid "Product"
+msgstr "Toode"
+
+#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:123
 msgid "Title"
 msgstr "Pealkiri"
 
-#: pages/parts/wish-add.php:30
+#: pages/parts/wish-add.php:33
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: pages/parts/wish-add.php:42 pages/wish.php:153
+#: pages/parts/wish-add.php:45
 msgid "URL"
 msgstr "URL"
 
-#: pages/parts/wish-add.php:53
+#: pages/parts/wish-add.php:54
 msgid "Priority"
 msgstr "Prioriteet"
 
-#: pages/parts/wish-add.php:58
+#: pages/parts/wish-add.php:59
 msgid "Select priority"
 msgstr "Valige prioriteet"
 
-#: pages/parts/wish-add.php:71
+#: pages/parts/wish-add.php:68
+msgid "Image"
+msgstr "Pilt"
+
+#: pages/parts/wish-add.php:77
 msgid "Properties"
 msgstr "Omadused"
 
-#: pages/parts/wish-add.php:80
+#: pages/parts/wish-add.php:85
 msgid "Is purchasable"
 msgstr "On ostetav"
 
-#: pages/parts/wishlist-filter.php:21
+#: pages/parts/wish-add.php:101
+msgid "Price"
+msgstr "Hind"
+
+#: pages/parts/wishlist.php:26
 msgid "Filter priorities"
 msgstr "Filter prioriteedid"
 
-#: pages/parts/wishlist-filter.php:26
+#: pages/parts/wishlist.php:31
 msgid "Search priorities"
 msgstr "Otsingu prioriteedid"
 
-#: pages/parts/wishlist-filter.php:33
+#: pages/parts/wishlist.php:38
 msgid "Priorities"
 msgstr "Prioriteedid"
 
-#: pages/parts/wishlist-filter.php:39
+#: pages/parts/wishlist.php:44
 msgid "All priorities"
 msgstr "Kõik prioriteedid"
 
-#: pages/parts/wishlist-filter.php:44
+#: pages/parts/wishlist.php:49
 msgid "No priority"
 msgstr "Prioriteet puudub"
+
+#: pages/parts/wishlist.php:87 pages/wishlists.php:45 pages/wishlists.php:48
+msgid "Create a wishlist"
+msgstr "Loo soovide nimekiri"
+
+#: pages/parts/wishlist.php:91
+msgid ""
+"Choose a new name for your wishlist. Here's a suggestion to get you started."
+msgstr "Valige oma soovinimekirjale uus nimi. Siin on ettepanek, et alustada."
+
+#: pages/parts/wishlist.php:104 pages/parts/wishlist.php:105
+msgid "Create"
+msgstr "Loo"
+
+#: pages/parts/wishlist.php:107 pages/parts/wishlist.php:108
+#: pages/parts/wishlist.php:132 pages/parts/wishlist.php:133
+#: pages/parts/wishlist.php:158 pages/parts/wishlist.php:159
+#: pages/parts/wishlist.php:188 pages/parts/wishlist.php:189
+msgid "Cancel"
+msgstr "Tühista"
+
+#: pages/parts/wishlist.php:116
+msgid "Rename wishlist"
+msgstr "Soovide nimekiri ümber nimetada"
+
+#: pages/parts/wishlist.php:119
+msgid "How would you like to name this wishlist?"
+msgstr "Kuidas sooviksite sellele soovinimekirjale nime anda?"
+
+#: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
+#: pages/wishlists.php:77 pages/wishlists.php:79
+msgid "Rename"
+msgstr "Nimetage ümber"
+
+#: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
+msgid "Add a wish"
+msgstr "Lisa soov"
+
+#: pages/parts/wishlist.php:145
+msgid ""
+"Fill the title and/or description to add your new wish. If you just fill out"
+" the URL, wishthis will attempt to auto fill all other fields."
+msgstr ""
+"Täitke pealkiri ja/või kirjeldus, et lisada oma uus soov. Kui täidate ainult"
+" URL-i, püüab wishthis automaatselt täita kõik muud väljad."
+
+#: pages/parts/wishlist.php:155 pages/parts/wishlist.php:156
+msgid "Add"
+msgstr "Lisa"
+
+#: pages/parts/wishlist.php:168
+msgid "Edit wish"
+msgstr "Muuda soovi"
+
+#: pages/parts/wishlist.php:172
+msgid ""
+"If specified, wishthis will attempt to fetch all missing information from "
+"the URL."
+msgstr ""
+"Kui see on määratud, püüab wishthis hankida kogu puuduva teabe URL-ist."
+
+#: pages/parts/wishlist.php:198
+msgid "URL mismatch"
+msgstr "URL-i mittevastavus"
+
+#: pages/parts/wishlist.php:202
+msgid ""
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
+msgstr ""
+"Teie sisestatud URL ei tundu päris õige. Kas soovite seda uuendada minu "
+"leitud aadressiga?"
+
+#: pages/parts/wishlist.php:203
+#, php-format
+msgid "According to %s, this is the canonical (correct) URL."
+msgstr "Vastavalt %s on see kanooniline (õige) URL."
+
+#: pages/parts/wishlist.php:207
+msgid "Current"
+msgstr "Praegune"
+
+#: pages/parts/wishlist.php:212
+msgid "Proposed"
+msgstr "Kavandatud"
+
+#: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
+msgid "Yes, update"
+msgstr "Jah, ajakohastage"
+
+#: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
+msgid "No, leave it"
+msgstr "Ei, jäta see"
+
+#: pages/parts/wishlist.php:259
+msgid "Mark as fulfilled"
+msgstr "Märgista kui täidetud"
+
+#: pages/parts/wishlist.php:264 pages/wishlist.php:74
+msgid "Fulfil wish"
+msgstr "Täita soov"
+
+#: pages/parts/wishlist.php:269
+msgid "Visit"
+msgstr "Külasta"
+
+#: pages/parts/wishlist.php:274 pages/wishlists.php:41 pages/wishlists.php:71
+#: pages/wishlists.php:74
+msgid "Options"
+msgstr "Valikud"
+
+#: pages/parts/wishlist.php:279
+msgid "Edit"
+msgstr "Muuda"
+
+#: pages/parts/wishlist.php:284 pages/wishlists.php:82 pages/wishlists.php:84
+msgid "Delete"
+msgstr "Kustuta"
 
 #: pages/power.php:11
 msgid "Insufficient power"
 msgstr "Ebapiisav võimsus"
 
-#: pages/power.php:22
+#: pages/power.php:24
 msgid "Restricted access"
 msgstr "Piiratud juurdepääs"
 
-#: pages/power.php:23
+#: pages/power.php:25
 #, php-format
 msgid ""
 "You do not have enough power to view this page. You need %s to see this "
@@ -811,93 +1596,167 @@ msgstr ""
 "Teil ei ole selle lehekülje vaatamiseks piisavalt energiat. Te vajate selle "
 "lehekülje vaatamiseks %s, kuid teil on ainult %s."
 
-#: pages/profile.php:19 pages/profile.php:164
-msgid "First name"
-msgstr "Eesnimi"
+#: pages/profile/profile-handle-post-password.php:31
+msgid "Password updated."
+msgstr "Salasõna uuendatud."
 
-#: pages/profile.php:24 pages/profile.php:170
-msgid "Last name"
-msgstr "Perekonnanimi"
-
-#: pages/profile.php:29 pages/profile.php:176
-msgid "Nickname"
-msgstr "Hüüdnimi"
-
-#: pages/profile.php:39 pages/profile.php:290
-msgid "Language"
-msgstr "Keel"
-
-#: pages/profile.php:52
+#. TRANSLATORS: %s: The users first name.
+#: pages/profile/profile-handle-post-personal.php:31
 #, php-format
-msgid "%s successfully updated!"
-msgstr "%s edukalt uuendatud!"
+msgid "First name updated to \"%s\"."
+msgstr "Eesnimi uuendatud \"%s\"."
 
-#: pages/profile.php:118
-msgid "It is required for you to login again."
-msgstr "See on vajalik, et saaksite uuesti sisse logida."
+#. TRANSLATORS: %s: The users last name.
+#: pages/profile/profile-handle-post-personal.php:61
+#, php-format
+msgid "Last name updated to \"%s\"."
+msgstr "Perekonnanimi ajakohastatud \"%s\"."
 
-#: pages/profile.php:139 pages/profile.php:155
+#. TRANSLATORS: %s: The users nick name.
+#: pages/profile/profile-handle-post-personal.php:91
+#, php-format
+msgid "Nick name updated to \"%s\"."
+msgstr "Nicki nimi uuendatud \"%s\"."
+
+#. TRANSLATORS: %s: The users email address.
+#: pages/profile/profile-handle-post-personal.php:121
+#, php-format
+msgid "Email address updated to \"%s\"."
+msgstr "E-posti aadressi ajakohastati \"%s\"."
+
+#. TRANSLATORS: %s: The users locale.
+#: pages/profile/profile-handle-post-preferences.php:38
+#, php-format
+msgid "Locale updated to \"%s\"."
+msgstr "Lokaal on uuendatud \"%s\"."
+
+#. TRANSLATORS: %s: The users currency.
+#: pages/profile/profile-handle-post-preferences.php:75
+#, php-format
+msgid "Currency updated to \"%s\"."
+msgstr "Valuuta uuendatud \"%s\"."
+
+#. TRANSLATORS: %s: The users channel.
+#: pages/profile/profile-handle-post-preferences.php:113
+#, php-format
+msgid "Channel updated to \"%s\"."
+msgstr "Kanal on uuendatud \"%s\"."
+
+#: pages/profile/profile-handle-post-preferences.php:134
+msgid "Channel has been reset."
+msgstr "Kanal on lähtestatud."
+
+#. TRANSLATORS: %s: The users advertisements.
+#: pages/profile/profile-handle-post-preferences.php:161
+#, php-format
+msgid "Advertisements updated to \"%s\"."
+msgstr "Kuulutused uuendatud \"%s\"."
+
+#: pages/profile/profile-handle-post-preferences.php:174
+#: pages/profile/profile-handle-post.php:19
+msgid ""
+"Your account credentials have changed and you have been logged out. Please "
+"log in again."
+msgstr ""
+"Teie konto andmed on muutunud ja teid on välja logitud. Palun logige uuesti "
+"sisse."
+
+#: pages/profile/profile-handle-post-preferences.php:175
+#: pages/profile/profile-handle-post.php:20
+msgid "Account credentials changed"
+msgstr "Konto mandaat on muutunud"
+
+#: pages/profile/profile.php:31 pages/profile/profile.php:51
 msgid "Personal"
 msgstr "Isiklik"
 
-#: pages/profile.php:140
+#: pages/profile/profile.php:32
 msgid "Information regarding yourself"
 msgstr "Teave enda kohta"
 
-#: pages/profile.php:144
+#: pages/profile/profile.php:36
 msgid "Change your password"
 msgstr "Muuda oma salasõna"
 
-#: pages/profile.php:147 pages/profile.php:281
+#: pages/profile/profile.php:39 pages/profile/profile.php:178
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: pages/profile.php:148
+#: pages/profile/profile.php:40
 msgid "Improve your wishthis experience"
 msgstr "Parandage oma wishthis kogemust"
 
-#: pages/profile.php:190
+#: pages/profile/profile.php:44
+msgid "Configuration for your account"
+msgstr "Teie konto konfiguratsioon"
+
+#: pages/profile/profile.php:59
+msgid "First name"
+msgstr "Eesnimi"
+
+#: pages/profile/profile.php:65
+msgid "Last name"
+msgstr "Perekonnanimi"
+
+#: pages/profile/profile.php:71
+msgid "Nickname"
+msgstr "Hüüdnimi"
+
+#: pages/profile/profile.php:84
+msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
+msgstr ""
+"Kasutatakse, et soovitada wishlist nimega \"Sünnipäev\", kui see on tulemas."
+
+#: pages/profile/profile.php:86
 msgid "Birthdate"
 msgstr "Sünniaeg"
 
-#: pages/profile.php:197
+#: pages/profile/profile.php:95
 msgid "Pick a date"
 msgstr "Valige kuupäev"
 
-#: pages/profile.php:233
+#: pages/profile/profile.php:130
 msgid "Password (repeat)"
 msgstr "Parool (kordus)"
 
-#: pages/profile.php:249
+#: pages/profile/profile.php:146
 msgid "Safe password checklist"
 msgstr "Turvalise salasõna kontrollnimekiri"
 
-#: pages/profile.php:256
+#: pages/profile/profile.php:153
 msgid "Long"
 msgstr "Pikk"
 
-#: pages/profile.php:257
+#: pages/profile/profile.php:154
 msgid "Over eight characters in length."
 msgstr "Üle kaheksa tähemärgi pikkused."
 
 #. TRANSLATORS: A special character (for a password)
-#: pages/profile.php:268
+#: pages/profile/profile.php:165
 msgid "Special"
 msgstr "Eriline"
 
-#: pages/profile.php:271
+#: pages/profile/profile.php:168
 msgid "Contains special characters."
 msgstr "Sisaldab erimärke."
 
-#: pages/profile.php:315 pages/profile.php:373
+#: pages/profile/profile.php:186
+msgid "Language"
+msgstr "Keel"
+
+#: pages/profile/profile.php:204
+msgid "Currency"
+msgstr "Valuuta"
+
+#: pages/profile/profile.php:289
 msgid "Channel"
 msgstr "Kanal"
 
-#: pages/profile.php:318
+#: pages/profile/profile.php:292
 msgid "Select channel"
 msgstr "Valige kanal"
 
-#: pages/profile.php:376
+#: pages/profile/profile.php:305
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
@@ -905,7 +1764,7 @@ msgstr ""
 "Selleks, et parandada wishthise kasutajakogemust, avaldatakse uuemad "
 "versioonid pärast põhjalikku testimisperioodi."
 
-#: pages/profile.php:377
+#: pages/profile/profile.php:306
 msgid ""
 "Subscribing to the Stable channel ensures you have the highest possible "
 "stability while using wishthis, minimizing the amount of errors you may "
@@ -914,7 +1773,7 @@ msgstr ""
 "Stabiilse kanali tellimine tagab teile wishthise kasutamise ajal võimalikult"
 " suure stabiilsuse, mis vähendab võimalikke vigu (kui neid esineb)."
 
-#: pages/profile.php:378
+#: pages/profile/profile.php:307
 msgid ""
 "If you want to speed up the release of newer versions, consider subscribing "
 "to the Release candidate of wishthis. A newer version is not published "
@@ -924,62 +1783,100 @@ msgstr ""
 "Release Candidate'i tellimist. Uuemat versiooni ei avaldata enne, kui "
 "järgmine versioonikandidaat on piisavalt testitud."
 
-#: pages/profile.php:390
+#: pages/profile/profile.php:320
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
 msgstr[0] "%d vaja on rohkem tellijaid"
 msgstr[1] "%d rohkem tellijaid vaja"
 
+#: pages/profile/profile.php:348
+msgid "Advertisements"
+msgstr "Reklaamid"
+
+#: pages/profile/profile.php:357
+msgid "Enable advertisements"
+msgstr "Lubage reklaamid"
+
+#. TRANSLATORS: %s: sponsor me
+#: pages/profile/profile.php:366
+#, php-format
+msgid ""
+"Time spent on wishthis is time not doing for-profit work. If you would like "
+"to support me but either can't or don't want to %s, consider selling your "
+"body to Google and becoming its product."
+msgstr ""
+"Viisakusele kulutatud aeg on aeg, mida ei kasutata kasumliku töö tegemiseks."
+" Kui te tahaksite mind toetada, kuid kas ei saa või ei taha %s, siis kaaluge"
+" oma keha müümist Google'ile ja selle tooteks saamist."
+
+#: pages/profile/profile.php:367
+msgid "sponsor me"
+msgstr "toeta mind"
+
+#: pages/profile/profile.php:371
+msgid "Please remember to add an exception to your ad-blocker and browser."
+msgstr ""
+"Palun ärge unustage, et lisate oma reklaamblokeerijale ja brauserile erandi."
+
+#: pages/profile/profile.php:394 pages/profile/profile.php:407
+#: pages/profile/profile.php:408
+msgid "Delete account"
+msgstr "Konto kustutamine"
+
+#: pages/profile/profile.php:399
+msgid "Delete this account completely and irreversibly"
+msgstr "Kustuta see konto täielikult ja pöördumatult"
+
 #: pages/register.php:13
 msgid "Reset password"
 msgstr "Parooli lähtestamine"
 
-#: pages/register.php:14 pages/wish.php:123 pages/wish.php:124
+#: pages/register.php:14
 msgid "Reset"
 msgstr "Reset"
 
-#: pages/register.php:31
+#: pages/register.php:37
 msgid "Mercury"
 msgstr "Elavhõbe"
 
-#: pages/register.php:32
+#: pages/register.php:38
 msgid "Venus"
 msgstr "Venus"
 
-#: pages/register.php:33
+#: pages/register.php:39
 msgid "Earth"
 msgstr "Maa"
 
-#: pages/register.php:34
+#: pages/register.php:40
 msgid "Mars"
 msgstr "Mars"
 
-#: pages/register.php:35
+#: pages/register.php:41
 msgid "Jupiter"
 msgstr "Jupiter"
 
-#: pages/register.php:36
+#: pages/register.php:42
 msgid "Saturn"
 msgstr "Saturn"
 
-#: pages/register.php:37
+#: pages/register.php:43
 msgid "Uranus"
 msgstr "Uraan"
 
-#: pages/register.php:38
+#: pages/register.php:44
 msgid "Neptune"
 msgstr "Neptuun"
 
-#: pages/register.php:41
+#: pages/register.php:47
 msgid "Pluto"
 msgstr "Pluuto"
 
-#: pages/register.php:42
+#: pages/register.php:48
 msgid "Sun"
 msgstr "Sun"
 
-#: pages/register.php:51
+#: pages/register.php:57
 #, php-format
 msgid ""
 "%s is not a planet but I'll let it slide, since only a human would make this"
@@ -988,50 +1885,66 @@ msgstr ""
 "%s ei ole planeet, kuid ma lasen selle libisema, sest ainult inimene teeb "
 "sellise vea."
 
-#: pages/register.php:52 pages/register.php:151
+#: pages/register.php:58 pages/register.php:200
 msgid "Invalid planet"
 msgstr "Invaliidne planeet"
 
-#: pages/register.php:83
-msgid "This link has expired."
-msgstr "See link on aegunud."
+#: pages/register.php:105
+msgid "This password reset link has expired, please request a new one."
+msgstr "See parooli lähtestamise link on aegunud, palume taotleda uut."
 
-#: pages/register.php:86
-msgid "This link seems invalid."
-msgstr "See link näib olevat kehtetu."
+#: pages/register.php:105 pages/register.php:108
+msgid "Failure"
+msgstr "Ebaõnnestumine"
 
 #: pages/register.php:108
+msgid ""
+"This password reset link seems to have been manipulated, please request a "
+"new one."
+msgstr ""
+"See parooli lähtestamise link näib olevat manipuleeritud, palume taotleda "
+"uut."
+
+#: pages/register.php:144
 msgid "An account with this email address already exists."
 msgstr "Selle e-posti aadressiga konto on juba olemas."
 
-#: pages/register.php:109
+#: pages/register.php:145
 msgid "Invalid email address"
 msgstr "Vale e-posti aadress"
 
-#: pages/register.php:123
+#: pages/register.php:166
 msgid "Your account was successfully created."
 msgstr "Teie konto on edukalt loodud."
 
-#: pages/register.php:133
+#: pages/register.php:176
 msgid "My hopes and dreams"
 msgstr "Minu lootused ja unistused"
 
-#: pages/register.php:150
+#: pages/register.php:199
 #, php-format
 msgid ""
 "%s is not a planet in our solar system. Read this for more information: %s."
 msgstr ""
 "%s ei ole meie päikesesüsteemi planeet. Lisateabe saamiseks lugege seda: %s."
 
-#: pages/register.php:172
+#: pages/register.php:219
+msgid "Registration disabled"
+msgstr "Registreerimine keelatud"
+
+#: pages/register.php:221
+msgid "The owner of this site has disabled user registrations."
+msgstr "Selle saidi omanik on keelanud kasutajate registreerimise."
+
+#: pages/register.php:232
 msgid "Account details"
 msgstr "Konto andmed"
 
-#: pages/register.php:203
+#: pages/register.php:263
 msgid "Authentication"
 msgstr "Autentimine"
 
-#: pages/register.php:204
+#: pages/register.php:264
 msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
@@ -1039,17 +1952,59 @@ msgstr ""
 "Tõestage, et olete inimene, sisalik või Zucki-sarnane olend. Palun nimetage "
 "üks meie päikesesüsteemi planeet."
 
-#: pages/register.php:207
+#: pages/register.php:267
 msgid "Planet"
 msgstr "Planeet"
 
-#: pages/register.php:214
+#: pages/register.php:274
 msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
 "Robotid on ilmselt pärit teisest päikesesüsteemist, nii et see hoiab neid "
 "eemal."
+
+#: pages/register.php:301
+msgid "About your email address"
+msgstr "Teie e-posti aadressi kohta"
+
+#: pages/register.php:303
+msgid ""
+"Currently the email address is used as a unique identifier and does not have"
+" to be verified. You may enter a fake address."
+msgstr ""
+"Praegu kasutatakse e-posti aadressi unikaalse identifikaatorina ja seda ei "
+"pea kontrollima. Võite sisestada võltsitud aadressi."
+
+#: pages/register.php:304
+msgid ""
+"wishthis is not interested in sending you marketing emails or selling your "
+"information to third parties. Although possible to do otherwise, it is "
+"strongly recommend to enter your real email address in case you need to "
+"recover your password or receive important notifications. These do not exist"
+" yet, but some future features and options might require sending you an "
+"email (e. g. when a wish has been fulfilled)."
+msgstr ""
+"wishthis ei ole huvitatud teile turundussõnumite saatmisest ega teie andmete"
+" müümisest kolmandatele isikutele. Kuigi on võimalik teha teisiti, on "
+"tungivalt soovitatav sisestada oma tegelik e-posti aadress, juhul kui teil "
+"on vaja taastada oma parool või saada olulisi teateid. Neid ei ole veel "
+"olemas, kuid mõned tulevased funktsioonid ja võimalused võivad nõuda teile "
+"e-kirja saatmist (nt kui soov on täidetud)."
+
+#. TRANSLATORS: %s: source code
+#: pages/register.php:309
+#, php-format
+msgid ""
+"Trust is a two way street and wishthis aims to be a transparent, trustworthy"
+" product, which is why the wishthis %s is publicly viewable."
+msgstr ""
+"Usaldus on kahepoolne ja wishthis soovib olla läbipaistev ja usaldusväärne "
+"toode, mistõttu on wishthis %s avalikult vaadatav."
+
+#: pages/register.php:310
+msgid "source code"
+msgstr "lähtekood"
 
 #: pages/settings.php:27
 msgid "MJML"
@@ -1062,32 +2017,28 @@ msgstr ""
 "MJML on vajalik e-kirjade saatmiseks. API-juurdepääsu taotlemiseks külastage"
 " veebilehte %s."
 
-#: pages/settings.php:30
-msgid "API"
-msgstr "API"
-
 #: pages/settings.php:33
-msgid "Key"
-msgstr "Key"
+msgid "Application ID"
+msgstr "Rakenduse ID"
 
 #: pages/settings.php:42
-msgid "Secret"
-msgstr "Salajane"
+msgid "Secret Key"
+msgstr "Salajane võti"
 
 #: pages/update.php:11
 msgid "Update"
 msgstr "Ajakohastamine"
 
-#: pages/update.php:42
+#: pages/update.php:52
 #, php-format
 msgid "Database successfully migrated to %s."
 msgstr "Andmebaas on edukalt üle viidud aadressile %s."
 
-#: pages/update.php:67
+#: pages/update.php:75 pages/update.php:95
 msgid "Database migration"
 msgstr "Andmebaasi migratsioon"
 
-#: pages/update.php:68
+#: pages/update.php:76 pages/update.php:96
 msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
@@ -1095,97 +2046,17 @@ msgstr ""
 "Aitäh, et uuendate wishthis! Selle uuenduse lõpuleviimiseks on vaja teha "
 "mõned muudatused andmebaasi struktuuris."
 
-#: pages/update.php:73 pages/update.php:76
+#: pages/update.php:82 pages/update.php:85 pages/update.php:101
+#: pages/update.php:104
 #, php-format
 msgid "Migrate to %s"
 msgstr "Migreeruda %s"
 
-#: pages/wish.php:37
-msgid "Wish successfully updated."
-msgstr "Soov edukalt uuendatud."
-
-#: pages/wish.php:95 pages/wish.php:98
-msgid "Auto-fill"
-msgstr "Automaatne täitmine"
-
-#: pages/wish.php:128 pages/wish.php:130
-msgid "Back"
-msgstr "Tagasi"
-
-#: pages/wish.php:146
-msgid "Image"
-msgstr "Pilt"
-
-#: pages/wish.php:149
-msgid "Define a new URL to be used as a preview."
-msgstr "Määrake uus URL, mida kasutatakse eelvaates."
-
-#: pages/wish.php:162 pages/wish.php:163
-msgid "Discard"
-msgstr "Viska ära"
-
-#: pages/wish.php:171
-msgid "Warning"
-msgstr "Hoiatus"
-
-#: pages/wish.php:174
-msgid "This action will potentially overwrite all fields in this wish."
-msgstr "See toiming kirjutab potentsiaalselt üle kõik selle soovi väljad."
-
-#: pages/wish.php:175
-msgid "Would you like to continue?"
-msgstr "Kas soovite jätkata?"
-
-#: pages/wish.php:178 pages/wish.php:179
-msgid "Yes, overwrite"
-msgstr "Jah, kirjutab üle"
-
-#: pages/wish.php:181 pages/wish.php:182
-msgid "No"
-msgstr "Ei"
-
-#: pages/wish.php:190
-msgid "URL mismatch"
-msgstr "URL-i mittevastavus"
-
-#: pages/wish.php:194
-msgid ""
-"The URL you have entered does not seem quite right. Would you like to update"
-" it with the one I found?"
-msgstr ""
-"Teie sisestatud URL ei tundu päris õige. Kas soovite seda uuendada minu "
-"leitud aadressiga?"
-
-#: pages/wish.php:195
-#, php-format
-msgid "According to %s, this is the canonical (correct) URL."
-msgstr "Vastavalt %s on see kanooniline (õige) URL."
-
-#: pages/wish.php:199
-msgid "Current"
-msgstr "Praegune"
-
-#: pages/wish.php:204
-msgid "Proposed"
-msgstr "Kavandatud"
-
-#: pages/wish.php:211 pages/wish.php:212
-msgid "Yes, update"
-msgstr "Jah, ajakohastage"
-
-#: pages/wish.php:214 pages/wish.php:215
-msgid "No, leave it"
-msgstr "Ei, jäta see"
-
-#: pages/wishlist.php:33
-msgid "Save list"
-msgstr "Salvesta nimekiri"
-
-#: pages/wishlist.php:49
+#: pages/wishlist.php:58
 msgid "Careful"
 msgstr "Ettevaatlik"
 
-#: pages/wishlist.php:52
+#: pages/wishlist.php:61
 msgid ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
 " already been fulfilled for you. Don't you want to be surprised?"
@@ -1193,78 +2064,63 @@ msgstr ""
 "Sa vaatad oma soovinimekirja! Saate näha, millised soovid on teie jaoks juba"
 " täidetud. Kas sa ei taha olla üllatunud?"
 
-#: pages/wishlist.php:53
+#: pages/wishlist.php:62
 msgid "It's probably best to just close this tab."
 msgstr "Ilmselt on kõige parem see vahekaart lihtsalt sulgeda."
 
-#: pages/wishlist.php:61
+#: pages/wishlist.php:70
 msgid "What to do?"
 msgstr "Mida teha?"
 
-#: pages/wishlist.php:63
+#: pages/wishlist.php:72
 #, php-format
 msgid ""
-"If you found a wish you would like to fulfil, click the %s button and it "
-"will temporarily become unavailable for others. Make sure to confirm the "
-"fulfilled wish here (i. e. after placing an order), to make the wish "
-"permanently unavailable for everybody else."
+"If you found a wish you would like to fulfil, open the wish %s and then "
+"click the %s button and it will be unavailable for everybody else."
 msgstr ""
-"Kui leidsid soovi, mida soovid täita, klõpsa nupule %s ja see muutub "
-"ajutiselt teistele kättesaamatuks. Kindlasti kinnitage täidetud soov siin "
-"(st pärast tellimuse esitamist), et muuta soov kõigile teistele püsivalt "
-"kättesaamatuks."
+"Kui leidsite soovi, mida soovite täita, avage soov %s ja seejärel klõpsake "
+"nupule %s ning see muutub kõigile teistele kättesaamatuks."
 
-#: pages/wishlists.php:24
+#: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
+msgid "Request more wishes"
+msgstr "Taotle rohkem soove"
+
+#: pages/wishlist.php:103
+msgid "A notification has just been sent to the owner of this wishlist."
+msgstr "Selle wishlist omanikule on just saadetud teade."
+
+#: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
+#: pages/wishlist.php:123
+msgid "Ok"
+msgstr "Ok"
+
+#: pages/wishlist.php:118
+msgid ""
+"The wishlist owner has already received a notification recently and has not "
+"been notified again."
+msgstr ""
+"wishlist omanik on juba saanud hiljuti teate ja teda ei ole uuesti "
+"teavitatud."
+
+#: pages/wishlists-saved.php:65
+msgid ""
+"Ask somebody to share their wishlist with you and hit the remember button "
+"for it to show up here!"
+msgstr ""
+"Palu kellelgi jagada oma wishlist ja vajuta mälunuppu, et see siia ilmuks!"
+
+#: pages/wishlists-saved.php:65
+msgid "No lists"
+msgstr "Nimekirjad puuduvad"
+
+#: pages/wishlists.php:33
 msgid "Wishlist"
 msgstr "Soovide nimekiri"
 
-#: pages/wishlists.php:27
+#: pages/wishlists.php:36
 msgid "Loading your wishlists..."
 msgstr "Soovide laadimine..."
 
-#: pages/wishlists.php:36 pages/wishlists.php:39 pages/wishlists.php:109
-msgid "Create a wishlist"
-msgstr "Loo soovide nimekiri"
-
-#: pages/wishlists.php:47 pages/wishlists.php:50 pages/wishlists.php:166
-msgid "Add a wish"
-msgstr "Lisa soov"
-
-#: pages/wishlists.php:55 pages/wishlists.php:58
+#: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
 msgstr "Jaga"
-
-#: pages/wishlists.php:68 pages/wishlists.php:70 pages/wishlists.php:154
-#: pages/wishlists.php:155
-msgid "Rename"
-msgstr "Nimetage ümber"
-
-#: pages/wishlists.php:113
-msgid ""
-"Choose a new name for your wishlist. Here's a suggestion to get you started."
-msgstr "Valige oma soovinimekirjale uus nimi. Siin on ettepanek, et alustada."
-
-#: pages/wishlists.php:127 pages/wishlists.php:128
-msgid "Create"
-msgstr "Loo"
-
-#: pages/wishlists.php:130 pages/wishlists.php:131 pages/wishlists.php:157
-#: pages/wishlists.php:158 pages/wishlists.php:185 pages/wishlists.php:186
-msgid "Cancel"
-msgstr "Tühista"
-
-#: pages/wishlists.php:139
-msgid "Rename wishlist"
-msgstr "Soovide nimekiri ümber nimetada"
-
-#: pages/wishlists.php:142
-msgid "How would you like to name this wishlist?"
-msgstr "Kuidas sooviksite sellele soovinimekirjale nime anda?"
-
-#: pages/wishlists.php:170
-msgid "Fill out any or all of the below fields to add your new wish."
-msgstr "Täitke mõni või kõik allpool olevad väljad, et lisada oma uus soov."
-
-#: pages/wishlists.php:182 pages/wishlists.php:183
-msgid "Add"
-msgstr "Lisa"
