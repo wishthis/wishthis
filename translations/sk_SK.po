@@ -1,26 +1,315 @@
 # 
 # Translators:
-# Jay Trees, 2022
+# Jay Trees, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2022-06-09 12:25+0200\n"
-"PO-Revision-Date: 2022-03-23 12:47+0000\n"
-"Last-Translator: Jay Trees, 2022\n"
-"Language-Team: Slovak (Slovakia) (https://www.transifex.com/wishthis/teams/134148/sk_SK/)\n"
+"POT-Creation-Date: 2023-09-25 13:23+0200\n"
+"PO-Revision-Date: 2023-09-25 11:41+0000\n"
+"Last-Translator: Jay Trees, 2023\n"
+"Language-Team: Slovak (Slovakia) (https://app.transifex.com/wishthis/teams/134148/sk_SK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/page.php:116 pages/home.php:26
+#: api/blog.php:39
+#, php-format
+msgid "Posted on %s"
+msgstr "Publikované na %s"
+
+#: api/wishlists.php:71
+msgid "Wish request"
+msgstr "Wish request"
+
+#: api/wishlists.php:72 pages/login.php:71
+msgid "Hello,"
+msgstr "Dobrý deň,"
+
+#. TRANSLATORS: %s: Wishlist name
+#: api/wishlists.php:77
+#, php-format
+msgid "somebody has requested that you add more wishes to your wishlist %s."
+msgstr "niekto požiadal o pridanie ďalších želaní na stránku wishlist %s ."
+
+#: api/wishlists.php:81
+msgid "Add wish"
+msgstr "Pridať želanie"
+
+#: assets/js/inline.js.php:34 assets/js/inline.js.php:122
+#: pages/login-as.php:62
+msgid "Error"
+msgstr "Chyba"
+
+#: assets/js/inline.js.php:35
+msgid "Something went wrong, that's all I know."
+msgstr "Niečo sa pokazilo, to je všetko, čo viem."
+
+#: assets/js/inline.js.php:36
+msgid "Thanks for nothing"
+msgstr "Vďaka za nič"
+
+#: assets/js/inline.js.php:39
+msgid "Unexpected output"
+msgstr "Neočakávaný výstup"
+
+#: assets/js/inline.js.php:41
+msgid ""
+"Your request likely succeeded but the server did not confirm that the action"
+" was successful."
+msgstr ""
+"Vaša požiadavka pravdepodobne uspela, ale server nepotvrdil, že akcia bola "
+"úspešná."
+
+#: assets/js/inline.js.php:42
+msgid ""
+"For nerds: The API returned HTTP 200, there was no (error) output, yet the "
+"response is still not as expected."
+msgstr ""
+"Pre šprtov: API vrátilo HTTP 200, nedošlo k žiadnemu (chybovému) výstupu, "
+"ale odpoveď stále nie je taká, ako sa očakávalo."
+
+#: assets/js/inline.js.php:43
+msgid "In any case, please report this."
+msgstr "V každom prípade to nahláste."
+
+#: assets/js/inline.js.php:45
+msgid "Ok then"
+msgstr "Ok potom"
+
+#: assets/js/inline.js.php:48 pages/install.php:401 pages/login-as.php:60
+#: pages/profile/profile-handle-post-password.php:32
+#: pages/profile/profile-handle-post-personal.php:34
+#: pages/profile/profile-handle-post-personal.php:64
+#: pages/profile/profile-handle-post-personal.php:94
+#: pages/profile/profile-handle-post-personal.php:124
+#: pages/profile/profile-handle-post-preferences.php:41
+#: pages/profile/profile-handle-post-preferences.php:78
+#: pages/profile/profile-handle-post-preferences.php:116
+#: pages/profile/profile-handle-post-preferences.php:135
+#: pages/profile/profile-handle-post-preferences.php:164
+#: pages/register.php:166
+msgid "Success"
+msgstr "Úspech"
+
+#: assets/js/inline.js.php:53
+msgid "Close this tab"
+msgstr "Zatvoriť túto kartu"
+
+#: assets/js/inline.js.php:54
+msgid "Show wishlist anyway"
+msgstr "Zobraziť zoznam želaní"
+
+#: assets/js/inline.js.php:57 assets/js/inline.js.php:66
+msgid "Really delete?"
+msgstr "Naozaj odstrániť?"
+
+#: assets/js/inline.js.php:58
+#, php-format
+msgid "Do you really want to delete the wishlist %s?"
+msgstr "Naozaj chcete vymazať zoznam želaní %s?"
+
+#: assets/js/inline.js.php:59 assets/js/inline.js.php:68
+msgid "Yes, delete"
+msgstr "Áno, vymazať"
+
+#: assets/js/inline.js.php:60 assets/js/inline.js.php:69
+msgid "No, keep"
+msgstr "Nie, nechajte si"
+
+#: assets/js/inline.js.php:67
+msgid "Would you really like to delete to this wish? It will be gone forever."
+msgstr "Chceli by ste toto želanie naozaj vymazať? Bude navždy preč."
+
+#: assets/js/inline.js.php:76
+msgid "Passwords must match."
+msgstr "Heslá sa musia zhodovať."
+
+#: assets/js/inline.js.php:79
+msgid "{name} must have a value"
+msgstr "{name} musí mať hodnotu"
+
+#: assets/js/inline.js.php:80
+msgid "{name} must be checked"
+msgstr "{name} je potrebné skontrolovať"
+
+#: assets/js/inline.js.php:81
+msgid "{name} must be a valid e-mail"
+msgstr "{name} musí byť platný e-mail"
+
+#: assets/js/inline.js.php:82
+msgid "{name} must be a valid URL"
+msgstr "{name} musí byť platná adresa URL"
+
+#: assets/js/inline.js.php:83
+msgid "{name} is not formatted correctly"
+msgstr "{name} nie je správne naformátovaný"
+
+#: assets/js/inline.js.php:84
+msgid "{name} must be an integer"
+msgstr "{name} musí byť celé číslo"
+
+#: assets/js/inline.js.php:85
+msgid "{name} must be a decimal number"
+msgstr "{name} musí byť desatinné číslo"
+
+#: assets/js/inline.js.php:86
+msgid "{name} must be set to a number"
+msgstr "{name} musí byť nastavené na číslo"
+
+#: assets/js/inline.js.php:87
+msgid "{name} must be \"{ruleValue}\""
+msgstr "{name} musí byť \"{ruleValue}\"."
+
+#: assets/js/inline.js.php:88
+msgid "{name} must be exactly \"{ruleValue}\""
+msgstr "{name} musí byť presne \"{ruleValue}\""
+
+#: assets/js/inline.js.php:89
+msgid "{name} cannot be set to \"{ruleValue}\""
+msgstr "{name} nemožno nastaviť na \"{ruleValue}\"."
+
+#: assets/js/inline.js.php:90
+msgid "{name} cannot be set to exactly \"{ruleValue}\""
+msgstr "{name} nemožno nastaviť presne na \"{ruleValue}\"."
+
+#: assets/js/inline.js.php:91
+msgid "{name} cannot contain \"{ruleValue}\""
+msgstr "{name} nemôže obsahovať \"{ruleValue}\"."
+
+#: assets/js/inline.js.php:92
+msgid "{name} cannot contain exactly \"{ruleValue}\""
+msgstr "{name} nemôže obsahovať presne \"{ruleValue}\""
+
+#: assets/js/inline.js.php:93
+msgid "{name} must contain \"{ruleValue}\""
+msgstr "{name} musí obsahovať \"{ruleValue}\""
+
+#: assets/js/inline.js.php:94
+msgid "{name} must contain exactly \"{ruleValue}\""
+msgstr "{name} musí obsahovať presne \"{ruleValue}\""
+
+#: assets/js/inline.js.php:95 assets/js/inline.js.php:96
+msgid "{name} must be at least {ruleValue} characters"
+msgstr "{name} musí mať aspoň {ruleValue} znakov"
+
+#: assets/js/inline.js.php:97
+msgid "{name} must be exactly {ruleValue} characters"
+msgstr "{name} musí obsahovať presne {ruleValue} znakov"
+
+#: assets/js/inline.js.php:98
+msgid "{name} cannot be longer than {ruleValue} characters"
+msgstr "{name} nemôže byť dlhší ako {ruleValue} znakov"
+
+#: assets/js/inline.js.php:99
+msgid "{name} must match {ruleValue} field"
+msgstr "{name} sa musí zhodovať s poľom {ruleValue}"
+
+#: assets/js/inline.js.php:100
+msgid "{name} must have a different value than {ruleValue} field"
+msgstr "{name} musí mať inú hodnotu ako pole {ruleValue}"
+
+#: assets/js/inline.js.php:101
+msgid "{name} must be a valid credit card number"
+msgstr "{name} musí byť platné číslo kreditnej karty"
+
+#: assets/js/inline.js.php:102
+msgid "{name} must have at least {ruleValue} choices"
+msgstr "{name} musí mať aspoň {ruleValue} možností"
+
+#: assets/js/inline.js.php:103
+msgid "{name} must have exactly {ruleValue} choices"
+msgstr "{name} musí mať presne {ruleValue} možností"
+
+#: assets/js/inline.js.php:104
+msgid "{name} must have {ruleValue} or less choices"
+msgstr "{name} musí mať {ruleValue} alebo menej možností"
+
+#: assets/js/inline.js.php:110
+msgid "Wishlist successfully renamed."
+msgstr "Zoznam želaní bol úspešne premenovaný."
+
+#: assets/js/inline.js.php:111
+msgid "Wishlist successfully deleted."
+msgstr "Zoznam želaní bol úspešne odstránený."
+
+#: assets/js/inline.js.php:115
+msgid "Wish successfully created."
+msgstr "Prianie bolo úspešne vytvorené."
+
+#: assets/js/inline.js.php:116
+msgid "Wish information updated."
+msgstr "Aktualizované informácie o želaniach."
+
+#: assets/js/inline.js.php:117
+msgid "Wish successfully deleted."
+msgstr "Prianie bolo úspešne vymazané."
+
+#: assets/js/inline.js.php:123
+msgid "Unable to copy to clipboard. There is likely a permission issue."
+msgstr ""
+"Nie je možné kopírovať do schránky. Pravdepodobne ide o problém s "
+"oprávnením."
+
+#: assets/js/inline.js.php:126
+msgid "Link copied to clipboard."
+msgstr "Odkaz skopírovaný do schránky."
+
+#: assets/js/inline.js.php:132
+msgctxt "Calendar"
+msgid "Today"
+msgstr "Dnes"
+
+#: assets/js/inline.js.php:133
+msgctxt "Calendar"
+msgid "Now"
+msgstr "Teraz"
+
+#: assets/js/inline.js.php:134
+msgctxt "Calendar"
+msgid "AM"
+msgstr "AM"
+
+#: assets/js/inline.js.php:135
+msgctxt "Calendar"
+msgid "PM"
+msgstr "PM"
+
+#: assets/js/inline.js.php:136
+msgctxt "Calendar"
+msgid "Week"
+msgstr "Týždeň"
+
+#: assets/js/inline.js.php:141 pages/wishlist.php:42
+msgid "Remember list"
+msgstr "Zapamätajte si zoznam"
+
+#: assets/js/inline.js.php:142
+msgid "Forget list"
+msgstr "Zabudnite na zoznam"
+
+#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
+msgid "Empty"
+msgstr "Prázdne stránky"
+
+#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
+msgid "This wishlist seems to be empty."
+msgstr "Táto stránka wishlist sa zdá byť prázdna."
+
+#: assets/js/inline.js.php:156
+msgid "Last modified"
+msgstr "Posledná úprava"
+
+#: classes/wishthis/Page.php:141 pages/home.php:28
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
@@ -28,503 +317,713 @@ msgstr ""
 "wishthis je jednoduchá, intuitívna a moderná platforma na vytváranie, správu"
 " a zobrazovanie želaní na akúkoľvek príležitosť."
 
-#: classes/page.php:194
-msgid ""
-"This is the development environment of wishthis. The database will reset "
-"every day at around 00:00."
+#: classes/wishthis/Page.php:277
+msgid "Your device is set to reduce data, some content has been disabled."
 msgstr ""
-"Toto je vývojové prostredie wishthis. Databáza sa obnoví každý deň približne"
-" o 00:00."
+"Vaše zariadenie je nastavené na redukciu dát, niektorý obsah bol zakázaný."
 
-#: classes/page.php:195
-msgid "Development environment"
-msgstr "Vývojové prostredie"
+#: classes/wishthis/Page.php:278
+msgid "Reducing data"
+msgstr "Znižovanie údajov"
 
-#: classes/page.php:318
-msgid "No wishlist selected."
-msgstr "Nie je vybraný žiadny zoznam želaní."
+#: classes/wishthis/Page.php:418 pages/home.php:26
+msgid "Make a wish"
+msgstr "Vyslovte želanie"
 
-#: classes/page.php:320 classes/page.php:350 pages/login-as.php:40
-msgid "Error"
-msgstr "Chyba"
-
-#: classes/page.php:321 pages/register.php:83 pages/register.php:86
-msgid "Failure"
-msgstr "Zlyhanie"
-
-#: classes/page.php:322
-msgid "The server did not confirm that the action was successful."
-msgstr "Server nepotvrdil, že akcia bola úspešná."
-
-#: classes/page.php:323
-msgid "Thanks for nothing"
-msgstr "Vďaka za nič"
-
-#: classes/page.php:324
-msgid "Understood"
-msgstr "Rozumieme"
-
-#: classes/page.php:325 pages/install.php:229 pages/login-as.php:38
-#: pages/profile.php:55 pages/profile.php:119 pages/register.php:123
-#: pages/wish.php:37
-msgid "Success"
-msgstr "Úspech"
-
-#: classes/page.php:327
-msgid "Close this tab"
-msgstr "Zatvoriť túto kartu"
-
-#: classes/page.php:328
-msgid "Show wishlist anyway"
-msgstr "Zobraziť zoznam želaní"
-
-#: classes/page.php:329 classes/page.php:334
-msgid "Really delete?"
-msgstr "Naozaj odstrániť?"
-
-#: classes/page.php:330
-#, php-format
-msgid "Do you really want to delete the wishlist %s?"
-msgstr "Naozaj chcete vymazať zoznam želaní %s?"
-
-#: classes/page.php:331 classes/page.php:336
-msgid "Yes, delete"
-msgstr "Áno, vymazať"
-
-#: classes/page.php:332 classes/page.php:337
-msgid "No, keep"
-msgstr "Nie, nechajte si"
-
-#: classes/page.php:335
-msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "Chceli by ste toto želanie naozaj vymazať? Bude navždy preč."
-
-#: classes/page.php:339
-msgid "Passwords must match."
-msgstr "Heslá sa musia zhodovať."
-
-#: classes/page.php:341
-msgid "Wishlist successfully renamed."
-msgstr "Zoznam želaní bol úspešne premenovaný."
-
-#: classes/page.php:342
-msgid "Wishlist successfully deleted."
-msgstr "Zoznam želaní bol úspešne odstránený."
-
-#: classes/page.php:344
-msgid "Wish successfully created."
-msgstr "Prianie bolo úspešne vytvorené."
-
-#: classes/page.php:345
-msgid "Wish successfully added."
-msgstr "Prianie bolo úspešne pridané."
-
-#: classes/page.php:346
-msgid "Wish information updated."
-msgstr "Aktualizované informácie o želaniach."
-
-#: classes/page.php:347
-msgid "Don't forget to save your changes."
-msgstr "Nezabudnite uložiť zmeny."
-
-#: classes/page.php:348
-msgid "Wish successfully deleted."
-msgstr "Prianie bolo úspešne vymazané."
-
-#: classes/page.php:351
-msgid "Unable to copy to clipboard. There is likely a permission issue."
-msgstr ""
-"Nie je možné kopírovať do schránky. Pravdepodobne ide o problém s "
-"oprávnením."
-
-#: classes/page.php:352
-msgid "Link copied to clipboard."
-msgstr "Odkaz skopírovaný do schránky."
-
-#: classes/page.php:354
-msgid "{name} must have a value"
-msgstr "{name} musí mať hodnotu"
-
-#: classes/page.php:355
-msgid "{name} must be checked"
-msgstr "{name} je potrebné skontrolovať"
-
-#: classes/page.php:356
-msgid "{name} must be a valid e-mail"
-msgstr "{name} musí byť platný e-mail"
-
-#: classes/page.php:357
-msgid "{name} must be a valid URL"
-msgstr "{name} musí byť platná adresa URL"
-
-#: classes/page.php:358
-msgid "{name} is not formatted correctly"
-msgstr "{name} nie je správne naformátovaný"
-
-#: classes/page.php:359
-msgid "{name} must be an integer"
-msgstr "{name} musí byť celé číslo"
-
-#: classes/page.php:360
-msgid "{name} must be a decimal number"
-msgstr "{name} musí byť desatinné číslo"
-
-#: classes/page.php:361
-msgid "{name} must be set to a number"
-msgstr "{name} musí byť nastavené na číslo"
-
-#: classes/page.php:362
-msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} musí byť \"{ruleValue}\"."
-
-#: classes/page.php:363
-msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} musí byť presne \"{ruleValue}\""
-
-#: classes/page.php:364
-msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} nemožno nastaviť na \"{ruleValue}\"."
-
-#: classes/page.php:365
-msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} nemožno nastaviť presne na \"{ruleValue}\"."
-
-#: classes/page.php:366
-msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} nemôže obsahovať \"{ruleValue}\"."
-
-#: classes/page.php:367
-msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} nemôže obsahovať presne \"{ruleValue}\""
-
-#: classes/page.php:368
-msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} musí obsahovať \"{ruleValue}\""
-
-#: classes/page.php:369
-msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} musí obsahovať presne \"{ruleValue}\""
-
-#: classes/page.php:370 classes/page.php:371
-msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} musí mať aspoň {ruleValue} znakov"
-
-#: classes/page.php:372
-msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} musí obsahovať presne {ruleValue} znakov"
-
-#: classes/page.php:373
-msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} nemôže byť dlhší ako {ruleValue} znakov"
-
-#: classes/page.php:374
-msgid "{name} must match {ruleValue} field"
-msgstr "{name} sa musí zhodovať s poľom {ruleValue}"
-
-#: classes/page.php:375
-msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} musí mať inú hodnotu ako pole {ruleValue}"
-
-#: classes/page.php:376
-msgid "{name} must be a valid credit card number"
-msgstr "{name} musí byť platné číslo kreditnej karty"
-
-#: classes/page.php:377
-msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} musí mať aspoň {ruleValue} možností"
-
-#: classes/page.php:378
-msgid "{name} must have exactly {ruleValue} choices"
-msgstr "{name} musí mať presne {ruleValue} možností"
-
-#: classes/page.php:379
-msgid "{name} must have {ruleValue} or less choices"
-msgstr "{name} musí mať {ruleValue} alebo menej možností"
-
-#: classes/page.php:381
-msgctxt "Calendar"
-msgid "Today"
-msgstr "Dnes"
-
-#: classes/page.php:382
-msgctxt "Calendar"
-msgid "Now"
-msgstr "Teraz"
-
-#: classes/page.php:383
-msgctxt "Calendar"
-msgid "AM"
-msgstr "AM"
-
-#: classes/page.php:384
-msgctxt "Calendar"
-msgid "PM"
-msgstr "PM"
-
-#: classes/page.php:385
-msgctxt "Calendar"
-msgid "Week"
-msgstr "Týždeň"
-
-#: classes/page.php:387 pages/profile.php:209 pages/profile.php:210
-#: pages/profile.php:243 pages/profile.php:244 pages/profile.php:336
-#: pages/profile.php:337 pages/settings.php:53 pages/settings.php:54
-#: pages/wish.php:118 pages/wish.php:119 pages/wish.php:159 pages/wish.php:160
-msgid "Save"
-msgstr "Uložiť"
-
-#: classes/page.php:388
-msgid "Saved"
-msgstr "Uložené"
-
-#: classes/page.php:457 classes/page.php:461 pages/blog.php:11
-#: pages/changelog.php:41
+#. TRANSLATORS: Changelog: Added
+#: classes/wishthis/Page.php:444 classes/wishthis/Page.php:448
+#: pages/blog.php:11 pages/changelog.php:444 pages/post.php:62
 msgid "Blog"
 msgstr "Blog"
 
-#: classes/page.php:468
+#: classes/wishthis/Page.php:455
 msgid "System"
 msgstr "Systém"
 
-#: classes/page.php:474
+#: classes/wishthis/Page.php:461 pages/profile/profile.php:43
+#: pages/profile/profile.php:387
 msgid "Account"
 msgstr "Účet"
 
-#: classes/page.php:483 pages/home.php:105
+#: classes/wishthis/Page.php:470 pages/home.php:218
 msgid "Wishlists"
 msgstr "Zoznamy želaní"
 
-#: classes/page.php:487 pages/home.php:33 pages/home.php:35
+#: classes/wishthis/Page.php:474 pages/home.php:35 pages/home.php:37
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "Moje zoznamy"
 
-#: classes/page.php:492 pages/wishlists-saved.php:11
-msgid "Saved lists"
-msgstr "Uložené zoznamy"
+#: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
+msgid "Remembered lists"
+msgstr "Remembered zoznamy"
 
-#: classes/page.php:502 pages/profile.php:11
+#: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
 msgstr "Profil"
 
-#: classes/page.php:508 pages/login-as.php:11
+#: classes/wishthis/Page.php:495 pages/login-as.php:11
 msgid "Login as"
 msgstr "Prihlásenie ako"
 
-#: classes/page.php:514 pages/logout.php:11
+#: classes/wishthis/Page.php:501 pages/logout.php:11
 msgid "Logout"
 msgstr "Odhlásenie"
 
-#: classes/page.php:520 classes/page.php:524 pages/home.php:50
-#: pages/home.php:52 pages/login-as.php:54 pages/login-as.php:55
-#: pages/login.php:11 pages/login.php:130 pages/login.php:131
-#: pages/register.php:229 pages/register.php:231
+#: classes/wishthis/Page.php:507 classes/wishthis/Page.php:511
+#: pages/home.php:84 pages/home.php:86 pages/login-as.php:81
+#: pages/login-as.php:82 pages/login.php:11 pages/login.php:145
+#: pages/login.php:146 pages/register.php:289 pages/register.php:291
 msgid "Login"
 msgstr "Prihlásenie"
 
-#: classes/page.php:531 classes/page.php:535 pages/install.php:233
-#: pages/install.php:235 pages/login.php:135 pages/login.php:137
-#: pages/register.php:13 pages/register.php:14
+#: classes/wishthis/Page.php:518 classes/wishthis/Page.php:522
+#: pages/install.php:405 pages/install.php:407 pages/login.php:153
+#: pages/login.php:155 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "Registrácia"
 
-#: classes/page.php:545 pages/settings.php:11
+#: classes/wishthis/Page.php:532 pages/settings.php:11
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: classes/page.php:558
-msgid "wishthis logo"
-msgstr "logo wishthis"
-
-#: classes/page.php:692 pages/changelog.php:11
+#: classes/wishthis/Page.php:669 classes/wishthis/Page.php:672
+#: pages/changelog.php:11
 msgid "Changelog"
 msgstr "Zoznam zmien"
 
-#: classes/page.php:698
+#: classes/wishthis/Page.php:678
 msgid "Contribute"
 msgstr "Prispieť na"
 
-#: classes/page.php:704 classes/page.php:707
-msgid "GitHub repository"
-msgstr "Úložisko GitHub"
+#: classes/wishthis/Page.php:684 classes/wishthis/Page.php:687
+msgid "GitHub"
+msgstr "GitHub"
 
-#: classes/page.php:713 classes/page.php:716
-msgid "Translate"
-msgstr "Preložiť"
+#: classes/wishthis/Page.php:693 classes/wishthis/Page.php:696
+msgid "Transifex"
+msgstr "Transifex"
 
-#: classes/page.php:752
+#: classes/wishthis/Page.php:702
+msgid "Contact"
+msgstr "Kontakt"
+
+#: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
+msgid "Matrix"
+msgstr "Matica"
+
+#: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
+msgid "Discord"
+msgstr "Discord"
+
+#: classes/wishthis/Page.php:741
+msgid "JavaScript is disabled"
+msgstr "JavaScript je vypnutý"
+
+#. TRANSLATORS: %s: the current year
+#: classes/wishthis/Page.php:750
+#, php-format
+msgid "Welcome to the year %s"
+msgstr "Vitajte v roku %s"
+
+#: classes/wishthis/Page.php:757
+msgid ""
+"I get it, websites track your every move these days and companies keep "
+"coming up with more genius hacks to monetise you."
+msgstr ""
+"Chápem, webové stránky dnes sledujú každý váš krok a spoločnosti neustále "
+"vymýšľajú ďalšie geniálne hacky, ako vás speňažiť."
+
+#: classes/wishthis/Page.php:758
+msgid ""
+"But the good news is, wishthis aims to be different. It aims to be "
+"transparent and let the user stay in control. Unlike many companies just "
+"making claims about being secure and protecting your privacy, wishthis is "
+"entirely open source, allowing anybody to simply look up what it does and if"
+" they are okay with it. For people who aren't familiar with my tech stack "
+"and aren't able to lookup and understand the wishthis source code: \"trust "
+"me\"."
+msgstr ""
+"Dobrou správou však je, že wishthis sa snaží byť iný. Jeho cieľom je byť "
+"transparentný a umožniť používateľovi, aby mal všetko pod kontrolou. Na "
+"rozdiel od mnohých spoločností, ktoré len vyhlasujú, že sú bezpečné a "
+"chránia vaše súkromie, wishthis je úplne otvorený a umožňuje komukoľvek "
+"jednoducho si pozrieť, čo robí a či mu to vyhovuje. Pre ľudí, ktorí "
+"nepoznajú môj technologický zásobník a nie sú schopní vyhľadať a pochopiť "
+"zdrojový kód wishthis: \"dôverujte mi\"."
+
+#: classes/wishthis/Page.php:760
+msgid ""
+"I'm joking - please remain critical, especially for closed source and/or "
+"commercial software. At least you can ask somebody to validate the wishthis "
+"code for you! Do you have any questions? Message me! (see footer)"
+msgstr ""
+"Žartujem - zostaňte, prosím, kritickí, najmä v prípade softvéru s uzavretým "
+"zdrojovým kódom a/alebo komerčného softvéru. Aspoň môžete niekoho požiadať, "
+"aby pre vás overil wishthis kód! Máte nejaké otázky? Napíšte mi! (pozri "
+"pätičku)"
+
+#: classes/wishthis/Page.php:762
+msgid "wishthis really needs JavaScript to work, please enable it."
+msgstr ""
+"wishthis naozaj potrebuje JavaScript, aby fungoval, povoľte ho, prosím."
+
+#: classes/wishthis/Page.php:767
+msgid "Reload page"
+msgstr "Opätovné načítanie stránky"
+
+#: classes/wishthis/Page.php:768 pages/parts/wishlist.php:291
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: classes/wishthis/Page.php:793
 #, php-format
 msgid "%s not found"
 msgstr "%s nenájdené"
 
-#: classes/page.php:762
+#: classes/wishthis/Page.php:803
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
 "Požadovaný zoznam želaní nebol nájdený a jeho tvorca ho pravdepodobne "
 "vymazal."
 
-#: classes/page.php:766
+#: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
 msgstr "Požadované želanie nebolo nájdené."
 
-#: classes/page.php:770
+#: classes/wishthis/Page.php:811
 #, php-format
 msgid "The requested %s was not found."
 msgstr "Požadovaná stránka %s nebola nájdená."
 
-#: classes/wish.php:27
+#: classes/wishthis/Wish.php:34
 msgid "Unsure about it"
 msgstr "Nie som si tým istý"
 
-#: classes/wish.php:31
+#: classes/wishthis/Wish.php:38
 msgid "Nice to have"
 msgstr "Je pekné mať"
 
-#: classes/wish.php:35
+#: classes/wishthis/Wish.php:42
 msgid "Would love it"
 msgstr "Páčilo by sa mi to"
 
-#: classes/wish.php:129
+#: classes/wishthis/Wish.php:224
 msgid "Wish temporarily fulfilled"
 msgstr "Dočasne splnené želanie"
 
-#: classes/wish.php:130
+#. TRANSLATORS: %s: Duration (e. g. 30 minutes)
+#: classes/wishthis/Wish.php:229
 #, php-format
 msgid ""
 "If this wish is a product, confirm the order was successful and mark it as "
 "fulfilled here. If you do not confirm this wish as fulfilled, it will become"
-" available again to others after %d minutes."
+" available again to others after %s."
 msgstr ""
 "Ak je toto želanie produktom, potvrďte, že objednávka bola úspešná, a "
-"označte ju tu ako splnenú. Ak toto želanie nepotvrdíte ako splnené, bude po "
-"%d minútach opäť k dispozícii pre ostatných."
+"označte ju tu ako splnenú. Ak toto želanie nepotvrdíte ako splnené, bude "
+"opäť k dispozícii pre ostatných po %s."
 
-#: classes/wish.php:136
+#. TRANSLATORS: %d Amount of minutes
+#: classes/wishthis/Wish.php:232
+#, php-format
+msgid "%d minutes"
+msgstr "%d zápisnice"
+
+#: classes/wishthis/Wish.php:243
 msgid "Confirm"
 msgstr "Potvrďte"
 
-#: classes/wish.php:184 classes/wish.php:187 pages/wishlist.php:64
-msgid "Fulfil wish"
-msgstr "Splniť želanie"
-
-#: classes/wish.php:194 classes/wish.php:197 pages/wish.php:87
-#: pages/wish.php:90
-msgid "Visit"
-msgstr "Navštívte stránku"
-
-#: classes/wish.php:203 classes/wish.php:206 pages/wishlists.php:32
-#: pages/wishlists.php:62 pages/wishlists.php:65
-msgid "Options"
-msgstr "Možnosti"
-
-#: classes/wish.php:211
-msgid "Mark as fulfilled"
-msgstr "Označiť ako splnené"
-
-#: classes/wish.php:216
-msgid "Edit"
-msgstr "Upraviť"
-
-#: classes/wish.php:221 pages/wishlists.php:73 pages/wishlists.php:75
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: classes/wish.php:239
+#: classes/wishthis/Wish.php:292
 msgid "Wish not found"
 msgstr "Prianie nebolo nájdené"
 
-#: classes/wishlist.php:117
+#: classes/wishthis/Wish.php:403 pages/wishlist.php:73
+msgid "Details"
+msgstr "Podrobnosti na"
+
+#: classes/wishthis/Wishlist.php:240
 msgid "Wishlist not found"
 msgstr "Zoznam želaní nebol nájdený"
 
-#: config/config-sample.php:22 config/config.php:22
+#: config/config-sample.php:40 config/config.php:40
 msgid "Stable"
 msgstr "Stabilné"
 
-#: config/config-sample.php:27 config/config.php:27
+#: config/config-sample.php:45 config/config.php:45
 msgid "Release candidate"
 msgstr "Kandidát na vydanie"
 
-#: functions/getWishlistNameSuggestion.php:31
+#: functions/getWishlistNameSuggestion.php:32
 msgid "Birthday"
 msgstr "Narodeniny"
 
-#: functions/getWishlistNameSuggestion.php:33
+#: functions/getWishlistNameSuggestion.php:34
 msgid "Easter"
 msgstr "Veľká noc"
 
-#: functions/getWishlistNameSuggestion.php:35
+#: functions/getWishlistNameSuggestion.php:36
 msgid "Christmas"
 msgstr "Vianoce"
 
-#: pages/blog.php:47
+#: pages/api.php:11 pages/settings.php:30
+msgid "API"
+msgstr "API"
+
+#. TRANSLATORS: %s: Language, most likely English
+#: pages/blog.php:23
+#, php-format
+msgid ""
+"The blog is currently only available in %s and not translatable. Please let "
+"me know if you have any ideas to improve this."
+msgstr ""
+"Blog je v súčasnosti dostupný len v jazyku %s a nie je možné ho preložiť. Ak"
+" máte nejaké nápady na zlepšenie, dajte mi prosím vedieť."
+
+#: pages/blog.php:26
+msgid "Warning"
+msgstr "Upozornenie"
+
+#: pages/blog.php:60
 msgid "Read more"
 msgstr "Prečítajte si viac"
 
-#: pages/changelog.php:25 pages/changelog.php:35
-msgid "Unreleased"
-msgstr "Nevydané"
+#: pages/blog.php:87 pages/post.php:55
+msgid "Top"
+msgstr "Top"
 
-#: pages/changelog.php:26 pages/changelog.php:69
+#: pages/changelog.php:25 pages/changelog.php:39
+msgid "Roadmap"
+msgstr "Cestovná mapa"
+
+#: pages/changelog.php:26 pages/changelog.php:94
+msgid "1.1.0"
+msgstr "1.1.0"
+
+#: pages/changelog.php:27 pages/changelog.php:203
+msgid "1.0.0"
+msgstr "1.0.0"
+
+#: pages/changelog.php:28 pages/changelog.php:299
+msgid "0.7.3"
+msgstr "0.7.3"
+
+#: pages/changelog.php:29 pages/changelog.php:319
+msgid "0.7.2"
+msgstr "0.7.2"
+
+#: pages/changelog.php:30 pages/changelog.php:339
+msgid "0.7.1"
+msgstr "0.7.1"
+
+#: pages/changelog.php:31 pages/changelog.php:435
+msgid "0.7.0"
+msgstr "0.7.0"
+
+#: pages/changelog.php:32 pages/changelog.php:577
 msgid "0.6.0"
 msgstr "0.6.0"
 
-#: pages/changelog.php:39 pages/changelog.php:73
+#. TRANSLATORS: %s: discussions
+#: pages/changelog.php:44
+#, php-format
+msgid ""
+"If you would like to give feedback regarding the roadmap, please refer to "
+"the %s on GitHub, or chat on Matrix or Discord."
+msgstr ""
+"Ak by ste chceli poskytnúť spätnú väzbu týkajúcu sa plánu, pozrite si "
+"stránku %s na GitHube alebo chatujte na Matrixe alebo Discorde."
+
+#: pages/changelog.php:47
+msgid "discussions"
+msgstr "diskusie"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:56
+msgid "Allow customising priority colours"
+msgstr "Umožniť prispôsobenie prioritných farieb"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:63
+msgid "Filter by price"
+msgstr "Filtrovanie podľa ceny"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:70
+msgid "Bookmarklets"
+msgstr "Záložky"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:77
+msgid "Notifications for fulfilled wishes"
+msgstr "Upozornenia na splnené želania"
+
+#. TRANSLATORS: Changelog: Roadmap
+#: pages/changelog.php:83
+msgid ""
+"Verify wishes are still available when attempting to fulfil them. "
+"Alternatively, a heartbeat which checks if all the wishes are still "
+"unfulfilled."
+msgstr ""
+"Pri pokuse o splnenie želaní overte, či sú stále k dispozícii. Prípadne "
+"srdcový tep, ktorý skontroluje, či sú všetky želania stále nesplnené."
+
+#: pages/changelog.php:98 pages/changelog.php:207 pages/changelog.php:439
+#: pages/changelog.php:581
 msgid "Added"
 msgstr "Pridané"
 
-#: pages/changelog.php:44 pages/changelog.php:80
-msgid "Improved"
-msgstr "Vylepšená stránka"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:103
+msgid "Configuration flag to disable plausible.io calls"
+msgstr "Konfiguračný príznak na zakázanie volaní plausible.io"
 
-#: pages/changelog.php:46
-msgid "Localisation (many new translations added)"
-msgstr "Lokalizácia (pridaných mnoho nových prekladov)"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:110
+msgid "Add account delete option"
+msgstr "Pridať možnosť odstránenia účtu"
 
-#: pages/changelog.php:47
-msgid "Saved wish information is not updated if the url can not be found"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:117
+msgid "Configuration flag to disable user registrations"
+msgstr "Konfiguračný príznak na zakázanie registrácie používateľov"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:124
+msgid ""
+"After creating an account your language is automatically set to your "
+"browser's (if it is available), instead of defaulting to en_GB."
 msgstr ""
-"Informácie o uložených želaniach sa neaktualizujú, ak nie je možné nájsť url"
-" adresu"
+"Po vytvorení účtu sa váš jazyk automaticky nastaví na jazyk prehliadača (ak "
+"je k dispozícii) namiesto predvoleného en_GB."
 
-#: pages/changelog.php:48
-msgid "URL handling"
-msgstr "Spracovanie adresy URL"
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:130
+msgid ""
+"Amazon links are now automatically converted to affiliate links to help "
+"support wishthis financially."
+msgstr ""
+"Odkazy na Amazon sú teraz automaticky prevedené na partnerské odkazy, ktoré "
+"pomáhajú finančne podporovať wishthis."
 
-#: pages/changelog.php:51
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:136
+msgid "Prerequisite check during installation"
+msgstr "Kontrola predpokladov počas inštalácie"
+
+#: pages/changelog.php:141 pages/changelog.php:262 pages/changelog.php:302
+#: pages/changelog.php:322 pages/changelog.php:378 pages/changelog.php:529
+#: pages/changelog.php:613
+msgid "Fixed"
+msgstr "Fixed"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:146
+msgid "RewriteRules which caused HTTP 404 errors"
+msgstr "RewriteRules, ktoré spôsobili chyby HTTP 404"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:153
+msgid "Switching to wish \"product\" tab breaks view"
+msgstr "Prepnutie na želanie \"produkt\" rozbije zobrazenie"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:160
+msgid "Special characters not being displayed properly"
+msgstr "Špeciálne znaky sa nezobrazujú správne"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:167
+msgid "A fatal error when the CHANNELS constant is removed from the config"
+msgstr "Fatálna chyba pri odstránení konštanty CHANNELS z konfigurácie"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:174
+msgid "Fulfilled wishes disappearing for wishlist owners"
+msgstr "Splnené želania miznú pre majiteľov wishlist "
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:180
+msgid "Deprecated notices on PHP 8.2"
+msgstr "Zastarané upozornenia v PHP 8.2"
+
+#: pages/changelog.php:185 pages/changelog.php:252 pages/changelog.php:507
 msgid "Changed"
 msgstr "Zmenená stránka"
 
-#: pages/changelog.php:53
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:190
+msgid "Added button labels for mobile devices"
+msgstr "Pridané štítky tlačidiel pre mobilné zariadenia"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:212
+msgid "Option to set currency"
+msgstr "Možnosť nastavenia meny"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:219
+msgid "A roadmap in the changelog"
+msgstr "Plán v Changelog"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:225
+msgid "Compact/list view for wishes"
+msgstr "Kompaktné zobrazenie/zobrazenie zoznamu želaní"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:231
+msgid "Option to enable advertisements"
+msgstr "Možnosť povoliť reklamy"
+
+#: pages/changelog.php:236 pages/changelog.php:343 pages/changelog.php:485
+#: pages/changelog.php:603
+msgid "Improved"
+msgstr "Vylepšená stránka"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:241
+msgid ""
+"Large parts of wishthis have been completely rewritten, such as the API and "
+"how pretty URLs work. The aim was to increase security and maintainability."
+msgstr ""
+"Veľké časti aplikácie wishthis boli úplne prepracované, napríklad rozhranie "
+"API a fungovanie pekných adries URL. Cieľom bolo zvýšiť bezpečnosť a "
+"udržiavateľnosť."
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:247
+msgid ""
+"Changelog now automatically selects the current version, instead of the top "
+"most tab."
+msgstr ""
+"Changelog teraz automaticky vyberie aktuálnu verziu namiesto najvyššej "
+"karty."
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:257
+msgid "Decreased wish height on mobile devices"
+msgstr "Znížená výška želania na mobilných zariadeniach"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:267
+msgid ""
+"Temporary fulfilled wish does not become available again after 30 minutes, "
+"except when viewing as the owner of the list."
+msgstr ""
+"Dočasne splnené želanie sa po 30 minútach nestane opäť dostupným, s výnimkou"
+" zobrazenia ako vlastník zoznamu."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:274
+msgid "Fix various wish UI bugs"
+msgstr "Oprava rôznych chýb používateľského rozhrania"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:281
+msgid "Fix background and colour when opening the mobile menu"
+msgstr "Oprava pozadia a farby pri otvorení mobilnej ponuky"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:287
+msgid "Marking wish as fulfilled"
+msgstr "Označenie želania ako splneného"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:307
+msgid "Fix fulfilled wishes disappearing for wishlist owner"
+msgstr "Oprava splnených želaní miznúcich pre majiteľa stránky wishlist "
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:327
+msgid "Fix fulfilled wishes showing after using filter"
+msgstr "Oprava zobrazenia splnených želaní po použití filtra"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:348
+msgid "MJML settings page"
+msgstr "Stránka nastavení MJML"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:355
+msgid ""
+"Expired sessions are now invalidated by wishthis instead of relying on the "
+"browser to delete the cookies."
+msgstr ""
+"Vypršanie platnosti relácií teraz zneplatňuje wishthis namiesto toho, aby sa"
+" spoliehal na to, že súbory cookie odstráni prehliadač."
+
+#. TRANSLATORS: Changelog: Improved
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:361 pages/changelog.php:450
+msgid "Dark theme"
+msgstr "Tmavá téma"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:367
+msgid "Remembered lists design"
+msgstr "Remembered zoznamy dizajnu"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:373
+msgid "Translations"
+msgstr "Preklady"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:383
+msgid "Label on top of dropdown menu"
+msgstr "Štítok v hornej časti rozbaľovacej ponuky"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:390
+msgid "Encoding issue in wish description"
+msgstr "Problém s kódovaním v opise želaní"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:397
+msgid "Caching issue with the blog"
+msgstr "Problém s ukladaním do vyrovnávacej pamäte blogu"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:404
+msgid "An error when a blog post doesn't have a featured image."
+msgstr "Chyba, keď príspevok v blogu nemá zobrazený obrázok."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:410
+msgid ""
+"Version number not being stored correctly causing the migration to execute "
+"the wrong script."
+msgstr ""
+"Číslo verzie sa neukladá správne, čo spôsobuje, že migrácia vykoná nesprávny"
+" skript."
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:416
+msgid "Wishlist filter cut off on mobile"
+msgstr "wishlist vypnutie filtra na mobilnom telefóne"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:422
+msgid "Wish options not selectable after filtering"
+msgstr "Možnosti želaní, ktoré nie je možné vybrať po filtrovaní"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:456
+msgid ""
+"Wish properties. You can now mark a wish as purchasable and add a price."
+msgstr ""
+"Vlastnosti želaní. Teraz môžete prianie označiť ako kúpiteľné a pridať cenu."
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:462
+msgid "Jump to last edited wishlist from home"
+msgstr "Prejsť na poslednú upravenú stránku wishlist z domova"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:468
+msgid "Quick add wish from home"
+msgstr "Rýchle pridanie želania z domova"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:474
+msgid "Button to request more wishes from a users wishlist"
+msgstr "Tlačidlo na vyžiadanie ďalších želaní od používateľov wishlist"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:480
+msgid "Option to stay logged in"
+msgstr "Možnosť zostať prihlásený"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:490
+msgid "Localisation (many new translations added)"
+msgstr "Lokalizácia (pridaných mnoho nových prekladov)"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:496
+msgid ""
+"Additional logins are no longer required when switching between wishthis "
+"channels"
+msgstr ""
+"Pri prepínaní medzi kanálmi wishthis sa už nevyžadujú ďalšie prihlásenia"
+
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:502
+msgid "Remembered wishlists design"
+msgstr "Remembered wishlists dizajn"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:512
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr "Changelog je teraz stránka namiesto súboru markdown na stiahnutie"
 
-#: pages/changelog.php:56 pages/changelog.php:85
-msgid "Fixed"
-msgstr "Opravené"
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:518
+msgid ""
+"Wishes can be edited from the wishlist now, without loading another page"
+msgstr ""
+"Želania je teraz možné upravovať na stránke wishlist bez načítania ďalšej "
+"stránky"
 
-#: pages/changelog.php:58
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:524
+msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
+msgstr "\"Uložené wishlists\" bolo premenované na \"Zapamätať si zoznamy\""
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:534
 msgid "Various minor things (typos, menu order, etc)"
 msgstr "Rôzne drobnosti (preklepy, poradie v menu atď.)"
 
-#: pages/changelog.php:75
-msgid "This changelog"
-msgstr "Tento zoznam zmien"
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:540
+msgid "Wish information being updated with 404 content from URL"
+msgstr "Informácie o želaniach sa aktualizujú pomocou obsahu 404 z adresy URL"
 
-#: pages/changelog.php:76
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:546
+msgid "Wish image not showing"
+msgstr "Nezobrazuje sa obrázok priania"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:552
+msgid "An error when saving a wish with a really long URL"
+msgstr "Chyba pri ukladaní želania s naozaj dlhou adresou URL"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:558
+msgid "Redirect errors on Nginx"
+msgstr "Chyby presmerovania v systéme Nginx"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:564
+msgid "An error when fetching title from an URL containing quotes"
+msgstr "Chyba pri načítaní názvu z adresy URL obsahujúcej úvodzovky"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:586
+msgid "This changelog"
+msgstr "Táto stránka Changelog"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:592
 msgid "Wish properties"
 msgstr "Vlastnosti želaní"
 
-#: pages/changelog.php:77
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:598
 msgid "Button to mark wish as fulfilled"
 msgstr "Tlačidlo na označenie želania ako splneného"
 
-#: pages/changelog.php:82
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:608
 msgid "Card design"
 msgstr "Dizajn karty"
 
-#: pages/changelog.php:87
+#. TRANSLATORS: Changelog: Improved
+#: pages/changelog.php:618
 msgid "Various small bugs"
 msgstr "Rôzne malé chyby"
 
@@ -532,19 +1031,15 @@ msgstr "Rôzne malé chyby"
 msgid "Home"
 msgstr "Domov"
 
-#: pages/home.php:24
-msgid "Make a wish"
-msgstr "Vyslovte želanie"
-
-#: pages/home.php:42 pages/home.php:44
+#: pages/home.php:76 pages/home.php:78
 msgid "Register now"
 msgstr "Zaregistrujte sa teraz"
 
-#: pages/home.php:60
+#: pages/home.php:94
 msgid "Use case"
 msgstr "Prípad použitia"
 
-#: pages/home.php:62
+#: pages/home.php:96
 msgid ""
 "Your birthday is coming up and you just created a wishlist with all the cool"
 " stuff you want. Your friends and family want to make sure you get something"
@@ -557,11 +1052,11 @@ msgstr ""
 "želaní a ak sa niekto rozhodne splniť jedno z vašich želaní, zmizne pre "
 "všetkých ostatných."
 
-#: pages/home.php:66
+#: pages/home.php:100
 msgid "Why wishthis?"
 msgstr "Prečo wishthis?"
 
-#: pages/home.php:69
+#: pages/home.php:103
 #, php-format
 msgid ""
 "wishthis is free and open source software. With free I don't just mean, you "
@@ -575,56 +1070,131 @@ msgstr ""
 "môže ktokoľvek %sprezrieť a overiť jeho kód%s, ale vyzývam vás, aby ste tak "
 "urobili aj vy."
 
-#: pages/home.php:72
-msgid "As a non-commercial project it remains"
-msgstr "Ako nekomerčný projekt zostáva"
+#: pages/home.php:108
+msgid "As an open source project it remains"
+msgstr "Ako projekt s otvoreným zdrojovým kódom zostáva"
 
-#: pages/home.php:76
-msgid "free of advertisements,"
-msgstr "bez reklám,"
+#: pages/home.php:113
+msgid "free of advertisements"
+msgstr "bez reklám"
 
-#: pages/home.php:80
-msgid "without tracking, and"
-msgstr "bez sledovania a"
+#. TRANSLATORS: %s: plausible
+#: pages/home.php:118
+#, php-format
+msgid "see %s"
+msgstr "pozri %s"
 
-#: pages/home.php:84
-msgid "open for feedback and suggestions."
-msgstr "otvorené pre spätnú väzbu a návrhy."
+#: pages/home.php:119
+msgid "plausible"
+msgstr "hodnoverné"
 
-#: pages/home.php:92
+#: pages/home.php:125
+msgid "without intrusive tracking"
+msgstr "bez rušivého sledovania"
+
+#: pages/home.php:130
+msgid "transparent"
+msgstr "transparentné"
+
+#: pages/home.php:136
+msgid "privacy focused"
+msgstr "zameranie na ochranu súkromia"
+
+#: pages/home.php:140
+msgid "open for feedback and suggestions"
+msgstr "otvorené pre spätnú väzbu a návrhy"
+
+#: pages/home.php:144
+msgid "What you should also know"
+msgstr "Čo by ste tiež mali vedieť"
+
+#: pages/home.php:150
+msgid "affiliate links"
+msgstr "partnerské odkazy"
+
+#: pages/home.php:151
+msgid ""
+"amazon links are automatically converted to affiliate links to help support "
+"the project financially."
+msgstr ""
+"amazon odkazy sú automaticky prevedené na affiliate odkazy na podporu "
+"projektu finančne."
+
+#: pages/home.php:159
+msgid "News"
+msgstr "Novinky"
+
+#: pages/home.php:206
 msgid "Statistics"
 msgstr "Štatistika"
 
-#: pages/home.php:94
+#: pages/home.php:208
 msgid "Join the others and get started now!"
 msgstr "Pridajte sa k ostatným a začnite hneď!"
 
-#: pages/home.php:99 pages/home.php:104 pages/home.php:109
+#: pages/home.php:212 pages/home.php:217 pages/home.php:222
 msgid "N. A."
 msgstr "N. A."
 
-#: pages/home.php:100 pages/wishlist.php:69 pages/wishlists.php:85
+#: pages/home.php:213 pages/wishlist.php:79 pages/wishlists.php:94
 msgid "Wishes"
 msgstr "Priania"
 
-#: pages/home.php:110
+#: pages/home.php:223
 msgid "Registered users"
 msgstr "Registrovaní používatelia"
+
+#: pages/home.php:235
+msgid "Hey, you"
+msgstr "Hej, ty"
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:241
+#, php-format
+msgid "Yes, I mean you, %s."
+msgstr "Áno, myslím vás, %s."
+
+#. TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g.
+#. English (United Kingdom) %3$s: preferences
+#: pages/home.php:251
+#, php-format
+msgid ""
+"Your browser is telling me that you would like to view pages in %1$s, but "
+"your %3$s are set to %2$s."
+msgstr ""
+"Váš prehliadač mi oznamuje, že by ste chceli zobraziť stránky na adrese "
+"%1$s, ale vaša adresa %3$s je nastavená na %2$s."
+
+#: pages/home.php:254
+msgid "preferences"
+msgstr "preferencie"
+
+#. TRANSLATORS: %s: the users display name
+#: pages/home.php:263
+#, php-format
+msgid ""
+"wishthis is available in %1$s different locales and also supports %2$s!"
+msgstr ""
+"wishthis je k dispozícii v %1$s rôznych lokalitách a podporuje aj %2$s!"
 
 #: pages/install.php:15
 msgid "Install"
 msgstr "Inštalácia stránky"
 
-#: pages/install.php:30 pages/install.php:101
+#: pages/install.php:37 pages/install.php:164
 #, php-format
 msgid "Step %d"
 msgstr "Krok %d"
 
-#: pages/install.php:31
+#: pages/install.php:39
 msgid "Welcome to the wishthis installer."
 msgstr "Vitajte v inštalačnom programe wishthis."
 
-#: pages/install.php:32
+#: pages/install.php:43
+msgid "Database"
+msgstr "Databáza"
+
+#: pages/install.php:45
 msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
@@ -632,59 +1202,129 @@ msgstr ""
 "Na správne fungovanie systému wishthis je potrebná databáza. Zadajte svoje "
 "prihlasovacie údaje."
 
-#: pages/install.php:39
+#: pages/install.php:54
 msgid "Host"
 msgstr "Hostiteľ"
 
-#: pages/install.php:44 pages/wishlists.php:117
+#: pages/install.php:59 pages/parts/wishlist.php:95
 msgid "Name"
 msgstr "Názov"
 
-#: pages/install.php:49
+#: pages/install.php:66
 msgid "Username"
 msgstr "Používateľské meno"
 
-#: pages/install.php:54 pages/login.php:119 pages/profile.php:143
-#: pages/profile.php:218 pages/profile.php:227 pages/register.php:193
+#: pages/install.php:71 pages/login.php:125 pages/profile/profile.php:35
+#: pages/profile/profile.php:116 pages/profile/profile.php:124
+#: pages/register.php:253
 msgid "Password"
 msgstr "Heslo"
 
-#: pages/install.php:60 pages/install.php:61 pages/install.php:110
-#: pages/install.php:111
-msgid "Continue"
-msgstr "Pokračovať"
+#: pages/install.php:79 pages/install.php:80 pages/parts/wishlist.php:185
+#: pages/parts/wishlist.php:186 pages/profile/profile.php:107
+#: pages/profile/profile.php:108 pages/profile/profile.php:140
+#: pages/profile/profile.php:141 pages/profile/profile.php:239
+#: pages/profile/profile.php:240 pages/profile/profile.php:337
+#: pages/profile/profile.php:338 pages/profile/profile.php:378
+#: pages/profile/profile.php:379 pages/settings.php:53 pages/settings.php:54
+msgid "Save"
+msgstr "Uložiť"
 
-#: pages/install.php:102
-msgid "Click continue to test the database connection."
-msgstr "Kliknutím na tlačidlo pokračovať otestujte pripojenie k databáze."
+#: pages/install.php:83
+msgid "Test connection"
+msgstr "Testovacie pripojenie"
 
-#: pages/login-as.php:38
+#: pages/install.php:99
+msgid "PHP Version >= 8.1"
+msgstr "Verzia PHP &gt;= 8.1"
+
+#: pages/install.php:102 pages/install.php:108
+msgid "Compatible"
+msgstr "Kompatibilné"
+
+#: pages/install.php:105
+msgid "PHP Version < 8.3"
+msgstr "Verzia PHP &lt; 8.3"
+
+#: pages/install.php:114
+msgid "Activated"
+msgstr "Aktivované"
+
+#: pages/install.php:121 pages/install.php:134
+msgid "Exists"
+msgstr "Existuje"
+
+#: pages/install.php:127 pages/install.php:140
+msgid "Writeable"
+msgstr "Zapísateľný"
+
+#: pages/install.php:146
+msgid "Doesn't exist (yet)"
+msgstr "Neexistuje (zatiaľ)"
+
+#: pages/install.php:166
+msgid ""
+"Make sure all prerequisites are met or the installation may fail in the next"
+" step."
+msgstr ""
+"Uistite sa, že sú splnené všetky predpoklady, inak môže inštalácia v ďalšom "
+"kroku zlyhať."
+
+#: pages/install.php:170
+msgid "Prerequisites check"
+msgstr "Kontrola predpokladov"
+
+#: pages/install.php:175
+msgid "Installation prerequisites"
+msgstr "Predpoklady inštalácie"
+
+#: pages/install.php:207 pages/install.php:208
+msgid "Install wishthis"
+msgstr "Inštalácia wishthis"
+
+#: pages/login-as.php:60
 #, php-format
 msgid "Successfully logged in as %s."
 msgstr "Úspešne ste sa prihlásili ako %s."
 
-#: pages/login-as.php:40
+#: pages/login-as.php:62
 msgid "User not found!"
 msgstr "Používateľ nebol nájdený!"
 
-#: pages/login-as.php:48 pages/login.php:110 pages/profile.php:34
-#: pages/profile.php:184 pages/register.php:175
+#: pages/login-as.php:70 pages/login.php:116 pages/profile/profile.php:79
+#: pages/register.php:235
 msgid "Email"
 msgstr "E-mail"
 
-#: pages/login.php:36
+#: pages/login.php:25
 msgid "No user could be found with the credentials you provided."
 msgstr "Pod zadanými povereniami sa nepodarilo nájsť žiadneho používateľa."
 
-#: pages/login.php:37
+#: pages/login.php:26
 msgid "Invalid credentials"
 msgstr "Neplatné poverenia"
 
-#: pages/login.php:81
+#: pages/login.php:70
 msgid "Password reset link"
 msgstr "Odkaz na obnovenie hesla"
 
-#: pages/login.php:85
+#. TRANSLATORS: %s: The wishthis domain
+#: pages/login.php:76
+#, php-format
+msgid ""
+"somebody has requested a password reset for this email address from %s. If "
+"this was you, click the button below to invalidate your current password and"
+" set a new one."
+msgstr ""
+"niekto požiadal o obnovenie hesla pre túto e-mailovú adresu z adresy %s. Ak "
+"ste to boli vy, kliknite na tlačidlo nižšie, čím zrušíte platnosť svojho "
+"aktuálneho hesla a nastavíte nové."
+
+#: pages/login.php:80
+msgid "Set new password"
+msgstr "Nastavenie nového hesla"
+
+#: pages/login.php:92
 msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
@@ -692,19 +1332,23 @@ msgstr ""
 "Ak sa pre túto e-mailovú adresu nájde zhoda, bude na ňu odoslaný odkaz na "
 "obnovenie hesla."
 
-#: pages/login.php:86
+#: pages/login.php:93
 msgid "Info"
 msgstr "Informácie"
 
-#: pages/login.php:106
+#: pages/login.php:112
 msgid "Credentials"
 msgstr "Poverenia"
 
-#: pages/login.php:143
+#: pages/login.php:136
+msgid "Keep me logged in"
+msgstr "Nechajte ma prihláseného"
+
+#: pages/login.php:163
 msgid "Forgot password?"
 msgstr "Zabudli ste heslo?"
 
-#: pages/login.php:145
+#: pages/login.php:165
 msgid ""
 "Consider using a password manager. It will save all your passwords and allow"
 " you to access them with one master password. Never forget a password ever "
@@ -713,11 +1357,11 @@ msgstr ""
 "Zvážte používanie správcu hesiel. Uloží všetky vaše heslá a umožní vám "
 "prístup k nim pomocou jedného hlavného hesla. Už nikdy nezabudnete heslo."
 
-#: pages/login.php:161 pages/login.php:162
+#: pages/login.php:181 pages/login.php:182
 msgid "Send email"
 msgstr "Odoslať e-mail"
 
-#: pages/login.php:170
+#: pages/login.php:190
 msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
@@ -725,23 +1369,23 @@ msgstr ""
 "Upozorňujeme, že musíte zadať e-mailovú adresu, na ktorú ste sa "
 "zaregistrovali."
 
-#: pages/logout.php:28
+#: pages/logout.php:24
 msgid "Goodbye"
 msgstr "Zbohom"
 
-#: pages/logout.php:29
+#: pages/logout.php:25
 msgid "You have been logged out."
 msgstr "Boli ste odhlásení."
 
-#: pages/maintenance.php:11
+#: pages/maintenance.php:15
 msgid "Maintenance"
 msgstr "Údržba"
 
-#: pages/maintenance.php:22
+#: pages/maintenance.php:26
 msgid "Temporarily unavailable"
 msgstr "Dočasne nedostupné"
 
-#: pages/maintenance.php:23
+#: pages/maintenance.php:27
 msgid ""
 "Due to maintenance, wishthis is temporarily not available. Please check back"
 " again in a minute."
@@ -749,63 +1393,203 @@ msgstr ""
 "Z dôvodu údržby je služba wishthis dočasne nedostupná. Za chvíľu sa na ňu "
 "prosím znovu pozrite."
 
-#: pages/parts/wish-add.php:17 pages/wishlists.php:148
+#: pages/maintenance.php:28
+msgid "If you are the administrator of this site, please log in."
+msgstr "Ak ste správcom tejto stránky, prihláste sa."
+
+#: pages/parts/wish-add.php:12
+msgid "General"
+msgstr "Všeobecné"
+
+#: pages/parts/wish-add.php:13
+msgid "Product"
+msgstr "Produkt"
+
+#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:123
 msgid "Title"
 msgstr "Názov"
 
-#: pages/parts/wish-add.php:30
+#: pages/parts/wish-add.php:33
 msgid "Description"
 msgstr "Popis"
 
-#: pages/parts/wish-add.php:42 pages/wish.php:153
+#: pages/parts/wish-add.php:45
 msgid "URL"
 msgstr "ADRESA URL"
 
-#: pages/parts/wish-add.php:53
+#: pages/parts/wish-add.php:54
 msgid "Priority"
 msgstr "Priorita"
 
-#: pages/parts/wish-add.php:58
+#: pages/parts/wish-add.php:59
 msgid "Select priority"
 msgstr "Vyberte prioritu"
 
-#: pages/parts/wish-add.php:71
+#: pages/parts/wish-add.php:68
+msgid "Image"
+msgstr "Obrázok"
+
+#: pages/parts/wish-add.php:77
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: pages/parts/wish-add.php:80
+#: pages/parts/wish-add.php:85
 msgid "Is purchasable"
 msgstr "Je možné zakúpiť"
 
-#: pages/parts/wishlist-filter.php:21
+#: pages/parts/wish-add.php:101
+msgid "Price"
+msgstr "Cena"
+
+#: pages/parts/wishlist.php:26
 msgid "Filter priorities"
 msgstr "Priority filtra"
 
-#: pages/parts/wishlist-filter.php:26
+#: pages/parts/wishlist.php:31
 msgid "Search priorities"
 msgstr "Priority vyhľadávania"
 
-#: pages/parts/wishlist-filter.php:33
+#: pages/parts/wishlist.php:38
 msgid "Priorities"
 msgstr "Priority"
 
-#: pages/parts/wishlist-filter.php:39
+#: pages/parts/wishlist.php:44
 msgid "All priorities"
 msgstr "Všetky priority"
 
-#: pages/parts/wishlist-filter.php:44
+#: pages/parts/wishlist.php:49
 msgid "No priority"
 msgstr "Žiadna priorita"
+
+#: pages/parts/wishlist.php:87 pages/wishlists.php:45 pages/wishlists.php:48
+msgid "Create a wishlist"
+msgstr "Vytvorenie zoznamu želaní"
+
+#: pages/parts/wishlist.php:91
+msgid ""
+"Choose a new name for your wishlist. Here's a suggestion to get you started."
+msgstr ""
+"Vyberte si nový názov zoznamu želaní. Tu je návrh, ktorý vám pomôže začať."
+
+#: pages/parts/wishlist.php:104 pages/parts/wishlist.php:105
+msgid "Create"
+msgstr "Vytvoriť stránku"
+
+#: pages/parts/wishlist.php:107 pages/parts/wishlist.php:108
+#: pages/parts/wishlist.php:132 pages/parts/wishlist.php:133
+#: pages/parts/wishlist.php:158 pages/parts/wishlist.php:159
+#: pages/parts/wishlist.php:188 pages/parts/wishlist.php:189
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: pages/parts/wishlist.php:116
+msgid "Rename wishlist"
+msgstr "Premenovať zoznam želaní"
+
+#: pages/parts/wishlist.php:119
+msgid "How would you like to name this wishlist?"
+msgstr "Ako by ste chceli pomenovať tento zoznam želaní?"
+
+#: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
+#: pages/wishlists.php:77 pages/wishlists.php:79
+msgid "Rename"
+msgstr "Premenovať stránku"
+
+#: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
+msgid "Add a wish"
+msgstr "Pridať želanie"
+
+#: pages/parts/wishlist.php:145
+msgid ""
+"Fill the title and/or description to add your new wish. If you just fill out"
+" the URL, wishthis will attempt to auto fill all other fields."
+msgstr ""
+"Vyplňte názov a/alebo popis a pridajte svoje nové želanie. Ak vyplníte len "
+"adresu URL, wishthis sa pokúsi automaticky vyplniť všetky ostatné polia."
+
+#: pages/parts/wishlist.php:155 pages/parts/wishlist.php:156
+msgid "Add"
+msgstr "Pridať"
+
+#: pages/parts/wishlist.php:168
+msgid "Edit wish"
+msgstr "Upraviť želanie"
+
+#: pages/parts/wishlist.php:172
+msgid ""
+"If specified, wishthis will attempt to fetch all missing information from "
+"the URL."
+msgstr ""
+"Ak je zadané, wishthis sa pokúsi získať všetky chýbajúce informácie z adresy"
+" URL."
+
+#: pages/parts/wishlist.php:198
+msgid "URL mismatch"
+msgstr "Nesúlad adries URL"
+
+#: pages/parts/wishlist.php:202
+msgid ""
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
+msgstr ""
+"Vami zadaná adresa URL sa nezdá byť celkom správna. Chceli by ste ju "
+"aktualizovať podľa tej, ktorú som našiel?"
+
+#: pages/parts/wishlist.php:203
+#, php-format
+msgid "According to %s, this is the canonical (correct) URL."
+msgstr "Podľa stránky %s je toto kanonická (správna) adresa URL."
+
+#: pages/parts/wishlist.php:207
+msgid "Current"
+msgstr "Aktuálne"
+
+#: pages/parts/wishlist.php:212
+msgid "Proposed"
+msgstr "Navrhovaná stránka"
+
+#: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
+msgid "Yes, update"
+msgstr "Áno, aktualizácia"
+
+#: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
+msgid "No, leave it"
+msgstr "Nie, nechajte to tak"
+
+#: pages/parts/wishlist.php:259
+msgid "Mark as fulfilled"
+msgstr "Označiť ako splnené"
+
+#: pages/parts/wishlist.php:264 pages/wishlist.php:74
+msgid "Fulfil wish"
+msgstr "Splniť želanie"
+
+#: pages/parts/wishlist.php:269
+msgid "Visit"
+msgstr "Navštívte stránku"
+
+#: pages/parts/wishlist.php:274 pages/wishlists.php:41 pages/wishlists.php:71
+#: pages/wishlists.php:74
+msgid "Options"
+msgstr "Možnosti"
+
+#: pages/parts/wishlist.php:279
+msgid "Edit"
+msgstr "Upraviť"
+
+#: pages/parts/wishlist.php:284 pages/wishlists.php:82 pages/wishlists.php:84
+msgid "Delete"
+msgstr "Odstrániť"
 
 #: pages/power.php:11
 msgid "Insufficient power"
 msgstr "Nedostatočný výkon"
 
-#: pages/power.php:22
+#: pages/power.php:24
 msgid "Restricted access"
 msgstr "Obmedzený prístup"
 
-#: pages/power.php:23
+#: pages/power.php:25
 #, php-format
 msgid ""
 "You do not have enough power to view this page. You need %s to see this "
@@ -814,93 +1598,166 @@ msgstr ""
 "Nemáte dostatok energie na zobrazenie tejto stránky. Na zobrazenie tejto "
 "stránky potrebujete %s, ale máte iba %s."
 
-#: pages/profile.php:19 pages/profile.php:164
-msgid "First name"
-msgstr "Krstné meno"
+#: pages/profile/profile-handle-post-password.php:31
+msgid "Password updated."
+msgstr "Heslo aktualizované."
 
-#: pages/profile.php:24 pages/profile.php:170
-msgid "Last name"
-msgstr "Priezvisko"
-
-#: pages/profile.php:29 pages/profile.php:176
-msgid "Nickname"
-msgstr "Prezývka"
-
-#: pages/profile.php:39 pages/profile.php:290
-msgid "Language"
-msgstr "Jazyk"
-
-#: pages/profile.php:52
+#. TRANSLATORS: %s: The users first name.
+#: pages/profile/profile-handle-post-personal.php:31
 #, php-format
-msgid "%s successfully updated!"
-msgstr "%s úspešne aktualizované!"
+msgid "First name updated to \"%s\"."
+msgstr "Krstné meno bolo aktualizované na \"%s\"."
 
-#: pages/profile.php:118
-msgid "It is required for you to login again."
-msgstr "Je potrebné, aby ste sa mohli znova prihlásiť."
+#. TRANSLATORS: %s: The users last name.
+#: pages/profile/profile-handle-post-personal.php:61
+#, php-format
+msgid "Last name updated to \"%s\"."
+msgstr "Priezvisko aktualizované na \"%s\"."
 
-#: pages/profile.php:139 pages/profile.php:155
+#. TRANSLATORS: %s: The users nick name.
+#: pages/profile/profile-handle-post-personal.php:91
+#, php-format
+msgid "Nick name updated to \"%s\"."
+msgstr "Názov nicku bol aktualizovaný na \"%s\"."
+
+#. TRANSLATORS: %s: The users email address.
+#: pages/profile/profile-handle-post-personal.php:121
+#, php-format
+msgid "Email address updated to \"%s\"."
+msgstr "E-mailová adresa bola aktualizovaná na \"%s\"."
+
+#. TRANSLATORS: %s: The users locale.
+#: pages/profile/profile-handle-post-preferences.php:38
+#, php-format
+msgid "Locale updated to \"%s\"."
+msgstr "Lokalita bola aktualizovaná na \"%s\"."
+
+#. TRANSLATORS: %s: The users currency.
+#: pages/profile/profile-handle-post-preferences.php:75
+#, php-format
+msgid "Currency updated to \"%s\"."
+msgstr "Mena bola aktualizovaná na \"%s\"."
+
+#. TRANSLATORS: %s: The users channel.
+#: pages/profile/profile-handle-post-preferences.php:113
+#, php-format
+msgid "Channel updated to \"%s\"."
+msgstr "Kanál aktualizovaný na \"%s\"."
+
+#: pages/profile/profile-handle-post-preferences.php:134
+msgid "Channel has been reset."
+msgstr "Kanál bol resetovaný."
+
+#. TRANSLATORS: %s: The users advertisements.
+#: pages/profile/profile-handle-post-preferences.php:161
+#, php-format
+msgid "Advertisements updated to \"%s\"."
+msgstr "Inzeráty aktualizované na \"%s\"."
+
+#: pages/profile/profile-handle-post-preferences.php:174
+#: pages/profile/profile-handle-post.php:19
+msgid ""
+"Your account credentials have changed and you have been logged out. Please "
+"log in again."
+msgstr ""
+"Vaše prihlasovacie údaje sa zmenili a boli ste odhlásení. Prihláste sa "
+"znova."
+
+#: pages/profile/profile-handle-post-preferences.php:175
+#: pages/profile/profile-handle-post.php:20
+msgid "Account credentials changed"
+msgstr "Zmena prihlasovacích údajov k účtu"
+
+#: pages/profile/profile.php:31 pages/profile/profile.php:51
 msgid "Personal"
 msgstr "Osobné"
 
-#: pages/profile.php:140
+#: pages/profile/profile.php:32
 msgid "Information regarding yourself"
 msgstr "Informácie o sebe"
 
-#: pages/profile.php:144
+#: pages/profile/profile.php:36
 msgid "Change your password"
 msgstr "Zmena hesla"
 
-#: pages/profile.php:147 pages/profile.php:281
+#: pages/profile/profile.php:39 pages/profile/profile.php:178
 msgid "Preferences"
 msgstr "Predvoľby"
 
-#: pages/profile.php:148
+#: pages/profile/profile.php:40
 msgid "Improve your wishthis experience"
 msgstr "Zlepšite svoje skúsenosti s wishthis"
 
-#: pages/profile.php:190
+#: pages/profile/profile.php:44
+msgid "Configuration for your account"
+msgstr "Konfigurácia pre vaše konto"
+
+#: pages/profile/profile.php:59
+msgid "First name"
+msgstr "Krstné meno"
+
+#: pages/profile/profile.php:65
+msgid "Last name"
+msgstr "Priezvisko"
+
+#: pages/profile/profile.php:71
+msgid "Nickname"
+msgstr "Prezývka"
+
+#: pages/profile/profile.php:84
+msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
+msgstr "Zvykne sa navrhovať wishlist s názvom \"Birthday\", ak sa blíži."
+
+#: pages/profile/profile.php:86
 msgid "Birthdate"
 msgstr "Dátum narodenia"
 
-#: pages/profile.php:197
+#: pages/profile/profile.php:95
 msgid "Pick a date"
 msgstr "Vyberte si dátum"
 
-#: pages/profile.php:233
+#: pages/profile/profile.php:130
 msgid "Password (repeat)"
 msgstr "Heslo (opakovanie)"
 
-#: pages/profile.php:249
+#: pages/profile/profile.php:146
 msgid "Safe password checklist"
 msgstr "Kontrolný zoznam bezpečných hesiel"
 
-#: pages/profile.php:256
+#: pages/profile/profile.php:153
 msgid "Long"
 msgstr "Dlhé"
 
-#: pages/profile.php:257
+#: pages/profile/profile.php:154
 msgid "Over eight characters in length."
 msgstr "Viac ako osem znakov."
 
 #. TRANSLATORS: A special character (for a password)
-#: pages/profile.php:268
+#: pages/profile/profile.php:165
 msgid "Special"
 msgstr "Špeciálne"
 
-#: pages/profile.php:271
+#: pages/profile/profile.php:168
 msgid "Contains special characters."
 msgstr "Obsahuje špeciálne znaky."
 
-#: pages/profile.php:315 pages/profile.php:373
+#: pages/profile/profile.php:186
+msgid "Language"
+msgstr "Jazyk"
+
+#: pages/profile/profile.php:204
+msgid "Currency"
+msgstr "Mena"
+
+#: pages/profile/profile.php:289
 msgid "Channel"
 msgstr "Kanál"
 
-#: pages/profile.php:318
+#: pages/profile/profile.php:292
 msgid "Select channel"
 msgstr "Vyberte kanál"
 
-#: pages/profile.php:376
+#: pages/profile/profile.php:305
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
@@ -908,7 +1765,7 @@ msgstr ""
 "S cieľom zlepšiť používateľské skúsenosti s aplikáciou wishthis sa po "
 "rozsiahlom testovaní uverejňujú jej novšie verzie."
 
-#: pages/profile.php:377
+#: pages/profile/profile.php:306
 msgid ""
 "Subscribing to the Stable channel ensures you have the highest possible "
 "stability while using wishthis, minimizing the amount of errors you may "
@@ -918,7 +1775,7 @@ msgstr ""
 "používaní aplikácie wishthis, čím sa minimalizuje množstvo chýb, s ktorými "
 "sa môžete stretnúť (ak sa nejaké vyskytnú)."
 
-#: pages/profile.php:378
+#: pages/profile/profile.php:307
 msgid ""
 "If you want to speed up the release of newer versions, consider subscribing "
 "to the Release candidate of wishthis. A newer version is not published "
@@ -928,7 +1785,7 @@ msgstr ""
 "kandidáta na vydanie aplikácie wishthis. Novšia verzia sa nezverejní, kým sa"
 " dostatočne neotestuje ďalšia kandidátska verzia."
 
-#: pages/profile.php:390
+#: pages/profile/profile.php:320
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
@@ -937,55 +1794,92 @@ msgstr[1] "%d je potrebných viac predplatiteľov"
 msgstr[2] "%d je potrebných viac predplatiteľov"
 msgstr[3] "%d je potrebných viac predplatiteľov"
 
+#: pages/profile/profile.php:348
+msgid "Advertisements"
+msgstr "Inzeráty"
+
+#: pages/profile/profile.php:357
+msgid "Enable advertisements"
+msgstr "Povolenie reklám"
+
+#. TRANSLATORS: %s: sponsor me
+#: pages/profile/profile.php:366
+#, php-format
+msgid ""
+"Time spent on wishthis is time not doing for-profit work. If you would like "
+"to support me but either can't or don't want to %s, consider selling your "
+"body to Google and becoming its product."
+msgstr ""
+"Čas strávený na wishthis je čas, ktorý sa nevyužíva na ziskovú prácu. Ak by "
+"ste ma chceli podporiť, ale buď nemôžete, alebo nechcete %s, zvážte možnosť "
+"predať svoje telo spoločnosti Google a stať sa jej produktom."
+
+#: pages/profile/profile.php:367
+msgid "sponsor me"
+msgstr "sponzorujte ma"
+
+#: pages/profile/profile.php:371
+msgid "Please remember to add an exception to your ad-blocker and browser."
+msgstr "Nezabudnite pridať výnimku do svojho blokovača reklám a prehliadača."
+
+#: pages/profile/profile.php:394 pages/profile/profile.php:407
+#: pages/profile/profile.php:408
+msgid "Delete account"
+msgstr "Odstránenie účtu"
+
+#: pages/profile/profile.php:399
+msgid "Delete this account completely and irreversibly"
+msgstr "Úplné a nezvratné vymazanie tohto účtu"
+
 #: pages/register.php:13
 msgid "Reset password"
 msgstr "Obnovenie hesla"
 
-#: pages/register.php:14 pages/wish.php:123 pages/wish.php:124
+#: pages/register.php:14
 msgid "Reset"
 msgstr "Obnovenie"
 
-#: pages/register.php:31
+#: pages/register.php:37
 msgid "Mercury"
 msgstr "Ortuť"
 
-#: pages/register.php:32
+#: pages/register.php:38
 msgid "Venus"
 msgstr "Venuša"
 
-#: pages/register.php:33
+#: pages/register.php:39
 msgid "Earth"
 msgstr "Zem"
 
-#: pages/register.php:34
+#: pages/register.php:40
 msgid "Mars"
 msgstr "Mars"
 
-#: pages/register.php:35
+#: pages/register.php:41
 msgid "Jupiter"
 msgstr "Jupiter"
 
-#: pages/register.php:36
+#: pages/register.php:42
 msgid "Saturn"
 msgstr "Saturn"
 
-#: pages/register.php:37
+#: pages/register.php:43
 msgid "Uranus"
 msgstr "Urán"
 
-#: pages/register.php:38
+#: pages/register.php:44
 msgid "Neptune"
 msgstr "Neptún"
 
-#: pages/register.php:41
+#: pages/register.php:47
 msgid "Pluto"
 msgstr "Pluto"
 
-#: pages/register.php:42
+#: pages/register.php:48
 msgid "Sun"
 msgstr "Sun"
 
-#: pages/register.php:51
+#: pages/register.php:57
 #, php-format
 msgid ""
 "%s is not a planet but I'll let it slide, since only a human would make this"
@@ -994,50 +1888,67 @@ msgstr ""
 "%s nie je planéta, ale nechám to tak, pretože takúto chybu by urobil len "
 "človek."
 
-#: pages/register.php:52 pages/register.php:151
+#: pages/register.php:58 pages/register.php:200
 msgid "Invalid planet"
 msgstr "Neplatná planéta"
 
-#: pages/register.php:83
-msgid "This link has expired."
-msgstr "Platnosť tohto prepojenia vypršala."
+#: pages/register.php:105
+msgid "This password reset link has expired, please request a new one."
+msgstr ""
+"Platnosť tohto odkazu na obnovenie hesla vypršala, vyžiadajte si nové heslo."
 
-#: pages/register.php:86
-msgid "This link seems invalid."
-msgstr "Toto prepojenie sa zdá byť neplatné."
+#: pages/register.php:105 pages/register.php:108
+msgid "Failure"
+msgstr "Zlyhanie"
 
 #: pages/register.php:108
+msgid ""
+"This password reset link seems to have been manipulated, please request a "
+"new one."
+msgstr ""
+"Zdá sa, že toto prepojenie na obnovenie hesla bolo zmanipulované, vyžiadajte"
+" si nové heslo."
+
+#: pages/register.php:144
 msgid "An account with this email address already exists."
 msgstr "Konto s touto e-mailovou adresou už existuje."
 
-#: pages/register.php:109
+#: pages/register.php:145
 msgid "Invalid email address"
 msgstr "Neplatná e-mailová adresa"
 
-#: pages/register.php:123
+#: pages/register.php:166
 msgid "Your account was successfully created."
 msgstr "Vaše konto bolo úspešne vytvorené."
 
-#: pages/register.php:133
+#: pages/register.php:176
 msgid "My hopes and dreams"
 msgstr "Moje nádeje a sny"
 
-#: pages/register.php:150
+#: pages/register.php:199
 #, php-format
 msgid ""
 "%s is not a planet in our solar system. Read this for more information: %s."
 msgstr ""
 "%s nie je planéta v našej slnečnej sústave. Viac informácií nájdete na: %s."
 
-#: pages/register.php:172
+#: pages/register.php:219
+msgid "Registration disabled"
+msgstr "Registrácia zakázaná"
+
+#: pages/register.php:221
+msgid "The owner of this site has disabled user registrations."
+msgstr "Majiteľ tejto stránky zakázal registráciu používateľov."
+
+#: pages/register.php:232
 msgid "Account details"
 msgstr "Podrobnosti o účte"
 
-#: pages/register.php:203
+#: pages/register.php:263
 msgid "Authentication"
 msgstr "Overovanie"
 
-#: pages/register.php:204
+#: pages/register.php:264
 msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
@@ -1045,15 +1956,57 @@ msgstr ""
 "Dokážte, že ste človek, jašterica alebo tvor podobný Zuckovi. Uveďte názov "
 "planéty z našej slnečnej sústavy."
 
-#: pages/register.php:207
+#: pages/register.php:267
 msgid "Planet"
 msgstr "Planéta"
 
-#: pages/register.php:214
+#: pages/register.php:274
 msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr "Roboti sú zrejme z inej slnečnej sústavy, takže ich to udrží na uzde."
+
+#: pages/register.php:301
+msgid "About your email address"
+msgstr "O vašej e-mailovej adrese"
+
+#: pages/register.php:303
+msgid ""
+"Currently the email address is used as a unique identifier and does not have"
+" to be verified. You may enter a fake address."
+msgstr ""
+"V súčasnosti sa e-mailová adresa používa ako jedinečný identifikátor a "
+"nemusí sa overovať. Môžete zadať falošnú adresu."
+
+#: pages/register.php:304
+msgid ""
+"wishthis is not interested in sending you marketing emails or selling your "
+"information to third parties. Although possible to do otherwise, it is "
+"strongly recommend to enter your real email address in case you need to "
+"recover your password or receive important notifications. These do not exist"
+" yet, but some future features and options might require sending you an "
+"email (e. g. when a wish has been fulfilled)."
+msgstr ""
+"Spoločnosť wishthis nemá záujem posielať vám marketingové e-maily ani "
+"predávať vaše informácie tretím stranám. Hoci je možné urobiť inak, dôrazne "
+"odporúčame zadať vašu skutočnú e-mailovú adresu pre prípad, že potrebujete "
+"obnoviť heslo alebo dostávať dôležité oznámenia. Tie zatiaľ neexistujú, ale "
+"niektoré budúce funkcie a možnosti si môžu vyžadovať zaslanie e-mailu (napr."
+" pri splnení želania)."
+
+#. TRANSLATORS: %s: source code
+#: pages/register.php:309
+#, php-format
+msgid ""
+"Trust is a two way street and wishthis aims to be a transparent, trustworthy"
+" product, which is why the wishthis %s is publicly viewable."
+msgstr ""
+"Dôvera je obojstranná a wishthis sa snaží byť transparentným a dôveryhodným "
+"produktom, preto je stránka wishthis %s verejne prístupná."
+
+#: pages/register.php:310
+msgid "source code"
+msgstr "zdrojový kód"
 
 #: pages/settings.php:27
 msgid "MJML"
@@ -1066,32 +2019,28 @@ msgstr ""
 "Na odosielanie e-mailov sa vyžaduje MJML. Navštívte stránku %s a požiadajte "
 "o prístup k API."
 
-#: pages/settings.php:30
-msgid "API"
-msgstr "API"
-
 #: pages/settings.php:33
-msgid "Key"
-msgstr "Kľúč"
+msgid "Application ID"
+msgstr "ID aplikácie"
 
 #: pages/settings.php:42
-msgid "Secret"
-msgstr "Tajné"
+msgid "Secret Key"
+msgstr "Tajný kľúč"
 
 #: pages/update.php:11
 msgid "Update"
 msgstr "Aktualizácia"
 
-#: pages/update.php:42
+#: pages/update.php:52
 #, php-format
 msgid "Database successfully migrated to %s."
 msgstr "Databáza bola úspešne migrovaná na stránku %s."
 
-#: pages/update.php:67
+#: pages/update.php:75 pages/update.php:95
 msgid "Database migration"
 msgstr "Migrácia databázy"
 
-#: pages/update.php:68
+#: pages/update.php:76 pages/update.php:96
 msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
@@ -1099,97 +2048,17 @@ msgstr ""
 "Ďakujeme za aktualizáciu wishthis! Na dokončenie tejto aktualizácie sú "
 "potrebné niektoré zmeny v štruktúre databázy."
 
-#: pages/update.php:73 pages/update.php:76
+#: pages/update.php:82 pages/update.php:85 pages/update.php:101
+#: pages/update.php:104
 #, php-format
 msgid "Migrate to %s"
 msgstr "Migrácia do %s"
 
-#: pages/wish.php:37
-msgid "Wish successfully updated."
-msgstr "Prianie bolo úspešne aktualizované."
-
-#: pages/wish.php:95 pages/wish.php:98
-msgid "Auto-fill"
-msgstr "Automatické vypĺňanie"
-
-#: pages/wish.php:128 pages/wish.php:130
-msgid "Back"
-msgstr "Späť"
-
-#: pages/wish.php:146
-msgid "Image"
-msgstr "Obrázok"
-
-#: pages/wish.php:149
-msgid "Define a new URL to be used as a preview."
-msgstr "Definujte novú adresu URL, ktorá sa použije ako náhľad."
-
-#: pages/wish.php:162 pages/wish.php:163
-msgid "Discard"
-msgstr "Vyradiť"
-
-#: pages/wish.php:171
-msgid "Warning"
-msgstr "Upozornenie"
-
-#: pages/wish.php:174
-msgid "This action will potentially overwrite all fields in this wish."
-msgstr "Táto akcia potenciálne prepíše všetky polia v tomto želaní."
-
-#: pages/wish.php:175
-msgid "Would you like to continue?"
-msgstr "Chcete pokračovať?"
-
-#: pages/wish.php:178 pages/wish.php:179
-msgid "Yes, overwrite"
-msgstr "Áno, prepísať"
-
-#: pages/wish.php:181 pages/wish.php:182
-msgid "No"
-msgstr "Nie"
-
-#: pages/wish.php:190
-msgid "URL mismatch"
-msgstr "Nesúlad adries URL"
-
-#: pages/wish.php:194
-msgid ""
-"The URL you have entered does not seem quite right. Would you like to update"
-" it with the one I found?"
-msgstr ""
-"Vami zadaná adresa URL sa nezdá byť celkom správna. Chceli by ste ju "
-"aktualizovať podľa tej, ktorú som našiel?"
-
-#: pages/wish.php:195
-#, php-format
-msgid "According to %s, this is the canonical (correct) URL."
-msgstr "Podľa stránky %s je toto kanonická (správna) adresa URL."
-
-#: pages/wish.php:199
-msgid "Current"
-msgstr "Aktuálne"
-
-#: pages/wish.php:204
-msgid "Proposed"
-msgstr "Navrhovaná stránka"
-
-#: pages/wish.php:211 pages/wish.php:212
-msgid "Yes, update"
-msgstr "Áno, aktualizácia"
-
-#: pages/wish.php:214 pages/wish.php:215
-msgid "No, leave it"
-msgstr "Nie, nechajte to tak"
-
-#: pages/wishlist.php:33
-msgid "Save list"
-msgstr "Uložiť zoznam"
-
-#: pages/wishlist.php:49
+#: pages/wishlist.php:58
 msgid "Careful"
 msgstr "Opatrne"
 
-#: pages/wishlist.php:52
+#: pages/wishlist.php:61
 msgid ""
 "You are viewing your own wishlist! You will be able to see which wishes have"
 " already been fulfilled for you. Don't you want to be surprised?"
@@ -1197,81 +2066,64 @@ msgstr ""
 "Prezeráte si svoj vlastný zoznam želaní! Budete môcť vidieť, ktoré želania "
 "vám už boli splnené. Nechcete byť prekvapení?"
 
-#: pages/wishlist.php:53
+#: pages/wishlist.php:62
 msgid "It's probably best to just close this tab."
 msgstr "Pravdepodobne bude najlepšie túto kartu jednoducho zavrieť."
 
-#: pages/wishlist.php:61
+#: pages/wishlist.php:70
 msgid "What to do?"
 msgstr "Čo robiť?"
 
-#: pages/wishlist.php:63
+#: pages/wishlist.php:72
 #, php-format
 msgid ""
-"If you found a wish you would like to fulfil, click the %s button and it "
-"will temporarily become unavailable for others. Make sure to confirm the "
-"fulfilled wish here (i. e. after placing an order), to make the wish "
-"permanently unavailable for everybody else."
+"If you found a wish you would like to fulfil, open the wish %s and then "
+"click the %s button and it will be unavailable for everybody else."
 msgstr ""
-"Ak ste našli želanie, ktoré by ste chceli splniť, kliknite na tlačidlo %s a "
-"želanie sa dočasne stane nedostupným pre ostatných. Nezabudnite tu splnené "
-"želanie potvrdiť (t. j. po zadaní objednávky), aby sa želanie stalo trvalo "
-"nedostupným pre všetkých ostatných."
+"Ak ste našli želanie, ktoré by ste chceli splniť, otvorte stránku %s a potom"
+" kliknite na tlačidlo %s a želanie bude pre ostatných nedostupné."
 
-#: pages/wishlists.php:24
+#: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
+msgid "Request more wishes"
+msgstr "Žiadosť o ďalšie želania"
+
+#: pages/wishlist.php:103
+msgid "A notification has just been sent to the owner of this wishlist."
+msgstr "Majiteľovi tejto stránky wishlist bolo práve odoslané oznámenie."
+
+#: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
+#: pages/wishlist.php:123
+msgid "Ok"
+msgstr "Ok"
+
+#: pages/wishlist.php:118
+msgid ""
+"The wishlist owner has already received a notification recently and has not "
+"been notified again."
+msgstr ""
+"Majiteľovi stránky wishlist už bolo nedávno zaslané oznámenie a nebol "
+"opätovne upozornený."
+
+#: pages/wishlists-saved.php:65
+msgid ""
+"Ask somebody to share their wishlist with you and hit the remember button "
+"for it to show up here!"
+msgstr ""
+"Požiadajte niekoho, aby sa s vami podelil o svoju stránku wishlist, a "
+"stlačte tlačidlo Zapamätať, aby sa tu objavila!"
+
+#: pages/wishlists-saved.php:65
+msgid "No lists"
+msgstr "Žiadne zoznamy"
+
+#: pages/wishlists.php:33
 msgid "Wishlist"
 msgstr "Zoznam želaní"
 
-#: pages/wishlists.php:27
+#: pages/wishlists.php:36
 msgid "Loading your wishlists..."
 msgstr "Načítanie zoznamov želaní..."
 
-#: pages/wishlists.php:36 pages/wishlists.php:39 pages/wishlists.php:109
-msgid "Create a wishlist"
-msgstr "Vytvorenie zoznamu želaní"
-
-#: pages/wishlists.php:47 pages/wishlists.php:50 pages/wishlists.php:166
-msgid "Add a wish"
-msgstr "Pridať želanie"
-
-#: pages/wishlists.php:55 pages/wishlists.php:58
+#: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
 msgstr "Zdieľať"
-
-#: pages/wishlists.php:68 pages/wishlists.php:70 pages/wishlists.php:154
-#: pages/wishlists.php:155
-msgid "Rename"
-msgstr "Premenovať stránku"
-
-#: pages/wishlists.php:113
-msgid ""
-"Choose a new name for your wishlist. Here's a suggestion to get you started."
-msgstr ""
-"Vyberte si nový názov zoznamu želaní. Tu je návrh, ktorý vám pomôže začať."
-
-#: pages/wishlists.php:127 pages/wishlists.php:128
-msgid "Create"
-msgstr "Vytvoriť stránku"
-
-#: pages/wishlists.php:130 pages/wishlists.php:131 pages/wishlists.php:157
-#: pages/wishlists.php:158 pages/wishlists.php:185 pages/wishlists.php:186
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#: pages/wishlists.php:139
-msgid "Rename wishlist"
-msgstr "Premenovať zoznam želaní"
-
-#: pages/wishlists.php:142
-msgid "How would you like to name this wishlist?"
-msgstr "Ako by ste chceli pomenovať tento zoznam želaní?"
-
-#: pages/wishlists.php:170
-msgid "Fill out any or all of the below fields to add your new wish."
-msgstr ""
-"Ak chcete pridať svoje nové želanie, vyplňte niektoré alebo všetky polia "
-"nižšie."
-
-#: pages/wishlists.php:182 pages/wishlists.php:183
-msgid "Add"
-msgstr "Pridať"
