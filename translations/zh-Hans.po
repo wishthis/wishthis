@@ -1,59 +1,56 @@
-#
+# 
 # Translators:
-# Jay Trees, 2022
-#
+# Jay Trees, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2023-04-24 12:35+0200\n"
-"PO-Revision-Date: 2023-04-24 12:35+0200\n"
-"Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"Language-Team: Chinese Simplified (https://www.transifex.com/wishthis/"
-"teams/134148/zh-Hans/)\n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2023-09-25 13:23+0200\n"
+"PO-Revision-Date: 2023-09-25 11:41+0000\n"
+"Last-Translator: Jay Trees, 2023\n"
+"Language-Team: Chinese Simplified (https://app.transifex.com/wishthis/teams/134148/zh-Hans/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh-Hans\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: api/blog.php:37
+#: api/blog.php:39
 #, php-format
 msgid "Posted on %s"
-msgstr ""
+msgstr "发布日期%s"
 
-#: api/wishlists.php:69
-#, fuzzy
-#| msgid "Wish properties"
+#: api/wishlists.php:71
 msgid "Wish request"
-msgstr "愿望属性"
+msgstr "Wish request"
 
-#: api/wishlists.php:70 pages/login.php:153
+#: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
-msgstr ""
+msgstr "你好"
 
 #. TRANSLATORS: %s: Wishlist name
-#: api/wishlists.php:75
+#: api/wishlists.php:77
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
-msgstr ""
+msgstr "有人要求您在wishlist %s 上添加更多愿望。"
 
-#: api/wishlists.php:79
-#, fuzzy
-#| msgid "Add a wish"
+#: api/wishlists.php:81
 msgid "Add wish"
-msgstr "添加一个愿望"
+msgstr "添加愿望"
 
-#: assets/js/inline.js.php:34 assets/js/inline.js.php:122 pages/login-as.php:60
+#: assets/js/inline.js.php:34 assets/js/inline.js.php:122
+#: pages/login-as.php:62
 msgid "Error"
 msgstr "误差"
 
 #: assets/js/inline.js.php:35
 msgid "Something went wrong, that's all I know."
-msgstr ""
+msgstr "我只知道出了点问题。"
 
 #: assets/js/inline.js.php:36
 msgid "Thanks for nothing"
@@ -61,33 +58,40 @@ msgstr "白白感谢"
 
 #: assets/js/inline.js.php:39
 msgid "Unexpected output"
-msgstr ""
+msgstr "意外输出"
 
 #: assets/js/inline.js.php:41
-#, fuzzy
-#| msgid "The server did not confirm that the action was successful."
 msgid ""
-"Your request likely succeeded but the server did not confirm that the action "
-"was successful."
-msgstr "服务器没有确认该行动是否成功。"
+"Your request likely succeeded but the server did not confirm that the action"
+" was successful."
+msgstr "您的请求可能成功，但服务器没有确认操作是否成功。"
 
 #: assets/js/inline.js.php:42
 msgid ""
 "For nerds: The API returned HTTP 200, there was no (error) output, yet the "
 "response is still not as expected."
-msgstr ""
+msgstr "对于书呆子来说：应用程序接口返回 HTTP 200，没有（错误）输出，但响应仍与预期不符。"
 
 #: assets/js/inline.js.php:43
 msgid "In any case, please report this."
-msgstr ""
+msgstr "无论如何，请报告此事。"
 
 #: assets/js/inline.js.php:45
 msgid "Ok then"
-msgstr ""
+msgstr "那好吧"
 
-#: assets/js/inline.js.php:48 pages/install.php:283 pages/login-as.php:58
-#: pages/profile.php:50 pages/profile.php:103 pages/profile.php:119
-#: pages/profile.php:166 pages/register.php:153
+#: assets/js/inline.js.php:48 pages/install.php:401 pages/login-as.php:60
+#: pages/profile/profile-handle-post-password.php:32
+#: pages/profile/profile-handle-post-personal.php:34
+#: pages/profile/profile-handle-post-personal.php:64
+#: pages/profile/profile-handle-post-personal.php:94
+#: pages/profile/profile-handle-post-personal.php:124
+#: pages/profile/profile-handle-post-preferences.php:41
+#: pages/profile/profile-handle-post-preferences.php:78
+#: pages/profile/profile-handle-post-preferences.php:116
+#: pages/profile/profile-handle-post-preferences.php:135
+#: pages/profile/profile-handle-post-preferences.php:164
+#: pages/register.php:166
 msgid "Success"
 msgstr "成功"
 
@@ -277,206 +281,198 @@ msgctxt "Calendar"
 msgid "Week"
 msgstr "周"
 
-#: assets/js/inline.js.php:141 pages/wishlist.php:39
-#, fuzzy
-#| msgid "Rename wishlist"
+#: assets/js/inline.js.php:141 pages/wishlist.php:42
 msgid "Remember list"
-msgstr "重新命名愿望清单"
+msgstr "记住列表"
 
 #: assets/js/inline.js.php:142
-#, fuzzy
-#| msgid "Save list"
 msgid "Forget list"
-msgstr "保存列表"
+msgstr "忘记列表"
 
-#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:153
-#: classes/wishthis/Wishlist.php:175
+#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
 msgid "Empty"
-msgstr ""
+msgstr "空"
 
-#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:153
-#: classes/wishthis/Wishlist.php:175
-#, fuzzy
-#| msgid "No wishlist selected."
+#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:203
+#: classes/wishthis/Wishlist.php:225
 msgid "This wishlist seems to be empty."
-msgstr "没有选择愿望清单。"
+msgstr "wishlist 似乎是空的。"
 
 #: assets/js/inline.js.php:156
-#, fuzzy
-#| msgid "Last name"
 msgid "Last modified"
-msgstr "姓氏"
+msgstr "最后修改"
 
-#: classes/wishthis/Page.php:138 pages/home.php:26
+#: classes/wishthis/Page.php:141 pages/home.php:28
 msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
-msgstr ""
-"wishthis是一个简单、直观和现代的愿望清单平台，用于创建、管理和查看您对任何一"
-"种场合的愿望。"
+msgstr "wishthis是一个简单、直观和现代的愿望清单平台，用于创建、管理和查看您对任何一种场合的愿望。"
 
-#: classes/wishthis/Page.php:269
+#: classes/wishthis/Page.php:277
 msgid "Your device is set to reduce data, some content has been disabled."
-msgstr ""
+msgstr "您的设备设置为减少数据，某些内容已被禁用。"
 
-#: classes/wishthis/Page.php:270
+#: classes/wishthis/Page.php:278
 msgid "Reducing data"
-msgstr ""
+msgstr "减少数据"
 
-#: classes/wishthis/Page.php:410 pages/home.php:24
+#: classes/wishthis/Page.php:418 pages/home.php:26
 msgid "Make a wish"
 msgstr "许个愿吧"
 
 #. TRANSLATORS: Changelog: Added
-#: classes/wishthis/Page.php:436 classes/wishthis/Page.php:440
-#: pages/blog.php:11 pages/changelog.php:382 pages/post.php:62
+#: classes/wishthis/Page.php:444 classes/wishthis/Page.php:448
+#: pages/blog.php:11 pages/changelog.php:444 pages/post.php:62
 msgid "Blog"
 msgstr "博客"
 
-#: classes/wishthis/Page.php:447
+#: classes/wishthis/Page.php:455
 msgid "System"
 msgstr "系统"
 
-#: classes/wishthis/Page.php:453
+#: classes/wishthis/Page.php:461 pages/profile/profile.php:43
+#: pages/profile/profile.php:387
 msgid "Account"
 msgstr "帐户"
 
-#: classes/wishthis/Page.php:462 pages/home.php:200
+#: classes/wishthis/Page.php:470 pages/home.php:218
 msgid "Wishlists"
 msgstr "愿望清单"
 
-#: classes/wishthis/Page.php:466 pages/home.php:33 pages/home.php:35
+#: classes/wishthis/Page.php:474 pages/home.php:35 pages/home.php:37
 #: pages/wishlists.php:11
 msgid "My lists"
 msgstr "我的清单"
 
-#: classes/wishthis/Page.php:471 pages/wishlists-saved.php:11
+#: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr ""
+msgstr "Remembered 列表"
 
-#: classes/wishthis/Page.php:481 pages/profile.php:11
+#: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
 msgstr "形象"
 
-#: classes/wishthis/Page.php:487 pages/login-as.php:11
+#: classes/wishthis/Page.php:495 pages/login-as.php:11
 msgid "Login as"
 msgstr "登录为"
 
-#: classes/wishthis/Page.php:493 pages/logout.php:11
+#: classes/wishthis/Page.php:501 pages/logout.php:11
 msgid "Logout"
 msgstr "登出"
 
-#: classes/wishthis/Page.php:499 classes/wishthis/Page.php:503
-#: pages/home.php:82 pages/home.php:84 pages/login-as.php:79
-#: pages/login-as.php:80 pages/login.php:11 pages/login.php:228
-#: pages/login.php:229 pages/register.php:265 pages/register.php:267
+#: classes/wishthis/Page.php:507 classes/wishthis/Page.php:511
+#: pages/home.php:84 pages/home.php:86 pages/login-as.php:81
+#: pages/login-as.php:82 pages/login.php:11 pages/login.php:145
+#: pages/login.php:146 pages/register.php:289 pages/register.php:291
 msgid "Login"
 msgstr "登录"
 
-#: classes/wishthis/Page.php:510 classes/wishthis/Page.php:514
-#: pages/install.php:287 pages/install.php:289 pages/login.php:236
-#: pages/login.php:238 pages/register.php:13 pages/register.php:14
+#: classes/wishthis/Page.php:518 classes/wishthis/Page.php:522
+#: pages/install.php:405 pages/install.php:407 pages/login.php:153
+#: pages/login.php:155 pages/register.php:13 pages/register.php:14
 msgid "Register"
 msgstr "注册"
 
-#: classes/wishthis/Page.php:524 pages/settings.php:11
+#: classes/wishthis/Page.php:532 pages/settings.php:11
 msgid "Settings"
 msgstr "设置"
 
-#: classes/wishthis/Page.php:661 classes/wishthis/Page.php:664
+#: classes/wishthis/Page.php:669 classes/wishthis/Page.php:672
 #: pages/changelog.php:11
 msgid "Changelog"
 msgstr "更新日志"
 
-#: classes/wishthis/Page.php:670
+#: classes/wishthis/Page.php:678
 msgid "Contribute"
 msgstr "贡献"
 
-#: classes/wishthis/Page.php:676 classes/wishthis/Page.php:679
+#: classes/wishthis/Page.php:684 classes/wishthis/Page.php:687
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
-#: classes/wishthis/Page.php:685 classes/wishthis/Page.php:688
-#, fuzzy
-#| msgid "Translate"
+#: classes/wishthis/Page.php:693 classes/wishthis/Page.php:696
 msgid "Transifex"
-msgstr "翻译"
+msgstr "Transifex"
 
-#: classes/wishthis/Page.php:694
+#: classes/wishthis/Page.php:702
 msgid "Contact"
-msgstr ""
+msgstr "联系方式"
 
-#: classes/wishthis/Page.php:700 classes/wishthis/Page.php:703
+#: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
 msgid "Matrix"
-msgstr ""
+msgstr "矩阵"
 
-#: classes/wishthis/Page.php:709 classes/wishthis/Page.php:712
-#, fuzzy
-#| msgid "Discard"
+#: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
-msgstr "弃置"
+msgstr "纪和声"
 
-#: classes/wishthis/Page.php:733
+#: classes/wishthis/Page.php:741
 msgid "JavaScript is disabled"
-msgstr ""
+msgstr "JavaScript 已禁用"
 
 #. TRANSLATORS: %s: the current year
-#: classes/wishthis/Page.php:742
-#, fuzzy, php-format
-#| msgid "Welcome to the wishthis installer."
+#: classes/wishthis/Page.php:750
+#, php-format
 msgid "Welcome to the year %s"
-msgstr "欢迎来到wishthis安装程序。"
+msgstr "欢迎来到新的一年%s"
 
-#: classes/wishthis/Page.php:749
+#: classes/wishthis/Page.php:757
 msgid ""
 "I get it, websites track your every move these days and companies keep "
 "coming up with more genius hacks to monetise you."
-msgstr ""
+msgstr "我明白，如今网站会追踪你的一举一动，公司也会不断想出更多的天才黑客来为你赚钱。"
 
-#: classes/wishthis/Page.php:750
+#: classes/wishthis/Page.php:758
 msgid ""
 "But the good news is, wishthis aims to be different. It aims to be "
 "transparent and let the user stay in control. Unlike many companies just "
 "making claims about being secure and protecting your privacy, wishthis is "
-"entirely open source, allowing anybody to simply look up what it does and if "
-"they are okay with it. For people who aren't familiar with my tech stack and "
-"aren't able to lookup and understand the wishthis source code: \"trust me\"."
+"entirely open source, allowing anybody to simply look up what it does and if"
+" they are okay with it. For people who aren't familiar with my tech stack "
+"and aren't able to lookup and understand the wishthis source code: \"trust "
+"me\"."
 msgstr ""
+"但好消息是，wishthis 的目标与众不同。它的目标是做到透明，让用户自己掌控一切。与许多只声称安全和保护隐私的公司不同，wishthis "
+"是完全开源的，任何人都可以简单地了解它是做什么的，以及他们是否同意这样做。对于那些对我的技术堆栈不熟悉、无法查询和理解 wishthis "
+"源代码的人来说，\"请相信我\"：\"相信我\"。"
 
-#: classes/wishthis/Page.php:752
+#: classes/wishthis/Page.php:760
 msgid ""
 "I'm joking - please remain critical, especially for closed source and/or "
 "commercial software. At least you can ask somebody to validate the wishthis "
 "code for you! Do you have any questions? Message me! (see footer)"
 msgstr ""
+"我在开玩笑--请保持批判精神，尤其是对于封闭源代码和/或商业软件。至少你可以找人帮你验证一下 wishthis "
+"代码！您有任何问题吗？请给我留言！(见页脚）"
 
-#: classes/wishthis/Page.php:754
+#: classes/wishthis/Page.php:762
 msgid "wishthis really needs JavaScript to work, please enable it."
-msgstr ""
+msgstr "wishthis 需要 JavaScript 才能运行，请启用 JavaScript。"
 
-#: classes/wishthis/Page.php:759
+#: classes/wishthis/Page.php:767
 msgid "Reload page"
-msgstr ""
+msgstr "重新载入页面"
 
-#: classes/wishthis/Page.php:760 pages/parts/wishlist.php:290
-#, fuzzy
+#: classes/wishthis/Page.php:768 pages/parts/wishlist.php:291
 msgid "Close"
-msgstr "也许最好是直接关闭这个标签。"
+msgstr "关闭"
 
-#: classes/wishthis/Page.php:785
+#: classes/wishthis/Page.php:793
 #, php-format
 msgid "%s not found"
 msgstr "%s 未找到"
 
-#: classes/wishthis/Page.php:795
-msgid "The requested Wishlist was not found and likely deleted by its creator."
+#: classes/wishthis/Page.php:803
+msgid ""
+"The requested Wishlist was not found and likely deleted by its creator."
 msgstr "所请求的Wishlist没有被找到，很可能被其创建者删除。"
 
-#: classes/wishthis/Page.php:799
+#: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
 msgstr "没有找到要求的Wish。"
 
-#: classes/wishthis/Page.php:803
+#: classes/wishthis/Page.php:811
 #, php-format
 msgid "The requested %s was not found."
 msgstr "没有找到要求的%s 。"
@@ -493,44 +489,38 @@ msgstr "很高兴拥有"
 msgid "Would love it"
 msgstr "会喜欢它"
 
-#: classes/wishthis/Wish.php:153
+#: classes/wishthis/Wish.php:224
 msgid "Wish temporarily fulfilled"
 msgstr "暂时实现的愿望"
 
 #. TRANSLATORS: %s: Duration (e. g. 30 minutes)
-#: classes/wishthis/Wish.php:158
-#, fuzzy, php-format
-#| msgid ""
-#| "If this wish is a product, confirm the order was successful and mark it "
-#| "as fulfilled here. If you do not confirm this wish as fulfilled, it will "
-#| "become available again to others after %d minutes."
+#: classes/wishthis/Wish.php:229
+#, php-format
 msgid ""
 "If this wish is a product, confirm the order was successful and mark it as "
-"fulfilled here. If you do not confirm this wish as fulfilled, it will become "
-"available again to others after %s."
-msgstr ""
-"如果这个愿望是一个产品，请确认订单成功，并在此将其标记为已完成。如果您不确认"
-"此愿望已实现，它将在%d 分钟后再次供他人使用。"
+"fulfilled here. If you do not confirm this wish as fulfilled, it will become"
+" available again to others after %s."
+msgstr "如果该愿望是产品，请确认订单成功，并在此处标记为已实现。如果您不确认该愿望已实现，则该愿望将在%s 之后再次对其他人开放。"
 
 #. TRANSLATORS: %d Amount of minutes
-#: classes/wishthis/Wish.php:161
+#: classes/wishthis/Wish.php:232
 #, php-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d 分钟"
 
-#: classes/wishthis/Wish.php:172
+#: classes/wishthis/Wish.php:243
 msgid "Confirm"
 msgstr "确认"
 
-#: classes/wishthis/Wish.php:221
+#: classes/wishthis/Wish.php:292
 msgid "Wish not found"
 msgstr "没有找到愿望"
 
-#: classes/wishthis/Wish.php:332 pages/wishlist.php:70
+#: classes/wishthis/Wish.php:403 pages/wishlist.php:73
 msgid "Details"
-msgstr ""
+msgstr "详细信息"
 
-#: classes/wishthis/Wishlist.php:190
+#: classes/wishthis/Wishlist.php:240
 msgid "Wishlist not found"
 msgstr "没有找到愿望清单"
 
@@ -559,54 +549,54 @@ msgid "API"
 msgstr "API"
 
 #. TRANSLATORS: %s: Language, most likely English
-#: pages/blog.php:22
+#: pages/blog.php:23
 #, php-format
 msgid ""
 "The blog is currently only available in %s and not translatable. Please let "
 "me know if you have any ideas to improve this."
-msgstr ""
+msgstr "该博客目前只有%s 版本，不可翻译。如果您有任何改进意见，请告诉我。"
 
-#: pages/blog.php:25
+#: pages/blog.php:26
 msgid "Warning"
 msgstr "警告"
 
-#: pages/blog.php:59
+#: pages/blog.php:60
 msgid "Read more"
 msgstr "阅读更多"
 
-#: pages/blog.php:86 pages/post.php:55
+#: pages/blog.php:87 pages/post.php:55
 msgid "Top"
-msgstr ""
+msgstr "返回顶部"
 
 #: pages/changelog.php:25 pages/changelog.php:39
 msgid "Roadmap"
-msgstr ""
+msgstr "路线图"
 
-#: pages/changelog.php:26 pages/changelog.php:107
+#: pages/changelog.php:26 pages/changelog.php:94
 msgid "1.1.0"
-msgstr ""
+msgstr "1.1.0"
 
-#: pages/changelog.php:27 pages/changelog.php:141
+#: pages/changelog.php:27 pages/changelog.php:203
 msgid "1.0.0"
-msgstr ""
+msgstr "1.0.0"
 
-#: pages/changelog.php:28 pages/changelog.php:237
+#: pages/changelog.php:28 pages/changelog.php:299
 msgid "0.7.3"
-msgstr ""
+msgstr "0.7.3"
 
-#: pages/changelog.php:29 pages/changelog.php:257
+#: pages/changelog.php:29 pages/changelog.php:319
 msgid "0.7.2"
-msgstr ""
+msgstr "0.7.2"
 
-#: pages/changelog.php:30 pages/changelog.php:277
+#: pages/changelog.php:30 pages/changelog.php:339
 msgid "0.7.1"
-msgstr ""
+msgstr "0.7.1"
 
-#: pages/changelog.php:31 pages/changelog.php:373
+#: pages/changelog.php:31 pages/changelog.php:435
 msgid "0.7.0"
-msgstr ""
+msgstr "0.7.0"
 
-#: pages/changelog.php:32 pages/changelog.php:515
+#: pages/changelog.php:32 pages/changelog.php:577
 msgid "0.6.0"
 msgstr "0.6.0"
 
@@ -616,343 +606,376 @@ msgstr "0.6.0"
 msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
 "the %s on GitHub, or chat on Matrix or Discord."
-msgstr ""
+msgstr "如果您想就路线图提出反馈意见，请参阅 GitHub 上的%s ，或在 Matrix 或 Discord 上聊天。"
 
 #: pages/changelog.php:47
 msgid "discussions"
-msgstr ""
+msgstr "讨论"
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:56
 msgid "Allow customising priority colours"
-msgstr ""
+msgstr "允许自定义优先级颜色"
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:63
-#, fuzzy
-#| msgid "Filter priorities"
 msgid "Filter by price"
-msgstr "过滤优先级"
+msgstr "按价格筛选"
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:70
 msgid "Bookmarklets"
-msgstr ""
+msgstr "书签"
 
 #. TRANSLATORS: Changelog: Roadmap
 #: pages/changelog.php:77
-msgid "Delete account option"
-msgstr ""
-
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:84
 msgid "Notifications for fulfilled wishes"
-msgstr ""
+msgstr "实现愿望的通知"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:90
+#: pages/changelog.php:83
 msgid ""
 "Verify wishes are still available when attempting to fulfil them. "
 "Alternatively, a heartbeat which checks if all the wishes are still "
 "unfulfilled."
-msgstr ""
+msgstr "在尝试实现愿望时，验证愿望是否仍然可用。或者，通过心跳来检查是否所有愿望都还未实现。"
 
-#. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:96
-msgid "Option to delete account"
-msgstr ""
-
-#: pages/changelog.php:111 pages/changelog.php:145 pages/changelog.php:377
-#: pages/changelog.php:519
+#: pages/changelog.php:98 pages/changelog.php:207 pages/changelog.php:439
+#: pages/changelog.php:581
 msgid "Added"
 msgstr "添加"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:116
+#: pages/changelog.php:103
 msgid "Configuration flag to disable plausible.io calls"
-msgstr ""
+msgstr "禁用 plausible.io 调用的配置标志"
 
-#: pages/changelog.php:122 pages/changelog.php:200 pages/changelog.php:240
-#: pages/changelog.php:260 pages/changelog.php:316 pages/changelog.php:467
-#: pages/changelog.php:551
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:110
+msgid "Add account delete option"
+msgstr "添加账户删除选项"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:117
+msgid "Configuration flag to disable user registrations"
+msgstr "禁用用户注册的配置标志"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:124
+msgid ""
+"After creating an account your language is automatically set to your "
+"browser's (if it is available), instead of defaulting to en_GB."
+msgstr "创建账户后，您的语言将自动设置为浏览器的语言（如果可用），而不是默认的 en_GB。"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:130
+msgid ""
+"Amazon links are now automatically converted to affiliate links to help "
+"support wishthis financially."
+msgstr "亚马逊链接现已自动转换为联盟链接，以在经济上支持 wishthis。"
+
+#. TRANSLATORS: Changelog: Added
+#: pages/changelog.php:136
+msgid "Prerequisite check during installation"
+msgstr "安装时的前提条件检查"
+
+#: pages/changelog.php:141 pages/changelog.php:262 pages/changelog.php:302
+#: pages/changelog.php:322 pages/changelog.php:378 pages/changelog.php:529
+#: pages/changelog.php:613
 msgid "Fixed"
 msgstr "固定的"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:127
+#: pages/changelog.php:146
+msgid "RewriteRules which caused HTTP 404 errors"
+msgstr "导致 HTTP 404 错误的 RewriteRules"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:153
+msgid "Switching to wish \"product\" tab breaks view"
+msgstr "切换到希望 \"产品 \"选项卡，中断视图"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:160
+msgid "Special characters not being displayed properly"
+msgstr "特殊字符显示不正确"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:167
 msgid "A fatal error when the CHANNELS constant is removed from the config"
-msgstr ""
+msgstr "从配置中删除 CHANNELS 常量时出现致命错误"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:174
+msgid "Fulfilled wishes disappearing for wishlist owners"
+msgstr "对于wishlist 所有者来说，已实现的愿望正在消失"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:180
+msgid "Deprecated notices on PHP 8.2"
+msgstr "PHP 8.2 过时的通知"
+
+#: pages/changelog.php:185 pages/changelog.php:252 pages/changelog.php:507
+msgid "Changed"
+msgstr "改变了"
+
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:190
+msgid "Added button labels for mobile devices"
+msgstr "为移动设备添加了按钮标签"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:150
+#: pages/changelog.php:212
 msgid "Option to set currency"
-msgstr ""
+msgstr "设置货币的选项"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:157
+#: pages/changelog.php:219
 msgid "A roadmap in the changelog"
-msgstr ""
+msgstr "在Changelog"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:163
+#: pages/changelog.php:225
 msgid "Compact/list view for wishes"
-msgstr ""
+msgstr "愿望的压缩/列表视图"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:169
-#, fuzzy
-#| msgid "free of advertisements,"
+#: pages/changelog.php:231
 msgid "Option to enable advertisements"
-msgstr "没有广告。"
+msgstr "启用广告的选项"
 
-#: pages/changelog.php:174 pages/changelog.php:281 pages/changelog.php:423
-#: pages/changelog.php:541
+#: pages/changelog.php:236 pages/changelog.php:343 pages/changelog.php:485
+#: pages/changelog.php:603
 msgid "Improved"
 msgstr "改进后的"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:179
+#: pages/changelog.php:241
 msgid ""
 "Large parts of wishthis have been completely rewritten, such as the API and "
 "how pretty URLs work. The aim was to increase security and maintainability."
-msgstr ""
+msgstr "wishthis 的大部分内容已完全重写，例如应用程序接口和漂亮 URL 的工作方式。这样做的目的是为了提高安全性和可维护性。"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:185
+#: pages/changelog.php:247
 msgid ""
 "Changelog now automatically selects the current version, instead of the top "
 "most tab."
-msgstr ""
+msgstr "Changelog 现在会自动选择当前版本，而不是最上面的选项卡。"
 
-#: pages/changelog.php:190 pages/changelog.php:445
-msgid "Changed"
-msgstr "改变了"
-
-#. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:195
+#. TRANSLATORS: Changelog: Changed
+#: pages/changelog.php:257
 msgid "Decreased wish height on mobile devices"
-msgstr ""
+msgstr "移动设备上的愿望高度降低"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:205
+#: pages/changelog.php:267
 msgid ""
 "Temporary fulfilled wish does not become available again after 30 minutes, "
 "except when viewing as the owner of the list."
-msgstr ""
+msgstr "临时实现的愿望在 30 分钟后不会再次出现，除非以列表所有者的身份查看。"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:212
-#, fuzzy
-#| msgid "Various small bugs"
+#: pages/changelog.php:274
 msgid "Fix various wish UI bugs"
-msgstr "各种小错误"
+msgstr "修复各种愿望用户界面错误"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:219
+#: pages/changelog.php:281
 msgid "Fix background and colour when opening the mobile menu"
-msgstr ""
+msgstr "修复打开手机菜单时的背景和颜色"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:225
-#, fuzzy
-#| msgid "Mark as fulfilled"
+#: pages/changelog.php:287
 msgid "Marking wish as fulfilled"
-msgstr "标记为已完成"
+msgstr "标记愿望已实现"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:245
+#: pages/changelog.php:307
 msgid "Fix fulfilled wishes disappearing for wishlist owner"
-msgstr ""
+msgstr "修复wishlist 所有者已实现的愿望消失的问题"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:265
+#: pages/changelog.php:327
 msgid "Fix fulfilled wishes showing after using filter"
-msgstr ""
+msgstr "修复使用筛选器后显示已实现愿望的问题"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:286
+#: pages/changelog.php:348
 msgid "MJML settings page"
-msgstr ""
+msgstr "MJML 设置页面"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:293
+#: pages/changelog.php:355
 msgid ""
 "Expired sessions are now invalidated by wishthis instead of relying on the "
 "browser to delete the cookies."
-msgstr ""
+msgstr "现在，过期的会话将由 wishthis 来失效，而不是依靠浏览器来删除 cookie。"
 
 #. TRANSLATORS: Changelog: Improved
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:299 pages/changelog.php:388
+#: pages/changelog.php:361 pages/changelog.php:450
 msgid "Dark theme"
-msgstr ""
+msgstr "深色主题"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:305
+#: pages/changelog.php:367
 msgid "Remembered lists design"
-msgstr ""
+msgstr "Remembered 列表设计"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:311
-#, fuzzy
-#| msgid "Translate"
+#: pages/changelog.php:373
 msgid "Translations"
 msgstr "翻译"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:321
+#: pages/changelog.php:383
 msgid "Label on top of dropdown menu"
-msgstr ""
+msgstr "下拉菜单顶部的标签"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:328
+#: pages/changelog.php:390
 msgid "Encoding issue in wish description"
-msgstr ""
+msgstr "愿望描述中的编码问题"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:335
+#: pages/changelog.php:397
 msgid "Caching issue with the blog"
-msgstr ""
+msgstr "博客的缓存问题"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:342
+#: pages/changelog.php:404
 msgid "An error when a blog post doesn't have a featured image."
-msgstr ""
+msgstr "当博文没有特色图片时会出错。"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:348
+#: pages/changelog.php:410
 msgid ""
 "Version number not being stored correctly causing the migration to execute "
 "the wrong script."
-msgstr ""
+msgstr "未正确存储版本号，导致迁移执行错误的脚本。"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:354
+#: pages/changelog.php:416
 msgid "Wishlist filter cut off on mobile"
-msgstr ""
+msgstr "wishlist 移动电话上的滤波器截止"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:360
+#: pages/changelog.php:422
 msgid "Wish options not selectable after filtering"
-msgstr ""
+msgstr "过滤后无法选择愿望选项"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:394
+#: pages/changelog.php:456
 msgid ""
 "Wish properties. You can now mark a wish as purchasable and add a price."
-msgstr ""
+msgstr "愿望属性。现在，您可以将愿望标记为可购买，并添加价格。"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:400
+#: pages/changelog.php:462
 msgid "Jump to last edited wishlist from home"
-msgstr ""
+msgstr "跳转到上次编辑的wishlist 首页"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:406
+#: pages/changelog.php:468
 msgid "Quick add wish from home"
-msgstr ""
+msgstr "在家快速添加愿望"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:412
+#: pages/changelog.php:474
 msgid "Button to request more wishes from a users wishlist"
-msgstr ""
+msgstr "向用户索取更多愿望的按钮wishlist"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:418
+#: pages/changelog.php:480
 msgid "Option to stay logged in"
-msgstr ""
+msgstr "保持登录状态的选项"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:428
+#: pages/changelog.php:490
 msgid "Localisation (many new translations added)"
 msgstr "本地化（增加了许多新的翻译）。"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:434
+#: pages/changelog.php:496
 msgid ""
 "Additional logins are no longer required when switching between wishthis "
 "channels"
-msgstr ""
+msgstr "在 wishthis 频道间切换时不再需要额外登录"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:440
-#, fuzzy
-#| msgid "Rename wishlist"
+#: pages/changelog.php:502
 msgid "Remembered wishlists design"
-msgstr "重新命名愿望清单"
+msgstr "Remembered wishlists 设计"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:450
+#: pages/changelog.php:512
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr "Changelog现在是一个页面，而不是一个可下载的markdown文件"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:456
+#: pages/changelog.php:518
 msgid ""
 "Wishes can be edited from the wishlist now, without loading another page"
-msgstr ""
+msgstr "现在可以从wishlist 编辑愿望，而无需加载另一个页面"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:462
+#: pages/changelog.php:524
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr ""
+msgstr "\"保存的wishlists\" 已更名为 \"记住列表\"。"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:472
+#: pages/changelog.php:534
 msgid "Various minor things (typos, menu order, etc)"
 msgstr "各种小事（错别字、菜单顺序等）。"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:478
-#, fuzzy
-#| msgid "Saved wish information is not updated if the url can not be found"
+#: pages/changelog.php:540
 msgid "Wish information being updated with 404 content from URL"
-msgstr "如果找不到网址，保存的愿望信息不会被更新。"
+msgstr "用来自 URL 的 404 内容更新愿望信息"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:484
-#, fuzzy
-#| msgid "Wish not found"
+#: pages/changelog.php:546
 msgid "Wish image not showing"
-msgstr "没有找到愿望"
+msgstr "未显示愿望图像"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:490
+#: pages/changelog.php:552
 msgid "An error when saving a wish with a really long URL"
-msgstr ""
+msgstr "保存超长 URL 的愿望时出现错误"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:496
+#: pages/changelog.php:558
 msgid "Redirect errors on Nginx"
-msgstr ""
+msgstr "Nginx 上的重定向错误"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:502
+#: pages/changelog.php:564
 msgid "An error when fetching title from an URL containing quotes"
-msgstr ""
+msgstr "从包含引号的 URL 获取标题时出现错误"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:524
+#: pages/changelog.php:586
 msgid "This changelog"
 msgstr "本更新日志"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:530
+#: pages/changelog.php:592
 msgid "Wish properties"
 msgstr "愿望属性"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:536
+#: pages/changelog.php:598
 msgid "Button to mark wish as fulfilled"
 msgstr "标记愿望实现的按钮"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:546
+#: pages/changelog.php:608
 msgid "Card design"
 msgstr "卡片设计"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:556
+#: pages/changelog.php:618
 msgid "Various small bugs"
 msgstr "各种小错误"
 
@@ -960,30 +983,28 @@ msgstr "各种小错误"
 msgid "Home"
 msgstr "首页"
 
-#: pages/home.php:74 pages/home.php:76
+#: pages/home.php:76 pages/home.php:78
 msgid "Register now"
 msgstr "现在注册"
 
-#: pages/home.php:92
+#: pages/home.php:94
 msgid "Use case"
 msgstr "使用案例"
 
-#: pages/home.php:94
+#: pages/home.php:96
 msgid ""
-"Your birthday is coming up and you just created a wishlist with all the cool "
-"stuff you want. Your friends and family want to make sure you get something "
-"you are happy with so you send them your wishlist link and if anybody "
+"Your birthday is coming up and you just created a wishlist with all the cool"
+" stuff you want. Your friends and family want to make sure you get something"
+" you are happy with so you send them your wishlist link and if anybody "
 "decides to fulfil one of your wishes, it will disappear for everybody else."
 msgstr ""
-"你的生日快到了，你刚刚创建了一个愿望清单，上面有你想要的所有很酷的东西。你的"
-"朋友和家人想确保你得到你满意的东西，所以你把你的愿望清单链接发给他们，如果有"
-"人决定实现你的一个愿望，它就会为其他人消失。"
+"你的生日快到了，你刚刚创建了一个愿望清单，上面有你想要的所有很酷的东西。你的朋友和家人想确保你得到你满意的东西，所以你把你的愿望清单链接发给他们，如果有人决定实现你的一个愿望，它就会为其他人消失。"
 
-#: pages/home.php:98
+#: pages/home.php:100
 msgid "Why wishthis?"
 msgstr "为什么是wishthis？"
 
-#: pages/home.php:101
+#: pages/home.php:103
 #, php-format
 msgid ""
 "wishthis is free and open source software. With free I don't just mean, you "
@@ -991,244 +1012,285 @@ msgid ""
 "personal information and behaviour. Not only can anybody %sview and verify "
 "its code%s, I also encourage you to do so."
 msgstr ""
-"wishthis是免费的开源软件。我所说的免费不仅仅是指，你不需要付钱就可以使用它，"
-"而且你也不需要用你的个人信息和行为来支付。不仅任何人可以%s，查看和验证其代"
-"码%s ，我也鼓励你这样做。"
+"wishthis是免费的开源软件。我所说的免费不仅仅是指，你不需要付钱就可以使用它，而且你也不需要用你的个人信息和行为来支付。不仅任何人可以%s，查看和验证其代码%s"
+" ，我也鼓励你这样做。"
 
-#: pages/home.php:106
-msgid "As a non-commercial project it remains"
-msgstr "作为一个非商业项目，它仍然是"
+#: pages/home.php:108
+msgid "As an open source project it remains"
+msgstr "作为一个开放源码项目，它仍然"
 
-#: pages/home.php:109
-msgid "unless you want them"
-msgstr ""
-
-#: pages/home.php:111
-#, fuzzy
-#| msgid "free of advertisements,"
+#: pages/home.php:113
 msgid "free of advertisements"
-msgstr "没有广告。"
+msgstr "无广告"
 
 #. TRANSLATORS: %s: plausible
-#: pages/home.php:116
+#: pages/home.php:118
 #, php-format
 msgid "see %s"
-msgstr ""
+msgstr "看看%s"
 
-#: pages/home.php:117
+#: pages/home.php:119
 msgid "plausible"
-msgstr ""
+msgstr "可信"
 
-#: pages/home.php:123
-#, fuzzy
-#| msgid "without tracking, and"
+#: pages/home.php:125
 msgid "without intrusive tracking"
-msgstr "没有跟踪，和"
+msgstr "无侵入性跟踪"
 
 #: pages/home.php:130
+msgid "transparent"
+msgstr "透明"
+
+#: pages/home.php:136
 msgid "privacy focused"
-msgstr ""
+msgstr "注重隐私"
 
-#: pages/home.php:134
-#, fuzzy
-#| msgid "open for feedback and suggestions."
+#: pages/home.php:140
 msgid "open for feedback and suggestions"
-msgstr "愿意接受反馈和建议。"
+msgstr "欢迎反馈和建议"
 
-#: pages/home.php:141
+#: pages/home.php:144
+msgid "What you should also know"
+msgstr "您还应该知道"
+
+#: pages/home.php:150
+msgid "affiliate links"
+msgstr "关联链接"
+
+#: pages/home.php:151
+msgid ""
+"amazon links are automatically converted to affiliate links to help support "
+"the project financially."
+msgstr "亚马逊链接会自动转换为联盟链接，为项目提供资金支持。"
+
+#: pages/home.php:159
 msgid "News"
-msgstr ""
+msgstr "新闻"
 
-#: pages/home.php:188
+#: pages/home.php:206
 msgid "Statistics"
 msgstr "统计数据"
 
-#: pages/home.php:190
+#: pages/home.php:208
 msgid "Join the others and get started now!"
 msgstr "加入其他人的行列，现在就开始吧!"
 
-#: pages/home.php:194 pages/home.php:199 pages/home.php:204
+#: pages/home.php:212 pages/home.php:217 pages/home.php:222
 msgid "N. A."
 msgstr "N.A."
 
-#: pages/home.php:195 pages/wishlist.php:76 pages/wishlists.php:94
+#: pages/home.php:213 pages/wishlist.php:79 pages/wishlists.php:94
 msgid "Wishes"
 msgstr "愿望"
 
-#: pages/home.php:205
+#: pages/home.php:223
 msgid "Registered users"
 msgstr "注册用户"
 
-#: pages/home.php:217
+#: pages/home.php:235
 msgid "Hey, you"
-msgstr ""
+msgstr "嘿，你"
 
 #. TRANSLATORS: %s: the users display name
-#: pages/home.php:223
+#: pages/home.php:241
 #, php-format
 msgid "Yes, I mean you, %s."
-msgstr ""
+msgstr "是的，我是说你，%s."
 
-#. TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g. English (United Kingdom) %3$s: preferences
-#: pages/home.php:233
+#. TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g.
+#. English (United Kingdom) %3$s: preferences
+#: pages/home.php:251
 #, php-format
 msgid ""
 "Your browser is telling me that you would like to view pages in %1$s, but "
 "your %3$s are set to %2$s."
-msgstr ""
+msgstr "您的浏览器告诉我，您希望在%1$s 中浏览网页，但您的%3$s 设置为%2$s 。"
 
-#: pages/home.php:236
-#, fuzzy
-#| msgid "Preferences"
+#: pages/home.php:254
 msgid "preferences"
-msgstr "首选项"
+msgstr "偏好"
 
 #. TRANSLATORS: %s: the users display name
-#: pages/home.php:245
+#: pages/home.php:263
 #, php-format
-msgid "wishthis is available in %1$s different locales and also supports %2$s!"
-msgstr ""
+msgid ""
+"wishthis is available in %1$s different locales and also supports %2$s!"
+msgstr "wishthis 支持%1$s 不同的本地语言，还支持%2$s ！"
 
 #: pages/install.php:15
 msgid "Install"
 msgstr "安装"
 
-#: pages/install.php:34 pages/install.php:125
+#: pages/install.php:37 pages/install.php:164
 #, php-format
 msgid "Step %d"
 msgstr "步骤%d"
 
-#: pages/install.php:36
+#: pages/install.php:39
 msgid "Welcome to the wishthis installer."
 msgstr "欢迎来到wishthis安装程序。"
 
-#: pages/install.php:40
-#, fuzzy
-#| msgid "Database migration"
+#: pages/install.php:43
 msgid "Database"
-msgstr "数据库成功迁移到%s 。"
+msgstr "数据库"
 
-#: pages/install.php:42
+#: pages/install.php:45
 msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
 msgstr "wishthis需要一个数据库才能正常运行。请输入你的证书。"
 
-#: pages/install.php:51
+#: pages/install.php:54
 msgid "Host"
 msgstr "宿主"
 
-#: pages/install.php:56 pages/parts/wishlist.php:94
+#: pages/install.php:59 pages/parts/wishlist.php:95
 msgid "Name"
 msgstr "命名"
 
-#: pages/install.php:63
+#: pages/install.php:66
 msgid "Username"
 msgstr "帐号"
 
-#: pages/install.php:68 pages/login.php:208 pages/profile.php:190
-#: pages/profile.php:268 pages/profile.php:277 pages/register.php:229
+#: pages/install.php:71 pages/login.php:125 pages/profile/profile.php:35
+#: pages/profile/profile.php:116 pages/profile/profile.php:124
+#: pages/register.php:253
 msgid "Password"
 msgstr "密码"
 
-#: pages/install.php:76 pages/install.php:77 pages/parts/wishlist.php:184
-#: pages/parts/wishlist.php:185 pages/profile.php:259 pages/profile.php:260
-#: pages/profile.php:293 pages/profile.php:294 pages/profile.php:393
-#: pages/profile.php:394 pages/profile.php:492 pages/profile.php:493
-#: pages/profile.php:538 pages/profile.php:539 pages/settings.php:53
-#: pages/settings.php:54
+#: pages/install.php:79 pages/install.php:80 pages/parts/wishlist.php:185
+#: pages/parts/wishlist.php:186 pages/profile/profile.php:107
+#: pages/profile/profile.php:108 pages/profile/profile.php:140
+#: pages/profile/profile.php:141 pages/profile/profile.php:239
+#: pages/profile/profile.php:240 pages/profile/profile.php:337
+#: pages/profile/profile.php:338 pages/profile/profile.php:378
+#: pages/profile/profile.php:379 pages/settings.php:53 pages/settings.php:54
 msgid "Save"
 msgstr "拯救"
 
-#: pages/install.php:80
+#: pages/install.php:83
 msgid "Test connection"
-msgstr ""
+msgstr "测试连接"
 
-#: pages/install.php:126
-msgid "Click continue to test the database connection."
-msgstr "点击继续，测试数据库连接。"
+#: pages/install.php:99
+msgid "PHP Version >= 8.1"
+msgstr "PHP 版本 &gt;= 8.1"
 
-#: pages/install.php:133 pages/install.php:134
-msgid "Continue"
-msgstr "继续"
+#: pages/install.php:102 pages/install.php:108
+msgid "Compatible"
+msgstr "兼容"
 
-#: pages/login-as.php:58
+#: pages/install.php:105
+msgid "PHP Version < 8.3"
+msgstr "PHP 版本 &lt; 8.3"
+
+#: pages/install.php:114
+msgid "Activated"
+msgstr "激活"
+
+#: pages/install.php:121 pages/install.php:134
+msgid "Exists"
+msgstr "存在"
+
+#: pages/install.php:127 pages/install.php:140
+msgid "Writeable"
+msgstr "可写"
+
+#: pages/install.php:146
+msgid "Doesn't exist (yet)"
+msgstr "尚不存在"
+
+#: pages/install.php:166
+msgid ""
+"Make sure all prerequisites are met or the installation may fail in the next"
+" step."
+msgstr "确保满足所有前提条件，否则下一步安装可能会失败。"
+
+#: pages/install.php:170
+msgid "Prerequisites check"
+msgstr "先决条件检查"
+
+#: pages/install.php:175
+msgid "Installation prerequisites"
+msgstr "安装前提条件"
+
+#: pages/install.php:207 pages/install.php:208
+msgid "Install wishthis"
+msgstr "安装 wishthis"
+
+#: pages/login-as.php:60
 #, php-format
 msgid "Successfully logged in as %s."
 msgstr "成功登录为%s 。"
 
-#: pages/login-as.php:60
+#: pages/login-as.php:62
 msgid "User not found!"
 msgstr "未找到用户!"
 
-#: pages/login-as.php:68 pages/login.php:199 pages/profile.php:34
-#: pages/profile.php:231 pages/register.php:211
+#: pages/login-as.php:70 pages/login.php:116 pages/profile/profile.php:79
+#: pages/register.php:235
 msgid "Email"
 msgstr "电子邮件"
 
-#: pages/login.php:106
+#: pages/login.php:25
 msgid "No user could be found with the credentials you provided."
 msgstr "用你提供的凭证找不到用户。"
 
-#: pages/login.php:107
+#: pages/login.php:26
 msgid "Invalid credentials"
 msgstr "无效凭证"
 
-#: pages/login.php:152
+#: pages/login.php:70
 msgid "Password reset link"
 msgstr "密码重置链接"
 
 #. TRANSLATORS: %s: The wishthis domain
-#: pages/login.php:158
+#: pages/login.php:76
 #, php-format
 msgid ""
 "somebody has requested a password reset for this email address from %s. If "
-"this was you, click the button below to invalidate your current password and "
-"set a new one."
-msgstr ""
+"this was you, click the button below to invalidate your current password and"
+" set a new one."
+msgstr "有人从%s 请求重置此电子邮件地址的密码。如果是您，请单击下面的按钮，使您当前的密码失效并设置一个新密码。"
 
-#: pages/login.php:162
-#, fuzzy
-#| msgid "Reset password"
+#: pages/login.php:80
 msgid "Set new password"
-msgstr "重置密码"
+msgstr "设置新密码"
 
-#: pages/login.php:174
+#: pages/login.php:92
 msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
 msgstr "如果能找到与之匹配的电子邮件地址，将向其发送一个密码重置链接。"
 
-#: pages/login.php:175
+#: pages/login.php:93
 msgid "Info"
 msgstr "信息"
 
-#: pages/login.php:195
+#: pages/login.php:112
 msgid "Credentials"
 msgstr "证书"
 
-#: pages/login.php:219
+#: pages/login.php:136
 msgid "Keep me logged in"
-msgstr ""
+msgstr "保持我的登录状态"
 
-#: pages/login.php:246
+#: pages/login.php:163
 msgid "Forgot password?"
 msgstr "忘记密码？"
 
-#: pages/login.php:248
+#: pages/login.php:165
 msgid ""
-"Consider using a password manager. It will save all your passwords and allow "
-"you to access them with one master password. Never forget a password ever "
+"Consider using a password manager. It will save all your passwords and allow"
+" you to access them with one master password. Never forget a password ever "
 "again."
-msgstr ""
-"考虑使用一个密码管理器。它将保存你所有的密码，并允许你用一个主密码访问它们。"
-"再也不会忘记密码了。"
+msgstr "考虑使用一个密码管理器。它将保存你所有的密码，并允许你用一个主密码访问它们。再也不会忘记密码了。"
 
-#: pages/login.php:264 pages/login.php:265
+#: pages/login.php:181 pages/login.php:182
 msgid "Send email"
 msgstr "发送电子邮件"
 
-#: pages/login.php:273
+#: pages/login.php:190
 msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
@@ -1252,23 +1314,23 @@ msgstr "暂时无法使用"
 
 #: pages/maintenance.php:27
 msgid ""
-"Due to maintenance, wishthis is temporarily not available. Please check back "
-"again in a minute."
+"Due to maintenance, wishthis is temporarily not available. Please check back"
+" again in a minute."
 msgstr "由于维护，wishthis暂时无法使用。请在一分钟后再回来查看。"
 
 #: pages/maintenance.php:28
 msgid "If you are the administrator of this site, please log in."
-msgstr ""
+msgstr "如果您是本网站的管理员，请登录。"
 
 #: pages/parts/wish-add.php:12
 msgid "General"
-msgstr ""
+msgstr "一般情况"
 
 #: pages/parts/wish-add.php:13
 msgid "Product"
-msgstr ""
+msgstr "产品"
 
-#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:122
+#: pages/parts/wish-add.php:22 pages/parts/wishlist.php:123
 msgid "Title"
 msgstr "标题"
 
@@ -1302,140 +1364,138 @@ msgstr "是可以购买的"
 
 #: pages/parts/wish-add.php:101
 msgid "Price"
-msgstr ""
+msgstr "价格"
 
-#: pages/parts/wishlist.php:25
+#: pages/parts/wishlist.php:26
 msgid "Filter priorities"
 msgstr "过滤优先级"
 
-#: pages/parts/wishlist.php:30
+#: pages/parts/wishlist.php:31
 msgid "Search priorities"
 msgstr "搜索重点"
 
-#: pages/parts/wishlist.php:37
+#: pages/parts/wishlist.php:38
 msgid "Priorities"
 msgstr "优先事项"
 
-#: pages/parts/wishlist.php:43
+#: pages/parts/wishlist.php:44
 msgid "All priorities"
 msgstr "所有优先事项"
 
-#: pages/parts/wishlist.php:48
+#: pages/parts/wishlist.php:49
 msgid "No priority"
 msgstr "无优先权"
 
-#: pages/parts/wishlist.php:86 pages/wishlists.php:45 pages/wishlists.php:48
+#: pages/parts/wishlist.php:87 pages/wishlists.php:45 pages/wishlists.php:48
 msgid "Create a wishlist"
 msgstr "创建一个愿望清单"
 
-#: pages/parts/wishlist.php:90
+#: pages/parts/wishlist.php:91
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
 msgstr "为你的愿望清单选择一个新名字。这里有一个建议，可以让你开始。"
 
-#: pages/parts/wishlist.php:103 pages/parts/wishlist.php:104
+#: pages/parts/wishlist.php:104 pages/parts/wishlist.php:105
 msgid "Create"
 msgstr "创建"
 
-#: pages/parts/wishlist.php:106 pages/parts/wishlist.php:107
-#: pages/parts/wishlist.php:131 pages/parts/wishlist.php:132
-#: pages/parts/wishlist.php:157 pages/parts/wishlist.php:158
-#: pages/parts/wishlist.php:187 pages/parts/wishlist.php:188
+#: pages/parts/wishlist.php:107 pages/parts/wishlist.php:108
+#: pages/parts/wishlist.php:132 pages/parts/wishlist.php:133
+#: pages/parts/wishlist.php:158 pages/parts/wishlist.php:159
+#: pages/parts/wishlist.php:188 pages/parts/wishlist.php:189
 msgid "Cancel"
 msgstr "取消"
 
-#: pages/parts/wishlist.php:115
+#: pages/parts/wishlist.php:116
 msgid "Rename wishlist"
 msgstr "重新命名愿望清单"
 
-#: pages/parts/wishlist.php:118
+#: pages/parts/wishlist.php:119
 msgid "How would you like to name this wishlist?"
 msgstr "你想给这个愿望清单起个什么名字呢？"
 
-#: pages/parts/wishlist.php:128 pages/parts/wishlist.php:129
+#: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
 #: pages/wishlists.php:77 pages/wishlists.php:79
 msgid "Rename"
 msgstr "重命名"
 
-#: pages/parts/wishlist.php:140 pages/wishlists.php:56 pages/wishlists.php:59
+#: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
 msgid "Add a wish"
 msgstr "添加一个愿望"
 
-#: pages/parts/wishlist.php:144
+#: pages/parts/wishlist.php:145
 msgid ""
-"Fill the title and/or description to add your new wish. If you just fill out "
-"the URL, wishthis will attempt to auto fill all other fields."
-msgstr ""
+"Fill the title and/or description to add your new wish. If you just fill out"
+" the URL, wishthis will attempt to auto fill all other fields."
+msgstr "填写标题和/或描述，添加您的新愿望。如果只填写 URL，wishthis 会尝试自动填写所有其他字段。"
 
-#: pages/parts/wishlist.php:154 pages/parts/wishlist.php:155
+#: pages/parts/wishlist.php:155 pages/parts/wishlist.php:156
 msgid "Add"
 msgstr "添加"
 
-#: pages/parts/wishlist.php:167
-#, fuzzy
-#| msgid "Add a wish"
+#: pages/parts/wishlist.php:168
 msgid "Edit wish"
-msgstr "添加一个愿望"
+msgstr "编辑愿望"
 
-#: pages/parts/wishlist.php:171
+#: pages/parts/wishlist.php:172
 msgid ""
 "If specified, wishthis will attempt to fetch all missing information from "
 "the URL."
-msgstr ""
+msgstr "如果指定，wishthis 将尝试从 URL 中获取所有缺失的信息。"
 
-#: pages/parts/wishlist.php:197
+#: pages/parts/wishlist.php:198
 msgid "URL mismatch"
 msgstr "URL不匹配"
 
-#: pages/parts/wishlist.php:201
+#: pages/parts/wishlist.php:202
 msgid ""
-"The URL you have entered does not seem quite right. Would you like to update "
-"it with the one I found?"
+"The URL you have entered does not seem quite right. Would you like to update"
+" it with the one I found?"
 msgstr "你输入的网址似乎不大正确。你想用我找到的那个来更新它吗？"
 
-#: pages/parts/wishlist.php:202
+#: pages/parts/wishlist.php:203
 #, php-format
 msgid "According to %s, this is the canonical (correct) URL."
 msgstr "根据%s ，这是规范（正确）的URL。"
 
-#: pages/parts/wishlist.php:206
+#: pages/parts/wishlist.php:207
 msgid "Current"
 msgstr "目前"
 
-#: pages/parts/wishlist.php:211
+#: pages/parts/wishlist.php:212
 msgid "Proposed"
 msgstr "建议"
 
-#: pages/parts/wishlist.php:218 pages/parts/wishlist.php:219
+#: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
 msgid "Yes, update"
 msgstr "是的，更新"
 
-#: pages/parts/wishlist.php:221 pages/parts/wishlist.php:222
+#: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
 msgid "No, leave it"
 msgstr "不，离开它"
 
-#: pages/parts/wishlist.php:258
+#: pages/parts/wishlist.php:259
 msgid "Mark as fulfilled"
 msgstr "标记为已完成"
 
-#: pages/parts/wishlist.php:263 pages/wishlist.php:71
+#: pages/parts/wishlist.php:264 pages/wishlist.php:74
 msgid "Fulfil wish"
 msgstr "实现愿望"
 
-#: pages/parts/wishlist.php:268
+#: pages/parts/wishlist.php:269
 msgid "Visit"
 msgstr "访问"
 
-#: pages/parts/wishlist.php:273 pages/wishlists.php:41 pages/wishlists.php:71
+#: pages/parts/wishlist.php:274 pages/wishlists.php:41 pages/wishlists.php:71
 #: pages/wishlists.php:74
 msgid "Options"
 msgstr "选择"
 
-#: pages/parts/wishlist.php:278
+#: pages/parts/wishlist.php:279
 msgid "Edit"
 msgstr "编辑"
 
-#: pages/parts/wishlist.php:283 pages/wishlists.php:82 pages/wishlists.php:84
+#: pages/parts/wishlist.php:284 pages/wishlists.php:82 pages/wishlists.php:84
 msgid "Delete"
 msgstr "删除"
 
@@ -1443,184 +1503,233 @@ msgstr "删除"
 msgid "Insufficient power"
 msgstr "功率不足"
 
-#: pages/power.php:22
+#: pages/power.php:24
 msgid "Restricted access"
 msgstr "访问受限"
 
-#: pages/power.php:23
+#: pages/power.php:25
 #, php-format
 msgid ""
 "You do not have enough power to view this page. You need %s to see this "
 "page, but only have %s."
-msgstr ""
-"你没有足够的能力来查看这个页面。你需要%s ，但只有%s ，才能看到这个页面。"
+msgstr "你没有足够的能力来查看这个页面。你需要%s ，但只有%s ，才能看到这个页面。"
 
-#: pages/profile.php:19 pages/profile.php:211
-msgid "First name"
-msgstr "名字"
+#: pages/profile/profile-handle-post-password.php:31
+msgid "Password updated."
+msgstr "密码已更新。"
 
-#: pages/profile.php:24 pages/profile.php:217
-msgid "Last name"
-msgstr "姓氏"
-
-#: pages/profile.php:29 pages/profile.php:223
-msgid "Nickname"
-msgstr "绰号"
-
-#: pages/profile.php:47
+#. TRANSLATORS: %s: The users first name.
+#: pages/profile/profile-handle-post-personal.php:31
 #, php-format
-msgid "%s successfully updated!"
-msgstr "%s 成功更新!"
+msgid "First name updated to \"%s\"."
+msgstr "名字更新为 \"%s\"。"
 
-#. TRANSLATORS: %s: The new locale
-#: pages/profile.php:100
+#. TRANSLATORS: %s: The users last name.
+#: pages/profile/profile-handle-post-personal.php:61
 #, php-format
-msgid "Language set to %s."
-msgstr ""
+msgid "Last name updated to \"%s\"."
+msgstr "姓氏更新为 \"%s\"。"
 
-#. TRANSLATORS: %s: The new locale
-#: pages/profile.php:116
+#. TRANSLATORS: %s: The users nick name.
+#: pages/profile/profile-handle-post-personal.php:91
 #, php-format
-msgid "Currency set to %s."
-msgstr ""
+msgid "Nick name updated to \"%s\"."
+msgstr "尼克名称更新为 \"%s\"。"
 
-#: pages/profile.php:165
-msgid "It is required for you to login again."
-msgstr "这是你再次登录的必要条件。"
+#. TRANSLATORS: %s: The users email address.
+#: pages/profile/profile-handle-post-personal.php:121
+#, php-format
+msgid "Email address updated to \"%s\"."
+msgstr "电子邮件地址更新为 \"%s\"。"
 
-#: pages/profile.php:186 pages/profile.php:202
+#. TRANSLATORS: %s: The users locale.
+#: pages/profile/profile-handle-post-preferences.php:38
+#, php-format
+msgid "Locale updated to \"%s\"."
+msgstr "语言更新为 \"%s\"。"
+
+#. TRANSLATORS: %s: The users currency.
+#: pages/profile/profile-handle-post-preferences.php:75
+#, php-format
+msgid "Currency updated to \"%s\"."
+msgstr "货币更新为 \"%s\"。"
+
+#. TRANSLATORS: %s: The users channel.
+#: pages/profile/profile-handle-post-preferences.php:113
+#, php-format
+msgid "Channel updated to \"%s\"."
+msgstr "频道更新为 \"%s\"。"
+
+#: pages/profile/profile-handle-post-preferences.php:134
+msgid "Channel has been reset."
+msgstr "通道已重置。"
+
+#. TRANSLATORS: %s: The users advertisements.
+#: pages/profile/profile-handle-post-preferences.php:161
+#, php-format
+msgid "Advertisements updated to \"%s\"."
+msgstr "广告更新为 \"%s\"。"
+
+#: pages/profile/profile-handle-post-preferences.php:174
+#: pages/profile/profile-handle-post.php:19
+msgid ""
+"Your account credentials have changed and you have been logged out. Please "
+"log in again."
+msgstr "您的账户凭据已更改，您已退出登录。请重新登录。"
+
+#: pages/profile/profile-handle-post-preferences.php:175
+#: pages/profile/profile-handle-post.php:20
+msgid "Account credentials changed"
+msgstr "帐户凭据已更改"
+
+#: pages/profile/profile.php:31 pages/profile/profile.php:51
 msgid "Personal"
 msgstr "个人"
 
-#: pages/profile.php:187
+#: pages/profile/profile.php:32
 msgid "Information regarding yourself"
 msgstr "关于你自己的信息"
 
-#: pages/profile.php:191
+#: pages/profile/profile.php:36
 msgid "Change your password"
 msgstr "改变你的密码"
 
-#: pages/profile.php:194 pages/profile.php:331
+#: pages/profile/profile.php:39 pages/profile/profile.php:178
 msgid "Preferences"
 msgstr "首选项"
 
-#: pages/profile.php:195
+#: pages/profile/profile.php:40
 msgid "Improve your wishthis experience"
 msgstr "改善你的愿望体验"
 
-#: pages/profile.php:236
-msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
-msgstr ""
+#: pages/profile/profile.php:44
+msgid "Configuration for your account"
+msgstr "账户配置"
 
-#: pages/profile.php:238
+#: pages/profile/profile.php:59
+msgid "First name"
+msgstr "名字"
+
+#: pages/profile/profile.php:65
+msgid "Last name"
+msgstr "姓氏"
+
+#: pages/profile/profile.php:71
+msgid "Nickname"
+msgstr "绰号"
+
+#: pages/profile/profile.php:84
+msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
+msgstr "如果生日快到了，建议使用名为 \"生日 \"的wishlist 。"
+
+#: pages/profile/profile.php:86
 msgid "Birthdate"
 msgstr "出生日期"
 
-#: pages/profile.php:247
+#: pages/profile/profile.php:95
 msgid "Pick a date"
 msgstr "选择一个日期"
 
-#: pages/profile.php:283
+#: pages/profile/profile.php:130
 msgid "Password (repeat)"
 msgstr "密码(重复)"
 
-#: pages/profile.php:299
+#: pages/profile/profile.php:146
 msgid "Safe password checklist"
 msgstr "安全密码检查表"
 
-#: pages/profile.php:306
+#: pages/profile/profile.php:153
 msgid "Long"
 msgstr "长"
 
-#: pages/profile.php:307
+#: pages/profile/profile.php:154
 msgid "Over eight characters in length."
 msgstr "长度超过8个字符。"
 
 #. TRANSLATORS: A special character (for a password)
-#: pages/profile.php:318
+#: pages/profile/profile.php:165
 msgid "Special"
 msgstr "特别"
 
-#: pages/profile.php:321
+#: pages/profile/profile.php:168
 msgid "Contains special characters."
 msgstr "包含特殊字符。"
 
-#: pages/profile.php:340
+#: pages/profile/profile.php:186
 msgid "Language"
 msgstr "语言"
 
-#: pages/profile.php:358
-#, fuzzy
-#| msgid "Current"
+#: pages/profile/profile.php:204
 msgid "Currency"
-msgstr "目前"
+msgstr "货币"
 
-#: pages/profile.php:444
+#: pages/profile/profile.php:289
 msgid "Channel"
 msgstr "频道"
 
-#: pages/profile.php:447
+#: pages/profile/profile.php:292
 msgid "Select channel"
 msgstr "选择频道"
 
-#: pages/profile.php:460
+#: pages/profile/profile.php:305
 msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
 msgstr "为了改善wishthis的用户体验，较新的版本是在广泛的测试期后发布的。"
 
-#: pages/profile.php:461
+#: pages/profile/profile.php:306
 msgid ""
 "Subscribing to the Stable channel ensures you have the highest possible "
 "stability while using wishthis, minimizing the amount of errors you may "
 "encounter (if any)."
-msgstr ""
-"订阅稳定频道可以确保你在使用wishthis时拥有尽可能高的稳定性，将你可能遇到的错"
-"误数量降到最低（如果有的话）。"
+msgstr "订阅稳定频道可以确保你在使用wishthis时拥有尽可能高的稳定性，将你可能遇到的错误数量降到最低（如果有的话）。"
 
-#: pages/profile.php:462
+#: pages/profile/profile.php:307
 msgid ""
 "If you want to speed up the release of newer versions, consider subscribing "
 "to the Release candidate of wishthis. A newer version is not published "
 "unless the next release candidate has been sufficiently tested."
-msgstr ""
-"如果你想加快更新版本的发布速度，可以考虑订阅wishthis的候选发布版。除非下一个"
-"候选版本经过充分的测试，否则不会发布较新的版本。"
+msgstr "如果你想加快更新版本的发布速度，可以考虑订阅wishthis的候选发布版。除非下一个候选版本经过充分的测试，否则不会发布较新的版本。"
 
-#: pages/profile.php:475
+#: pages/profile/profile.php:320
 #, php-format
 msgid "%d more subscriber needed"
 msgid_plural "%d more subscribers needed"
 msgstr[0] "%d 需要更多的订阅者"
 
-#: pages/profile.php:504
-#, fuzzy
-#| msgid "free of advertisements,"
+#: pages/profile/profile.php:348
 msgid "Advertisements"
-msgstr "没有广告。"
+msgstr "广告"
 
-#: pages/profile.php:517
-#, fuzzy
-#| msgid "free of advertisements,"
+#: pages/profile/profile.php:357
 msgid "Enable advertisements"
-msgstr "没有广告。"
+msgstr "启用广告"
 
 #. TRANSLATORS: %s: sponsor me
-#: pages/profile.php:526
+#: pages/profile/profile.php:366
 #, php-format
 msgid ""
 "Time spent on wishthis is time not doing for-profit work. If you would like "
 "to support me but either can't or don't want to %s, consider selling your "
 "body to Google and becoming its product."
-msgstr ""
+msgstr "花在 wishthis 上的时间就是不从事营利性工作的时间。如果您想支持我，但不能或不想%s ，请考虑将您的身体卖给谷歌，成为它的产品。"
 
-#: pages/profile.php:527
+#: pages/profile/profile.php:367
 msgid "sponsor me"
-msgstr ""
+msgstr "赞助我"
 
-#: pages/profile.php:531
+#: pages/profile/profile.php:371
 msgid "Please remember to add an exception to your ad-blocker and browser."
-msgstr ""
+msgstr "请记得在您的广告拦截器和浏览器中添加例外。"
+
+#: pages/profile/profile.php:394 pages/profile/profile.php:407
+#: pages/profile/profile.php:408
+msgid "Delete account"
+msgstr "删除帐户"
+
+#: pages/profile/profile.php:399
+msgid "Delete this account completely and irreversibly"
+msgstr "不可逆转地彻底删除此帐户"
 
 #: pages/register.php:13
 msgid "Reset password"
@@ -1673,17 +1782,17 @@ msgstr "太阳"
 #: pages/register.php:57
 #, php-format
 msgid ""
-"%s is not a planet but I'll let it slide, since only a human would make this "
-"kind of mistake."
+"%s is not a planet but I'll let it slide, since only a human would make this"
+" kind of mistake."
 msgstr "%s 不是一个星球，但我不追究，因为只有人类才会犯这样的错误。"
 
-#: pages/register.php:58 pages/register.php:187
+#: pages/register.php:58 pages/register.php:200
 msgid "Invalid planet"
 msgstr "无效的星球"
 
 #: pages/register.php:105
 msgid "This password reset link has expired, please request a new one."
-msgstr ""
+msgstr "该密码重置链接已过期，请重新申请。"
 
 #: pages/register.php:105 pages/register.php:108
 msgid "Failure"
@@ -1693,86 +1802,95 @@ msgstr "失败"
 msgid ""
 "This password reset link seems to have been manipulated, please request a "
 "new one."
-msgstr ""
+msgstr "该密码重置链接似乎已被篡改，请申请一个新的链接。"
 
-#: pages/register.php:134
+#: pages/register.php:144
 msgid "An account with this email address already exists."
 msgstr "这个电子邮件地址的账户已经存在。"
 
-#: pages/register.php:135
+#: pages/register.php:145
 msgid "Invalid email address"
 msgstr "无效的电子邮件地址"
 
-#: pages/register.php:153
+#: pages/register.php:166
 msgid "Your account was successfully created."
 msgstr "您的账户已成功创建。"
 
-#: pages/register.php:163
+#: pages/register.php:176
 msgid "My hopes and dreams"
 msgstr "我的希望和梦想"
 
-#: pages/register.php:186
+#: pages/register.php:199
 #, php-format
 msgid ""
 "%s is not a planet in our solar system. Read this for more information: %s."
 msgstr "%s 并不是我们太阳系中的一颗行星。阅读此文以了解更多信息： 。%s"
 
-#: pages/register.php:208
+#: pages/register.php:219
+msgid "Registration disabled"
+msgstr "禁用注册"
+
+#: pages/register.php:221
+msgid "The owner of this site has disabled user registrations."
+msgstr "本网站所有者已禁用用户注册。"
+
+#: pages/register.php:232
 msgid "Account details"
 msgstr "帐户详情"
 
-#: pages/register.php:239
+#: pages/register.php:263
 msgid "Authentication"
 msgstr "认证"
 
-#: pages/register.php:240
+#: pages/register.php:264
 msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
 msgstr "证明你是一个人类、蜥蜴人或类似Zuck的生物。请说出我们太阳系的一颗行星。"
 
-#: pages/register.php:243
+#: pages/register.php:267
 msgid "Planet"
 msgstr "宇宙"
 
-#: pages/register.php:250
+#: pages/register.php:274
 msgid ""
-"Robots are obviously from another solar system so this will keep them at bay."
+"Robots are obviously from another solar system so this will keep them at "
+"bay."
 msgstr "机器人显然是来自另一个太阳系，所以这将使他们受到抑制。"
 
-#: pages/register.php:277
-#, fuzzy
-#| msgid "Invalid email address"
+#: pages/register.php:301
 msgid "About your email address"
-msgstr "无效的电子邮件地址"
+msgstr "关于您的电子邮件地址"
 
-#: pages/register.php:279
+#: pages/register.php:303
 msgid ""
-"Currently the email address is used as a unique identifier and does not have "
-"to be verified. You may enter a fake address."
-msgstr ""
+"Currently the email address is used as a unique identifier and does not have"
+" to be verified. You may enter a fake address."
+msgstr "目前，电子邮件地址被用作唯一标识符，无需验证。您可以输入假地址。"
 
-#: pages/register.php:280
+#: pages/register.php:304
 msgid ""
-"wishthis is not a commercial project and is not interested in sending you "
-"marketing emails or selling your information to third parties. Although "
-"possible to do otherwise, it is strongly recommend to enter your real email "
-"address in case you need to recover your password or receive important "
-"notifications. These do not exist yet, but some future features and options "
-"might require sending you an email (e. g. when a wish has been fulfilled)."
+"wishthis is not interested in sending you marketing emails or selling your "
+"information to third parties. Although possible to do otherwise, it is "
+"strongly recommend to enter your real email address in case you need to "
+"recover your password or receive important notifications. These do not exist"
+" yet, but some future features and options might require sending you an "
+"email (e. g. when a wish has been fulfilled)."
 msgstr ""
+"wishthis "
+"不会向您发送营销电子邮件或将您的信息出售给第三方。虽然您可以不输入电子邮件地址，但我们强烈建议您输入真实的电子邮件地址，以备找回密码或接收重要通知之用。目前还不存在这些情况，但未来的某些功能和选项可能需要向您发送电子邮件（例如，当愿望已实现时）。"
 
 #. TRANSLATORS: %s: source code
-#: pages/register.php:285
+#: pages/register.php:309
 #, php-format
 msgid ""
-"Trust is a two way street and wishthis aims to be a transparent, trustworthy "
-"product, which is why the wishthis %s is publicly viewable."
-msgstr ""
+"Trust is a two way street and wishthis aims to be a transparent, trustworthy"
+" product, which is why the wishthis %s is publicly viewable."
+msgstr "信任是双向的，wishthis 的目标是成为一个透明、值得信赖的产品，这也是为什么 wishthis%s 可以公开查看的原因。"
 
-#: pages/register.php:286
+#: pages/register.php:310
 msgid "source code"
-msgstr ""
+msgstr "源代码"
 
 #: pages/settings.php:27
 msgid "MJML"
@@ -1785,13 +1903,11 @@ msgstr "发送电子邮件时需要MJML。请访问%s ，申请API访问。"
 
 #: pages/settings.php:33
 msgid "Application ID"
-msgstr ""
+msgstr "应用 ID"
 
 #: pages/settings.php:42
-#, fuzzy
-#| msgid "Secret"
 msgid "Secret Key"
-msgstr "秘密"
+msgstr "秘钥"
 
 #: pages/update.php:11
 msgid "Update"
@@ -1802,78 +1918,75 @@ msgstr "更新"
 msgid "Database successfully migrated to %s."
 msgstr "数据库成功迁移到%s 。"
 
-#: pages/update.php:71
+#: pages/update.php:75 pages/update.php:95
 msgid "Database migration"
 msgstr "数据库迁移"
 
-#: pages/update.php:72
+#: pages/update.php:76 pages/update.php:96
 msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
 msgstr "感谢你更新wishthis!为了完成这次更新，需要对数据库结构进行一些改变。"
 
-#: pages/update.php:77 pages/update.php:80
+#: pages/update.php:82 pages/update.php:85 pages/update.php:101
+#: pages/update.php:104
 #, php-format
 msgid "Migrate to %s"
 msgstr "迁移到%s"
 
-#: pages/wishlist.php:55
+#: pages/wishlist.php:58
 msgid "Careful"
 msgstr "小心翼翼"
 
-#: pages/wishlist.php:58
+#: pages/wishlist.php:61
 msgid ""
-"You are viewing your own wishlist! You will be able to see which wishes have "
-"already been fulfilled for you. Don't you want to be surprised?"
-msgstr ""
-"您正在查看自己的愿望清单!您将能够看到哪些愿望已经为您实现了。难道你不希望得到"
-"惊喜吗？"
+"You are viewing your own wishlist! You will be able to see which wishes have"
+" already been fulfilled for you. Don't you want to be surprised?"
+msgstr "您正在查看自己的愿望清单!您将能够看到哪些愿望已经为您实现了。难道你不希望得到惊喜吗？"
 
-#: pages/wishlist.php:59
+#: pages/wishlist.php:62
 msgid "It's probably best to just close this tab."
 msgstr "也许最好是直接关闭这个标签。"
 
-#: pages/wishlist.php:67
+#: pages/wishlist.php:70
 msgid "What to do?"
 msgstr "该怎么做？"
 
-#: pages/wishlist.php:69
+#: pages/wishlist.php:72
 #, php-format
 msgid ""
 "If you found a wish you would like to fulfil, open the wish %s and then "
 "click the %s button and it will be unavailable for everybody else."
-msgstr ""
+msgstr "如果您找到了想要实现的愿望，请打开愿望%s ，然后点击%s 按钮，其他人将无法实现该愿望。"
 
-#: pages/wishlist.php:82 pages/wishlist.php:96 pages/wishlist.php:111
+#: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
 msgid "Request more wishes"
-msgstr ""
+msgstr "申请更多愿望"
 
-#: pages/wishlist.php:100
+#: pages/wishlist.php:103
 msgid "A notification has just been sent to the owner of this wishlist."
-msgstr ""
+msgstr "我们刚刚向wishlist 的所有者发送了通知。"
 
-#: pages/wishlist.php:104 pages/wishlist.php:105 pages/wishlist.php:119
-#: pages/wishlist.php:120
+#: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
+#: pages/wishlist.php:123
 msgid "Ok"
-msgstr ""
+msgstr "好的"
 
-#: pages/wishlist.php:115
+#: pages/wishlist.php:118
 msgid ""
 "The wishlist owner has already received a notification recently and has not "
 "been notified again."
-msgstr ""
+msgstr "wishlist 的所有者最近已收到通知，但没有再次收到通知。"
 
-#: pages/wishlists-saved.php:59
+#: pages/wishlists-saved.php:65
 msgid ""
 "Ask somebody to share their wishlist with you and hit the remember button "
 "for it to show up here!"
-msgstr ""
+msgstr "请别人与你分享他们的wishlist ，然后点击 \"记住 \"按钮，它就会显示在这里！"
 
-#: pages/wishlists-saved.php:59
-#, fuzzy
-#| msgid "My lists"
+#: pages/wishlists-saved.php:65
 msgid "No lists"
-msgstr "我的清单"
+msgstr "无清单"
 
 #: pages/wishlists.php:33
 msgid "Wishlist"
@@ -1886,84 +1999,3 @@ msgstr "正在加载您的愿望清单..."
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
 msgstr "分享"
-
-#~ msgid ""
-#~ "This is the development environment of wishthis. The database will reset "
-#~ "every day at around 00:00."
-#~ msgstr "这里是wishthis的开发环境。数据库将在每天的00:00左右重置。"
-
-#~ msgid "Development environment"
-#~ msgstr "开发环境"
-
-#~ msgid "Understood"
-#~ msgstr "明白了"
-
-#~ msgid "Wish successfully added."
-#~ msgstr "愿望成功添加。"
-
-#~ msgid "Don't forget to save your changes."
-#~ msgstr "不要忘记保存你的修改。"
-
-#~ msgid "Saved"
-#~ msgstr "被拯救的"
-
-#~ msgid "Saved lists"
-#~ msgstr "保存的列表"
-
-#~ msgid "wishthis logo"
-#~ msgstr "wishthis标志"
-
-#~ msgid "GitHub repository"
-#~ msgstr "GitHub存储库"
-
-#~ msgid "Unreleased"
-#~ msgstr "未发布"
-
-#~ msgid "URL handling"
-#~ msgstr "URL处理"
-
-#~ msgid "This link has expired."
-#~ msgstr "这个链接已经过期。"
-
-#~ msgid "This link seems invalid."
-#~ msgstr "这个链接似乎是无效的。"
-
-#~ msgid "Key"
-#~ msgstr "钥匙"
-
-#~ msgid "Wish successfully updated."
-#~ msgstr "愿望成功更新。"
-
-#~ msgid "Auto-fill"
-#~ msgstr "自动填报"
-
-#~ msgid "Back"
-#~ msgstr "溯源"
-
-#~ msgid "Define a new URL to be used as a preview."
-#~ msgstr "定义一个新的URL，作为预览使用。"
-
-#~ msgid "This action will potentially overwrite all fields in this wish."
-#~ msgstr "这个动作将有可能覆盖这个愿望中的所有字段。"
-
-#~ msgid "Would you like to continue?"
-#~ msgstr "你想继续吗？"
-
-#~ msgid "Yes, overwrite"
-#~ msgstr "是的，覆盖"
-
-#~ msgid "No"
-#~ msgstr "没有"
-
-#, php-format
-#~ msgid ""
-#~ "If you found a wish you would like to fulfil, click the %s button and it "
-#~ "will temporarily become unavailable for others. Make sure to confirm the "
-#~ "fulfilled wish here (i. e. after placing an order), to make the wish "
-#~ "permanently unavailable for everybody else."
-#~ msgstr ""
-#~ "如果您发现您想实现的愿望，请点击%s 按钮，它将暂时不对其他人开放。请确保在"
-#~ "此确认已实现的愿望（即在下订单后），以使该愿望对其他人永久不可用。"
-
-#~ msgid "Fill out any or all of the below fields to add your new wish."
-#~ msgstr "填写下面的任何或所有字段以添加您的新愿望。"
