@@ -50,9 +50,10 @@ class Wish
         global $database;
 
         $wishQuery = $database->query(
-            'SELECT *
-               FROM `wishes`
-              WHERE `wishes`.`id` = :wish_id',
+            '  SELECT `wishes`.*, `products`.`price`
+                 FROM `wishes`
+            LEFT JOIN `products` ON `wishes`.`id` = `products`.`wish`
+                WHERE `wishes`.`id` = :wish_id',
             array(
                 'wish_id' => $wishId,
             )
@@ -186,6 +187,7 @@ class Wish
         $this->status         = $wishData['status'];
         $this->is_purchasable = $wishData['is_purchasable'];
         $this->edited         = $wishData['edited'] ? \strtotime($wishData['edited']) : null;
+        $this->price          = $wishData['price'] ?? null;
     }
 
     public function getCard(int $ofUser): string
@@ -422,6 +424,7 @@ class Wish
             'status'         => $this->status,
             'is_purchasable' => $this->is_purchasable,
             'edited'         => $this->edited,
+            'price'          => $this->price,
         );
 
         return $wishArray;
