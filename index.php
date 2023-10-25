@@ -35,16 +35,9 @@ spl_autoload_register(
 );
 
 /**
- * Config
- */
-$configPath = __DIR__ . '/' . 'src/config/config.php';
-
-if (file_exists($configPath)) {
-    require $configPath;
-}
-
-/**
  * Session
+ *
+ * Has to be setup first, before anything else, so translations can be loaded.
  */
 session_start(
     array(
@@ -53,6 +46,16 @@ session_start(
 );
 
 $user = User::getCurrent();
+
+/**
+ * Config
+ */
+$configPath = __DIR__ . '/' . 'src/config/config.php';
+
+if (file_exists($configPath)) {
+    require $configPath;
+}
+
 
 /**
  * Database
