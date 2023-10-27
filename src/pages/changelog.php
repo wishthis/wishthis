@@ -143,6 +143,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Wish price field not being set');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/107" target="_blank">#107</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('RewriteRules which caused HTTP 404 errors');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/93" target="_blank">#93</a>
