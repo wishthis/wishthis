@@ -13,4 +13,4 @@ jobs:
                   stale-pr-label: "stale"
                   days-before-stale: 180
                   days-before-close: 60
-                  any-of-labels: "question"
+                  any-of-labels: "question,discussion"
