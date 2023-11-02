@@ -1743,7 +1743,7 @@ msgstr "Senha (repetir)"
 
 #: pages/profile/profile.php:146
 msgid "Safe password checklist"
-msgstr "Lista de verificação de palavra-passe segura"
+msgstr "Lista de verificação de senha segura"
 
 #: pages/profile/profile.php:153
 msgid "Long"
