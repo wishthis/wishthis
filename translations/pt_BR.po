@@ -2056,7 +2056,7 @@ msgstr "Chave secreta"
 
 #: pages/update.php:11
 msgid "Update"
-msgstr "Actualização"
+msgstr "Atualização"
 
 #: pages/update.php:52
 #, php-format
