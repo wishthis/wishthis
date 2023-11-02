@@ -1857,7 +1857,7 @@ msgstr "Excluir essa conta de forma completa e irreversível"
 
 #: pages/register.php:13
 msgid "Reset password"
-msgstr "Redefinir palavra-passe"
+msgstr "Redefinir senha"
 
 #: pages/register.php:14
 msgid "Reset"
