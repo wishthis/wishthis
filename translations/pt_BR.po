@@ -601,7 +601,7 @@ msgstr "Superior"
 
 #: pages/changelog.php:25 pages/changelog.php:39
 msgid "Roadmap"
-msgstr "Mapa rodoviário"
+msgstr "Roadmap"
 
 #: pages/changelog.php:26 pages/changelog.php:94
 msgid "1.1.0"
