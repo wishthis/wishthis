@@ -418,7 +418,7 @@ msgstr "Matriz"
 
 #: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
-msgstr "Discórdia"
+msgstr "Discord"
 
 #: classes/wishthis/Page.php:741
 msgid "JavaScript is disabled"
