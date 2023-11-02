@@ -2154,4 +2154,4 @@ msgstr "Carregando as suas listas de desejos..."
 
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
-msgstr "Partilhar"
+msgstr "Compartilhar"
