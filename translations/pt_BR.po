@@ -104,7 +104,7 @@ msgstr "Sucesso"
 
 #: assets/js/inline.js.php:53
 msgid "Close this tab"
-msgstr "Fechar este separador"
+msgstr "Fechar esta aba"
 
 #: assets/js/inline.js.php:54
 msgid "Show wishlist anyway"
