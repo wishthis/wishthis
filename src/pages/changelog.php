@@ -23,6 +23,7 @@ $page->navigation();
             <div class="four wide column">
                 <div class="ui vertical pointing fluid menu profile">
                     <a class="item" data-tab="roadmap"><?= __('Roadmap') ?></a>
+                    <a class="item" data-tab="1-1-1"><?= __('1.1.1') ?></a>
                     <a class="item" data-tab="1-1-0"><?= __('1.1.0') ?></a>
                     <a class="item" data-tab="1-0-0"><?= __('1.0.0') ?></a>
                     <a class="item" data-tab="0-7-3"><?= __('0.7.3') ?></a>
@@ -84,6 +85,27 @@ $page->navigation();
                                 ?>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <div class="ui tab" data-tab="1-1-1">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h2 class="ui header"><?= __('1.1.1') ?></h2>
+                        </div>
+
+                        <div class="ui segment">
+                            <h3 class="ui header"><?= __('Fixed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Password reset not working');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/175" target="_blank">#175</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
