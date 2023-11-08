@@ -51,20 +51,7 @@ class Email
         $renderer = new \Qferrer\Mjml\Renderer\ApiRenderer($api);
 
         $html = $this->mjml;
-
-        if ('127.0.0.1' === $_SERVER['REMOTE_ADDR']) {
-            /**
-             * Ignore SSL certificate errors
-             */
-            try {
-                $html = $renderer->render($this->mjml);
-            } catch (\Qferrer\Mjml\Exception\CurlException $th) {
-                error_log($th->getMessage());
-                error_log($this->mjml);
-            }
-        } else {
-            $html = $renderer->render($this->mjml);
-        }
+        $html = $renderer->render($this->mjml);
 
         $to      = $this->to;
         $subject = $this->subject;

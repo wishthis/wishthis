@@ -546,4 +546,9 @@ class User
     {
         $this->advertisements = $advertisements;
     }
+
+    public function getPasswordResetValidUntil(): int
+    {
+        return $this->password_reset_valid_until;
+    }
 }

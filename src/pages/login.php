@@ -83,7 +83,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
             'password-reset-link',
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $user->email . '&token=' . $token
+            Page::PAGE_REGISTER . '&password-reset=' . $user->getEmail() . '&token=' . $token
         );
 
         $emailReset->send();
