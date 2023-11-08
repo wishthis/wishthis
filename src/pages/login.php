@@ -53,45 +53,45 @@ if (isset($_POST['reset'], $_POST['email'])) {
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
 
     $token      = sha1(time() . rand(0, 999999));
-        $validUntil = time() + 3600;
+    $validUntil = time() + 3600;
 
-        $database
-        ->query(
-            'UPDATE `users`
-                SET `password_reset_token`       = :user_password_reset_token,
-                    `password_reset_valid_until` = :user_reset_valid_until
-              WHERE `id` = ' . $user->getId() . ';',
-            array(
-                'user_password_reset_token' => $token,
-                'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),
-            )
-        );
+    $database
+    ->query(
+        'UPDATE `users`
+            SET `password_reset_token`       = :user_password_reset_token,
+                `password_reset_valid_until` = :user_reset_valid_until
+          WHERE `id` = ' . $user->getId() . ';',
+        array(
+            'user_password_reset_token' => $token,
+            'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),
+        )
+    );
 
-        $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');
-        $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
-        $emailReset->setPlaceholder(
-            'TEXT_PASSWORD_RESET',
-            sprintf(
-                /** TRANSLATORS: %s: The wishthis domain */
-                __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.', null, $user),
-                '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
-            )
-        );
-        $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password', null, $user));
-        $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
-        $emailReset->setPlaceholder(
-            'password-reset-link',
-            $_SERVER['REQUEST_SCHEME'] . '://' .
-            $_SERVER['HTTP_HOST'] .
-            Page::PAGE_REGISTER . '&password-reset=' . $user->getEmail() . '&token=' . $token
-        );
+    $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');
+    $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
+    $emailReset->setPlaceholder(
+        'TEXT_PASSWORD_RESET',
+        sprintf(
+            /** TRANSLATORS: %s: The wishthis domain */
+            __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.', null, $user),
+            '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
+        )
+    );
+    $emailReset->setPlaceholder('TEXT_SET_NEW_PASSWORD', __('Set new password', null, $user));
+    $emailReset->setPlaceholder('wishthis.online', $_SERVER['HTTP_HOST']);
+    $emailReset->setPlaceholder(
+        'password-reset-link',
+        $_SERVER['REQUEST_SCHEME'] . '://' .
+        $_SERVER['HTTP_HOST'] .
+        Page::PAGE_REGISTER . '&password-reset=' . $user->getEmail() . '&token=' . $token
+    );
 
-        $emailReset->send();
+    $emailReset->send();
 
-        $page->messages[] = Page::info(
-            __('If a match can be found for this email address, a password reset link will be sent to it.'),
-            __('Info')
-        );
+    $page->messages[] = Page::info(
+        __('If a match can be found for this email address, a password reset link will be sent to it.'),
+        __('Info')
+    );
 }
 
 $page->header();
@@ -138,23 +138,23 @@ $page->navigation();
                             </div>
 
                             <div class="inline unstackable fields">
-                               <div class="field">
+                                <div class="field">
                                     <input class="ui primary button"
                                         type="submit"
                                         name="login"
                                         value="<?= __('Login') ?>"
                                         title="<?= __('Login') ?>"
                                     />
-                               </div>
+                                </div>
 
-                               <div class="field">
+                                <div class="field">
                                     <a class="ui tertiary button"
-                                    href="<?= Page::PAGE_REGISTER ?>"
-                                    title="<?= __('Register') ?>"
+                                        href="<?= Page::PAGE_REGISTER ?>"
+                                        title="<?= __('Register') ?>"
                                     >
                                         <?= __('Register') ?>
                                     </a>
-                               </div>
+                                </div>
                             </div>
                         </form>
                     </div>
