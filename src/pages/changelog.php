@@ -100,6 +100,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Accessing wishlist without permission');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/177" target="_blank">#177</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Password reset not working');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/175" target="_blank">#175</a>
