@@ -28,7 +28,12 @@ class Wishlist
         }
 
         $wishlistData = $wishlistQuery->fetch();
-        $wishlist     = new Wishlist($wishlistData);
+
+        if (false === $wishlistData) {
+            return false;
+        }
+
+        $wishlist = new Wishlist($wishlistData);
 
         return $wishlist;
     }

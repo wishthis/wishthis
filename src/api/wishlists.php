@@ -108,10 +108,39 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $getOwnWishlists              = $user->isLoggedIn();
 
         if ($getWishlistCardsFromPriority) {
-            $wishlist = Wishlist::getFromId($_GET['wishlist_id']);
+            if (!$user->isLoggedIn()) {
+                http_response_code(403);
+                return;
+            }
 
-            if (false === $wishlist) {
+            $wishlist           = Wishlist::getFromId($_GET['wishlist_id']);
+            $userWishlistsQuery = $database
+            ->query(
+                'SELECT `id`
+                   FROM `wishlists`
+                  WHERE `user` = :wishlist_user_id',
+                array(
+                    'wishlist_user_id' => $user->getId(),
+                )
+            );
+
+            if (false === $wishlist || false === $userWishlistsQuery) {
                 http_response_code(404);
+                return;
+            }
+
+            $userWishlistsResults = \array_map(
+                function ($result) {
+                    return $result['id'];
+                },
+                $userWishlistsQuery->fetchAll()
+            );
+
+            $userOwnsRequestedWishlist = \in_array($wishlist->getId(), $userWishlistsResults, true);
+
+            if (!$userOwnsRequestedWishlist) {
+                http_response_code(403);
+                return;
             }
 
             $priorityAll  = -1;

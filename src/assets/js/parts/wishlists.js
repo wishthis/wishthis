@@ -52,106 +52,46 @@ $(function () {
             wishthis.$_GET.id = wishlist_id;
 
             if (wishlist_id) {
-                /** Get wishlist */
-                fetch('/index.php?page=api&module=wishlists&id=' + wishlist_id, { method: 'GET' })
-                .then(handleFetchError)
-                .then(handleFetchResponse)
-                .then(function(response) {
-                    /** Set currently selected wishlist */
-                    wishlists.forEach(wishlistI => {
-                        if (wishlistI.id === parseInt(wishlist_id)) {
-                            wishlist = wishlistI;
-                        }
-                    });
-
-                    /** Set share link */
-                    $('.wishlist-share').attr('href', '/wishlist/' + $(wishlist).prop('hash'));
-
-                    /** Enable wishlist options buttons */
-                    $('.button.wishlist-wish-add').removeClass('disabled');
-                    $('.button.wishlist-share').removeClass('disabled');
-                    $('.button.wishlist-options')
-                    .removeClass('disabled')
-                    .dropdown({
-                        'action' : 'select'
-                    });
-                    $('.wishlist-rename').removeClass('disabled');
-                    $('.wishlist-delete').removeClass('disabled');
-
-                    /** Update URL */
-                    urlParams.set('id', wishlist_id);
-
-                    updateURL();
-                    /** */
-
-                    /**
-                     * Very dirty hack to ensure the wishes are going to be
-                     * displayed after the page has laoded.
-                     */
-                    setTimeout(function dropdown_wishlists_api() {
-                        var api_is_complete = $('.ui.dropdown.filter.priority').api('was complete');
-
-                        if ($('.ui.column.wishlist > .column').length > 0 && api_is_complete) {
-                            $('.ui.dropdown.filter.priority').api('query');
-
-                            setTimeout(dropdown_wishlists_api, 1);
-                        }
-                    }, 1);
-                    /** */
-
-                    /*
-                    const get_wishes = new URLSearchParams(
-                        {
-                            'module' : 'wishes',
-                            'page'   : 'api',
-
-                            'wishlist_id'    : wishlist.id,
-                            'wishlist_style' : $('[name="style"]').val(),
-                            'wish_priority'  : -1,
-                        }
-                    );
-                    fetch('/index.php?' + get_wishes, { method: 'GET' })
-                    .then(handleFetchError)
-                    .then(handleFetchResponse)
-                    .then(function(response) {
-                        /** Cards *//*
-                        var wishes         = response.results;
-                        var wishlist_cards = $('.wishlist-cards');
-
-                        wishlist_cards.html('');
-
-                        switch (get_wishes.wishlist_style) {
-                            case 'list':
-                                wishlist_cards.append('<div class="ui one column doubling stackable grid wishlist"></div>');
-                                break;
-
-                            default:
-                                wishlist_cards.append('<div class="ui three column doubling stackable grid wishlist"></div>');
-                                break;
-                        }
-
-                        if (wishes.length > 0) {
-                            wishes.forEach(wish => {
-                                $('.wishlist-cards > .wishlist.grid').append('<div class="column">' + wish.card + '</div>');
-                            });
-                        } else {
-                            $('.wishlist-cards > .wishlist.grid').append(
-                                '<div class="sixteen wide column">' +
-                                    '<div class="ui info icon message">' +
-                                        '<i class="info circle icon"></i> ' +
-                                        '<div class="content">' +
-                                            '<div class="header">' + wishthis.strings.message.wishlist.empty.header + '</div>' +
-                                            '<p>' + wishthis.strings.message.wishlist.empty.content + '</p>' +
-                                        '</div>' +
-                                    '</div>' +
-                                '</div>'
-                            );
-                        }
-
-                        $('.ui.dropdown.wish-options').removeClass('disabled').dropdown();
-                    });
-                    */
+                /** Set currently selected wishlist */
+                wishlists.forEach(wishlistI => {
+                    if (wishlistI.id === parseInt(wishlist_id)) {
+                        wishlist = wishlistI;
+                    }
                 });
+
+                /** Set share link */
+                $('.wishlist-share').attr('href', '/wishlist/' + $(wishlist).prop('hash'));
+
+                /** Enable wishlist options buttons */
+                $('.button.wishlist-wish-add').removeClass('disabled');
+                $('.button.wishlist-share').removeClass('disabled');
+                $('.button.wishlist-options')
+                .removeClass('disabled')
+                .dropdown({
+                    'action' : 'select'
+                });
+                $('.wishlist-rename').removeClass('disabled');
+                $('.wishlist-delete').removeClass('disabled');
+
+                /** Update URL */
+                urlParams.set('id', wishlist_id);
+
+                updateURL();
+                /** */
+
+                /**
+                 * Very dirty hack to ensure the wishes are going to be
+                 * displayed after the page has laoded.
+                 */
+                setTimeout(function dropdown_wishlists_api() {
+                    var api_is_complete = $('.ui.dropdown.filter.priority').api('was complete');
+
+                    if ($('.ui.column.wishlist > .column').length > 0 && api_is_complete) {
+                        $('.ui.dropdown.filter.priority').api('query');
+
+                        setTimeout(dropdown_wishlists_api, 1);
+                    }
+                }, 1);
             } else {
                 /** Disable wishlist options buttons */
                 $('.button.wishlist-wish-add').removeClass('disabled');

@@ -25,10 +25,17 @@ $(function() {
             modal_failure_content = wishthis.strings.modal.failure.content;
         }
 
-        showFailure(
-            wishthis.strings.modal.failure.title,
-            modal_failure_content,
-        );
+        if (xhr.status && xhr.statusText) {
+            showFailure(
+                xhr.status + ' - ' + xhr.statusText,
+                ''
+            );
+        } else {
+            showFailure(
+                wishthis.strings.modal.failure.title,
+                modal_failure_content
+            );
+        }
     }
     $.fn.api.settings.onError = function(response, element, xhr) {
         var modal_error_content = '';
@@ -262,7 +269,7 @@ function showError(title = '', content = '') {
     $('body').modal(modal_error);
 }
 
-function showFailure(title = '', content = '') {
+function showFailure(title = '', content = '', status = 200) {
     var modal_failure = {
         'class'         : 'small',
         'autoShow'      : true,
