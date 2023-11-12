@@ -162,11 +162,12 @@ global $options;
      */
     <?php
     $api_urls = array(
-        'get wishlists'             => '/index.php?page=api&module=wishlists',
-        'get wishlists by priority' => '/index.php?page=api&module=wishlists&style={style}&wishlist_id={wishlistid}&priority={priority}',
-        'delete wishlist'           => '/index.php?page=api&module=wishlists',
-        'update wish status'        => '/index.php?page=api&module=wishes',
-        'delete wish'               => '/index.php?page=api&module=wishes&wish_id={wishid}',
+        'get wishlists'               => '/index.php?page=api&module=wishlists',
+        'get wishes by wishlist id'   => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_id={wishlistid}',
+        'get wishes by wishlist hash' => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_hash={wishlisthash}',
+        'delete wishlist'             => '/index.php?page=api&module=wishlists',
+        'update wish status'          => '/index.php?page=api&module=wishes',
+        'delete wish'                 => '/index.php?page=api&module=wishes&wish_id={wishid}',
     );
     ?>
 

@@ -104,7 +104,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'GET':
         $getWishlistCardsFromPriority = isset($_GET['wishlist_id'], $_GET['priority']);
-        $getWishlistFromHash          = isset($_GET['wishlist_hash']);
+        $getWishlistFromHash          = isset($_GET['wishlist_hash'], $_GET['priority']);
         $getOwnWishlists              = $user->isLoggedIn();
 
         if ($getWishlistCardsFromPriority) {
@@ -170,16 +170,30 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } elseif ($getWishlistFromHash) {
             $wishlist = Wishlist::getFromHash($_GET['wishlist_hash']);
 
-            if ($wishlist instanceof Wishlist) {
-                $response['results'] = array(
-                    'id'     => $wishlist->getId(),
-                    'hash'   => $wishlist->getHash(),
-                    'userId' => $wishlist->getUserId(),
-                );
-                ;
-            } else {
-                http_response_code(404);
+            $priorityAll  = -1;
+            $priorityNone = 0;
+            $priority     = (int) $_GET['priority'] ?? $priorityAll;
+
+            $options = array(
+                'style'        => $_GET['style'],
+                'placeholders' => array(),
+            );
+            $where   = array(
+                'wishlist' => '`wishlist` = ' . $wishlist->getId(),
+                'priority' => '`priority` = ' . $priority,
+            );
+
+            if ($priorityAll === $priority) {
+                unset($where['priority']);
             }
+
+            if ($priorityNone === $priority) {
+                $where['priority'] = '`priority` IS NULL OR `priority` = 0';
+            }
+
+            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
+
+            $response['results'] = $wishlist->getCards($options);
         } elseif ($getOwnWishlists) {
             $wishlists      = array();
             $wishlistsItems = array();
