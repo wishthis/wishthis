@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2023-09-25 13:23+0200\n"
+"POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
 "Last-Translator: Jay Trees, 2023\n"
 "Language-Team: Spanish (Costa Rica) (https://app.transifex.com/wishthis/teams/134148/es_CR/)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_CR\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: __;_n:1,2;_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -295,13 +295,13 @@ msgstr "Recordar lista"
 msgid "Forget list"
 msgstr "Olvidar lista"
 
-#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:203
-#: classes/wishthis/Wishlist.php:225
+#: assets/js/inline.js.php:149 classes/wishthis/Wishlist.php:208
+#: classes/wishthis/Wishlist.php:230
 msgid "Empty"
 msgstr "Vacío"
 
-#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:203
-#: classes/wishthis/Wishlist.php:225
+#: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:208
+#: classes/wishthis/Wishlist.php:230
 msgid "This wishlist seems to be empty."
 msgstr "Este wishlist parece estar vacío."
 
@@ -334,7 +334,7 @@ msgstr "Pide un deseo"
 
 #. TRANSLATORS: Changelog: Added
 #: classes/wishthis/Page.php:444 classes/wishthis/Page.php:448
-#: pages/blog.php:11 pages/changelog.php:444 pages/post.php:62
+#: pages/blog.php:11 pages/changelog.php:487 pages/post.php:62
 msgid "Blog"
 msgstr "Blog"
 
@@ -510,12 +510,12 @@ msgstr "Es bueno tenerlo"
 msgid "Would love it"
 msgstr "Me encantaría"
 
-#: classes/wishthis/Wish.php:224
+#: classes/wishthis/Wish.php:226
 msgid "Wish temporarily fulfilled"
 msgstr "Deseo cumplido temporalmente"
 
 #. TRANSLATORS: %s: Duration (e. g. 30 minutes)
-#: classes/wishthis/Wish.php:229
+#: classes/wishthis/Wish.php:231
 #, php-format
 msgid ""
 "If this wish is a product, confirm the order was successful and mark it as "
@@ -527,24 +527,24 @@ msgstr ""
 "cumplido, volverá a estar disponible para otros después de %s."
 
 #. TRANSLATORS: %d Amount of minutes
-#: classes/wishthis/Wish.php:232
+#: classes/wishthis/Wish.php:234
 #, php-format
 msgid "%d minutes"
 msgstr "%d minutos"
 
-#: classes/wishthis/Wish.php:243
+#: classes/wishthis/Wish.php:245
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: classes/wishthis/Wish.php:292
+#: classes/wishthis/Wish.php:294
 msgid "Wish not found"
 msgstr "Deseo no encontrado"
 
-#: classes/wishthis/Wish.php:403 pages/wishlist.php:73
+#: classes/wishthis/Wish.php:405 pages/wishlist.php:73
 msgid "Details"
 msgstr "Detalles"
 
-#: classes/wishthis/Wishlist.php:240
+#: classes/wishthis/Wishlist.php:245
 msgid "Wishlist not found"
 msgstr "Lista de deseos no encontrada"
 
@@ -594,40 +594,44 @@ msgstr "Leer más"
 msgid "Top"
 msgstr "Arriba"
 
-#: pages/changelog.php:25 pages/changelog.php:39
+#: pages/changelog.php:25 pages/changelog.php:40
 msgid "Roadmap"
 msgstr "Mapa de carreteras"
 
 #: pages/changelog.php:26 pages/changelog.php:94
+msgid "1.1.1"
+msgstr "1.1.1"
+
+#: pages/changelog.php:27 pages/changelog.php:130
 msgid "1.1.0"
 msgstr "1.1.0"
 
-#: pages/changelog.php:27 pages/changelog.php:203
+#: pages/changelog.php:28 pages/changelog.php:246
 msgid "1.0.0"
 msgstr "1.0.0"
 
-#: pages/changelog.php:28 pages/changelog.php:299
+#: pages/changelog.php:29 pages/changelog.php:342
 msgid "0.7.3"
 msgstr "0.7.3"
 
-#: pages/changelog.php:29 pages/changelog.php:319
+#: pages/changelog.php:30 pages/changelog.php:362
 msgid "0.7.2"
 msgstr "0.7.2"
 
-#: pages/changelog.php:30 pages/changelog.php:339
+#: pages/changelog.php:31 pages/changelog.php:382
 msgid "0.7.1"
 msgstr "0.7.1"
 
-#: pages/changelog.php:31 pages/changelog.php:435
+#: pages/changelog.php:32 pages/changelog.php:478
 msgid "0.7.0"
 msgstr "0.7.0"
 
-#: pages/changelog.php:32 pages/changelog.php:577
+#: pages/changelog.php:33 pages/changelog.php:620
 msgid "0.6.0"
 msgstr "0.6.0"
 
 #. TRANSLATORS: %s: discussions
-#: pages/changelog.php:44
+#: pages/changelog.php:45
 #, php-format
 msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
@@ -636,32 +640,32 @@ msgstr ""
 "Si quieres dar tu opinión sobre la hoja de ruta, consulta %s en GitHub, o "
 "chatea en Matrix o Discord."
 
-#: pages/changelog.php:47
+#: pages/changelog.php:48
 msgid "discussions"
 msgstr "debates"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:56
+#: pages/changelog.php:57
 msgid "Allow customising priority colours"
 msgstr "Permitir personalizar los colores de prioridad"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:63
+#: pages/changelog.php:64
 msgid "Filter by price"
 msgstr "Filtrar por precio"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:70
+#: pages/changelog.php:71
 msgid "Bookmarklets"
 msgstr "Marcapáginas"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:77
+#: pages/changelog.php:78
 msgid "Notifications for fulfilled wishes"
 msgstr "Notificaciones de deseos cumplidos"
 
 #. TRANSLATORS: Changelog: Roadmap
-#: pages/changelog.php:83
+#: pages/changelog.php:84
 msgid ""
 "Verify wishes are still available when attempting to fulfil them. "
 "Alternatively, a heartbeat which checks if all the wishes are still "
@@ -671,28 +675,49 @@ msgstr ""
 "Alternativamente, un latido que compruebe si todos los deseos siguen sin "
 "cumplirse."
 
-#: pages/changelog.php:98 pages/changelog.php:207 pages/changelog.php:439
-#: pages/changelog.php:581
+#: pages/changelog.php:98 pages/changelog.php:177 pages/changelog.php:305
+#: pages/changelog.php:345 pages/changelog.php:365 pages/changelog.php:421
+#: pages/changelog.php:572 pages/changelog.php:656
+msgid "Fixed"
+msgstr "Fijo"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:103
+msgid "Shared wishlist not accessible"
+msgstr "Lista de deseos compartida no accesible"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:110
+msgid "Accessing wishlist without permission"
+msgstr "Acceder a la lista de deseos sin permiso"
+
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:117
+msgid "Password reset not working"
+msgstr "No funciona el restablecimiento de contraseña"
+
+#: pages/changelog.php:134 pages/changelog.php:250 pages/changelog.php:482
+#: pages/changelog.php:624
 msgid "Added"
 msgstr "Añadido"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:103
+#: pages/changelog.php:139
 msgid "Configuration flag to disable plausible.io calls"
 msgstr "Bandera de configuración para desactivar las llamadas a plausible.io"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:110
+#: pages/changelog.php:146
 msgid "Add account delete option"
 msgstr "Añadir la opción de eliminar cuenta"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:117
+#: pages/changelog.php:153
 msgid "Configuration flag to disable user registrations"
 msgstr "Bandera de configuración para desactivar el registro de usuarios"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:124
+#: pages/changelog.php:160
 msgid ""
 "After creating an account your language is automatically set to your "
 "browser's (if it is available), instead of defaulting to en_GB."
@@ -701,7 +726,7 @@ msgstr ""
 "navegador (si está disponible), en lugar de ser por defecto en_GB."
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:130
+#: pages/changelog.php:166
 msgid ""
 "Amazon links are now automatically converted to affiliate links to help "
 "support wishthis financially."
@@ -710,83 +735,82 @@ msgstr ""
 "afiliados para ayudar a wishthis económicamente."
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:136
+#: pages/changelog.php:172
 msgid "Prerequisite check during installation"
 msgstr "Comprobación de requisitos previos durante la instalación"
 
-#: pages/changelog.php:141 pages/changelog.php:262 pages/changelog.php:302
-#: pages/changelog.php:322 pages/changelog.php:378 pages/changelog.php:529
-#: pages/changelog.php:613
-msgid "Fixed"
-msgstr "Fijo"
+#. TRANSLATORS: Changelog: Fixed
+#: pages/changelog.php:182
+msgid "Wish price field not being set"
+msgstr "No se establece el campo Precio deseado"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:146
+#: pages/changelog.php:189
 msgid "RewriteRules which caused HTTP 404 errors"
 msgstr "RewriteRules que provocaban errores HTTP 404"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:153
+#: pages/changelog.php:196
 msgid "Switching to wish \"product\" tab breaks view"
 msgstr "Cambiar a la pestaña \"producto\" deseada rompe la vista"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:160
+#: pages/changelog.php:203
 msgid "Special characters not being displayed properly"
 msgstr "Los caracteres especiales no se muestran correctamente"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:167
+#: pages/changelog.php:210
 msgid "A fatal error when the CHANNELS constant is removed from the config"
 msgstr ""
 "Un error fatal cuando se elimina la constante CANALES de la configuración"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:174
+#: pages/changelog.php:217
 msgid "Fulfilled wishes disappearing for wishlist owners"
 msgstr "Los deseos cumplidos desaparecen para los propietarios de wishlist "
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:180
+#: pages/changelog.php:223
 msgid "Deprecated notices on PHP 8.2"
 msgstr "Avisos obsoletos en PHP 8.2"
 
-#: pages/changelog.php:185 pages/changelog.php:252 pages/changelog.php:507
+#: pages/changelog.php:228 pages/changelog.php:295 pages/changelog.php:550
 msgid "Changed"
 msgstr "Cambiado"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:190
+#: pages/changelog.php:233
 msgid "Added button labels for mobile devices"
 msgstr "Añadidas etiquetas de botones para dispositivos móviles"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:212
+#: pages/changelog.php:255
 msgid "Option to set currency"
 msgstr "Opción para fijar la moneda"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:219
+#: pages/changelog.php:262
 msgid "A roadmap in the changelog"
 msgstr "Una hoja de ruta en la Changelog"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:225
+#: pages/changelog.php:268
 msgid "Compact/list view for wishes"
 msgstr "Vista compacta/lista de deseos"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:231
+#: pages/changelog.php:274
 msgid "Option to enable advertisements"
 msgstr "Opción para activar la publicidad"
 
-#: pages/changelog.php:236 pages/changelog.php:343 pages/changelog.php:485
-#: pages/changelog.php:603
+#: pages/changelog.php:279 pages/changelog.php:386 pages/changelog.php:528
+#: pages/changelog.php:646
 msgid "Improved"
 msgstr "Mejorado"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:241
+#: pages/changelog.php:284
 msgid ""
 "Large parts of wishthis have been completely rewritten, such as the API and "
 "how pretty URLs work. The aim was to increase security and maintainability."
@@ -796,7 +820,7 @@ msgstr ""
 "la facilidad de mantenimiento."
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:247
+#: pages/changelog.php:290
 msgid ""
 "Changelog now automatically selects the current version, instead of the top "
 "most tab."
@@ -805,12 +829,12 @@ msgstr ""
 " pestaña más superior."
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:257
+#: pages/changelog.php:300
 msgid "Decreased wish height on mobile devices"
 msgstr "Disminución de la altura de los deseos en los dispositivos móviles"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:267
+#: pages/changelog.php:310
 msgid ""
 "Temporary fulfilled wish does not become available again after 30 minutes, "
 "except when viewing as the owner of the list."
@@ -819,40 +843,40 @@ msgstr ""
 "minutos, excepto cuando se ve como propietario de la lista."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:274
+#: pages/changelog.php:317
 msgid "Fix various wish UI bugs"
 msgstr "Arreglar varios errores de la interfaz de usuario de los deseos"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:281
+#: pages/changelog.php:324
 msgid "Fix background and colour when opening the mobile menu"
 msgstr "Arreglar el fondo y el color al abrir el menú móvil"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:287
+#: pages/changelog.php:330
 msgid "Marking wish as fulfilled"
 msgstr "Marcar el deseo como cumplido"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:307
+#: pages/changelog.php:350
 msgid "Fix fulfilled wishes disappearing for wishlist owner"
 msgstr ""
 "Arreglar la desaparición de los deseos cumplidos para el propietario de "
 "wishlist "
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:327
+#: pages/changelog.php:370
 msgid "Fix fulfilled wishes showing after using filter"
 msgstr ""
 "Arreglar que se muestren los deseos cumplidos después de usar un filtro"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:348
+#: pages/changelog.php:391
 msgid "MJML settings page"
 msgstr "Página de configuración de MJML"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:355
+#: pages/changelog.php:398
 msgid ""
 "Expired sessions are now invalidated by wishthis instead of relying on the "
 "browser to delete the cookies."
@@ -862,42 +886,42 @@ msgstr ""
 
 #. TRANSLATORS: Changelog: Improved
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:361 pages/changelog.php:450
+#: pages/changelog.php:404 pages/changelog.php:493
 msgid "Dark theme"
 msgstr "Tema oscuro"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:367
+#: pages/changelog.php:410
 msgid "Remembered lists design"
 msgstr "Remembered diseño de listas"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:373
+#: pages/changelog.php:416
 msgid "Translations"
 msgstr "Traducciones"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:383
+#: pages/changelog.php:426
 msgid "Label on top of dropdown menu"
 msgstr "Etiqueta en la parte superior del menú desplegable"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:390
+#: pages/changelog.php:433
 msgid "Encoding issue in wish description"
 msgstr "Problema de codificación en la descripción del deseo"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:397
+#: pages/changelog.php:440
 msgid "Caching issue with the blog"
 msgstr "Problema de caché en el blog"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:404
+#: pages/changelog.php:447
 msgid "An error when a blog post doesn't have a featured image."
 msgstr "Un error cuando una entrada de blog no tiene una imagen destacada."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:410
+#: pages/changelog.php:453
 msgid ""
 "Version number not being stored correctly causing the migration to execute "
 "the wrong script."
@@ -906,17 +930,17 @@ msgstr ""
 "migración ejecute el script incorrecto."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:416
+#: pages/changelog.php:459
 msgid "Wishlist filter cut off on mobile"
 msgstr "wishlist filtro cortado en el móvil"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:422
+#: pages/changelog.php:465
 msgid "Wish options not selectable after filtering"
 msgstr "Opciones deseadas no seleccionables tras filtrar"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:456
+#: pages/changelog.php:499
 msgid ""
 "Wish properties. You can now mark a wish as purchasable and add a price."
 msgstr ""
@@ -924,32 +948,32 @@ msgstr ""
 "añadir un precio."
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:462
+#: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
 msgstr "Salta al último editado wishlist desde casa"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:468
+#: pages/changelog.php:511
 msgid "Quick add wish from home"
 msgstr "Añadir deseo rápido desde casa"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:474
+#: pages/changelog.php:517
 msgid "Button to request more wishes from a users wishlist"
 msgstr "Botón para solicitar más deseos a un usuario wishlist"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:480
+#: pages/changelog.php:523
 msgid "Option to stay logged in"
 msgstr "Opción de permanecer conectado"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:490
+#: pages/changelog.php:533
 msgid "Localisation (many new translations added)"
 msgstr "Localización (se han añadido muchas traducciones nuevas)"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:496
+#: pages/changelog.php:539
 msgid ""
 "Additional logins are no longer required when switching between wishthis "
 "channels"
@@ -958,82 +982,82 @@ msgstr ""
 "wishthis"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:502
+#: pages/changelog.php:545
 msgid "Remembered wishlists design"
 msgstr "Remembered wishlists diseño"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:512
+#: pages/changelog.php:555
 msgid "Changelog is now a page instead of a downloadable markdown file"
 msgstr ""
 "El registro de cambios es ahora una página en lugar de un archivo markdown "
 "descargable"
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:518
+#: pages/changelog.php:561
 msgid ""
 "Wishes can be edited from the wishlist now, without loading another page"
 msgstr ""
 "Ahora se pueden editar los deseos desde wishlist, sin cargar otra página."
 
 #. TRANSLATORS: Changelog: Changed
-#: pages/changelog.php:524
+#: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
 msgstr "\"Guardado wishlists\" se ha renombrado a \"Recordar listas\"."
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:534
+#: pages/changelog.php:577
 msgid "Various minor things (typos, menu order, etc)"
 msgstr "Varias cosas menores (errores tipográficos, orden de los menús, etc.)"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:540
+#: pages/changelog.php:583
 msgid "Wish information being updated with 404 content from URL"
 msgstr ""
 "La información de los deseos se actualiza con el contenido 404 de la URL"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:546
+#: pages/changelog.php:589
 msgid "Wish image not showing"
 msgstr "No se muestra la imagen deseada"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:552
+#: pages/changelog.php:595
 msgid "An error when saving a wish with a really long URL"
 msgstr "Error al guardar un deseo con una URL muy larga"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:558
+#: pages/changelog.php:601
 msgid "Redirect errors on Nginx"
 msgstr "Errores de redirección en Nginx"
 
 #. TRANSLATORS: Changelog: Fixed
-#: pages/changelog.php:564
+#: pages/changelog.php:607
 msgid "An error when fetching title from an URL containing quotes"
 msgstr "Error al obtener el título de una URL que contiene comillas"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:586
+#: pages/changelog.php:629
 msgid "This changelog"
 msgstr "Este registro de cambios"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:592
+#: pages/changelog.php:635
 msgid "Wish properties"
 msgstr "Propiedades deseadas"
 
 #. TRANSLATORS: Changelog: Added
-#: pages/changelog.php:598
+#: pages/changelog.php:641
 msgid "Button to mark wish as fulfilled"
 msgstr "Botón para marcar el deseo como cumplido"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:608
+#: pages/changelog.php:651
 msgid "Card design"
 msgstr "Diseño de tarjetas"
 
 #. TRANSLATORS: Changelog: Improved
-#: pages/changelog.php:618
+#: pages/changelog.php:661
 msgid "Various small bugs"
 msgstr "Varios pequeños errores"
 
