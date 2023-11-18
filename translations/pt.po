@@ -1120,7 +1120,7 @@ msgstr "livre de anúncios"
 #: pages/home.php:118
 #, php-format
 msgid "see %s"
-msgstr "ver %s"
+msgstr "ver %s "
 
 #: pages/home.php:119
 msgid "plausible"
