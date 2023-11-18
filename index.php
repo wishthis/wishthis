@@ -8,7 +8,7 @@
 
 namespace wishthis;
 
-define('VERSION', '1.1.0');
+define('VERSION', '1.1.1');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
 define('COOKIE_PERSISTENT', 'wishthis_persistent');
