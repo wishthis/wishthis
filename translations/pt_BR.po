@@ -1,8 +1,8 @@
 # 
 # Translators:
 # D Z, 2023
-# Jay Trees, 2023
 # IVAN GOMES <contato@ivangomes.com.br>, 2023
+# Jay Trees, 2023
 # 
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-09-25 13:23+0200\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: IVAN GOMES <contato@ivangomes.com.br>, 2023\n"
+"Last-Translator: Jay Trees, 2023\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/wishthis/teams/134148/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Publicado em %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "solicitar desejo"
+msgstr "Wish request"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
@@ -104,11 +104,11 @@ msgstr "Sucesso"
 
 #: assets/js/inline.js.php:53
 msgid "Close this tab"
-msgstr "Fechar esta aba"
+msgstr "Fechar este separador"
 
 #: assets/js/inline.js.php:54
 msgid "Show wishlist anyway"
-msgstr "Mostrar lista de desejos assim mesmo"
+msgstr "Mostrar lista de desejos de qualquer maneira"
 
 #: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
@@ -418,7 +418,7 @@ msgstr "Matriz"
 
 #: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
-msgstr "Discord"
+msgstr "Discórdia"
 
 #: classes/wishthis/Page.php:741
 msgid "JavaScript is disabled"
@@ -601,7 +601,7 @@ msgstr "Superior"
 
 #: pages/changelog.php:25 pages/changelog.php:39
 msgid "Roadmap"
-msgstr "Roadmap"
+msgstr "Mapa rodoviário"
 
 #: pages/changelog.php:26 pages/changelog.php:94
 msgid "1.1.0"
@@ -1726,8 +1726,8 @@ msgstr "Apelido"
 #: pages/profile/profile.php:84
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
 msgstr ""
-"Sugerir um wishlist chamado \"Aniversário\" ,  quando o mesmo estiver "
-"próximo."
+"Costumava sugerir um wishlist chamado \"Birthday\" (Aniversário), se você "
+"estiver próximo."
 
 #: pages/profile/profile.php:86
 msgid "Birthdate"
@@ -1743,7 +1743,7 @@ msgstr "Senha (repetir)"
 
 #: pages/profile/profile.php:146
 msgid "Safe password checklist"
-msgstr "Lista de verificação de senha segura"
+msgstr "Lista de verificação de palavra-passe segura"
 
 #: pages/profile/profile.php:153
 msgid "Long"
@@ -1857,7 +1857,7 @@ msgstr "Excluir essa conta de forma completa e irreversível"
 
 #: pages/register.php:13
 msgid "Reset password"
-msgstr "Redefinir senha"
+msgstr "Redefinir palavra-passe"
 
 #: pages/register.php:14
 msgid "Reset"
@@ -2056,7 +2056,7 @@ msgstr "Chave secreta"
 
 #: pages/update.php:11
 msgid "Update"
-msgstr "Atualização"
+msgstr "Actualização"
 
 #: pages/update.php:52
 #, php-format
@@ -2154,4 +2154,4 @@ msgstr "Carregando as suas listas de desejos..."
 
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
-msgstr "Compartilhar"
+msgstr "Partilhar"
