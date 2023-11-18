@@ -1274,7 +1274,7 @@ msgstr "Ligação de teste"
 
 #: pages/install.php:99
 msgid "PHP Version >= 8.1"
-msgstr "Versão do PHP &gt;= 8.1"
+msgstr "Versão do PHP >= 8.1"
 
 #: pages/install.php:102 pages/install.php:108
 msgid "Compatible"
