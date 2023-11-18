@@ -100,6 +100,13 @@ $page->navigation();
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('Shared wishlist not accessible');
+                                    ?>
+                                    <a href="https://github.com/grandeljay/wishthis/issues/179" target="_blank">#179</a>
+                                </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Accessing wishlist without permission');
                                     ?>
                                     <a href="https://github.com/grandeljay/wishthis/issues/177" target="_blank">#177</a>
