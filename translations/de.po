@@ -688,7 +688,7 @@ msgstr "Repariert"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:103
 msgid "Shared wishlist not accessible"
-msgstr "Gemeinsame Wunschliste nicht zugänglich"
+msgstr "Gemerkte Wunschliste nicht zugänglich"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:110
