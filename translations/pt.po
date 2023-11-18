@@ -1282,7 +1282,7 @@ msgstr "Compatível"
 
 #: pages/install.php:105
 msgid "PHP Version < 8.3"
-msgstr "Versão do PHP &lt; 8.3"
+msgstr "Versão do PHP < 8.3"
 
 #: pages/install.php:114
 msgid "Activated"
