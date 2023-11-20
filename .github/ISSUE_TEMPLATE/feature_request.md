@@ -22,4 +22,4 @@ Add any other context or screenshots about the feature request here.
 ## Disclaimer
 wishthis is entirely built in my free time, mostly without any pay or code contributors. While I am doing my best to make wishthis a great product for everybody, adding new features takes up my free time outside of my full time job.
 
-[ ] I understand that wishthis depends on volunteer work and that I am not entitled to any kind of support
+- [ ] I understand that wishthis depends on volunteer work and that I am not entitled to any kind of support
