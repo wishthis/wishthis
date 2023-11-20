@@ -17,7 +17,7 @@ On which branch did you notice this bug?
 How can the bug be reproduced? If you received an error or similar, please add it here.
 
 ## Disclaimer
-wishthis is entirely built in my free time, mostly without any pay or code contributors. While I am doing my best to help out everybody, I cannot gurantee that I will find the time or have the competence to help you out.
+wishthis is entirely built in my free time, mostly without any pay or code contributors. While I am doing my best to help out everybody, I cannot guarantee that I will find the time or have the competence to help you out.
 
 I greatly appreciate that you are filing a bug report, these help tremendously! Thank you!
 
