@@ -184,11 +184,11 @@ msgstr "{name} kan niet ingesteld worden op precies \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:91
 msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} kan niet bevatten \"{ruleValue}\"."
+msgstr "{name} kan niet \"{ruleValue}\" bevatten."
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} kan niet precies bevatten \"{ruleValue}\"."
+msgstr "{name} kan niet precies \"{ruleValue}\" bevatten."
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
