@@ -476,7 +476,7 @@ msgstr "Pagina herladen"
 
 #: classes/wishthis/Page.php:768 pages/parts/wishlist.php:291
 msgid "Close"
-msgstr "Sluit"
+msgstr "Sluiten"
 
 #: classes/wishthis/Page.php:793
 #, php-format
@@ -487,8 +487,8 @@ msgstr "%s niet gevonden"
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
-"Het gevraagde Verlanglijstje werd niet gevonden en waarschijnlijk door de "
-"maker verwijderd."
+"Het gevraagde Verlanglijstje werd niet gevonden en is waarschijnlijk door de"
+" maker verwijderd."
 
 #: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
