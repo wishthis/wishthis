@@ -144,7 +144,7 @@ msgstr "{name} moet gecontroleerd worden"
 
 #: assets/js/inline.js.php:81
 msgid "{name} must be a valid e-mail"
-msgstr "{name} moet een geldig e-mail adres zijn"
+msgstr "{name} moet een geldig e-mailadres zijn"
 
 #: assets/js/inline.js.php:82
 msgid "{name} must be a valid URL"
