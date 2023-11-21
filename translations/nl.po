@@ -107,7 +107,7 @@ msgstr "Sluit dit tabblad"
 
 #: assets/js/inline.js.php:54
 msgid "Show wishlist anyway"
-msgstr "Toon toch verlanglijstje"
+msgstr "Verlanglijstje toch tonen"
 
 #: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
