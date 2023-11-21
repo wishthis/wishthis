@@ -435,7 +435,7 @@ msgid ""
 "coming up with more genius hacks to monetise you."
 msgstr ""
 "Ik snap het, websites volgen tegenwoordig elke beweging die je maakt en "
-"bedrijven bedenken steeds meer geniale hacks om je geld te laten verdienen."
+"bedrijven bedenken steeds meer geniale hacks om geld aan je te verdienen."
 
 #: classes/wishthis/Page.php:758
 msgid ""
