@@ -305,7 +305,7 @@ msgstr "Leeg"
 #: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:208
 #: classes/wishthis/Wishlist.php:230
 msgid "This wishlist seems to be empty."
-msgstr "Deze verlanglijst lijkt leeg te zijn."
+msgstr "Dit verlanglijstje lijkt leeg te zijn."
 
 #: assets/js/inline.js.php:156
 msgid "Last modified"
@@ -316,8 +316,8 @@ msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
 msgstr ""
-"wishthis is een eenvoudig, intuïtief en modern verlanglijst-platform om je "
-"wensen voor elke soort gelegenheid te maken, beheren en bekijken."
+"wishthis is een eenvoudig, intuïtief en modern verlanglijstjes-platform om "
+"je wensen voor elke soort gelegenheid te maken, beheren en bekijken."
 
 #: classes/wishthis/Page.php:277
 msgid "Your device is set to reduce data, some content has been disabled."
