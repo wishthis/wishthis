@@ -120,7 +120,7 @@ msgstr "Wil je echt het verlanglijstje %s verwijderen?"
 
 #: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
-msgstr "Ja, wissen"
+msgstr "Ja, verwijderen"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
