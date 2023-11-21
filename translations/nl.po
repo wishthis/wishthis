@@ -1199,8 +1199,8 @@ msgid ""
 "Your browser is telling me that you would like to view pages in %1$s, but "
 "your %3$s are set to %2$s."
 msgstr ""
-"Je browser vertelt me dat je pagina's wilt bekijken in %1$s, maar je %3$s is"
-" ingesteld op %2$s."
+"Je browser vertelt me dat je pagina's wilt bekijken in %1$s, maar je %3$s "
+"zijn ingesteld op %2$s."
 
 #: pages/home.php:254
 msgid "preferences"
@@ -1212,8 +1212,7 @@ msgstr "voorkeuren"
 msgid ""
 "wishthis is available in %1$s different locales and also supports %2$s!"
 msgstr ""
-"wishthis is beschikbaar in %1$s verschillende locales en ondersteunt ook "
-"%2$s!"
+"wishthis is beschikbaar in %1$s verschillende talen en ondersteunt ook %2$s!"
 
 #: pages/install.php:15
 msgid "Install"
@@ -1671,7 +1670,7 @@ msgstr "E-mailadres bijgewerkt tot \"%s\"."
 #: pages/profile/profile-handle-post-preferences.php:38
 #, php-format
 msgid "Locale updated to \"%s\"."
-msgstr "Locale bijgewerkt naar \"%s\"."
+msgstr "Taal bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users currency.
 #: pages/profile/profile-handle-post-preferences.php:75
