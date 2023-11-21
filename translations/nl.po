@@ -168,11 +168,11 @@ msgstr "{name} moet op een getal gezet worden"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} moet zijn \"{ruleValue}\"."
+msgstr "{name} moet \"{ruleValue}\" zijn."
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} moet precies zijn \"{ruleValue}\"."
+msgstr "{name} moet precies \"{ruleValue}\" zijn."
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
