@@ -192,11 +192,11 @@ msgstr "{name} kan niet precies \"{ruleValue}\" bevatten."
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} moet bevatten \"{ruleValue}\"."
+msgstr "{name} moet \"{ruleValue}\" bevatten."
 
 #: assets/js/inline.js.php:94
 msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} moet precies bevatten \"{ruleValue}\"."
+msgstr "{name} moet precies \"{ruleValue}\" bevatten."
 
 #: assets/js/inline.js.php:95 assets/js/inline.js.php:96
 msgid "{name} must be at least {ruleValue} characters"
