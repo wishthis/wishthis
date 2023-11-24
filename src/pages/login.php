@@ -14,11 +14,12 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $user_email               = \filter_input(\INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $user_password            = User::passwordToHash($_POST['password']);
-    $user_login_is_persistent = isset($_POST['persistent']);
+    $user_email            = \filter_input(\INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $user_password         = User::passwordToHash($_POST['password']);
+    $userLoginIsPersistent = isset($_POST['persistent']);
 
-    $user->login($user_email, $user_password, $user_login_is_persistent);
+    $user->login($user_email, $user_password, $userLoginIsPersistent);
+    $user = User::getCurrent();
 
     if (!$user->isLoggedIn()) {
         $page->messages[] = Page::error(

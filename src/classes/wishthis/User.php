@@ -45,9 +45,7 @@ class User
             $_SESSION['user'] = new self();
         }
 
-        $user = $_SESSION['user'];
-
-        return $user;
+        return $_SESSION['user'];
     }
 
     /**
@@ -160,6 +158,13 @@ class User
     private bool $advertisements = false;
 
     /**
+     * Whether the user wants to stay logged in.
+     *
+     * @var bool
+     */
+    private bool $stayLoggedIn = false;
+
+    /**
      * Non-Static
      */
     public ?\Gettext\Translations $translations = null;
@@ -244,7 +249,38 @@ class User
      */
     public function isLoggedIn(): bool
     {
-        return isset($this->id) && $this->id >= 1;
+        if (!isset($_COOKIE['wishthis'])) {
+            return false;
+        }
+
+        $database = new Database(
+            DATABASE_HOST,
+            DATABASE_NAME,
+            DATABASE_USER,
+            DATABASE_PASSWORD
+        );
+        $database->connect();
+
+        $session = $database
+        ->query(
+            'SELECT *
+               FROM `sessions`
+              WHERE `session` = :session',
+            array(
+                'session' => $_COOKIE['wishthis'],
+            )
+        )
+        ->fetch();
+
+        if (false === $session) {
+            return false;
+        }
+
+        if (\strtotime($session['expires']) <= \time()) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -313,7 +349,7 @@ class User
      *
      * @return bool Whether the log in was successful.
      */
-    public function logIn(string $email = '', string $password = '', bool $user_login_is_persistent = false): bool
+    public function logIn(string $email = '', string $password = '', bool $userLoginIsPersistent = false): bool
     {
         $database = new Database(
             DATABASE_HOST,
@@ -344,7 +380,7 @@ class User
                 'user_password' => $password,
             )
         )
-        ->fetch();
+        ->fetch(\PDO::FETCH_ASSOC);
 
         /**
          * Fetching the user fields has failed and we are now assuming that the
@@ -368,30 +404,19 @@ class User
                 'user_password' => $password,
             )
         );
-        $user_database_fields['last_login'] = time();
+        $user_database_fields['last_login'] = date('Y-m-d H:i');
 
         /**
          * Set session duration
          */
-        $database
-        ->query(
-            'REPLACE INTO `sessions` (`user`, `session`, `expires`) VALUES (
-                :user_id,
-                :session_id,
-                :session_expires
-            )',
-            array(
-                'user_id'         => $user_database_fields['id'],
-                'session_id'      => \session_id(),
-                'session_expires' => date('Y-m-d H:i', time() + 1800),
-            )
-        );
+        $this->refreshSession($user_database_fields['id']);
 
         /**
          * Create a `User` object instance and assign it for later use.
          */
         if (\is_array($user_database_fields)) {
             $this->__construct($user_database_fields);
+            $this->stayLoggedIn = $userLoginIsPersistent;
 
             $_SESSION['user'] = $this;
 
@@ -404,6 +429,22 @@ class User
     public function logOut(): void
     {
         /** Destroy session */
+        $database = new Database(
+            DATABASE_HOST,
+            DATABASE_NAME,
+            DATABASE_USER,
+            DATABASE_PASSWORD
+        );
+        $database->connect();
+        $database
+        ->query(
+            'DELETE FROM `sessions`
+                   WHERE `session` = :session',
+            array(
+                'session' => $_COOKIE['wishthis'],
+            )
+        );
+
         session_destroy();
         unset($_SESSION);
     }
@@ -509,5 +550,134 @@ class User
     public function getPasswordResetValidUntil(): int
     {
         return $this->password_reset_valid_until;
+    }
+
+    public function refreshSession(int $forUser = 0): void
+    {
+        $sessionId              = $_COOKIE['wishthis'];
+        $sessionDurationSeconds = \ini_get('session.gc_maxlifetime') ?: 1440;
+
+        if ($this->stayLoggedIn) {
+            $sessionDurationSeconds = 31104000; // One year
+        }
+
+        if (0 === $forUser) {
+            $forUser = $this->id;
+        }
+
+        $database = new Database(
+            DATABASE_HOST,
+            DATABASE_NAME,
+            DATABASE_USER,
+            DATABASE_PASSWORD
+        );
+        $database->connect();
+
+        /** Delete outdated sessions */
+        $database
+        ->query(
+            'DELETE FROM `sessions`
+                   WHERE `expires` <= NOW()',
+        );
+
+        /** Find existing session */
+        $sessionsExisting = $database
+        ->query(
+            'SELECT *
+               FROM `sessions`
+              WHERE `session` = :session',
+            array(
+                'session' => $sessionId,
+            )
+        )
+        ->fetchAll();
+
+        /** The session exists and can be updated now */
+        foreach ($sessionsExisting as $session) {
+            if ($session['session'] === $sessionId) {
+                $database
+                ->query(
+                    'UPDATE `sessions`
+                        SET `expires` = :expires
+                      WHERE `session` = :session
+                        AND `user` = :user',
+                    array(
+                        'expires' => date('Y-m-d H:i', time() + $sessionDurationSeconds),
+                        'session' => $sessionId,
+                        'user'    => $forUser,
+                    )
+                );
+
+                /** There's no need to do anything further. */
+                return;
+            }
+        }
+
+        /**
+         * Since there has been no return until now, we are assuming the session
+         * does not exist and will create it now.
+         */
+        $database
+        ->query(
+            'INSERT INTO `sessions` (`user`, `session`, `expires`) VALUES (
+                :user_id,
+                :session_id,
+                :session_expires
+            )',
+            array(
+                'user_id'         => $forUser,
+                'session_id'      => $sessionId,
+                'session_expires' => date('Y-m-d H:i', time() + $sessionDurationSeconds),
+            )
+        );
+    }
+
+    public function loadFromSession(): void
+    {
+        if (!$this->isLoggedIn()) {
+            return;
+        }
+
+        $database = new Database(
+            DATABASE_HOST,
+            DATABASE_NAME,
+            DATABASE_USER,
+            DATABASE_PASSWORD
+        );
+        $database->connect();
+
+        $session = $database
+        ->query(
+            'SELECT *
+               FROM `sessions`
+              WHERE `session` = :session
+                AND `user`    = :user',
+            array(
+                'session' => $_COOKIE['wishthis'],
+                'user'    => $this->id,
+            )
+        )
+        ->fetch(\PDO::FETCH_ASSOC);
+
+        if (false === $session) {
+            return;
+        }
+
+        $user = $database
+        ->query(
+            'SELECT *
+               FROM `users`
+              WHERE `id` = :user',
+            array(
+                'user' => $this->id,
+            )
+        )
+        ->fetch(\PDO::FETCH_ASSOC);
+
+        if (false === $user) {
+            return;
+        }
+
+        $this->__construct($user);
     }
 }

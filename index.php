@@ -34,19 +34,6 @@ spl_autoload_register(
 );
 
 /**
- * Session
- *
- * Has to be setup first, before anything else, so translations can be loaded.
- */
-session_start(
-    array(
-        'name' => 'wishthis',
-    )
-);
-
-$user = User::getCurrent();
-
-/**
  * Config
  */
 $configPath = __DIR__ . '/' . 'src/config/config.php';
@@ -55,6 +42,22 @@ if (file_exists($configPath)) {
     require $configPath;
 }
 
+/**
+ * Session
+ *
+ * Has to be setup first, before anything else, so translations can be loaded.
+ * The configuration is the only exception, since `loadFromSession` needs the
+ * database.
+ */
+session_start(
+    array(
+        'name'            => 'wishthis',
+        'cookie_lifetime' => \ini_get('session.gc_maxlifetime') ?: 1440,
+    )
+);
+
+$user = User::getCurrent();
+$user->loadFromSession();
 
 /**
  * Database

@@ -160,6 +160,10 @@ class Page
          */
         $user = User::getCurrent();
 
+        if ($user->isLoggedIn()) {
+            $user->refreshSession();
+        }
+
         /**
          * Login
          */
