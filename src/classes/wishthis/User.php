@@ -347,7 +347,8 @@ class User
                 'user_email'    => $email,
                 'user_password' => $password,
             )
-        );
+        )
+        ->fetch();
 
         /**
          * Updating the `last_login` column in the database has failed and we
