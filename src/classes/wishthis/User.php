@@ -331,36 +331,7 @@ class User
         }
 
         /**
-         * Update the `last_login` column before fetching the user, so it's up
-         * to date for the session and later usage.
-         *
-         * If this fails, we are assuming the user credentials are wrong or that
-         * the user does not exist.
-         */
-        $update_last_login = $database
-        ->query(
-            'UPDATE `users`
-                SET `last_login` = NOW()
-              WHERE `email`      = :user_email
-                AND `password`   = :user_password;',
-            array(
-                'user_email'    => $email,
-                'user_password' => $password,
-            )
-        )
-        ->fetch();
-
-        /**
-         * Updating the `last_login` column in the database has failed and we
-         * are now assuming that the credentials are wrong or that the user does
-         * not exist.
-         */
-        if (false === $update_last_login) {
-            return $login_was_successful;
-        }
-
-        /**
-         * The credentials seem fine, so we are fetching the user fields now.
+         * Attempt to fetch the user.
          */
         $user_database_fields = $database
         ->query(
@@ -374,6 +345,47 @@ class User
             )
         )
         ->fetch();
+
+        /**
+         * Fetching the user fields has failed and we are now assuming that the
+         * credentials are wrong or that the user does not exist.
+         */
+        if (false === $user_database_fields) {
+            return false;
+        }
+
+        /**
+         * Update the `last_login` column.
+         */
+        $database
+        ->query(
+            'UPDATE `users`
+                SET `last_login` = NOW()
+              WHERE `email`      = :user_email
+                AND `password`   = :user_password;',
+            array(
+                'user_email'    => $email,
+                'user_password' => $password,
+            )
+        );
+        $user_database_fields['last_login'] = time();
+
+        /**
+         * Set session duration
+         */
+        $database
+        ->query(
+            'REPLACE INTO `sessions` (`user`, `session`, `expires`) VALUES (
+                :user_id,
+                :session_id,
+                :session_expires
+            )',
+            array(
+                'user_id'         => $user_database_fields['id'],
+                'session_id'      => \session_id(),
+                'session_expires' => date('Y-m-d H:i', time() + 1800),
+            )
+        );
 
         /**
          * Create a `User` object instance and assign it for later use.
