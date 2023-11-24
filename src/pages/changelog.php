@@ -105,6 +105,12 @@ $page->navigation();
                                     ?>
                                     <a href="https://github.com/wishthis/wishthis/issues/184" target="_blank">#184</a>
                                 </li>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Fixed */
+                                        echo __('"Keep me logged in" checkbox');
+                                    ?>
+                                </li>
                             </ul>
                         </div>
                     </div>
