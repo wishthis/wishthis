@@ -9,7 +9,7 @@ use wishthis\{Database, User};
 
 final class LogInTest extends TestCase
 {
-    public function testLogIn(): void
+    public static function setUpBeforeClass(): void
     {
         \define('DEFAULT_LOCALE', 'en_GB');
         \define('ROOT', \dirname(__DIR__));
@@ -18,7 +18,10 @@ final class LogInTest extends TestCase
         require __DIR__ . '/../src/classes/wishthis/Database.php';
         require __DIR__ . '/../src/functions/gettext.php';
         require __DIR__ . '/../src/config/config.php';
+    }
 
+    public function testLogInExistingUser(): void
+    {
         $user         = User::getCurrent();
         $userEmpty    = new User();
         $userEmail    = 'email@domain.tld';
@@ -43,5 +46,16 @@ final class LogInTest extends TestCase
 
         $this->assertTrue($userLoginSuccessful);
         $this->assertEquals($userEmail, $_SESSION['user']->getEmail());
+    }
+
+    public function testLogInNonExistingUser(): void
+    {
+        $user         = new User();
+        $userEmail    = 'thisemail@shouldnt.exist';
+        $userPassword = '1234isnotarealpassword';
+
+        $userLoginSuccessful = $user->logIn($userEmail, $userPassword);
+
+        $this->assertFalse($userLoginSuccessful);
     }
 }
