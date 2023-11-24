@@ -307,7 +307,7 @@ $page->navigation();
                     sprintf(
                         /** TRANSLATORS: %s: source code */
                         __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s is publicly viewable.'),
-                        '<a href="https://github.com/grandeljay/wishthis" target="_blank">' . __('source code') . '</a>'
+                        '<a href="https://github.com/wishthis/wishthis" target="_blank">' . __('source code') . '</a>'
                     )
                     ?>
                 </p>

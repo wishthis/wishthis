@@ -683,7 +683,7 @@ class Page
 
                         <div class="ui inverted link list">
                             <a class="item"
-                               href="https://github.com/grandeljay/wishthis"
+                               href="https://github.com/wishthis/wishthis"
                                target="_blank"
                                title="<?= __('GitHub') ?>"
                             >

@@ -101,7 +101,7 @@ $user = User::getCurrent();
 
                     <p><?= sprintf(
                         __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'),
-                        '<a href="https://github.com/grandeljay/wishthis" title="wishthis source code" target="_blank">',
+                        '<a href="https://github.com/wishthis/wishthis" title="wishthis source code" target="_blank">',
                         '</a>'
                     ) ?></p>
 

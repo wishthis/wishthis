@@ -45,7 +45,7 @@ $page->navigation();
                                     /** TRANSLATORS: %s: discussions */
                                     __('If you would like to give feedback regarding the roadmap, please refer to the %s on GitHub, or chat on Matrix or Discord.'),
                                     sprintf(
-                                        '<a href="https://github.com/grandeljay/wishthis/discussions" target="_blank">%s</a>',
+                                        '<a href="https://github.com/wishthis/wishthis/discussions" target="_blank">%s</a>',
                                         __('discussions')
                                     )
                                 );
@@ -57,21 +57,21 @@ $page->navigation();
                                     /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Allow customising priority colours');
                                 ?>
-                                <a href="https://github.com/grandeljay/wishthis/issues/34" target="_blank">#34</a>
+                                <a href="https://github.com/wishthis/wishthis/issues/34" target="_blank">#34</a>
                             </li>
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Filter by price');
                                 ?>
-                                <a href="https://github.com/grandeljay/wishthis/issues/43" target="_blank">#43</a>
+                                <a href="https://github.com/wishthis/wishthis/issues/43" target="_blank">#43</a>
                             </li>
                             <li>
                                 <?php
                                     /** TRANSLATORS: Changelog: Roadmap */
                                     echo __('Bookmarklets');
                                 ?>
-                                <a href="https://github.com/grandeljay/wishthis/issues/49" target="_blank">#49</a>
+                                <a href="https://github.com/wishthis/wishthis/issues/49" target="_blank">#49</a>
                             </li>
                             <li>
                                 <?php
@@ -103,7 +103,7 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Logging into non existent user');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/184" target="_blank">#184</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/184" target="_blank">#184</a>
                                 </li>
                             </ul>
                         </div>
@@ -124,21 +124,21 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Shared wishlist not accessible');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/179" target="_blank">#179</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/179" target="_blank">#179</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Accessing wishlist without permission');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/177" target="_blank">#177</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/177" target="_blank">#177</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Password reset not working');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/175" target="_blank">#175</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/175" target="_blank">#175</a>
                                 </li>
                             </ul>
                         </div>
@@ -160,21 +160,21 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('Configuration flag to disable plausible.io calls');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/64" target="_blank">#64</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/64" target="_blank">#64</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('Add account delete option');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/69" target="_blank">#69</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/69" target="_blank">#69</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('Configuration flag to disable user registrations');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/70" target="_blank">#70</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/70" target="_blank">#70</a>
                                 </li>
                                 <li>
                                     <?php
@@ -203,35 +203,35 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Wish price field not being set');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/107" target="_blank">#107</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/107" target="_blank">#107</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('RewriteRules which caused HTTP 404 errors');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/93" target="_blank">#93</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/93" target="_blank">#93</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Switching to wish "product" tab breaks view');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/83" target="_blank">#83</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/83" target="_blank">#83</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('Special characters not being displayed properly');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/80" target="_blank">#80</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/80" target="_blank">#80</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo __('A fatal error when the CHANNELS constant is removed from the config');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/74" target="_blank">#74</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/74" target="_blank">#74</a>
                                 </li>
                                 <li>
                                     <?php
@@ -276,7 +276,7 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Added */
                                         echo __('Option to set currency');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/43" target="_blank">#43</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/43" target="_blank">#43</a>
                                 </li>
                                 <li>
                                     <?php
@@ -331,14 +331,14 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Temporary fulfilled wish does not become available again after 30 minutes, except when viewing as the owner of the list.');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/71" target="_blank">#71</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/71" target="_blank">#71</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Fix various wish UI bugs');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/48" target="_blank">#48</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/48" target="_blank">#48</a>
                                 </li>
                                 <li>
                                     <?php
@@ -371,7 +371,7 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Fix fulfilled wishes disappearing for wishlist owner');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/58" target="_blank">#58</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/58" target="_blank">#58</a>
                                 </li>
                             </ul>
                         </div>
@@ -412,7 +412,7 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Improved */
                                         echo __('MJML settings page');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/47" target="_blank">#47</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/47" target="_blank">#47</a>
                                 </li>
                                 <li>
                                     <?php
@@ -447,21 +447,21 @@ $page->navigation();
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Label on top of dropdown menu');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/44" target="_blank">#44</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/44" target="_blank">#44</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Encoding issue in wish description');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/45" target="_blank">#45</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/45" target="_blank">#45</a>
                                 </li>
                                 <li>
                                     <?php
                                         /** TRANSLATORS: Changelog: Fixed */
                                         echo  __('Caching issue with the blog');
                                     ?>
-                                    <a href="https://github.com/grandeljay/wishthis/issues/46" target="_blank">#46</a>
+                                    <a href="https://github.com/wishthis/wishthis/issues/46" target="_blank">#46</a>
                                 </li>
                                 <li>
                                     <?php
