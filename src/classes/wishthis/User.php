@@ -386,68 +386,14 @@ class User
             $login_was_successful = true;
         }
 
-        /**
-         * Make the session persist
-         */
-        if ($user_login_is_persistent) {
-            /** Cookie options */
-            $sessionLifetime = 2592000 * 4; // 4 Months
-            $sessionExpires  = time() + $sessionLifetime;
-            $sessionIsDev    = defined('ENV_IS_DEV') && ENV_IS_DEV || '127.0.0.1' === $_SERVER['REMOTE_ADDR'];
-            $sessionOptions  = array(
-                'domain'   => getCookieDomain(),
-                'expires'  => $sessionExpires,
-                'httponly' => true,
-                'path'     => '/',
-                'samesite' => 'None',
-                'secure'   => !$sessionIsDev,
-            );
-
-            /** Set cookie */
-            setcookie(COOKIE_PERSISTENT, session_id(), $sessionOptions);
-
-            $database->query(
-                'INSERT INTO `sessions` (
-                    `user`,
-                    `session`,
-                    `expires`
-                ) VALUES (
-                    :user_id,
-                    :session_id,
-                    :session_expires
-                );',
-                array(
-                    'user_id'         => $this->id,
-                    'session_id'      => session_id(),
-                    'session_expires' => date('Y-m-d H:i:s', $sessionExpires),
-                )
-            );
-        }
-
         return $login_was_successful;
     }
 
     public function logOut(): void
     {
         /** Destroy session */
-        if (isset($_COOKIE[COOKIE_PERSISTENT])) {
-            global $database;
-
-            $database
-            ->query(
-                'DELETE FROM `sessions`
-                       WHERE `session` = :session;',
-                array(
-                    'session' => $_COOKIE[COOKIE_PERSISTENT],
-                )
-            );
-        }
-
         session_destroy();
         unset($_SESSION);
-
-        /** Delete cookie */
-        setcookie(COOKIE_PERSISTENT, '', time() - 3600, '/', getCookieDomain());
     }
 
     public function delete(): void

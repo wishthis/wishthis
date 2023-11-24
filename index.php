@@ -11,7 +11,6 @@ namespace wishthis;
 define('VERSION', '1.1.1');
 define('ROOT', __DIR__);
 define('DEFAULT_LOCALE', 'en_GB');
-define('COOKIE_PERSISTENT', 'wishthis_persistent');
 
 /**
  * Include
@@ -81,34 +80,6 @@ if (
      * Options
      */
     $options = new Options($database);
-}
-
-/**
- * Persistent (stay logged in)
- */
-if (isset($_COOKIE[COOKIE_PERSISTENT]) && $database && !$user->isLoggedIn()) {
-    $sessions = $database
-    ->query(
-        'SELECT *
-           FROM `sessions`
-          WHERE `session` = :session;',
-        array(
-            'session' => $_COOKIE[COOKIE_PERSISTENT],
-        )
-    )
-    ->fetchAll();
-
-    if (false !== $sessions) {
-        foreach ($sessions as $session) {
-            $expires = strtotime($session['expires']);
-
-            if (time() < $expires) {
-                $user = User::getFromID($session['user']);
-
-                break;
-            }
-        }
-    }
 }
 
 /**
