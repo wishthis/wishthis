@@ -44,7 +44,16 @@ class Embed extends Cache
                  *
                  * @link https://github.com/oscarotero/Embed
                  */
-                $embed     = new \Embed\Embed();
+                $client = new \Embed\Http\CurlClient();
+                $client->setSettings(
+                    array(
+                        'max_redirs'      => 10,
+                        'follow_location' => true,
+                        'user_agent'      => ($_SERVER['HTTP_HOST'] ?? 'wishthis (unknown instance)') . ' v' . VERSION,
+                    )
+                );
+
+                $embed     = new \Embed\Embed(new \Embed\Http\Crawler($client));
                 $embedInfo = $embed->get($this->url);
 
                 /** Convert embed info to a saveable format (JSON) stdClass */
@@ -83,7 +92,7 @@ class Embed extends Cache
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_SSL_VERIFYPEER => false,
                     CURLOPT_TIMEOUT        => 30,
-                    CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+                    CURLOPT_USERAGENT      => ($_SERVER['HTTP_HOST'] ?? 'wishthis (unknown instance)') . ' v' . VERSION,
                 );
 
                 /** Favicon */
