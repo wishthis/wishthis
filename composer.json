@@ -1,6 +1,6 @@
 {
     "require": {
-        "embed/embed": "^4.3",
+        "embed/embed": "^4.4",
         "grandel/include-directory": "^0.2.2",
         "qferr/mjml-php": "^2.0",
         "gettext/gettext": "^5.6",
