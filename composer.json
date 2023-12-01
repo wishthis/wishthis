@@ -11,11 +11,20 @@
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "wp-coding-standards/wpcs": "^3.0",
-        "phpunit/phpunit": "10"
+        "phpunit/phpunit": "10",
+        "marcocesarato/php-conventional-changelog": "^1.17"
     },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+    "scripts": {
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit"
+    },
+    "version": "1.1.2"
 }

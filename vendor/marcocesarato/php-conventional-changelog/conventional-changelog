@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+use ConventionalChangelog\DefaultCommand;
+use Symfony\Component\Console\Application;
+
+require_once __DIR__ . '/autoload.php';
+
+// Report only fatal errors
+error_reporting(2039);
+
+// Config
+$config = [];
+$configName = '.changelog';
+$configFiles = [
+    getcwd() . '/' . $configName, // Working dir
+    __DIR__ . '/../../../' . $configName, // Project path
+];
+foreach ($configFiles as $file) {
+    if (is_file($file) && empty($config)) {
+        $config = require $file;
+    }
+}
+
+// Command
+$command = new DefaultCommand($config);
+$commandName = $command->getName();
+
+// Run application single command
+$application = new Application('conventional-changelog', '1.17.0');
+$application->add($command);
+$application->setDefaultCommand($commandName, true);
+$application->run();

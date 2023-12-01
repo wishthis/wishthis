@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
     'PHPCSUtils\\AbstractSniffs\\AbstractArrayDeclarationSniff' => $vendorDir . '/phpcsstandards/phpcsutils/PHPCSUtils/AbstractSniffs/AbstractArrayDeclarationSniff.php',
     'PHPCSUtils\\BackCompat\\BCFile' => $vendorDir . '/phpcsstandards/phpcsutils/PHPCSUtils/BackCompat/BCFile.php',
     'PHPCSUtils\\BackCompat\\BCTokens' => $vendorDir . '/phpcsstandards/phpcsutils/PHPCSUtils/BackCompat/BCTokens.php',

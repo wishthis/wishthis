@@ -1,0 +1,5 @@
+vendor/**
+.idea
+.php-cs-fixer.cache
+cghooks.lock
+/.phpunit.result.cache
