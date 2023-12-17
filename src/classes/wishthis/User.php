@@ -249,7 +249,7 @@ class User
      */
     public function isLoggedIn(): bool
     {
-        if (!isset($_COOKIE['wishthis'])) {
+        if (!isset($_COOKIE['wishthis'], $_COOKIE['wishthis_session'])) {
             return false;
         }
 
@@ -267,7 +267,7 @@ class User
                FROM `sessions`
               WHERE `session` = :session',
             array(
-                'session' => $_COOKIE['wishthis'],
+                'session' => $_COOKIE['wishthis_session'],
             )
         )
         ->fetch();
@@ -447,6 +447,9 @@ class User
 
         session_destroy();
         unset($_SESSION);
+
+        /** Delete cookie */
+        \setcookie('wishthis_session', '', time() - 3600);
     }
 
     public function delete(): void
@@ -554,12 +557,15 @@ class User
 
     public function refreshSession(int $forUser = 0): void
     {
-        $sessionId              = $_COOKIE['wishthis'];
-        $sessionDurationSeconds = \ini_get('session.gc_maxlifetime') ?: 1440;
+        $sessionId              = $_COOKIE['wishthis_session']
+                               ?? \password_hash(\bin2hex(\random_bytes(32)), \PASSWORD_BCRYPT);
+        $sessionDurationSeconds = 1440;
 
         if ($this->stayLoggedIn) {
-            $sessionDurationSeconds = 31104000; // One year
+            $sessionDurationSeconds = 7776000; /** Three months */
         }
+
+        $sessionExpires = time() + $sessionDurationSeconds;
 
         if (0 === $forUser) {
             $forUser = $this->id;
@@ -572,6 +578,10 @@ class User
             DATABASE_PASSWORD
         );
         $database->connect();
+
+        /** Create cookie */
+        \setcookie('wishthis_session', $sessionId, $sessionExpires, '/');
+        $_COOKIE['wishthis_session'] = $sessionId;
 
         /** Delete outdated sessions */
         $database
@@ -602,7 +612,7 @@ class User
                       WHERE `session` = :session
                         AND `user` = :user',
                     array(
-                        'expires' => date('Y-m-d H:i', time() + $sessionDurationSeconds),
+                        'expires' => date('Y-m-d H:i', $sessionExpires),
                         'session' => $sessionId,
                         'user'    => $forUser,
                     )

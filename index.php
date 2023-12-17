@@ -51,8 +51,7 @@ if (file_exists($configPath)) {
  */
 session_start(
     array(
-        'name'            => 'wishthis',
-        'cookie_lifetime' => \ini_get('session.gc_maxlifetime') ?: 1440,
+        'name' => 'wishthis',
     )
 );
 
