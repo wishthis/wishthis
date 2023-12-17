@@ -32,14 +32,14 @@ function redirect(string $target)
     if (
            defined('CHANNELS')
         && is_array(CHANNELS)
-        && isset($user->channel)
+        && $user->getChannel()
         && !$isDevEnvironment
     ) {
         $host = null;
 
         foreach (CHANNELS as $channel) {
             if (
-                   $channel['branch'] === $user->channel
+                   $channel['branch'] === $user->getChannel()
                 && $channel['host']   !== $_SERVER['HTTP_HOST']
                 && $isHostInChannel
             ) {

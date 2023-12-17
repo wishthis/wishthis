@@ -530,9 +530,9 @@ class User
         $this->birthdate = $birthdate;
     }
 
-    public function getChannel(): string
+    public function getChannel(): string|null
     {
-        return $this->channel;
+        return $this->channel ?? null;
     }
 
     public function setChannel(string $channel): void
