@@ -644,7 +644,7 @@ class User
 
     public function loadFromSession(): void
     {
-        if (!$this->isLoggedIn()) {
+        if (!isset($_COOKIE['wishthis_session'])) {
             return;
         }
 
@@ -660,11 +660,9 @@ class User
         ->query(
             'SELECT *
                FROM `sessions`
-              WHERE `session` = :session
-                AND `user`    = :user',
+              WHERE `session` = :session',
             array(
-                'session' => $_COOKIE['wishthis'],
-                'user'    => $this->id,
+                'session' => $_COOKIE['wishthis_session'],
             )
         )
         ->fetch(\PDO::FETCH_ASSOC);
@@ -679,7 +677,7 @@ class User
                FROM `users`
               WHERE `id` = :user',
             array(
-                'user' => $this->id,
+                'user' => $session['user'],
             )
         )
         ->fetch(\PDO::FETCH_ASSOC);
