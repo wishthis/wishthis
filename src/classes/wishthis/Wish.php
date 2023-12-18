@@ -79,7 +79,7 @@ class Wish
             $urlParameters = array();
         }
 
-        if (\str_contains($urlParts['host'], 'amazon')) {
+        if (\str_contains($urlParts['host'], 'amazon.de')) {
             $urlParameters['tag'] = 'grandel0b-21';
             $urlParts['query']    = \http_build_query($urlParameters);
             $url                  = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'] . '?' . $urlParts['query'];
