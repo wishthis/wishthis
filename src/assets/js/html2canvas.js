@@ -21,8 +21,9 @@ window.addEventListener("load", (event) => {
 
         /** Save page preview */
         fetch('/index.php?page=api&module=save-preview', {
-            method : 'POST',
-            body   : data
+            method      : 'POST',
+            credentials : 'include',
+            body        : data,
         })
         .then(handleFetchError)
         .then(handleFetchResponse)

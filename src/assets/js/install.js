@@ -10,8 +10,9 @@ $(function() {
         form.addClass('loading');
 
         fetch('/index.php?page=api&module=database-test', {
-            method : 'POST',
-            body   : formDatabase
+            method      : 'POST',
+            credentials : 'include',
+            body        : formDatabase,
         })
         .then(handleFetchError)
         .then(handleFetchResponse)

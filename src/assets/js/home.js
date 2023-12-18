@@ -3,7 +3,8 @@ $(function() {
      * Statistics
      */
     fetch('/index.php?page=api&module=statistics&table=all', {
-        method: 'GET'
+        method      : 'GET',
+        credentials : 'include',
     })
     .then(handleFetchError)
     .then(handleFetchResponse)
@@ -57,7 +58,8 @@ $(function() {
      * News
      */
     fetch('/index.php?page=api&module=blog', {
-        method: 'GET'
+        method      : 'GET',
+        credentials : 'include',
     })
     .then(handleFetchError)
     .then(handleFetchResponse)

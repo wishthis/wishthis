@@ -142,8 +142,9 @@ $(function () {
         formData.append('wishlist_id', wishthis.$_GET.id);
 
         fetch('/index.php?page=api&module=wishlists', {
-            method : 'PUT',
-            body   : formData,
+            method      : 'PUT',
+            credentials : 'include',
+            body        : formData,
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
@@ -224,8 +225,9 @@ $(function () {
                         }
                     );
                     fetch('/index.php?page=api&module=wishlists', {
-                        'method' : 'DELETE',
-                        'body'   : delete_wishlist,
+                        'method'      : 'DELETE',
+                        'credentials' : 'include',
+                        'body'        : delete_wishlist,
                     })
                     .then(handleFetchError)
                     .then(handleFetchResponse)
@@ -331,8 +333,9 @@ $(function () {
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
 
                 fetch('/index.php?page=api&module=wishlists', {
-                    method : 'POST',
-                    body   : formData
+                    method      : 'POST',
+                    credentials : 'include',
+                    body        : formData
                 })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
@@ -395,7 +398,8 @@ $(function () {
             );
 
             fetch('/index.php?' + params_url, {
-                method: 'GET'
+                method      : 'GET',
+                credentials : 'include',
             })
             .then(handleFetchError)
             .then(handleFetchResponse)
@@ -432,8 +436,9 @@ $(function () {
                             );
 
                             fetch('/index.php?page=api&module=wishes', {
-                                method : 'PUT',
-                                body   : formData
+                                method      : 'PUT',
+                                credentials : 'include',
+                                body        : formData
                             })
                             .then(handleFetchError)
                             .then(handleFetchResponse)
@@ -468,8 +473,9 @@ $(function () {
         formData.append('wishlist_id', wishthis.$_GET.id);
 
         fetch('/index.php?page=api&module=wishes', {
-            'method' : 'POST',
-            'body'   : formData,
+            'method'      : 'POST',
+            'credentials' : 'include',
+            'body'        : formData,
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
@@ -495,7 +501,13 @@ $(function () {
      * Update URL
      */
     function updateURL() {
-        fetch('/index.php?page=api&module=url&url=' + window.btoa('/?' + urlParams.toString()), { method: 'GET' })
+        fetch(
+            '/index.php?page=api&module=url&url=' + window.btoa('/?' + urlParams.toString()),
+            {
+                method      : 'GET',
+                credentials : 'include',
+            }
+        )
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {

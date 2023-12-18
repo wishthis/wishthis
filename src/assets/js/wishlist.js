@@ -38,7 +38,13 @@ $(function() {
     if (!wishlist && wishthis.$_GET.hash) {
         var wishlistId = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
 
-        fetch('/index.php?page=api&module=wishlists&id=' + wishlistId, { method: 'GET' })
+        fetch(
+            '/index.php?page=api&module=wishlists&id=' + wishlistId,
+            {
+                method      : 'GET',
+                credentials : 'include',
+            }
+        )
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
@@ -105,8 +111,9 @@ $(function() {
         );
 
         fetch('/index.php?page=api&module=wishlists-saved', {
-            method : 'POST',
-            body   : formData
+            method      : 'POST',
+            credentials : 'include',
+            body        : formData
         })
         .then(handleFetchError)
         .then(handleFetchResponse)
@@ -128,7 +135,8 @@ $(function() {
 
     /** Determine if list is saved */
     fetch('/index.php?page=api&module=wishlists-saved', {
-        method : 'GET',
+        method      : 'GET',
+        credentials : 'include',
     })
     .then(handleFetchError)
     .then(handleFetchResponse)
@@ -176,8 +184,9 @@ $(function() {
         buttonRequest.addClass('disabled loading');
 
         fetch('/index.php?page=api&module=wishlists', {
-            method : 'POST',
-            body   : formData
+            method      : 'POST',
+            credentials : 'include',
+            body        : formData
         })
         .then(handleFetchError)
         .then(handleFetchResponse)

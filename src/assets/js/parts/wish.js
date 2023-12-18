@@ -93,7 +93,13 @@ $(function () {
             }
         );
 
-        fetch('/index.php?' + get_wish, { method: 'GET' })
+        fetch(
+            '/index.php?' + get_wish,
+            {
+                method      : 'GET',
+                credentials : 'include',
+            }
+        )
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
@@ -110,7 +116,13 @@ $(function () {
             var wish_image_ext   = wish_image.split('.').pop();
 
             if ('svg' === wish_image_ext) {
-                fetch(wish_image, { method: 'GET' })
+                fetch(
+                    wish_image,
+                    {
+                        method      : 'GET',
+                        credentials : 'include',
+                    }
+                )
                 .then(handleFetchError)
                 .then(handleFetchResponse)
                 .then(function(response) {
@@ -138,8 +150,9 @@ $(function () {
     $(document).on('click', wish_button_mark_as_fulfilled, function() {
         const modal_wish_details = $(this).closest('.ui.modal');
         const mark_as_fulfilled  = {
-            'method' : 'PUT',
-            'body'   : new URLSearchParams({
+            'method'      : 'PUT',
+            'credentials' : 'include',
+            'body'        : new URLSearchParams({
                 'wish_id'     : wish.id,
                 'wish_status' : wishthis.wish.status.fulfilled,
             }),
@@ -168,8 +181,9 @@ $(function () {
     $(document).on('click', wish_button_fulfil_wish, function() {
         const modal_wish_details = $(this).closest('.ui.modal');
         const mark_as_fulfilled  = {
-            'method' : 'PUT',
-            'body'   : new URLSearchParams({
+            'method'      : 'PUT',
+            'credentials' : 'include',
+            'body'        : new URLSearchParams({
                 'wish_id'     : wish.id,
                 'wish_status' : wishthis.wish.status.unavailable,
             }),
@@ -278,8 +292,9 @@ $(function () {
             );
 
             fetch('/index.php?page=api&module=wishes', {
-                'method' : 'POST',
-                'body'   : wish_data,
+                'method'      : 'POST',
+                'credentials' : 'include',
+                'body'        : wish_data,
             })
             .then(handleFetchError)
             .then(handleFetchResponse)
@@ -336,8 +351,9 @@ $(function () {
                 });
 
                 fetch('/index.php?page=api&module=wishes', {
-                    'method' : 'DELETE',
-                    'body'   : wish_delete,
+                    'method'      : 'DELETE',
+                    'credentials' : 'include',
+                    'body'        : wish_delete,
                 })
                 .then(handleFetchError)
                 .then(handleFetchResponse)
