@@ -261,7 +261,7 @@ class User
         );
         $database->connect();
 
-        $session = $database
+        $sessions = $database
         ->query(
             'SELECT *
                FROM `sessions`
@@ -270,17 +270,19 @@ class User
                 'session' => $_COOKIE['wishthis_session'],
             )
         )
-        ->fetch();
+        ->fetchAll(\PDO::FETCH_ASSOC);
 
-        if (false === $session) {
+        if (false === $sessions) {
             return false;
         }
 
-        if (\strtotime($session['expires']) <= \time()) {
-            return false;
+        foreach ($sessions as $session) {
+            if (\strtotime($session['expires']) > \time()) {
+                return true;
+            }
         }
 
-        return true;
+        return false;
     }
 
     /**
