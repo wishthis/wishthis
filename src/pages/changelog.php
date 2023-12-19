@@ -112,6 +112,16 @@ $page->navigation();
                                     ?>
                                 </li>
                             </ul>
+
+                            <h3 class="ui header"><?= __('Changed') ?></h3>
+                            <ul>
+                                <li>
+                                    <?php
+                                        /** TRANSLATORS: Changelog: Changed */
+                                        echo __('The login process (session management) has been completely rewritten');
+                                    ?>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
