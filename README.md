@@ -83,3 +83,14 @@ To setup your development environment you currently have two possibilities:
 1. Docker
 
     An official Docker image is also available: https://github.com/wishthis/docker. It's created and maintained by [Hiobi](https://github.com/Hiobi), thanks!
+
+#### Updating
+
+##### Fomantic-UI
+
+After updating the `fomantic-ui`` dependency, you can rebuild all assets like this:
+
+```
+$ cd ./node_modules/fomantic-ui
+$ npx gulp build
+```
