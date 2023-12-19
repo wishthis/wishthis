@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.2 - Form Validation
+ * # Fomantic-UI 2.9.3 - Form Validation
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
