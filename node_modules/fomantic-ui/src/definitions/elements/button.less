@@ -120,7 +120,7 @@
     --------------- */
 
     /* Specificity hack */
-    .ui.loading.loading.loading.loading.loading.loading.button {
+    .ui.ui.ui.ui.ui.ui.loading.button {
         position: relative;
         cursor: default;
         text-shadow: none !important;
@@ -2005,4 +2005,6 @@
         }
     }
 }
-.loadUIOverrides();
+
+// stylelint-disable no-invalid-position-at-import-rule
+@import (multiple, optional) "../../overrides.less";
