@@ -12,25 +12,36 @@ $page = new Page(__FILE__, __('Changelog'));
 $page->header();
 $page->bodyStart();
 $page->navigation();
+
+$parsedown           = new \Parsedown();
+$changelogsDirectory = ROOT . '/changelogs';
+$changelogFilepath   = $changelogsDirectory . '/changelog.md';
 ?>
 
 <main>
     <div class="ui container">
         <h1 class="ui header"><?= $page->title ?></h1>
 
+        <div class="ui segment">
+            <?= $parsedown->text(\file_get_contents($changelogFilepath)); ?>
+        </div>
+
         <div class="ui stackable grid">
             <?php
-            $changelogsDirectory = ROOT . '/changelogs';
-            $changelogs          = \scandir($changelogsDirectory, \SCANDIR_SORT_DESCENDING);
-            $changelogs          = \array_map(
-                function (string $filename) use ($changelogsDirectory) {
+            $changelogs = \scandir($changelogsDirectory, \SCANDIR_SORT_DESCENDING);
+            $changelogs = \array_map(
+                function (string $filename) use ($changelogsDirectory, $changelogFilepath) {
                     $filepath = $changelogsDirectory . '/' . $filename;
+
+                    if ($filepath === $changelogFilepath) {
+                        return false;
+                    }
 
                     return $filepath;
                 },
                 $changelogs
             );
-            $changelogs          = \array_filter($changelogs, '\is_file');
+            $changelogs = \array_filter($changelogs, '\is_file');
             ?>
 
             <div class="four wide column">
@@ -56,9 +67,8 @@ $page->navigation();
                     <div class="ui tab" data-tab="<?= $filenameSanitised ?>">
                         <div class="ui segments">
                             <?php
-                            $parsedown = new \Parsedown();
-                            $text      = \file_get_contents($filepath);
-                            $text      = \preg_replace('/(#(\d+))/', '<a href="https://github.com/wishthis/wishthis/issues/$2">$1</a>', $text);
+                            $text = \file_get_contents($filepath);
+                            $text = \preg_replace('/(#(\d+))/', '<a href="https://github.com/wishthis/wishthis/issues/$2">$1</a>', $text);
                             ?>
                             <div class="ui segment"><?= $parsedown->text($text); ?></div>
                         </div>
