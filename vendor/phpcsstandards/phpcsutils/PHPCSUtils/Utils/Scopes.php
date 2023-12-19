@@ -30,11 +30,11 @@ final class Scopes
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position in the stack of the
-     *                                                 token to verify.
-     * @param int|string|array            $validScopes Array of token constants representing
-     *                                                 the scopes considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position in the stack of the
+     *                                                  token to verify.
+     * @param int|string|array<int|string> $validScopes Array of token constants representing
+     *                                                  the scopes considered valid.
      *
      * @return int|false Integer stack pointer to the valid direct scope; or `FALSE` if
      *                   no valid direct scope was found.

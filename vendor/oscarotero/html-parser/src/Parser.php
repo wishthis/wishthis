@@ -90,6 +90,10 @@ class Parser
             libxml_disable_entity_loader($entities);
         }
 
+        if (libxml_get_last_error() !== false) {
+            libxml_clear_errors();
+        }
+
         return $document;
     }
 }

@@ -67,7 +67,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::alternativeControlStructureSyntaxes()} method for access.
      *
-     * @var array <int> => <int>
+     * @var array<int, int>
      */
     private static $alternativeControlStructureSyntaxes = [
         \T_IF      => \T_IF,
@@ -85,7 +85,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::alternativeControlStructureSyntaxClosers()} method for access.
      *
-     * @var array <int> => <int>
+     * @var array<int, int>
      */
     private static $alternativeControlStructureSyntaxClosers = [
         \T_ENDIF      => \T_ENDIF,
@@ -109,7 +109,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::arrayOpenTokensBC()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $arrayOpenTokensBC = [
         \T_ARRAY            => \T_ARRAY,
@@ -128,7 +128,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::arrayTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $arrayTokens = [
         \T_ARRAY             => \T_ARRAY,
@@ -141,7 +141,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::classModifierKeywords()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $classModifierKeywords = [
         \T_FINAL    => \T_FINAL,
@@ -160,7 +160,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::closedScopes()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $closedScopes = [
         \T_CLASS      => \T_CLASS,
@@ -180,7 +180,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::constantModifierKeywords()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $constantModifierKeywords = [
         \T_PUBLIC    => \T_PUBLIC,
@@ -194,7 +194,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::controlStructureTokens()} method for access.
      *
-     * @var array <int> => <int>
+     * @var array<int|string, int|string>
      */
     private static $controlStructureTokens = [
         \T_IF      => \T_IF,
@@ -214,7 +214,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::functionDeclarationTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $functionDeclarationTokens = [
         \T_FUNCTION => \T_FUNCTION,
@@ -227,7 +227,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::incrementDecrementOperators()} method for access.
      *
-     * @var array <int> => <int>
+     * @var array<int, int>
      */
     private static $incrementDecrementOperators = [
         \T_DEC => \T_DEC,
@@ -247,7 +247,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::listOpenTokensBC()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $listOpenTokensBC = [
         \T_LIST             => \T_LIST,
@@ -264,7 +264,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::listTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $listTokens = [
         \T_LIST              => \T_LIST,
@@ -277,7 +277,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::namespaceDeclarationClosers()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $namespaceDeclarationClosers = [
         \T_SEMICOLON          => \T_SEMICOLON,
@@ -298,7 +298,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::nameTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $nameTokens = [
         \T_STRING               => \T_STRING,
@@ -312,7 +312,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::objectOperators()} method for access.
      *
-     * @var array <int> => <int>
+     * @var array<int|string, int|string>
      */
     private static $objectOperators = [
         \T_DOUBLE_COLON             => \T_DOUBLE_COLON,
@@ -325,7 +325,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::ooCanExtend()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $ooCanExtend = [
         \T_CLASS      => \T_CLASS,
@@ -338,7 +338,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::ooCanImplement()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $ooCanImplement = [
         \T_CLASS      => \T_CLASS,
@@ -353,7 +353,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::ooConstantScopes()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $ooConstantScopes = [
         \T_CLASS      => \T_CLASS,
@@ -370,7 +370,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::ooHierarchyKeywords()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $ooHierarchyKeywords = [
         \T_PARENT => \T_PARENT,
@@ -385,7 +385,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::ooPropertyScopes()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $ooPropertyScopes = [
         \T_CLASS      => \T_CLASS,
@@ -398,7 +398,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::parameterTypeTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $parameterTypeTokens = [
         \T_CALLABLE          => \T_CALLABLE,
@@ -416,7 +416,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::phpOpenTags()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int, int>
      */
     private static $phpOpenTags = [
         \T_OPEN_TAG           => \T_OPEN_TAG,
@@ -428,7 +428,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::propertyModifierKeywords()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $propertyModifierKeywords = [
         \T_PUBLIC    => \T_PUBLIC,
@@ -444,7 +444,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::propertyTypeTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $propertyTypeTokens = [
         \T_CALLABLE          => \T_CALLABLE,
@@ -462,7 +462,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::returnTypeTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $returnTypeTokens = [
         \T_CALLABLE          => \T_CALLABLE,
@@ -481,7 +481,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::shortArrayListOpenTokensBC()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $shortArrayListOpenTokensBC = [
         \T_OPEN_SHORT_ARRAY => \T_OPEN_SHORT_ARRAY,
@@ -494,7 +494,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::shortArrayTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $shortArrayTokens = [
         \T_OPEN_SHORT_ARRAY  => \T_OPEN_SHORT_ARRAY,
@@ -508,7 +508,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::shortListTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $shortListTokens = [
         \T_OPEN_SHORT_ARRAY  => \T_OPEN_SHORT_ARRAY,
@@ -520,7 +520,7 @@ final class Collections
      *
      * @since 1.0.0 Use the {@see Collections::textStringStartTokens()} method for access.
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $textStringStartTokens = [
         \T_START_HEREDOC            => \T_START_HEREDOC,
@@ -534,11 +534,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @param string $name The name of the method which has been called.
-     * @param array  $args Any arguments passed to the method.
-     *                     Unused as none of the methods take arguments.
+     * @param string       $name The name of the method which has been called.
+     * @param array<mixed> $args Any arguments passed to the method.
+     *                           Unused as none of the methods take arguments.
      *
-     * @return array <int|string> => <int|string> Token array
+     * @return array<int|string, int|string> Token array
      *
      * @throws \PHPCSUtils\Exceptions\InvalidTokenArray When an invalid token array is requested.
      */
@@ -592,17 +592,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function arrayOpenTokensBC()
     {
-        $tokens = self::$arrayOpenTokensBC;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET] = \T_OPEN_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$arrayOpenTokensBC;
     }
 
     /**
@@ -619,18 +613,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function arrayTokensBC()
     {
-        $tokens = self::$arrayTokens;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET]  = \T_OPEN_SQUARE_BRACKET;
-            $tokens[\T_CLOSE_SQUARE_BRACKET] = \T_CLOSE_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$arrayTokens;
     }
 
     /**
@@ -640,7 +627,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function functionCallTokens()
     {
@@ -669,17 +656,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function listOpenTokensBC()
     {
-        $tokens = self::$listOpenTokensBC;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET] = \T_OPEN_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$listOpenTokensBC;
     }
 
     /**
@@ -694,18 +675,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function listTokensBC()
     {
-        $tokens = self::$listTokens;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET]  = \T_OPEN_SQUARE_BRACKET;
-            $tokens[\T_CLOSE_SQUARE_BRACKET] = \T_CLOSE_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$listTokens;
     }
 
     /**
@@ -718,7 +692,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function namespacedNameTokens()
     {
@@ -739,7 +713,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function parameterPassingTokens()
     {
@@ -761,7 +735,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function parameterTypeTokens()
     {
@@ -776,7 +750,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function propertyTypeTokens()
     {
@@ -791,7 +765,7 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function returnTypeTokens()
     {
@@ -811,17 +785,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function shortArrayListOpenTokensBC()
     {
-        $tokens = self::$shortArrayListOpenTokensBC;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET] = \T_OPEN_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$shortArrayListOpenTokensBC;
     }
 
     /**
@@ -836,18 +804,11 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function shortArrayTokensBC()
     {
-        $tokens = self::$shortArrayTokens;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET]  = \T_OPEN_SQUARE_BRACKET;
-            $tokens[\T_CLOSE_SQUARE_BRACKET] = \T_CLOSE_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$shortArrayTokens;
     }
 
     /**
@@ -862,17 +823,10 @@ final class Collections
      *
      * @since 1.0.0
      *
-     * @return array <int|string> => <int|string>
+     * @return array<int|string, int|string>
      */
     public static function shortListTokensBC()
     {
-        $tokens = self::$shortListTokens;
-
-        if (\version_compare(Helper::getVersion(), '3.7.1', '<=')) {
-            $tokens[\T_OPEN_SQUARE_BRACKET]  = \T_OPEN_SQUARE_BRACKET;
-            $tokens[\T_CLOSE_SQUARE_BRACKET] = \T_CLOSE_SQUARE_BRACKET;
-        }
-
-        return $tokens;
+        return self::$shortListTokens;
     }
 }

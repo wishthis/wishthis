@@ -9,14 +9,12 @@
  */
 namespace PHPUnit\Framework;
 
-use const PHP_EOL;
 use function sprintf;
-use Stringable;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
-final class ComparisonMethodDoesNotExistException extends Exception implements Stringable
+final class ComparisonMethodDoesNotExistException extends Exception
 {
     public function __construct(string $className, string $methodName)
     {
@@ -24,13 +22,8 @@ final class ComparisonMethodDoesNotExistException extends Exception implements S
             sprintf(
                 'Comparison method %s::%s() does not exist.',
                 $className,
-                $methodName
-            )
+                $methodName,
+            ),
         );
-    }
-
-    public function __toString(): string
-    {
-        return $this->getMessage() . PHP_EOL;
     }
 }

@@ -25,6 +25,6 @@ final class TestPreparedSubscriber extends Subscriber implements PreparedSubscri
      */
     public function notify(Prepared $event): void
     {
-        $this->logger()->testPrepared($event);
+        $this->logger()->testPrepared();
     }
 }

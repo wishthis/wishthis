@@ -33,7 +33,7 @@ final class PassedParameters
      *
      * @since 1.0.0
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $callParsingStopPoints = [
         \T_COMMA                => \T_COMMA,
@@ -170,7 +170,8 @@ final class PassedParameters
      *                                                  Efficiency tweak for when this has already been established,
      *                                                  Use with EXTREME care.
      *
-     * @return array A multi-dimentional array with information on each parameter/array item.
+     * @return array<int, array<string, int|string>>
+     *               A multi-dimentional array with information on each parameter/array item.
      *               The information gathered about each parameter/array item is in the following format:
      *               ```php
      *               1 => array(
@@ -379,11 +380,11 @@ final class PassedParameters
      *                                                 always pass both the offset as well as the parameter
      *                                                 name when examining function calls.
      *
-     * @return array|false Array with information on the parameter/array item at the specified offset,
-     *                     or with the specified name.
-     *                     Or `FALSE` if the specified parameter/array item is not found.
-     *                     See {@see PassedParameters::getParameters()} for the format of the returned
-     *                     (single-dimensional) array.
+     * @return array<string, int|string>|false Array with information on the parameter/array item at the specified
+     *                                         offset, or with the specified name.
+     *                                         Or `FALSE` if the specified parameter/array item is not found.
+     *                                         See {@see PassedParameters::getParameters()} for the format of the
+     *                                         returned (single-dimensional) array.
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the token passed is not one of the
      *                                                      accepted types or doesn't exist.
@@ -452,20 +453,23 @@ final class PassedParameters
      *
      * @since 1.0.0
      *
-     * @param array           $parameters  The output of a previous call to {@see PassedParameters::getParameters()}.
-     * @param int             $paramOffset The 1-based index position of the parameter to retrieve.
-     * @param string|string[] $paramNames  Either the name of the target parameter to retrieve
-     *                                     as a string or an array of names for the same target parameter.
-     *                                     An array of names is supported to allow for functions
-     *                                     for which the parameter names have undergone name
-     *                                     changes over time.
-     *                                     The name will take precedence over the offset.
+     * @param array<int, array<string, int|string>> $parameters  The output of a previous call to
+     *                                                           {@see PassedParameters::getParameters()}.
+     * @param int                                   $paramOffset The 1-based index position of the parameter
+     *                                                           to retrieve.
+     * @param string|string[]                       $paramNames  Either the name of the target parameter to retrieve
+     *                                                           as a string or an array of names for the same target
+     *                                                           parameter.
+     *                                                           An array of names is supported to allow for functions
+     *                                                           for which the parameter names have undergone name
+     *                                                           changes over time.
+     *                                                           The name will take precedence over the offset.
      *
-     * @return array|false Array with information on the parameter at the specified offset,
-     *                     or with the specified name.
-     *                     Or `FALSE` if the specified parameter is not found.
-     *                     See {@see PassedParameters::getParameters()} for the format of the returned
-     *                     (single-dimensional) array.
+     * @return array<string, int|string>|false Array with information on the parameter at the specified offset,
+     *                                         or with the specified name.
+     *                                         Or `FALSE` if the specified parameter is not found.
+     *                                         See {@see PassedParameters::getParameters()} for the format of the
+     *                                         returned (single-dimensional) array.
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the `$paramNames` parameter is not passed
      *                                                      and the requested parameter was not passed

@@ -10,9 +10,9 @@
 namespace PHPUnit\Metadata;
 
 /**
- * @internal This class is not covered by the backward compatibility promise for PHPUnit
- *
  * @psalm-immutable
+ *
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 final class UsesClass extends Metadata
 {
@@ -22,6 +22,7 @@ final class UsesClass extends Metadata
     private readonly string $className;
 
     /**
+     * @psalm-param 0|1 $level
      * @psalm-param class-string $className
      */
     protected function __construct(int $level, string $className)
@@ -31,6 +32,9 @@ final class UsesClass extends Metadata
         $this->className = $className;
     }
 
+    /**
+     * @psalm-assert-if-true UsesClass $this
+     */
     public function isUsesClass(): bool
     {
         return true;
@@ -46,6 +50,8 @@ final class UsesClass extends Metadata
 
     /**
      * @psalm-return class-string
+     *
+     * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
     public function asStringForCodeUnitMapper(): string
     {

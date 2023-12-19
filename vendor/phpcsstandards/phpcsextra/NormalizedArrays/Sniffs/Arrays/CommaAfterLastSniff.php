@@ -145,6 +145,13 @@ final class CommaAfterLastSniff implements Sniff
             return;
         }
 
+        // If the closer is on the same line as the last element, change the error code for multi-line arrays.
+        if ($errorCode === 'MultiLine'
+            && $tokens[$lastNonEmpty]['line'] === $tokens[$closer]['line']
+        ) {
+            $errorCode .= 'CloserSameLine';
+        }
+
         $isComma = ($tokens[$lastNonEmpty]['code'] === \T_COMMA);
 
         $phpcsFile->recordMetric(

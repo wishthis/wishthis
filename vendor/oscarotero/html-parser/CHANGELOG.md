@@ -1,9 +1,12 @@
 # Changelog
-
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [0.1.8] - 2023-11-29
+### Fixed
+- libxml internal buffer leak [#5]
 
 ## [0.1.7] - 2022-12-17
 ### Added
@@ -26,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.3] - 2019-07-20
 ### Fixed
-- UTF-8 econding issues
+- UTF-8 enconding issues
 
 ## [0.1.2] - 2019-05-25
 ### Fixed
@@ -43,7 +46,9 @@ First version
 [#2]: https://github.com/oscarotero/html-parser/issues/2
 [#3]: https://github.com/oscarotero/html-parser/issues/3
 [#4]: https://github.com/oscarotero/html-parser/issues/4
+[#5]: https://github.com/oscarotero/html-parser/issues/5
 
+[0.1.8]: https://github.com/oscarotero/html-parser/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/oscarotero/html-parser/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/oscarotero/html-parser/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/oscarotero/html-parser/compare/v0.1.4...v0.1.5

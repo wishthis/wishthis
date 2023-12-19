@@ -8,13 +8,14 @@
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcsstandards/phpcsutils#dev-develop)
 [![Last Commit to Unstable](https://img.shields.io/github/last-commit/PHPCSStandards/PHPCSUtils/develop.svg)](https://github.com/PHPCSStandards/PHPCSUtils/commits/develop)
 
-[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcsstandards/phpcsutils.svg?maxAge=3600)][phpcsutils-packagist]
+[![Docs website](https://github.com/PHPCSStandards/PHPCSUtils/actions/workflows/update-docs.yml/badge.svg)][phpcsutils-web]
 [![CS Build Status](https://github.com/PHPCSStandards/PHPCSUtils/actions/workflows/basics.yml/badge.svg?branch=develop)](https://github.com/PHPCSStandards/PHPCSUtils/actions/workflows/basics.yml)
 [![Test Build Status](https://github.com/PHPCSStandards/PHPCSUtils/actions/workflows/test.yml/badge.svg?branch=develop)][phpcsutils-tests-gha]
-[![Tested on PHP 5.4 to 8.2](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2-brightgreen.svg?maxAge=2419200)][phpcsutils-tests-gha]
 [![Coverage Status](https://coveralls.io/repos/github/PHPCSStandards/PHPCSUtils/badge.svg?branch=develop)](https://coveralls.io/github/PHPCSStandards/PHPCSUtils?branch=develop)
 
-[![Docs website](https://github.com/PHPCSStandards/PHPCSUtils/actions/workflows/update-docs.yml/badge.svg)][phpcsutils-web]
+[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcsstandards/phpcsutils.svg?maxAge=3600)][phpcsutils-packagist]
+[![Tested on PHP 5.4 to 8.3](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3-brightgreen.svg?maxAge=2419200)][phpcsutils-tests-gha]
+
 [![License: LGPLv3](https://poser.pugx.org/phpcsstandards/phpcsutils/license)](https://github.com/PHPCSStandards/PHPCSUtils/blob/stable/LICENSE)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
 
@@ -45,7 +46,7 @@ Whether you need to split an `array` into the individual items, are trying to de
 
 Includes improved versions of the PHPCS native utility functions and plenty of new utility functions.
 
-These functions are compatible with PHPCS 3.7.1 up to PHPCS `master`.
+These functions are compatible with PHPCS 3.8.0 up to PHPCS `master`.
 
 ### A collection of static properties and methods for often-used token groups
 
@@ -65,7 +66,7 @@ Supports PHPUnit 4.x up to 9.x.
 
 Normally to use the latest version of PHP_CodeSniffer native utility functions, you would have to raise the minimum requirements of your external PHPCS standard.
 
-Now you won't have to anymore. This package allows you to use the latest version of those utility functions in all PHP_CodeSniffer versions from PHPCS 3.7.1 and up.
+Now you won't have to anymore. This package allows you to use the latest version of those utility functions in all PHP_CodeSniffer versions from PHPCS 3.8.0 and up.
 
 ### Fully documented
 
@@ -77,7 +78,7 @@ To see detailed information about all the available abstract sniffs, utility fun
 ## Minimum Requirements
 
 * PHP 5.4 or higher.
-* [PHP_CodeSniffer] 3.7.1+.
+* [PHP_CodeSniffer] 3.8.0+.
 * Recommended PHP extensions for optimal functionality:
     - PCRE with Unicode support (normally enabled by default)
 
@@ -127,7 +128,7 @@ To use a non-Composer based installation for your sniff development environment,
 
 Your installation instructions for a non-Composer based installation will probably look similar to this:
 
-> * Install [PHP_CodeSniffer] via [your preferred method](https://github.com/squizlabs/PHP_CodeSniffer#installation).
+> * Install [PHP_CodeSniffer] via [your preferred method](https://github.com/PHPCSStandards/PHP_CodeSniffer#installation).
 > * Register the path to PHPCS in your system `$PATH` environment variable to make the `phpcs` command available from anywhere in your file system.
 > * Download the \[latest _YourStandardName_ release\] and unzip/untar it into an arbitrary directory.
 >     You can also choose to clone the repository using git.
@@ -164,11 +165,11 @@ For things to continue working when you add PHPCSUtils to your standard, you nee
 To support non-Composer based installs for running your sniff unit tests, you will need to adjust the PHPUnit `bootstrap.php` file to allow for passing an environment variable pointing to your PHPCSUtils installation.
 
 <details>
-  <summary><b>Example bootstrap code using a <code>PHPCSUTILS_DIR</code> environment variable</b></summary>
+  <summary><b>Example bootstrap code using a <code>PHPCSUtils_DIR</code> environment variable</b></summary>
 
 ```php
 // Get the PHPCS dir from an environment variable.
-$phpcsUtilDir = getenv('PHPCSUTILS_DIR');
+$phpcsUtilDir = getenv('PHPCSUtils_DIR');
 
 // This may be a Composer install.
 if ($phpcsUtilDir === false && file_exists(__DIR__ . '/vendor/autoload.php')) {
@@ -191,7 +192,7 @@ if ($phpcsUtilDir === false && file_exists(__DIR__ . '/vendor/autoload.php')) {
     echo 'Uh oh... can\'t find PHPCSUtils.
 
 If you use Composer, please run `composer install`.
-Otherwise, make sure you set a `PHPCSUTILS_DIR` environment variable in your phpunit.xml file
+Otherwise, make sure you set a `PHPCSUtils_DIR` environment variable in your phpunit.xml file
 pointing to the PHPCS directory.
 ';
 
@@ -208,7 +209,7 @@ Once that's done, you will need to make a small tweak to your own dev environmen
 
     ```xml
     <php>
-        <env name="PHPCSUTILS_DIR" value="/path/to/PHPCSUtils"/>
+        <env name="PHPCSUtils_DIR" value="/path/to/PHPCSUtils"/>
     </php>
     ```
 
@@ -287,7 +288,7 @@ If you are unsure whether the changes you are proposing would be welcome, please
 This code is released under the [GNU Lesser General Public License (LGPLv3)](LICENSE).
 
 
-[PHP_CodeSniffer]:       https://github.com/squizlabs/PHP_CodeSniffer
+[PHP_CodeSniffer]:       https://github.com/PHPCSStandards/PHP_CodeSniffer
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer
 [phpcsutils-repo]:       https://github.com/PHPCSStandards/PHPCSUtils
 [phpcsutils-web]:        https://phpcsutils.com/

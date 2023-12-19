@@ -61,10 +61,10 @@ final class PassedTests
     {
         $size = (new Groups)->size(
             $test->className(),
-            $test->methodName()
+            $test->methodName(),
         );
 
-        $this->passedTestMethods[$test->id()] = [
+        $this->passedTestMethods[$test->className() . '::' . $test->methodName()] = [
             'returnValue' => $returnValue,
             'size'        => $size,
         ];
@@ -74,12 +74,12 @@ final class PassedTests
     {
         $this->passedTestClasses = array_merge(
             $this->passedTestClasses,
-            $other->passedTestClasses
+            $other->passedTestClasses,
         );
 
         $this->passedTestMethods = array_merge(
             $this->passedTestMethods,
-            $other->passedTestMethods
+            $other->passedTestMethods,
         );
     }
 

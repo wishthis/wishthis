@@ -10,6 +10,34 @@ This projects adheres to [Keep a CHANGELOG](https://keepachangelog.com/) and use
 _Nothing yet._
 
 
+## [1.0.9] - 2023-12-08
+
+### Added
+
+#### PHPCS BackCompat
+
+* `BCFile::getMemberProperties()`: sync with PHPCS 3.8.0 - support for PHP 8.2 `true` type. [#524]
+* `BCFile::getMethodProperties()`: sync with PHPCS 3.8.0 - support for PHP 8.2 `true` type. [#524]
+* `BCFile::getMethodParameters()`: sync with PHPCS 3.8.0 - support for PHP 8.2 `true` type. [#524]
+
+### Changed
+
+#### TestUtils
+
+* Significant performance improvement for the [`UtilityMethodTestCase`]. [#525]
+
+#### Other
+
+* Dropped support for [PHP_CodeSniffer] < 3.8.0. [#523]
+    Please ensure you run `composer update phpcsstandards/phpcsutils --with-dependencies` to benefit from this.
+* Small improvements to the documentation website generation. Includes a contribution from [@fredden].
+* Various housekeeping and documentation improvements. Includes a contribution from [@fredden].
+
+[#523]: https://github.com/PHPCSStandards/PHPCSUtils/pull/523
+[#524]: https://github.com/PHPCSStandards/PHPCSUtils/pull/524
+[#525]: https://github.com/PHPCSStandards/PHPCSUtils/pull/525
+
+
 ## [1.0.8] - 2023-07-17
 
 ### Changed
@@ -928,6 +956,7 @@ This initial alpha release contains the following utility classes:
 
 
 [Unreleased]:   https://github.com/PHPCSStandards/PHPCSUtils/compare/stable...HEAD
+[1.0.9]:        https://github.com/PHPCSStandards/PHPCSUtils/compare/1.0.8...1.0.9
 [1.0.8]:        https://github.com/PHPCSStandards/PHPCSUtils/compare/1.0.7...1.0.8
 [1.0.7]:        https://github.com/PHPCSStandards/PHPCSUtils/compare/1.0.6...1.0.7
 [1.0.6]:        https://github.com/PHPCSStandards/PHPCSUtils/compare/1.0.5...1.0.6
@@ -943,6 +972,7 @@ This initial alpha release contains the following utility classes:
 [1.0.0-alpha2]: https://github.com/PHPCSStandards/PHPCSUtils/compare/1.0.0-alpha1...1.0.0-alpha2
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer
+[PHP_CodeSniffer]:       https://github.com/PHPCSStandards/PHP_CodeSniffer
 
 [`AbstractArrayDeclarationSniff`]: https://phpcsutils.com/phpdoc/classes/PHPCSUtils-AbstractSniffs-AbstractArrayDeclarationSniff.html
 [`BCFile`]:                        https://phpcsutils.com/phpdoc/classes/PHPCSUtils-BackCompat-BCFile.html
@@ -973,5 +1003,6 @@ This initial alpha release contains the following utility classes:
 [`UseStatements`]:                 https://phpcsutils.com/phpdoc/classes/PHPCSUtils-Utils-UseStatements.html
 [`Variables`]:                     https://phpcsutils.com/phpdoc/classes/PHPCSUtils-Utils-Variables.html
 
+[@fredden]:     https://github.com/fredden
 [@GaryJones]:   https://github.com/GaryJones
 [@szepeviktor]: https://github.com/szepeviktor

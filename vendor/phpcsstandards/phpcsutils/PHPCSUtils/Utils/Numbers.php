@@ -106,7 +106,7 @@ final class Numbers
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position of a T_LNUMBER or T_DNUMBER token.
      *
-     * @return array An array with information about the number.
+     * @return array<string, string|int> An array with information about the number.
      *               The format of the array return value is:
      *               ```php
      *               array(

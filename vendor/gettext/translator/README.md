@@ -48,7 +48,7 @@ $t->setLanguage('gl');
 
 //Load the domains:
 $t->loadDomain('messages', 'project/Locale');
-//this means you have the file "project/Locale/gl/LC_MESSAGES/messages.po"
+//this means you have the file "project/Locale/gl/LC_MESSAGES/messages.mo"
 
 //Now you can use it in your templates
 echo $t->gettext('apple');

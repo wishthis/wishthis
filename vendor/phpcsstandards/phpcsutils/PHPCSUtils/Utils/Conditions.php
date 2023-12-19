@@ -39,12 +39,12 @@ final class Conditions
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the token we are checking.
-     * @param int|string|array            $types     Optional. The type(s) of tokens to search for.
-     * @param bool                        $first     Optional. Whether to search for the first (outermost)
-     *                                               (`true`) or the last (innermost) condition (`false`) of
-     *                                               the specified type(s).
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile The file being scanned.
+     * @param int                          $stackPtr  The position of the token we are checking.
+     * @param int|string|array<int|string> $types     Optional. The type(s) of tokens to search for.
+     * @param bool                         $first     Optional. Whether to search for the first (outermost)
+     *                                                (`true`) or the last (innermost) condition (`false`) of
+     *                                                the specified type(s).
      *
      * @return int|false Integer stack pointer to the condition; or `FALSE` if the token
      *                   does not have the condition or has no conditions at all.
@@ -103,9 +103,9 @@ final class Conditions
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
-     * @param int                         $stackPtr  The position of the token we are checking.
-     * @param int|string|array            $types     The type(s) of tokens to search for.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile The file being scanned.
+     * @param int                          $stackPtr  The position of the token we are checking.
+     * @param int|string|array<int|string> $types     The type(s) of tokens to search for.
      *
      * @return bool
      */
@@ -122,9 +122,9 @@ final class Conditions
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file where this token was found.
-     * @param int                         $stackPtr  The position of the token we are checking.
-     * @param int|string|array            $types     Optional. The type(s) of tokens to search for.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile The file where this token was found.
+     * @param int                          $stackPtr  The position of the token we are checking.
+     * @param int|string|array<int|string> $types     Optional. The type(s) of tokens to search for.
      *
      * @return int|false Integer stack pointer to the condition; or `FALSE` if the token
      *                   does not have the condition or has no conditions at all.
@@ -142,9 +142,9 @@ final class Conditions
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file where this token was found.
-     * @param int                         $stackPtr  The position of the token we are checking.
-     * @param int|string|array            $types     Optional. The type(s) of tokens to search for.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile The file where this token was found.
+     * @param int                          $stackPtr  The position of the token we are checking.
+     * @param int|string|array<int|string> $types     Optional. The type(s) of tokens to search for.
      *
      * @return int|false Integer stack pointer to the condition; or `FALSE` if the token
      *                   does not have the condition or has no conditions at all.

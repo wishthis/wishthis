@@ -29,15 +29,6 @@ final class NoUselessAliasesSniff implements Sniff
 {
 
     /**
-     * Name of the "Use import source" metric.
-     *
-     * @since 1.1.0
-     *
-     * @var string
-     */
-    const METRIC_NAME = 'Import use statement type';
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @since 1.1.0

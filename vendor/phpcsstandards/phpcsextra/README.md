@@ -9,11 +9,12 @@ PHPCSExtra
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcsstandards/phpcsextra#dev-develop)
 [![Last Commit to Unstable](https://img.shields.io/github/last-commit/PHPCSStandards/PHPCSExtra/develop.svg)](https://github.com/PHPCSStandards/PHPCSExtra/commits/develop)
 
-[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcsstandards/phpcsextra.svg?maxAge=3600)][phpcsextra-packagist]
 [![CS Build Status](https://github.com/PHPCSStandards/PHPCSExtra/actions/workflows/basics.yml/badge.svg?branch=develop)][gha-qa-results]
 [![Test Build Status](https://github.com/PHPCSStandards/PHPCSExtra/actions/workflows/test.yml/badge.svg?branch=develop)][gha-test-results]
-[![Tested on PHP 5.4 to 8.2](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2-brightgreen.svg?maxAge=2419200)][gha-test-results]
 [![Coverage Status](https://coveralls.io/repos/github/PHPCSStandards/PHPCSExtra/badge.svg)](https://coveralls.io/github/PHPCSStandards/PHPCSExtra)
+
+[![Minimum PHP Version](https://img.shields.io/packagist/php-v/phpcsstandards/phpcsextra.svg?maxAge=3600)][phpcsextra-packagist]
+[![Tested on PHP 5.4 to 8.3](https://img.shields.io/badge/tested%20on-PHP%205.4%20|%205.5%20|%205.6%20|%207.0%20|%207.1%20|%207.2%20|%207.3%20|%207.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3-brightgreen.svg?maxAge=2419200)][gha-test-results]
 
 [![License: LGPLv3](https://poser.pugx.org/phpcsstandards/phpcsextra/license)](https://github.com/PHPCSStandards/PHPCSExtra/blob/stable/LICENSE)
 ![Awesome](https://img.shields.io/badge/awesome%3F-yes!-brightgreen.svg)
@@ -45,8 +46,8 @@ Minimum Requirements
 -------------------------------------------
 
 * PHP 5.4 or higher.
-* [PHP_CodeSniffer][phpcs-gh] version **3.7.1** or higher.
-* [PHPCSUtils][phpcsutils-gh] version **1.0.8** or higher.
+* [PHP_CodeSniffer][phpcs-gh] version **3.8.0** or higher.
+* [PHPCSUtils][phpcsutils-gh] version **1.0.9** or higher.
 
 
 Installation
@@ -61,7 +62,7 @@ Installing via Composer is highly recommended.
 Run the following from the root of your project:
 ```bash
 composer config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-composer require --dev phpcsstandards/phpcsextra:"^1.1.0"
+composer require --dev phpcsstandards/phpcsextra:"^1.2.0"
 ```
 
 ### Composer Global Installation
@@ -69,7 +70,7 @@ composer require --dev phpcsstandards/phpcsextra:"^1.1.0"
 Alternatively, you may want to install this standard globally:
 ```bash
 composer global config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-composer global require --dev phpcsstandards/phpcsextra:"^1.1.0"
+composer global require --dev phpcsstandards/phpcsextra:"^1.2.0"
 ```
 
 ### Updating to a newer version
@@ -229,6 +230,13 @@ Detects `foreach` control structures which use the same variable for both the ke
 
 Note: The fixer will maintain the existing behaviour of the code. This may not be the _intended_ behaviour.
 
+#### `Universal.CodeAnalysis.NoDoubleNegative` :wrench: :books:
+
+Detects double negation `!!` in code, which is effectively the same as a boolean cast, but with a much higher cognitive load.
+Also detects triple negation `!!!`, which is effectively the same as a single negation.
+
+The sniff has modular error codes to allow for disabling individual checks. The error codes are: `FoundDouble`, `FoundDoubleWithInstanceof` (not auto-fixable) and `FoundTriple`.
+
 #### `Universal.CodeAnalysis.NoEchoSprintf` :wrench: :books:
 
 Detects use of the inefficient `echo [v]sprintf(...);` combi. Use `[v]printf()` instead.
@@ -360,6 +368,14 @@ Enforce that the names used in a class/enum "implements" statement or an interfa
     The fixer will separate each name with a comma and one space.
     If alternative formatting is desired, a sniff which will check and fix the formatting should be added to the ruleset.
 
+#### `Universal.Operators.ConcatPosition` :wrench: :bar_chart: :books:
+
+Enforce that the concatenation operator for multi-line concatenations is in a preferred position, either always at the start of the next line or always at the end of the previous line.
+
+* This sniff contains an `allowOnly` property to set the preferred position for the operator.
+    Accepted values: (string) `"start"` or `"end"`. Defaults to `"start"`.
+* Note: mid-line concatenation is still allowed and will not be flagged by this sniff.
+
 #### `Universal.Operators.DisallowLogicalAndOr` :bar_chart: :books:
 
 Enforce the use of the boolean `&&` and `||` operators instead of the logical `and`/`or` operators.
@@ -390,6 +406,10 @@ This is considered a **_risky_ fixer**.
 Enforce no spaces around the union type and intersection type operators.
 
 The available error codes are: `UnionTypeSpacesBefore`, `UnionTypeSpacesAfter`, `IntersectionTypeSpacesBefore`, `IntersectionTypeSpacesAfter`.
+
+#### `Universal.PHP.LowercasePHPTag` :wrench: :bar_chart: :books:
+
+Enforces that the "PHP" in a PHP open tag is lowercase.
 
 #### `Universal.PHP.OneStatementInShortEchoTag` :wrench: :books:
 
@@ -546,8 +566,8 @@ This code is released under the [GNU Lesser General Public License (LGPLv3)](LIC
 [gha-qa-results]:        https://github.com/PHPCSStandards/PHPCSExtra/actions/workflows/basics.yml
 [gha-test-results]:      https://github.com/PHPCSStandards/PHPCSExtra/actions/workflows/test.yml
 
-[phpcs-gh]:              https://github.com/squizlabs/PHP_CodeSniffer
+[phpcs-gh]:              https://github.com/PHPCSStandards/PHP_CodeSniffer
 [phpcsutils-gh]:         https://github.com/PHPCSStandards/PHPCSUtils
 [composer-installer-gh]: https://github.com/PHPCSStandards/composer-installer
 
-[php_version-config]:    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-php-version
+[php_version-config]:    https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-php-version

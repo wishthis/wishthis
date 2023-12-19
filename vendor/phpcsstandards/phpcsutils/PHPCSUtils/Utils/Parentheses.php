@@ -34,7 +34,7 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $extraParenthesesOwners = [
         \T_ISSET => \T_ISSET,
@@ -95,10 +95,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of `T_OPEN/CLOSE_PARENTHESIS` token.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of `T_OPEN/CLOSE_PARENTHESIS` token.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return bool `TRUE` if the owner is within the list of `$validOwners`; `FALSE` if not and
      *              if the parenthesis does not have a (direct) owner.
@@ -121,10 +121,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return bool
      */
@@ -143,10 +143,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses opener; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -167,10 +167,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses closer; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -197,10 +197,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses owner; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -226,10 +226,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses opener; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -250,10 +250,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses closer; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -280,10 +280,10 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the parentheses owner; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if
@@ -305,11 +305,11 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position in the stack of the
-     *                                                 token to verify.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position in the stack of the
+     *                                                  token to verify.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the valid parentheses owner; or `FALSE` if
      *                   the token was not wrapped in parentheses or if the outermost set
@@ -333,11 +333,11 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position in the stack of the
-     *                                                 token to verify.
-     * @param int|string|array            $validOwners Array of token constants for the owners
-     *                                                 which should be considered valid.
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position in the stack of the
+     *                                                  token to verify.
+     * @param int|string|array<int|string> $validOwners Array of token constants for the owners
+     *                                                  which should be considered valid.
      *
      * @return int|false Integer stack pointer to the valid parentheses owner; or `FALSE` if
      *                   the token was not wrapped in parentheses or if the innermost set
@@ -363,13 +363,13 @@ final class Parentheses
      *
      * @since 1.0.0
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile   The file where this token was found.
-     * @param int                         $stackPtr    The position of the token we are checking.
-     * @param int|string|array            $validOwners Optional. Array of token constants for the owners
-     *                                                 which should be considered valid.
-     * @param bool                        $reverse     Optional. Whether to search for the first/outermost
-     *                                                 (`false`) or the last/innermost (`true`) set of
-     *                                                 parentheses with the specified owner(s).
+     * @param \PHP_CodeSniffer\Files\File  $phpcsFile   The file where this token was found.
+     * @param int                          $stackPtr    The position of the token we are checking.
+     * @param int|string|array<int|string> $validOwners Optional. Array of token constants for the owners
+     *                                                  which should be considered valid.
+     * @param bool                         $reverse     Optional. Whether to search for the first/outermost
+     *                                                  (`false`) or the last/innermost (`true`) set of
+     *                                                  parentheses with the specified owner(s).
      *
      * @return int|false Integer stack pointer to the parentheses opener; or `FALSE` if the token
      *                   does not have parentheses owned by any of the valid owners or if

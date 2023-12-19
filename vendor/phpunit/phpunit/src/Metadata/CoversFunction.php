@@ -10,14 +10,21 @@
 namespace PHPUnit\Metadata;
 
 /**
- * @internal This class is not covered by the backward compatibility promise for PHPUnit
- *
  * @psalm-immutable
+ *
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 final class CoversFunction extends Metadata
 {
+    /**
+     * @psalm-var non-empty-string
+     */
     private readonly string $functionName;
 
+    /**
+     * @psalm-param 0|1 $level
+     * @psalm-param non-empty-string $functionName
+     */
     protected function __construct(int $level, string $functionName)
     {
         parent::__construct($level);
@@ -25,16 +32,25 @@ final class CoversFunction extends Metadata
         $this->functionName = $functionName;
     }
 
+    /**
+     * @psalm-assert-if-true CoversFunction $this
+     */
     public function isCoversFunction(): bool
     {
         return true;
     }
 
+    /**
+     * @psalm-return non-empty-string
+     */
     public function functionName(): string
     {
         return $this->functionName;
     }
 
+    /**
+     * @internal This method is not covered by the backward compatibility promise for PHPUnit
+     */
     public function asStringForCodeUnitMapper(): string
     {
         return '::' . $this->functionName;

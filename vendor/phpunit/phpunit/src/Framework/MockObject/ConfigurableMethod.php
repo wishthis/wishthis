@@ -16,26 +16,61 @@ use SebastianBergmann\Type\Type;
  */
 final class ConfigurableMethod
 {
+    /**
+     * @psalm-var non-empty-string
+     */
     private readonly string $name;
+
+    /**
+     * @psalm-var array<int, mixed>
+     */
+    private readonly array $defaultParameterValues;
+
+    /**
+     * @psalm-var non-negative-int
+     */
+    private readonly int $numberOfParameters;
     private readonly Type $returnType;
 
-    public function __construct(string $name, Type $returnType)
+    /**
+     * @psalm-param non-empty-string $name
+     * @psalm-param array<int, mixed> $defaultParameterValues
+     * @psalm-param non-negative-int $numberOfParameters
+     */
+    public function __construct(string $name, array $defaultParameterValues, int $numberOfParameters, Type $returnType)
     {
-        $this->name       = $name;
-        $this->returnType = $returnType;
+        $this->name                   = $name;
+        $this->defaultParameterValues = $defaultParameterValues;
+        $this->numberOfParameters     = $numberOfParameters;
+        $this->returnType             = $returnType;
     }
 
+    /**
+     * @psalm-return non-empty-string
+     */
     public function name(): string
     {
         return $this->name;
     }
 
+    /**
+     * @psalm-return array<int, mixed>
+     */
+    public function defaultParameterValues(): array
+    {
+        return $this->defaultParameterValues;
+    }
+
+    /**
+     * @psalm-return non-negative-int
+     */
+    public function numberOfParameters(): int
+    {
+        return $this->numberOfParameters;
+    }
+
     public function mayReturn(mixed $value): bool
     {
-        if ($value === null && $this->returnType->allowsNull()) {
-            return true;
-        }
-
         return $this->returnType->isAssignable(Type::fromValue($value, false));
     }
 

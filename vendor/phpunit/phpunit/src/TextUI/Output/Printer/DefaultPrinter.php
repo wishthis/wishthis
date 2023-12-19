@@ -20,9 +20,9 @@ use function fwrite;
 use function sprintf;
 use function str_replace;
 use function str_starts_with;
-use PHPUnit\Util\DirectoryDoesNotExistException;
+use PHPUnit\TextUI\DirectoryDoesNotExistException;
+use PHPUnit\TextUI\InvalidSocketException;
 use PHPUnit\Util\Filesystem;
-use PHPUnit\Util\InvalidSocketException;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -76,8 +76,8 @@ final class DefaultPrinter implements Printer
                 throw new InvalidSocketException(
                     sprintf(
                         '"%s" does not match "socket://hostname:port" format',
-                        $out
-                    )
+                        $out,
+                    ),
                 );
             }
 

@@ -14,6 +14,67 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [1.2.1] - 2023-12-08
+
+### Changed
+
+#### Other
+
+* Composer: The minimum `PHP_CodeSniffer` requirement has been updated to `^3.8.0` (was `^3.7.2`). [#298]
+* Composer: The minimum `PHPCSUtils` requirement has been updated to `^1.0.9` (was `^1.0.8`). [#298]
+
+Please ensure you run `composer update phpcsstandards/phpcsextra --with-dependencies` to benefit from this.
+
+[#298]: https://github.com/PHPCSStandards/PHPCSExtra/pull/298
+
+
+## [1.2.0] - 2023-12-02
+
+### Added
+
+#### Universal
+
+* :wrench: :books: New `Universal.CodeAnalysis.NoDoubleNegative` sniff to detect double negatives (!!) and advise to use a boolean cast instead. Thanks [@diedexx] for reviewing. [#277]
+* :wrench: :books: New `Universal.Operators.ConcatPosition` sniff to enforce that the concatenation operator for multi-line concatenations is in a preferred position, either always at the start of the next line or always at the end of the previous line. [#294]
+* :wrench: :bar_chart: :books: New `Universal.PHP.LowercasePHPTag` sniff to enforce that the "PHP" in a PHP open tag is lowercase. Thanks [@fredden] for reviewing. [#276]
+
+### Changed
+
+#### NormalizedArrays
+
+* `NormalizedArrays.Arrays.CommaAfterLast`: the sniff now has two extra error codes to distinguish between multi-line arrays with the last array item on the _same line_ as the array closer vs the last array item being on a line _before_ the array closer. Thanks [@stronk7] for suggesting and patching this. [#283], [#284]
+    These new error codes allow for selectively excluding that specific situation from triggering the sniff.
+    The new error codes are `FoundMultiLineCloserSameLine` (for `multiLine="forbid"`) and `MissingMultiLineCloserSameLine` (for `multiLine="enforce"`).
+    The pre-existing `FoundMultiLine` and `FoundSingleLine` error codes continue to be used for multi-line arrays with the last array item on a different line than the array closer.
+
+#### Other
+
+* Various housekeeping.
+
+[#276]: https://github.com/PHPCSStandards/PHPCSExtra/pull/276
+[#277]: https://github.com/PHPCSStandards/PHPCSExtra/pull/277
+[#283]: https://github.com/PHPCSStandards/PHPCSExtra/issues/283
+[#284]: https://github.com/PHPCSStandards/PHPCSExtra/pull/284
+[#294]: https://github.com/PHPCSStandards/PHPCSExtra/pull/294
+
+
+## [1.1.2] - 2023-09-21
+
+### Changed
+
+#### Other
+
+* Various housekeeping.
+
+### Fixed
+
+#### Universal
+
+* `Universal.CodeAnalysis.ConstructorDestructorReturn`: the sniff will now correctly ignore methods mirroring the class name (PHP-4 style constructors) in namespaced code. [#207], [#272]
+
+[#272]: https://github.com/PHPCSStandards/PHPCSExtra/pull/272
+
+
 ## [1.1.1] - 2023-08-26
 
 ### Changed
@@ -503,9 +564,12 @@ This initial alpha release contains the following sniffs:
     Individual sub-types can be allowed by excluding specific error codes.
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer
-[php_version-config]:    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-php-version
+[php_version-config]:    https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-php-version
 
 [Unreleased]: https://github.com/PHPCSStandards/PHPCSExtra/compare/stable...HEAD
+[1.2.1]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.2.0...1.2.1
+[1.2.0]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.1.2...1.2.0
+[1.1.2]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.0.4...1.1.0
 [1.0.4]: https://github.com/PHPCSStandards/PHPCSExtra/compare/1.0.3...1.0.4
@@ -519,5 +583,8 @@ This initial alpha release contains the following sniffs:
 
 [@anomiex]:     https://github.com/anomiex
 [@derickr]:     https://github.com/derickr
+[@diedexx]:     https://github.com/diedexx
+[@fredden]:     https://github.com/fredden
 [@GaryJones]:   https://github.com/GaryJones
+[@stronk7]:     https://github.com/stronk7
 [@szepeviktor]: https://github.com/szepeviktor

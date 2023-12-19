@@ -13,7 +13,6 @@ use function assert;
 use function in_array;
 use DOMDocument;
 use DOMElement;
-use PHPUnit\Util\Xml\SnapshotNodeList;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -47,7 +46,7 @@ final class MoveWhitelistExcludesToCoverage implements Migration
 
         if ($targetExclude === null) {
             $targetExclude = $coverage->appendChild(
-                $document->createElement('exclude')
+                $document->createElement('exclude'),
             );
         }
 

@@ -23,10 +23,12 @@ use SebastianBergmann\Timer\Timer;
 final class WarmCodeCoverageCacheCommand implements Command
 {
     private readonly Configuration $configuration;
+    private readonly CodeCoverageFilterRegistry $codeCoverageFilterRegistry;
 
-    public function __construct(Configuration $configuration)
+    public function __construct(Configuration $configuration, CodeCoverageFilterRegistry $codeCoverageFilterRegistry)
     {
-        $this->configuration = $configuration;
+        $this->configuration              = $configuration;
+        $this->codeCoverageFilterRegistry = $codeCoverageFilterRegistry;
     }
 
     /**
@@ -38,16 +40,16 @@ final class WarmCodeCoverageCacheCommand implements Command
         if (!$this->configuration->hasCoverageCacheDirectory()) {
             return Result::from(
                 'Cache for static analysis has not been configured' . PHP_EOL,
-                Result::FAILURE
+                Result::FAILURE,
             );
         }
 
-        CodeCoverageFilterRegistry::init($this->configuration);
+        $this->codeCoverageFilterRegistry->init($this->configuration, true);
 
-        if (!CodeCoverageFilterRegistry::configured()) {
+        if (!$this->codeCoverageFilterRegistry->configured()) {
             return Result::from(
                 'Filter for code coverage has not been configured' . PHP_EOL,
-                Result::FAILURE
+                Result::FAILURE,
             );
         }
 
@@ -60,13 +62,13 @@ final class WarmCodeCoverageCacheCommand implements Command
             $this->configuration->coverageCacheDirectory(),
             !$this->configuration->disableCodeCoverageIgnore(),
             $this->configuration->ignoreDeprecatedCodeUnitsFromCodeCoverage(),
-            CodeCoverageFilterRegistry::get()
+            $this->codeCoverageFilterRegistry->get(),
         );
 
         printf(
             '[%s]%s',
             $timer->stop()->asString(),
-            \PHP_EOL
+            \PHP_EOL,
         );
 
         return Result::from();

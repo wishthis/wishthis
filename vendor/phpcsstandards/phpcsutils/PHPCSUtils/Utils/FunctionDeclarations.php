@@ -43,7 +43,7 @@ final class FunctionDeclarations
      *
      * @since 1.0.0
      *
-     * @var array <string> => <string>
+     * @var array<string, string>
      */
     public static $magicFunctions = [
         '__autoload' => 'autoload',
@@ -59,7 +59,7 @@ final class FunctionDeclarations
      *
      * @since 1.0.0
      *
-     * @var array <string> => <string>
+     * @var array<string, string>
      */
     public static $magicMethods = [
         '__construct'   => 'construct',
@@ -94,7 +94,7 @@ final class FunctionDeclarations
      *
      * @since 1.0.0
      *
-     * @var array <string> => <string>
+     * @var array<string, string>
      */
     public static $methodsDoubleUnderscore = [
         '__dorequest'              => 'SOAPClient',
@@ -148,7 +148,6 @@ final class FunctionDeclarations
      * - Defensive coding against incorrect calls to this method.
      * - More efficient checking whether a function has a body.
      * - Support for PHP 8.0 identifier name tokens in return types, cross-version PHP & PHPCS.
-     * - Support for the PHP 8.2 `true` type.
      * - The results of this function call are cached during a PHPCS run for faster response times.
      *
      * @see \PHP_CodeSniffer\Files\File::getMethodProperties()   Original source.
@@ -160,7 +159,7 @@ final class FunctionDeclarations
      * @param int                         $stackPtr  The position in the stack of the function token to
      *                                               acquire the properties for.
      *
-     * @return array Array with information about a function declaration.
+     * @return array<string, mixed> Array with information about a function declaration.
      *               The format of the return value is:
      *               ```php
      *               array(
@@ -247,12 +246,6 @@ final class FunctionDeclarations
         $nullableReturnType = false;
         $hasBody            = false;
         $returnTypeTokens   = Collections::returnTypeTokens();
-
-        /*
-         * BC PHPCS < 3.x.x: The union type separator is not (yet) retokenized correctly
-         * for union types containing the `true` type.
-         */
-        $returnTypeTokens[\T_BITWISE_OR] = \T_BITWISE_OR;
 
         $parenthesisCloser = null;
         if (isset($tokens[$stackPtr]['parenthesis_closer']) === true) {
@@ -367,7 +360,6 @@ final class FunctionDeclarations
      * - More efficient and more stable looping of the default value.
      * - Clearer exception message when a non-closure use token was passed to the function.
      * - Support for PHP 8.0 identifier name tokens in parameter types, cross-version PHP & PHPCS.
-     * - Support for the PHP 8.2 `true` type.
      * - The results of this function call are cached during a PHPCS run for faster response times.
      *
      * @see \PHP_CodeSniffer\Files\File::getMethodParameters()   Original source.
@@ -379,7 +371,7 @@ final class FunctionDeclarations
      * @param int                         $stackPtr  The position in the stack of the function token
      *                                               to acquire the parameters for.
      *
-     * @return array
+     * @return array<int, array<string, mixed>>
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the specified $stackPtr is not of
      *                                                      type `T_FUNCTION`, `T_CLOSURE` or `T_USE`,
@@ -446,12 +438,6 @@ final class FunctionDeclarations
         $readonlyToken    = null;
 
         $parameterTypeTokens = Collections::parameterTypeTokens();
-
-        /*
-         * BC PHPCS < 3.x.x: The union type separator is not (yet) retokenized correctly
-         * for union types containing the `true` type.
-         */
-        $parameterTypeTokens[\T_BITWISE_OR] = \T_BITWISE_OR;
 
         for ($i = $paramStart; $i <= $closer; $i++) {
             if (isset($parameterTypeTokens[$tokens[$i]['code']]) === true

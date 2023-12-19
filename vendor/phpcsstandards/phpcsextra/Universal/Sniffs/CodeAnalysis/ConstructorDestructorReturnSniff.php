@@ -18,6 +18,7 @@ use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\FunctionDeclarations;
 use PHPCSUtils\Utils\GetTokensAsString;
+use PHPCSUtils\Utils\Namespaces;
 use PHPCSUtils\Utils\NamingConventions;
 use PHPCSUtils\Utils\ObjectDeclarations;
 use PHPCSUtils\Utils\Scopes;
@@ -102,6 +103,17 @@ final class ConstructorDestructorReturnSniff implements Sniff
 
             if (NamingConventions::isEqual($functionName, $OOName) === false) {
                 // Class and function name not the same, so not a PHP 4-style constructor.
+                return;
+            }
+
+            if (Namespaces::determineNamespace($phpcsFile, $stackPtr) !== '') {
+                /*
+                 * Namespaced methods with the same name as the class are treated as
+                 * regular methods, so we can bow out if we're in a namespace.
+                 *
+                 * Note: the exception to this is PHP 5.3.0-5.3.2. This is currently
+                 * not dealt with.
+                 */
                 return;
             }
 

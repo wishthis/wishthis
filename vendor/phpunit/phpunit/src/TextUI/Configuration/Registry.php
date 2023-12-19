@@ -33,7 +33,7 @@ final class Registry
     {
         $result = file_put_contents(
             $path,
-            serialize(self::get())
+            serialize(self::get()),
         );
 
         if ($result) {
@@ -75,8 +75,9 @@ final class Registry
                     TestSuiteCollection::class,
                     TestSuite::class,
                     VersionComparisonOperator::class,
+                    Source::class,
                 ],
-            ]
+            ],
         );
     }
 

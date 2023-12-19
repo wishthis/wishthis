@@ -9,150 +9,172 @@
  */
 namespace PHPUnit\Event;
 
+use function gc_status;
 use PHPUnit\Event\Telemetry\HRTime;
+use PHPUnit\Event\Telemetry\Php81GarbageCollectorStatusProvider;
+use PHPUnit\Event\Telemetry\Php83GarbageCollectorStatusProvider;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class Facade
 {
-    private static ?TypeMap $typeMap                         = null;
-    private static ?Emitter $emitter                         = null;
-    private static ?Emitter $suspended                       = null;
-    private static ?DeferringDispatcher $deferringDispatcher = null;
-    private static bool $sealed                              = false;
+    private static ?self $instance = null;
+    private Emitter $emitter;
+    private ?TypeMap $typeMap                         = null;
+    private ?Emitter $suspended                       = null;
+    private ?DeferringDispatcher $deferringDispatcher = null;
+    private bool $sealed                              = false;
 
-    /**
-     * @throws EventFacadeIsSealedException
-     * @throws UnknownSubscriberTypeException
-     */
-    public static function registerSubscribers(Subscriber ...$subscribers): void
+    public static function instance(): self
     {
-        foreach ($subscribers as $subscriber) {
-            self::registerSubscriber($subscriber);
-        }
-    }
-
-    /**
-     * @throws EventFacadeIsSealedException
-     * @throws UnknownSubscriberTypeException
-     */
-    public static function registerSubscriber(Subscriber $subscriber): void
-    {
-        if (self::$sealed) {
-            throw new EventFacadeIsSealedException;
+        if (self::$instance === null) {
+            self::$instance = new self;
         }
 
-        self::deferredDispatcher()->registerSubscriber($subscriber);
-    }
-
-    /**
-     * @throws EventFacadeIsSealedException
-     */
-    public static function registerTracer(Tracer\Tracer $tracer): void
-    {
-        if (self::$sealed) {
-            throw new EventFacadeIsSealedException;
-        }
-
-        self::deferredDispatcher()->registerTracer($tracer);
+        return self::$instance;
     }
 
     public static function emitter(): Emitter
     {
-        if (self::$emitter === null) {
-            self::$emitter = self::createDispatchingEmitter();
+        return self::instance()->emitter;
+    }
+
+    public function __construct()
+    {
+        $this->emitter = $this->createDispatchingEmitter();
+    }
+
+    /**
+     * @throws EventFacadeIsSealedException
+     * @throws UnknownSubscriberTypeException
+     */
+    public function registerSubscribers(Subscriber ...$subscribers): void
+    {
+        foreach ($subscribers as $subscriber) {
+            $this->registerSubscriber($subscriber);
+        }
+    }
+
+    /**
+     * @throws EventFacadeIsSealedException
+     * @throws UnknownSubscriberTypeException
+     */
+    public function registerSubscriber(Subscriber $subscriber): void
+    {
+        if ($this->sealed) {
+            throw new EventFacadeIsSealedException;
         }
 
-        return self::$emitter;
+        $this->deferredDispatcher()->registerSubscriber($subscriber);
+    }
+
+    /**
+     * @throws EventFacadeIsSealedException
+     */
+    public function registerTracer(Tracer\Tracer $tracer): void
+    {
+        if ($this->sealed) {
+            throw new EventFacadeIsSealedException;
+        }
+
+        $this->deferredDispatcher()->registerTracer($tracer);
     }
 
     /** @noinspection PhpUnused */
-    public static function initForIsolation(HRTime $offset): CollectingDispatcher
+    public function initForIsolation(HRTime $offset, bool $exportObjects): CollectingDispatcher
     {
         $dispatcher = new CollectingDispatcher;
 
-        self::$emitter = new DispatchingEmitter(
+        $this->emitter = new DispatchingEmitter(
             $dispatcher,
             new Telemetry\System(
                 new Telemetry\SystemStopWatchWithOffset($offset),
-                new Telemetry\SystemMemoryMeter
-            )
+                new Telemetry\SystemMemoryMeter,
+                $this->garbageCollectorStatusProvider(),
+            ),
         );
 
-        self::$sealed = true;
+        if ($exportObjects) {
+            $this->emitter->exportObjects();
+        }
+
+        $this->sealed = true;
 
         return $dispatcher;
     }
 
-    public static function forward(EventCollection $events): void
+    public function forward(EventCollection $events): void
     {
-        if (self::$suspended !== null) {
+        if ($this->suspended !== null) {
             return;
         }
 
-        $dispatcher = self::deferredDispatcher();
+        $dispatcher = $this->deferredDispatcher();
 
         foreach ($events as $event) {
             $dispatcher->dispatch($event);
         }
     }
 
-    public static function seal(): void
+    public function seal(): void
     {
-        self::$deferringDispatcher->flush();
+        $this->deferredDispatcher()->flush();
 
-        self::$sealed = true;
+        $this->sealed = true;
 
-        self::emitter()->testRunnerEventFacadeSealed();
+        $this->emitter->testRunnerEventFacadeSealed();
     }
 
-    private static function createDispatchingEmitter(): DispatchingEmitter
+    private function createDispatchingEmitter(): DispatchingEmitter
     {
         return new DispatchingEmitter(
-            self::deferredDispatcher(),
-            self::createTelemetrySystem()
+            $this->deferredDispatcher(),
+            $this->createTelemetrySystem(),
         );
     }
 
-    private static function createTelemetrySystem(): Telemetry\System
+    private function createTelemetrySystem(): Telemetry\System
     {
         return new Telemetry\System(
             new Telemetry\SystemStopWatch,
-            new Telemetry\SystemMemoryMeter
+            new Telemetry\SystemMemoryMeter,
+            $this->garbageCollectorStatusProvider(),
         );
     }
 
-    private static function deferredDispatcher(): DeferringDispatcher
+    private function deferredDispatcher(): DeferringDispatcher
     {
-        if (self::$deferringDispatcher === null) {
-            self::$deferringDispatcher = new DeferringDispatcher(
-                new DirectDispatcher(self::typeMap())
+        if ($this->deferringDispatcher === null) {
+            $this->deferringDispatcher = new DeferringDispatcher(
+                new DirectDispatcher($this->typeMap()),
             );
         }
 
-        return self::$deferringDispatcher;
+        return $this->deferringDispatcher;
     }
 
-    private static function typeMap(): TypeMap
+    private function typeMap(): TypeMap
     {
-        if (self::$typeMap === null) {
+        if ($this->typeMap === null) {
             $typeMap = new TypeMap;
 
-            self::registerDefaultTypes($typeMap);
+            $this->registerDefaultTypes($typeMap);
 
-            self::$typeMap = $typeMap;
+            $this->typeMap = $typeMap;
         }
 
-        return self::$typeMap;
+        return $this->typeMap;
     }
 
-    private static function registerDefaultTypes(TypeMap $typeMap): void
+    private function registerDefaultTypes(TypeMap $typeMap): void
     {
         $defaultEvents = [
             Application\Started::class,
             Application\Finished::class,
 
+            Test\DataProviderMethodCalled::class,
+            Test\DataProviderMethodFinished::class,
             Test\MarkedIncomplete::class,
             Test\AfterLastTestMethodCalled::class,
             Test\AfterLastTestMethodFinished::class,
@@ -186,6 +208,8 @@ final class Facade
             Test\PreConditionFinished::class,
             Test\PreparationStarted::class,
             Test\Prepared::class,
+            Test\PreparationFailed::class,
+            Test\PrintedUnexpectedOutput::class,
             Test\Skipped::class,
             Test\WarningTriggered::class,
 
@@ -202,6 +226,7 @@ final class Facade
             TestRunner\BootstrapFinished::class,
             TestRunner\Configured::class,
             TestRunner\EventFacadeSealed::class,
+            TestRunner\ExecutionAborted::class,
             TestRunner\ExecutionFinished::class,
             TestRunner\ExecutionStarted::class,
             TestRunner\ExtensionLoadedFromPhar::class,
@@ -210,10 +235,14 @@ final class Facade
             TestRunner\Started::class,
             TestRunner\DeprecationTriggered::class,
             TestRunner\WarningTriggered::class,
+            TestRunner\GarbageCollectionDisabled::class,
+            TestRunner\GarbageCollectionTriggered::class,
+            TestRunner\GarbageCollectionEnabled::class,
 
             TestSuite\Filtered::class,
             TestSuite\Finished::class,
             TestSuite\Loaded::class,
+            TestSuite\Skipped::class,
             TestSuite\Sorted::class,
             TestSuite\Started::class,
         ];
@@ -221,8 +250,17 @@ final class Facade
         foreach ($defaultEvents as $eventClass) {
             $typeMap->addMapping(
                 $eventClass . 'Subscriber',
-                $eventClass
+                $eventClass,
             );
         }
+    }
+
+    private function garbageCollectorStatusProvider(): Telemetry\GarbageCollectorStatusProvider
+    {
+        if (!isset(gc_status()['running'])) {
+            return new Php81GarbageCollectorStatusProvider;
+        }
+
+        return new Php83GarbageCollectorStatusProvider;
     }
 }

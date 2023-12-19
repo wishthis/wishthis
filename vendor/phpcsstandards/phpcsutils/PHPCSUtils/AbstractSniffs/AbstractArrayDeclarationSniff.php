@@ -42,7 +42,7 @@ abstract class AbstractArrayDeclarationSniff implements Sniff
      *
      * @since 1.0.0
      *
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
     protected $tokens;
 
@@ -79,7 +79,7 @@ abstract class AbstractArrayDeclarationSniff implements Sniff
      *
      * @since 1.0.0
      *
-     * @var array
+     * @var array<int, array<string, int|string>>
      */
     protected $arrayItems;
 
@@ -108,7 +108,7 @@ abstract class AbstractArrayDeclarationSniff implements Sniff
      *
      * @since 1.0.0
      *
-     * @var array
+     * @var array<int|string, int|string>
      */
     private $acceptedTokens = [
         \T_NULL                     => \T_NULL,
@@ -152,7 +152,7 @@ abstract class AbstractArrayDeclarationSniff implements Sniff
      *
      * @codeCoverageIgnore
      *
-     * @return array
+     * @return array<int|string>
      */
     public function register()
     {

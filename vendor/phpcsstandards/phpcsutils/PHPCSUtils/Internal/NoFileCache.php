@@ -116,7 +116,7 @@ final class NoFileCache
      * @param string $key The key to identify a particular set of results.
      *                    It is recommended to pass `__METHOD__` to this parameter.
      *
-     * @return array
+     * @return array<int|string, mixed>
      */
     public static function getForKey($key)
     {

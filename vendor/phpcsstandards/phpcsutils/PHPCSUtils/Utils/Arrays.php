@@ -29,7 +29,7 @@ final class Arrays
      *
      * @since 1.0.0
      *
-     * @var array <int|string> => <int|string>
+     * @var array<int|string, int|string>
      */
     private static $doubleArrowTargets = [
         \T_DOUBLE_ARROW     => \T_DOUBLE_ARROW,
@@ -86,15 +86,15 @@ final class Arrays
      *                                                  tokens in an array.
      *                                                  Use with care.
      *
-     * @return array|false An array with the token pointers; or `FALSE` if this is not a
-     *                     (short) array token or if the opener/closer could not be determined.
-     *                     The format of the array return value is:
-     *                     ```php
-     *                     array(
-     *                       'opener' => integer, // Stack pointer to the array open bracket.
-     *                       'closer' => integer, // Stack pointer to the array close bracket.
-     *                     )
-     *                     ```
+     * @return array<string, int>|false An array with the token pointers; or `FALSE` if this is not a
+     *                                  (short) array token or if the opener/closer could not be determined.
+     *                                  The format of the array return value is:
+     *                                  ```php
+     *                                  array(
+     *                                    'opener' => integer, // Stack pointer to the array open bracket.
+     *                                    'closer' => integer, // Stack pointer to the array close bracket.
+     *                                  )
+     *                                  ```
      */
     public static function getOpenClose(File $phpcsFile, $stackPtr, $isShortArray = null)
     {
