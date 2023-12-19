@@ -192,6 +192,13 @@ class ComposerStaticInit5f3db9fc1d0cf1dd6a77a1d84501b4b1
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
+        ),
         'M' => 
         array (
             'ML\\IRI' => 

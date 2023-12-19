@@ -6,7 +6,8 @@
         "gettext/gettext": "^5.6",
         "gettext/translator": "^1.1",
         "jaybizzle/crawler-detect": "^1.2",
-        "slim/psr7": "^1.6"
+        "slim/psr7": "^1.6",
+        "erusev/parsedown": "^1.7"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",

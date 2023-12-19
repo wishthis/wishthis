@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-develop',
-        'version' => 'dev-develop',
-        'reference' => '1ae6f74b44e2f24e28b1e895bbcc73c0773fdaad',
+        'pretty_version' => '1.1.2',
+        'version' => '1.1.2.0',
+        'reference' => NULL,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-develop',
-            'version' => 'dev-develop',
-            'reference' => '1ae6f74b44e2f24e28b1e895bbcc73c0773fdaad',
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
+            'reference' => NULL,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -43,6 +43,15 @@
             'reference' => '49134080764018bc6b8a2488dd1c8cc2c47d15fc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../embed/embed',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'erusev/parsedown' => array(
+            'pretty_version' => '1.7.4',
+            'version' => '1.7.4.0',
+            'reference' => 'cb17b6477dfff935958ba01325f2e8a2bfa6dab3',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../erusev/parsedown',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

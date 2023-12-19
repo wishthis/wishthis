@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'ML\\IRI' => array($vendorDir . '/ml/iri'),
 );
