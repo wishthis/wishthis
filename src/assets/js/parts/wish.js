@@ -250,6 +250,9 @@ $(function () {
         .modal('show')
         .addClass(wish_edit_size);
 
+        /** Initialise Popups */
+        $('[data-content]').popup();
+
         /** Initialise Tabs */
         wish_edit.find('.item[data-tab]')
         .tab({
@@ -268,6 +271,32 @@ $(function () {
         $('[name="wish_url"]').val(wish_local.url);
         $('.ui.selection.dropdown.priority').dropdown('set selected', wish_local.priority);
 
+        /** URL */
+        $('[name="wish_url"]').on('blur', function(event) {
+            var input = $(event.target);
+
+            input.attr('disabled', 'disabled');
+
+            fetch('/index.php?page=api&module=wishes&wish_url=' + input.val() + '&isAffiliate', {
+                'method'      : 'GET',
+                'credentials' : 'include',
+            })
+            .then(handleFetchError)
+            .then(handleFetchResponse)
+            .then(function(link) {
+                if (link.isAffiliate) {
+                    $('[data-content]').css('display', 'inline-block');
+                } else {
+                    $('[data-content]').css('display', 'none');
+                }
+            })
+            .finally(function() {
+                input.removeAttr('disabled');
+            });
+        });
+        $('[name="wish_url"]').trigger('blur');
+
+        /** Purchasable */
         if (wish_local.is_purchasable) {
             checkbox_is_purchasable.checkbox('check');
         } else {

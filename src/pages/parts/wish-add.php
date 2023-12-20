@@ -42,7 +42,10 @@ namespace wishthis;
             <div class="column">
 
                 <div class="field">
-                    <label><?= __('URL') ?></label>
+                    <label>
+                        <?= __('URL') ?>
+                        <i class="orange linkify icon link affiliate" data-content="<?= __('This is an affiliate link.') ?>"></i>
+                    </label>
 
                     <input type     ="url"
                            name     ="wish_url"

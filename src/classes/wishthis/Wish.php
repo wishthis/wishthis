@@ -26,6 +26,9 @@ class Wish
     public const STATUS_FULFILLED         = 'fulfilled';
 
     public static array $priorities;
+    public static array $affiliates = array(
+        'amazon.de' => 'grandel0b-21',
+    );
 
     public static function initialize()
     {
@@ -79,13 +82,36 @@ class Wish
             $urlParameters = array();
         }
 
-        if (\str_contains($urlParts['host'], 'amazon.de')) {
-            $urlParameters['tag'] = 'grandel0b-21';
-            $urlParts['query']    = \http_build_query($urlParameters);
-            $url                  = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'] . '?' . $urlParts['query'];
+        foreach (self::$affiliates as $host => $tagId) {
+            if (\str_contains($urlParts['host'], $host)) {
+                $urlParameters['tag'] = $tagId;
+                $urlParts['query']    = \http_build_query($urlParameters);
+                $url                  = $urlParts['scheme'] . '://' . $urlParts['host'] . $urlParts['path'] . '?' . $urlParts['query'];
+
+                break;
+            }
         }
 
         return $url;
+    }
+
+    public static function hasAffiliateLink(string $url): bool
+    {
+        $urlParts = parse_url($url);
+
+        if (isset($urlParts['query'])) {
+            \parse_str($urlParts['query'], $urlParameters);
+        } else {
+            $urlParameters = array();
+        }
+
+        foreach (self::$affiliates as $host => $tagId) {
+            if (\str_contains($urlParts['host'], $host) && isset($urlParameters['tag'])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

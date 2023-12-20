@@ -28,21 +28,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $response['html'] = $wish->getCard($_GET['wishlist_user']);
             }
         } elseif (isset($_GET['wish_url'])) {
-            $url   = trim($_GET['wish_url']);
-            $cache = new Cache\Embed($url);
-            $info  = $cache->get(true);
+            if (isset($_GET['isAffiliate'])) {
+                $response['isAffiliate'] = Wish::hasAffiliateLink($_GET['wish_url']);
+            } else {
+                $url   = trim($_GET['wish_url']);
+                $cache = new Cache\Embed($url);
+                $info  = $cache->get(true);
 
-            if (isset($info->url) && $info->url) {
-                $code = URL::getResponseCode($info->url);
+                if (isset($info->url) && $info->url) {
+                    $code = URL::getResponseCode($info->url);
 
-                if ($code < 200 || $code >= 400) {
-                    $info->url = $url;
+                    if ($code < 200 || $code >= 400) {
+                        $info->url = $url;
+                    }
                 }
-            }
 
-            $response = array(
-                'info' => $info,
-            );
+                $response = array(
+                    'info' => $info,
+                );
+            }
         } elseif (isset($_GET['wishlist_id'], $_GET['wishlist_style'], $_GET['wish_priority'])) {
             /**
              * Get wishes by priority
