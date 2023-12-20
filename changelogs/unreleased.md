@@ -20,7 +20,8 @@
 ### Fixed
 
 -   Logging into non existent user #184
--   "Keep me logged in" checkbox
+-   "Keep me logged in" functionality #191
+-   "Keep me logged in" checked state in dark theme #189
 
 ### Security
 
