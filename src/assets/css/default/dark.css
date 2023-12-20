@@ -177,6 +177,11 @@
         color: rgba(255, 255, 255, .95) !important;
     }
 
+    /** Slider */
+    .ui.toggle.checkbox input:checked ~ label::before {
+        background-color: #6435c9 !important;
+    }
+
     /**
      * Dimmer
      */
