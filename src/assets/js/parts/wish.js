@@ -277,7 +277,7 @@ $(function () {
 
             input.attr('disabled', 'disabled');
 
-            fetch('/index.php?page=api&module=wishes&wish_url=' + input.val() + '&isAffiliate', {
+            fetch('/index.php?page=api&module=wishes&wish_url=' + window.btoa(input.val()) + '&isAffiliate', {
                 'method'      : 'GET',
                 'credentials' : 'include',
             })

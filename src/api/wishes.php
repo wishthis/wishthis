@@ -29,7 +29,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             }
         } elseif (isset($_GET['wish_url'])) {
             if (isset($_GET['isAffiliate'])) {
-                $response['isAffiliate'] = Wish::hasAffiliateLink($_GET['wish_url']);
+                $wishUrl = \base64_decode($_GET['wish_url']);
+
+                $response['isAffiliate'] = Wish::hasAffiliateLink($wishUrl);
             } else {
                 $url   = trim($_GET['wish_url']);
                 $cache = new Cache\Embed($url);

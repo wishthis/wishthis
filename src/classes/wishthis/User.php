@@ -689,5 +689,6 @@ class User
         }
 
         $this->__construct($user);
+        $this->stayLoggedIn = true;
     }
 }
