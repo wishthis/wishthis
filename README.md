@@ -88,7 +88,7 @@ To setup your development environment you currently have two possibilities:
 
 ##### Fomantic-UI
 
-After updating the `fomantic-ui`` dependency, you can rebuild all assets like this:
+After updating the `fomantic-ui` dependency, you can rebuild all assets like this:
 
 ```
 $ cd ./node_modules/fomantic-ui
