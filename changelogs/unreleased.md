@@ -26,3 +26,4 @@
 ### Security
 
 -   Dependencies have been updated
+-   Fixed missing authentication when deleting wish
