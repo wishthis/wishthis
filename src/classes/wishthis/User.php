@@ -19,9 +19,9 @@ class User
             'SELECT *
                FROM `users`
               WHERE `id` = :user_id',
-            array(
+            [
                 'user_id' => $user_id,
-            )
+            ]
         );
 
         if (false !== $userQuery) {
@@ -169,7 +169,7 @@ class User
      */
     public ?\Gettext\Translations $translations = null;
 
-    public function __construct(array $fields = array())
+    public function __construct(array $fields = [])
     {
         if (!empty($fields)) {
             $this->id                         = $fields['id'];
@@ -266,9 +266,9 @@ class User
             'SELECT *
                FROM `sessions`
               WHERE `session` = :session',
-            array(
+            [
                 'session' => $_COOKIE['wishthis_session'],
-            )
+            ]
         )
         ->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -299,9 +299,9 @@ class User
             'SELECT *
                FROM `wishlists`
               WHERE `user` = :user_id;',
-            array(
+            [
                 'user_id' => $this->id,
-            )
+            ]
         )
         ->fetchAll();
 
@@ -312,7 +312,7 @@ class User
     {
         global $database;
 
-        $wishlists = array();
+        $wishlists = [];
 
         if (!$this->isLoggedIn()) {
             return $wishlists;
@@ -326,9 +326,9 @@ class User
                  FROM `wishlists_saved`
             LEFT JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
                 WHERE `wishlists_saved`.`user` = :user_id;',
-            array(
+            [
                 'user_id' => $this->id,
-            )
+            ]
         )
         ->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -377,10 +377,10 @@ class User
                FROM `users`
               WHERE `email`      = :user_email
                 AND `password`   = :user_password;',
-            array(
+            [
                 'user_email'    => $email,
                 'user_password' => $password,
-            )
+            ]
         )
         ->fetch(\PDO::FETCH_ASSOC);
 
@@ -401,10 +401,10 @@ class User
                 SET `last_login` = NOW()
               WHERE `email`      = :user_email
                 AND `password`   = :user_password;',
-            array(
+            [
                 'user_email'    => $email,
                 'user_password' => $password,
-            )
+            ]
         );
         $user_database_fields['last_login'] = date('Y-m-d H:i');
 
@@ -442,9 +442,9 @@ class User
         ->query(
             'DELETE FROM `sessions`
                    WHERE `session` = :session',
-            array(
+            [
                 'session' => $_COOKIE['wishthis'],
-            )
+            ]
         );
 
         session_destroy();
@@ -461,9 +461,9 @@ class User
         $database->query(
             'DELETE FROM `users`
                    WHERE `id` = :user_id',
-            array(
+            [
                 'user_id' => $this->id,
-            )
+            ]
         );
     }
 
@@ -598,9 +598,9 @@ class User
             'SELECT *
                FROM `sessions`
               WHERE `session` = :session',
-            array(
+            [
                 'session' => $sessionId,
-            )
+            ]
         )
         ->fetchAll();
 
@@ -613,11 +613,11 @@ class User
                         SET `expires` = :expires
                       WHERE `session` = :session
                         AND `user` = :user',
-                    array(
+                    [
                         'expires' => date('Y-m-d H:i', $sessionExpires),
                         'session' => $sessionId,
                         'user'    => $forUser,
-                    )
+                    ]
                 );
 
                 /** There's no need to do anything further. */
@@ -636,11 +636,11 @@ class User
                 :session_id,
                 :session_expires
             )',
-            array(
+            [
                 'user_id'         => $forUser,
                 'session_id'      => $sessionId,
                 'session_expires' => date('Y-m-d H:i', time() + $sessionDurationSeconds),
-            )
+            ]
         );
     }
 
@@ -663,9 +663,9 @@ class User
             'SELECT *
                FROM `sessions`
               WHERE `session` = :session',
-            array(
+            [
                 'session' => $_COOKIE['wishthis_session'],
-            )
+            ]
         )
         ->fetch(\PDO::FETCH_ASSOC);
 
@@ -678,9 +678,9 @@ class User
             'SELECT *
                FROM `users`
               WHERE `id` = :user',
-            array(
+            [
                 'user' => $session['user'],
-            )
+            ]
         )
         ->fetch(\PDO::FETCH_ASSOC);
 
