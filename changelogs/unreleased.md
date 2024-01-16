@@ -27,3 +27,4 @@
 
 -   Dependencies have been updated
 -   Fixed missing authentication when deleting wish
+-   Fixed being able to add wishes to arbitrary lists
