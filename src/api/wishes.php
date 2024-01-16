@@ -341,6 +341,41 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'DELETE':
         $_DELETE = $this->input;
 
+        $user = User::getCurrent();
+
+        if (!$user->isLoggedIn()) {
+            http_response_code(403);
+            die(__('You must be logged in to delete a wish.'));
+
+            return;
+        }
+
+        $user_id = $user->getId();
+
+        $userOwnsWishQuery = $database->query(
+            '  SELECT `wishes`.`id`    AS "wish_id",
+                      `wishlists`.`id` AS "wishlist_id",
+                      `users`.`id`     AS "user_id"
+                 FROM `wishes`
+            LEFT JOIN `wishlists` ON `wishes`.`wishlist` = `wishlists`.`id`
+            LEFT JOIN `users`     ON `wishlists`.`user`  = `users`.`id`
+                WHERE `wishes`.`id` = :wish_id
+                  AND `users`.`id`  = :user_id',
+            [
+                'wish_id' => $_DELETE['wish_id'],
+                'user_id' => $user_id,
+            ]
+        );
+        $userOwnsWishData  = $userOwnsWishQuery->fetch(\PDO::FETCH_ASSOC);
+        $userOwnsWish      = isset($userOwnsWishData['user_id']) && $userOwnsWishData['user_id'] === $user_id;
+
+        if (!$userOwnsWish) {
+            http_response_code(403);
+            die(__('You must own a wish in order to delete it.'));
+
+            return;
+        }
+
         if (isset($_DELETE['wish_id'])) {
             $database->query(
                 'DELETE FROM `wishes`
