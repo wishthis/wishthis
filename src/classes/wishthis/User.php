@@ -308,6 +308,23 @@ class User
         return $wishlists;
     }
 
+    public function ownsWishlist(): bool
+    {
+        if (!$this->isLoggedIn()) {
+            return false;
+        }
+
+        $wishlists = $this->getWishlists();
+
+        foreach ($wishlists as $wishlistData) {
+            if ($wishlistData['user'] === $this->id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function getSavedWishlists(): array
     {
         global $database;

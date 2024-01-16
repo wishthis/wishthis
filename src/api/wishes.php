@@ -94,6 +94,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
+            $user = User::getCurrent();
+
+            if (!$user->ownsWishlist()) {
+                \http_response_code(403);
+
+                die(__('You may only modify wishes you own.'));
+
+                return;
+            }
+
             $wish_title          = addslashes(filter_input(INPUT_POST, 'wish_title', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
             $wish_description    = addslashes(filter_input(INPUT_POST, 'wish_description', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
             $wish_image          = addslashes(filter_input(INPUT_POST, 'wish_image', FILTER_SANITIZE_URL) ?? '');
