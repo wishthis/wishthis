@@ -45,21 +45,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     }
                 }
 
-                $response = array(
+                $response = [
                     'info' => $info,
-                );
+                ];
             }
         } elseif (isset($_GET['wishlist_id'], $_GET['wishlist_style'], $_GET['wish_priority'])) {
             /**
              * Get wishes by priority
              */
             $wishlist                                 = Wishlist::getFromId($_GET['wishlist_id']);
-            $options                                  = array(
+            $options                                  = [
                 'style' => $_GET['wishlist_style'],
-            );
-            $where                                    = array(
+            ];
+            $where                                    = [
                 'priority' => '`priority` = :wish_priority',
-            );
+            ];
             $options['placeholders']['wish_priority'] = $_GET['wish_priority'];
 
             if (-1 === intval($_GET['wish_priority'])) {
@@ -142,9 +142,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         }
                     }
 
-                    $response = array(
+                    $response = [
                         'info' => $info,
-                    );
+                    ];
                 }
 
                 /** Update */
@@ -165,7 +165,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             `priority`       = :wish_priority,
                             `is_purchasable` = :wish_is_purchasable
                       WHERE `id`             = :wish_id',
-                    array(
+                    [
                         'wishlist_id'         => $wish->getWishlistId(),
                         'wish_title'          => $wish_title,
                         'wish_description'    => $wish_description,
@@ -174,7 +174,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         'wish_priority'       => $wish_priority,
                         'wish_is_purchasable' => $wish_is_purchasable,
                         'wish_id'             => $wish->getId(),
-                    )
+                    ]
                 );
 
                 /**
@@ -194,10 +194,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :wish_id,
                         :wish_price
                     );',
-                    array(
+                    [
                         'wish_id'    => $wish->getId(),
                         'wish_price' => $wish_price,
-                    )
+                    ]
                 );
 
                 $response['lastInsertId'] = $wish->getId();
@@ -229,9 +229,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         }
                     }
 
-                    $response = array(
+                    $response = [
                         'info' => $info,
-                    );
+                    ];
                 }
 
                 /** Update */
@@ -260,7 +260,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                          :wish_priority,
                          :wish_is_purchasable
                     );',
-                    array(
+                    [
                         'wishlist_id'         => $wishlist_id,
                         'wish_title'          => $wish_title,
                         'wish_description'    => $wish_description,
@@ -268,7 +268,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         'wish_url'            => $wish_url,
                         'wish_priority'       => $wish_priority,
                         'wish_is_purchasable' => $wish_is_purchasable,
-                    )
+                    ]
                 );
 
                 /**
@@ -288,10 +288,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                             :wish_id,
                             :wish_price
                         );',
-                        array(
+                        [
                             'wish_id'    => $wish_id,
                             'wish_price' => $wish_price,
-                        )
+                        ]
                     );
                 }
 
@@ -318,10 +318,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'UPDATE `wishes`
                     SET `status` = :wish_status
                   WHERE `id`     = :wish_id',
-                array(
+                [
                     'wish_status' => $wish_status,
                     'wish_id'     => $wish_id,
-                )
+                ]
             );
 
             $response['success'] = true;
@@ -333,10 +333,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'UPDATE `wishes`
                     SET `url` = :wish_url_proposed
                   WHERE `url` = :wish_url_current',
-                array(
+                [
                     'wish_url_proposed' => Sanitiser::getURL($_PUT['wish_url_proposed']),
                     'wish_url_current'  => Sanitiser::getURL($_PUT['wish_url_current']),
-                )
+                ]
             );
 
             $response['success'] = true;
@@ -350,9 +350,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $database->query(
                 'DELETE FROM `wishes`
                        WHERE `id` = :wish_id',
-                array(
+                [
                     'wish_id' => Sanitiser::getNumber($_DELETE['wish_id']),
-                )
+                ]
             );
 
             $response['success'] = true;
