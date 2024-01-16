@@ -303,7 +303,7 @@ class User
                 'user_id' => $this->id,
             ]
         )
-        ->fetchAll();
+        ->fetchAll(\PDO::FETCH_ASSOC);
 
         return $wishlists;
     }
