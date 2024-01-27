@@ -384,7 +384,7 @@ switch ($step) {
             'CREATE TABLE `sessions` (
                 `id`      INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 `user`    INT         NOT NULL,
-                `session` VARCHAR(32) NOT NULL,
+                `session` VARCHAR(60) NOT NULL,
                 `expires` TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 
                 INDEX `idx_user` (`session`),
