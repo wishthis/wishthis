@@ -94,58 +94,58 @@ switch ($step) {
      * Check prerequisites
      */
     case 2:
-        $prerequisites = array(
-            array(
+        $prerequisites = [
+            [
                 'filename'  => __('PHP Version >= 8.1'),
                 'icon'      => 'php',
                 'condition' => \version_compare(\PHP_VERSION, '8.1', '>='),
                 'label'     => __('Compatible'),
-            ),
-            array(
+            ],
+            [
                 'filename'  => __('PHP Version < 8.3'),
                 'icon'      => 'php',
                 'condition' => \version_compare(\PHP_VERSION, '8.3', '<'),
                 'label'     => __('Compatible'),
-            ),
-            array(
+            ],
+            [
                 'filename'  => 'PHP Extension: Intl',
                 'icon'      => 'php',
                 'condition' => \extension_loaded('intl'),
                 'label'     => __('Activated'),
-            ),
+            ],
 
-            array(
+            [
                 'filename'  => '/src/cache',
                 'icon'      => 'folder',
                 'condition' => \file_exists(ROOT . '/src/cache') && \is_dir(ROOT . '/src/cache'),
                 'label'     => __('Exists'),
-            ),
-            array(
+            ],
+            [
                 'filename'  => '/src/cache',
                 'icon'      => 'folder',
                 'condition' => \is_writeable(ROOT . '/src/cache'),
                 'label'     => __('Writeable'),
-            ),
+            ],
 
-            array(
+            [
                 'filename'  => '/src/config',
                 'icon'      => 'folder',
                 'condition' => \file_exists(ROOT . '/src/config') && \is_dir(ROOT . '/src/config'),
                 'label'     => __('Exists'),
-            ),
-            array(
+            ],
+            [
                 'filename'  => '/src/config',
                 'icon'      => 'folder',
                 'condition' => \is_writeable(ROOT . '/src/config'),
                 'label'     => __('Writeable'),
-            ),
-            array(
+            ],
+            [
                 'filename'  => '/src/config/config.php',
                 'icon'      => 'file',
                 'condition' => !\file_exists('/src/config/config.php'),
                 'label'     => __('Doesn\'t exist (yet)'),
-            ),
-        );
+            ],
+        ];
 
         foreach ($_POST as $key => $value) {
             if ('DATABASE' === substr($key, 0, 8)) {
