@@ -208,7 +208,7 @@ class Wish
         $this->title          = stripslashes($wishData['title']       ?? '');
         $this->description    = stripslashes($wishData['description'] ?? '');
         $this->image          = $wishData['image'] ?? '';
-        $this->url            = $wishData['url'] ?? '';
+        $this->url            = htmlspecialchars($wishData['url'] ?? '', ENT_QUOTES);
         $this->priority       = $wishData['priority'];
         $this->status         = $wishData['status'];
         $this->is_purchasable = $wishData['is_purchasable'];
