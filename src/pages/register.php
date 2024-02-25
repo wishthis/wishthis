@@ -115,9 +115,18 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 $locale_user = $locale_browser;
             }
 
+            if(defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
+                \http_response_code(403);
+
+                die(__('The owner of this site has disabled user registrations.'));
+
+                return;
+            }
+
             /**
              * Register
              */
+
             if (0 === count($users)) {
                 $database->query(
                     'INSERT INTO `users` (
