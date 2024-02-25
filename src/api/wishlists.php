@@ -223,6 +223,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'PUT':
         $_PUT = $this->input;
 
+        if (!$user->ownsWishlist()) {
+            \http_response_code(403);
+
+            die(__('You may only modify wishlists you own.'));
+
+            return;
+        }
+
         $database
         ->query(
             'UPDATE `wishlists`
@@ -239,6 +247,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'DELETE':
         $_DELETE = $this->input;
+
+        if (!$user->ownsWishlist()) {
+            \http_response_code(403);
+
+            die(__('You may only delete wishlists you own.'));
+
+            return;
+        }
 
         $database->query(
             'DELETE FROM `wishlists`

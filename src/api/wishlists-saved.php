@@ -27,13 +27,23 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'POST':
         if (isset($_POST['wishlist'])) {
+            if (!$user->isLoggedIn()) {
+                http_response_code(403);
+                die(__('You must be logged in to save or delete a saved wishlist.'));
+
+                return;
+            }
+
             $wishlist = $database
             ->query(
                 'SELECT *
-                   FROM `wishlists_saved`
-                  WHERE `wishlist` = :wishlist_id',
+                    FROM `wishlists_saved`
+                LEFT OUTER JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
+                    WHERE `wishlists_saved`.`user` = :user_id
+                    AND `wishlist` = :wishlist_id;',
                 array(
-                    'wishlist_id' => Sanitiser::getNumber($_POST['wishlist'])
+                    'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
+                    'user_id' => $user->getId()
                 )
             )
             ->fetch();
