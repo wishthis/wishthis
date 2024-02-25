@@ -339,7 +339,7 @@ class Wish
                     <?php if (file_exists(ROOT . $this->image)) { ?>
                         <?= file_get_contents(ROOT . $this->image) ?>
                     <?php } else { ?>
-                        <?= file_get_contents($this->image) ?>
+                        <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
                     <?php } ?>
                 <?php } else { ?>
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
