@@ -15,7 +15,7 @@ $page = new Page(__FILE__, __('Login'));
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
     $user_email            = \filter_input(\INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $user_password         = User::passwordToHash($_POST['password']);
+    $user_password         = $_POST['password'];
     $userLoginIsPersistent = isset($_POST['persistent']);
 
     $user->login($user_email, $user_password, $userLoginIsPersistent);

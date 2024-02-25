@@ -36,8 +36,14 @@ class User
 
     public static function passwordToHash(string $plainPassword): string
     {
+        return password_hash($plainPassword, PASSWORD_BCRYPT);
+    }
+
+    public static function passwordToOldHash(string $plainPassword): string
+    {
         return sha1($plainPassword);
     }
+
 
     public static function getCurrent(): self
     {
@@ -363,6 +369,22 @@ class User
             ?: $this->email;
     }
 
+    public function updatePasswordHash(string $password, string $email): string {
+        global $database;
+        $passwordHash = User::passwordToHash($password);
+
+        $database->query(
+            'UPDATE `users`
+                SET `password` = :password_hash
+            WHERE `email` = :user_email',
+            [
+                "user_email" => $email,
+                "password_hash" => $passwordHash
+            ]
+            );
+        return $passwordHash;
+    }
+
     /**
      * Attempts to log in the user. Return whether it was successful or not.
      *
@@ -392,11 +414,9 @@ class User
         ->query(
             'SELECT *
                FROM `users`
-              WHERE `email`      = :user_email
-                AND `password`   = :user_password;',
+              WHERE `email`      = :user_email',
             [
-                'user_email'    => $email,
-                'user_password' => $password,
+                'user_email'    => $email
             ]
         )
         ->fetch(\PDO::FETCH_ASSOC);
@@ -409,6 +429,20 @@ class User
             return false;
         }
 
+        $passwordHash = User::passwordToOldHash($password);
+
+        if ($passwordHash === $user_database_fields["password"]) {
+            $passwordHash = User::updatePasswordHash($password, $email);
+        } else {
+            $passwordHash = $user_database_fields["password"];
+        }
+
+        $password_matches = password_verify($password, $passwordHash);
+
+        if(!$password_matches) {
+            return false;
+        }
+
         /**
          * Update the `last_login` column.
          */
@@ -416,11 +450,9 @@ class User
         ->query(
             'UPDATE `users`
                 SET `last_login` = NOW()
-              WHERE `email`      = :user_email
-                AND `password`   = :user_password;',
+              WHERE `email`      = :user_email',
             [
-                'user_email'    => $email,
-                'user_password' => $password,
+                'user_email'    => $email
             ]
         );
         $user_database_fields['last_login'] = date('Y-m-d H:i');
