@@ -2,7 +2,7 @@
 
 ### Added
 
--   Nothing
+-   Emoji support #194
 
 ### Changed
 
