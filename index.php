@@ -37,10 +37,8 @@ spl_autoload_register(
  * Config
  */
 $configPath = __DIR__ . '/' . 'src/config/config.php';
-
-if (file_exists($configPath)) {
-    require $configPath;
-}
+$config     = new Config($configPath);
+$config->load();
 
 /**
  * Session
