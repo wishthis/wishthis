@@ -54,7 +54,6 @@ session_start(
 );
 
 $user = User::getCurrent();
-$user->loadFromSession();
 
 /**
  * Database
@@ -80,6 +79,11 @@ if (
      * Options
      */
     $options = new Options($database);
+
+    /**
+     * User session
+     */
+    $user->loadFromSession();
 }
 
 /**

@@ -259,12 +259,12 @@ class User
             return false;
         }
 
-        $database = new Database(
-            DATABASE_HOST,
-            DATABASE_NAME,
-            DATABASE_USER,
-            DATABASE_PASSWORD
-        );
+        global $database;
+
+        if (false === $database) {
+            return false;
+        }
+
         $database->connect();
 
         $sessions = $database
