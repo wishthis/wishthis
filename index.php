@@ -48,9 +48,9 @@ $config->load();
  * database.
  */
 session_start(
-    array(
+    [
         'name' => 'wishthis',
-    )
+    ]
 );
 
 $user = User::getCurrent();

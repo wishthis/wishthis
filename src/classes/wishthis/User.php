@@ -369,7 +369,8 @@ class User
             ?: $this->email;
     }
 
-    public function updatePasswordHash(string $password, string $email): string {
+    public function updatePasswordHash(string $password, string $email): string
+    {
         global $database;
         $passwordHash = User::passwordToHash($password);
 
@@ -378,10 +379,10 @@ class User
                 SET `password` = :password_hash
             WHERE `email` = :user_email',
             [
-                "user_email" => $email,
-                "password_hash" => $passwordHash
+                "user_email"    => $email,
+                "password_hash" => $passwordHash,
             ]
-            );
+        );
         return $passwordHash;
     }
 
@@ -416,7 +417,7 @@ class User
                FROM `users`
               WHERE `email`      = :user_email',
             [
-                'user_email'    => $email
+                'user_email' => $email,
             ]
         )
         ->fetch(\PDO::FETCH_ASSOC);
@@ -439,7 +440,7 @@ class User
 
         $password_matches = password_verify($password, $passwordHash);
 
-        if(!$password_matches) {
+        if (!$password_matches) {
             return false;
         }
 
@@ -452,7 +453,7 @@ class User
                 SET `last_login` = NOW()
               WHERE `email`      = :user_email',
             [
-                'user_email'    => $email
+                'user_email' => $email,
             ]
         );
         $user_database_fields['last_login'] = date('Y-m-d H:i');
