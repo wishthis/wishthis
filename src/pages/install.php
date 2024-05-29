@@ -389,6 +389,7 @@ switch ($step) {
         /**
          * Sessions
          */
+        $database->query('DROP TABLE IF EXISTS `sessions`;');
         $database->query(
             'CREATE TABLE `sessions` (
                 `id`      INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,
