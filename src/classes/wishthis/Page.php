@@ -507,7 +507,7 @@ class Page
                 'icon' => 'sign out alternate',
             ];
         } else {
-            $pages[$login]    = [
+            $pages[$login] = [
                 'text'      => __('Login'),
                 'alignment' => 'right',
                 'items'     => [
@@ -518,17 +518,22 @@ class Page
                     ],
                 ],
             ];
-            $pages[$register] = [
-                'text'      => __('Register'),
-                'alignment' => 'right',
-                'items'     => [
-                    [
-                        'text' => __('Register'),
-                        'url'  => Page::PAGE_REGISTER,
-                        'icon' => 'user plus alternate',
+
+            $registrationDisabled = defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
+
+            if (!$registrationDisabled) {
+                $pages[$register] = [
+                    'text'      => __('Register'),
+                    'alignment' => 'right',
+                    'items'     => [
+                        [
+                            'text' => __('Register'),
+                            'url'  => Page::PAGE_REGISTER,
+                            'icon' => 'user plus alternate',
+                        ],
                     ],
-                ],
-            ];
+                ];
+            }
         }
 
         if (100 === $user->getPower()) {

@@ -8,14 +8,15 @@
 
 namespace wishthis;
 
-$passwordReset = isset($_GET['password-reset'], $_GET['token']);
+$passwordReset        = isset($_GET['password-reset'], $_GET['token']);
+$registrationDisabled = defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
 
 $pageTitle    = $passwordReset ? __('Reset password') : __('Register');
 $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
 
 $page = new Page(__FILE__, $pageTitle);
 
-if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
+if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$registrationDisabled) {
     $users      = $database
     ->query(
         'SELECT *
@@ -113,14 +114,6 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
 
             if (in_array($locale_browser, $locales, true)) {
                 $locale_user = $locale_browser;
-            }
-
-            if (defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
-                \http_response_code(403);
-
-                die(__('The owner of this site has disabled user registrations.'));
-
-                return;
             }
 
             /**
@@ -221,17 +214,11 @@ $page->navigation();
 
         <?= $page->messages() ?>
 
-        <?php
-        if (defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
-            ?>
+        <?php if ($registrationDisabled) { ?>
             <div class="ui segment">
-                <h2 class="ui header"><?= __('Registration disabled') ?></h2>
-
-                <p><?= __('The owner of this site has disabled user registrations.') ?></p>
+                <p>The owner of this instance has disabled user registration.</p>
             </div>
-            <?php
-        } else {
-            ?>
+        <?php } else { ?>
             <div class="ui segment">
                 <form class="ui form" method="POST">
                     <div class="ui divided relaxed stackable two column grid">
@@ -321,9 +308,7 @@ $page->navigation();
                     ?>
                 </p>
             </div>
-            <?php
-        }
-        ?>
+        <?php } ?>
 
     </div>
 </main>
