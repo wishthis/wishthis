@@ -115,7 +115,8 @@ class Sanitiser
      *
      * @return string
      */
-    public static function sanitiseText(string $text): string {
+    public static function sanitiseText(string $text): string
+    {
         $sanitisedText = \trim(\addslashes(\filter_var($text, \FILTER_SANITIZE_SPECIAL_CHARS)));
 
         return $sanitisedText;
@@ -128,7 +129,8 @@ class Sanitiser
      *
      * @return string
      */
-    public static function sanitiseEmail(string $email): string {
+    public static function sanitiseEmail(string $email): string
+    {
         $sanitisedEmail = \trim(\addslashes(\filter_var($email, \FILTER_SANITIZE_EMAIL)));
 
         return $sanitisedEmail;

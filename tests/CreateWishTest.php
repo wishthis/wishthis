@@ -10,7 +10,7 @@ final class CreateWishTest extends TestCase
 {
     private int $testWishlistId = 5;
 
-    private function apiRequest(string $endpoint, int $method, array $data = array()): string|false
+    private function apiRequest(string $endpoint, int $method, array $data = []): string|false
     {
         $queryString = http_build_query($data);
 
@@ -32,10 +32,10 @@ final class CreateWishTest extends TestCase
         $apiResponse = $this->apiRequest(
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
-            array(
+            [
                 'wish_title'  => 'WD Red SA500 NAS SATA SSD 2TB 2.5": Amazon.de: Computer & Accessories',
                 'wishlist_id' => $this->testWishlistId,
-            )
+            ]
         );
         $this->assertNotFalse($apiResponse);
 
@@ -50,10 +50,10 @@ final class CreateWishTest extends TestCase
         $apiResponse = $this->apiRequest(
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
-            array(
+            [
                 'wish_title'  => '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
                 'wishlist_id' => $this->testWishlistId,
-            )
+            ]
         );
         $this->assertNotFalse($apiResponse);
 
@@ -93,10 +93,10 @@ final class CreateWishTest extends TestCase
         $apiResponse = $this->apiRequest(
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
-            array(
+            [
                 'wish_description' => 'WD Red SA500 NAS SATA SSD 2TB 2.5": Amazon.de: Computer & Accessories',
                 'wishlist_id'      => $this->testWishlistId,
-            )
+            ]
         );
         $this->assertNotFalse($apiResponse);
 
@@ -111,10 +111,10 @@ final class CreateWishTest extends TestCase
         $apiResponse = $this->apiRequest(
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
-            array(
+            [
                 'wish_url'    => 'https://www.amazon.com/Red-SA500-NAS-NAND-Internal/dp/B07YFGG261',
                 'wishlist_id' => $this->testWishlistId,
-            )
+            ]
         );
         $this->assertNotFalse($apiResponse);
 
@@ -129,10 +129,10 @@ final class CreateWishTest extends TestCase
         $apiResponse = $this->apiRequest(
             'http://wishthis.online.localhost/api/wishes',
             \CURLOPT_POST,
-            array(
+            [
                 'wish_url'    => 'https://www.amazon.com/Red-SA500-NAS-NAND-Internal/dp/B07YFGG261?012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
                 'wishlist_id' => $this->testWishlistId,
-            )
+            ]
         );
         $this->assertNotFalse($apiResponse);
 

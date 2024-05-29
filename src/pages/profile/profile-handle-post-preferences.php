@@ -24,10 +24,10 @@ if (isset($_POST['user-language'])) {
             'UPDATE `users`
                 SET `language` = :language
               WHERE `id` = :user_id',
-            array(
+            [
                 'language' => $userLocale,
                 'user_id'  => $userId,
-            )
+            ]
         );
 
         $user->setLocale($userLocale);
@@ -61,10 +61,10 @@ if (isset($_POST['user-currency'])) {
             'UPDATE `users`
                 SET `currency` = :currency
               WHERE `id` = :user_id',
-            array(
+            [
                 'currency' => $userCurrency,
                 'user_id'  => $userId,
-            )
+            ]
         );
 
         $user->setCurrency($userCurrency);
@@ -92,17 +92,17 @@ if (isset($_POST['user-channel'])) {
         },
         CHANNELS
     )
-    : array();
+    : [];
 
     if (\in_array($userChannel, $channels, true) && $userChannel !== $user->getChannel()) {
         $database->query(
             'UPDATE `users`
                 SET `channel` = :channel
               WHERE `id` = :user_id',
-            array(
+            [
                 'channel' => $userChannel,
                 'user_id' => $userId,
-            )
+            ]
         );
 
         $user->setChannel($userChannel);
@@ -122,10 +122,10 @@ if (isset($_POST['user-channel'])) {
             'UPDATE `users`
                 SET `channel` = :channel
               WHERE `id` = :user_id',
-            array(
+            [
                 'channel' => null,
                 'user_id' => $userId,
-            )
+            ]
         );
 
         $user->setChannel($userChannel);
@@ -147,10 +147,10 @@ if ($userAdvertisements !== $user->getAdvertisements()) {
         'UPDATE `users`
             SET `advertisements` = :advertisements
             WHERE `id` = :user_id',
-        array(
+        [
             'advertisements' => $userAdvertisements,
             'user_id'        => $userId,
-        )
+        ]
     );
 
     $user->setAdvertisements($userAdvertisements);

@@ -205,7 +205,7 @@ $page->navigation();
 
                                     <select class="ui search dropdown currency" name="user-currency">
                                         <?php
-                                        $currencies = array();
+                                        $currencies = [];
                                         ?>
 
                                         <?php foreach ($locales as $locale) { ?>

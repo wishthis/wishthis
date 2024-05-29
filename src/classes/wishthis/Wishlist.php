@@ -18,9 +18,9 @@ class Wishlist
             'SELECT *
                FROM `wishlists`
               WHERE `wishlists`.`id` = :wishlist_id',
-            array(
+            [
                 'wishlist_id' => $id,
-            )
+            ]
         );
 
         if (false === $wishlistQuery) {
@@ -46,9 +46,9 @@ class Wishlist
             'SELECT *
                FROM `wishlists`
               WHERE `wishlists`.`hash` = :wishlist_hash',
-            array(
+            [
                 'wishlist_hash' => $hash,
-            )
+            ]
         );
 
         $wishlistData = $wishlistQuery->fetch();
@@ -100,7 +100,7 @@ class Wishlist
      */
     private int $notification_sent;
 
-    public array $wishes = array();
+    public array $wishes = [];
 
     public bool $exists = false;
 
@@ -113,7 +113,7 @@ class Wishlist
         $this->notification_sent = $wishlist_data['notification_sent'] ? \strtotime($wishlist_data['notification_sent']) : 0;
     }
 
-    public function getWishes(array $options = array('placeholders' => array())): array
+    public function getWishes(array $options = ['placeholders' => []]): array
     {
         global $database;
 
@@ -173,7 +173,7 @@ class Wishlist
         return $this->wishes;
     }
 
-    public function getCards(array $options = array('placeholders' => array())): string
+    public function getCards(array $options = ['placeholders' => []]): string
     {
         ob_start();
 

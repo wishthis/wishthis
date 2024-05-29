@@ -41,10 +41,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 LEFT OUTER JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
                     WHERE `wishlists_saved`.`user` = :user_id
                     AND `wishlist` = :wishlist_id;',
-                array(
+                [
                     'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
-                    'user_id' => $user->getId()
-                )
+                    'user_id'     => $user->getId(),
+                ]
             )
             ->fetch();
 
@@ -54,9 +54,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 ->query(
                     'DELETE FROM `wishlists_saved`
                            WHERE `wishlist` = :wishlist_id',
-                    array(
-                        'wishlist_id' => Sanitiser::getNumber($_POST['wishlist'])
-                    )
+                    [
+                        'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
+                    ]
                 );
 
                 $response['action'] = 'deleted';
@@ -71,10 +71,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         :user_id,
                         :wishlist_id
                     );',
-                    array(
+                    [
                         'user_id'     => $user->getId(),
                         'wishlist_id' => Sanitiser::getNumber($_POST['wishlist']),
-                    )
+                    ]
                 );
 
                 $response['action'] = 'created';

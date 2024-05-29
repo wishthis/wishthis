@@ -14,7 +14,7 @@ $page->bodyStart();
 $page->navigation();
 
 $posts = Blog::getPosts();
-$user = User::getCurrent();
+$user  = User::getCurrent();
 
 if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
     $page->messages[] = Page::warning(

@@ -26,26 +26,26 @@ class Wish
     public const STATUS_FULFILLED         = 'fulfilled';
 
     public static array $priorities;
-    public static array $affiliates = array(
+    public static array $affiliates = [
         'amazon.de' => 'grandel0b-21',
-    );
+    ];
 
     public static function initialize()
     {
-        self::$priorities = array(
-            '1' => array(
+        self::$priorities = [
+            '1' => [
                 'name'  => __('Unsure about it'),
                 'color' => 'teal',
-            ),
-            '2' => array(
+            ],
+            '2' => [
                 'name'  => __('Nice to have'),
                 'color' => 'olive',
-            ),
-            '3' => array(
+            ],
+            '3' => [
                 'name'  => __('Would love it'),
                 'color' => 'yellow',
-            ),
-        );
+            ],
+        ];
     }
 
     public static function getFromId(int $wishId): self|false
@@ -57,9 +57,9 @@ class Wish
                  FROM `wishes`
             LEFT JOIN `products` ON `wishes`.`id` = `products`.`wish`
                 WHERE `wishes`.`id` = :wish_id',
-            array(
+            [
                 'wish_id' => $wishId,
-            )
+            ]
         );
 
         if (false === $wishQuery) {
@@ -79,7 +79,7 @@ class Wish
         if (isset($urlParts['query'])) {
             \parse_str($urlParts['query'], $urlParameters);
         } else {
-            $urlParameters = array();
+            $urlParameters = [];
         }
 
         foreach (self::$affiliates as $host => $tagId) {
@@ -102,7 +102,7 @@ class Wish
         if (isset($urlParts['query'])) {
             \parse_str($urlParts['query'], $urlParameters);
         } else {
-            $urlParameters = array();
+            $urlParameters = [];
         }
 
         foreach (self::$affiliates as $host => $tagId) {
@@ -439,7 +439,7 @@ class Wish
 
     public function serialise(): array
     {
-        $wishArray = array(
+        $wishArray = [
             'id'             => $this->id,
             'wishlist'       => $this->wishlist,
             'title'          => $this->title,
@@ -451,7 +451,7 @@ class Wish
             'is_purchasable' => $this->is_purchasable,
             'edited'         => $this->edited,
             'price'          => $this->price,
-        );
+        ];
 
         return $wishArray;
     }

@@ -16,17 +16,17 @@ $page = new Page(__FILE__, __('Update'), 100);
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $versions_directory = ROOT . '/src/update';
     $versions_contents  = scandir($versions_directory);
-    $versions           = array();
+    $versions           = [];
 
     foreach ($versions_contents as $filename) {
         $filepath = $versions_directory . '/' . $filename;
         $pathinfo = pathinfo($filepath);
 
         if ('sql' === $pathinfo['extension']) {
-            $versions[] = array(
+            $versions[] = [
                 'version'  => str_replace('-', '.', $pathinfo['filename']),
                 'filepath' => $filepath,
-            );
+            ];
         }
     }
 

@@ -33,7 +33,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
     $isHuman     = false;
     $planet      = strtolower(Sanitiser::getTitle($_POST['planet']));
     $planetName  = strtoupper($planet[0]) . substr($planet, 1);
-    $planets     = array(
+    $planets     = [
         strtolower(__('Mercury')),
         strtolower(__('Venus')),
         strtolower(__('Earth')),
@@ -42,11 +42,11 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
         strtolower(__('Saturn')),
         strtolower(__('Uranus')),
         strtolower(__('Neptune')),
-    );
-    $not_planets = array(
+    ];
+    $not_planets = [
         strtolower(__('Pluto')),
         strtolower(__('Sun')),
-    );
+    ];
 
     if (in_array($planet, array_merge($planets, $not_planets))) {
         $isHuman = true;
@@ -75,10 +75,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                    FROM `users`
                   WHERE `email`                = :user_email
                     AND `password_reset_token` = :user_password_reset_token',
-                array(
+                [
                     'user_email'                => $user_email,
                     'user_password_reset_token' => $user_token,
-                )
+                ]
             );
 
             if (false !== $userQuery) {
@@ -91,10 +91,10 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         'UPDATE `users`
                             SET `password` = :user_password
                           WHERE `id`       = :user_id;',
-                        array(
+                        [
                             'user_password' => User::passwordToHash($_POST['password']),
                             'user_id'       => $user->getId(),
-                        )
+                        ]
                     );
 
                     $page->messages[] = Page::success(
@@ -115,7 +115,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                 $locale_user = $locale_browser;
             }
 
-            if(defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
+            if (defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION) {
                 \http_response_code(403);
 
                 die(__('The owner of this site has disabled user registrations.'));
@@ -140,11 +140,11 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                         100,
                         :user_language
                     );',
-                    array(
+                    [
                         'user_email'    => $user_email,
                         'user_password' => User::passwordToHash($_POST['password']),
                         'user_language' => $locale_user,
-                    )
+                    ]
                 );
                 $userRegistered = true;
             } else {
@@ -164,11 +164,11 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                             :user_password,
                             :user_language
                         );',
-                        array(
+                        [
                             'user_email'    => $user_email,
                             'user_password' => User::passwordToHash($_POST['password']),
                             'user_language' => $locale_user,
-                        )
+                        ]
                     );
                     $userRegistered = true;
 
@@ -196,11 +196,11 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet'])) {
                     :wishlist_name,
                     :wishlist_hash
                 );',
-                array(
+                [
                     'wishlist_user_id' => $user_id,
                     'wishlist_name'    => $wishlist_name,
                     'wishlist_hash'    => $wishlist_hash,
-                )
+                ]
             );
         }
     } else {

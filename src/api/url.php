@@ -21,11 +21,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $url_old = base64_decode($_GET['url']);
             $url     = new URL($url_old);
 
-            $response['data'] = array(
+            $response['data'] = [
                 'url'           => $url_old,
                 'url_pretty'    => $url->getPretty(),
                 'url_is_pretty' => $url->isPretty(),
-            );
+            ];
         }
         break;
 }

@@ -74,7 +74,7 @@ class Embed extends Cache
             }
 
             if ($generateCache) {
-                $ch_options = array(
+                $ch_options = [
                     CURLOPT_AUTOREFERER    => true,
                     CURLOPT_CONNECTTIMEOUT => 30,
                     CURLOPT_FOLLOWLOCATION => true,
@@ -84,7 +84,7 @@ class Embed extends Cache
                     CURLOPT_SSL_VERIFYPEER => false,
                     CURLOPT_TIMEOUT        => 30,
                     CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
-                );
+                ];
 
                 /** Favicon */
                 if (str_contains(pathinfo($info->favicon, PATHINFO_EXTENSION), 'ico')) {

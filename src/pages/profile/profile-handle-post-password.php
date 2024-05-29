@@ -19,10 +19,10 @@ if (
         'UPDATE `users`
             SET `password` = :password
           WHERE `id` = :user_id',
-        array(
+        [
             'password' => $password,
             'user_id'  => $userId,
-        )
+        ]
     );
 
     $loginRequired = true;

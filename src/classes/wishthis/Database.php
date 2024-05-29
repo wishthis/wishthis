@@ -33,14 +33,14 @@ class Database
     public function connect(): void
     {
         $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8mb4';
-        $options = array('placeholders' => array());
+        $options = ['placeholders' => []];
 
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
     }
 
-    public function query(string $query, array $placeholders = array()): \PDOStatement|false
+    public function query(string $query, array $placeholders = []): \PDOStatement|false
     {
-        $statement = $this->pdo->prepare($query, array(\PDO::FETCH_ASSOC));
+        $statement = $this->pdo->prepare($query, [\PDO::FETCH_ASSOC]);
 
         foreach ($placeholders as $name => $value) {
             switch (gettype($value)) {
@@ -103,10 +103,10 @@ class Database
                FROM `INFORMATION_SCHEMA`.`COLUMNS`
               WHERE `TABLE_NAME`  = :table_name
                 AND `COLUMN_NAME` = :column_name',
-            array(
+            [
                 'table_name'  => $table_to_check,
                 'column_name' => $column_to_check,
-            )
+            ]
         )
         ->fetch();
         $exists = false !== $result;

@@ -56,10 +56,10 @@ class Email
         $to      = $this->to;
         $subject = $this->subject;
         $message = $html;
-        $headers = array(
+        $headers = [
             'From'         => 'no-reply@' . $_SERVER['HTTP_HOST'],
             'Content-type' => 'text/html; charset=utf-8',
-        );
+        ];
 
         $success = mail($to, $subject, $message, $headers);
 

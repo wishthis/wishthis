@@ -45,8 +45,8 @@ class Page
     {
         ob_start();
 
-        $containerClasses = array('ui', 'message', $class);
-        $iconClasses      = array('ui', 'icon');
+        $containerClasses = ['ui', 'message', $class];
+        $iconClasses      = ['ui', 'icon'];
 
         switch ($type) {
             case 'error':
@@ -120,12 +120,12 @@ class Page
      */
     private string $name;
     public string $language = DEFAULT_LOCALE;
-    public array $messages  = array();
+    public array $messages  = [];
     public string $link_preview;
     public string $description;
 
-    public array $stylesheets = array();
-    public array $scripts     = array();
+    public array $stylesheets = [];
+    public array $scripts     = [];
 
     /**
      * __construct
@@ -185,12 +185,12 @@ class Page
         /**
          * Update
          */
-        $ignoreUpdateRedirect = array(
+        $ignoreUpdateRedirect = [
             'maintenance',
             'login',
             'logout',
             'update',
-        );
+        ];
 
         if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
             if (100 === $user->getPower()) {
@@ -251,20 +251,20 @@ class Page
         /**
          * Stylesheets
          */
-        $this->stylesheets = array(
+        $this->stylesheets = [
             'fomantic-ui' => 'semantic/dist/semantic.min.css',
             'default'     => 'src/assets/css/default.css',
             'dark'        => 'src/assets/css/default/dark.css',
-        );
+        ];
 
         /**
          * Scripts
          */
-        $this->scripts = array(
+        $this->scripts = [
             'j-query'     => 'node_modules/jquery/dist/jquery.min.js',
             'fomantic-ui' => 'semantic/dist/semantic.min.js',
             'default'     => 'src/assets/js/default.js',
-        );
+        ];
 
         /** html2canvas */
         $CrawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
@@ -398,12 +398,12 @@ class Page
             }
 
             /** AdSense */
-            $wishthis_hosts = array(
+            $wishthis_hosts = [
                 'wishthis.localhost',
                 'wishthis.online',
                 'rc.wishthis.online',
                 'dev.wishthis.online',
-            );
+            ];
             $CrawlerDetect  = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
 
             if (
@@ -443,100 +443,100 @@ class Page
         $login     = Navigation::Login->value;
         $register  = Navigation::Register->value;
 
-        $pages = array(
-            $blog    => array(
+        $pages = [
+            $blog    => [
                 'text'      => __('Blog'),
                 'alignment' => 'left',
-                'items'     => array(
-                    array(
+                'items'     => [
+                    [
                         'text' => __('Blog'),
                         'url'  => self::PAGE_BLOG,
                         'icon' => 'rss',
-                    ),
-                ),
-            ),
-            $system  => array(
+                    ],
+                ],
+            ],
+            $system  => [
                 'text'      => __('System'),
                 'icon'      => 'wrench',
                 'alignment' => 'right',
-                'items'     => array(),
-            ),
-            $account => array(
+                'items'     => [],
+            ],
+            $account => [
                 'text'      => __('Account'),
                 'icon'      => 'user circle',
                 'alignment' => 'right',
-                'items'     => array(),
-            ),
-        );
+                'items'     => [],
+            ],
+        ];
 
         if ($user->isLoggedIn()) {
-            $pages[$wishlists] = array(
+            $pages[$wishlists] = [
                 'text'      => __('Wishlists'),
                 'alignment' => 'left',
-                'items'     => array(
-                    array(
+                'items'     => [
+                    [
                         'text' => __('My lists'),
                         'url'  => Page::PAGE_WISHLISTS,
                         'icon' => 'list',
-                    ),
-                    array(
+                    ],
+                    [
                         'text' => __('Remembered lists'),
                         'url'  => Page::PAGE_WISHLISTS_SAVED,
                         'icon' => 'heart',
-                    ),
-                ),
-            );
+                    ],
+                ],
+            ];
         }
 
         if ($user->isLoggedIn()) {
-            $pages[$account]['items'][] = array(
+            $pages[$account]['items'][] = [
                 'text' => __('Profile'),
                 'url'  => Page::PAGE_PROFILE,
                 'icon' => 'user circle alternate',
-            );
+            ];
             if (100 === $user->getPower()) {
-                $pages[$account]['items'][] = array(
+                $pages[$account]['items'][] = [
                     'text' => __('Login as'),
                     'url'  => Page::PAGE_LOGIN_AS,
                     'icon' => 'sign out alternate',
-                );
+                ];
             }
-            $pages[$account]['items'][] = array(
+            $pages[$account]['items'][] = [
                 'text' => __('Logout'),
                 'url'  => Page::PAGE_LOGOUT,
                 'icon' => 'sign out alternate',
-            );
+            ];
         } else {
-            $pages[$login]    = array(
+            $pages[$login]    = [
                 'text'      => __('Login'),
                 'alignment' => 'right',
-                'items'     => array(
-                    array(
+                'items'     => [
+                    [
                         'text' => __('Login'),
                         'url'  => Page::PAGE_LOGIN,
                         'icon' => 'sign in alternate',
-                    ),
-                ),
-            );
-            $pages[$register] = array(
+                    ],
+                ],
+            ];
+            $pages[$register] = [
                 'text'      => __('Register'),
                 'alignment' => 'right',
-                'items'     => array(
-                    array(
+                'items'     => [
+                    [
                         'text' => __('Register'),
                         'url'  => Page::PAGE_REGISTER,
                         'icon' => 'user plus alternate',
-                    ),
-                ),
-            );
+                    ],
+                ],
+            ];
         }
 
         if (100 === $user->getPower()) {
-            $pages[$system]['items'][] = array(
+            $pages[$system]['items'][] = [
                 'text' => __('Settings'),
                 'url'  => Page::PAGE_SETTINGS,
                 'icon' => 'cog',
-            );
+            ];
         }
 
         ksort($pages);

@@ -32,9 +32,9 @@ class API
         if (file_exists($this->module_path)) {
             ob_start();
 
-            $response = array(
+            $response = [
                 'success' => false,
-            );
+            ];
 
             require $this->module_path;
 

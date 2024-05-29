@@ -48,9 +48,9 @@ $user = User::getCurrent();
                                     WHERE `users`.`id` = :user_id
                                  ORDER BY `wishes`.`edited` DESC
                                     LIMIT 1;',
-                                array(
+                                [
                                     'user_id' => $user->getId(),
-                                )
+                                ]
                             );
 
                             if (false !== $lastWishlistQuery && 1 === $lastWishlistQuery->rowCount()) {

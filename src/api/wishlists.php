@@ -32,16 +32,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     :wishlist_name,
                     :wishlist_hash
                 );',
-                array(
+                [
                     'user_id'       => $user_id,
                     'wishlist_name' => $wishlist_name,
                     'wishlist_hash' => $wishlist_hash,
-                )
+                ]
             );
 
-            $response['data'] = array(
+            $response['data'] = [
                 'lastInsertId' => $database->lastInsertId(),
-            );
+            ];
         } elseif (isset($_POST['wishlist-id'])) {
             /**
              * Request more wishes
@@ -55,9 +55,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                    FROM `wishlists`
                   WHERE `id` = :wishlist_id
                     AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);',
-                array(
+                [
                     'wishlist_id' => $wishlist_id,
-                )
+                ]
             );
 
             $wishlist = $wishlistQuery->fetch();
@@ -90,9 +90,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                         'UPDATE `wishlists`
                             SET `notification_sent` = CURRENT_TIMESTAMP
                           WHERE `id` = :wishlist_id;',
-                        array(
+                        [
                             'wishlist_id' => $wishlist['id'],
-                        )
+                        ]
                     );
                 }
             }
@@ -119,9 +119,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'SELECT `id`
                    FROM `wishlists`
                   WHERE `user` = :wishlist_user_id',
-                array(
+                [
                     'wishlist_user_id' => $user->getId(),
-                )
+                ]
             );
 
             if (false === $wishlist || false === $userWishlistsQuery) {
@@ -147,14 +147,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $priorityNone = 0;
             $priority     = (int) $_GET['priority'] ?? $priorityAll;
 
-            $options = array(
+            $options = [
                 'style'        => $_GET['style'],
-                'placeholders' => array(),
-            );
-            $where   = array(
+                'placeholders' => [],
+            ];
+            $where   = [
                 'wishlist' => '`wishlist` = ' . $wishlist->getId(),
                 'priority' => '`priority` = ' . $priority,
-            );
+            ];
 
             if ($priorityAll === $priority) {
                 unset($where['priority']);
@@ -174,14 +174,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $priorityNone = 0;
             $priority     = (int) $_GET['priority'] ?? $priorityAll;
 
-            $options = array(
+            $options = [
                 'style'        => $_GET['style'],
-                'placeholders' => array(),
-            );
-            $where   = array(
+                'placeholders' => [],
+            ];
+            $where   = [
                 'wishlist' => '`wishlist` = ' . $wishlist->getId(),
                 'priority' => '`priority` = ' . $priority,
-            );
+            ];
 
             if ($priorityAll === $priority) {
                 unset($where['priority']);
@@ -195,24 +195,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $response['results'] = $wishlist->getCards($options);
         } elseif ($getOwnWishlists) {
-            $wishlists      = array();
-            $wishlistsItems = array();
+            $wishlists      = [];
+            $wishlistsItems = [];
 
             foreach ($user->getWishlists() as $wishlistData) {
                 $wishlist     = new Wishlist($wishlistData);
                 $wishlistId   = $wishlist->getId();
                 $wishlistName = $wishlist->getName();
 
-                $wishlists[]      = array(
+                $wishlists[]      = [
                     'id'     => $wishlistId,
                     'hash'   => $wishlist->getHash(),
                     'userId' => $wishlist->getUserId(),
-                );
-                $wishlistsItems[] = array(
+                ];
+                $wishlistsItems[] = [
                     'name'  => $wishlistName,
                     'value' => $wishlistId,
                     'text'  => $wishlistName,
-                );
+                ];
             }
 
             $response['wishlists']      = $wishlists;
@@ -236,10 +236,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
             'UPDATE `wishlists`
                 SET `name` = :wishlist_name
               WHERE `id`   = :wishlist_id',
-            array(
+            [
                 'wishlist_name' => Sanitiser::getTitle($_PUT['wishlist_title']),
                 'wishlist_id'   => Sanitiser::getNumber($_PUT['wishlist_id']),
-            )
+            ]
         );
 
         $response['success'] = true;
@@ -259,9 +259,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $database->query(
             'DELETE FROM `wishlists`
                    WHERE `id` = :wishlist_id;',
-            array(
+            [
                 'wishlist_id' => Sanitiser::getNumber($_DELETE['wishlist_id']),
-            )
+            ]
         );
 
         $response['success'] = true;

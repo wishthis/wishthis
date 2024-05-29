@@ -36,10 +36,10 @@ final class LogInTest extends TestCase
             'REPLACE INTO `users`
             (`email`, `password`) VALUES
             (:userEmail, :userPassword)',
-            array(
+            [
                 'userEmail'    => $userEmail,
                 'userPassword' => $userPassword,
-            )
+            ]
         );
 
         $userLoginSuccessful = $user->logIn($userEmail, $userPassword);

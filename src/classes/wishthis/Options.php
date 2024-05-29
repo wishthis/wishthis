@@ -30,9 +30,9 @@ class Options
                 'SELECT *
                    FROM `options`
                   WHERE `key` = :option_key',
-                array(
+                [
                     'option_key' => Sanitiser::getOption($key),
-                )
+                ]
             )
             ->fetch();
 
@@ -51,9 +51,9 @@ class Options
             'SELECT *
                FROM `options`
               WHERE `key` = :option_key;',
-            array(
+            [
                 'option_key' => $key,
-            )
+            ]
         )
         ->rowCount();
 
@@ -62,10 +62,10 @@ class Options
                 'UPDATE `options`
                     SET `value` = :option_value
                   WHERE `key`   = :option_key;',
-                array(
+                [
                     'option_value' => $value,
                     'option_key'   => $key,
-                )
+                ]
             );
         } else {
             $this->database->query(
@@ -73,10 +73,10 @@ class Options
                     (`key`, `value`)
                 VALUES
                     (:option_key, :option_value);',
-                array(
+                [
                     'option_key'   => $key,
                     'option_value' => $value,
-                )
+                ]
             );
         }
     }

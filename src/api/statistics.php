@@ -21,20 +21,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if (isset($_GET['table'])) {
             if ('all' === $_GET['table']) {
-                $tables = array(
+                $tables = [
                     'wishes',
                     'wishlists',
                     'users',
-                );
+                ];
 
-                $response['data'] = array();
+                $response['data'] = [];
 
                 foreach ($tables as $table) {
                     /** Get count */
                     $countQuery = new Cache\Query(
                         'SELECT COUNT(`id`) AS "count"
                            FROM `' . $table . '`;',
-                        array(),
+                        [],
                         Duration::DAY
                     );
 

@@ -46,9 +46,9 @@ if (isset($_POST['reset'], $_POST['email'])) {
         'SELECT *
            FROM `users`
           WHERE `email` = :user_email;',
-        array(
+        [
             'user_email' => Sanitiser::getEmail($_POST['email']),
-        )
+        ]
     );
 
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
@@ -62,10 +62,10 @@ if (isset($_POST['reset'], $_POST['email'])) {
             SET `password_reset_token`       = :user_password_reset_token,
                 `password_reset_valid_until` = :user_reset_valid_until
           WHERE `id` = ' . $user->getId() . ';',
-        array(
+        [
             'user_password_reset_token' => $token,
             'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),
-        )
+        ]
     );
 
     $emailReset = new Email($_POST['email'], __('Password reset link', null, $user), 'default', 'password-reset');

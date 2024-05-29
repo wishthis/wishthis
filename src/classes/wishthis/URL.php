@@ -19,7 +19,7 @@ class URL
      */
     public static function getResponseCode(string $url): int
     {
-        $ch_options = array(
+        $ch_options = [
             CURLOPT_AUTOREFERER    => true,
             CURLOPT_CONNECTTIMEOUT => 30,
             CURLOPT_FOLLOWLOCATION => true,
@@ -29,7 +29,7 @@ class URL
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_TIMEOUT        => 30,
             CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
-        );
+        ];
 
         $ch = curl_init($url);
         curl_setopt_array($ch, $ch_options);
@@ -159,7 +159,7 @@ class URL
                             },
                             explode('&', parse_url($target, PHP_URL_QUERY))
                         );
-                        $flags       = explode(',', substr($parts[3], 1, -1)) ?? array();
+                        $flags       = explode(',', substr($parts[3], 1, -1)) ?? [];
 
                         \parse_str(\parse_url($target, PHP_URL_QUERY), $parameters);
                         /** */
@@ -185,7 +185,7 @@ class URL
                         }
 
                         $match = preg_match(
-                            '/^' . str_replace(array('/'), array('\/'), $rewriteRule) . '$/',
+                            '/^' . str_replace(['/'], ['\/'], $rewriteRule) . '$/',
                             $potential_url
                         );
 
@@ -212,14 +212,14 @@ class URL
     public function getGET(): array
     {
         $queryString = $this->url;
-        $GET         = array();
+        $GET         = [];
 
         if ($this->isPretty()) {
             $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
         }
 
         if (null === $queryString) {
-            return array();
+            return [];
         }
 
         if ('/?' === substr($queryString, 0, 2)) {

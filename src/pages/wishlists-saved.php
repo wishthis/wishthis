@@ -16,7 +16,7 @@ $page->navigation();
 $user = User::getCurrent();
 
 $wishlists         = $user->getSavedWishlists();
-$wishlists_by_user = array();
+$wishlists_by_user = [];
 
 foreach ($wishlists as $wishlist_saved) {
     if (!isset($wishlist_saved['user'])) {

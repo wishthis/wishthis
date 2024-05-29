@@ -19,9 +19,9 @@ if (isset($_POST['email'])) {
         'SELECT *
            FROM `users`
           WHERE `email` = :user_email;',
-        array(
+        [
             'user_email' => $email,
-        )
+        ]
     );
 
     $success = false !== $userQuery;

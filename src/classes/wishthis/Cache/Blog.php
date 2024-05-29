@@ -30,7 +30,7 @@ class Blog extends Cache
     {
         $filepath = $this->getFilepath();
 
-        $response = $this->exists() ? json_decode(file_get_contents($filepath)) : array();
+        $response = $this->exists() ? json_decode(file_get_contents($filepath)) : [];
 
         if (true === $this->generateCache() || empty($response)) {
             $postsRemote = file_get_contents($this->url);

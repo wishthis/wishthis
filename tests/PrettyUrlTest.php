@@ -13,20 +13,20 @@ final class PrettyUrlTest extends TestCase
     {
         \define('ROOT', \dirname(__DIR__));
 
-        $requestUris = array(
+        $requestUris = [
             '//api/database-test',
             '/api/database-test',
             'api/database-test',
             'http://wishthis.online.localhost/index.php/api/database-test',
             'http://wishthis.online.localhost/index.php//api/database-test',
-        );
+        ];
 
         require __DIR__ . '/../src/classes/wishthis/URL.php';
 
-        $expected_GET = array(
+        $expected_GET = [
             'page'   => 'api',
             'module' => 'database-test',
-        );
+        ];
 
         foreach ($requestUris as $requestUri) {
             $url = new URL($requestUri);

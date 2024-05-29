@@ -17,10 +17,10 @@ if (isset($_POST['user-name-first'])) {
             'UPDATE `users`
                 SET `name_first` = :name_first
               WHERE `id` = :user_id',
-            array(
+            [
                 'name_first' => $nameFirst,
                 'user_id'    => $userId,
-            )
+            ]
         );
 
         $user->setNameFirst($nameFirst);
@@ -47,10 +47,10 @@ if (isset($_POST['user-name-last'])) {
             'UPDATE `users`
                 SET `name_last` = :name_last
               WHERE `id` = :user_id',
-            array(
+            [
                 'name_last' => $nameLast,
                 'user_id'   => $userId,
-            )
+            ]
         );
 
         $user->setNameLast($nameLast);
@@ -77,10 +77,10 @@ if (isset($_POST['user-name-nick'])) {
             'UPDATE `users`
                 SET `name_nick` = :name_nick
               WHERE `id` = :user_id',
-            array(
+            [
                 'name_nick' => $nameNick,
                 'user_id'   => $userId,
-            )
+            ]
         );
 
         $user->setNameNick($nameNick);
@@ -107,10 +107,10 @@ if (isset($_POST['user-email'])) {
             'UPDATE `users`
                 SET `email` = :email
               WHERE `id` = :user_id',
-            array(
+            [
                 'email'   => $email,
                 'user_id' => $userId,
-            )
+            ]
         );
 
         $user->setEmail($email);
@@ -140,10 +140,10 @@ if (isset($_POST['user-birthdate'])) {
                 'UPDATE `users`
                     SET `birthdate` = :birthdate
                   WHERE `id` = :user_id',
-                array(
+                [
                     'birthdate' => $birthdate,
                     'user_id'   => $userId,
-                )
+                ]
             );
 
             $user->setBirthdate($birthdate);

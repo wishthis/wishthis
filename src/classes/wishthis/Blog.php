@@ -52,11 +52,11 @@ class Blog
             $next     = $psots[$i + 1] ?? null;
 
             if ($slug === $current->slug) {
-                return array(
+                return [
                     'previous' => $previous,
                     'current'  => $current,
                     'next'     => $next,
-                );
+                ];
             }
         }
 
@@ -116,7 +116,7 @@ class Blog
     public static function getCategoriesHTML(array $categoryIDs): string
     {
         $categoriesHTML = '';
-        $categoriesName = array();
+        $categoriesName = [];
 
         foreach ($categoryIDs as $categoryID) {
             $category         = self::get(sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
