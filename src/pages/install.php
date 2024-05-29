@@ -94,6 +94,14 @@ switch ($step) {
      * Check prerequisites
      */
     case 2:
+        $directoryCache = ROOT . '/src/cache';
+
+        /**
+         * Attempt to create the cache directory, since it doesn't exist by
+         * default.
+         */
+        @\mkdir($directoryCache);
+
         $prerequisites = [
             [
                 'filename'  => __('PHP Version >= 8.1'),
@@ -117,13 +125,13 @@ switch ($step) {
             [
                 'filename'  => '/src/cache',
                 'icon'      => 'folder',
-                'condition' => \file_exists(ROOT . '/src/cache') && \is_dir(ROOT . '/src/cache'),
+                'condition' => \file_exists($directoryCache) && \is_dir($directoryCache),
                 'label'     => __('Exists'),
             ],
             [
                 'filename'  => '/src/cache',
                 'icon'      => 'folder',
-                'condition' => \is_writeable(ROOT . '/src/cache'),
+                'condition' => \is_writeable($directoryCache),
                 'label'     => __('Writeable'),
             ],
 
