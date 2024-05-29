@@ -355,6 +355,7 @@ switch ($step) {
         /**
          * Products
          */
+        $database->query('DROP TABLE IF EXISTS `products`;');
         $database->query(
             'CREATE TABLE `products` (
                 `wish`  INT   NOT NULL PRIMARY KEY,
