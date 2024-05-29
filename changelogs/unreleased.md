@@ -28,3 +28,8 @@
 -   Dependencies have been updated
 -   Fixed missing authentication when deleting wish
 -   Fixed being able to add wishes to arbitrary lists
+-   Various security fixes and improvements
+
+    If you are self-hosting, please update as soon as possible.
+
+    Thank you [Trup3s](https://github.com/wishthis/wishthis/commits?author=Trup3s) from the Technical University of Darmstad!
