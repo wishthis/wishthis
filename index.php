@@ -17,7 +17,10 @@ define('DEFAULT_LOCALE', 'en_GB');
  */
 require 'vendor/autoload.php';
 
-$include = new \Grandel\IncludeDirectory(__DIR__ . '/src/functions');
+require_once ROOT . '/src/functions/getCookieDomain.php';
+require_once ROOT . '/src/functions/gettext.php';
+require_once ROOT . '/src/functions/getWishlistNameSuggestion.php';
+require_once ROOT . '/src/functions/redirect.php';
 
 spl_autoload_register(
     function (string $absoluteNamespace) {
