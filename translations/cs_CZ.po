@@ -127,7 +127,7 @@ msgstr "Ne, ponechat"
 
 #: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "Opravdu byste chtěli toto přání smazat? Bude navždy pryč."
+msgstr "Opravdu chcete odstranit toto přání? Bude navždy pryč."
 
 #: assets/js/inline.js.php:76
 msgid "Passwords must match."
