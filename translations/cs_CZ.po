@@ -24,7 +24,7 @@ msgstr ""
 #: api/blog.php:39
 #, php-format
 msgid "Posted on %s"
-msgstr "Publikováno dne %s"
+msgstr "Publikováno %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
