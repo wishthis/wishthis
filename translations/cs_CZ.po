@@ -119,7 +119,7 @@ msgstr "Opravdu chcete odstranit seznam přání %s?"
 
 #: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
-msgstr "Ano, vymazat"
+msgstr "Ano, odstranit"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
