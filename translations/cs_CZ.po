@@ -223,7 +223,7 @@ msgstr "{name} musí být platné číslo platební karty"
 
 #: assets/js/inline.js.php:102
 msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} musí mít alespoň {ruleValue} možností."
+msgstr "{name} musí mít alespoň {ruleValue} možností"
 
 #: assets/js/inline.js.php:103
 msgid "{name} must have exactly {ruleValue} choices"
