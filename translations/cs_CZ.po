@@ -239,7 +239,7 @@ msgstr "Seznam přání byl úspěšně přejmenován."
 
 #: assets/js/inline.js.php:111
 msgid "Wishlist successfully deleted."
-msgstr "Seznam přání byl úspěšně smazán."
+msgstr "Seznam přání byl úspěšně odstraněn."
 
 #: assets/js/inline.js.php:115
 msgid "Wish successfully created."
