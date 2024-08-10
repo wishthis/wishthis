@@ -28,7 +28,7 @@ msgstr "Publikováno %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "Wish request"
+msgstr "Žádost o přání"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
