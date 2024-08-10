@@ -219,7 +219,7 @@ msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}"
 
 #: assets/js/inline.js.php:101
 msgid "{name} must be a valid credit card number"
-msgstr "{name} musí být platné číslo kreditní karty."
+msgstr "{name} musí být platné číslo platební karty"
 
 #: assets/js/inline.js.php:102
 msgid "{name} must have at least {ruleValue} choices"
