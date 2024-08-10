@@ -167,7 +167,7 @@ msgstr "{name} musí být nastaveno na číslo"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} musí být \"{ruleValue}\"."
+msgstr "{name} musí být \"{ruleValue}\""
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
