@@ -207,11 +207,11 @@ msgstr "{name} musí být přesně {ruleValue} znaků"
 
 #: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} nesmí být delší než {ruleValue} znaků."
+msgstr "{name} nesmí být delší než {ruleValue} znaků"
 
 #: assets/js/inline.js.php:99
 msgid "{name} must match {ruleValue} field"
-msgstr "{name} musí odpovídat poli {ruleValue}."
+msgstr "{name} musí odpovídat poli {ruleValue}"
 
 #: assets/js/inline.js.php:100
 msgid "{name} must have a different value than {ruleValue} field"
