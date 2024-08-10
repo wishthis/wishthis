@@ -110,7 +110,7 @@ msgstr "Přesto zobrazit seznam přání"
 
 #: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
-msgstr "Opravdu smazat?"
+msgstr "Opravdu odstranit?"
 
 #: assets/js/inline.js.php:58
 #, php-format
