@@ -187,7 +187,7 @@ msgstr "{name} nemůže obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
