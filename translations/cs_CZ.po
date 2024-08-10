@@ -115,7 +115,7 @@ msgstr "Opravdu odstranit?"
 #: assets/js/inline.js.php:58
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
-msgstr "Opravdu chcete smazat seznam přání %s?"
+msgstr "Opravdu chcete odstranit seznam přání %s?"
 
 #: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
