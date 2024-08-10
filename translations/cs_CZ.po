@@ -203,7 +203,7 @@ msgstr "{name} musí mít alespoň {ruleValue} znaků"
 
 #: assets/js/inline.js.php:97
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} musí obsahovat přesně {ruleValue} znaků."
+msgstr "{name} musí být přesně {ruleValue} znaků"
 
 #: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
