@@ -171,11 +171,11 @@ msgstr "{name} musí být \"{ruleValue}\""
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} musí být přesně \"{ruleValue}\"."
+msgstr "{name} musí být přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} nelze nastavit na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
