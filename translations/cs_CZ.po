@@ -163,7 +163,7 @@ msgstr "{name} musí být desetinné číslo"
 
 #: assets/js/inline.js.php:86
 msgid "{name} must be set to a number"
-msgstr "{name} musí být nastaveno na číslo."
+msgstr "{name} musí být nastaveno na číslo"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
