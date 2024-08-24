@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Diff;
 
 use function array_pop;
+use function assert;
 use function count;
 use function max;
 use function preg_match;
@@ -46,6 +47,9 @@ final class Parser
                     $collected = [];
                 }
 
+                assert(!empty($fromMatch['file']));
+                assert(!empty($toMatch['file']));
+
                 $diff = new Diff($fromMatch['file'], $toMatch['file']);
 
                 $i++;
@@ -79,7 +83,7 @@ final class Parser
                     (int) $match['start'],
                     isset($match['startrange']) ? max(0, (int) $match['startrange']) : 1,
                     (int) $match['end'],
-                    isset($match['endrange']) ? max(0, (int) $match['endrange']) : 1
+                    isset($match['endrange']) ? max(0, (int) $match['endrange']) : 1,
                 );
 
                 $chunks[]  = $chunk;

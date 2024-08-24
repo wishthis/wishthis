@@ -2,6 +2,7 @@
 ^Aether
 ^Amazon Simple Notification Service Agent$
 ^Amazon-Route53-Health-Check-Service
+^Amazon CloudFront
 ^b0t$
 ^bluefish 
 ^Calypso v\/
@@ -139,7 +140,6 @@ axios\/
 a\.pr-cy\.ru
 B-l-i-t-z-B-O-T
 Backlink-Ceck
-backlink-check
 BacklinkHttpStatus
 BackStreet
 BackupLand
@@ -188,7 +188,6 @@ Braintree-Webhooks
 Branch Metrics API
 Branch-Passthrough
 Brandprotect
-BrandVerity
 Brandwatch
 Brodie\/
 Browsershots
@@ -355,6 +354,7 @@ Express WebPictures
 Extreme Picture Finder
 EyeNetIE
 ezooms
+facebookcatalog
 facebookexternalhit
 facebookexternalua
 facebookplatform
@@ -414,6 +414,7 @@ G-i-g-a-b-o-t
 g00g1e\.net
 ganarvisitas
 gdnplus\.com
+GeedoProductSearch
 geek-tools
 Genieo
 GentleSource
@@ -455,8 +456,7 @@ Google Page Speed Insights
 Google PP Default
 Google Search Console
 Google Web Preview
-Google-Ads-Creatives-Assistant
-Google-Ads-Overview
+Google-Ads
 Google-Adwords
 Google-Apps-Script
 Google-Calendar-Importer
@@ -476,6 +476,7 @@ google-xrawler
 Google-Youtube-Links
 GoogleDocs
 GoogleHC\/
+GoogleOther
 GoogleProber
 GoogleProducer
 GoogleSites
@@ -672,6 +673,7 @@ limber\.io
 Link Valet
 LinkAlarm\/
 LinkAnalyser
+link-check
 linkCheck
 linkdex
 LinkExaminer
@@ -692,6 +694,7 @@ LongURL API
 longurl-r-package
 looid\.com
 looksystems\.net
+lscache_runner
 ltx71
 lua-resty-http
 Lucee \(CFML Engine\)
@@ -737,6 +740,7 @@ Microsoft Outlook
 Microsoft Windows Network Diagnostics
 Microsoft-WebDAV-MiniRedir
 Microsoft\.Data\.Mashup
+MicrosoftPreview
 MIDown tool
 MIIxpc
 Mindjet
@@ -780,6 +784,7 @@ NameFo\.com
 Nameprotect
 nationalarchives
 Navroad
+nbertaupete95
 NearSite
 Needle
 Nessus
@@ -934,6 +939,7 @@ Priceonomics Analysis Engine
 PrintFriendly
 PritTorrent
 Prlog
+probely\.com
 probethenet
 Project ?25499
 Project-Resonance
@@ -945,6 +951,7 @@ PRTG Network Monitor
 pshtt, https scanning
 PTST 
 PTST\/[0-9]+
+pulsetic\.com
 Pump
 Python-httplib2
 python-httpx
@@ -1234,6 +1241,7 @@ Vagabondo
 VB Project
 vBSEO
 VCI
+Verity
 via ggpht\.com GoogleImageProxy
 Virusdie
 visionutils
@@ -1385,6 +1393,7 @@ YP\.PL
 Zabbix
 Zade
 Zao
+Zapier
 Zauba
 Zemanta Aggregator
 Zend\\Http\\Client

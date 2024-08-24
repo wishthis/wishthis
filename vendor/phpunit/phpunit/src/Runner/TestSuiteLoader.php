@@ -12,7 +12,6 @@ namespace PHPUnit\Runner;
 use function array_diff;
 use function array_values;
 use function basename;
-use function class_exists;
 use function get_declared_classes;
 use function realpath;
 use function str_ends_with;
@@ -23,6 +22,8 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class TestSuiteLoader
@@ -77,11 +78,13 @@ final class TestSuiteLoader
             throw $e;
         }
 
-        if (!class_exists($suiteClassName)) {
-            throw new ClassCannotBeFoundException($suiteClassName, $suiteClassFile);
+        foreach ($loadedClasses as $className) {
+            if (str_ends_with(strtolower($className), strtolower($suiteClassName))) {
+                throw new ClassDoesNotExtendTestCaseException($className, $suiteClassFile);
+            }
         }
 
-        throw new ClassDoesNotExtendTestCaseException($suiteClassName, $suiteClassFile);
+        throw new ClassCannotBeFoundException($suiteClassName, $suiteClassFile);
     }
 
     private function classNameFromFileName(string $suiteClassFile): string

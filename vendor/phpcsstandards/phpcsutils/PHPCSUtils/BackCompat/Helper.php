@@ -143,13 +143,14 @@ final class Helper
      * command-line or the ruleset.
      *
      * @since 1.0.0
+     * @since 1.0.10 The `File` type declaration has been removed from the parameter declaration.
      *
      * @param \PHP_CodeSniffer\Files\File|null $phpcsFile Optional. The current file being processed.
      *
      * @return string Encoding. Defaults to the PHPCS native default, which is 'utf-8'
      *                for PHPCS 3.x.
      */
-    public static function getEncoding(File $phpcsFile = null)
+    public static function getEncoding($phpcsFile = null)
     {
         $default = 'utf-8';
 
@@ -176,14 +177,18 @@ final class Helper
      * Check whether the "--ignore-annotations" option is in effect.
      *
      * @since 1.0.0
+     * @since 1.0.10 The `File` type declaration has been removed from the parameter declaration.
      *
      * @param \PHP_CodeSniffer\Files\File|null $phpcsFile Optional. The current file being processed.
      *
      * @return bool `TRUE` if annotations should be ignored, `FALSE` otherwise.
      */
-    public static function ignoreAnnotations(File $phpcsFile = null)
+    public static function ignoreAnnotations($phpcsFile = null)
     {
-        if (isset($phpcsFile, $phpcsFile->config->annotations)) {
+        if (isset($phpcsFile)
+            && $phpcsFile instanceof File
+            && isset($phpcsFile->config->annotations)
+        ) {
             return ! $phpcsFile->config->annotations;
         }
 

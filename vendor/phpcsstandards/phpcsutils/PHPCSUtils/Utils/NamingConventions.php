@@ -40,7 +40,8 @@ final class NamingConventions
     /**
      * Uppercase A-Z.
      *
-     * @since 1.0.0
+     * @since      1.0.0
+     * @deprecated 1.0.10
      *
      * @var string
      */
@@ -49,7 +50,8 @@ final class NamingConventions
     /**
      * Lowercase a-z.
      *
-     * @since 1.0.0
+     * @since      1.0.0
+     * @deprecated 1.0.10
      *
      * @var string
      */
@@ -108,10 +110,7 @@ final class NamingConventions
             return true;
         }
 
-        // OK, so these may be different names or they may be the same name with case differences.
-        $nameA = \strtr($nameA, self::AZ_UPPER, self::AZ_LOWER);
-        $nameB = \strtr($nameB, self::AZ_UPPER, self::AZ_LOWER);
-
-        return ($nameA === $nameB);
+        // Comparing via strcasecmp will only compare ASCII letters case-insensitively.
+        return (\strcasecmp($nameA, $nameB) === 0);
     }
 }

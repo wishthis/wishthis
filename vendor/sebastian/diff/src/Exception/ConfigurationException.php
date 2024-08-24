@@ -21,17 +21,17 @@ final class ConfigurationException extends InvalidArgumentException
         string $expected,
         $value,
         int $code = 0,
-        Exception $previous = null
+        ?Exception $previous = null
     ) {
         parent::__construct(
             sprintf(
                 'Option "%s" must be %s, got "%s".',
                 $option,
                 $expected,
-                is_object($value) ? $value::class : (null === $value ? '<null>' : gettype($value) . '#' . $value)
+                is_object($value) ? $value::class : (null === $value ? '<null>' : gettype($value) . '#' . $value),
             ),
             $code,
-            $previous
+            $previous,
         );
     }
 }

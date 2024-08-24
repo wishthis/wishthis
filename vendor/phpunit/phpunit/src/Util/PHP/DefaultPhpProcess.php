@@ -17,7 +17,6 @@ use function is_array;
 use function is_resource;
 use function proc_close;
 use function proc_open;
-use function rewind;
 use function stream_get_contents;
 use function sys_get_temp_dir;
 use function tempnam;
@@ -25,6 +24,8 @@ use function unlink;
 use PHPUnit\Framework\Exception;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 class DefaultPhpProcess extends AbstractPhpProcess
@@ -41,7 +42,7 @@ class DefaultPhpProcess extends AbstractPhpProcess
      */
     public function runJob(string $job, array $settings = []): array
     {
-        if ($this->stdin || $this->useTemporaryFile()) {
+        if ($this->stdin) {
             if (!($this->tempFile = tempnam(sys_get_temp_dir(), 'phpunit_')) ||
                 file_put_contents($this->tempFile, $job) === false) {
                 throw new PhpProcessException(
@@ -56,14 +57,6 @@ class DefaultPhpProcess extends AbstractPhpProcess
     }
 
     /**
-     * Returns an array of file handles to be used in place of pipes.
-     */
-    protected function getHandles(): array
-    {
-        return [];
-    }
-
-    /**
      * Handles creating the child process and returning the STDOUT and STDERR.
      *
      * @psalm-return array{stdout: string, stderr: string}
@@ -73,8 +66,6 @@ class DefaultPhpProcess extends AbstractPhpProcess
      */
     protected function runProcess(string $job, array $settings): array
     {
-        $handles = $this->getHandles();
-
         $env = null;
 
         if ($this->env) {
@@ -90,10 +81,14 @@ class DefaultPhpProcess extends AbstractPhpProcess
         }
 
         $pipeSpec = [
-            0 => $handles[0] ?? ['pipe', 'r'],
-            1 => $handles[1] ?? ['pipe', 'w'],
-            2 => $handles[2] ?? ['pipe', 'w'],
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w'],
         ];
+
+        if ($this->stderrRedirection) {
+            $pipeSpec[2] = ['redirect', 1];
+        }
 
         $process = proc_open(
             $this->getCommand($settings, $this->tempFile),
@@ -129,22 +124,6 @@ class DefaultPhpProcess extends AbstractPhpProcess
             fclose($pipes[2]);
         }
 
-        if (isset($handles[1])) {
-            rewind($handles[1]);
-
-            $stdout = stream_get_contents($handles[1]);
-
-            fclose($handles[1]);
-        }
-
-        if (isset($handles[2])) {
-            rewind($handles[2]);
-
-            $stderr = stream_get_contents($handles[2]);
-
-            fclose($handles[2]);
-        }
-
         proc_close($process);
 
         $this->cleanup();
@@ -165,10 +144,5 @@ class DefaultPhpProcess extends AbstractPhpProcess
         if ($this->tempFile) {
             unlink($this->tempFile);
         }
-    }
-
-    protected function useTemporaryFile(): bool
-    {
-        return false;
     }
 }

@@ -14,6 +14,8 @@ use function is_scalar;
 use SebastianBergmann\RecursionContext\Context;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  *
  * @deprecated
@@ -29,7 +31,7 @@ final class Exporter
         return '{enable export of objects to see this value}';
     }
 
-    private static function isExportable(mixed &$value, Context $context = null): bool
+    private static function isExportable(mixed &$value, ?Context $context = null): bool
     {
         if (is_scalar($value) || $value === null) {
             return true;

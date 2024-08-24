@@ -138,7 +138,7 @@ final class IsShortArrayOrListWithCache
      *
      * @return string|false The type of construct this bracket was determined to be.
      *                      Either 'short array', 'short list' or 'square brackets'.
-     *                      Or FALSE is this was not a bracket token.
+     *                      Or FALSE if this was not a bracket token.
      */
     public static function getType(File $phpcsFile, $stackPtr)
     {

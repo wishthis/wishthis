@@ -270,6 +270,25 @@ final class FunctionDeclarations
                     break;
                 }
 
+                if ($tokens[$i]['code'] === \T_USE) {
+                    // Skip over closure use statements.
+                    for (
+                        $j = ($i + 1);
+                        $j < $phpcsFile->numTokens && isset(Tokens::$emptyTokens[$tokens[$j]['code']]) === true;
+                        $j++
+                    );
+
+                    if ($tokens[$j]['code'] === \T_OPEN_PARENTHESIS) {
+                        if (isset($tokens[$j]['parenthesis_closer']) === false) {
+                            // Live coding/parse error, stop parsing.
+                            break;
+                        }
+
+                        $i = $tokens[$j]['parenthesis_closer'];
+                        continue;
+                    }
+                }
+
                 if ($tokens[$i]['code'] === \T_NULLABLE) {
                     $nullableReturnType = true;
                 }

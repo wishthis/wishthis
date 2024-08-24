@@ -1,6 +1,6 @@
 {
     "require": {
-        "embed/embed": "^4.3",
+        "embed/embed": "^4.4",
         "qferr/mjml-php": "^2.0",
         "gettext/gettext": "^5.6",
         "gettext/translator": "^1.1",

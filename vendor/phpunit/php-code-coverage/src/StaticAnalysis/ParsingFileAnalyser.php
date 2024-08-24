@@ -22,7 +22,6 @@ use function substr_count;
 use function token_get_all;
 use function trim;
 use PhpParser\Error;
-use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\NodeVisitor\ParentConnectingVisitor;
@@ -140,10 +139,7 @@ final class ParsingFileAnalyser implements FileAnalyser
 
         assert($linesOfCode > 0);
 
-        $parser = (new ParserFactory)->create(
-            ParserFactory::PREFER_PHP7,
-            new Lexer
-        );
+        $parser = (new ParserFactory)->createForHostVersion();
 
         try {
             $nodes = $parser->parse($source);
@@ -171,10 +167,10 @@ final class ParsingFileAnalyser implements FileAnalyser
                 sprintf(
                     'Cannot parse %s: %s',
                     $filename,
-                    $error->getMessage()
+                    $error->getMessage(),
                 ),
                 $error->getCode(),
-                $error
+                $error,
             );
         }
         // @codeCoverageIgnoreEnd
@@ -190,8 +186,8 @@ final class ParsingFileAnalyser implements FileAnalyser
         $this->ignoredLines[$filename] = array_unique(
             array_merge(
                 $this->ignoredLines[$filename],
-                $ignoredLinesFindingVisitor->ignoredLines()
-            )
+                $ignoredLinesFindingVisitor->ignoredLines(),
+            ),
         );
 
         sort($this->ignoredLines[$filename]);
@@ -243,7 +239,7 @@ final class ParsingFileAnalyser implements FileAnalyser
 
                 $this->ignoredLines[$filename] = array_merge(
                     $this->ignoredLines[$filename],
-                    range($start, $token[2])
+                    range($start, $token[2]),
                 );
             }
         }

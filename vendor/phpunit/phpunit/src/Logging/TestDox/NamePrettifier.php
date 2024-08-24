@@ -19,18 +19,15 @@ use function class_exists;
 use function explode;
 use function gettype;
 use function implode;
-use function in_array;
 use function is_bool;
 use function is_float;
 use function is_int;
-use function is_numeric;
 use function is_object;
 use function is_scalar;
 use function method_exists;
-use function ord;
 use function preg_quote;
 use function preg_replace;
-use function range;
+use function rtrim;
 use function sprintf;
 use function str_contains;
 use function str_ends_with;
@@ -51,12 +48,14 @@ use ReflectionObject;
 use SebastianBergmann\Exporter\Exporter;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class NamePrettifier
 {
     /**
-     * @psalm-var list<string>
+     * @psalm-var array<string, int>
      */
     private static array $strings = [];
 
@@ -110,20 +109,19 @@ final class NamePrettifier
         return $result;
     }
 
+    // NOTE: this method is on a hot path and very performance sensitive. change with care.
     public function prettifyTestMethodName(string $name): string
     {
-        $buffer = '';
-
         if ($name === '') {
-            return $buffer;
+            return '';
         }
 
-        $string = (string) preg_replace('#\d+$#', '', $name, -1, $count);
+        $string = rtrim($name, '0123456789');
 
-        if (in_array($string, self::$strings, true)) {
+        if (array_key_exists($string, self::$strings)) {
             $name = $string;
-        } elseif ($count === 0) {
-            self::$strings[] = $string;
+        } elseif ($string === $name) {
+            self::$strings[$string] = 1;
         }
 
         if (str_starts_with($name, 'test_')) {
@@ -133,22 +131,28 @@ final class NamePrettifier
         }
 
         if ($name === '') {
-            return $buffer;
+            return '';
         }
 
         $name[0] = strtoupper($name[0]);
 
-        if (str_contains($name, '_')) {
-            return trim(str_replace('_', ' ', $name));
+        $noUnderscore = str_replace('_', ' ', $name);
+
+        if ($noUnderscore !== $name) {
+            return trim($noUnderscore);
         }
 
         $wasNumeric = false;
 
-        foreach (range(0, strlen($name) - 1) as $i) {
-            if ($i > 0 && ord($name[$i]) >= 65 && ord($name[$i]) <= 90) {
+        $buffer = '';
+
+        $len = strlen($name);
+
+        for ($i = 0; $i < $len; $i++) {
+            if ($i > 0 && $name[$i] >= 'A' && $name[$i] <= 'Z') {
                 $buffer .= ' ' . strtolower($name[$i]);
             } else {
-                $isNumeric = is_numeric($name[$i]);
+                $isNumeric = $name[$i] >= '0' && $name[$i] <= '9';
 
                 if (!$wasNumeric && $isNumeric) {
                     $buffer .= ' ';

@@ -20,7 +20,6 @@ use function rtrim;
 use function str_starts_with;
 use function trim;
 use PHPUnit\Event\Code\Throwable;
-use PHPUnit\Event\TestData\NoDataSetFromDataProviderException;
 use PHPUnit\Framework\TestStatus\TestStatus;
 use PHPUnit\Logging\TestDox\TestResult as TestDoxTestResult;
 use PHPUnit\Logging\TestDox\TestResultCollection;
@@ -28,6 +27,8 @@ use PHPUnit\TextUI\Output\Printer;
 use PHPUnit\Util\Color;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class ResultPrinter
@@ -76,18 +77,12 @@ final class ResultPrinter
         $this->printer->print($buffer . PHP_EOL);
     }
 
-    /**
-     * @throws NoDataSetFromDataProviderException
-     */
     private function printTestResult(TestDoxTestResult $test): void
     {
         $this->printTestResultHeader($test);
         $this->printTestResultBody($test);
     }
 
-    /**
-     * @throws NoDataSetFromDataProviderException
-     */
     private function printTestResultHeader(TestDoxTestResult $test): void
     {
         $buffer = ' ' . $this->symbolFor($test->status()) . ' ';
@@ -317,7 +312,7 @@ final class ResultPrinter
             return 'fg-cyan';
         }
 
-        if ($status->isRisky() || $status->isIncomplete() || $status->isWarning()) {
+        if ($status->isIncomplete() || $status->isDeprecation() || $status->isNotice() || $status->isRisky() || $status->isWarning()) {
             return 'fg-yellow';
         }
 
@@ -342,7 +337,7 @@ final class ResultPrinter
             return 'fg-cyan';
         }
 
-        if ($status->isRisky() || $status->isIncomplete() || $status->isWarning()) {
+        if ($status->isIncomplete() || $status->isDeprecation() || $status->isNotice() || $status->isRisky() || $status->isWarning()) {
             return 'fg-yellow';
         }
 
@@ -363,16 +358,12 @@ final class ResultPrinter
             return '↩';
         }
 
-        if ($status->isRisky()) {
-            return '☢';
+        if ($status->isDeprecation() || $status->isNotice() || $status->isRisky() || $status->isWarning()) {
+            return '⚠';
         }
 
         if ($status->isIncomplete()) {
             return '∅';
-        }
-
-        if ($status->isWarning()) {
-            return '⚠';
         }
 
         return '?';

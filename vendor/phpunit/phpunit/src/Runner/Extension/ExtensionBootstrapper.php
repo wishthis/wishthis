@@ -9,18 +9,20 @@
  */
 namespace PHPUnit\Runner\Extension;
 
+use const PHP_EOL;
 use function assert;
 use function class_exists;
 use function class_implements;
 use function in_array;
 use function sprintf;
-use PHPUnit\Event;
 use PHPUnit\Event\Facade as EventFacade;
 use PHPUnit\TextUI\Configuration\Configuration;
 use ReflectionClass;
 use Throwable;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class ExtensionBootstrapper
@@ -87,7 +89,7 @@ final class ExtensionBootstrapper
             return;
         }
 
-        Event\Facade::emitter()->testRunnerBootstrappedExtension(
+        EventFacade::emitter()->testRunnerBootstrappedExtension(
             $className,
             $parameters,
         );

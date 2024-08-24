@@ -12,6 +12,8 @@ namespace PHPUnit\Framework;
 use const PHP_EOL;
 use function array_keys;
 use function array_map;
+use function array_pop;
+use function array_reverse;
 use function assert;
 use function call_user_func;
 use function class_exists;
@@ -44,11 +46,14 @@ use PHPUnit\Util\Reflection;
 use PHPUnit\Util\Test as TestUtil;
 use ReflectionClass;
 use ReflectionMethod;
+use SebastianBergmann\CodeCoverage\InvalidArgumentException;
 use SebastianBergmann\CodeCoverage\UnintentionallyCoveredCodeException;
 use Throwable;
 
 /**
  * @template-implements IteratorAggregate<int, Test>
+ *
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
@@ -62,15 +67,24 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     /**
      * @psalm-var array<string,list<Test>>
      */
-    private array $groups         = [];
+    private array $groups = [];
+
+    /**
+     * @psalm-var ?list<ExecutionOrderDependency>
+     */
     private ?array $requiredTests = null;
 
     /**
      * @psalm-var list<Test>
      */
-    private array $tests             = [];
+    private array $tests = [];
+
+    /**
+     * @psalm-var ?list<ExecutionOrderDependency>
+     */
     private ?array $providedTests    = null;
     private ?Factory $iteratorFilter = null;
+    private bool $wasRun             = false;
 
     /**
      * @psalm-param non-empty-string $name
@@ -125,7 +139,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
             $testSuite->addTestMethod($class, $method);
         }
 
-        if (count($testSuite) === 0) {
+        if ($testSuite->isEmpty()) {
             Event\Facade::emitter()->testRunnerTriggeredWarning(
                 sprintf(
                     'No tests found in class "%s".',
@@ -227,7 +241,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
      */
     public function addTestFile(string $filename): void
     {
-        if (is_file($filename) && str_ends_with($filename, '.phpt')) {
+        if (str_ends_with($filename, '.phpt') && is_file($filename)) {
             try {
                 $this->addTest(new PhptTestCase($filename));
             } catch (RunnerException $e) {
@@ -278,7 +292,13 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
 
     public function isEmpty(): bool
     {
-        return empty($this->tests);
+        foreach ($this as $test) {
+            if (count($test) !== 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -308,16 +328,24 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     }
 
     /**
-     * @throws \SebastianBergmann\CodeCoverage\InvalidArgumentException
      * @throws CodeCoverageException
      * @throws Event\RuntimeException
      * @throws Exception
+     * @throws InvalidArgumentException
      * @throws NoPreviousThrowableException
      * @throws UnintentionallyCoveredCodeException
      */
     public function run(): void
     {
-        if (count($this) === 0) {
+        if ($this->wasRun) {
+            // @codeCoverageIgnoreStart
+            throw new Exception('The tests aggregated by this TestSuite were already run');
+            // @codeCoverageIgnoreEnd
+        }
+
+        $this->wasRun = true;
+
+        if ($this->isEmpty()) {
             return;
         }
 
@@ -330,7 +358,19 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
             return;
         }
 
+        /** @psalm-var list<Test> $tests */
+        $tests = [];
+
         foreach ($this as $test) {
+            $tests[] = $test;
+        }
+
+        $tests = array_reverse($tests);
+
+        $this->tests  = [];
+        $this->groups = [];
+
+        while (($test = array_pop($tests)) !== null) {
             if (TestResultFacade::shouldStop()) {
                 $emitter->testRunnerExecutionAborted();
 
@@ -463,7 +503,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     }
 
     /**
-     * @throws \PHPUnit\Event\TestData\MoreThanOneDataSetFromDataProviderException
+     * @throws Event\TestData\MoreThanOneDataSetFromDataProviderException
      * @throws Exception
      */
     protected function addTestMethod(ReflectionClass $class, ReflectionMethod $method): void

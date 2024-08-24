@@ -13,12 +13,13 @@ use function array_merge;
 use function assert;
 use function in_array;
 use PHPUnit\Event\Code\TestMethod;
-use PHPUnit\Event\TestData\NoDataSetFromDataProviderException;
 use PHPUnit\Framework\TestSize\Known;
 use PHPUnit\Framework\TestSize\TestSize;
 use PHPUnit\Metadata\Api\Groups;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class PassedTests
@@ -54,9 +55,6 @@ final class PassedTests
         $this->passedTestClasses[] = $className;
     }
 
-    /**
-     * @throws NoDataSetFromDataProviderException
-     */
     public function testMethodPassed(TestMethod $test, mixed $returnValue): void
     {
         $size = (new Groups)->size(

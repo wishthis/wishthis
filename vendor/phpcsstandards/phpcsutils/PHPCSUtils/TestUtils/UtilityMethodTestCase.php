@@ -10,8 +10,11 @@
 
 namespace PHPCSUtils\TestUtils;
 
+use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Exceptions\TokenizerException;
+use PHP_CodeSniffer\Files\DummyFile;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Ruleset;
 use PHPCSUtils\BackCompat\Helper;
 use PHPCSUtils\Exceptions\TestFileNotFound;
 use PHPCSUtils\Exceptions\TestMarkerNotFound;
@@ -81,7 +84,7 @@ use ReflectionProperty;
  *      *
  *      * @return array
  *      * /
- *     public function dataMyMethod()
+ *     public static function dataMyMethod()
  *     {
  *         return array(
  *             array('/* testTestCaseDescription * /', false),
@@ -169,7 +172,7 @@ abstract class UtilityMethodTestCase extends TestCase
      *
      * @since 1.0.0
      *
-     * @var string[]
+     * @var array<string>
      */
     protected static $selectedSniff = ['Dummy.Dummy.Dummy'];
 
@@ -220,7 +223,7 @@ abstract class UtilityMethodTestCase extends TestCase
         self::setStaticConfigProperty('configData', ['report_width' => 80]);
         self::setStaticConfigProperty('configDataFile', '');
 
-        $config = new \PHP_CodeSniffer\Config();
+        $config = new Config();
 
         /*
          * Set to a usable value to circumvent Config trying to find a phpcs.xml config file.
@@ -243,12 +246,12 @@ abstract class UtilityMethodTestCase extends TestCase
         // Also set a tab-width to enable testing tab-replaced vs `orig_content`.
         $config->tabWidth = static::$tabWidth;
 
-        $ruleset = new \PHP_CodeSniffer\Ruleset($config);
+        $ruleset = new Ruleset($config);
 
         // Make sure the file gets parsed correctly based on the file type.
         $contents = 'phpcs_input_file: ' . $caseFile . \PHP_EOL . $contents;
 
-        self::$phpcsFile = new \PHP_CodeSniffer\Files\DummyFile($contents, $ruleset, $config);
+        self::$phpcsFile = new DummyFile($contents, $ruleset, $config);
 
         // Only tokenize the file, do not process it.
         try {
@@ -322,6 +325,8 @@ abstract class UtilityMethodTestCase extends TestCase
     /**
      * Helper function to set the value of a private static property on the PHPCS Config class.
      *
+     * @since 1.0.9
+     *
      * @param string $name  The name of the property to set.
      * @param mixed  $value The value to set the property to.
      *
@@ -367,7 +372,7 @@ abstract class UtilityMethodTestCase extends TestCase
      * @param string                       $commentString The complete delimiter comment to look for as a string.
      *                                                    This string should include the comment opener and closer.
      * @param int|string|array<int|string> $tokenType     The type of token(s) to look for.
-     * @param string                       $tokenContent  Optional. The token content for the target token.
+     * @param string|null                  $tokenContent  Optional. The token content for the target token.
      *
      * @return int
      *

@@ -34,7 +34,7 @@ final class Version
         }
 
         if (self::$version === '') {
-            self::$version = (new VersionId('10.5.3', dirname(__DIR__, 2)))->asString();
+            self::$version = (new VersionId('10.5.30', dirname(__DIR__, 2)))->asString();
         }
 
         return self::$version;
@@ -49,6 +49,11 @@ final class Version
         }
 
         return implode('.', array_slice(explode('.', $version), 0, 2));
+    }
+
+    public static function majorVersionNumber(): int
+    {
+        return (int) explode('.', self::series())[0];
     }
 
     public static function getVersionString(): string

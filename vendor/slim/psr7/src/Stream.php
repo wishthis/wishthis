@@ -304,7 +304,7 @@ class Stream implements StreamInterface
     {
         $data = false;
 
-        if ($this->isReadable() && $this->stream && $length >= 0) {
+        if ($this->isReadable() && $this->stream && $length > 0) {
             $data = fread($this->stream, $length);
         }
 
@@ -325,7 +325,7 @@ class Stream implements StreamInterface
      * {@inheritdoc}
      * @return int
      */
-    public function write($string)
+    public function write($string): int
     {
         $written = false;
 

@@ -49,12 +49,11 @@ final class PassedParameters
      *
      * - If passed a `T_STRING`, `T_NAME_FULLY_QUALIFIED`, `T_NAME_RELATIVE`, `T_NAME_QUALIFIED`,
      *   or `T_VARIABLE` stack pointer, it will treat it as a function call.
-     *   If a `T_STRING` or `T_VARIABLE` which is *not* a function call is passed, the behaviour is
-     *   undetermined.
+     *   If a token which is *not* a function call is passed, the behaviour is undetermined.
      * - If passed a `T_ANON_CLASS` stack pointer, it will accept it as a class instantiation.
      * - If passed a `T_SELF`, `T_STATIC` or `T_PARENT` stack pointer, it will accept it as a
-     *   class instantiation function call when used like `new self()` (with or without parenthesis).
-     *   When these hierarchiecal keywords are not preceded by the `new` keyword, parenthesis
+     *   class instantiation function call when used like `new self()` (with or without parentheses).
+     *   When these hierarchiecal keywords are not preceded by the `new` keyword, parentheses
      *   will be required for the token to be accepted.
      * - If passed a `T_ARRAY` or `T_OPEN_SHORT_ARRAY` stack pointer, it will detect
      *   whether the array has values or is empty.
@@ -170,7 +169,7 @@ final class PassedParameters
      *                                                  Efficiency tweak for when this has already been established,
      *                                                  Use with EXTREME care.
      *
-     * @return array<int, array<string, int|string>>
+     * @return array<int|string, array<string, int|string>>
      *               A multi-dimentional array with information on each parameter/array item.
      *               The information gathered about each parameter/array item is in the following format:
      *               ```php
@@ -367,7 +366,7 @@ final class PassedParameters
      * @param int                         $stackPtr    The position of function call name,
      *                                                 language construct or array open token.
      * @param int                         $paramOffset The 1-based index position of the parameter to retrieve.
-     * @param string|string[]             $paramNames  Optional. Either the name of the target parameter
+     * @param string|array<string>        $paramNames  Optional. Either the name of the target parameter
      *                                                 to retrieve as a string or an array of names for the
      *                                                 same target parameter.
      *                                                 Only relevant for function calls.
@@ -453,17 +452,17 @@ final class PassedParameters
      *
      * @since 1.0.0
      *
-     * @param array<int, array<string, int|string>> $parameters  The output of a previous call to
-     *                                                           {@see PassedParameters::getParameters()}.
-     * @param int                                   $paramOffset The 1-based index position of the parameter
-     *                                                           to retrieve.
-     * @param string|string[]                       $paramNames  Either the name of the target parameter to retrieve
-     *                                                           as a string or an array of names for the same target
-     *                                                           parameter.
-     *                                                           An array of names is supported to allow for functions
-     *                                                           for which the parameter names have undergone name
-     *                                                           changes over time.
-     *                                                           The name will take precedence over the offset.
+     * @param array<int|string, array<string, int|string>> $parameters  The output of a previous call to
+     *                                                                  {@see PassedParameters::getParameters()}.
+     * @param int                                          $paramOffset The 1-based index position of the parameter
+     *                                                                  to retrieve.
+     * @param string|array<string>                         $paramNames  Either the name of the target parameter to retrieve
+     *                                                                  as a string or an array of names for the same target
+     *                                                                  parameter.
+     *                                                                  An array of names is supported to allow for functions
+     *                                                                  for which the parameter names have undergone name
+     *                                                                  changes over time.
+     *                                                                  The name will take precedence over the offset.
      *
      * @return array<string, int|string>|false Array with information on the parameter at the specified offset,
      *                                         or with the specified name.

@@ -12,13 +12,13 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
+        php: [5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2, 8.3, 8.4]
 
     name: PHP:${{ matrix.php }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with composer
         uses: shivammathur/setup-php@v2
@@ -34,7 +34,7 @@ jobs:
         shell: bash
 
       - name: Cache composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}

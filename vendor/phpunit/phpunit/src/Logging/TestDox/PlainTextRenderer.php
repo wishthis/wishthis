@@ -12,6 +12,8 @@ namespace PHPUnit\Logging\TestDox;
 use function sprintf;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class PlainTextRenderer
@@ -50,13 +52,22 @@ final class PlainTextRenderer
         foreach ($tests as $test) {
             $prettifiedMethodName = $test->test()->testDox()->prettifiedMethodName();
 
+            $success = true;
+
+            if ($test->status()->isError() ||
+                $test->status()->isFailure() ||
+                $test->status()->isIncomplete() ||
+                $test->status()->isSkipped()) {
+                $success = false;
+            }
+
             if (!isset($result[$prettifiedMethodName])) {
-                $result[$prettifiedMethodName] = $test->status()->isSuccess() ? 'x' : ' ';
+                $result[$prettifiedMethodName] = $success ? 'x' : ' ';
 
                 continue;
             }
 
-            if ($test->status()->isSuccess()) {
+            if ($success) {
                 continue;
             }
 

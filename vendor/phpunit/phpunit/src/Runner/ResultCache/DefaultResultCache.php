@@ -10,6 +10,7 @@
 namespace PHPUnit\Runner\ResultCache;
 
 use const DIRECTORY_SEPARATOR;
+use const LOCK_EX;
 use function array_keys;
 use function assert;
 use function dirname;
@@ -21,11 +22,13 @@ use function is_file;
 use function json_decode;
 use function json_encode;
 use PHPUnit\Framework\TestStatus\TestStatus;
-use PHPUnit\Runner\DirectoryCannotBeCreatedException;
+use PHPUnit\Runner\DirectoryDoesNotExistException;
 use PHPUnit\Runner\Exception;
 use PHPUnit\Util\Filesystem;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class DefaultResultCache implements ResultCache
@@ -90,8 +93,14 @@ final class DefaultResultCache implements ResultCache
             return;
         }
 
+        $contents = file_get_contents($this->cacheFilename);
+
+        if ($contents === false) {
+            return;
+        }
+
         $data = json_decode(
-            file_get_contents($this->cacheFilename),
+            $contents,
             true,
         );
 
@@ -124,7 +133,7 @@ final class DefaultResultCache implements ResultCache
     public function persist(): void
     {
         if (!Filesystem::createDirectory(dirname($this->cacheFilename))) {
-            throw new DirectoryCannotBeCreatedException($this->cacheFilename);
+            throw new DirectoryDoesNotExistException(dirname($this->cacheFilename));
         }
 
         $data = [

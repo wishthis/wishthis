@@ -161,7 +161,7 @@ final class IsShortArrayOrList
      *
      * @var string
      */
-    private $phpcsVersion;
+    private $phpcsVersion; // @phpstan-ignore-line
 
     /**
      * Tokens which can open a short array or short list (PHPCS cross-version compatible).
@@ -362,27 +362,7 @@ final class IsShortArrayOrList
     private function isShortArrayBracket()
     {
         if ($this->tokens[$this->opener]['code'] === \T_OPEN_SQUARE_BRACKET) {
-            if (\version_compare($this->phpcsVersion, '3.7.2', '>=') === true) {
-                // These will just be properly tokenized, plain square brackets. No need for further checks.
-                return false;
-            }
-
-            /*
-             * BC: Work around a bug in the tokenizer of PHPCS < 3.7.2, where a `[` would be
-             * tokenized as T_OPEN_SQUARE_BRACKET instead of T_OPEN_SHORT_ARRAY if it was
-             * preceded by the close parenthesis of a non-braced control structure.
-             *
-             * @link https://github.com/squizlabs/PHP_CodeSniffer/issues/3632
-             */
-            if ($this->tokens[$this->beforeOpener]['code'] === \T_CLOSE_PARENTHESIS
-                && isset($this->tokens[$this->beforeOpener]['parenthesis_owner']) === true
-                // phpcs:ignore Generic.Files.LineLength.TooLong
-                && isset(Tokens::$scopeOpeners[$this->tokens[$this->tokens[$this->beforeOpener]['parenthesis_owner']]['code']]) === true
-            ) {
-                return true;
-            }
-
-            // These are really just plain square brackets.
+            // Currently there are no known issues with the tokenization in PHPCS 3.9.0 and higher.
             return false;
         }
 

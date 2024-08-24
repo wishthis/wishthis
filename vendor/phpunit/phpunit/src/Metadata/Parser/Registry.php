@@ -13,6 +13,8 @@ namespace PHPUnit\Metadata\Parser;
  * Attribute and annotation information is static within a single PHP process.
  * It is therefore okay to use a Singleton registry here.
  *
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class Registry
@@ -22,10 +24,6 @@ final class Registry
     public static function parser(): Parser
     {
         return self::$instance ?? self::$instance = self::build();
-    }
-
-    private function __construct()
-    {
     }
 
     private static function build(): Parser

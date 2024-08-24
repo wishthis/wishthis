@@ -76,7 +76,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - PHPCS 3.8.0: OO methods called `self`, `parent` or `static` are now correctly recognized.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getDeclarationName() Original source.
      * @see \PHPCSUtils\Utils\ObjectDeclarations::getName()   PHPCSUtils native improved version.
@@ -98,44 +98,7 @@ final class BCFile
      */
     public static function getDeclarationName(File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
-        $tokenCode = $tokens[$stackPtr]['code'];
-
-        if ($tokenCode === T_ANON_CLASS || $tokenCode === T_CLOSURE) {
-            return null;
-        }
-
-        if ($tokenCode !== T_FUNCTION
-            && $tokenCode !== T_CLASS
-            && $tokenCode !== T_INTERFACE
-            && $tokenCode !== T_TRAIT
-            && $tokenCode !== T_ENUM
-        ) {
-            throw new RuntimeException('Token type "' . $tokens[$stackPtr]['type'] . '" is not T_FUNCTION, T_CLASS, T_INTERFACE, T_TRAIT or T_ENUM');
-        }
-
-        if ($tokenCode === T_FUNCTION
-            && strtolower($tokens[$stackPtr]['content']) !== 'function'
-        ) {
-            // This is a function declared without the "function" keyword.
-            // So this token is the function name.
-            return $tokens[$stackPtr]['content'];
-        }
-
-        $content = null;
-        for ($i = ($stackPtr + 1); $i < $phpcsFile->numTokens; $i++) {
-            if ($tokens[$i]['code'] === T_STRING
-                // BC: PHPCS < 3.8.0.
-                || $tokens[$i]['code'] === T_SELF
-                || $tokens[$i]['code'] === T_PARENT
-                || $tokens[$i]['code'] === T_STATIC
-            ) {
-                $content = $tokens[$i]['content'];
-                break;
-            }
-        }
-
-        return $content;
+        return $phpcsFile->getDeclarationName($stackPtr);
     }
 
     /**
@@ -161,7 +124,7 @@ final class BCFile
      *                                           // or FALSE if there is no type hint.
      *   'type_hint_end_token' => integer|false, // The stack pointer to the end of the type hint
      *                                           // or FALSE if there is no type hint.
-     *   'nullable_type'       => boolean,       // TRUE if the var type is preceded by the nullability
+     *   'nullable_type'       => boolean,       // TRUE if the param type is preceded by the nullability
      *                                           // operator.
      *   'comma_token'         => integer|false, // The stack pointer to the comma after the param
      *                                           // or FALSE if this is the last param.
@@ -178,9 +141,9 @@ final class BCFile
      * Parameters declared using PHP 8 constructor property promotion, have these additional array indexes:
      * ```php
      *   'property_visibility' => string,        // The property visibility as declared.
-     *   'visibility_token'    => integer,|false // The stack pointer to the visibility modifier token.
+     *   'visibility_token'    => integer|false, // The stack pointer to the visibility modifier token.
      *                                           // or FALSE if the visibility is not explicitly declared.
-     *   'property_readonly'   => bool,          // TRUE if the readonly keyword was found.
+     *   'property_readonly'   => boolean,       // TRUE if the readonly keyword was found.
      *   'readonly_token'      => integer,       // The stack pointer to the readonly modifier token.
      *                                           // This index will only be set if the property is readonly.
      * ```
@@ -265,7 +228,9 @@ final class BCFile
             // it's likely to be an array which might have arguments in it. This
             // could cause problems in our parsing below, so lets just skip to the
             // end of it.
-            if (isset($tokens[$i]['parenthesis_opener']) === true) {
+            if ($tokens[$i]['code'] !== T_TYPE_OPEN_PARENTHESIS
+                && isset($tokens[$i]['parenthesis_opener']) === true
+            ) {
                 // Don't do this if it's the close parenthesis for the method.
                 if ($i !== $tokens[$i]['parenthesis_closer']) {
                     $i = ($tokens[$i]['parenthesis_closer'] + 1);
@@ -361,6 +326,8 @@ final class BCFile
                 case T_NS_SEPARATOR:
                 case T_TYPE_UNION:
                 case T_TYPE_INTERSECTION:
+                case T_TYPE_OPEN_PARENTHESIS:
+                case T_TYPE_CLOSE_PARENTHESIS:
                 case T_FALSE:
                 case T_TRUE:
                 case T_NULL:
@@ -499,7 +466,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getMethodProperties()      Original source.
      * @see \PHPCSUtils\Utils\FunctionDeclarations::getProperties() PHPCSUtils native improved version.
@@ -544,7 +511,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getMemberProperties() Original source.
      * @see \PHPCSUtils\Utils\Variables::getMemberProperties() PHPCSUtils native improved version.
@@ -582,13 +549,12 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 1.3.0.
-     * - PHPCS 3.8.0: Added support for PHP 8.2 `readonly` classes.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getClassProperties()          Original source.
      * @see \PHPCSUtils\Utils\ObjectDeclarations::getClassProperties() PHPCSUtils native improved version.
      *
      * @since 1.0.0
-     * @since 1.0.6 Sync with PHPCS 3.8.0, support for readonly classes. PHPCS#3686.
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position in the stack of the `T_CLASS`
@@ -601,50 +567,7 @@ final class BCFile
      */
     public static function getClassProperties(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
-        if ($tokens[$stackPtr]['code'] !== T_CLASS) {
-            throw new RuntimeException('$stackPtr must be of type T_CLASS');
-        }
-
-        $valid = [
-            T_FINAL       => T_FINAL,
-            T_ABSTRACT    => T_ABSTRACT,
-            T_READONLY    => T_READONLY,
-            T_WHITESPACE  => T_WHITESPACE,
-            T_COMMENT     => T_COMMENT,
-            T_DOC_COMMENT => T_DOC_COMMENT,
-        ];
-
-        $isAbstract = false;
-        $isFinal    = false;
-        $isReadonly = false;
-
-        for ($i = ($stackPtr - 1); $i > 0; $i--) {
-            if (isset($valid[$tokens[$i]['code']]) === false) {
-                break;
-            }
-
-            switch ($tokens[$i]['code']) {
-                case T_ABSTRACT:
-                    $isAbstract = true;
-                    break;
-
-                case T_FINAL:
-                    $isFinal = true;
-                    break;
-
-                case T_READONLY:
-                    $isReadonly = true;
-                    break;
-            }
-        }
-
-        return [
-            'is_abstract' => $isAbstract,
-            'is_final'    => $isFinal,
-            'is_readonly' => $isReadonly,
-        ];
+        return $phpcsFile->getClassProperties($stackPtr);
     }
 
     /**
@@ -654,7 +577,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::isReference() Original source.
      * @see \PHPCSUtils\Utils\Operators::isReference() PHPCSUtils native improved version.
@@ -680,7 +603,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getTokensAsString() Original source.
      * @see \PHPCSUtils\Utils\GetTokensAsString              Related set of functions.
@@ -709,7 +632,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 2.1.0.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::findStartOfStatement() Original source.
      *
@@ -733,7 +656,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 2.1.0.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::findEndOfStatement() Original source.
      *
@@ -757,7 +680,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::hasCondition()  Original source.
      * @see \PHPCSUtils\Utils\Conditions::hasCondition() PHPCSUtils native alternative.
@@ -782,7 +705,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 1.3.0.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::getCondition()  Original source.
      * @see \PHPCSUtils\Utils\Conditions::getCondition() More versatile alternative.
@@ -813,7 +736,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 1.2.0.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::findExtendedClassName()          Original source.
      * @see \PHPCSUtils\Utils\ObjectDeclarations::findExtendedClassName() PHPCSUtils native improved version.
@@ -838,7 +761,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 2.7.0.
-     * - The upstream method has received no significant updates since PHPCS 3.8.0.
+     * - The upstream method has received no significant updates since PHPCS 3.10.0.
      *
      * @see \PHP_CodeSniffer\Files\File::findImplementedInterfaceNames()          Original source.
      * @see \PHPCSUtils\Utils\ObjectDeclarations::findImplementedInterfaceNames() PHPCSUtils native improved version.
@@ -848,8 +771,8 @@ final class BCFile
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The stack position of the class or enum token.
      *
-     * @return string[]|false Array with names of the implemented interfaces or `FALSE` on
-     *                        error or if there are no implemented interface names.
+     * @return array<string>|false Array with names of the implemented interfaces or `FALSE` on
+     *                             error or if there are no implemented interface names.
      */
     public static function findImplementedInterfaceNames(File $phpcsFile, $stackPtr)
     {

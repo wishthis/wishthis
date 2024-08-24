@@ -23,6 +23,7 @@ use function method_exists;
 use function preg_replace_callback;
 use function rawurlencode;
 use function str_replace;
+use function str_starts_with;
 use function strtolower;
 
 use const FILTER_FLAG_IPV6;
@@ -103,7 +104,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withScheme($scheme)
+    public function withScheme($scheme): UriInterface
     {
         $scheme = $this->filterScheme($scheme);
         $clone = clone $this;
@@ -168,7 +169,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withUserInfo($user, $password = null)
+    public function withUserInfo($user, $password = null): UriInterface
     {
         $clone = clone $this;
         $clone->user = $this->filterUserInfo($user);
@@ -198,7 +199,7 @@ class Uri implements UriInterface
         }
 
         $match =  preg_replace_callback(
-            '/(?:[^a-zA-Z0-9_\-\.~!\$&\'\(\)\*\+,;=]+|%(?![A-Fa-f0-9]{2}))/u',
+            '/(?:[^%a-zA-Z0-9_\-\.~\pL!\$&\'\(\)\*\+,;=]+|%(?![A-Fa-f0-9]{2}))/u',
             function ($match) {
                 return rawurlencode($match[0]);
             },
@@ -220,7 +221,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withHost($host)
+    public function withHost($host): UriInterface
     {
         $clone = clone $this;
         $clone->host = $this->filterHost($host);
@@ -269,7 +270,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withPort($port)
+    public function withPort($port): UriInterface
     {
         $port = $this->filterPort($port);
         $clone = clone $this;
@@ -291,7 +292,7 @@ class Uri implements UriInterface
     /**
      * Filter Uri port.
      *
-     * @param  int|null $port The Uri port number.
+     * @param  int|string|null $port The Uri port number.
      *
      * @return int|null
      *
@@ -299,7 +300,13 @@ class Uri implements UriInterface
      */
     protected function filterPort($port): ?int
     {
-        if (is_null($port) || (is_integer($port) && ($port >= 1 && $port <= 65535))) {
+        if (is_null($port)) {
+            return null;
+        }
+
+        $port = (int) $port;
+
+        if ($port >= 1 && $port <= 65535) {
             return $port;
         }
 
@@ -311,6 +318,11 @@ class Uri implements UriInterface
      */
     public function getPath(): string
     {
+        if (str_starts_with($this->path, '/')) {
+            // Use only one leading slash to prevent XSS attempts.
+            return '/' . ltrim($this->path, '/');
+        }
+
         return $this->path;
     }
 
@@ -318,7 +330,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withPath($path)
+    public function withPath($path): UriInterface
     {
         if (!is_string($path)) {
             throw new InvalidArgumentException('Uri path must be a string');
@@ -346,9 +358,7 @@ class Uri implements UriInterface
     {
         $match = preg_replace_callback(
             '/(?:[^a-zA-Z0-9_\-\.~:@&=\+\$,\/;%]+|%(?![A-Fa-f0-9]{2}))/',
-            function ($match) {
-                return rawurlencode($match[0]);
-            },
+            fn (array $match) => rawurlencode($match[0]),
             $path
         );
 
@@ -367,7 +377,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withQuery($query)
+    public function withQuery($query): UriInterface
     {
         $query = ltrim($this->filterQuery($query), '?');
         $clone = clone $this;
@@ -418,7 +428,7 @@ class Uri implements UriInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withFragment($fragment)
+    public function withFragment($fragment): UriInterface
     {
         $fragment = $this->filterFragment($fragment);
         $clone = clone $this;
@@ -466,7 +476,7 @@ class Uri implements UriInterface
     {
         $scheme = $this->getScheme();
         $authority = $this->getAuthority();
-        $path = $this->getPath();
+        $path = $this->path;
         $query = $this->getQuery();
         $fragment = $this->getFragment();
 

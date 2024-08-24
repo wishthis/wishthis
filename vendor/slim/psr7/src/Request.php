@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Slim\Psr7;
 
 use InvalidArgumentException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileInterface;
@@ -31,10 +32,7 @@ use function str_replace;
 
 class Request extends Message implements ServerRequestInterface
 {
-    /**
-     * @var string
-     */
-    protected $method;
+    protected string $method;
 
     /**
      * @var UriInterface
@@ -126,7 +124,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withMethod($method)
+    public function withMethod($method): RequestInterface
     {
         $method = $this->filterMethod($method);
         $clone = clone $this;
@@ -192,7 +190,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withRequestTarget($requestTarget)
+    public function withRequestTarget($requestTarget): RequestInterface
     {
         if (!is_string($requestTarget) || preg_match('#\s#', $requestTarget)) {
             throw new InvalidArgumentException(
@@ -218,7 +216,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withUri(UriInterface $uri, $preserveHost = false)
+    public function withUri(UriInterface $uri, $preserveHost = false): RequestInterface
     {
         $clone = clone $this;
         $clone->uri = $uri;
@@ -248,7 +246,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withCookieParams(array $cookies)
+    public function withCookieParams(array $cookies): ServerRequestInterface
     {
         $clone = clone $this;
         $clone->cookies = $cookies;
@@ -269,17 +267,17 @@ class Request extends Message implements ServerRequestInterface
             return [];
         }
 
-        parse_str($this->uri->getQuery(), $this->queryParams); // <-- URL decodes data
-        assert(is_array($this->queryParams));
+        // Decode URL data
+        parse_str($this->uri->getQuery(), $this->queryParams);
 
-        return $this->queryParams;
+        return is_array($this->queryParams) ? $this->queryParams : [];
     }
 
     /**
      * {@inheritdoc}
      * @return static
      */
-    public function withQueryParams(array $query)
+    public function withQueryParams(array $query): ServerRequestInterface
     {
         $clone = clone $this;
         $clone->queryParams = $query;
@@ -299,7 +297,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withUploadedFiles(array $uploadedFiles)
+    public function withUploadedFiles(array $uploadedFiles): ServerRequestInterface
     {
         $clone = clone $this;
         $clone->uploadedFiles = $uploadedFiles;
@@ -336,7 +334,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withAttribute($name, $value)
+    public function withAttribute($name, $value): ServerRequestInterface
     {
         $clone = clone $this;
         $clone->attributes[$name] = $value;
@@ -348,7 +346,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withoutAttribute($name)
+    public function withoutAttribute($name): ServerRequestInterface
     {
         $clone = clone $this;
 
@@ -369,7 +367,7 @@ class Request extends Message implements ServerRequestInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withParsedBody($data)
+    public function withParsedBody($data): ServerRequestInterface
     {
         /** @var mixed $data */
         if (!is_null($data) && !is_object($data) && !is_array($data)) {

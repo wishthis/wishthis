@@ -2,6 +2,42 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [10.1.16] - 2024-08-22
+
+### Changed
+
+* Updated dependencies (so that users that install using Composer's `--prefer-lowest` CLI option also get recent versions)
+
+## [10.1.15] - 2024-06-29
+
+### Fixed
+
+* [#967](https://github.com/sebastianbergmann/php-code-coverage/issues/967): Identification of executable lines for `match` expressions does not work correctly
+
+## [10.1.14] - 2024-03-12
+
+### Fixed
+
+* [#1033](https://github.com/sebastianbergmann/php-code-coverage/issues/1033): `@codeCoverageIgnore` annotation does not work on `enum`
+
+## [10.1.13] - 2024-03-09
+
+### Changed
+
+* [#1032](https://github.com/sebastianbergmann/php-code-coverage/pull/1032): Pad lines in code coverage report only when colors are shown
+
+## [10.1.12] - 2024-03-02
+
+### Changed
+
+* Do not use implicitly nullable parameters
+
+## [10.1.11] - 2023-12-21
+
+### Changed
+
+* This component is now compatible with `nikic/php-parser` 5.0
+
 ## [10.1.10] - 2023-12-11
 
 ### Fixed
@@ -77,6 +113,12 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * The `SebastianBergmann\CodeCoverage\Filter::includeDirectory()`, `SebastianBergmann\CodeCoverage\Filter::excludeDirectory()`, and `SebastianBergmann\CodeCoverage\Filter::excludeFile()` methods are now deprecated
 
+[10.1.16]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.15...10.1.16
+[10.1.15]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.14...10.1.15
+[10.1.14]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.13...10.1.14
+[10.1.13]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.12...10.1.13
+[10.1.12]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.11...10.1.12
+[10.1.11]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.10...10.1.11
 [10.1.10]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.9...10.1.10
 [10.1.9]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.8...10.1.9
 [10.1.8]: https://github.com/sebastianbergmann/php-code-coverage/compare/10.1.7...10.1.8

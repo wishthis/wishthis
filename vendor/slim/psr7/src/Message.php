@@ -67,7 +67,7 @@ abstract class Message implements MessageInterface
      * @return static
      * {@inheritdoc}
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): MessageInterface
     {
         if (!isset(self::$validProtocolVersions[$version])) {
             throw new InvalidArgumentException(
@@ -119,7 +119,7 @@ abstract class Message implements MessageInterface
      * @return static
      * {@inheritdoc}
      */
-    public function withHeader($name, $value)
+    public function withHeader($name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->headers->setHeader($name, $value);
@@ -135,7 +135,7 @@ abstract class Message implements MessageInterface
      * @return static
      * {@inheritdoc}
      */
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader($name, $value): MessageInterface
     {
         $clone = clone $this;
         $clone->headers->addHeader($name, $value);
@@ -151,7 +151,7 @@ abstract class Message implements MessageInterface
      * @return static
      * {@inheritdoc}
      */
-    public function withoutHeader($name)
+    public function withoutHeader($name): MessageInterface
     {
         $clone = clone $this;
         $clone->headers->removeHeader($name);
@@ -175,7 +175,7 @@ abstract class Message implements MessageInterface
      * @return static
      * {@inheritdoc}
      */
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): MessageInterface
     {
         $clone = clone $this;
         $clone->body = $body;

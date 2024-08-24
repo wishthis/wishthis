@@ -209,7 +209,7 @@ final class Context
             if ($tokens[$i]['level'] !== $level
                 || \count($tokens[$i]['nested_parenthesis']) !== $parens
             ) {
-                // Disregard semi-colons at lower nesting/condition levels.
+                // Disregard semicolons at lower nesting/condition levels.
                 continue;
             }
 

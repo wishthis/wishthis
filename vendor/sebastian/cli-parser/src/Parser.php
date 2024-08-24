@@ -44,7 +44,7 @@ final class Parser
      * @throws RequiredOptionArgumentMissingException
      * @throws UnknownOptionException
      */
-    public function parse(array $argv, string $shortOptions, array $longOptions = null): array
+    public function parse(array $argv, string $shortOptions, ?array $longOptions = null): array
     {
         if (empty($argv)) {
             return [[], []];
@@ -93,7 +93,7 @@ final class Parser
                     substr($arg, 2),
                     $longOptions,
                     $options,
-                    $argv
+                    $argv,
                 );
 
                 continue;
@@ -103,7 +103,7 @@ final class Parser
                 substr($arg, 1),
                 $shortOptions,
                 $options,
-                $argv
+                $argv,
             );
         }
 

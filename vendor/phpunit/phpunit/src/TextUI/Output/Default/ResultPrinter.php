@@ -38,12 +38,13 @@ use PHPUnit\Event\Test\PhpunitErrorTriggered;
 use PHPUnit\Event\Test\PhpunitWarningTriggered;
 use PHPUnit\Event\Test\PhpWarningTriggered;
 use PHPUnit\Event\Test\WarningTriggered;
-use PHPUnit\Event\TestData\NoDataSetFromDataProviderException;
 use PHPUnit\TestRunner\TestResult\Issues\Issue;
 use PHPUnit\TestRunner\TestResult\TestResult;
 use PHPUnit\TextUI\Output\Printer;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class ResultPrinter
@@ -507,15 +508,16 @@ final class ResultPrinter
         );
     }
 
-    /**
-     * @throws NoDataSetFromDataProviderException
-     */
     private function name(Test $test): string
     {
         if ($test->isTestMethod()) {
             assert($test instanceof TestMethod);
 
-            return $test->nameWithClass();
+            if (!$test->testData()->hasDataFromDataProvider()) {
+                return $test->nameWithClass();
+            }
+
+            return $test->className() . '::' . $test->methodName() . $test->testData()->dataFromDataProvider()->dataAsStringForResultOutput();
         }
 
         return $test->name();

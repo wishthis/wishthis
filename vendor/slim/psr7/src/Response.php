@@ -140,7 +140,7 @@ class Response extends Message implements ResponseInterface
      * {@inheritdoc}
      * @return static
      */
-    public function withStatus($code, $reasonPhrase = '')
+    public function withStatus($code, $reasonPhrase = ''): ResponseInterface
     {
         $code = $this->filterStatus($code);
         $reasonPhrase = $this->filterReasonPhrase($reasonPhrase);

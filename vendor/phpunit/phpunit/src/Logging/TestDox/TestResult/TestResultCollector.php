@@ -22,19 +22,30 @@ use PHPUnit\Event\EventFacadeIsSealedException;
 use PHPUnit\Event\Facade;
 use PHPUnit\Event\InvalidArgumentException;
 use PHPUnit\Event\Test\ConsideredRisky;
+use PHPUnit\Event\Test\DeprecationTriggered;
 use PHPUnit\Event\Test\Errored;
 use PHPUnit\Event\Test\Failed;
 use PHPUnit\Event\Test\Finished;
 use PHPUnit\Event\Test\MarkedIncomplete;
+use PHPUnit\Event\Test\NoticeTriggered;
 use PHPUnit\Event\Test\Passed;
+use PHPUnit\Event\Test\PhpDeprecationTriggered;
+use PHPUnit\Event\Test\PhpNoticeTriggered;
+use PHPUnit\Event\Test\PhpunitDeprecationTriggered;
+use PHPUnit\Event\Test\PhpunitErrorTriggered;
+use PHPUnit\Event\Test\PhpunitWarningTriggered;
+use PHPUnit\Event\Test\PhpWarningTriggered;
 use PHPUnit\Event\Test\Prepared;
 use PHPUnit\Event\Test\Skipped;
+use PHPUnit\Event\Test\WarningTriggered;
 use PHPUnit\Event\UnknownSubscriberTypeException;
 use PHPUnit\Framework\TestStatus\TestStatus;
 use PHPUnit\Logging\TestDox\TestResult as TestDoxTestMethod;
 use ReflectionMethod;
 
 /**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ *
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
 final class TestResultCollector
@@ -45,6 +56,7 @@ final class TestResultCollector
     private array $tests          = [];
     private ?TestStatus $status   = null;
     private ?Throwable $throwable = null;
+    private bool $prepared        = false;
 
     /**
      * @throws EventFacadeIsSealedException
@@ -127,6 +139,7 @@ final class TestResultCollector
 
         $this->status    = TestStatus::unknown();
         $this->throwable = null;
+        $this->prepared  = true;
     }
 
     public function testErrored(Errored $event): void
@@ -137,6 +150,14 @@ final class TestResultCollector
 
         $this->status    = TestStatus::error($event->throwable()->message());
         $this->throwable = $event->throwable();
+
+        if (!$this->prepared) {
+            $test = $event->test();
+
+            assert($test instanceof TestMethod);
+
+            $this->process($test);
+        }
     }
 
     public function testFailed(Failed $event): void
@@ -155,23 +176,117 @@ final class TestResultCollector
             return;
         }
 
-        $this->status = TestStatus::success();
+        $this->updateTestStatus(TestStatus::success());
     }
 
     public function testSkipped(Skipped $event): void
     {
-        $this->status = TestStatus::skipped($event->message());
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::skipped($event->message()));
     }
 
     public function testMarkedIncomplete(MarkedIncomplete $event): void
     {
-        $this->status    = TestStatus::incomplete($event->throwable()->message());
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::incomplete($event->throwable()->message()));
+
         $this->throwable = $event->throwable();
     }
 
     public function testConsideredRisky(ConsideredRisky $event): void
     {
-        $this->status = TestStatus::risky($event->message());
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::risky());
+    }
+
+    public function testTriggeredDeprecation(DeprecationTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::deprecation());
+    }
+
+    public function testTriggeredNotice(NoticeTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::notice());
+    }
+
+    public function testTriggeredWarning(WarningTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::warning());
+    }
+
+    public function testTriggeredPhpDeprecation(PhpDeprecationTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::deprecation());
+    }
+
+    public function testTriggeredPhpNotice(PhpNoticeTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::notice());
+    }
+
+    public function testTriggeredPhpWarning(PhpWarningTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::warning());
+    }
+
+    public function testTriggeredPhpunitDeprecation(PhpunitDeprecationTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::deprecation());
+    }
+
+    public function testTriggeredPhpunitError(PhpunitErrorTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::error());
+    }
+
+    public function testTriggeredPhpunitWarning(PhpunitWarningTriggered $event): void
+    {
+        if (!$event->test()->isTestMethod()) {
+            return;
+        }
+
+        $this->updateTestStatus(TestStatus::warning());
     }
 
     /**
@@ -187,18 +302,11 @@ final class TestResultCollector
 
         assert($test instanceof TestMethod);
 
-        if (!isset($this->tests[$test->testDox()->prettifiedClassName()])) {
-            $this->tests[$test->testDox()->prettifiedClassName()] = [];
-        }
-
-        $this->tests[$test->testDox()->prettifiedClassName()][] = new TestDoxTestMethod(
-            $test,
-            $this->status,
-            $this->throwable,
-        );
+        $this->process($test);
 
         $this->status    = null;
         $this->throwable = null;
+        $this->prepared  = false;
     }
 
     /**
@@ -216,6 +324,38 @@ final class TestResultCollector
             new TestPassedSubscriber($this),
             new TestPreparedSubscriber($this),
             new TestSkippedSubscriber($this),
+            new TestTriggeredDeprecationSubscriber($this),
+            new TestTriggeredNoticeSubscriber($this),
+            new TestTriggeredPhpDeprecationSubscriber($this),
+            new TestTriggeredPhpNoticeSubscriber($this),
+            new TestTriggeredPhpunitDeprecationSubscriber($this),
+            new TestTriggeredPhpunitErrorSubscriber($this),
+            new TestTriggeredPhpunitWarningSubscriber($this),
+            new TestTriggeredPhpWarningSubscriber($this),
+            new TestTriggeredWarningSubscriber($this),
+        );
+    }
+
+    private function updateTestStatus(TestStatus $status): void
+    {
+        if ($this->status !== null &&
+            $this->status->isMoreImportantThan($status)) {
+            return;
+        }
+
+        $this->status = $status;
+    }
+
+    private function process(TestMethod $test): void
+    {
+        if (!isset($this->tests[$test->testDox()->prettifiedClassName()])) {
+            $this->tests[$test->testDox()->prettifiedClassName()] = [];
+        }
+
+        $this->tests[$test->testDox()->prettifiedClassName()][] = new TestDoxTestMethod(
+            $test,
+            $this->status,
+            $this->throwable,
         );
     }
 }

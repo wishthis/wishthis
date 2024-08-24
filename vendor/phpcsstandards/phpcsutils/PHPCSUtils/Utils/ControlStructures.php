@@ -214,8 +214,6 @@ final class ControlStructures
      *
      * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If the specified `$stackPtr` is not of
      *                                                      type `T_CATCH` or doesn't exist.
-     * @throws \PHP_CodeSniffer\Exceptions\RuntimeException If no parenthesis opener or closer can be
-     *                                                      determined (parse error).
      */
     public static function getCaughtExceptions(File $phpcsFile, $stackPtr)
     {
@@ -228,7 +226,7 @@ final class ControlStructures
         }
 
         if (isset($tokens[$stackPtr]['parenthesis_opener'], $tokens[$stackPtr]['parenthesis_closer']) === false) {
-            throw new RuntimeException('Parentheses opener/closer of the T_CATCH could not be determined');
+            return [];
         }
 
         $opener     = $tokens[$stackPtr]['parenthesis_opener'];
