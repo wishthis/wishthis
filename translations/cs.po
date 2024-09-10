@@ -941,7 +941,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
-msgstr "Přejít na poslední upravenou stránku wishlist z domova"
+msgstr "Přejít na poslední upravenou stránku wishlist z domovské stránky"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
