@@ -1254,11 +1254,11 @@ msgstr "Uložit"
 
 #: pages/install.php:83
 msgid "Test connection"
-msgstr "Testovací připojení"
+msgstr "Otestovat připojení"
 
 #: pages/install.php:99
 msgid "PHP Version >= 8.1"
-msgstr "Verze PHP &gt;= 8.1"
+msgstr "PHP Verze >= 8.1"
 
 #: pages/install.php:102 pages/install.php:108
 msgid "Compatible"
