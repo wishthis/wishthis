@@ -1820,7 +1820,7 @@ msgstr[3] "%d je třeba více předplatitelů"
 
 #: pages/profile/profile.php:348
 msgid "Advertisements"
-msgstr "Inzeráty"
+msgstr "Reklamy"
 
 #: pages/profile/profile.php:357
 msgid "Enable advertisements"
@@ -1834,9 +1834,9 @@ msgid ""
 "to support me but either can't or don't want to %s, consider selling your "
 "body to Google and becoming its product."
 msgstr ""
-"Čas strávený na přání je čas, který není věnován výdělečné činnosti. Pokud "
-"byste mě chtěli podpořit, ale buď nemůžete, nebo nechcete %s, zvažte, zda "
-"neprodáte své tělo společnosti Google a nestanete se jejím produktem."
+"Čas strávený na aplikaci wishthis je čas, který nevěnuji výdělečné činnosti."
+" Pokud byste mě chtěli podpořit, ale buď nemůžete, nebo nechcete %s, zvažte,"
+" zda byste se radši chtěli stát se svými daty produktem společnosti Google."
 
 #: pages/profile/profile.php:367
 msgid "sponsor me"
