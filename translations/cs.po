@@ -1806,8 +1806,8 @@ msgid ""
 "unless the next release candidate has been sufficiently tested."
 msgstr ""
 "Pokud chcete urychlit vydávání novějších verzí, zvažte možnost předplatit si"
-" Release candidate aplikace wishthis. Novější verze není zveřejněna, dokud "
-"není další kandidát na vydání dostatečně otestován."
+" Release Candidate aplikace wishthis. Novější verze jsou zveřejněny až po "
+"dostatečném otestování RC verze."
 
 #: pages/profile/profile.php:320
 #, php-format
