@@ -992,7 +992,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr "\"Uložené wishlists\" bylo přejmenováno na \"Pamatovat si seznamy\"."
+msgstr "\"Saved wishlists\" bylo přejmenováno na \"Remembered lists\"."
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
