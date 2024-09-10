@@ -1487,7 +1487,7 @@ msgstr "Žádná priorita"
 
 #: pages/parts/wishlist.php:87 pages/wishlists.php:45 pages/wishlists.php:48
 msgid "Create a wishlist"
-msgstr "Vytvoření seznamu přání"
+msgstr "Vytvořit seznam přání"
 
 #: pages/parts/wishlist.php:91
 msgid ""
