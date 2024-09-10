@@ -164,19 +164,19 @@ msgstr "{name} musí být desetinné číslo"
 
 #: assets/js/inline.js.php:86
 msgid "{name} must be set to a number"
-msgstr "{name} musí být nastaveno na číslo."
+msgstr "{name} musí být nastaveno na číslo"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} musí být \"{ruleValue}\"."
+msgstr "{name} musí být \"{ruleValue}\""
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} musí být přesně \"{ruleValue}\"."
+msgstr "{name} musí být přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} nelze nastavit na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
