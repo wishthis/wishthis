@@ -1989,7 +1989,8 @@ msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
-"Roboti jsou zřejmě z jiné sluneční soustavy, takže je to udrží na uzdě."
+"Roboti pocházejí evidentně z jiné sluneční soustavy, takže je toto udrží na "
+"uzdě."
 
 #: pages/register.php:301
 msgid "About your email address"
