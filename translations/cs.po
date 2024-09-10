@@ -1574,7 +1574,7 @@ msgstr "Navrhované stránky"
 
 #: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
 msgid "Yes, update"
-msgstr "Ano, aktualizace"
+msgstr "Ano, aktualizovat"
 
 #: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
 msgid "No, leave it"
