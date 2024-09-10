@@ -540,7 +540,7 @@ msgstr "Přání nebylo nalezeno"
 
 #: classes/wishthis/Wish.php:405 pages/wishlist.php:73
 msgid "Details"
-msgstr "Podrobnosti na"
+msgstr "Detaily"
 
 #: classes/wishthis/Wishlist.php:245
 msgid "Wishlist not found"
