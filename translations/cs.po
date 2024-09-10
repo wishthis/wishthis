@@ -946,7 +946,7 @@ msgstr "Přejít na poslední upravenou stránku wishlist z domova"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
 msgid "Quick add wish from home"
-msgstr "Rychlé přidání přání z domova"
+msgstr "Rychlé přidání přání z domovské stránky"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
