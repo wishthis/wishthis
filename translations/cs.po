@@ -1051,7 +1051,7 @@ msgstr "Různé drobné chyby"
 
 #: pages/home.php:11
 msgid "Home"
-msgstr "Home"
+msgstr "Domů"
 
 #: pages/home.php:76 pages/home.php:78
 msgid "Register now"
