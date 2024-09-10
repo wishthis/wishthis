@@ -1111,7 +1111,7 @@ msgstr "věrohodné"
 
 #: pages/home.php:125
 msgid "without intrusive tracking"
-msgstr "bez rušivého sledování"
+msgstr "bez dotěrného sledování"
 
 #: pages/home.php:130
 msgid "transparent"
