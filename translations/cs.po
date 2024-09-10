@@ -1642,7 +1642,7 @@ msgstr "Příjmení bylo aktualizováno na \"%s\"."
 #: pages/profile/profile-handle-post-personal.php:91
 #, php-format
 msgid "Nick name updated to \"%s\"."
-msgstr "Jméno nicku bylo aktualizováno na \"%s\"."
+msgstr "Přezdívka aktualizována na \"%s\"."
 
 #. TRANSLATORS: %s: The users email address.
 #: pages/profile/profile-handle-post-personal.php:121
