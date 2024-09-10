@@ -1438,7 +1438,7 @@ msgstr "Popis"
 
 #: pages/parts/wish-add.php:45
 msgid "URL"
-msgstr "ADRESA URL"
+msgstr "URL"
 
 #: pages/parts/wish-add.php:54
 msgid "Priority"
@@ -1491,8 +1491,7 @@ msgstr "Vytvoření seznamu přání"
 #: pages/parts/wishlist.php:91
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
-msgstr ""
-"Zvolte nový název seznamu přání. Zde je návrh, který vám pomůže začít."
+msgstr "Zvolte nový název seznamu přání. Zde je návrh, který by mohl pomoci."
 
 #: pages/parts/wishlist.php:104 pages/parts/wishlist.php:105
 msgid "Create"
