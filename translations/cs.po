@@ -28,7 +28,7 @@ msgstr "Publikováno dne %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "Wish request"
+msgstr "Požadavek na přání"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
@@ -75,7 +75,7 @@ msgid ""
 "For nerds: The API returned HTTP 200, there was no (error) output, yet the "
 "response is still not as expected."
 msgstr ""
-"Pro šprty: API vrátilo HTTP 200, nedošlo k žádnému (chybovému) výstupu, ale "
+"Pro nerdy: API vrátilo HTTP 200, nedošlo k žádnému (chybovému) výstupu, ale "
 "odpověď stále není taková, jaká se očekávala."
 
 #: assets/js/inline.js.php:43
