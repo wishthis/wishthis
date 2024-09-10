@@ -1820,7 +1820,7 @@ msgstr[3] "%d je třeba více předplatitelů"
 
 #: pages/profile/profile.php:348
 msgid "Advertisements"
-msgstr "Reklamy"
+msgstr "Reklama"
 
 #: pages/profile/profile.php:357
 msgid "Enable advertisements"
