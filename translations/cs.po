@@ -1378,7 +1378,8 @@ msgid ""
 "again."
 msgstr ""
 "Zvažte použití správce hesel. Uloží všechna vaše hesla a umožní vám k nim "
-"přístup pomocí jednoho hlavního hesla. Heslo už nikdy nezapomenete."
+"přístup pomocí jednoho hlavního hesla. Poté již snad nebudete muset řešit "
+"zapomenutá hesla."
 
 #: pages/login.php:181 pages/login.php:182
 msgid "Send email"
