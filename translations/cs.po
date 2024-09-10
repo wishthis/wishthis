@@ -885,7 +885,7 @@ msgstr "Tmavé téma"
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:410
 msgid "Remembered lists design"
-msgstr "Design oblíbených seznamů"
+msgstr "Vzhled zapamatovaných seznamů"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:416
