@@ -1266,7 +1266,7 @@ msgstr "Kompatibilní"
 
 #: pages/install.php:105
 msgid "PHP Version < 8.3"
-msgstr "Verze PHP &lt; 8.3"
+msgstr "PHP Verze < 8.3"
 
 #: pages/install.php:114
 msgid "Activated"
@@ -1307,7 +1307,7 @@ msgstr "Instalace wishthis"
 #: pages/login-as.php:60
 #, php-format
 msgid "Successfully logged in as %s."
-msgstr "Úspěšně se přihlásil jako %s."
+msgstr "Úspěšné přihlášení jako %s."
 
 #: pages/login-as.php:62
 msgid "User not found!"
