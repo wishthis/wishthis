@@ -1089,7 +1089,7 @@ msgstr ""
 "wishthis je svobodný software s otevřeným zdrojovým kódem. Slovem zdarma "
 "nemyslím jen to, že za jeho používání nemusíte platit peníze, ale také to, "
 "že neplatíte svými osobními údaji a chováním. Nejenže si kdokoli může "
-"%sprohlédnout a ověřit jeho kód%s, ale také vás k tomu vyzývám."
+"%sprohlédnout a ověřit jeho kód%s, ale také k tomu všechny vyzývám."
 
 #: pages/home.php:108
 msgid "As an open source project it remains"
