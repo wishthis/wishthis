@@ -1365,7 +1365,7 @@ msgstr "Pověření"
 
 #: pages/login.php:136
 msgid "Keep me logged in"
-msgstr "Mějte mě přihlášeného"
+msgstr "Zapamatovat přihlášení"
 
 #: pages/login.php:163
 msgid "Forgot password?"
