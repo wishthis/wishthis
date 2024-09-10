@@ -394,7 +394,7 @@ msgstr "Seznam změn"
 
 #: classes/wishthis/Page.php:678
 msgid "Contribute"
-msgstr "Přispějte na"
+msgstr "Zapojte se"
 
 #: classes/wishthis/Page.php:684 classes/wishthis/Page.php:687
 msgid "GitHub"
