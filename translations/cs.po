@@ -635,8 +635,8 @@ msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
 "the %s on GitHub, or chat on Matrix or Discord."
 msgstr ""
-"Pokud chcete poskytnout zpětnou vazbu k plánu, podívejte se na %s na GitHubu"
-" nebo chatujte na Matrixu či Discordu."
+"Pokud chcete poskytnout zpětnou vazbu k plánu vývoje, podívejte se na %s na "
+"GitHubu nebo se ozvěte na Matrixu či Discordu."
 
 #: pages/changelog.php:48
 msgid "discussions"
