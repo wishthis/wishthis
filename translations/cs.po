@@ -1786,8 +1786,8 @@ msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
 msgstr ""
-"S cílem zlepšit uživatelské zkušenosti s aplikací wishthis jsou po rozsáhlém"
-" testování zveřejňovány její novější verze."
+"S cílem zlepšit uživatelskou zkušenost s aplikací wishthis jsou její novější"
+" verze zveřejňovány až po rozsáhlém otestování."
 
 #: pages/profile/profile.php:306
 msgid ""
