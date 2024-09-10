@@ -1325,7 +1325,7 @@ msgstr ""
 
 #: pages/login.php:26
 msgid "Invalid credentials"
-msgstr "Neplatná pověření"
+msgstr "Neplatné přihlašovací údaje"
 
 #: pages/login.php:70
 msgid "Password reset link"
@@ -1361,7 +1361,7 @@ msgstr "Informace"
 
 #: pages/login.php:112
 msgid "Credentials"
-msgstr "Pověření"
+msgstr "Přihlašovací údaje"
 
 #: pages/login.php:136
 msgid "Keep me logged in"
