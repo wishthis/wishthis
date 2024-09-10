@@ -356,7 +356,7 @@ msgstr "Moje seznamy"
 
 #: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr "Oblíbené seznamy"
+msgstr "Zapamatované seznamy"
 
 #: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
