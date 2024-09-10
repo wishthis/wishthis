@@ -180,11 +180,11 @@ msgstr "{name} nelze nastavit na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} nelze nastavit přesně na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit přesně na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:91
 msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
