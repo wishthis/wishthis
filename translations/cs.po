@@ -992,7 +992,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr "\"Saved wishlists\" bylo přejmenováno na \"Remembered lists\"."
+msgstr "\"Saved wishlists\" přejmenován na \"Remembered lists\"."
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
@@ -1507,7 +1507,7 @@ msgstr "Zrušit"
 
 #: pages/parts/wishlist.php:116
 msgid "Rename wishlist"
-msgstr "Přejmenování seznamu přání"
+msgstr "Přejmenovat seznam přání"
 
 #: pages/parts/wishlist.php:119
 msgid "How would you like to name this wishlist?"
@@ -1516,7 +1516,7 @@ msgstr "Jak byste chtěli tento seznam přání pojmenovat?"
 #: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
 #: pages/wishlists.php:77 pages/wishlists.php:79
 msgid "Rename"
-msgstr "Přejmenování"
+msgstr "Přejmenovat"
 
 #: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
 msgid "Add a wish"
