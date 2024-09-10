@@ -1865,7 +1865,7 @@ msgstr "Obnovení"
 
 #: pages/register.php:37
 msgid "Mercury"
-msgstr "Rtuť"
+msgstr "Merkur"
 
 #: pages/register.php:38
 msgid "Venus"
@@ -1901,7 +1901,7 @@ msgstr "Pluto"
 
 #: pages/register.php:48
 msgid "Sun"
-msgstr "Sun"
+msgstr "Slunce"
 
 #: pages/register.php:57
 #, php-format
