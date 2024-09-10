@@ -356,7 +356,7 @@ msgstr "Moje seznamy"
 
 #: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr "Remembered seznamy"
+msgstr "Oblíbené seznamy"
 
 #: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
@@ -885,7 +885,7 @@ msgstr "Tmavé téma"
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:410
 msgid "Remembered lists design"
-msgstr "Remembered design seznamů"
+msgstr "Design oblíbených seznamů"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:416
