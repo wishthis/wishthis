@@ -216,7 +216,7 @@ msgstr "{name} musí odpovídat poli {ruleValue}"
 
 #: assets/js/inline.js.php:100
 msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}."
+msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}"
 
 #: assets/js/inline.js.php:101
 msgid "{name} must be a valid credit card number"
