@@ -1270,7 +1270,7 @@ msgstr "Opslaan"
 
 #: pages/install.php:83
 msgid "Test connection"
-msgstr "Testaansluiting"
+msgstr "Test verbinding"
 
 #: pages/install.php:99
 msgid "PHP Version >= 8.1"
