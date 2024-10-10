@@ -1937,7 +1937,7 @@ msgstr "Ongeldige planeet"
 
 #: pages/register.php:105
 msgid "This password reset link has expired, please request a new one."
-msgstr "De wachtwoord reset link is verlopen, vraag een nieuwe aan."
+msgstr "De wachtwoord-reset link is verlopen, vraag een nieuwe aan."
 
 #: pages/register.php:105 pages/register.php:108
 msgid "Failure"
