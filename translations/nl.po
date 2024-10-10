@@ -1087,7 +1087,7 @@ msgstr ""
 "Je verjaardag komt eraan en je hebt net een verlanglijstje gemaakt met alle "
 "leuke dingen die je wilt hebben. Je vrienden en familie willen er zeker van "
 "zijn dat je iets krijgt waar je blij mee bent, dus je stuurt ze je "
-"verlanglijstje link en als iemand besluit een van je wensen te vervullen, "
+"verlanglijstjeslink en als iemand besluit een van je wensen te vervullen, "
 "verdwijnt het voor alle anderen."
 
 #: pages/home.php:100
