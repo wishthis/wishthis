@@ -981,7 +981,7 @@ msgid ""
 "Additional logins are no longer required when switching between wishthis "
 "channels"
 msgstr ""
-"Extra aanmeldingen zijn niet langer nodig bij het schakelen tussen wishthis "
+"Extra aanmeldingen zijn niet langer nodig bij het schakelen tussen wishthis-"
 "kanalen"
 
 #. TRANSLATORS: Changelog: Improved
