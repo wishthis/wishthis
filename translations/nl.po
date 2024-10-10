@@ -1377,7 +1377,7 @@ msgstr "Info"
 
 #: pages/login.php:112
 msgid "Credentials"
-msgstr "Geloofsbrieven"
+msgstr "Inloggegevens"
 
 #: pages/login.php:136
 msgid "Keep me logged in"
