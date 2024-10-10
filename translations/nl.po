@@ -764,7 +764,8 @@ msgstr "Speciale tekens worden niet goed weergegeven"
 #: pages/changelog.php:210
 msgid "A fatal error when the CHANNELS constant is removed from the config"
 msgstr ""
-"Een fatale fout wanneer de CHANNELS constante wordt verwijderd uit de config"
+"Een fatale fout wanneer de CHANNELS-constante wordt verwijderd uit de "
+"configuratie"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:217
