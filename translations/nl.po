@@ -2131,7 +2131,7 @@ msgstr ""
 
 #: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
 msgid "Request more wishes"
-msgstr "Meer wensen"
+msgstr "Om meer wensen vragen"
 
 #: pages/wishlist.php:103
 msgid "A notification has just been sent to the owner of this wishlist."
