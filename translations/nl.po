@@ -1647,7 +1647,7 @@ msgstr "Wachtwoord bijgewerkt."
 #: pages/profile/profile-handle-post-personal.php:31
 #, php-format
 msgid "First name updated to \"%s\"."
-msgstr "Voornaam bijgewerkt tot \"%s\"."
+msgstr "Voornaam bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users last name.
 #: pages/profile/profile-handle-post-personal.php:61
