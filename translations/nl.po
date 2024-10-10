@@ -963,7 +963,7 @@ msgstr "Snel wens toevoegen vanaf homepagina"
 #: pages/changelog.php:517
 msgid "Button to request more wishes from a users wishlist"
 msgstr ""
-"Knop om meer wensen op te vragen van het verlanglijstje van een gebruiker"
+"Knop om meer wensen op te vragen voor het verlanglijstje van een gebruiker"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:523
