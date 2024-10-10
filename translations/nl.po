@@ -1659,13 +1659,13 @@ msgstr "Achternaam bijgewerkt naar \"%s\"."
 #: pages/profile/profile-handle-post-personal.php:91
 #, php-format
 msgid "Nick name updated to \"%s\"."
-msgstr "Nicknaam bijgewerkt naar \"%s\"."
+msgstr "Bijnaam bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users email address.
 #: pages/profile/profile-handle-post-personal.php:121
 #, php-format
 msgid "Email address updated to \"%s\"."
-msgstr "E-mailadres bijgewerkt tot \"%s\"."
+msgstr "E-mailadres bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users locale.
 #: pages/profile/profile-handle-post-preferences.php:38
