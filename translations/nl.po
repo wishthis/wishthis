@@ -1048,7 +1048,7 @@ msgstr "Deze Wijzigingslog"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:635
 msgid "Wish properties"
-msgstr "Wens eigenschappen"
+msgstr "Wenseigenschappen"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:641
