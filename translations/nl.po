@@ -1242,7 +1242,7 @@ msgstr ""
 
 #: pages/install.php:54
 msgid "Host"
-msgstr "Gastheer"
+msgstr "Host"
 
 #: pages/install.php:59 pages/parts/wishlist.php:95
 msgid "Name"
