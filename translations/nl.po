@@ -809,7 +809,7 @@ msgstr "Optie om advertenties in te schakelen"
 #: pages/changelog.php:279 pages/changelog.php:386 pages/changelog.php:528
 #: pages/changelog.php:646
 msgid "Improved"
-msgstr "Verbeterde"
+msgstr "Verbeterd"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:284
