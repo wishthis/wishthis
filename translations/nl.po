@@ -1957,7 +1957,7 @@ msgstr "Er bestaat al een account met dit e-mailadres."
 
 #: pages/register.php:145
 msgid "Invalid email address"
-msgstr "Ongeldig e-mail adres"
+msgstr "Ongeldig e-mailadres"
 
 #: pages/register.php:166
 msgid "Your account was successfully created."
