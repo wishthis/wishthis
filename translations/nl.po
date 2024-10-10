@@ -987,7 +987,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:545
 msgid "Remembered wishlists design"
-msgstr "Herinnerde verlanglijstjes ontwerpen"
+msgstr "Desing opgeslagen verlanglijsten"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:555
