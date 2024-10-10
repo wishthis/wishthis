@@ -952,12 +952,12 @@ msgstr ""
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
-msgstr "Spring naar de laatst bewerkte verlanglijst vanuit de homepagina"
+msgstr "Spring naar de laatst bewerkte verlanglijst vanaf de homepagina"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
 msgid "Quick add wish from home"
-msgstr "Snelle toevoegingswens vanuit huis"
+msgstr "Snel wens toevoegen vanaf homepagina"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
