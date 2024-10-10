@@ -2066,7 +2066,7 @@ msgstr ""
 
 #: pages/settings.php:33
 msgid "Application ID"
-msgstr "Toepassing ID"
+msgstr "Toepassings-ID"
 
 #: pages/settings.php:42
 msgid "Secret Key"
