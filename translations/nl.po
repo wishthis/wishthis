@@ -1948,7 +1948,7 @@ msgid ""
 "This password reset link seems to have been manipulated, please request a "
 "new one."
 msgstr ""
-"Deze wachtwoord reset link lijkt te zijn gemanipuleerd, vraag een nieuwe "
+"Deze wachtwoord-reset link lijkt te zijn gemanipuleerd, vraag een nieuwe "
 "aan."
 
 #: pages/register.php:144
