@@ -1984,7 +1984,7 @@ msgstr "De eigenaar van deze site heeft gebruikersregistraties uitgeschakeld."
 
 #: pages/register.php:232
 msgid "Account details"
-msgstr "Account gegevens"
+msgstr "Accountgegevens"
 
 #: pages/register.php:263
 msgid "Authentication"
