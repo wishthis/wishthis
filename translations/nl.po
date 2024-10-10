@@ -1884,7 +1884,7 @@ msgstr "Reset"
 
 #: pages/register.php:37
 msgid "Mercury"
-msgstr "Kwik"
+msgstr "Mercurius"
 
 #: pages/register.php:38
 msgid "Venus"
