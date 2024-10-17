@@ -526,7 +526,7 @@ msgid ""
 "fulfilled here. If you do not confirm this wish as fulfilled, it will become"
 " available again to others after %s."
 msgstr ""
-"Se este desejo for um produto, confirme que a encomenda foi bem sucedida e "
+"Se este desejo é um produto, confirme que a encomenda foi bem sucedida e "
 "marque-o como realizado aqui. Se não confirmar este desejo como realizado, "
 "ele ficará novamente disponível para outros após %s."
 
