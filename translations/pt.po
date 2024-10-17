@@ -361,7 +361,7 @@ msgstr "As minhas listas"
 
 #: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr "Listas recordadas"
+msgstr "Listas guardadas"
 
 #: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
