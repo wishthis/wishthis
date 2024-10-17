@@ -1394,9 +1394,9 @@ msgid ""
 " you to access them with one master password. Never forget a password ever "
 "again."
 msgstr ""
-"Considerar a utilização de um gestor de senhas. Ele guardará todas as suas "
-"palavras-passe e permitir-lhe-á aceder a elas com uma palavra-passe "
-"principal. Nunca mais se esqueça de uma palavra-passe."
+"Considere a utilização de um gestor de senhas. Ele guardará todas as suas "
+"palavras-passe e permitir-lhe-á aceder a elas com uma palavra-passe mãe. "
+"Nunca mais se esqueça de uma palavra-passe."
 
 #: pages/login.php:181 pages/login.php:182
 msgid "Send email"
