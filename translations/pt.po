@@ -395,7 +395,7 @@ msgstr "Definições"
 #: classes/wishthis/Page.php:669 classes/wishthis/Page.php:672
 #: pages/changelog.php:11
 msgid "Changelog"
-msgstr "Changelog"
+msgstr "Registo de alterações"
 
 #: classes/wishthis/Page.php:678
 msgid "Contribute"
