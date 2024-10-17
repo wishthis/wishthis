@@ -1750,8 +1750,8 @@ msgstr "Apelido"
 #: pages/profile/profile.php:84
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
 msgstr ""
-"Sugerir um wishlist chamado \"Aniversário\" ,  quando o mesmo estiver "
-"próximo."
+"Usado para sugerir um wishlist chamado \"Aniversário\" ,  quando o mesmo "
+"estiver próximo."
 
 #: pages/profile/profile.php:86
 msgid "Birthdate"
