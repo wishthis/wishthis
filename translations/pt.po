@@ -62,7 +62,7 @@ msgstr "Obrigado por nada"
 
 #: assets/js/inline.js.php:39
 msgid "Unexpected output"
-msgstr "Saída inesperada"
+msgstr "Resultado inesperado"
 
 #: assets/js/inline.js.php:41
 msgid ""
