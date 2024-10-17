@@ -1661,7 +1661,7 @@ msgstr "Apelido atualizado para \"%s\"."
 #: pages/profile/profile-handle-post-personal.php:91
 #, php-format
 msgid "Nick name updated to \"%s\"."
-msgstr "Nome do Nick atualizado para \"%s\"."
+msgstr "Nickname atualizado para \"%s\"."
 
 #. TRANSLATORS: %s: The users email address.
 #: pages/profile/profile-handle-post-personal.php:121
