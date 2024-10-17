@@ -2178,7 +2178,7 @@ msgstr "Lista de Desejos"
 
 #: pages/wishlists.php:36
 msgid "Loading your wishlists..."
-msgstr "Carregando as suas listas de desejos..."
+msgstr "A carregar as suas listas de desejos..."
 
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
