@@ -2099,7 +2099,7 @@ msgid ""
 "Thank you for updating wishthis! To complete this update, some changes are "
 "required to the database structure."
 msgstr ""
-"Obrigado por actualizar este desejo! Para completar esta actualização, são "
+"Obrigado por atualizar este desejo! Para completar esta actualização, são "
 "necessárias algumas alterações à estrutura da base de dados."
 
 #: pages/update.php:82 pages/update.php:85 pages/update.php:101
