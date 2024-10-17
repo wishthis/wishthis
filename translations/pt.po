@@ -45,7 +45,7 @@ msgstr ""
 
 #: api/wishlists.php:81
 msgid "Add wish"
-msgstr "Adicione um desejo"
+msgstr "Adicionar desejo"
 
 #: assets/js/inline.js.php:34 assets/js/inline.js.php:122
 #: pages/login-as.php:62
