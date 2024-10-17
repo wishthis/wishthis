@@ -1552,7 +1552,7 @@ msgstr ""
 
 #: pages/parts/wishlist.php:155 pages/parts/wishlist.php:156
 msgid "Add"
-msgstr "Acrescentar"
+msgstr "Adicionar"
 
 #: pages/parts/wishlist.php:168
 msgid "Edit wish"
