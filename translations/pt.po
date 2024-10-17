@@ -1076,7 +1076,7 @@ msgstr "Registe-se agora"
 
 #: pages/home.php:94
 msgid "Use case"
-msgstr "Estojo de utilização"
+msgstr "Caso de utilização"
 
 #: pages/home.php:96
 msgid ""
