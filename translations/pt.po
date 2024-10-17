@@ -82,7 +82,7 @@ msgstr ""
 
 #: assets/js/inline.js.php:43
 msgid "In any case, please report this."
-msgstr "Em todo o caso, é favor comunicar este facto."
+msgstr "Em todo o caso,  por favor reporte isto."
 
 #: assets/js/inline.js.php:45
 msgid "Ok then"
