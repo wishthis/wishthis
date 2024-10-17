@@ -504,11 +504,11 @@ msgstr "O pedido %s não foi encontrado."
 
 #: classes/wishthis/Wish.php:34
 msgid "Unsure about it"
-msgstr "Inseguro sobre isso"
+msgstr "Incerto sobre isto"
 
 #: classes/wishthis/Wish.php:38
 msgid "Nice to have"
-msgstr "É bom ter"
+msgstr "Bom ter"
 
 #: classes/wishthis/Wish.php:42
 msgid "Would love it"
