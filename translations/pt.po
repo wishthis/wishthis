@@ -898,7 +898,7 @@ msgstr "Tema escuro"
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:410
 msgid "Remembered lists design"
-msgstr "Desenho de listas recordadas"
+msgstr "Design de listas recordadas"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:416
