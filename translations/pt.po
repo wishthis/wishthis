@@ -329,7 +329,7 @@ msgstr ""
 
 #: classes/wishthis/Page.php:278
 msgid "Reducing data"
-msgstr "Reduzir dados"
+msgstr "A reduzir dados"
 
 #: classes/wishthis/Page.php:418 pages/home.php:26
 msgid "Make a wish"
