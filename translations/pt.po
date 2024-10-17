@@ -190,7 +190,7 @@ msgstr "{name} não pode conter \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} não pode conter exactamente \"{ruleValue}\"."
+msgstr "{name} não pode conter exatamente \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
@@ -198,7 +198,7 @@ msgstr "{name} deve conter \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:94
 msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} deve conter exactamente \"{ruleValue}\"."
+msgstr "{name} deve conter exatamente \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:95 assets/js/inline.js.php:96
 msgid "{name} must be at least {ruleValue} characters"
