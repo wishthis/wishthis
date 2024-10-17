@@ -1643,7 +1643,7 @@ msgstr ""
 
 #: pages/profile/profile-handle-post-password.php:31
 msgid "Password updated."
-msgstr "Palavra-passe actualizada."
+msgstr "Palavra-passe atualizada."
 
 #. TRANSLATORS: %s: The users first name.
 #: pages/profile/profile-handle-post-personal.php:31
