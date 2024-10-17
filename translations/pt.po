@@ -465,13 +465,13 @@ msgid ""
 "code for you! Do you have any questions? Message me! (see footer)"
 msgstr ""
 "Estou a brincar - por favor, mantenha-se crítico, especialmente em relação a"
-" software de código fechado e/ou comercial. Pelo menos, pode pedir a alguém "
-"que valide o código wishthis por si! Tens alguma pergunta? Envie-me uma "
-"mensagem! (ver rodapé)"
+" software de código fechado e/ou comercial. Peça pelo menos a alguém que "
+"valide o código wishthis por si! Tem alguma pergunta? Envie-me uma mensagem!"
+" (ver rodapé)"
 
 #: classes/wishthis/Page.php:762
 msgid "wishthis really needs JavaScript to work, please enable it."
-msgstr "wishthis necessita de JavaScript para funcionar, por favor active-o."
+msgstr "wishthis necessita de JavaScript para funcionar, por favor ative-o."
 
 #: classes/wishthis/Page.php:767
 msgid "Reload page"
