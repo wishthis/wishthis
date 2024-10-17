@@ -436,8 +436,8 @@ msgid ""
 "I get it, websites track your every move these days and companies keep "
 "coming up with more genius hacks to monetise you."
 msgstr ""
-"Já percebi, hoje em dia os sítios Web seguem todos os seus movimentos e as "
-"empresas estão sempre a inventar mais truques geniais para o rentabilizar."
+"Eu percebo, nos dias de hoje os websites controlam todos os nossos "
+"movimentos e empresas continuam a crias novas maneiras de te monetizar."
 
 #: classes/wishthis/Page.php:758
 msgid ""
