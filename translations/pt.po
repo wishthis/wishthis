@@ -250,7 +250,7 @@ msgstr "Desejo criado com sucesso."
 
 #: assets/js/inline.js.php:116
 msgid "Wish information updated."
-msgstr "Informação sobre os desejos actualizada."
+msgstr "Informação sobre os desejos atualizada."
 
 #: assets/js/inline.js.php:117
 msgid "Wish successfully deleted."
