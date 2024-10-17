@@ -849,7 +849,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:317
 msgid "Fix various wish UI bugs"
-msgstr "Correção de vários erros da IU dos desejos"
+msgstr "Correção de vários erros da UI dos desejos"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:324
