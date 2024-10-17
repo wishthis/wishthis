@@ -859,7 +859,7 @@ msgstr "Correção do fundo e da cor ao abrir o menu móvel"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:330
 msgid "Marking wish as fulfilled"
-msgstr "Marcar o desejo como realizado"
+msgstr "A marcar o desejo como realizado"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:350
