@@ -174,7 +174,7 @@ msgstr "{name} deve ser \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} deve ser exactamente \"{ruleValue}\"."
+msgstr "{name} deve ser exatamente \"{ruleValue}\"."
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
