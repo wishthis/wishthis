@@ -1539,7 +1539,7 @@ msgstr "Renomear"
 
 #: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
 msgid "Add a wish"
-msgstr "Acrescentar um desejo"
+msgstr "Adicionar um desejo"
 
 #: pages/parts/wishlist.php:145
 msgid ""
