@@ -796,7 +796,7 @@ msgstr "Opção para definir a moeda"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:262
 msgid "A roadmap in the changelog"
-msgstr "Um roteiro no changelog"
+msgstr "Um roadmap no changelog"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:268
