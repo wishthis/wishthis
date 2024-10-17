@@ -154,7 +154,7 @@ msgstr "{name} deve ser um URL válido"
 
 #: assets/js/inline.js.php:83
 msgid "{name} is not formatted correctly"
-msgstr "{name} não está formatado correctamente"
+msgstr "{name} não está formatado corretamente"
 
 #: assets/js/inline.js.php:84
 msgid "{name} must be an integer"
