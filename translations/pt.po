@@ -54,7 +54,7 @@ msgstr "Erro"
 
 #: assets/js/inline.js.php:35
 msgid "Something went wrong, that's all I know."
-msgstr "Algo saiu errado, é tudo que eu sei."
+msgstr "Algo correu mal, é tudo que eu sei."
 
 #: assets/js/inline.js.php:36
 msgid "Thanks for nothing"
