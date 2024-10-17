@@ -1862,7 +1862,7 @@ msgstr ""
 
 #: pages/profile/profile.php:367
 msgid "sponsor me"
-msgstr "patrocinar-me"
+msgstr "patrocine-me"
 
 #: pages/profile/profile.php:371
 msgid "Please remember to add an exception to your ad-blocker and browser."
