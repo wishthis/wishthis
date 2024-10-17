@@ -1568,7 +1568,7 @@ msgstr ""
 
 #: pages/parts/wishlist.php:198
 msgid "URL mismatch"
-msgstr "Descoordenação de URL"
+msgstr "URL não correspondido"
 
 #: pages/parts/wishlist.php:202
 msgid ""
