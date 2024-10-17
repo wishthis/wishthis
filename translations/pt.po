@@ -1464,7 +1464,7 @@ msgstr "Prioridade"
 
 #: pages/parts/wish-add.php:59
 msgid "Select priority"
-msgstr "Seleccione a prioridade"
+msgstr "Selecione a prioridade"
 
 #: pages/parts/wish-add.php:68
 msgid "Image"
@@ -1472,7 +1472,7 @@ msgstr "Imagem"
 
 #: pages/parts/wish-add.php:77
 msgid "Properties"
-msgstr "Imóveis"
+msgstr "Propriedades"
 
 #: pages/parts/wish-add.php:85
 msgid "Is purchasable"
