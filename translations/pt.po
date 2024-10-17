@@ -1034,7 +1034,7 @@ msgstr "Um erro ao guardar um desejo com um URL muito longo"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:601
 msgid "Redirect errors on Nginx"
-msgstr "Erros de redireccionamento no Nginx"
+msgstr "Erros de redirecionamento no Nginx"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:607
