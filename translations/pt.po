@@ -1954,8 +1954,8 @@ msgid ""
 "This password reset link seems to have been manipulated, please request a "
 "new one."
 msgstr ""
-"Esta ligação para redefinição da palavra-passe parece ter sido manipulada. "
-"Solicite uma nova."
+"Esta ligação para redefinição de palavra-passe parece ter sido manipulada, "
+"solicite uma nova."
 
 #: pages/register.php:144
 msgid "An account with this email address already exists."
