@@ -538,7 +538,7 @@ msgstr "%d minutos"
 
 #: classes/wishthis/Wish.php:245
 msgid "Confirm"
-msgstr "Confirme"
+msgstr "Confirmar"
 
 #: classes/wishthis/Wish.php:294
 msgid "Wish not found"
