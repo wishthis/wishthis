@@ -415,7 +415,7 @@ msgstr "Contato"
 
 #: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
 msgid "Matrix"
-msgstr "Matriz"
+msgstr "Matrix"
 
 #: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
