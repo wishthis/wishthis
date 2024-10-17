@@ -1227,7 +1227,7 @@ msgstr "Etapa %d"
 
 #: pages/install.php:39
 msgid "Welcome to the wishthis installer."
-msgstr "Bem-vindo ao desejo deste instalador."
+msgstr "Bem-vindo ao instalador da wishthis."
 
 #: pages/install.php:43
 msgid "Database"
@@ -1238,7 +1238,7 @@ msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
 msgstr ""
-"wishthis precisa de uma base de dados para funcionar corretamente. Por "
+"A wishthis precisa de uma base de dados para funcionar corretamente. Por "
 "favor, introduza as suas credenciais."
 
 #: pages/install.php:54
