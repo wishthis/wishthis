@@ -1721,7 +1721,7 @@ msgstr "Informação sobre si"
 
 #: pages/profile/profile.php:36
 msgid "Change your password"
-msgstr "Altere a sua palavra-passe"
+msgstr "Alterar palavra-passe"
 
 #: pages/profile/profile.php:39 pages/profile/profile.php:178
 msgid "Preferences"
@@ -1729,7 +1729,7 @@ msgstr "Preferências"
 
 #: pages/profile/profile.php:40
 msgid "Improve your wishthis experience"
-msgstr "Melhore os seus desejos esta experiência"
+msgstr "Melhor a sua experiência wishthis"
 
 #: pages/profile/profile.php:44
 msgid "Configuration for your account"
