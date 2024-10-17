@@ -1369,8 +1369,8 @@ msgid ""
 "If a match can be found for this email address, a password reset link will "
 "be sent to it."
 msgstr ""
-"Se for possível encontrar uma correspondência para este endereço "
-"electrónico, ser-lhe-á enviado um link para redefinir a palavra-passe."
+"Se for possível encontrar uma correspondência para este endereço eletrónico,"
+" ser-lhe-á enviado um link para redefinir a palavra-passe."
 
 #: pages/login.php:93
 msgid "Info"
