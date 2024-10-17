@@ -1431,8 +1431,8 @@ msgid ""
 "Due to maintenance, wishthis is temporarily not available. Please check back"
 " again in a minute."
 msgstr ""
-"Devido à manutenção, este desejo não está temporariamente disponível. Por "
-"favor, verifique novamente dentro de um minuto."
+"Devido a manutenção, este desejo está temporariamente indisponível. Por "
+"favor, verifique novamente daqui a um minuto."
 
 #: pages/maintenance.php:28
 msgid "If you are the administrator of this site, please log in."
