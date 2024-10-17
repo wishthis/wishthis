@@ -2014,8 +2014,8 @@ msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
-"Os robôs são obviamente de outro sistema solar, pelo que isto irá mantê-los "
-"à distância."
+"Robôs são obviamente de outro sistema solar, pelo que isto irá mantê-los à "
+"distância."
 
 #: pages/register.php:301
 msgid "About your email address"
