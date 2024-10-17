@@ -1337,8 +1337,7 @@ msgstr "Email"
 
 #: pages/login.php:25
 msgid "No user could be found with the credentials you provided."
-msgstr ""
-"Nenhum utilizador pôde ser encontrado com as credenciais que forneceu."
+msgstr "Nenhum utilizador foi encontrado com as credenciais que forneceu."
 
 #: pages/login.php:26
 msgid "Invalid credentials"
