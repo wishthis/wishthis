@@ -495,7 +495,7 @@ msgstr ""
 
 #: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
-msgstr "O desejo pedido Wish não foi encontrado."
+msgstr "O Desejo pedido não foi encontrado."
 
 #: classes/wishthis/Page.php:811
 #, php-format
