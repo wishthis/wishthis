@@ -206,7 +206,7 @@ msgstr "{name} devem ser pelo menos {ruleValue} caracteres"
 
 #: assets/js/inline.js.php:97
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} devem ser exactamente {ruleValue} caracteres"
+msgstr "{name} deve ser exactamente {ruleValue} carateres"
 
 #: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
