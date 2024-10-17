@@ -1238,8 +1238,8 @@ msgid ""
 "wishthis needs a database to function properly. Please enter your "
 "credentials."
 msgstr ""
-"deseja que esta necessite de uma base de dados para funcionar correctamente."
-" Por favor, introduza as suas credenciais."
+"wishthis precisa de uma base de dados para funcionar corretamente. Por "
+"favor, introduza as suas credenciais."
 
 #: pages/install.php:54
 msgid "Host"
