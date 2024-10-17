@@ -77,8 +77,8 @@ msgid ""
 "For nerds: The API returned HTTP 200, there was no (error) output, yet the "
 "response is still not as expected."
 msgstr ""
-"Para os nerds: A API retornou HTTP 200, não houve saída (erro), mas a "
-"resposta ainda não é a esperada."
+"Para os nerds: A API retornou HTTP 200, não enviou erro, mas a resposta "
+"ainda não é a esperada."
 
 #: assets/js/inline.js.php:43
 msgid "In any case, please report this."
