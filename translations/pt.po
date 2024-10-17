@@ -641,7 +641,7 @@ msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
 "the %s on GitHub, or chat on Matrix or Discord."
 msgstr ""
-"Se quiser dar feedback sobre o roteiro, consulte %s no GitHub, ou converse "
+"Se quiser dar feedback sobre o roadmap, consulte %s no GitHub, ou converse "
 "no Matrix ou no Discord."
 
 #: pages/changelog.php:48
