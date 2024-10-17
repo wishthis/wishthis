@@ -819,7 +819,7 @@ msgid ""
 "Large parts of wishthis have been completely rewritten, such as the API and "
 "how pretty URLs work. The aim was to increase security and maintainability."
 msgstr ""
-"Grandes partes do wishthis foram completamente reescritas, como a API e a "
+"Grandes partes da wishthis foram completamente reescritas, como a API e a "
 "forma como os URLs bonitos funcionam. O objetivo era aumentar a segurança e "
 "a facilidade de manutenção."
 
