@@ -675,9 +675,9 @@ msgid ""
 "Alternatively, a heartbeat which checks if all the wishes are still "
 "unfulfilled."
 msgstr ""
-"Verificar se os desejos ainda estão disponíveis quando se tenta realizá-los."
-" Em alternativa, um batimento cardíaco que verifica se todos os desejos "
-"ainda não foram satisfeitos."
+"Verifique se os desejos ainda estão disponíveis quando os tenta realizar. Em"
+" alternativa, um batimento cardíaco que verifica se todos os desejos ainda "
+"não foram satisfeitos."
 
 #: pages/changelog.php:98 pages/changelog.php:177 pages/changelog.php:305
 #: pages/changelog.php:345 pages/changelog.php:365 pages/changelog.php:421
