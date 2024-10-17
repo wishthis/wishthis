@@ -318,8 +318,8 @@ msgid ""
 "wishthis is a simple, intuitive and modern wishlist platform to create, "
 "manage and view your wishes for any kind of occasion."
 msgstr ""
-"wishthisth is a simple, intuitive and modern wishlist platform to create, "
-"manage and view your wishes for any kind of occasion."
+"wishthis é uma plataforma de wishlist simples, intuitiva e moderna para "
+"criar gerir e visualizar os seus desejos para qualquer ocasião."
 
 #: classes/wishthis/Page.php:277
 msgid "Your device is set to reduce data, some content has been disabled."
