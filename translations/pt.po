@@ -1530,7 +1530,7 @@ msgstr "Renomear lista de desejos"
 
 #: pages/parts/wishlist.php:119
 msgid "How would you like to name this wishlist?"
-msgstr "Como gostaria de nomear esta lista de desejos?"
+msgstr "Como gostaria de chamar esta lista de desejos?"
 
 #: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
 #: pages/wishlists.php:77 pages/wishlists.php:79
