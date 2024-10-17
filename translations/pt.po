@@ -1137,7 +1137,7 @@ msgstr "transparente"
 
 #: pages/home.php:136
 msgid "privacy focused"
-msgstr "centrado na privacidade"
+msgstr "focado na privacidade"
 
 #: pages/home.php:140
 msgid "open for feedback and suggestions"
