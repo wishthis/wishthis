@@ -230,7 +230,7 @@ msgstr "{name} deve ter pelo menos {ruleValue} escolhas"
 
 #: assets/js/inline.js.php:103
 msgid "{name} must have exactly {ruleValue} choices"
-msgstr "{name} deve ter exactamente {ruleValue} escolhas"
+msgstr "{name} deve ter exatamente {ruleValue} escolhas"
 
 #: assets/js/inline.js.php:104
 msgid "{name} must have {ruleValue} or less choices"
