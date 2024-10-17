@@ -1185,7 +1185,7 @@ msgstr "Utilizadores registados"
 
 #: pages/home.php:235
 msgid "Hey, you"
-msgstr "Ei, tu"
+msgstr "Hey, tu"
 
 #. TRANSLATORS: %s: the users display name
 #: pages/home.php:241
