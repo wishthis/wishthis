@@ -1436,7 +1436,7 @@ msgstr ""
 
 #: pages/maintenance.php:28
 msgid "If you are the administrator of this site, please log in."
-msgstr "Se é o administrador deste sítio, inicie sessão."
+msgstr "Se é o administrador deste website, inicie sessão."
 
 #: pages/parts/wish-add.php:12
 msgid "General"
