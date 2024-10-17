@@ -693,7 +693,7 @@ msgstr "Lista de desejos partilhada não acessível"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:110
 msgid "Accessing wishlist without permission"
-msgstr "Aceder à lista de desejos sem autorização"
+msgstr "A aceder lista de desejos sem autorização"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:117
