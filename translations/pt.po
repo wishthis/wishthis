@@ -1214,7 +1214,7 @@ msgstr "preferências"
 msgid ""
 "wishthis is available in %1$s different locales and also supports %2$s!"
 msgstr ""
-"wishthis está disponível em %1$s locais diferentes e também suporta %2$s!"
+"A wishthis está disponível em %1$s locais diferentes e também suporta %2$s!"
 
 #: pages/install.php:15
 msgid "Install"
