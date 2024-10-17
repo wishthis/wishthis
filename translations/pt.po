@@ -113,7 +113,7 @@ msgstr "Mostrar lista de desejos de qualquer maneira"
 
 #: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
-msgstr "Realmente eliminar?"
+msgstr "Quer realmente eliminar?"
 
 #: assets/js/inline.js.php:58
 #, php-format
