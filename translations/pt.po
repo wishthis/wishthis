@@ -1407,8 +1407,7 @@ msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
 msgstr ""
-"Por favor note que tem de introduzir o endereço de correio electrónico com o"
-" qual se registou."
+"Por favor introduza o endereço de correio eletrónico com o qual se registou."
 
 #: pages/logout.php:24
 msgid "Goodbye"
