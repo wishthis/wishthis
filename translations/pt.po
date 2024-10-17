@@ -1816,9 +1816,9 @@ msgid ""
 "stability while using wishthis, minimizing the amount of errors you may "
 "encounter (if any)."
 msgstr ""
-"A subscrição do canal Estável assegura-lhe a maior estabilidade possível "
+"A subscrição do canal Stable assegura-lhe a maior estabilidade possível "
 "enquanto utiliza este desejo, minimizando a quantidade de erros que pode "
-"encontrar (se houver)."
+"encontrar (se existirem)."
 
 #: pages/profile/profile.php:307
 msgid ""
