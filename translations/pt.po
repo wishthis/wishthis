@@ -1251,7 +1251,7 @@ msgstr "Nome"
 
 #: pages/install.php:66
 msgid "Username"
-msgstr "Nome de utilizador"
+msgstr "Username"
 
 #: pages/install.php:71 pages/login.php:125 pages/profile/profile.php:35
 #: pages/profile/profile.php:116 pages/profile/profile.php:124
