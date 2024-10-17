@@ -1014,7 +1014,7 @@ msgstr "\"Listas de desejos guardadas\" foi renomeada para \"Listas de recordaç
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
 msgid "Various minor things (typos, menu order, etc)"
-msgstr "Vários aspectos menores (erros de digitação, ordem dos menus, etc.)"
+msgstr "Vários aspetos menores (erros de digitação, ordem dos menus, etc.)"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:583
