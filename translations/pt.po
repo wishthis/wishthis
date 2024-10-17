@@ -1745,7 +1745,7 @@ msgstr "Apelido"
 
 #: pages/profile/profile.php:71
 msgid "Nickname"
-msgstr "Apelido"
+msgstr "Nickname"
 
 #: pages/profile/profile.php:84
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
