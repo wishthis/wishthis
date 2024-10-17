@@ -1585,7 +1585,7 @@ msgstr "De acordo com %s, este é o URL canónico (correcto)."
 
 #: pages/parts/wishlist.php:207
 msgid "Current"
-msgstr "Actual"
+msgstr "Atual"
 
 #: pages/parts/wishlist.php:212
 msgid "Proposed"
