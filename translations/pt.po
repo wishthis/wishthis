@@ -558,7 +558,7 @@ msgstr "Estável"
 
 #: config/config-sample.php:45 config/config.php:45
 msgid "Release candidate"
-msgstr "Candidato de libertação"
+msgstr "Candidato para lançamento"
 
 #: functions/getWishlistNameSuggestion.php:32
 msgid "Birthday"
