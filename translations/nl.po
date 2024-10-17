@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Jay Trees, 2023
-# Privacy_Dragon, 2023
+# Privacy_Dragon, 2024
 # 
 #, fuzzy
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: Privacy_Dragon, 2023\n"
+"Last-Translator: Privacy_Dragon, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/wishthis/teams/134148/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "Hallo,"
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
 msgstr ""
-"Iemand heeft gevraagd om meer wensen toe te voegen aan je verlanglijst %s."
+"Iemand heeft je gevraagd meer wensen toe te voegen aan je verlanglijst %s."
 
 #: api/wishlists.php:81
 msgid "Add wish"
@@ -764,7 +764,8 @@ msgstr "Speciale tekens worden niet goed weergegeven"
 #: pages/changelog.php:210
 msgid "A fatal error when the CHANNELS constant is removed from the config"
 msgstr ""
-"Een fatale fout wanneer de CHANNELS constante wordt verwijderd uit de config"
+"Een fatale fout wanneer de CHANNELS-constante wordt verwijderd uit de "
+"configuratie"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:217
@@ -808,7 +809,7 @@ msgstr "Optie om advertenties in te schakelen"
 #: pages/changelog.php:279 pages/changelog.php:386 pages/changelog.php:528
 #: pages/changelog.php:646
 msgid "Improved"
-msgstr "Verbeterde"
+msgstr "Verbeterd"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:284
@@ -951,18 +952,18 @@ msgstr ""
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
-msgstr "Spring naar de laatst bewerkte verlanglijst vanuit huis"
+msgstr "Spring naar de laatst bewerkte verlanglijst vanaf de homepagina"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
 msgid "Quick add wish from home"
-msgstr "Snelle toevoegingswens vanuit huis"
+msgstr "Snel wens toevoegen vanaf homepagina"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
 msgid "Button to request more wishes from a users wishlist"
 msgstr ""
-"Knop om meer wensen op te vragen van het verlanglijstje van een gebruiker"
+"Knop om meer wensen op te vragen voor het verlanglijstje van een gebruiker"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:523
@@ -980,13 +981,13 @@ msgid ""
 "Additional logins are no longer required when switching between wishthis "
 "channels"
 msgstr ""
-"Extra aanmeldingen zijn niet langer nodig bij het schakelen tussen wishthis "
+"Extra aanmeldingen zijn niet langer nodig bij het schakelen tussen wishthis-"
 "kanalen"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:545
 msgid "Remembered wishlists design"
-msgstr "Herinnerde verlanglijstjes ontwerpen"
+msgstr "Desing opgeslagen verlanglijsten"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:555
@@ -1047,7 +1048,7 @@ msgstr "Deze Wijzigingslog"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:635
 msgid "Wish properties"
-msgstr "Wens eigenschappen"
+msgstr "Wenseigenschappen"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:641
@@ -1086,7 +1087,7 @@ msgstr ""
 "Je verjaardag komt eraan en je hebt net een verlanglijstje gemaakt met alle "
 "leuke dingen die je wilt hebben. Je vrienden en familie willen er zeker van "
 "zijn dat je iets krijgt waar je blij mee bent, dus je stuurt ze je "
-"verlanglijstje link en als iemand besluit een van je wensen te vervullen, "
+"verlanglijstjeslink en als iemand besluit een van je wensen te vervullen, "
 "verdwijnt het voor alle anderen."
 
 #: pages/home.php:100
@@ -1241,7 +1242,7 @@ msgstr ""
 
 #: pages/install.php:54
 msgid "Host"
-msgstr "Gastheer"
+msgstr "Host"
 
 #: pages/install.php:59 pages/parts/wishlist.php:95
 msgid "Name"
@@ -1269,11 +1270,11 @@ msgstr "Opslaan"
 
 #: pages/install.php:83
 msgid "Test connection"
-msgstr "Testaansluiting"
+msgstr "Test verbinding"
 
 #: pages/install.php:99
 msgid "PHP Version >= 8.1"
-msgstr "PHP versie &gt;= 8.1"
+msgstr "PHP-versie >= 8.1"
 
 #: pages/install.php:102 pages/install.php:108
 msgid "Compatible"
@@ -1281,7 +1282,7 @@ msgstr "Compatibel"
 
 #: pages/install.php:105
 msgid "PHP Version < 8.3"
-msgstr "PHP versie &lt; 8.3"
+msgstr "PHP-versie < 8.3"
 
 #: pages/install.php:114
 msgid "Activated"
@@ -1344,7 +1345,7 @@ msgstr "Ongeldige inloggegevens"
 
 #: pages/login.php:70
 msgid "Password reset link"
-msgstr "Reset wachtwoord link"
+msgstr "wachtwoord-reset link"
 
 #. TRANSLATORS: %s: The wishthis domain
 #: pages/login.php:76
@@ -1376,7 +1377,7 @@ msgstr "Info"
 
 #: pages/login.php:112
 msgid "Credentials"
-msgstr "Geloofsbrieven"
+msgstr "Inloggegevens"
 
 #: pages/login.php:136
 msgid "Keep me logged in"
@@ -1405,7 +1406,7 @@ msgid ""
 "Please note that you have to enter the email address, you have registered "
 "with."
 msgstr ""
-"Merk op dat je het emailadres moet invoeren, waarmee je geregistreerd bent."
+"Let op dat je het e-mailadres moet invoeren, waarmee je geregistreerd bent."
 
 #: pages/logout.php:24
 msgid "Goodbye"
@@ -1646,7 +1647,7 @@ msgstr "Wachtwoord bijgewerkt."
 #: pages/profile/profile-handle-post-personal.php:31
 #, php-format
 msgid "First name updated to \"%s\"."
-msgstr "Voornaam bijgewerkt tot \"%s\"."
+msgstr "Voornaam bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users last name.
 #: pages/profile/profile-handle-post-personal.php:61
@@ -1658,13 +1659,13 @@ msgstr "Achternaam bijgewerkt naar \"%s\"."
 #: pages/profile/profile-handle-post-personal.php:91
 #, php-format
 msgid "Nick name updated to \"%s\"."
-msgstr "Nicknaam bijgewerkt naar \"%s\"."
+msgstr "Bijnaam bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users email address.
 #: pages/profile/profile-handle-post-personal.php:121
 #, php-format
 msgid "Email address updated to \"%s\"."
-msgstr "E-mailadres bijgewerkt tot \"%s\"."
+msgstr "E-mailadres bijgewerkt naar \"%s\"."
 
 #. TRANSLATORS: %s: The users locale.
 #: pages/profile/profile-handle-post-preferences.php:38
@@ -1692,7 +1693,7 @@ msgstr "Kanaal is gereset."
 #: pages/profile/profile-handle-post-preferences.php:161
 #, php-format
 msgid "Advertisements updated to \"%s\"."
-msgstr "Advertenties bijgewerkt tot \"%s\"."
+msgstr "Advertenties bijgewerkt naar \"%s\"."
 
 #: pages/profile/profile-handle-post-preferences.php:174
 #: pages/profile/profile-handle-post.php:19
@@ -1883,7 +1884,7 @@ msgstr "Reset"
 
 #: pages/register.php:37
 msgid "Mercury"
-msgstr "Kwik"
+msgstr "Mercurius"
 
 #: pages/register.php:38
 msgid "Venus"
@@ -1936,7 +1937,7 @@ msgstr "Ongeldige planeet"
 
 #: pages/register.php:105
 msgid "This password reset link has expired, please request a new one."
-msgstr "De wachtwoord reset link is verlopen, vraag een nieuwe aan."
+msgstr "De wachtwoord-reset link is verlopen, vraag een nieuwe aan."
 
 #: pages/register.php:105 pages/register.php:108
 msgid "Failure"
@@ -1947,7 +1948,7 @@ msgid ""
 "This password reset link seems to have been manipulated, please request a "
 "new one."
 msgstr ""
-"Deze wachtwoord reset link lijkt te zijn gemanipuleerd, vraag een nieuwe "
+"Deze wachtwoord-reset link lijkt te zijn gemanipuleerd, vraag een nieuwe "
 "aan."
 
 #: pages/register.php:144
@@ -1956,7 +1957,7 @@ msgstr "Er bestaat al een account met dit e-mailadres."
 
 #: pages/register.php:145
 msgid "Invalid email address"
-msgstr "Ongeldig e-mail adres"
+msgstr "Ongeldig e-mailadres"
 
 #: pages/register.php:166
 msgid "Your account was successfully created."
@@ -1983,7 +1984,7 @@ msgstr "De eigenaar van deze site heeft gebruikersregistraties uitgeschakeld."
 
 #: pages/register.php:232
 msgid "Account details"
-msgstr "Account gegevens"
+msgstr "Accountgegevens"
 
 #: pages/register.php:263
 msgid "Authentication"
@@ -2065,7 +2066,7 @@ msgstr ""
 
 #: pages/settings.php:33
 msgid "Application ID"
-msgstr "Toepassing ID"
+msgstr "Toepassings-ID"
 
 #: pages/settings.php:42
 msgid "Secret Key"
@@ -2130,13 +2131,12 @@ msgstr ""
 
 #: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
 msgid "Request more wishes"
-msgstr "Meer wensen"
+msgstr "Om meer wensen vragen"
 
 #: pages/wishlist.php:103
 msgid "A notification has just been sent to the owner of this wishlist."
 msgstr ""
-"Er is zojuist een notificatie verzonden naar de eigenaar van deze "
-"verlanglijst."
+"Er is zojuist een melding verzonden naar de eigenaar van deze verlanglijst."
 
 #: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
 #: pages/wishlist.php:123

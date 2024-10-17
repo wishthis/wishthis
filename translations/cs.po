@@ -1,6 +1,7 @@
 # 
 # Translators:
 # Jay Trees, 2023
+# Jaroslav Lichtblau <l10n@lichtblau.cz>, 2024
 # 
 #, fuzzy
 msgid ""
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: Jay Trees, 2023\n"
+"Last-Translator: Jaroslav Lichtblau <l10n@lichtblau.cz>, 2024\n"
 "Language-Team: Czech (https://app.transifex.com/wishthis/teams/134148/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Publikováno dne %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "Wish request"
+msgstr "Požadavek na přání"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
@@ -74,7 +75,7 @@ msgid ""
 "For nerds: The API returned HTTP 200, there was no (error) output, yet the "
 "response is still not as expected."
 msgstr ""
-"Pro šprty: API vrátilo HTTP 200, nedošlo k žádnému (chybovému) výstupu, ale "
+"Pro nerdy: API vrátilo HTTP 200, nedošlo k žádnému (chybovému) výstupu, ale "
 "odpověď stále není taková, jaká se očekávala."
 
 #: assets/js/inline.js.php:43
@@ -119,11 +120,11 @@ msgstr "Opravdu chcete smazat seznam přání %s?"
 
 #: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
-msgstr "Ano, vymazat"
+msgstr "Ano, odstranit"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
-msgstr "Ne, nechte si"
+msgstr "Ne, ponechat"
 
 #: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
@@ -163,67 +164,67 @@ msgstr "{name} musí být desetinné číslo"
 
 #: assets/js/inline.js.php:86
 msgid "{name} must be set to a number"
-msgstr "{name} musí být nastaveno na číslo."
+msgstr "{name} musí být nastaveno na číslo"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} musí být \"{ruleValue}\"."
+msgstr "{name} musí být \"{ruleValue}\""
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} musí být přesně \"{ruleValue}\"."
+msgstr "{name} musí být přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} nelze nastavit na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} nelze nastavit přesně na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit přesně na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:91
 msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} musí obsahovat \"{ruleValue}\"."
+msgstr "{name} musí obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:94
 msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} musí obsahovat přesně \"{ruleValue}\"."
+msgstr "{name} musí obsahovat přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:95 assets/js/inline.js.php:96
 msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} musí mít alespoň {ruleValue} znaků."
+msgstr "{name} musí mít alespoň {ruleValue} znaků"
 
 #: assets/js/inline.js.php:97
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} musí obsahovat přesně {ruleValue} znaků."
+msgstr "{name} musí obsahovat přesně {ruleValue} znaků"
 
 #: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} nesmí být delší než {ruleValue} znaků."
+msgstr "{name} nesmí být delší než {ruleValue} znaků"
 
 #: assets/js/inline.js.php:99
 msgid "{name} must match {ruleValue} field"
-msgstr "{name} musí odpovídat poli {ruleValue}."
+msgstr "{name} musí odpovídat poli {ruleValue}"
 
 #: assets/js/inline.js.php:100
 msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}."
+msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}"
 
 #: assets/js/inline.js.php:101
 msgid "{name} must be a valid credit card number"
-msgstr "{name} musí být platné číslo kreditní karty."
+msgstr "{name} musí být platné číslo kreditní karty"
 
 #: assets/js/inline.js.php:102
 msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} musí mít alespoň {ruleValue} možností."
+msgstr "{name} musí mít alespoň {ruleValue} možností"
 
 #: assets/js/inline.js.php:103
 msgid "{name} must have exactly {ruleValue} choices"
@@ -355,7 +356,7 @@ msgstr "Moje seznamy"
 
 #: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr "Remembered seznamy"
+msgstr "Zapamatované seznamy"
 
 #: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
@@ -393,7 +394,7 @@ msgstr "Seznam změn"
 
 #: classes/wishthis/Page.php:678
 msgid "Contribute"
-msgstr "Přispějte na"
+msgstr "Zapojte se"
 
 #: classes/wishthis/Page.php:684 classes/wishthis/Page.php:687
 msgid "GitHub"
@@ -409,7 +410,7 @@ msgstr "Kontakt"
 
 #: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
 msgid "Matrix"
-msgstr "Matrice"
+msgstr "Matrix"
 
 #: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
@@ -539,7 +540,7 @@ msgstr "Přání nebylo nalezeno"
 
 #: classes/wishthis/Wish.php:405 pages/wishlist.php:73
 msgid "Details"
-msgstr "Podrobnosti na"
+msgstr "Detaily"
 
 #: classes/wishthis/Wishlist.php:245
 msgid "Wishlist not found"
@@ -634,8 +635,8 @@ msgid ""
 "If you would like to give feedback regarding the roadmap, please refer to "
 "the %s on GitHub, or chat on Matrix or Discord."
 msgstr ""
-"Pokud chcete poskytnout zpětnou vazbu k plánu, podívejte se na %s na GitHubu"
-" nebo chatujte na Matrixu či Discordu."
+"Pokud chcete poskytnout zpětnou vazbu k plánu vývoje, podívejte se na %s na "
+"GitHubu nebo se ozvěte na Matrixu či Discordu."
 
 #: pages/changelog.php:48
 msgid "discussions"
@@ -884,7 +885,7 @@ msgstr "Tmavé téma"
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:410
 msgid "Remembered lists design"
-msgstr "Remembered design seznamů"
+msgstr "Vzhled zapamatovaných seznamů"
 
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:416
@@ -940,12 +941,12 @@ msgstr ""
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
-msgstr "Přejít na poslední upravenou stránku wishlist z domova"
+msgstr "Přejít na poslední upravenou stránku wishlist z domovské stránky"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
 msgid "Quick add wish from home"
-msgstr "Rychlé přidání přání z domova"
+msgstr "Rychlé přidání přání z domovské stránky"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
@@ -973,7 +974,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:545
 msgid "Remembered wishlists design"
-msgstr "Remembered wishlists design"
+msgstr "Vzhled zapamatovaných seznamů přání"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:555
@@ -991,7 +992,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr "\"Uložené wishlists\" bylo přejmenováno na \"Pamatovat si seznamy\"."
+msgstr "\"Saved wishlists\" přejmenován na \"Remembered lists\"."
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
@@ -1050,7 +1051,7 @@ msgstr "Různé drobné chyby"
 
 #: pages/home.php:11
 msgid "Home"
-msgstr "Home"
+msgstr "Domů"
 
 #: pages/home.php:76 pages/home.php:78
 msgid "Register now"
@@ -1088,7 +1089,7 @@ msgstr ""
 "wishthis je svobodný software s otevřeným zdrojovým kódem. Slovem zdarma "
 "nemyslím jen to, že za jeho používání nemusíte platit peníze, ale také to, "
 "že neplatíte svými osobními údaji a chováním. Nejenže si kdokoli může "
-"%sprohlédnout a ověřit jeho kód%s, ale také vás k tomu vyzývám."
+"%sprohlédnout a ověřit jeho kód%s, ale také k tomu všechny vyzývám."
 
 #: pages/home.php:108
 msgid "As an open source project it remains"
@@ -1110,7 +1111,7 @@ msgstr "věrohodné"
 
 #: pages/home.php:125
 msgid "without intrusive tracking"
-msgstr "bez rušivého sledování"
+msgstr "bez dotěrného sledování"
 
 #: pages/home.php:130
 msgid "transparent"
@@ -1253,11 +1254,11 @@ msgstr "Uložit"
 
 #: pages/install.php:83
 msgid "Test connection"
-msgstr "Testovací připojení"
+msgstr "Otestovat připojení"
 
 #: pages/install.php:99
 msgid "PHP Version >= 8.1"
-msgstr "Verze PHP &gt;= 8.1"
+msgstr "PHP Verze >= 8.1"
 
 #: pages/install.php:102 pages/install.php:108
 msgid "Compatible"
@@ -1265,7 +1266,7 @@ msgstr "Kompatibilní"
 
 #: pages/install.php:105
 msgid "PHP Version < 8.3"
-msgstr "Verze PHP &lt; 8.3"
+msgstr "PHP Verze < 8.3"
 
 #: pages/install.php:114
 msgid "Activated"
@@ -1306,7 +1307,7 @@ msgstr "Instalace wishthis"
 #: pages/login-as.php:60
 #, php-format
 msgid "Successfully logged in as %s."
-msgstr "Úspěšně se přihlásil jako %s."
+msgstr "Úspěšné přihlášení jako %s."
 
 #: pages/login-as.php:62
 msgid "User not found!"
@@ -1324,7 +1325,7 @@ msgstr ""
 
 #: pages/login.php:26
 msgid "Invalid credentials"
-msgstr "Neplatná pověření"
+msgstr "Neplatné přihlašovací údaje"
 
 #: pages/login.php:70
 msgid "Password reset link"
@@ -1360,11 +1361,11 @@ msgstr "Informace"
 
 #: pages/login.php:112
 msgid "Credentials"
-msgstr "Pověření"
+msgstr "Přihlašovací údaje"
 
 #: pages/login.php:136
 msgid "Keep me logged in"
-msgstr "Mějte mě přihlášeného"
+msgstr "Zapamatovat přihlášení"
 
 #: pages/login.php:163
 msgid "Forgot password?"
@@ -1377,7 +1378,8 @@ msgid ""
 "again."
 msgstr ""
 "Zvažte použití správce hesel. Uloží všechna vaše hesla a umožní vám k nim "
-"přístup pomocí jednoho hlavního hesla. Heslo už nikdy nezapomenete."
+"přístup pomocí jednoho hlavního hesla. Poté již snad nebudete muset řešit "
+"zapomenutá hesla."
 
 #: pages/login.php:181 pages/login.php:182
 msgid "Send email"
@@ -1437,7 +1439,7 @@ msgstr "Popis"
 
 #: pages/parts/wish-add.php:45
 msgid "URL"
-msgstr "ADRESA URL"
+msgstr "URL"
 
 #: pages/parts/wish-add.php:54
 msgid "Priority"
@@ -1485,13 +1487,12 @@ msgstr "Žádná priorita"
 
 #: pages/parts/wishlist.php:87 pages/wishlists.php:45 pages/wishlists.php:48
 msgid "Create a wishlist"
-msgstr "Vytvoření seznamu přání"
+msgstr "Vytvořit seznam přání"
 
 #: pages/parts/wishlist.php:91
 msgid ""
 "Choose a new name for your wishlist. Here's a suggestion to get you started."
-msgstr ""
-"Zvolte nový název seznamu přání. Zde je návrh, který vám pomůže začít."
+msgstr "Zvolte nový název seznamu přání. Zde je návrh, který by mohl pomoci."
 
 #: pages/parts/wishlist.php:104 pages/parts/wishlist.php:105
 msgid "Create"
@@ -1506,7 +1507,7 @@ msgstr "Zrušit"
 
 #: pages/parts/wishlist.php:116
 msgid "Rename wishlist"
-msgstr "Přejmenování seznamu přání"
+msgstr "Přejmenovat seznam přání"
 
 #: pages/parts/wishlist.php:119
 msgid "How would you like to name this wishlist?"
@@ -1515,7 +1516,7 @@ msgstr "Jak byste chtěli tento seznam přání pojmenovat?"
 #: pages/parts/wishlist.php:129 pages/parts/wishlist.php:130
 #: pages/wishlists.php:77 pages/wishlists.php:79
 msgid "Rename"
-msgstr "Přejmenování"
+msgstr "Přejmenovat"
 
 #: pages/parts/wishlist.php:141 pages/wishlists.php:56 pages/wishlists.php:59
 msgid "Add a wish"
@@ -1573,7 +1574,7 @@ msgstr "Navrhované stránky"
 
 #: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
 msgid "Yes, update"
-msgstr "Ano, aktualizace"
+msgstr "Ano, aktualizovat"
 
 #: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
 msgid "No, leave it"
@@ -1641,7 +1642,7 @@ msgstr "Příjmení bylo aktualizováno na \"%s\"."
 #: pages/profile/profile-handle-post-personal.php:91
 #, php-format
 msgid "Nick name updated to \"%s\"."
-msgstr "Jméno nicku bylo aktualizováno na \"%s\"."
+msgstr "Přezdívka aktualizována na \"%s\"."
 
 #. TRANSLATORS: %s: The users email address.
 #: pages/profile/profile-handle-post-personal.php:121
@@ -1785,8 +1786,8 @@ msgid ""
 "In order to improve the user experience of wishthis, newer versions are "
 "published after an extensive testing period."
 msgstr ""
-"S cílem zlepšit uživatelské zkušenosti s aplikací wishthis jsou po rozsáhlém"
-" testování zveřejňovány její novější verze."
+"S cílem zlepšit uživatelskou zkušenost s aplikací wishthis jsou její novější"
+" verze zveřejňovány až po rozsáhlém otestování."
 
 #: pages/profile/profile.php:306
 msgid ""
@@ -1805,8 +1806,8 @@ msgid ""
 "unless the next release candidate has been sufficiently tested."
 msgstr ""
 "Pokud chcete urychlit vydávání novějších verzí, zvažte možnost předplatit si"
-" Release candidate aplikace wishthis. Novější verze není zveřejněna, dokud "
-"není další kandidát na vydání dostatečně otestován."
+" Release Candidate aplikace wishthis. Novější verze jsou zveřejněny až po "
+"dostatečném otestování RC verze."
 
 #: pages/profile/profile.php:320
 #, php-format
@@ -1819,7 +1820,7 @@ msgstr[3] "%d je třeba více předplatitelů"
 
 #: pages/profile/profile.php:348
 msgid "Advertisements"
-msgstr "Inzeráty"
+msgstr "Reklama"
 
 #: pages/profile/profile.php:357
 msgid "Enable advertisements"
@@ -1833,9 +1834,9 @@ msgid ""
 "to support me but either can't or don't want to %s, consider selling your "
 "body to Google and becoming its product."
 msgstr ""
-"Čas strávený na přání je čas, který není věnován výdělečné činnosti. Pokud "
-"byste mě chtěli podpořit, ale buď nemůžete, nebo nechcete %s, zvažte, zda "
-"neprodáte své tělo společnosti Google a nestanete se jejím produktem."
+"Čas strávený na aplikaci wishthis je čas, který nevěnuji výdělečné činnosti."
+" Pokud byste mě chtěli podpořit, ale buď nemůžete, nebo nechcete %s, zvažte,"
+" zda byste se radši chtěli stát se svými daty produktem společnosti Google."
 
 #: pages/profile/profile.php:367
 msgid "sponsor me"
@@ -1864,7 +1865,7 @@ msgstr "Obnovení"
 
 #: pages/register.php:37
 msgid "Mercury"
-msgstr "Rtuť"
+msgstr "Merkur"
 
 #: pages/register.php:38
 msgid "Venus"
@@ -1900,7 +1901,7 @@ msgstr "Pluto"
 
 #: pages/register.php:48
 msgid "Sun"
-msgstr "Sun"
+msgstr "Slunce"
 
 #: pages/register.php:57
 #, php-format
@@ -1988,7 +1989,8 @@ msgid ""
 "Robots are obviously from another solar system so this will keep them at "
 "bay."
 msgstr ""
-"Roboti jsou zřejmě z jiné sluneční soustavy, takže je to udrží na uzdě."
+"Roboti pocházejí evidentně z jiné sluneční soustavy, takže je toto udrží na "
+"uzdě."
 
 #: pages/register.php:301
 msgid "About your email address"

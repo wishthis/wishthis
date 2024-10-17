@@ -1,6 +1,7 @@
 # 
 # Translators:
 # Jay Trees, 2023
+# Trottel <trottel09@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: Jay Trees, 2023\n"
+"Last-Translator: Trottel <trottel09@gmail.com>, 2024\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/wishthis/teams/134148/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +24,11 @@ msgstr ""
 #: api/blog.php:39
 #, php-format
 msgid "Posted on %s"
-msgstr "Publikováno dne %s"
+msgstr "Publikováno %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "Wish request"
+msgstr "Žádost o přání"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
@@ -37,8 +38,7 @@ msgstr "Dobrý den,"
 #: api/wishlists.php:77
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
-msgstr ""
-"Někdo vás požádal, abyste na svůj web wishlist %s přidali další přání."
+msgstr "někdo vás požádal o přidání dalších přání do vašeho seznamu přání %s."
 
 #: api/wishlists.php:81
 msgid "Add wish"
@@ -106,28 +106,28 @@ msgstr "Zavřít tuto kartu"
 
 #: assets/js/inline.js.php:54
 msgid "Show wishlist anyway"
-msgstr "Zobrazit seznam přání"
+msgstr "Přesto zobrazit seznam přání"
 
 #: assets/js/inline.js.php:57 assets/js/inline.js.php:66
 msgid "Really delete?"
-msgstr "Opravdu smazat?"
+msgstr "Opravdu odstranit?"
 
 #: assets/js/inline.js.php:58
 #, php-format
 msgid "Do you really want to delete the wishlist %s?"
-msgstr "Opravdu chcete smazat seznam přání %s?"
+msgstr "Opravdu chcete odstranit seznam přání %s?"
 
 #: assets/js/inline.js.php:59 assets/js/inline.js.php:68
 msgid "Yes, delete"
-msgstr "Ano, vymazat"
+msgstr "Ano, odstranit"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
-msgstr "Ne, nechte si"
+msgstr "Ne, ponechat"
 
 #: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
-msgstr "Opravdu byste chtěli toto přání smazat? Bude navždy pryč."
+msgstr "Opravdu chcete odstranit toto přání? Bude navždy pryč."
 
 #: assets/js/inline.js.php:76
 msgid "Passwords must match."
@@ -163,67 +163,67 @@ msgstr "{name} musí být desetinné číslo"
 
 #: assets/js/inline.js.php:86
 msgid "{name} must be set to a number"
-msgstr "{name} musí být nastaveno na číslo."
+msgstr "{name} musí být nastaveno na číslo"
 
 #: assets/js/inline.js.php:87
 msgid "{name} must be \"{ruleValue}\""
-msgstr "{name} musí být \"{ruleValue}\"."
+msgstr "{name} musí být \"{ruleValue}\""
 
 #: assets/js/inline.js.php:88
 msgid "{name} must be exactly \"{ruleValue}\""
-msgstr "{name} musí být přesně \"{ruleValue}\"."
+msgstr "{name} musí být přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:89
 msgid "{name} cannot be set to \"{ruleValue}\""
-msgstr "{name} nelze nastavit na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:90
 msgid "{name} cannot be set to exactly \"{ruleValue}\""
-msgstr "{name} nelze nastavit přesně na \"{ruleValue}\"."
+msgstr "{name} nelze nastavit přesně na \"{ruleValue}\""
 
 #: assets/js/inline.js.php:91
 msgid "{name} cannot contain \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:92
 msgid "{name} cannot contain exactly \"{ruleValue}\""
-msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\"."
+msgstr "{name} nemůže obsahovat přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:93
 msgid "{name} must contain \"{ruleValue}\""
-msgstr "{name} musí obsahovat \"{ruleValue}\"."
+msgstr "{name} musí obsahovat \"{ruleValue}\""
 
 #: assets/js/inline.js.php:94
 msgid "{name} must contain exactly \"{ruleValue}\""
-msgstr "{name} musí obsahovat přesně \"{ruleValue}\"."
+msgstr "{name} musí obsahovat přesně \"{ruleValue}\""
 
 #: assets/js/inline.js.php:95 assets/js/inline.js.php:96
 msgid "{name} must be at least {ruleValue} characters"
-msgstr "{name} musí mít alespoň {ruleValue} znaků."
+msgstr "{name} musí být alespoň {ruleValue} znaků"
 
 #: assets/js/inline.js.php:97
 msgid "{name} must be exactly {ruleValue} characters"
-msgstr "{name} musí obsahovat přesně {ruleValue} znaků."
+msgstr "{name} musí být přesně {ruleValue} znaků"
 
 #: assets/js/inline.js.php:98
 msgid "{name} cannot be longer than {ruleValue} characters"
-msgstr "{name} nesmí být delší než {ruleValue} znaků."
+msgstr "{name} nesmí být delší než {ruleValue} znaků"
 
 #: assets/js/inline.js.php:99
 msgid "{name} must match {ruleValue} field"
-msgstr "{name} musí odpovídat poli {ruleValue}."
+msgstr "{name} musí odpovídat poli {ruleValue}"
 
 #: assets/js/inline.js.php:100
 msgid "{name} must have a different value than {ruleValue} field"
-msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}."
+msgstr "{name} musí mít jinou hodnotu než pole {ruleValue}"
 
 #: assets/js/inline.js.php:101
 msgid "{name} must be a valid credit card number"
-msgstr "{name} musí být platné číslo kreditní karty."
+msgstr "{name} musí být platné číslo platební karty"
 
 #: assets/js/inline.js.php:102
 msgid "{name} must have at least {ruleValue} choices"
-msgstr "{name} musí mít alespoň {ruleValue} možností."
+msgstr "{name} musí mít alespoň {ruleValue} možností"
 
 #: assets/js/inline.js.php:103
 msgid "{name} must have exactly {ruleValue} choices"
@@ -239,7 +239,7 @@ msgstr "Seznam přání byl úspěšně přejmenován."
 
 #: assets/js/inline.js.php:111
 msgid "Wishlist successfully deleted."
-msgstr "Seznam přání byl úspěšně smazán."
+msgstr "Seznam přání byl úspěšně odstraněn."
 
 #: assets/js/inline.js.php:115
 msgid "Wish successfully created."
