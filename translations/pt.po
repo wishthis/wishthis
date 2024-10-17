@@ -1257,7 +1257,7 @@ msgstr "Nome de utilizador"
 #: pages/profile/profile.php:116 pages/profile/profile.php:124
 #: pages/register.php:253
 msgid "Password"
-msgstr "Senha"
+msgstr "Palavra-passe"
 
 #: pages/install.php:79 pages/install.php:80 pages/parts/wishlist.php:185
 #: pages/parts/wishlist.php:186 pages/profile/profile.php:107
