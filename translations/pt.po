@@ -479,7 +479,7 @@ msgstr "Recarregue a página"
 
 #: classes/wishthis/Page.php:768 pages/parts/wishlist.php:291
 msgid "Close"
-msgstr "Feche"
+msgstr "Fechar"
 
 #: classes/wishthis/Page.php:793
 #, php-format
