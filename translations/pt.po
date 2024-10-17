@@ -490,8 +490,8 @@ msgstr "%s não encontrado"
 msgid ""
 "The requested Wishlist was not found and likely deleted by its creator."
 msgstr ""
-"A Wishlist solicitada não foi encontrada e provavelmente apagada pelo seu "
-"criador."
+"A Wishlist solicitada não foi encontrada e foi provavelmente apagada pelo "
+"seu criador."
 
 #: classes/wishthis/Page.php:807
 msgid "The requested Wish was not found."
