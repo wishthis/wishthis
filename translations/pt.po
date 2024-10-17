@@ -1156,7 +1156,7 @@ msgid ""
 "amazon links are automatically converted to affiliate links to help support "
 "the project financially."
 msgstr ""
-"as ligações amazon são automaticamente convertidas em ligações de afiliados "
+"As ligações amazon são automaticamente convertidas em ligações de afiliados "
 "para ajudar a apoiar financeiramente o projeto."
 
 #: pages/home.php:159
