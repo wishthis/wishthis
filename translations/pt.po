@@ -259,11 +259,12 @@ msgstr "Desejo eliminado com sucesso."
 #: assets/js/inline.js.php:123
 msgid "Unable to copy to clipboard. There is likely a permission issue."
 msgstr ""
-"Incapaz de copiar para prancheta. Há provavelmente uma questão de permissão."
+"Incapaz de copiar para prancheta. Existe provavelmente um problema de "
+"permissão."
 
 #: assets/js/inline.js.php:126
 msgid "Link copied to clipboard."
-msgstr "Ligação copiada para prancheta."
+msgstr "Ligação copiada para a prancheta."
 
 #: assets/js/inline.js.php:132
 msgctxt "Calendar"
