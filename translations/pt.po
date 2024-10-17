@@ -588,7 +588,7 @@ msgstr ""
 
 #: pages/blog.php:26
 msgid "Warning"
-msgstr "Advertência"
+msgstr "Aviso"
 
 #: pages/blog.php:60
 msgid "Read more"
