@@ -1593,11 +1593,11 @@ msgstr "Proposta"
 
 #: pages/parts/wishlist.php:219 pages/parts/wishlist.php:220
 msgid "Yes, update"
-msgstr "Sim, actualização"
+msgstr "Sim, atualizar"
 
 #: pages/parts/wishlist.php:222 pages/parts/wishlist.php:223
 msgid "No, leave it"
-msgstr "Não, deixe estar"
+msgstr "Não, deixar estar"
 
 #: pages/parts/wishlist.php:259
 msgid "Mark as fulfilled"
