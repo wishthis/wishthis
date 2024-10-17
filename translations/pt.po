@@ -1885,7 +1885,7 @@ msgstr "Redefinir palavra-passe"
 
 #: pages/register.php:14
 msgid "Reset"
-msgstr "Reinicialização"
+msgstr "Reiniciar"
 
 #: pages/register.php:37
 msgid "Mercury"
