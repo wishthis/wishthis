@@ -2002,8 +2002,8 @@ msgid ""
 "Prove you are a Human, Lizard-person or Zuck-like creature. Please name a "
 "planet from our solar system."
 msgstr ""
-"Provar que é humano, lagarto-pessoa ou criatura parecida com o Zuck-. Por "
-"favor, nomeie um planeta do nosso sistema solar."
+"Provar que é humano, homem-lagarto ou uma criatura parecida com o "
+"Zuckerberg. Por favor, insira um planeta do nosso sistema solar."
 
 #: pages/register.php:267
 msgid "Planet"
