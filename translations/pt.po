@@ -325,7 +325,7 @@ msgstr ""
 msgid "Your device is set to reduce data, some content has been disabled."
 msgstr ""
 "O seu dispositivo está definido para reduzir os dados, alguns conteúdos "
-"foram desactivados."
+"foram desativados."
 
 #: classes/wishthis/Page.php:278
 msgid "Reducing data"
