@@ -886,8 +886,8 @@ msgid ""
 "Expired sessions are now invalidated by wishthis instead of relying on the "
 "browser to delete the cookies."
 msgstr ""
-"As sessões expiradas são agora invalidadas pelo wishthis em vez de depender "
-"do navegador para eliminar os cookies."
+"As sessões expiradas são agora invalidadas pela wishthis em vez de depender "
+"do browser para eliminar os cookies."
 
 #. TRANSLATORS: Changelog: Improved
 #. TRANSLATORS: Changelog: Added
