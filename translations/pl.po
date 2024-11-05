@@ -2162,4 +2162,4 @@ msgstr "Ładowanie twojej listy życzeń..."
 
 #: pages/wishlists.php:64 pages/wishlists.php:67
 msgid "Share"
-msgstr "Share"
+msgstr "Udostępnij"
