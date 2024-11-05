@@ -792,7 +792,7 @@ msgstr "Opcja ustawienia waluty"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:262
 msgid "A roadmap in the changelog"
-msgstr "Mapa drogowa w Changelog"
+msgstr "Mapa drogowa w Dzienniku zmian"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:268
