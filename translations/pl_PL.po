@@ -1901,7 +1901,7 @@ msgstr "Uranus"
 
 #: pages/register.php:44
 msgid "Neptune"
-msgstr "Neptune"
+msgstr "Neptun"
 
 #: pages/register.php:47
 msgid "Pluto"
@@ -1909,7 +1909,7 @@ msgstr "Pluton"
 
 #: pages/register.php:48
 msgid "Sun"
-msgstr "Sun"
+msgstr "Słońce"
 
 #: pages/register.php:57
 #, php-format
