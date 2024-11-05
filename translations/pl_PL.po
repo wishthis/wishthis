@@ -680,7 +680,7 @@ msgstr ""
 #: pages/changelog.php:345 pages/changelog.php:365 pages/changelog.php:421
 #: pages/changelog.php:572 pages/changelog.php:656
 msgid "Fixed"
-msgstr "Fixed"
+msgstr "Naprawiono"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:103
