@@ -392,7 +392,7 @@ msgstr "Ustawienia"
 #: classes/wishthis/Page.php:669 classes/wishthis/Page.php:672
 #: pages/changelog.php:11
 msgid "Changelog"
-msgstr "Changelog"
+msgstr "Dziennik zmian"
 
 #: classes/wishthis/Page.php:678
 msgid "Contribute"
@@ -412,7 +412,7 @@ msgstr "Kontakt"
 
 #: classes/wishthis/Page.php:708 classes/wishthis/Page.php:711
 msgid "Matrix"
-msgstr "Matryca"
+msgstr "Matrix"
 
 #: classes/wishthis/Page.php:717 classes/wishthis/Page.php:720
 msgid "Discord"
