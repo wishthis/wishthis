@@ -2154,7 +2154,7 @@ msgstr "Brak list"
 
 #: pages/wishlists.php:33
 msgid "Wishlist"
-msgstr "Wishlist"
+msgstr "Lista życzeń"
 
 #: pages/wishlists.php:36
 msgid "Loading your wishlists..."
