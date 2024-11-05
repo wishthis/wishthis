@@ -501,7 +501,7 @@ msgstr "Żądany adres %s nie został znaleziony."
 
 #: classes/wishthis/Wish.php:34
 msgid "Unsure about it"
-msgstr "Niepewność"
+msgstr "Pół na pół"
 
 #: classes/wishthis/Wish.php:38
 msgid "Nice to have"
