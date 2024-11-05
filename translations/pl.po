@@ -1909,7 +1909,7 @@ msgstr "Pluton"
 
 #: pages/register.php:48
 msgid "Sun"
-msgstr "Sun"
+msgstr "Słońce"
 
 #: pages/register.php:57
 #, php-format
