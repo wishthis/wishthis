@@ -1034,7 +1034,7 @@ msgstr "Błąd podczas pobierania tytułu z adresu URL zawierającego cudzysłow
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:629
 msgid "This changelog"
-msgstr "To Changelog"
+msgstr "Ten zestaw zmian"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:635
