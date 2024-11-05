@@ -1400,7 +1400,7 @@ msgstr "Pamiętaj, że musisz podać adres e-mail, na który się zarejestrował
 
 #: pages/logout.php:24
 msgid "Goodbye"
-msgstr "Goodbye"
+msgstr "Do zobaczenia"
 
 #: pages/logout.php:25
 msgid "You have been logged out."
