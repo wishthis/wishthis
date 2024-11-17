@@ -1,6 +1,7 @@
 # 
 # Translators:
 # Jay Trees, 2023
+# Preben Sørensen <preben@rather.dk>, 2024
 # 
 #, fuzzy
 msgid ""
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: Jay Trees, 2023\n"
+"Last-Translator: Preben Sørensen <preben@rather.dk>, 2024\n"
 "Language-Team: Danish (https://app.transifex.com/wishthis/teams/134148/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgstr "Ja, slet"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
-msgstr "Nej, beholde"
+msgstr "Nej, behold"
 
 #: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
