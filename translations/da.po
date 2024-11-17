@@ -860,7 +860,7 @@ msgstr "Markering af ønske som opfyldt"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:350
 msgid "Fix fulfilled wishes disappearing for wishlist owner"
-msgstr "Fix opfyldte ønsker, der forsvinder for wishlist ejer"
+msgstr "Fix opfyldte ønsker, der forsvinder for ønskeliste-ejer"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:370
