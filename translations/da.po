@@ -929,7 +929,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:459
 msgid "Wishlist filter cut off on mobile"
-msgstr "wishlist filterafbrydelse på mobil"
+msgstr "ønskeliste filterafbrydelse på mobil"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:465
