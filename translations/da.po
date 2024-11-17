@@ -957,7 +957,7 @@ msgstr "Hurtig tilføjelse af ønsker hjemmefra"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
 msgid "Button to request more wishes from a users wishlist"
-msgstr "Knap til at anmode om flere ønsker fra en bruger wishlist"
+msgstr "Knap til at anmode om flere ønsker fra en bruger ønskeliste"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:523
