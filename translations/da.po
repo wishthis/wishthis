@@ -1738,8 +1738,8 @@ msgstr "Kælenavn"
 #: pages/profile/profile.php:84
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
 msgstr ""
-"Bruges til at foreslå en wishlist, der hedder \"Birthday\", hvis det nærmer "
-"sig."
+"Bruges til at foreslå en ønskeliste, der hedder \"Birthday\", hvis det "
+"nærmer sig."
 
 #: pages/profile/profile.php:86
 msgid "Birthdate"
