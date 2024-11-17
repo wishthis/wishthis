@@ -304,7 +304,7 @@ msgstr "Tom"
 #: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:208
 #: classes/wishthis/Wishlist.php:230
 msgid "This wishlist seems to be empty."
-msgstr "Denne wishlist ser ud til at være tom."
+msgstr "Denne ønskeliste ser ud til at være tom."
 
 #: assets/js/inline.js.php:156
 msgid "Last modified"
