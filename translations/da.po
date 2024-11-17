@@ -38,7 +38,8 @@ msgstr "Hej med dig,"
 #: api/wishlists.php:77
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
-msgstr "Nogen har bedt om, at du tilføjer flere ønsker til din wishlist %s ."
+msgstr ""
+"Nogen har bedt om, at du tilføjer flere ønsker til din ønskeliste %s ."
 
 #: api/wishlists.php:81
 msgid "Add wish"
