@@ -2138,7 +2138,7 @@ msgid ""
 "The wishlist owner has already received a notification recently and has not "
 "been notified again."
 msgstr ""
-"Ejeren af wishlist har allerede modtaget en notifikation for nylig og er "
+"Ejeren af ønskelisten har allerede modtaget en notifikation for nylig og er "
 "ikke blevet notificeret igen."
 
 #: pages/wishlists-saved.php:65
