@@ -468,7 +468,7 @@ msgstr ""
 
 #: classes/wishthis/Page.php:762
 msgid "wishthis really needs JavaScript to work, please enable it."
-msgstr "wishthis behøver JavaScript for at fungere, aktiver det venligst."
+msgstr "wishthis kræver JavaScript for at fungere, aktiver det venligst."
 
 #: classes/wishthis/Page.php:767
 msgid "Reload page"
