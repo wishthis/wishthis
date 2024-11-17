@@ -2146,8 +2146,8 @@ msgid ""
 "Ask somebody to share their wishlist with you and hit the remember button "
 "for it to show up here!"
 msgstr ""
-"Bed nogen om at dele deres wishlist med dig, og tryk på husk-knappen for at "
-"få det vist her!"
+"Bed nogen om at dele deres ønskeliste med dig, og tryk på husk-knappen for "
+"at få det vist her!"
 
 #: pages/wishlists-saved.php:65
 msgid "No lists"
