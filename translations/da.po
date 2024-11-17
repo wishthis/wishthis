@@ -998,7 +998,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr "\"Gemt wishlists\" er blevet omdøbt til \"Husk lister\"."
+msgstr "\"Gemte ønskelister\" er blevet omdøbt til \"Husk lister\"."
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
