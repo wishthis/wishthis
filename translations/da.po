@@ -981,7 +981,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:545
 msgid "Remembered wishlists design"
-msgstr "Remembered wishlists design"
+msgstr "Husket ønskelistedesign"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:555
