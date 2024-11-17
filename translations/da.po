@@ -993,7 +993,7 @@ msgstr "Changelog er nu en side i stedet for en downloadbar markdown-fil"
 msgid ""
 "Wishes can be edited from the wishlist now, without loading another page"
 msgstr ""
-"Ønsker kan nu redigeres fra wishlist uden at skulle indlæse en ny side."
+"Ønsker kan nu redigeres fra ønskeliste uden at skulle indlæse en ny side."
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
