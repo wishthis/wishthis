@@ -768,7 +768,7 @@ msgstr "En fatal fejl, når CHANNELS-konstanten fjernes fra konfigurationen."
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:217
 msgid "Fulfilled wishes disappearing for wishlist owners"
-msgstr "Opfyldte ønsker forsvinder for ejere af wishlist "
+msgstr "Opfyldte ønsker forsvinder for ejere af ønskeliste "
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:223
