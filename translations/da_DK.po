@@ -1,6 +1,7 @@
 # 
 # Translators:
 # Jay Trees, 2023
+# Preben Sørensen <preben@rather.dk>, 2024
 # 
 #, fuzzy
 msgid ""
@@ -8,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "POT-Creation-Date: 2023-11-18 12:57+0100\n"
 "PO-Revision-Date: 2023-09-25 11:41+0000\n"
-"Last-Translator: Jay Trees, 2023\n"
+"Last-Translator: Preben Sørensen <preben@rather.dk>, 2024\n"
 "Language-Team: Danish (Denmark) (https://app.transifex.com/wishthis/teams/134148/da_DK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Indsendt den %s"
 
 #: api/wishlists.php:71
 msgid "Wish request"
-msgstr "Wish request"
+msgstr "Anmodning om ønske"
 
 #: api/wishlists.php:72 pages/login.php:71
 msgid "Hello,"
@@ -37,7 +38,7 @@ msgstr "Hej med dig,"
 #: api/wishlists.php:77
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
-msgstr "Nogen har bedt om, at du tilføjer flere ønsker til din wishlist %s ."
+msgstr "nogen har bedt om, at du tilføjer flere ønsker til din ønskeliste %s."
 
 #: api/wishlists.php:81
 msgid "Add wish"
@@ -122,7 +123,7 @@ msgstr "Ja, slet"
 
 #: assets/js/inline.js.php:60 assets/js/inline.js.php:69
 msgid "No, keep"
-msgstr "Nej, beholde"
+msgstr "Nej, behold"
 
 #: assets/js/inline.js.php:67
 msgid "Would you really like to delete to this wish? It will be gone forever."
@@ -303,7 +304,7 @@ msgstr "Tom"
 #: assets/js/inline.js.php:150 classes/wishthis/Wishlist.php:208
 #: classes/wishthis/Wishlist.php:230
 msgid "This wishlist seems to be empty."
-msgstr "Denne wishlist ser ud til at være tom."
+msgstr "Denne ønskeliste ser ud til at være tom."
 
 #: assets/js/inline.js.php:156
 msgid "Last modified"
@@ -357,7 +358,7 @@ msgstr "Mine lister"
 
 #: classes/wishthis/Page.php:479 pages/wishlists-saved.php:11
 msgid "Remembered lists"
-msgstr "Remembered lister"
+msgstr "Huskede lister"
 
 #: classes/wishthis/Page.php:489 pages/profile/profile.php:11
 msgid "Profile"
@@ -466,7 +467,7 @@ msgstr ""
 
 #: classes/wishthis/Page.php:762
 msgid "wishthis really needs JavaScript to work, please enable it."
-msgstr "wishthis behøver JavaScript for at fungere, aktiver det venligst."
+msgstr "wishthis kræver JavaScript for at fungere, aktiver det venligst."
 
 #: classes/wishthis/Page.php:767
 msgid "Reload page"
@@ -766,7 +767,7 @@ msgstr "En fatal fejl, når CHANNELS-konstanten fjernes fra konfigurationen."
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:217
 msgid "Fulfilled wishes disappearing for wishlist owners"
-msgstr "Opfyldte ønsker forsvinder for ejere af wishlist "
+msgstr "Opfyldte ønsker forsvinder for ønskelisteejere"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:223
@@ -858,7 +859,7 @@ msgstr "Markering af ønske som opfyldt"
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:350
 msgid "Fix fulfilled wishes disappearing for wishlist owner"
-msgstr "Fix opfyldte ønsker, der forsvinder for wishlist ejer"
+msgstr "Fiks opfyldte ønsker, der forsvinder for ønskelisteejer"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:370
@@ -927,7 +928,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:459
 msgid "Wishlist filter cut off on mobile"
-msgstr "wishlist filterafbrydelse på mobil"
+msgstr "Ønskeliste filterafbrydelse på mobil"
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:465
@@ -945,7 +946,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:505
 msgid "Jump to last edited wishlist from home"
-msgstr "Spring til sidst redigerede wishlist from home"
+msgstr "Spring til sidst redigerede ønskeliste fra home"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:511
@@ -955,7 +956,7 @@ msgstr "Hurtig tilføjelse af ønsker hjemmefra"
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:517
 msgid "Button to request more wishes from a users wishlist"
-msgstr "Knap til at anmode om flere ønsker fra en bruger wishlist"
+msgstr "Knap til at anmode om flere ønsker fra en brugers ønskeliste"
 
 #. TRANSLATORS: Changelog: Added
 #: pages/changelog.php:523
@@ -979,7 +980,7 @@ msgstr ""
 #. TRANSLATORS: Changelog: Improved
 #: pages/changelog.php:545
 msgid "Remembered wishlists design"
-msgstr "Remembered wishlists design"
+msgstr "Huskede ønskelistedesign"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:555
@@ -990,13 +991,12 @@ msgstr "Changelog er nu en side i stedet for en downloadbar markdown-fil"
 #: pages/changelog.php:561
 msgid ""
 "Wishes can be edited from the wishlist now, without loading another page"
-msgstr ""
-"Ønsker kan nu redigeres fra wishlist uden at skulle indlæse en ny side."
+msgstr "Ønsker kan nu redigeres fra ønskelisten uden at indlæse en anden side"
 
 #. TRANSLATORS: Changelog: Changed
 #: pages/changelog.php:567
 msgid "\"Saved wishlists\" has been renamed to \"Remember lists\""
-msgstr "\"Gemt wishlists\" er blevet omdøbt til \"Husk lister\"."
+msgstr "\"Gemte ønskelister” er blevet omdøbt til \"Husk lister\"."
 
 #. TRANSLATORS: Changelog: Fixed
 #: pages/changelog.php:577
@@ -1736,8 +1736,8 @@ msgstr "Kælenavn"
 #: pages/profile/profile.php:84
 msgid "Used to suggest a wishlist called \"Birthday\", if it's coming up."
 msgstr ""
-"Bruges til at foreslå en wishlist, der hedder \"Birthday\", hvis det nærmer "
-"sig."
+"Bruges til at foreslå en ønskeliste, der hedder \"Birthday\", hvis det "
+"nærmer sig."
 
 #: pages/profile/profile.php:86
 msgid "Birthdate"
@@ -2124,7 +2124,7 @@ msgstr "Anmod om flere ønsker"
 
 #: pages/wishlist.php:103
 msgid "A notification has just been sent to the owner of this wishlist."
-msgstr "En meddelelse er netop blevet sendt til ejeren af denne wishlist."
+msgstr "En meddelelse er netop blevet sendt til ejeren af denne ønskeliste."
 
 #: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
 #: pages/wishlist.php:123
@@ -2136,7 +2136,7 @@ msgid ""
 "The wishlist owner has already received a notification recently and has not "
 "been notified again."
 msgstr ""
-"Ejeren af wishlist har allerede modtaget en notifikation for nylig og er "
+"Ejeren af ønskelisten har allerede modtaget en notifikation for nylig og er "
 "ikke blevet notificeret igen."
 
 #: pages/wishlists-saved.php:65
@@ -2144,8 +2144,8 @@ msgid ""
 "Ask somebody to share their wishlist with you and hit the remember button "
 "for it to show up here!"
 msgstr ""
-"Bed nogen om at dele deres wishlist med dig, og tryk på husk-knappen for at "
-"få det vist her!"
+"Bed nogen om at dele deres ønskeliste med dig, og tryk på husk-knappen for "
+"at få det vist her!"
 
 #: pages/wishlists-saved.php:65
 msgid "No lists"
