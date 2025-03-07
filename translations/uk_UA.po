@@ -1876,7 +1876,7 @@ msgstr "Меркурій"
 
 #: pages/register.php:38
 msgid "Venus"
-msgstr "Венера."
+msgstr "Венера"
 
 #: pages/register.php:39
 msgid "Earth"
