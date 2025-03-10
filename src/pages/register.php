@@ -33,7 +33,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
 
     $isHuman     = false;
     $planet      = mb_strtolower($_POST['planet']);
-    $planetName  = mb_strtoupper(mb_substr($planet, 0, 1)) . mb_substr($planet, 1);
+    $planetName  = Sanitiser::sanitiseText(mb_strtoupper(mb_substr($planet, 0, 1)) . mb_substr($planet, 1));
     $planets     = [
         mb_strtolower(__('Mercury')),
         mb_strtolower(__('Venus')),
