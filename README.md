@@ -68,6 +68,9 @@ Time spent on wishthis is time not doing for-profit work. Of course there is no 
 
 ### As a developer
 
+> [!IMPORTANT]
+> If you're a front-end developer and/or you know your stuff when it comes to JavaScript (and jQuery), I'd really appreciate your help! For me, the biggest hurdle when adding new features is usually the front end.
+
 To setup your development environment you currently have two possibilities:
 
 1. Git
