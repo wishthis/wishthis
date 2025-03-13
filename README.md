@@ -83,11 +83,13 @@ To setup your development environment you currently have two possibilities:
 
 #### Updating
 
-##### Fomantic-UI
+##### fomantic-ui
 
-After updating the `fomantic-ui` dependency, you can rebuild all assets like this:
+Components can be set in `/semantic.json`.
 
-```
-$ cd ./node_modules/fomantic-ui
-$ npx gulp build
-```
+To update fomantic.ui run:
+
+1. `npm upgrade` to update the source files
+1. `cd /node_modules/fomantic-ui`
+1. `npx gulp install` to apply the new source files to the project
+1. `npm gulp build` to build all assets
