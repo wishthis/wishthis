@@ -43,6 +43,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 'lastInsertId' => $database->lastInsertId(),
             ];
         } elseif (isset($_POST['wishlist-id'])) {
+            global $options;
+
+            $applicationId = $options->getOption('mjml_api_application_id');
+            $secretKey     = $options->getOption('mjml_api_secret_key');
+
+            $response['title']   = __('Request more wishes');
+            $response['message'] = __('Unable to send request.');
+            $response['button']  = __('Ok');
+
+            if (empty($applicationId) || empty($secretKey)) {
+                $response['message'] = __('Unable to send email without MJML API keys.');
+
+                return;
+            }
+
             /**
              * Request more wishes
              */
@@ -53,52 +68,61 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ->query(
                 'SELECT *
                    FROM `wishlists`
-                  WHERE `id` = :wishlist_id
-                    AND (`notification_sent` < (CURRENT_TIMESTAMP - INTERVAL 1 DAY) OR `notification_sent` IS NULL);',
+                  WHERE `id` = :wishlist_id',
                 [
                     'wishlist_id' => $wishlist_id,
                 ]
             );
+            $wishlist      = $wishlistQuery->fetch();
 
-            $wishlist = $wishlistQuery->fetch();
+            if (false === $wishlist) {
+                $response['message'] = __('There was an error trying to fetch the wishlist. The owner will not be notified.');
 
-            /** Set notification time */
-            if (false !== $wishlist) {
-                $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
-
-                /** Send email */
-                $user  = User::getFromID($wishlist['user']);
-                $email = new Email($user->getEmail(), __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
-                $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
-                $email->setPlaceholder(
-                    'TEXT_WISHLIST_REQUEST_WISHES',
-                    sprintf(
-                        /** TRANSLATORS: %s: Wishlist name */
-                        __('somebody has requested that you add more wishes to your wishlist %s.', null, $user),
-                        '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
-                    )
-                );
-                $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish', null, $user));
-                $email->setPlaceholder('LINK_WISH_ADD', $href . '&wish_add=true');
-
-                $success = $email->send();
-
-                /** Save date to database */
-                if (true === $success) {
-                    $database
-                    ->query(
-                        'UPDATE `wishlists`
-                            SET `notification_sent` = CURRENT_TIMESTAMP
-                          WHERE `id` = :wishlist_id;',
-                        [
-                            'wishlist_id' => $wishlist['id'],
-                        ]
-                    );
-                }
+                return;
             }
 
-            $response['success']        = true;
-            $response['email_was_sent'] = false !== $wishlist;
+            $wishlistNotificationSent = $wishlist['notification_sent'];
+            $sendWishlistNotification = null === $wishlistNotificationSent || \time() >= \strtotime($wishlistNotificationSent) + 84400;
+
+            if (false === $sendWishlistNotification) {
+                $response['message'] = __('The wishlist owner has already received a notification recently and has not been notified again.');
+
+                return;
+            }
+
+            $href = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . Page::PAGE_WISHLISTS . '&id=' . $wishlist['id'];
+
+            /** Send email */
+            $user  = User::getFromID($wishlist['user']);
+            $email = new Email($user->getEmail(), __('Wish request', null, $user), 'default', 'wishlist-request-wishes');
+            $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
+            $email->setPlaceholder(
+                'TEXT_WISHLIST_REQUEST_WISHES',
+                sprintf(
+                    /** TRANSLATORS: %s: Wishlist name */
+                    __('somebody has requested that you add more wishes to your wishlist %s.', null, $user),
+                    '<a href="' . $href . '">' . $wishlist['name'] . '</a>'
+                )
+            );
+            $email->setPlaceholder('TEXT_WISH_ADD', __('Add wish', null, $user));
+            $email->setPlaceholder('LINK_WISH_ADD', $href . '&wish_add=true');
+
+            $success = $email->send();
+
+            /** Save date to database */
+            if (true === $success) {
+                $database
+                ->query(
+                    'UPDATE `wishlists`
+                        SET `notification_sent` = CURRENT_TIMESTAMP
+                        WHERE `id` = :wishlist_id;',
+                    [
+                        'wishlist_id' => $wishlist['id'],
+                    ]
+                );
+
+                $response['message'] = __('A notification has just been sent to the owner of this wishlist.');
+            }
         }
         break;
 

@@ -191,11 +191,16 @@ $(function() {
         .then(handleFetchError)
         .then(handleFetchResponse)
         .then(function(response) {
-            if (response.email_was_sent) {
-                $('.modal.wishlist-request-wishes-notification-sent').modal('show');
-            } else {
-                $('.modal.wishlist-request-wishes-notification-notsent').modal('show');
-            }
+            $.modal({
+                title   : response.title,
+                class   : 'tiny',
+                content : response.message,
+                actions : [{
+                    text  : response.button,
+                    class : 'primary'
+                }]
+            })
+            .modal('show');
         })
         .catch(handleFetchCatch)
         .finally(function() {
