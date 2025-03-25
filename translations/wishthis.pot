@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Jay Trees <github.jay@grandel.anonaddy.me>\n"
-"POT-Creation-Date: 2025-03-10 12:49+0100\n"
+"POT-Creation-Date: 2025-03-25 18:32+0100\n"
 "PO-Revision-Date: 2022-03-22 08:45+0100\n"
 "Last-Translator: Jay Trees <github.jay@grandel.anonaddy.me>\n"
 "Language-Team: \n"
@@ -41,29 +41,57 @@ msgstr ""
 msgid "You must be logged in to save or delete a saved wishlist."
 msgstr ""
 
-#: api/wishlists.php:71
+#: api/wishlists.php:51 pages/wishlist.php:85
+msgid "Request more wishes"
+msgstr ""
+
+#: api/wishlists.php:52
+msgid "Unable to send request."
+msgstr ""
+
+#: api/wishlists.php:53
+msgid "Ok"
+msgstr ""
+
+#: api/wishlists.php:56
+msgid "Unable to send email without MJML API keys."
+msgstr ""
+
+#: api/wishlists.php:79
+msgid "There was an error trying to fetch the wishlist. The owner will not be notified."
+msgstr ""
+
+#: api/wishlists.php:88
+msgid "The wishlist owner has already received a notification recently and has not been notified again."
+msgstr ""
+
+#: api/wishlists.php:97
 msgid "Wish request"
 msgstr ""
 
-#: api/wishlists.php:72 pages/login.php:72
+#: api/wishlists.php:98 pages/login.php:72
 msgid "Hello,"
 msgstr ""
 
 #. TRANSLATORS: %s: Wishlist name
-#: api/wishlists.php:77
+#: api/wishlists.php:103
 #, php-format
 msgid "somebody has requested that you add more wishes to your wishlist %s."
 msgstr ""
 
-#: api/wishlists.php:81
+#: api/wishlists.php:107
 msgid "Add wish"
 msgstr ""
 
-#: api/wishlists.php:229
+#: api/wishlists.php:124
+msgid "A notification has just been sent to the owner of this wishlist."
+msgstr ""
+
+#: api/wishlists.php:253
 msgid "You may only modify wishlists you own."
 msgstr ""
 
-#: api/wishlists.php:254
+#: api/wishlists.php:278
 msgid "You may only delete wishlists you own."
 msgstr ""
 
@@ -1441,23 +1469,6 @@ msgstr ""
 #: pages/wishlist.php:72
 #, php-format
 msgid "If you found a wish you would like to fulfil, open the wish %s and then click the %s button and it will be unavailable for everybody else."
-msgstr ""
-
-#: pages/wishlist.php:85 pages/wishlist.php:99 pages/wishlist.php:114
-msgid "Request more wishes"
-msgstr ""
-
-#: pages/wishlist.php:103
-msgid "A notification has just been sent to the owner of this wishlist."
-msgstr ""
-
-#: pages/wishlist.php:107 pages/wishlist.php:108 pages/wishlist.php:122
-#: pages/wishlist.php:123
-msgid "Ok"
-msgstr ""
-
-#: pages/wishlist.php:118
-msgid "The wishlist owner has already received a notification recently and has not been notified again."
 msgstr ""
 
 #: pages/wishlists-saved.php:65
