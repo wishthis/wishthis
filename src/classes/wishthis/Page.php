@@ -90,7 +90,7 @@ class Page
         </div>
         <?php
 
-        return\ob_get_clean();
+        return \ob_get_clean();
     }
 
     public static function error(string $content, string $header = '', string $class = ''): string
