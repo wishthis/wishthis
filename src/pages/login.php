@@ -14,7 +14,7 @@ $page = new Page(__FILE__, __('Login'));
  * Login
  */
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
-    $user_email            = \filter_input(\INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $user_email            = \filter_input(\INPUT_POST, 'email', \FILTER_SANITIZE_EMAIL);
     $user_password         = $_POST['password'];
     $userLoginIsPersistent = isset($_POST['persistent']);
 
@@ -53,8 +53,8 @@ if (isset($_POST['reset'], $_POST['email'])) {
 
     $user = false !== $userQuery ? new User($userQuery->fetch()) : new User();
 
-    $token      = sha1(time() . rand(0, 999999));
-    $validUntil = time() + 3600;
+    $token      = sha1(\time() . rand(0, 999999));
+    $validUntil = \time() + 3600;
 
     $database
     ->query(
@@ -64,7 +64,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
           WHERE `id` = ' . $user->getId() . ';',
         [
             'user_password_reset_token' => $token,
-            'user_reset_valid_until'    => date('Y-m-d H:i:s', $validUntil),
+            'user_reset_valid_until'    => \date('Y-m-d H:i:s', $validUntil),
         ]
     );
 
@@ -72,7 +72,7 @@ if (isset($_POST['reset'], $_POST['email'])) {
     $emailReset->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
     $emailReset->setPlaceholder(
         'TEXT_PASSWORD_RESET',
-        sprintf(
+        \sprintf(
             /** TRANSLATORS: %s: The wishthis domain */
             __('somebody has requested a password reset for this email address from %s. If this was you, click the button below to invalidate your current password and set a new one.', null, $user),
             '<mj-raw><a href="https://wishthis.online">wishthis.online</a></mj-raw>'
@@ -164,7 +164,7 @@ $page->navigation();
                         <h2 class="ui header"><?= __('Forgot password?') ?></h2>
 
                         <p><?= __('Consider using a password manager. It will save all your passwords and allow you to access them with one master password. Never forget a password ever again.') ?></p>
-                        <p><?= sprintf('%sBitwarden%s is the most trusted open source password manager.', '<a href="https://bitwarden.com/" target="_blank">', '</a>') ?></p>
+                        <p><?= \sprintf('%sBitwarden%s is the most trusted open source password manager.', '<a href="https://bitwarden.com/" target="_blank">', '</a>') ?></p>
 
                         <?php if ($options->getOption('mjml_api_application_id') && $options->getOption('mjml_api_secret_key')) { ?>
                             <p>

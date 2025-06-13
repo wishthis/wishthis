@@ -8,9 +8,9 @@
 
 namespace wishthis;
 
-define('VERSION', '1.2.3');
-define('ROOT', __DIR__);
-define('DEFAULT_LOCALE', 'en_GB');
+\define('VERSION', '1.2.3');
+\define('ROOT', __DIR__);
+\define('DEFAULT_LOCALE', 'en_GB');
 
 /**
  * Include
@@ -22,13 +22,13 @@ require_once ROOT . '/src/functions/gettext.php';
 require_once ROOT . '/src/functions/getWishlistNameSuggestion.php';
 require_once ROOT . '/src/functions/redirect.php';
 
-spl_autoload_register(
+\spl_autoload_register(
     function (string $absoluteNamespace) {
-        if (__NAMESPACE__ !== substr($absoluteNamespace, 0, strlen(__NAMESPACE__))) {
+        if (__NAMESPACE__ !== \substr($absoluteNamespace, 0, \strlen(__NAMESPACE__))) {
             return;
         }
 
-        $absoluteNamespace = str_replace('\\', '/', $absoluteNamespace);
+        $absoluteNamespace = \str_replace('\\', '/', $absoluteNamespace);
 
         $filepath = ROOT . '/src/classes/' . $absoluteNamespace . '.php';
 
@@ -50,7 +50,7 @@ $config->load();
  * The configuration is the only exception, since `loadFromSession` needs the
  * database.
  */
-session_start(
+\session_start(
     [
         'name' => 'wishthis',
     ]
@@ -65,10 +65,10 @@ $database = false;
 $options  = false;
 
 if (
-       defined('DATABASE_HOST')
-    && defined('DATABASE_NAME')
-    && defined('DATABASE_USER')
-    && defined('DATABASE_PASSWORD')
+       \defined('DATABASE_HOST')
+    && \defined('DATABASE_NAME')
+    && \defined('DATABASE_USER')
+    && \defined('DATABASE_PASSWORD')
 ) {
     $database = new Database(
         DATABASE_HOST,
@@ -95,17 +95,17 @@ if (
 \Locale::setDefault(DEFAULT_LOCALE);
 
 /** Determine Locale */
-$locales = array_filter(
-    array_map(
+$locales = \array_filter(
+    \array_map(
         function ($value) {
-            $extension = pathinfo($value, PATHINFO_EXTENSION);
-            $filename  = pathinfo($value, PATHINFO_FILENAME);
+            $extension = \pathinfo($value, \PATHINFO_EXTENSION);
+            $filename  = \pathinfo($value, \PATHINFO_FILENAME);
 
             if ('po' === $extension) {
-                return pathinfo($value, PATHINFO_FILENAME);
+                return \pathinfo($value, \PATHINFO_FILENAME);
             }
         },
-        scandir(ROOT . '/translations')
+        \scandir(ROOT . '/translations')
     )
 );
 
@@ -125,7 +125,7 @@ $url = new URL($_SERVER['REQUEST_URI']);
  * Database Update
  */
 if ($options && $options->getOption('isInstalled')) {
-    if (-1 === version_compare($options->version, VERSION)) {
+    if (-1 === \version_compare($options->version, VERSION)) {
         $options->setOption('updateAvailable', true);
     }
 }
@@ -139,12 +139,12 @@ if (!isset($page)) {
 $pagePath    = 'src/pages/' . $page . '.php';
 $pagePathAlt = 'src/pages/' . $page . '/' . $page . '.php';
 
-if (file_exists($pagePath)) {
+if (\file_exists($pagePath)) {
     require $pagePath;
 } elseif (\file_exists($pagePathAlt)) {
     require $pagePathAlt;
 } else {
-    http_response_code(404);
+    \http_response_code(404);
     ?>
     <h1>Not found</h1>
     <p>The requested URL was not found on this server.</p>

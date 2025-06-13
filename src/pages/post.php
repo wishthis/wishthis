@@ -21,9 +21,9 @@ if (isset($postMedia->source_url)) {
 }
 
 if (isset($post->excerpt->rendered)) {
-    $page->description = substr(strip_tags($post->excerpt->rendered), 0, 256);
+    $page->description = \substr(\strip_tags($post->excerpt->rendered), 0, 256);
 } else {
-    $page->description = substr(strip_tags($post->content->rendered), 0, 256);
+    $page->description = \substr(\strip_tags($post->content->rendered), 0, 256);
 }
 
 $page->header();

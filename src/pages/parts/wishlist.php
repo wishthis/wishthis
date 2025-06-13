@@ -200,7 +200,7 @@ $user = User::getCurrent();
     <div class="content">
         <div class="description">
             <p><?= __('The URL you have entered does not seem quite right. Would you like to update it with the one I found?') ?></p>
-            <p class="provider"><?= sprintf(__('According to %s, this is the canonical (correct) URL.'), '<strong class="providerName">Unknown</strong>') ?></p>
+            <p class="provider"><?= \sprintf(__('According to %s, this is the canonical (correct) URL.'), '<strong class="providerName">Unknown</strong>') ?></p>
 
             <div class="ui form urls">
                 <div class="field">

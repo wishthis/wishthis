@@ -11,19 +11,19 @@ namespace wishthis;
 function getWishlistNameSuggestion(): string
 {
     $user  = User::getCurrent();
-    $now   = time();
-    $month = date('n');
+    $now   = \time();
+    $month = \date('n');
     $name  = '';
 
     $startOfBirthdate = null;
-    $startOfEaster    = strtotime('15. April'); // Approximate
-    $startOfChristmas = strtotime('24. December');
+    $startOfEaster    = \strtotime('15. April'); // Approximate
+    $startOfChristmas = \strtotime('24. December');
 
     if (isset($user->birthdate)) {
-        $birthdates = explode('-', $user->birthdate);
+        $birthdates = \explode('-', $user->birthdate);
 
         $birthdate = new \DateTime();
-        $birthdate->setDate(date('Y'), $birthdates[1], $birthdates[2]);
+        $birthdate->setDate(\date('Y'), $birthdates[1], $birthdates[2]);
 
         $startOfBirthdate = $birthdate->getTimestamp();
     }

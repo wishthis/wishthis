@@ -20,28 +20,28 @@ class URL
     public static function getResponseCode(string $url): int
     {
         $ch_options = [
-            CURLOPT_AUTOREFERER    => true,
-            CURLOPT_CONNECTTIMEOUT => 30,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HEADER         => false,
-            CURLOPT_MAXREDIRS      => 10,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_TIMEOUT        => 30,
-            CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+            \CURLOPT_AUTOREFERER    => true,
+            \CURLOPT_CONNECTTIMEOUT => 30,
+            \CURLOPT_FOLLOWLOCATION => true,
+            \CURLOPT_HEADER         => false,
+            \CURLOPT_MAXREDIRS      => 10,
+            \CURLOPT_RETURNTRANSFER => true,
+            \CURLOPT_SSL_VERIFYPEER => false,
+            \CURLOPT_TIMEOUT        => 30,
+            \CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
         ];
 
-        $ch = curl_init($url);
-        curl_setopt_array($ch, $ch_options);
-        curl_exec($ch);
+        $ch = \curl_init($url);
+        \curl_setopt_array($ch, $ch_options);
+        \curl_exec($ch);
 
-        $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $responseCode = \curl_getinfo($ch, \CURLINFO_HTTP_CODE);
 
         if (0 === $responseCode) {
-            echo curl_error($ch);
+            echo \curl_error($ch);
         }
 
-        curl_close($ch);
+        \curl_close($ch);
 
         return $responseCode;
     }
@@ -60,8 +60,8 @@ class URL
      */
     public function __construct(string $url)
     {
-        $this->url = urldecode($url);
-        $this->url = str_replace('index.php', '', $this->url);
+        $this->url = \urldecode($url);
+        $this->url = \str_replace('index.php', '', $this->url);
 
         while (\str_contains($this->url, '//')) {
             $this->url = \str_replace('//', '/', $this->url);
@@ -71,7 +71,7 @@ class URL
             $match    = $matches[0] ?? '';
             $protocol = $matches[1] ?? $_SERVER['REQUEST_SCHEME'] ?? 'http';
 
-            $this->url = str_replace($match, $protocol . '://', $this->url);
+            $this->url = \str_replace($match, $protocol . '://', $this->url);
         }
 
         $_GET = $this->getGET();
@@ -84,7 +84,7 @@ class URL
      */
     public function isPretty(): bool
     {
-        if ('/?' === substr($this->url, 0, 2)) {
+        if ('/?' === \substr($this->url, 0, 2)) {
             return false;
         }
 
@@ -98,28 +98,28 @@ class URL
      */
     public function getPermalink(): string
     {
-        $htaccess  = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
+        $htaccess  = \preg_split('/\r\n|\r|\n/', \file_get_contents(ROOT . '/.htaccess'));
         $permalink = $this->url;
 
         foreach ($htaccess as $index => $line) {
-            $parts = explode(chr(32), trim($line));
+            $parts = \explode(chr(32), trim($line));
 
-            if (count($parts) >= 2) {
+            if (\count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
                         $rewriteRule = $parts[1];
                         $target      = $parts[2];
 
-                        $regex = str_replace('/', '\/', $rewriteRule);
+                        $regex = \str_replace('/', '\/', $rewriteRule);
 
-                        if (preg_match('/' . $regex . '/', ltrim($this->url, '/'), $matches)) {
+                        if (\preg_match('/' . $regex . '/', \ltrim($this->url, '/'), $matches)) {
                             $permalink = $target;
 
-                            preg_match_all('/\$\d+/', $target, $placeholders);
-                            $placeholders = reset($placeholders);
+                            \preg_match_all('/\$\d+/', $target, $placeholders);
+                            $placeholders = \reset($placeholders);
 
                             foreach ($placeholders as $index => $placeholder) {
-                                $permalink = str_replace($placeholder, $matches[$index + 1], $permalink);
+                                $permalink = \str_replace($placeholder, $matches[$index + 1], $permalink);
                             }
                         }
                         break;
@@ -137,45 +137,45 @@ class URL
      */
     public function getPretty(): string
     {
-        $htaccess = preg_split('/\r\n|\r|\n/', file_get_contents(ROOT . '/.htaccess'));
+        $htaccess = \preg_split('/\r\n|\r|\n/', \file_get_contents(ROOT . '/.htaccess'));
 
         if (!$this->url) {
             return '';
         }
 
         foreach ($htaccess as $index => $line) {
-            $parts = explode(chr(32), trim($line));
+            $parts = \explode(\chr(32), \trim($line));
 
-            if (count($parts) >= 2) {
+            if (\count($parts) >= 2) {
                 switch ($parts[0]) {
                     case 'RewriteRule':
                         $rewriteRule = $parts[1];
-                        $rewriteRule = ltrim($rewriteRule, '^');
-                        $rewriteRule = rtrim($rewriteRule, '$');
-                        $target      = ltrim($parts[2], '/?');
-                        $keys        = array_map(
+                        $rewriteRule = \ltrim($rewriteRule, '^');
+                        $rewriteRule = \rtrim($rewriteRule, '$');
+                        $target      = \ltrim($parts[2], '/?');
+                        $keys        = \array_map(
                             function ($item) {
-                                return explode('=', $item)[0];
+                                return \explode('=', $item)[0];
                             },
-                            explode('&', parse_url($target, PHP_URL_QUERY))
+                            \explode('&', \parse_url($target, PHP_URL_QUERY))
                         );
-                        $flags       = explode(',', substr($parts[3], 1, -1)) ?? [];
+                        $flags       = \explode(',', \substr($parts[3], 1, -1)) ?? [];
 
-                        \parse_str(\parse_url($target, PHP_URL_QUERY), $parameters);
+                        \parse_str(\parse_url($target, \PHP_URL_QUERY), $parameters);
                         /** */
 
                         /** Determine a potential URL. */
                         $potential_url = $rewriteRule;
 
-                        preg_match_all('/\(.+?\)/', $rewriteRule, $groups);
+                        \preg_match_all('/\(.+?\)/', $rewriteRule, $groups);
                         $groups = $groups[0];
 
-                        for ($i = 0; $i < count($groups); $i++) {
+                        for ($i = 0; $i < \count($groups); $i++) {
                             foreach ($parameters as $key => $value) {
                                 $replacement = '$' . $i + 1;
 
                                 if ($replacement === $value && isset($_GET[$key])) {
-                                    $potential_url = str_replace(
+                                    $potential_url = \str_replace(
                                         $groups[$i],
                                         $_GET[$key],
                                         $potential_url
@@ -184,12 +184,12 @@ class URL
                             }
                         }
 
-                        $match = preg_match(
-                            '/^' . str_replace(['/'], ['\/'], $rewriteRule) . '$/',
+                        $match = \preg_match(
+                            '/^' . \str_replace(['/'], ['\/'], $rewriteRule) . '$/',
                             $potential_url
                         );
 
-                        if (1 === $match && count($_GET) === count(explode('/', $rewriteRule))) {
+                        if (1 === $match && \count($_GET) === \count(\explode('/', $rewriteRule))) {
                             return '/' . $potential_url;
                         }
                         break;
@@ -197,7 +197,7 @@ class URL
             }
         }
 
-        if ('/?' === substr($this->url, 0, 2)) {
+        if ('/?' === \substr($this->url, 0, 2)) {
             return $this->url;
         }
 
@@ -215,18 +215,18 @@ class URL
         $GET         = [];
 
         if ($this->isPretty()) {
-            $queryString = parse_url($this->getPermalink(), PHP_URL_QUERY);
+            $queryString = \parse_url($this->getPermalink(), \PHP_URL_QUERY);
         }
 
         if (null === $queryString) {
             return [];
         }
 
-        if ('/?' === substr($queryString, 0, 2)) {
-            $queryString = substr($queryString, 2);
+        if ('/?' === \substr($queryString, 0, 2)) {
+            $queryString = \substr($queryString, 2);
         }
 
-        parse_str($queryString, $GET);
+        \parse_str($queryString, $GET);
 
         return $GET;
     }

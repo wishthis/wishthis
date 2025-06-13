@@ -33,7 +33,7 @@ if (isset($_POST['user-language'])) {
         $user->setLocale($userLocale);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users locale. */
                 __('Locale updated to "%s".'),
                 '<strong>' . $userLocale . '</strong>'
@@ -70,7 +70,7 @@ if (isset($_POST['user-currency'])) {
         $user->setCurrency($userCurrency);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users currency. */
                 __('Currency updated to "%s".'),
                 '<strong>' . $userCurrency . '</strong>'
@@ -108,7 +108,7 @@ if (isset($_POST['user-channel'])) {
         $user->setChannel($userChannel);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users channel. */
                 __('Channel updated to "%s".'),
                 '<strong>' . $userChannel . '</strong>'
@@ -156,7 +156,7 @@ if ($userAdvertisements !== $user->getAdvertisements()) {
     $user->setAdvertisements($userAdvertisements);
 
     $page->messages[] = Page::success(
-        sprintf(
+        \sprintf(
             /** TRANSLATORS: %s: The users advertisements. */
             __('Advertisements updated to "%s".'),
             '<strong>' . $userAdvertisements ? 'True' : 'False' . '</strong>'
@@ -167,7 +167,7 @@ if ($userAdvertisements !== $user->getAdvertisements()) {
 
 
 if ($loginRequired) {
-    session_destroy();
+    \session_destroy();
     unset($_SESSION);
 
     $page->messages[] = Page::warning(

@@ -18,7 +18,7 @@ $user  = User::getCurrent();
 
 if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
     $page->messages[] = Page::warning(
-        sprintf(
+        \sprintf(
             /** TRANSLATORS: %s: Language, most likely English */
             __('The blog is currently only available in %s and not translatable. Please let me know if you have any ideas to improve this.'),
             '<strong>' . \Locale::getDisplayName('en', 'en') . '</strong>'
@@ -61,7 +61,7 @@ if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
                             </div>
                         </div>
                         <div class="extra content">
-                            <span class="right floated"><?= $dateFormatter->format(strtotime($post->date)) ?></span>
+                            <span class="right floated"><?= $dateFormatter->format(\strtotime($post->date)) ?></span>
                             <!--
                             <span>
                                 <i class="user icon"></i>
@@ -74,7 +74,7 @@ if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
             <?php } ?>
         </div>
 
-        <?php if (count($posts) > 4) { ?>
+        <?php if (\count($posts) > 4) { ?>
             <div class="ui hidden divider"></div>
 
             <div class="ui one column centered grid">

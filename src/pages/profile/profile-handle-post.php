@@ -12,7 +12,7 @@ $userId        = $user->getId();
 require \sprintf(__DIR__ . '/profile-handle-post-%s.php', $_POST['section']);
 
 if ($loginRequired) {
-    session_destroy();
+    \session_destroy();
     unset($_SESSION);
 
     $page->messages[] = Page::warning(

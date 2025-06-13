@@ -9,7 +9,7 @@
 namespace wishthis;
 
 $passwordReset        = isset($_GET['password-reset'], $_GET['token']);
-$registrationDisabled = defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
+$registrationDisabled = \defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
 
 $pageTitle    = $passwordReset ? __('Reset password') : __('Register');
 $buttonSubmit = $passwordReset ? __('Reset')          : __('Register');
@@ -23,7 +23,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
            FROM `users`;'
     )
     ->fetchAll();
-    $emails     = array_map(
+    $emails     = \array_map(
         function ($user) {
             return $user['email'];
         },
@@ -33,29 +33,29 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
 
     $isHuman     = false;
     $planet      = mb_strtolower($_POST['planet']);
-    $planetName  = Sanitiser::sanitiseText(mb_strtoupper(mb_substr($planet, 0, 1)) . mb_substr($planet, 1));
+    $planetName  = Sanitiser::sanitiseText(\mb_strtoupper(\mb_substr($planet, 0, 1)) . \mb_substr($planet, 1));
     $planets     = [
-        mb_strtolower(__('Mercury')),
-        mb_strtolower(__('Venus')),
-        mb_strtolower(__('Earth')),
-        mb_strtolower(__('Mars')),
-        mb_strtolower(__('Jupiter')),
-        mb_strtolower(__('Saturn')),
-        mb_strtolower(__('Uranus')),
-        mb_strtolower(__('Neptune')),
+        \mb_strtolower(__('Mercury')),
+        \mb_strtolower(__('Venus')),
+        \mb_strtolower(__('Earth')),
+        \mb_strtolower(__('Mars')),
+        \mb_strtolower(__('Jupiter')),
+        \mb_strtolower(__('Saturn')),
+        \mb_strtolower(__('Uranus')),
+        \mb_strtolower(__('Neptune')),
     ];
     $not_planets = [
-        mb_strtolower(__('Pluto')),
-        mb_strtolower(__('Sun')),
+        \mb_strtolower(__('Pluto')),
+        \mb_strtolower(__('Sun')),
     ];
 
-    if (in_array($planet, array_merge($planets, $not_planets))) {
+    if (\in_array($planet, \array_merge($planets, $not_planets))) {
         $isHuman = true;
     }
 
-    if (in_array($planet, $not_planets)) {
+    if (\in_array($planet, $not_planets)) {
         $page->messages[] = Page::warning(
-            sprintf(__('%s is not a planet but I\'ll let it slide, since only a human would make this kind of mistake.'), '<strong>' . $planetName . '</strong>'),
+            \sprintf(__('%s is not a planet but I\'ll let it slide, since only a human would make this kind of mistake.'), '<strong>' . $planetName . '</strong>'),
             __('Invalid planet')
         );
     }
@@ -86,7 +86,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
                 $user = new User($userQuery->fetch());
 
                 echo \date('d.m.Y H:i') . ' <= ' . \date('d.m.Y H:i', $user->getPasswordResetValidUntil()) . '.';
-                if (time() <= $user->getPasswordResetValidUntil()) {
+                if (\time() <= $user->getPasswordResetValidUntil()) {
                     $database
                     ->query(
                         'UPDATE `users`
@@ -112,7 +112,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
             $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
             $locale_user    = DEFAULT_LOCALE;
 
-            if (in_array($locale_browser, $locales, true)) {
+            if (\in_array($locale_browser, $locales, true)) {
                 $locale_user = $locale_browser;
             }
 
@@ -120,7 +120,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
              * Register
              */
 
-            if (0 === count($users)) {
+            if (0 === \count($users)) {
                 $database->query(
                     'INSERT INTO `users` (
                         `email`,
@@ -141,7 +141,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
                 );
                 $userRegistered = true;
             } else {
-                if (in_array($user_email, $emails)) {
+                if (\in_array($user_email, $emails)) {
                     $page->messages[] = Page::error(
                         __('An account with this email address already exists.'),
                         __('Invalid email address')
@@ -176,7 +176,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
         if ($userRegistered) {
             $user_id       = $database->lastInsertID();
             $wishlist_name = addslashes(filter_var(__('My hopes and dreams'), FILTER_SANITIZE_SPECIAL_CHARS));
-            $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
+            $wishlist_hash = sha1(\time() . $user_id . $wishlist_name);
 
             $database
             ->query(
@@ -198,7 +198,7 @@ if (isset($_POST['email'], $_POST['password']) && !empty($_POST['planet']) && !$
         }
     } else {
         $page->messages[] = Page::error(
-            sprintf(__('%s is not a planet in our solar system. Read this for more information: %s.'), '<strong>' . $planetName . '</strong>', '<a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">Solar system planets: Order of the 8 (or 9) planets</a>'),
+            \sprintf(__('%s is not a planet in our solar system. Read this for more information: %s.'), '<strong>' . $planetName . '</strong>', '<a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">Solar system planets: Order of the 8 (or 9) planets</a>'),
             __('Invalid planet')
         );
     }
@@ -300,7 +300,7 @@ $page->navigation();
                 <p><?= __('wishthis is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).') ?></p>
                 <p>
                     <?=
-                    sprintf(
+                    \sprintf(
                         /** TRANSLATORS: %s: source code */
                         __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %s is publicly viewable.'),
                         '<a href="https://github.com/wishthis/wishthis" target="_blank">' . __('source code') . '</a>'

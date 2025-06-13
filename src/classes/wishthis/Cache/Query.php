@@ -31,7 +31,7 @@ class Query extends Cache
     {
         $filepath = $this->getFilepath();
 
-        $response = $this->exists() ? json_decode(file_get_contents($filepath), true) : [];
+        $response = $this->exists() ? \json_decode(\file_get_contents($filepath), true) : [];
 
         if (true === $this->generateCache()) {
             $pdoStatement = $this->database

@@ -11,7 +11,7 @@ namespace wishthis;
 global $page, $database;
 
 if (!isset($page)) {
-    http_response_code(403);
+    \http_response_code(403);
     die('Direct access to this location is not allowed.');
 }
 
@@ -28,7 +28,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         if (isset($_POST['wishlist'])) {
             if (!$user->isLoggedIn()) {
-                http_response_code(403);
+                \http_response_code(403);
                 die(__('You must be logged in to save or delete a saved wishlist.'));
 
                 return;

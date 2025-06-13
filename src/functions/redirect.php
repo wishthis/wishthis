@@ -15,11 +15,11 @@ function redirect(string $target)
     /**
      * Redirect user based on channel setting
      */
-    $isDevEnvironment = defined('ENV_IS_DEV') && true === ENV_IS_DEV;
+    $isDevEnvironment = \defined('ENV_IS_DEV') && true === ENV_IS_DEV;
     $isHostInChannel  = false;
 
-    /** Determine if host is a defined channel */
-    if (defined('CHANNELS') && is_array(CHANNELS)) {
+    /** Determine if host is a \defined channel */
+    if (\defined('CHANNELS') && \is_array(CHANNELS)) {
         foreach (CHANNELS as $channel) {
             if ($channel['host'] === $_SERVER['HTTP_HOST']) {
                 $isHostInChannel = true;
@@ -30,8 +30,8 @@ function redirect(string $target)
 
     /** Determine channel to redirect to */
     if (
-           defined('CHANNELS')
-        && is_array(CHANNELS)
+           \defined('CHANNELS')
+        && \is_array(CHANNELS)
         && $user->getChannel()
         && !$isDevEnvironment
     ) {
@@ -51,13 +51,13 @@ function redirect(string $target)
         if (null !== $host) {
             $target = 'https://' . $host . $target;
 
-            header('Location: ' . $target);
+            \header('Location: ' . $target);
             die();
         }
     }
 
     if ($target !== $_SERVER['REQUEST_URI']) {
-        header('Location: ' . $target);
+        \header('Location: ' . $target);
         die();
     }
 }

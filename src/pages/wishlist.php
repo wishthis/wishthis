@@ -68,7 +68,7 @@ $user = User::getCurrent();
         <div class="ui segments">
             <div class="ui segment">
                 <h2 class="ui header"><?= __('What to do?') ?></h2>
-                <p><?= sprintf(
+                <p><?= \sprintf(
                     __('If you found a wish you would like to fulfil, open the wish %s and then click the %s button and it will be unavailable for everybody else.'),
                     '<span class="ui tiny horizontal label"><i class="stream icon"></i> ' . __('Details') . '</span>',
                     '<span class="ui primary tiny horizontal label"><i class="gift icon"></i> ' . __('Fulfil wish') . '</span>'

@@ -25,7 +25,7 @@ if (isset($_POST['mjml_api'], $_POST['api_application_id'], $_POST['mjml_api_sec
 
         <div class="ui segment">
             <h2 class="ui header"><?= __('MJML') ?></h2>
-            <p><?= sprintf(__('MJML is required for sending emails. Visit %s to request API access.'), '<a href="https://mjml.io/api" target="_blank">https://mjml.io/api</a>') ?></p>
+            <p><?= \sprintf(__('MJML is required for sending emails. Visit %s to request API access.'), '<a href="https://mjml.io/api" target="_blank">https://mjml.io/api</a>') ?></p>
 
             <h3 class="ui header"><?= __('API') ?></h3>
             <form class="ui form" method="POST">

@@ -36,12 +36,12 @@ class User
 
     public static function passwordToHash(string $plainPassword): string
     {
-        return password_hash($plainPassword, PASSWORD_BCRYPT);
+        return \password_hash($plainPassword, \PASSWORD_BCRYPT);
     }
 
     public static function passwordToOldHash(string $plainPassword): string
     {
-        return sha1($plainPassword);
+        return \sha1($plainPassword);
     }
 
 
@@ -150,7 +150,7 @@ class User
 
     /**
      * The users preferred release channel. Usually `stable` or
-     * `release-candidate` but can also be unset if not defined.
+     * `release-candidate` but can also be unset if not \defined.
      *
      * @var string
      */
@@ -215,11 +215,11 @@ class User
         /** Load Translation */
         $translationFilepath = ROOT . '/translations/' . $locale . '.po';
 
-        if (file_exists($translationFilepath)) {
+        if (\file_exists($translationFilepath)) {
             $loader             = new \Gettext\Loader\PoLoader();
             $this->translations = $loader->loadFile($translationFilepath);
         } else {
-            trigger_error('Unable to find translations for ' . $locale . ', defaulting to ' . DEFAULT_LOCALE . '.', E_USER_NOTICE);
+            \trigger_error('Unable to find translations for ' . $locale . ', defaulting to ' . DEFAULT_LOCALE . '.', \E_USER_NOTICE);
         }
 
         /** Set locale */
@@ -456,7 +456,7 @@ class User
                 'user_email' => $email,
             ]
         );
-        $user_database_fields['last_login'] = date('Y-m-d H:i');
+        $user_database_fields['last_login'] = \date('Y-m-d H:i');
 
         /**
          * Set session duration
@@ -497,11 +497,11 @@ class User
             ]
         );
 
-        session_destroy();
+        \session_destroy();
         unset($_SESSION);
 
         /** Delete cookie */
-        \setcookie('wishthis_session', '', time() - 3600);
+        \setcookie('wishthis_session', '', \time() - 3600);
     }
 
     public function delete(): void
@@ -617,7 +617,7 @@ class User
             $sessionDurationSeconds = 7776000; /** Three months */
         }
 
-        $sessionExpires = time() + $sessionDurationSeconds;
+        $sessionExpires = \time() + $sessionDurationSeconds;
 
         if (0 === $forUser) {
             $forUser = $this->id;
@@ -664,7 +664,7 @@ class User
                       WHERE `session` = :session
                         AND `user` = :user',
                     [
-                        'expires' => date('Y-m-d H:i', $sessionExpires),
+                        'expires' => \date('Y-m-d H:i', $sessionExpires),
                         'session' => $sessionId,
                         'user'    => $forUser,
                     ]
@@ -689,7 +689,7 @@ class User
             [
                 'user_id'         => $forUser,
                 'session_id'      => $sessionId,
-                'session_expires' => date('Y-m-d H:i', time() + $sessionDurationSeconds),
+                'session_expires' => \date('Y-m-d H:i', \time() + $sessionDurationSeconds),
             ]
         );
     }

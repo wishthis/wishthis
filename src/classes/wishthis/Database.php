@@ -43,7 +43,7 @@ class Database
         $statement = $this->pdo->prepare($query, [\PDO::FETCH_ASSOC]);
 
         foreach ($placeholders as $name => $value) {
-            switch (gettype($value)) {
+            switch (\gettype($value)) {
                 case 'boolean':
                     $statement->bindValue($name, $value, \PDO::PARAM_BOOL);
                     break;
@@ -80,12 +80,12 @@ class Database
         ->query('SHOW TABLES;')
         ->fetchAll();
 
-        if (!is_iterable($tables)) {
+        if (!\is_iterable($tables)) {
             return false;
         }
 
         foreach ($tables as $table_kv) {
-            $table = reset($table_kv);
+            $table = \reset($table_kv);
 
             if ($table === $table_to_check) {
                 return true;

@@ -99,7 +99,7 @@ $user = User::getCurrent();
                 <div class="ui segment">
                     <h2 class="ui header"><?= __('Why wishthis?') ?></h2>
 
-                    <p><?= sprintf(
+                    <p><?= \sprintf(
                         __('wishthis is free and open source software. With free I don\'t just mean, you don\'t have to pay money to use it, but you are also not paying with your personal information and behaviour. Not only can anybody %sview and verify its code%s, I also encourage you to do so.'),
                         '<a href="https://github.com/wishthis/wishthis" title="wishthis source code" target="_blank">',
                         '</a>'
@@ -113,7 +113,7 @@ $user = User::getCurrent();
                                 <div class="content"><?= __('free of advertisements') ?></div>
                             </li>
                             <?php
-                            $popup_html = sprintf(
+                            $popup_html = \sprintf(
                                 /** TRANSLATORS: %s: plausible */
                                 __('see %s'),
                                 '<a href=\'https://plausible.io\' target=\'_blank\'>' . __('plausible') . ' <i class=\'external alternate icon\'></i></a>'
@@ -217,14 +217,14 @@ $user = User::getCurrent();
                 $locale_browser = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
                 $locale_user    = $user->getLocale();
 
-                if ($user->isLoggedIn() && $locale_browser !== $locale_user && in_array($locale_browser, $locales, true)) {
+                if ($user->isLoggedIn() && $locale_browser !== $locale_user && \in_array($locale_browser, $locales, true)) {
                     ?>
                     <div class="ui segment">
                         <h2 class="ui header"><?= __('Hey, you') ?></h2>
 
                         <p>
                             <?php
-                            printf(
+                            \printf(
                                 /** TRANSLATORS: %s: the users display name */
                                 __('Yes, I mean you, %s.'),
                                 $user->getDisplayName()
@@ -234,7 +234,7 @@ $user = User::getCurrent();
 
                         <p>
                             <?php
-                            printf(
+                            \printf(
                                 /** TRANSLATORS: %1$s: Locale, e. g. German (Germany), %2$s: Locale, e. g. English (United Kingdom) %3$s: preferences */
                                 __('Your browser is telling me that you would like to view pages in %1$s, but your %3$s are set to %2$s.'),
                                 '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>',
@@ -246,10 +246,10 @@ $user = User::getCurrent();
 
                         <p>
                             <?php
-                            printf(
+                            \printf(
                                 /** TRANSLATORS: %s: the users display name */
                                 __('wishthis is available in %1$s different locales and also supports %2$s!'),
-                                '<strong>' . count($locales) . '</strong>',
+                                '<strong>' . \count($locales) . '</strong>',
                                 '<strong>' . \Locale::getDisplayName($locale_browser, $locale_user) . '</strong>'
                             );
                             ?>

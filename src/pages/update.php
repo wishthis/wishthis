@@ -15,24 +15,24 @@ $page = new Page(__FILE__, __('Update'), 100);
  */
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $versions_directory = ROOT . '/src/update';
-    $versions_contents  = scandir($versions_directory);
+    $versions_contents  = \scandir($versions_directory);
     $versions           = [];
 
     foreach ($versions_contents as $filename) {
         $filepath = $versions_directory . '/' . $filename;
-        $pathinfo = pathinfo($filepath);
+        $pathinfo = \pathinfo($filepath);
 
         if ('sql' === $pathinfo['extension']) {
             $versions[] = [
-                'version'  => str_replace('-', '.', $pathinfo['filename']),
+                'version'  => \str_replace('-', '.', $pathinfo['filename']),
                 'filepath' => $filepath,
             ];
         }
     }
 
     foreach ($versions as $version) {
-        if (-1 === version_compare($options->version, $version['version'])) {
-            $sql = file_get_contents($version['filepath']);
+        if (-1 === \version_compare($options->version, $version['version'])) {
+            $sql = \file_get_contents($version['filepath']);
 
             if ($sql) {
                 $database->query($sql);
@@ -48,7 +48,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     require ROOT . '/src/assets/js/service-worker.js.php';
 
     $page->messages[] = Page::success(
-        sprintf(
+        \sprintf(
             __('Database successfully migrated to %s.'),
             'v' . VERSION
         )
@@ -66,7 +66,7 @@ $page->navigation();
 
         <?= $page->messages() ?>
 
-        <?php if (-1 === version_compare($options->version, VERSION)) { ?>
+        <?php if (-1 === \version_compare($options->version, VERSION)) { ?>
             <?php
             switch ($options->version) {
                 case '1.0.0':
@@ -79,10 +79,10 @@ $page->navigation();
                         <form class="ui form" method="POST">
                             <button class="ui orange button"
                                     type="submit"
-                                    title="<?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"
+                                    title="<?= \sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"
                             >
                                 <i class="upload icon"></i>
-                                <?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>
+                                <?= \sprintf(__('Migrate to %s'), 'v' . VERSION) ?>
                             </button>
                         </form>
                     </div>
@@ -98,10 +98,10 @@ $page->navigation();
                         <form class="ui form" method="POST">
                             <button class="ui orange button"
                                     type="submit"
-                                    title="<?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"
+                                    title="<?= \sprintf(__('Migrate to %s'), 'v' . VERSION) ?>"
                             >
                                 <i class="upload icon"></i>
-                                <?= sprintf(__('Migrate to %s'), 'v' . VERSION) ?>
+                                <?= \sprintf(__('Migrate to %s'), 'v' . VERSION) ?>
                             </button>
                         </form>
                     </div>

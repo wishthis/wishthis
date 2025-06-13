@@ -21,7 +21,7 @@ class Cache
 
     protected function getAge(): int
     {
-        return time() - $this->getLastModified();
+        return \time() - $this->getLastModified();
     }
 
     protected function getIdentifier(): string
@@ -37,18 +37,18 @@ class Cache
     protected function write(mixed $value): void
     {
         $filepath       = $this->getFilepath();
-        $directoryName  = dirname($filepath);
-        $directoryCache = dirname($directoryName);
+        $directoryName  = \dirname($filepath);
+        $directoryCache = \dirname($directoryName);
 
-        if (false === file_exists($directoryCache)) {
-            mkdir($directoryCache);
+        if (false === \file_exists($directoryCache)) {
+            \mkdir($directoryCache);
         }
 
-        if (false === file_exists($directoryName)) {
-            mkdir($directoryName);
+        if (false === \file_exists($directoryName)) {
+            \mkdir($directoryName);
         }
 
-        file_put_contents($filepath, json_encode($value));
+        \file_put_contents($filepath, \json_encode($value));
     }
 
     /**
@@ -56,18 +56,18 @@ class Cache
      */
     public function __construct(string $url, int $maxAge = \wishthis\Duration::YEAR)
     {
-        $this->url    = trim($url);
+        $this->url    = \trim($url);
         $this->maxAge = $maxAge;
     }
 
     public function exists(): bool
     {
-        return file_exists($this->getFilepath());
+        return \file_exists($this->getFilepath());
     }
 
     public function getLastModified(): int
     {
-        return filemtime($this->getFilepath());
+        return \filemtime($this->getFilepath());
     }
 
     public function generateCache(): bool

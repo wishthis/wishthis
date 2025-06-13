@@ -20,7 +20,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
              */
             $user_id       = Sanitiser::getNumber($user->getId());
             $wishlist_name = Sanitiser::getTitle($_POST['wishlist-name']);
-            $wishlist_hash = sha1(time() . $user_id . $wishlist_name);
+            $wishlist_hash = \sha1(\time() . $user_id . $wishlist_name);
 
             $database->query(
                 'INSERT INTO `wishlists` (
@@ -98,7 +98,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $email->setPlaceholder('TEXT_HELLO', __('Hello,', null, $user));
             $email->setPlaceholder(
                 'TEXT_WISHLIST_REQUEST_WISHES',
-                sprintf(
+                \sprintf(
                     /** TRANSLATORS: %s: Wishlist name */
                     __('somebody has requested that you add more wishes to your wishlist %s.', null, $user),
                     '<a href="' . $href . '">' . $wishlist['name'] . '</a>'

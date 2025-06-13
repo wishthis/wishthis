@@ -24,7 +24,7 @@ class Blog
 
     public static function getPost(int $postID): \stdClass
     {
-        $post = self::get(sprintf(self::ENDPOINT_POST, $postID));
+        $post = self::get(\sprintf(self::ENDPOINT_POST, $postID));
 
         return $post;
     }
@@ -46,7 +46,7 @@ class Blog
     {
         $posts = self::get(self::ENDPOINT_POSTS);
 
-        for ($i = 0; $i < count($posts); $i++) {
+        for ($i = 0; $i < \count($posts); $i++) {
             $previous = $posts[$i - 1] ?? null;
             $current  = $posts[$i]     ?? null;
             $next     = $psots[$i + 1] ?? null;
@@ -72,7 +72,7 @@ class Blog
 
     public static function getMedia(int $mediaID): \stdClass
     {
-        $media = self::get(sprintf(self::ENDPOINT_MEDIA, $mediaID));
+        $media = self::get(\sprintf(self::ENDPOINT_MEDIA, $mediaID));
 
         return $media;
     }
@@ -83,7 +83,7 @@ class Blog
 
         $media      = self::getMedia($mediaID);
         $mediaSizes = (array) $media->media_details->sizes;
-        uasort(
+        \uasort(
             $mediaSizes,
             function ($a, $b) {
                 return $a->width <=> $a->width;
@@ -91,7 +91,7 @@ class Blog
         );
         $mediaSizes = (object) $mediaSizes;
 
-        ob_start();
+        \ob_start();
         ?>
         <picture>
             <?php foreach ($mediaSizes as $size => $image) { ?>
@@ -101,14 +101,14 @@ class Blog
             <img src="<?= $media->source_url; ?>" alt="<?= $media->alt_text; ?>" loading="lazy" />
         </picture>
         <?php
-        $htmlPicture .= ob_get_clean();
+        $htmlPicture .= \ob_get_clean();
 
         return $htmlPicture;
     }
 
     public static function getCategory(int $categoryID): \stdClass
     {
-        $category = self::get(sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
+        $category = self::get(\sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
 
         return $category;
     }
@@ -119,11 +119,11 @@ class Blog
         $categoriesName = [];
 
         foreach ($categoryIDs as $categoryID) {
-            $category         = self::get(sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
+            $category         = self::get(\sprintf(self::ENDPOINT_CATEGORIES, $categoryID));
             $categoriesName[] = $category->name;
         }
 
-        $categoriesHTML = implode(', ', $categoriesName);
+        $categoriesHTML = \implode(', ', $categoriesName);
 
         return $categoriesHTML;
     }

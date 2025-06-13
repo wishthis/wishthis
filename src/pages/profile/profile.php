@@ -148,7 +148,7 @@ $page->navigation();
                     <div class="ui basic fitted segment">
                         <div class="ui three steps">
                             <div class="disabled step long">
-                                <i class="times icon"></i>
+                                <i class="  imes icon"></i>
                                 <div class="content">
                                     <div class="title"><?= __('Long') ?></div>
                                     <div class="description"><?= __('Over eight characters in length.') ?></div>
@@ -157,7 +157,7 @@ $page->navigation();
 
                             <div class="disabled step special">
 
-                                <i class="times icon"></i>
+                                <i class="  imes icon"></i>
                                 <div class="content">
                                     <div class="title">
                                         <?php
@@ -186,7 +186,7 @@ $page->navigation();
                                     <label><?= __('Language') ?></label>
 
                                     <select class="ui search dropdown language" name="user-language">
-                                        <?php if (!in_array('en_GB', $locales)) { ?>
+                                        <?php if (!\in_array('en_GB', $locales)) { ?>
                                             <option value="<?= 'en_GB' ?>"><?= \Locale::getDisplayName('en_GB', $user->getLocale()) ?></option>
                                         <?php } ?>
 
@@ -215,7 +215,7 @@ $page->navigation();
                                             $currencySymbol    = $currencyFormatter->getSymbol(\NumberFormatter::CURRENCY_SYMBOL);
                                             $currencyValue     = $currencyISO . ' (' . $currencySymbol . ')';
 
-                                            if (in_array($currencyISO, $currencies, true) || $currencyISO === $currencySymbol) {
+                                            if (\in_array($currencyISO, $currencies, true) || $currencyISO === $currencySymbol) {
                                                 continue;
                                             } else {
                                                 $currencies[] = $currencyISO;
@@ -280,9 +280,9 @@ $page->navigation();
                         <form class="ui form" method="POST">
                             <input type="hidden" name="section" value="preferences" />
 
-                            <?php if (defined('CHANNELS') && is_array(CHANNELS)) { ?>
+                            <?php if (\defined('CHANNELS') && \is_array(CHANNELS)) { ?>
                                 <script type="text/javascript">
-                                    var CHANNELS = <?= json_encode(CHANNELS) ?>;
+                                    var CHANNELS = <?= \json_encode(CHANNELS) ?>;
                                 </script>
 
                                 <div class="field">
@@ -315,7 +315,7 @@ $page->navigation();
                                                 <?php
                                                 $count_users_needed = $count_users_needed - $count_users_rc;
 
-                                                printf(
+                                                \printf(
                                                     _n(
                                                         '%d more subscriber needed',
                                                         '%d more subscribers needed',
@@ -361,7 +361,7 @@ $page->navigation();
                             <div class="field">
                                 <p>
                                     <?php
-                                    printf(
+                                    \printf(
                                         /** TRANSLATORS: %s: sponsor me */
                                         __('Time spent on wishthis is time not doing for-profit work. If you would like to support me but either can\'t or don\'t want to %s, consider selling your body to Google and becoming its product.'),
                                         '<a href="https://github.com/sponsors/grandeljay" target="_blank">' . __('sponsor me') . '</a>'

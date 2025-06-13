@@ -23,18 +23,18 @@ switch ($step) {
      * Test the database credentials
      */
     case 1:
-        session_destroy();
+        \session_destroy();
         unset($_SESSION);
         ?>
         <main>
             <div class="ui hidden divider"></div>
             <div class="ui container">
-                <?= file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
+                <?= \file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
 
                 <h1 class="ui header"><?= $page->title ?></h1>
 
                 <div class="ui segment">
-                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+                    <h2 class="ui header"><?= \sprintf(__('Step %d'), $step) ?></h2>
 
                     <p><?= __('Welcome to the wishthis installer.') ?></p>
                 </div>
@@ -156,7 +156,7 @@ switch ($step) {
         ];
 
         foreach ($_POST as $key => $value) {
-            if ('DATABASE' === substr($key, 0, 8)) {
+            if ('DATABASE' === \substr($key, 0, 8)) {
                 $_SESSION[$key] = $value;
             }
         }
@@ -164,12 +164,12 @@ switch ($step) {
         <main>
             <div class="ui hidden divider"></div>
             <div class="ui container">
-                <?= file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
+                <?= \file_get_contents(ROOT . '/src/assets/img/logo.svg') ?>
 
                 <h1 class="ui header"><?= $page->title ?></h1>
 
                 <div class="ui segment">
-                    <h2 class="ui header"><?= sprintf(__('Step %d'), $step) ?></h2>
+                    <h2 class="ui header"><?= \sprintf(__('Step %d'), $step) ?></h2>
 
                     <p><?= __('Make sure all prerequisites are met or the installation may fail in the next step.') ?></p>
                 </div>
@@ -236,7 +236,7 @@ switch ($step) {
         $cacheDirectory = 'src/cache';
 
         if (!file_exists($cacheDirectory)) {
-            mkdir($cacheDirectory);
+            \mkdir($cacheDirectory);
         }
 
         /**
@@ -245,11 +245,11 @@ switch ($step) {
         $configDirectory  = 'src/config';
         $configPath       = $configDirectory . '/config.php';
         $configSamplePath = $configDirectory . '/config-sample.php';
-        $configContents   = file_get_contents($configSamplePath);
+        $configContents   = \file_get_contents($configSamplePath);
 
         foreach ($_SESSION as $key => $value) {
-            if ('DATABASE' === substr($key, 0, 8)) {
-                $configContents = preg_replace('/(' . $key . '.+?\').*?(\')/', '$1' . $value . '$2', $configContents);
+            if ('DATABASE' === \substr($key, 0, 8)) {
+                $configContents = \preg_replace('/(' . $key . '.+?\').*?(\')/', '$1' . $value . '$2', $configContents);
             }
         }
 

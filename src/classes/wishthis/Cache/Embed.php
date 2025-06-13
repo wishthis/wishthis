@@ -35,7 +35,7 @@ class Embed extends Cache
         $filepath = $this->getFilepath();
 
         /** Get existing info */
-        $info = $this->exists() ? json_decode(file_get_contents($filepath)) : new \stdClass();
+        $info = $this->exists() ? \json_decode(\file_get_contents($filepath)) : new \stdClass();
 
         if (true === $generateCache) {
             try {
@@ -75,28 +75,28 @@ class Embed extends Cache
 
             if ($generateCache) {
                 $ch_options = [
-                    CURLOPT_AUTOREFERER    => true,
-                    CURLOPT_CONNECTTIMEOUT => 30,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HEADER         => false,
-                    CURLOPT_MAXREDIRS      => 10,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_SSL_VERIFYPEER => false,
-                    CURLOPT_TIMEOUT        => 30,
-                    CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
+                    \CURLOPT_AUTOREFERER    => true,
+                    \CURLOPT_CONNECTTIMEOUT => 30,
+                    \CURLOPT_FOLLOWLOCATION => true,
+                    \CURLOPT_HEADER         => false,
+                    \CURLOPT_MAXREDIRS      => 10,
+                    \CURLOPT_RETURNTRANSFER => true,
+                    \CURLOPT_SSL_VERIFYPEER => false,
+                    \CURLOPT_TIMEOUT        => 30,
+                    \CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0',
                 ];
 
                 /** Favicon */
-                if (str_contains(pathinfo($info->favicon, PATHINFO_EXTENSION), 'ico')) {
-                    $ch = curl_init($info->favicon);
-                    curl_setopt_array($ch, $ch_options);
+                if (\str_contains(\pathinfo($info->favicon, \PATHINFO_EXTENSION), 'ico')) {
+                    $ch = \curl_init($info->favicon);
+                    \curl_setopt_array($ch, $ch_options);
 
-                    $favicon = curl_exec($ch);
-                    $code    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    $favicon = \curl_exec($ch);
+                    $code    = \curl_getinfo($ch, \CURLINFO_HTTP_CODE);
 
-                    curl_close($ch);
+                    \curl_close($ch);
 
-                    $info->favicon = $favicon && ($code >= 200 && $code < 400) ? 'data:image/x-icon;base64,' . base64_encode($favicon) : '';
+                    $info->favicon = $favicon && ($code >= 200 && $code < 400) ? 'data:image/x-icon;base64,' . \base64_encode($favicon) : '';
                 }
 
                 /** URL */

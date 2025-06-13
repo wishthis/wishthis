@@ -140,15 +140,15 @@ class Wishlist
         $user = User::getCurrent();
 
         if ($user->isLoggedIn()) {
-            $wishlist_ids = array_map(
+            $wishlist_ids = \array_map(
                 function ($wishlist_data) {
-                    return intval($wishlist_data['id']);
+                    return \intval($wishlist_data['id']);
                 },
                 $user->getWishlists()
             );
 
             /** Show all wishes (except fulfilled) */
-            if (in_array($this->id, $wishlist_ids, true)) {
+            if (\in_array($this->id, $wishlist_ids, true)) {
                 $wish_status = ' AND (`wishes`.`status` IS NULL OR `wishes`.`status` != "' . Wish::STATUS_FULFILLED . '")';
             }
         }
@@ -175,7 +175,7 @@ class Wishlist
 
     public function getCards(array $options = ['placeholders' => []]): string
     {
-        ob_start();
+        \ob_start();
 
         /**
          * Options
@@ -235,7 +235,7 @@ class Wishlist
                 break;
         }
 
-        $html = ob_get_clean();
+        $html = \ob_get_clean();
 
         return $html;
     }

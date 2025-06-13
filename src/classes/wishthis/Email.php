@@ -24,20 +24,20 @@ class Email
         private string $template,
         private string $part
     ) {
-        $this->contentsTemplate = file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
-        $this->contentsPart     = file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
+        $this->contentsTemplate = \file_get_contents(ROOT . '/src/mjml/' . $this->template . '.mjml');
+        $this->contentsPart     = \file_get_contents(ROOT . '/src/mjml/parts/' . $this->part . '.mjml');
 
-        $this->mjml = str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
+        $this->mjml = \str_replace('<mj-include path="MJML_PART" />', $this->contentsPart, $this->contentsTemplate);
 
         /** Set Locale */
         global $locale;
 
-        $this->mjml = preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . $locale . '">', $this->mjml);
+        $this->mjml = \preg_replace('/<mjml lang="(.+?)">/', '<mjml lang="' . $locale . '">', $this->mjml);
     }
 
     public function setPlaceholder(string $placeholder, string $replacement): void
     {
-        $this->mjml = str_replace($placeholder, $replacement, $this->mjml);
+        $this->mjml = \str_replace($placeholder, $replacement, $this->mjml);
     }
 
     public function send(): bool
@@ -61,7 +61,7 @@ class Email
             'Content-type' => 'text/html; charset=utf-8',
         ];
 
-        $success = mail($to, $subject, $message, $headers);
+        $success = \mail($to, $subject, $message, $headers);
 
         return $success;
     }

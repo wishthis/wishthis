@@ -57,7 +57,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             ];
             $options['placeholders']['wish_priority'] = $_GET['wish_priority'];
 
-            if (-1 === intval($_GET['wish_priority'])) {
+            if (-1 === \intval($_GET['wish_priority'])) {
                 unset($where['priority']);
                 unset($options['placeholders']['wish_priority']);
             }
@@ -68,7 +68,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
 
-            $wishes = array_map(
+            $wishes = \array_map(
                 function (Wish $wish) use ($wishlist) {
                     $wish->card = $wish->getCard($wishlist->user);
 
@@ -153,10 +153,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title) ? null : substr($wish_title, 0, 128);
+                $wish_title       = empty($wish_title) ? null : \substr($wish_title, 0, 128);
                 $wish_description = empty($wish_description) ? null : $wish_description;
                 $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image;
-                $wish_url         = empty($wish_url) ? null : substr(Wish::getAffiliateLink($wish_url), 0, 255);
+                $wish_url         = empty($wish_url) ? null : \substr(Wish::getAffiliateLink($wish_url), 0, 255);
                 $wish_priority    = empty($wish_priority) ? null : $wish_priority;
 
                 $database
@@ -240,10 +240,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 /** Update */
-                $wish_title       = empty($wish_title) ? null : substr($wish_title, 0, 128) ;
+                $wish_title       = empty($wish_title) ? null : \substr($wish_title, 0, 128) ;
                 $wish_description = empty($wish_description) ? null : $wish_description ;
                 $wish_image       = empty($wish_image) || Wish::NO_IMAGE === $wish_image ? null : $wish_image ;
-                $wish_url         = empty($wish_url) ? null : substr(Wish::getAffiliateLink($wish_url), 0, 255);
+                $wish_url         = empty($wish_url) ? null : \substr(Wish::getAffiliateLink($wish_url), 0, 255);
 
                 $database
                 ->query(
@@ -316,7 +316,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $wish_id     = Sanitiser::getNumber($_PUT['wish_id']);
 
             if (Wish::STATUS_TEMPORARY === $wish_status) {
-                $wish_status = time();
+                $wish_status =  \time();
             }
 
             $database->query(
@@ -354,7 +354,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $user = User::getCurrent();
 
         if (!$user->isLoggedIn()) {
-            http_response_code(403);
+            \http_response_code(403);
             die(__('You must be logged in to delete a wish.'));
 
             return;
@@ -380,7 +380,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $userOwnsWish      = isset($userOwnsWishData['user_id']) && $userOwnsWishData['user_id'] === $user_id;
 
         if (!$userOwnsWish) {
-            http_response_code(403);
+            \http_response_code(403);
             die(__('You must own a wish in order to delete it.'));
 
             return;

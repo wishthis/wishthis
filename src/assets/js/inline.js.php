@@ -14,8 +14,8 @@ global $options;
 
     /** General */
     wishthis.version = '<?= VERSION ?>';
-    wishthis.locale  = '<?= str_replace('_', '-', $this->language) ?>';
-    wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? json_encode($_GET) : json_encode(array()) ?>');
+    wishthis.locale  = '<?= \str_replace('_', '-', $this->language) ?>';
+    wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? \json_encode($_GET) : \json_encode([]) ?>');
 
     /** Wish */
     wishthis.wish = {
@@ -55,7 +55,7 @@ global $options;
                 },
                 'delete' : {
                     'title'   : '<?= __('Really delete?') ?>',
-                    'content' : '<?= sprintf(__('Do you really want to delete the wishlist %s?'), '<strong>WISHLIST_NAME</strong>') ?>',
+                    'content' : '<?= \sprintf(__('Do you really want to delete the wishlist %s?'), '<strong>WISHLIST_NAME</strong>') ?>',
                     'approve' : '<?= __('Yes, delete') ?>',
                     'deny'    : '<?= __('No, keep') ?>',
                 },
@@ -161,14 +161,14 @@ global $options;
      * Fomantic UI
      */
     <?php
-    $api_urls = array(
+    $api_urls = [
         'get wishlists'               => '/index.php?page=api&module=wishlists',
         'get wishes by wishlist id'   => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_id={wishlistid}',
         'get wishes by wishlist hash' => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_hash={wishlisthash}',
         'delete wishlist'             => '/index.php?page=api&module=wishlists',
         'update wish status'          => '/index.php?page=api&module=wishes',
         'delete wish'                 => '/index.php?page=api&module=wishes&wish_id={wishid}',
-    );
+    ];
     ?>
 
     document.addEventListener('DOMContentLoaded', function() {

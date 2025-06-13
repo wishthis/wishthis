@@ -74,7 +74,7 @@ class Wish
 
     public static function getAffiliateLink(string $url): string
     {
-        $urlParts = parse_url($url);
+        $urlParts = \parse_url($url);
 
         if (isset($urlParts['query'])) {
             \parse_str($urlParts['query'], $urlParameters);
@@ -97,7 +97,7 @@ class Wish
 
     public static function hasAffiliateLink(string $url): bool
     {
-        $urlParts = parse_url($url);
+        $urlParts = \parse_url($url);
 
         if (isset($urlParts['query'])) {
             \parse_str($urlParts['query'], $urlParameters);
@@ -205,10 +205,10 @@ class Wish
     {
         $this->id             = $wishData['id'];
         $this->wishlist       = $wishData['wishlist'];
-        $this->title          = stripslashes($wishData['title']       ?? '');
-        $this->description    = stripslashes($wishData['description'] ?? '');
+        $this->title          = \stripslashes($wishData['title']       ?? '');
+        $this->description    = \stripslashes($wishData['description'] ?? '');
         $this->image          = $wishData['image'] ?? '';
-        $this->url            = htmlspecialchars($wishData['url'] ?? '', ENT_QUOTES);
+        $this->url            = \htmlspecialchars($wishData['url'] ?? '', ENT_QUOTES);
         $this->priority       = $wishData['priority'];
         $this->status         = $wishData['status'];
         $this->is_purchasable = $wishData['is_purchasable'];
@@ -218,7 +218,7 @@ class Wish
 
     public function getCard(int $ofUser): string
     {
-        ob_start();
+        \ob_start();
 
         $userCard        = User::getFromID($ofUser);
         $userCurrent     = User::getCurrent();
@@ -252,10 +252,10 @@ class Wish
                                 <?= __('Wish temporarily fulfilled') ?>
                                 <div class="sub header">
                                     <?php
-                                    printf(
+                                    \printf(
                                         /** TRANSLATORS: %s: Duration (e. g. 30 minutes) */
                                         __('If this wish is a product, confirm the order was successful and mark it as fulfilled here. If you do not confirm this wish as fulfilled, it will become available again to others after %s.'),
-                                        sprintf(
+                                        \sprintf(
                                             /** TRANSLATORS: %d Amount of minutes */
                                             '<strong>' . __('%d minutes') . '</strong>',
                                             self::STATUS_TEMPORARY_MINUTES
@@ -310,7 +310,7 @@ class Wish
         </div>
         <?php
 
-        $html = ob_get_clean();
+        $html = \ob_get_clean();
 
         return $html;
     }
@@ -331,32 +331,32 @@ class Wish
 
     private function getCardImage(): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <div class="image">
             <?php if ($this->image) { ?>
-                <?php if ('svg' === pathinfo($this->image, PATHINFO_EXTENSION)) { ?>
-                    <?php if (file_exists(ROOT . $this->image)) { ?>
-                        <?= file_get_contents(ROOT . $this->image) ?>
+                <?php if ('svg' === \pathinfo($this->image, \PATHINFO_EXTENSION)) { ?>
+                    <?php if (\file_exists(ROOT . $this->image)) { ?>
+                        <?= \file_get_contents(ROOT . $this->image) ?>
                     <?php } else { ?>
-                        <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
+                        <?= \file_get_contents(ROOT . self::NO_IMAGE) ?>
                     <?php } ?>
                 <?php } else { ?>
                     <img class="preview" src="<?= $this->image ?>" loading="lazy" />
                 <?php } ?>
             <?php } else { ?>
-                <?= file_get_contents(ROOT . self::NO_IMAGE) ?>
+                <?= \file_get_contents(ROOT . self::NO_IMAGE) ?>
             <?php } ?>
         </div>
         <?php
-        $image = ob_get_clean();
+        $image = \ob_get_clean();
 
         return $image;
     }
 
     private function getCardContentHeader(): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <div class="header">
             <?= $this->getCardPriority() ?>
@@ -368,27 +368,27 @@ class Wish
             <?php } ?>
         </div>
         <?php
-        $content_header = ob_get_clean();
+        $content_header = \ob_get_clean();
 
         return $content_header;
     }
 
     private function getCardContentMeta(string $price): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <div class="meta">
             <span class="date"><?= $price ?></span>
         </div>
         <?php
-        $content_meta = ob_get_clean();
+        $content_meta = \ob_get_clean();
 
         return $content_meta;
     }
 
     private function getCardContentDescription(): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <?php if ($this->description) { ?>
             <div class="description">
@@ -400,14 +400,14 @@ class Wish
             </div>
         <?php } ?>
         <?php
-        $content_description = ob_get_clean();
+        $content_description = \ob_get_clean();
 
         return $content_description;
     }
 
     private function getCardPriority(): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <?php if ($this->priority && isset(self::$priorities[$this->priority])) { ?>
             <div class="ui small <?= self::$priorities[$this->priority]['color'] ?> right label">
@@ -416,14 +416,14 @@ class Wish
             </div>
         <?php } ?>
         <?php
-        $priority = ob_get_clean();
+        $priority = \ob_get_clean();
 
         return $priority;
     }
 
     private function getCardButtons(bool $userIsCurrent): string
     {
-        ob_start();
+        \ob_start();
         ?>
         <div class="extra content buttons">
             <button class="ui compact labeled icon button wish-details">
@@ -432,7 +432,7 @@ class Wish
             </button>
         </div>
         <?php
-        $buttons = ob_get_clean();
+        $buttons = \ob_get_clean();
 
         return $buttons;
     }

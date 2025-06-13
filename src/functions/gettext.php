@@ -19,12 +19,12 @@ function __(string $text, string $context = null, User $user = null): string
             $translationText = $translation->getTranslation();
 
             if (!empty($translationText)) {
-                return htmlentities($translationText);
+                return \htmlentities($translationText);
             }
         }
     }
 
-    return htmlentities($text);
+    return \htmlentities($text);
 }
 
 function _n(string $singular, string $plural, int $amount): string

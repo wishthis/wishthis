@@ -26,7 +26,7 @@ if (isset($_POST['user-name-first'])) {
         $user->setNameFirst($nameFirst);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users first name. */
                 __('First name updated to "%s".'),
                 '<strong>' . $nameFirst . '</strong>'
@@ -56,7 +56,7 @@ if (isset($_POST['user-name-last'])) {
         $user->setNameLast($nameLast);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users last name. */
                 __('Last name updated to "%s".'),
                 '<strong>' . $nameLast . '</strong>'
@@ -86,7 +86,7 @@ if (isset($_POST['user-name-nick'])) {
         $user->setNameNick($nameNick);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users nick name. */
                 __('Nick name updated to "%s".'),
                 '<strong>' . $nameNick . '</strong>'
@@ -116,7 +116,7 @@ if (isset($_POST['user-email'])) {
         $user->setEmail($email);
 
         $page->messages[] = Page::success(
-            sprintf(
+            \sprintf(
                 /** TRANSLATORS: %s: The users email address. */
                 __('Email address updated to "%s".'),
                 '<strong>' . $email . '</strong>'
@@ -130,7 +130,7 @@ if (isset($_POST['user-email'])) {
  * Birthdate
  */
 if (isset($_POST['user-birthdate'])) {
-    $birthdateTimestamp = \strtotime($_POST['user-birthdate']);
+    $birthdateTimestamp = \strtoime($_POST['user-birthdate']);
 
     if (\is_int($birthdateTimestamp)) {
         $birthdate = \date('Y-m-d', $birthdateTimestamp);

@@ -43,7 +43,7 @@ class Page
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
-        ob_start();
+        \ob_start();
 
         $containerClasses = ['ui', 'message', $class];
         $iconClasses      = ['ui', 'icon'];
@@ -90,7 +90,7 @@ class Page
         </div>
         <?php
 
-        return ob_get_clean();
+        return\ob_get_clean();
     }
 
     public static function error(string $content, string $header = '', string $class = ''): string
@@ -137,14 +137,14 @@ class Page
     {
         global $options;
 
-        $this->name         = pathinfo($filepath, PATHINFO_FILENAME);
+        $this->name         = \pathinfo($filepath, \PATHINFO_FILENAME);
         $this->description  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
         $this->link_preview = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/link-previews/default.png';
 
-        $timeAnHourAgo = time() - 3600;
-        $timezone      = date('T', $timeAnHourAgo);
-        $expires       = date('D, d M Y H:i:s', $timeAnHourAgo) . ' ' . $timezone;
-        header('Expires: ' . $expires);
+        $timeAnHourAgo = \time() - 3600;
+        $timezone      = \date('T', $timeAnHourAgo);
+        $expires       = \date('D, d M Y H:i:s', $timeAnHourAgo) . ' ' . $timezone;
+        \header('Expires: ' . $expires);
 
         /**
          * Install
@@ -192,7 +192,7 @@ class Page
             'update',
         ];
 
-        if ($options && $options->getOption('updateAvailable') && !in_array($this->name, $ignoreUpdateRedirect)) {
+        if ($options && $options->getOption('updateAvailable') && !\in_array($this->name, $ignoreUpdateRedirect)) {
             if (100 === $user->getPower()) {
                 redirect(Page::PAGE_UPDATE);
             } else {
@@ -227,7 +227,7 @@ class Page
          * @see https://wishthis.online/blog/looking-for-testers
          **//*
         if (
-               defined('ENV_IS_DEV')
+               \defined('ENV_IS_DEV')
             && true === ENV_IS_DEV
             && 'dev.wishthis.online' === $_SERVER['HTTP_HOST']
         ) {
@@ -244,7 +244,7 @@ class Page
         $screenshot_filepath = ROOT . '/src/assets/img/screenshots/' . $this->name . '.png';
         $screenshot_url      = 'https://' . $_SERVER['HTTP_HOST'] . '/src/assets/img/screenshots/' . $this->name . '.png';
 
-        if (file_exists($screenshot_filepath)) {
+        if (\file_exists($screenshot_filepath)) {
             $this->link_preview = $screenshot_url;
         }
 
@@ -321,9 +321,9 @@ class Page
 
             <link rel="manifest" href="/manifest.json" />
             <?php
-            if (defined('CHANNELS') && is_array(CHANNELS)) {
+            if (\defined('CHANNELS') && \is_array(CHANNELS)) {
                 $channels = CHANNELS;
-                $stable   = reset($channels);
+                $stable   = \reset($channels);
                 ?>
                 <link rel="canonical" href="https://<?= $stable['host'] . $_SERVER['REQUEST_URI'] ?>" />
                 <?php
@@ -350,12 +350,12 @@ class Page
              */
             $stylesheet_page = 'src/assets/css/' . $this->name .  '.css';
 
-            if (file_exists($stylesheet_page)) {
+            if (\file_exists($stylesheet_page)) {
                 $this->stylesheets['page'] = $stylesheet_page;
             }
 
             foreach ($this->stylesheets as $stylesheet_filepath) {
-                $hash = hash_file('crc32', $stylesheet_filepath);
+                $hash = \hash_file('crc32', $stylesheet_filepath);
                 ?>
                 <link rel="stylesheet"
                       type="text/css"
@@ -373,12 +373,12 @@ class Page
             /** Files */
             $script_page = 'src/assets/js/' . $this->name .  '.js';
 
-            if (file_exists($script_page)) {
+            if (\file_exists($script_page)) {
                 $this->scripts['page'] = $script_page;
             }
 
             foreach ($this->scripts as $script_page) {
-                $hash = hash_file('crc32', $script_page);
+                $hash = \hash_file('crc32', $script_page);
                 ?>
                 <script defer
                         type="text/javascript"
@@ -388,7 +388,7 @@ class Page
             }
 
             /** plausible */
-            if (defined('PLAUSIBLE') && true === PLAUSIBLE) {
+            if (\defined('PLAUSIBLE') && true === PLAUSIBLE) {
                 ?>
                 <script defer
                         data-domain="<?= $_SERVER['HTTP_HOST'] ?>"
@@ -407,7 +407,7 @@ class Page
             $CrawlerDetect  = new \Jaybizzle\CrawlerDetect\CrawlerDetect();
 
             if (
-                   in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
+                   \in_array($_SERVER['HTTP_HOST'], $wishthis_hosts, true)
                 && (true === $user->getAdvertisements() || $CrawlerDetect->isCrawler())
             ) {
                 ?>
@@ -519,7 +519,7 @@ class Page
                 ],
             ];
 
-            $registrationDisabled = defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
+            $registrationDisabled = \defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
 
             if (!$registrationDisabled) {
                 $pages[$register] = [
@@ -544,12 +544,12 @@ class Page
             ];
         }
 
-        ksort($pages);
+        \ksort($pages);
 
         if ('home' === $this->name) {
-            $logo = file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
+            $logo = \file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
         } else {
-            $logo = file_get_contents(ROOT . '/src/assets/img/logo.svg');
+            $logo = \file_get_contents(ROOT . '/src/assets/img/logo.svg');
         }
         ?>
 
@@ -577,7 +577,7 @@ class Page
 
                     <?php foreach ($pages as $page) { ?>
                         <?php if ('left' === $page['alignment']) { ?>
-                            <?php if (count($page['items']) > 1) { ?>
+                            <?php if (\count($page['items']) > 1) { ?>
                                 <div class="ui simple dropdown item">
                                     <?php if (isset($page['icon'])) { ?>
                                         <i class="<?= $page['icon'] ?> icon"></i>
@@ -610,7 +610,7 @@ class Page
                     <div class="right menu">
                         <?php foreach ($pages as $page) { ?>
                             <?php if ('right' === $page['alignment']) { ?>
-                                <?php if (count($page['items']) > 1) { ?>
+                                <?php if (\count($page['items']) > 1) { ?>
                                     <div class="ui simple dropdown item">
                                         <?php if (isset($page['icon'])) { ?>
                                             <i class="<?= $page['icon'] ?> icon"></i>
@@ -754,10 +754,10 @@ class Page
                             <div class="ui header">
                                 <p>
                                     <?php
-                                    printf(
+                                    \printf(
                                         /** TRANSLATORS: %s: the current year */
                                         __('Welcome to the year %s'),
-                                        date('Y')
+                                        \date('Y')
                                     );
                                     ?>
                                 </p>
@@ -786,7 +786,7 @@ class Page
 
     public function errorDocument(int $statusCode, string $fullyQualifiedClass): void
     {
-        http_response_code($statusCode);
+        \http_response_code($statusCode);
 
         $this->header();
         $this->bodyStart();
@@ -799,7 +799,7 @@ class Page
             <div class="ui container">
                 <h1 class="ui header">
                     <?= $statusCode ?>
-                    <div class="sub header"><?= sprintf(__('%s not found'), $className) ?></div>
+                    <div class="sub header"><?= \sprintf(__('%s not found'), $className) ?></div>
                 </h1>
 
                 <?= $this->messages() ?>
@@ -817,7 +817,7 @@ class Page
                                 break;
 
                             default:
-                                echo '<p>' . sprintf(__('The requested %s was not found.'), $className) . '</p>';
+                                echo '<p>' . \sprintf(__('The requested %s was not found.'), $className) . '</p>';
                                 break;
                         }
                         break;
