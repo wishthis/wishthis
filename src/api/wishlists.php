@@ -188,7 +188,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $where['priority'] = '`priority` IS NULL OR `priority` = 0';
             }
 
-            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
+            $options['WHERE'] = '(' . \implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
         } elseif ($getWishlistFromHash) {
@@ -215,7 +215,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $where['priority'] = '`priority` IS NULL OR `priority` = 0';
             }
 
-            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
+            $options['WHERE'] = '(' . \implode(') AND (', $where) . ')';
 
             $response['results'] = $wishlist->getCards($options);
         } elseif ($getOwnWishlists) {

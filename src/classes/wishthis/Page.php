@@ -70,8 +70,8 @@ class Page
                 break;
         }
 
-        $containerClass = implode(' ', $containerClasses);
-        $iconClass      = implode(' ', $iconClasses);
+        $containerClass = \implode(' ', $containerClasses);
+        $iconClass      = \implode(' ', $iconClasses);
         ?>
         <div class="<?= $containerClass ?>">
             <?php if ($type) { ?>

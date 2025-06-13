@@ -66,7 +66,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $where['priority'] = '`priority` IS NULL';
             }
 
-            $options['WHERE'] = '(' . implode(') AND (', $where) . ')';
+            $options['WHERE'] = '(' . \implode(') AND (', $where) . ')';
 
             $wishes = \array_map(
                 function (Wish $wish) use ($wishlist) {
