@@ -2,7 +2,7 @@
 
 ### Added
 
--   Nothing
+-   Textfield for public wishlist url (#220)
 
 ### Changed
 
