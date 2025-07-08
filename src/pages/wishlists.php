@@ -28,65 +28,73 @@ $page->navigation();
 
         <div class="ui segment">
             <div class="ui form">
-                <div class="two fields">
-                    <div class="field">
-                        <label><?= __('Wishlist') ?></label>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <label><?= __('Wishlist') ?></label>
 
-                        <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
-                            <option value=""><?= __('Loading your wishlists...') ?></option>
-                        </select>
-                    </div>
+                            <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
+                                <option value=""><?= __('Loading your wishlists...') ?></option>
+                            </select>
+                        </div>
 
-                    <div class="field">
-                        <label><?= __('Options') ?></label>
+                        <div class="field">
+                            <label><?= __('Options') ?></label>
 
-                        <div class="flex buttons">
-                            <a class="ui labeled icon button wishlist-create"
-                               title="<?= __('Create a wishlist') ?>"
-                            >
-                                <i class="add icon"></i>
-                                <?= __('Create a wishlist') ?>
-                            </a>
+                            <div class="flex buttons">
+                                <a class="ui labeled icon button wishlist-create" title="<?= __('Create a wishlist') ?>">
+                                    <i class="add icon"></i>
+                                    <?= __('Create a wishlist') ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex buttons">
-                    <a class="ui labeled icon primary button wishlist-wish-add disabled"
-                        title="<?= __('Add a wish') ?>"
-                    >
-                        <i class="add icon"></i>
-                        <?= __('Add a wish') ?>
-                    </a>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="flex buttons">
+                                <a class="ui labeled icon primary button wishlist-wish-add disabled" title="<?= __('Add a wish') ?>">
+                                    <i class="add icon"></i>
+                                    <?= __('Add a wish') ?>
+                                </a>
 
-                    <a class="ui labeled icon button wishlist-share disabled"
-                        target="_blank"
-                        title="<?= __('Share') ?>"
-                    >
-                        <i class="share icon"></i>
-                        <?= __('Share') ?>
-                    </a>
+                                <div class="ui labeled icon top left pointing dropdown disabled button wishlist-options" title="<?= __('Options') ?>">
+                                    <i class="cog icon"></i>
+                                    <span class="text"><?= __('Options') ?></span>
 
-                    <div class="ui labeled icon top left pointing dropdown disabled button wishlist-options"
-                            title="<?= __('Options') ?>"
-                    >
-                        <i class="cog icon"></i>
-                        <span class="text"><?= __('Options') ?></span>
-                        <div class="menu">
+                                    <div class="menu">
+                                        <div class="item wishlist-rename disabled" title="<?= __('Rename') ?>">
+                                            <i class="pen icon"></i>
+                                            <?= __('Rename') ?>
+                                        </div>
 
-                            <div class="item wishlist-rename disabled" title="<?= __('Rename') ?>">
-                                <i class="pen icon"></i>
-                                <?= __('Rename') ?>
+                                        <div class="item wishlist-delete disabled" title="<?= __('Delete') ?>">
+                                            <i class="trash icon"></i>
+                                            <?= __('Delete') ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="item wishlist-delete disabled" title="<?= __('Delete') ?>">
-                                <i class="trash icon"></i>
-                                <?= __('Delete') ?>
+                        <div class="field wishlist-share">
+                            <label><?= __('Share Wishlist') ?></label>
+
+                            <div class="ui action input">
+                                <input type="text" value="<?= $_SERVER['REQUEST_URI'] ?? '' ?>">
+
+                                <button class="ui labeled icon button disabled">
+                                    <i class="copy icon"></i>
+                                    <?= __('Copy') ?>
+                                </button>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
+
 
             </div>
         </div>

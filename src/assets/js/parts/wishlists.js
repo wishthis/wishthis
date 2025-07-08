@@ -60,11 +60,11 @@ $(function () {
                 });
 
                 /** Set share link */
-                $('.wishlist-share').attr('href', '/wishlist/' + $(wishlist).prop('hash'));
+                $('.wishlist-share input[type="text"]').val( window.location.origin + '/wishlist/' + $(wishlist).prop('hash'));
 
                 /** Enable wishlist options buttons */
                 $('.button.wishlist-wish-add').removeClass('disabled');
-                $('.button.wishlist-share').removeClass('disabled');
+                $('.wishlist-share button').removeClass('disabled');
                 $('.button.wishlist-options')
                 .removeClass('disabled')
                 .dropdown({
@@ -95,7 +95,7 @@ $(function () {
             } else {
                 /** Disable wishlist options buttons */
                 $('.button.wishlist-wish-add').removeClass('disabled');
-                $('.button.wishlist-share').removeClass('disabled');
+                $('.wishlist-share button').removeClass('disabled');
                 $('.button.wishlist-options').removeClass('disabled');
                 $('.wishlist-rename').removeClass('disabled');
                 $('.wishlist-delete').removeClass('disabled');
@@ -108,10 +108,10 @@ $(function () {
     /**
      * Share Wishlist
      */
-    $(document).on('click', '.button.wishlist-share', function(event) {
+    $(document).on('click', '.wishlist-share button', function(event) {
         event.preventDefault();
 
-        var wishlist_href = window.location.origin + $(event.currentTarget).attr('href');
+        var wishlist_href = $('.wishlist-share input[type="text"]').val();
 
         navigator.clipboard
         .writeText(wishlist_href)
