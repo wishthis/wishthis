@@ -1,0 +1,10 @@
+@media (max-width: 991px) {
+    .ui.form .two.fields {
+        flex-wrap: wrap;
+    }
+
+    .ui.form .two.fields > .field {
+        width: 100%;
+        margin: 0 0 1em;
+    }
+}
