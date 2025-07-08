@@ -3,12 +3,12 @@
  *******************************/
 
 const
+    fs          = require('fs'),
     extend      = require('extend'),
-    gulp        = require('gulp'),
 
     // node dependencies
-    console     = require('better-console'),
-    fs          = require('fs'),
+    console     = require('@fomantic/better-console'),
+    gulp        = require('gulp'),
     map         = require('map-stream'),
 
     // gulp dependencies
@@ -71,7 +71,7 @@ module.exports = function (callback) {
         // copy src/ to server
         console.info('Copying examples');
 
-        return gulp.src('examples/**/*.*')
+        return gulp.src('examples/**/*.*', { encoding: false })
             .pipe(gulp.dest(output.examples))
             .pipe(print(log.created))
         ;
@@ -85,7 +85,7 @@ module.exports = function (callback) {
         // copy src/ to server
         console.info('Copying LESS source');
 
-        return gulp.src('src/**/*.*')
+        return gulp.src('src/**/*.*', { encoding: false })
             .pipe(gulp.dest(output.less))
             .pipe(print(log.created))
         ;

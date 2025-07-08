@@ -195,6 +195,7 @@
 
     .ui.compact.message {
         display: inline-block;
+        max-width: 100%;
     }
     .ui.compact.icon.message {
         display: inline-flex;
@@ -442,4 +443,5 @@
     });
 }
 
-.loadUIOverrides();
+// stylelint-disable no-invalid-position-at-import-rule
+@import (multiple, optional) "../../overrides.less";

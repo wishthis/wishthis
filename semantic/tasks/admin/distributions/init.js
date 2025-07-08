@@ -13,14 +13,13 @@
 */
 
 const
-    gulp      = require('gulp'),
-
     // node dependencies
-    console   = require('better-console'),
-    del       = require('del'),
     fs        = require('fs'),
     path      = require('path'),
-    git       = require('gulp-git'),
+    del       = require('del'),
+    console   = require('@fomantic/better-console'),
+    gulp      = require('gulp'),
+    git       = require('@fomantic/gulp-git'),
     mkdirp    = require('mkdirp'),
 
     // admin files

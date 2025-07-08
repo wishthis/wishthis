@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.3 - Form Validation
+ * # Fomantic-UI 2.9.4 - Form Validation
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -22,7 +22,7 @@
     $.fn.form = function (parameters) {
         var
             $allModules      = $(this),
-            moduleSelector   = $allModules.selector || '',
+            $window        = $(window),
 
             time             = Date.now(),
             performance      = [],
@@ -38,6 +38,7 @@
                 element     = this,
 
                 formErrors  = [],
+                formErrorsTracker = {},
                 keyHeldDown = false,
 
                 // set at run-time
@@ -61,6 +62,8 @@
                 namespace,
                 moduleNamespace,
                 eventNamespace,
+                attachEventsSelector,
+                attachEventsAction,
 
                 submitting = false,
                 dirty = false,
@@ -75,6 +78,7 @@
                 initialize: function () {
                     // settings grabbed at run time
                     module.get.settings();
+                    $module.addClass(className.initial);
                     if (methodInvoked) {
                         if (instance === undefined) {
                             module.instantiate();
@@ -128,10 +132,13 @@
                     module.bindEvents();
                 },
 
-                submit: function () {
+                submit: function (event) {
                     module.verbose('Submitting form', $module);
                     submitting = true;
                     $module.trigger('submit');
+                    if (event) {
+                        event.preventDefault();
+                    }
                 },
 
                 attachEvents: function (selector, action) {
@@ -143,6 +150,9 @@
                         module[action]();
                         event.preventDefault();
                     });
+
+                    attachEventsSelector = selector;
+                    attachEventsAction = action;
                 },
 
                 bindEvents: function () {
@@ -154,6 +164,7 @@
                         .on('click' + eventNamespace, selector.reset, module.reset)
                         .on('click' + eventNamespace, selector.clear, module.clear)
                     ;
+                    $field.on('invalid' + eventNamespace, module.event.field.invalid);
                     if (settings.keyboardShortcuts) {
                         $module.on('keydown' + eventNamespace, selector.field, module.event.field.keydown);
                     }
@@ -168,10 +179,14 @@
 
                     // Dirty events
                     if (settings.preventLeaving) {
-                        $(window).on('beforeunload' + eventNamespace, module.event.beforeUnload);
+                        $window.on('beforeunload' + eventNamespace, module.event.beforeUnload);
                     }
 
-                    $field.on('change click keyup keydown blur', function (e) {
+                    $field.on('change' + eventNamespace
+                        + ' click' + eventNamespace
+                        + ' keyup' + eventNamespace
+                        + ' keydown' + eventNamespace
+                        + ' blur' + eventNamespace, function (e) {
                         module.determine.isDirty();
                     });
 
@@ -182,6 +197,9 @@
                     $module.on('clean' + eventNamespace, function (e) {
                         settings.onClean.call();
                     });
+                    if (attachEventsSelector) {
+                        module.attachEvents(attachEventsSelector, attachEventsAction);
+                    }
                 },
 
                 clear: function () {
@@ -230,6 +248,7 @@
                             isCheckbox   = $field.is(selector.checkbox),
                             isDropdown   = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
                             isCalendar   = $calendar.length > 0 && module.can.useElement('calendar'),
+                            isFile       = $field.is(selector.file),
                             isErrored    = $fieldGroup.hasClass(className.error)
                         ;
                         if (defaultValue === undefined) {
@@ -250,7 +269,7 @@
                             $calendar.calendar('set date', defaultValue);
                         } else {
                             module.verbose('Resetting field value', $field, defaultValue);
-                            $field.val(defaultValue);
+                            $field.val(isFile ? '' : defaultValue);
                         }
                     });
                     module.remove.states();
@@ -261,8 +280,12 @@
                         var
                             allValid = true
                         ;
-                        $.each(validation, function (fieldName, field) {
-                            if (!module.validate.field(field, fieldName, true)) {
+                        $field.each(function (index, el) {
+                            var $el = $(el),
+                                validation = module.get.validation($el) || {},
+                                identifier = module.get.identifier(validation, $el)
+                            ;
+                            if (!module.validate.field(validation, identifier, true)) {
                                 allValid = false;
                             }
                         });
@@ -386,6 +409,13 @@
                     $module.off(eventNamespace);
                     $field.off(eventNamespace);
                     $submit.off(eventNamespace);
+                    if (settings.preventLeaving) {
+                        $window.off(eventNamespace);
+                    }
+                    if (attachEventsSelector) {
+                        $(attachEventsSelector).off(eventNamespace);
+                        attachEventsSelector = undefined;
+                    }
                 },
 
                 event: {
@@ -411,9 +441,8 @@
                             if (!event.ctrlKey && key === keyCode.enter && isInput && !isInDropdown && !isCheckbox) {
                                 if (!keyHeldDown) {
                                     $field.one('keyup' + eventNamespace, module.event.field.keyup);
-                                    module.submit();
+                                    module.submit(event);
                                     module.debug('Enter pressed on input submitting form');
-                                    event.preventDefault();
                                 }
                                 keyHeldDown = true;
                             }
@@ -421,15 +450,18 @@
                         keyup: function () {
                             keyHeldDown = false;
                         },
+                        invalid: function (event) {
+                            event.preventDefault();
+                        },
                         blur: function (event) {
                             var
                                 $field          = $(this),
-                                $fieldGroup     = $field.closest($group),
-                                validationRules = module.get.validation($field)
+                                validationRules = module.get.validation($field) || {},
+                                identifier      = module.get.identifier(validationRules, $field)
                             ;
-                            if (validationRules && (settings.on === 'blur' || ($fieldGroup.hasClass(className.error) && settings.revalidate))) {
+                            if (settings.on === 'blur' || (!$module.hasClass(className.initial) && settings.revalidate)) {
                                 module.debug('Revalidating field', $field, validationRules);
-                                module.validate.field(validationRules);
+                                module.validate.field(validationRules, identifier);
                                 if (!settings.inline) {
                                     module.validate.form(false, true);
                                 }
@@ -438,14 +470,14 @@
                         change: function (event) {
                             var
                                 $field      = $(this),
-                                $fieldGroup = $field.closest($group),
-                                validationRules = module.get.validation($field)
+                                validationRules = module.get.validation($field) || {},
+                                identifier = module.get.identifier(validationRules, $field)
                             ;
-                            if (validationRules && (settings.on === 'change' || ($fieldGroup.hasClass(className.error) && settings.revalidate))) {
+                            if (settings.on === 'change' || (!$module.hasClass(className.initial) && settings.revalidate)) {
                                 clearTimeout(module.timer);
                                 module.timer = setTimeout(function () {
                                     module.debug('Revalidating field', $field, validationRules);
-                                    module.validate.field(validationRules);
+                                    module.validate.field(validationRules, identifier);
                                     if (!settings.inline) {
                                         module.validate.form(false, true);
                                     }
@@ -487,18 +519,7 @@
                         return rule.type;
                     },
                     changeEvent: function (type, $input) {
-                        if (type === 'checkbox' || type === 'radio' || type === 'hidden' || $input.is('select')) {
-                            return 'change';
-                        }
-
-                        return module.get.inputEvent();
-                    },
-                    inputEvent: function () {
-                        return document.createElement('input').oninput !== undefined
-                            ? 'input'
-                            : (document.createElement('input').onpropertychange !== undefined
-                                ? 'propertychange'
-                                : 'keyup');
+                        return ['file', 'checkbox', 'radio', 'hidden'].indexOf(type) >= 0 || $input.is('select') ? 'change' : 'input';
                     },
                     fieldsFromShorthand: function (fields) {
                         var
@@ -518,9 +539,19 @@
                                     fullFields[name].rules.push({ type: rule });
                                 });
                             }
+
+                            $.each(fullFields[name].rules, function (index, rule) {
+                                var ruleName = module.get.ruleName(rule);
+                                if (ruleName === 'empty') {
+                                    module.warn('*** DEPRECATED *** : Rule "empty" for field "' + name + '" will be removed in a future version. -> Use "notEmpty" rule instead.');
+                                }
+                            });
                         });
 
                         return fullFields;
+                    },
+                    identifier: function (validation, $el) {
+                        return validation.identifier || $el.attr('id') || $el.attr('name') || $el.data(metadata.validate);
                     },
                     prompt: function (rule, field) {
                         var
@@ -528,9 +559,10 @@
                             ancillary     = module.get.ancillaryValue(rule),
                             $field        = module.get.field(field.identifier),
                             value         = $field.val(),
-                            prompt        = isFunction(rule.prompt)
-                                ? rule.prompt(value)
-                                : rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
+                            promptCheck   = rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
+                            prompt        = String(isFunction(promptCheck)
+                                ? promptCheck.call($field[0], value)
+                                : promptCheck),
                             requiresValue = prompt.search('{value}') !== -1,
                             requiresName  = prompt.search('{name}') !== -1,
                             parts,
@@ -568,10 +600,10 @@
                     },
                     settings: function () {
                         if ($.isPlainObject(parameters)) {
-                            if (parameters.fields) {
-                                parameters.fields = module.get.fieldsFromShorthand(parameters.fields);
-                            }
                             settings = $.extend(true, {}, $.fn.form.settings, parameters);
+                            if (settings.fields) {
+                                settings.fields = module.get.fieldsFromShorthand(settings.fields);
+                            }
                             validation = $.extend(true, {}, $.fn.form.settings.defaults, settings.fields);
                             module.verbose('Extending settings', validation, settings);
                         } else {
@@ -596,7 +628,7 @@
                         // refresh selector cache
                         (instance || module).refresh();
                     },
-                    field: function (identifier, strict) {
+                    field: function (identifier, strict, ignoreMissing) {
                         module.verbose('Finding field with identifier', identifier);
                         identifier = module.escape.string(identifier);
                         var t;
@@ -616,7 +648,9 @@
                         if (t.length > 0) {
                             return t;
                         }
-                        module.error(error.noField.replace('{identifier}', identifier));
+                        if (!ignoreMissing) {
+                            module.error(error.noField.replace('{identifier}', identifier));
+                        }
 
                         return strict ? $() : $('<input/>');
                     },
@@ -634,7 +668,7 @@
                         var $field = typeof identifier === 'string'
                                 ? module.get.field(identifier)
                                 : identifier,
-                            $label = $field.closest(selector.group).find('label').eq(0)
+                            $label = $field.closest(selector.group).find('label:not(:empty)').eq(0)
                         ;
 
                         return $label.length === 1
@@ -686,7 +720,7 @@
                             var
                                 $field       = $(field),
                                 $calendar    = $field.closest(selector.uiCalendar),
-                                name         = $field.prop('name'),
+                                name         = $field.prop('name') || $field.prop('id'),
                                 value        = $field.val(),
                                 isCheckbox   = $field.is(selector.checkbox),
                                 isRadio      = $field.is(selector.radio),
@@ -794,10 +828,10 @@
 
                 has: {
 
-                    field: function (identifier) {
+                    field: function (identifier, ignoreMissing) {
                         module.verbose('Checking for existence of a field with identifier', identifier);
 
-                        return module.get.field(identifier, true).length > 0;
+                        return module.get.field(identifier, true, ignoreMissing).length > 0;
                     },
 
                 },
@@ -888,7 +922,8 @@
                             $field       = module.get.field(identifier),
                             $fieldGroup  = $field.closest($group),
                             $prompt      = $fieldGroup.children(selector.prompt),
-                            promptExists = $prompt.length > 0
+                            promptExists = $prompt.length > 0,
+                            canTransition = settings.transition && module.can.useElement('transition')
                         ;
                         module.verbose('Adding field error state', identifier);
                         if (!internal) {
@@ -897,17 +932,31 @@
                             ;
                         }
                         if (settings.inline) {
+                            if (promptExists) {
+                                if (canTransition) {
+                                    if ($prompt.transition('is animating')) {
+                                        $prompt.transition('stop all');
+                                    }
+                                } else if ($prompt.is(':animated')) {
+                                    $prompt.stop(true, true);
+                                }
+                                $prompt = $fieldGroup.children(selector.prompt);
+                                promptExists = $prompt.length > 0;
+                            }
                             if (!promptExists) {
                                 $prompt = $('<div/>').addClass(className.label);
+                                if (!canTransition) {
+                                    $prompt.css('display', 'none');
+                                }
                                 $prompt
-                                    .appendTo($fieldGroup)
+                                    .appendTo($fieldGroup.filter('.' + className.error))
                                 ;
                             }
                             $prompt
                                 .html(settings.templates.prompt(errors))
                             ;
                             if (!promptExists) {
-                                if (settings.transition && module.can.useElement('transition')) {
+                                if (canTransition) {
                                     module.verbose('Displaying error with css transition', settings.transition);
                                     $prompt.transition(settings.transition + ' in', settings.duration);
                                 } else {
@@ -916,9 +965,9 @@
                                         .fadeIn(settings.duration)
                                     ;
                                 }
-                            } else {
-                                module.verbose('Inline errors are disabled, no inline error added', identifier);
                             }
+                        } else {
+                            module.verbose('Inline errors are disabled, no inline error added', identifier);
                         }
                     },
                     errors: function (errors) {
@@ -965,7 +1014,7 @@
                         $message.empty();
                     },
                     states: function () {
-                        $module.removeClass(className.error).removeClass(className.success);
+                        $module.removeClass(className.error).removeClass(className.success).addClass(className.initial);
                         if (!settings.inline) {
                             module.remove.errors();
                         }
@@ -982,7 +1031,7 @@
                         }
                         if (rule === undefined) {
                             module.debug('Removed all rules');
-                            if (module.has.field(field)) {
+                            if (module.has.field(field, true)) {
                                 validation[field].rules = [];
                             } else {
                                 delete validation[field];
@@ -1103,6 +1152,7 @@
                                 $field      = module.get.field(key),
                                 $element    = $field.parent(),
                                 $calendar   = $field.closest(selector.uiCalendar),
+                                isFile      = $field.is(selector.file),
                                 isMultiple  = Array.isArray(value),
                                 isCheckbox  = $element.is(selector.uiCheckbox) && module.can.useElement('checkbox'),
                                 isDropdown  = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
@@ -1145,7 +1195,7 @@
                                     $calendar.calendar('set date', value);
                                 } else {
                                     module.verbose('Setting field value', value, $field);
-                                    $field.val(value);
+                                    $field.val(isFile ? '' : value);
                                 }
                             }
                         });
@@ -1182,7 +1232,7 @@
                         module.debug('Enabling auto check on required fields');
                         if (validation) {
                             $.each(validation, function (fieldName) {
-                                if (!module.has.field(fieldName)) {
+                                if (!module.has.field(fieldName, true)) {
                                     module.verbose('Field not found, removing from validation', fieldName);
                                     module.remove.field(fieldName);
                                 }
@@ -1196,20 +1246,20 @@
                                 isRequired = $el.prop('required') || $elGroup.hasClass(className.required) || $elGroup.parent().hasClass(className.required),
                                 isDisabled = $el.is(':disabled') || $elGroup.hasClass(className.disabled) || $elGroup.parent().hasClass(className.disabled),
                                 validation = module.get.validation($el),
-                                hasEmptyRule = validation
+                                hasNotEmptyRule = validation
                                     ? $.grep(validation.rules, function (rule) {
-                                        return rule.type === 'empty';
-                                    }) !== 0
+                                        return ['notEmpty', 'checked', 'empty'].indexOf(rule.type) >= 0;
+                                    }).length > 0
                                     : false,
-                                identifier = validation.identifier || $el.attr('id') || $el.attr('name') || $el.data(metadata.validate)
+                                identifier = module.get.identifier(validation, $el)
                             ;
-                            if (isRequired && !isDisabled && !hasEmptyRule && identifier !== undefined) {
+                            if (isRequired && !isDisabled && !hasNotEmptyRule && identifier !== undefined) {
                                 if (isCheckbox) {
                                     module.verbose("Adding 'checked' rule on field", identifier);
                                     module.add.rule(identifier, 'checked');
                                 } else {
-                                    module.verbose("Adding 'empty' rule on field", identifier);
-                                    module.add.rule(identifier, 'empty');
+                                    module.verbose("Adding 'notEmpty' rule on field", identifier);
+                                    module.add.rule(identifier, 'notEmpty');
                                 }
                             }
                         });
@@ -1233,9 +1283,10 @@
                         if (keyHeldDown) {
                             return false;
                         }
-
+                        $module.removeClass(className.initial);
                         // reset errors
                         formErrors = [];
+                        formErrorsTracker = {};
                         if (module.determine.isValid()) {
                             module.debug('Form has no validation errors, submitting');
                             module.set.success();
@@ -1301,17 +1352,31 @@
                         var
                             identifier    = field.identifier || fieldName,
                             $field        = module.get.field(identifier),
+                            $fieldGroup = $field.closest($group),
                             $dependsField = field.depends
                                 ? module.get.field(field.depends)
                                 : false,
                             fieldValid  = true,
-                            fieldErrors = []
+                            fieldErrors = [],
+                            isDisabled = $field.filter(':not(:disabled)').length === 0 || $fieldGroup.hasClass(className.disabled) || $fieldGroup.parent().hasClass(className.disabled),
+                            validationMessage = $field[0].validationMessage,
+                            noNativeValidation = field.noNativeValidation || settings.noNativeValidation || $field.filter('[formnovalidate],[novalidate]').length > 0 || $module.filter('[novalidate]').length > 0,
+                            errorLimit
                         ;
                         if (!field.identifier) {
                             module.debug('Using field name as identifier', identifier);
                             field.identifier = identifier;
                         }
-                        var isDisabled = $field.filter(':not(:disabled)').length === 0;
+                        if (validationMessage && !noNativeValidation && !isDisabled) {
+                            module.debug('Field is natively invalid', identifier);
+                            fieldErrors.push(validationMessage);
+                            fieldValid = false;
+                            if (showErrors) {
+                                $fieldGroup.addClass(className.error);
+                            }
+                        } else if (showErrors) {
+                            $fieldGroup.removeClass(className.error);
+                        }
                         if (isDisabled) {
                             module.debug('Field is disabled. Skipping', identifier);
                         } else if (field.optional && module.is.blank($field)) {
@@ -1319,15 +1384,28 @@
                         } else if (field.depends && module.is.empty($dependsField)) {
                             module.debug('Field depends on another value that is not present or empty. Skipping', $dependsField);
                         } else if (field.rules !== undefined) {
-                            if (showErrors) {
-                                $field.closest($group).removeClass(className.error);
-                            }
+                            errorLimit = field.errorLimit || settings.errorLimit;
                             $.each(field.rules, function (index, rule) {
-                                if (module.has.field(identifier)) {
+                                if (module.has.field(identifier) && (!errorLimit || fieldErrors.length < errorLimit)) {
                                     var invalidFields = module.validate.rule(field, rule, true) || [];
                                     if (invalidFields.length > 0) {
                                         module.debug('Field is invalid', identifier, rule.type);
-                                        fieldErrors.push(module.get.prompt(rule, field));
+                                        var fieldError = module.get.prompt(rule, field);
+                                        if (!settings.inline) {
+                                            if (
+                                                // Always allow the first error prompt for new field identifiers
+                                                (!(identifier in formErrorsTracker)
+                                                // Also allow multiple error prompts per field identifier but make sure each prompt is unique
+                                                || formErrorsTracker[identifier].indexOf(fieldError) === -1)
+                                                // Limit the number of unique error prompts for every field identifier if specified
+                                                && (!errorLimit || (formErrorsTracker[identifier] || []).length < errorLimit)
+                                            ) {
+                                                fieldErrors.push(fieldError);
+                                                (formErrorsTracker[identifier] = formErrorsTracker[identifier] || []).push(fieldError);
+                                            }
+                                        } else {
+                                            fieldErrors.push(fieldError);
+                                        }
                                         fieldValid = false;
                                         if (showErrors) {
                                             $(invalidFields).closest($group).addClass(className.error);
@@ -1338,11 +1416,11 @@
                         }
                         if (fieldValid) {
                             if (showErrors) {
-                                module.remove.prompt(identifier, fieldErrors);
+                                module.remove.prompt(identifier);
                                 settings.onValid.call($field);
                             }
                         } else {
-                            if (showErrors) {
+                            if (showErrors && fieldErrors.length > 0) {
                                 formErrors = formErrors.concat(fieldErrors);
                                 module.add.prompt(identifier, fieldErrors, true);
                                 settings.onInvalid.call($field, fieldErrors);
@@ -1440,6 +1518,12 @@
                         module.error.apply(console, arguments);
                     }
                 },
+                warn: function () {
+                    if (!settings.silent) {
+                        module.warn = Function.prototype.bind.call(console.warn, console, settings.name + ':');
+                        module.warn.apply(console, arguments);
+                    }
+                },
                 performance: {
                     log: function (message) {
                         var
@@ -1460,7 +1544,9 @@
                             });
                         }
                         clearTimeout(module.performance.timer);
-                        module.performance.timer = setTimeout(module.performance.display, 500);
+                        module.performance.timer = setTimeout(function () {
+                            module.performance.display();
+                        }, 500);
                     },
                     display: function () {
                         var
@@ -1473,9 +1559,6 @@
                             totalTime += data['Execution Time'];
                         });
                         title += ' ' + totalTime + 'ms';
-                        if (moduleSelector) {
-                            title += ' \'' + moduleSelector + '\'';
-                        }
                         if ($allModules.length > 1) {
                             title += ' (' + $allModules.length + ')';
                         }
@@ -1557,6 +1640,7 @@
         name: 'Form',
         namespace: 'form',
 
+        silent: false,
         debug: false,
         verbose: false,
         performance: true,
@@ -1578,6 +1662,8 @@
         preventLeaving: false,
         errorFocus: true,
         dateHandling: 'date', // 'date', 'input', 'formatter'
+        errorLimit: 0,
+        noNativeValidation: false,
 
         onValid: function () {},
         onInvalid: function () {},
@@ -1620,6 +1706,7 @@
             maxValue: '{name} must have a maximum value of {ruleValue}',
             minValue: '{name} must have a minimum value of {ruleValue}',
             empty: '{name} must have a value',
+            notEmpty: '{name} must have a value',
             checked: '{name} must be checked',
             email: '{name} must be a valid e-mail',
             url: '{name} must be a valid url',
@@ -1631,8 +1718,8 @@
             isExactly: '{name} must be exactly "{ruleValue}"',
             not: '{name} cannot be set to "{ruleValue}"',
             notExactly: '{name} cannot be set to exactly "{ruleValue}"',
-            contain: '{name} must contain "{ruleValue}"',
-            containExactly: '{name} must contain exactly "{ruleValue}"',
+            contains: '{name} must contain "{ruleValue}"',
+            containsExactly: '{name} must contain exactly "{ruleValue}"',
             doesntContain: '{name} cannot contain "{ruleValue}"',
             doesntContainExactly: '{name} cannot contain exactly "{ruleValue}"',
             minLength: '{name} must be at least {ruleValue} characters',
@@ -1651,9 +1738,10 @@
         selector: {
             checkbox: 'input[type="checkbox"], input[type="radio"]',
             clear: '.clear',
-            field: 'input:not(.search):not([type="file"]):not([type="reset"]):not([type="button"]):not([type="submit"]), textarea, select',
+            field: 'input:not(.search):not([type="reset"]):not([type="button"]):not([type="submit"]), textarea, select',
+            file: 'input[type="file"]',
             group: '.field',
-            input: 'input:not([type="file"])',
+            input: 'input',
             message: '.error.message',
             prompt: '.prompt.label',
             radio: 'input[type="radio"]',
@@ -1665,6 +1753,7 @@
         },
 
         className: {
+            initial: 'initial',
             error: 'error',
             label: 'ui basic red pointing prompt label',
             pressed: 'down',
@@ -1750,8 +1839,13 @@
         rules: {
 
             // is not empty or blank string
-            empty: function (value) {
+            notEmpty: function (value) {
                 return !(value === undefined || value === '' || (Array.isArray(value) && value.length === 0));
+            },
+
+            /* Deprecated */
+            empty: function (value) {
+                return $.fn.form.settings.rules.notEmpty(value);
             },
 
             // checkbox checked

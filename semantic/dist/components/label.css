@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.3 - Label
+ * # Fomantic-UI 2.9.4 - Label
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -174,6 +174,7 @@ a.ui.label {
              Types
 *******************************/
 
+.ui.image.labels .label,
 .ui.image.label {
   width: auto;
   margin-top: 0;
@@ -186,8 +187,13 @@ a.ui.label {
   border-radius: 0.28571429rem;
   box-shadow: none;
 }
+.ui.image.labels .label.attached:not(.basic),
 .ui.image.label.attached:not(.basic) {
   padding: 0.5833em 0.833em 0.5833em 0.5em;
+}
+.ui.labels .image.label,
+.ui.image.labels .label {
+  margin-bottom: 0.5em;
 }
 .ui.image.label img {
   display: inline-block;
@@ -342,7 +348,6 @@ a.ui.label {
 .ui.ribbon.label {
   position: relative;
   margin: 0;
-  min-width: -webkit-max-content;
   min-width: max-content;
   border-radius: 0 0.28571429rem 0.28571429rem 0;
   border-color: rgba(0, 0, 0, 0.15);
@@ -409,8 +414,22 @@ a.ui.label {
   border-color: transparent;
   border-top-color: inherit;
 }
+.ui.ui.center.ribbon.label {
+  top: calc(50% - 1em);
+  z-index: 1;
+}
+.ui.bottom.ribbon.label::after {
+  bottom: 100%;
+  top: auto;
+  border-width: 1.2em 1.2em 0 0;
+}
+.ui.bottom[class*="right ribbon"].label::after {
+  border-width: 1.2em 0 0 1.2em;
+  border-color: transparent;
+  border-left-color: inherit;
+}
 
-/* Inside Table */
+/* Inside Image */
 .ui.image > .ribbon.label,
 .ui.card .image > .ribbon.label {
   position: absolute;
@@ -424,6 +443,11 @@ a.ui.label {
 .ui.image > .ui[class*="right ribbon"].label {
   left: calc(100% + -0.05rem + 1.2em);
   padding-left: 0.833em;
+}
+.ui.card .image > .ui.bottom.ribbon.label,
+.ui.image > .ui.bottom.ribbon.label {
+  bottom: 1rem;
+  top: auto;
 }
 
 /* Inside Table */

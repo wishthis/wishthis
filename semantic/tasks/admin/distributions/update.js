@@ -13,13 +13,12 @@
 */
 
 const
-    gulp           = require('gulp'),
-
     // node dependencies
-    console        = require('better-console'),
     fs             = require('fs'),
     path           = require('path'),
-    git            = require('gulp-git'),
+    console        = require('@fomantic/better-console'),
+    gulp           = require('gulp'),
+    git            = require('@fomantic/gulp-git'),
 
     // admin files
     release        = require('../../config/admin/release'),
@@ -79,7 +78,7 @@ module.exports = function (callback) {
                 ? 'Updated distribution to version ' + version
                 : 'Updated files from main repo',
 
-            gitOptions      = { cwd: outputDirectory },
+            gitOptions      = { cwd: outputDirectory, encoding: false },
             commitOptions   = { args: commitArgs, cwd: outputDirectory },
             releaseOptions  = { tag_name: version, owner: release.org, repo: repoName },
 
@@ -110,7 +109,7 @@ module.exports = function (callback) {
             console.info('Committing ' + distribution + ' files', commitArgs);
             gulp.src('./', gitOptions)
                 .pipe(git.add(gitOptions))
-                .pipe(git.commit(commitMessage, commitOptions))
+                .pipe(git.commit(commitMessage, commitOptions), function () {})
                 .on('error', function (error) {
                     // canProceed = false; bug in git commit <https://github.com/stevelacy/gulp-git/issues/49>
                 })

@@ -271,37 +271,46 @@
            Types
 *******************************/
 
-& when (@variationSearchSelection) {
+& when (@variationSearchClear) {
     /* --------------
-        Selection
+        Clear Icon
     --------------- */
 
-    .ui.search.selection .prompt {
-        border-radius: @selectionPromptBorderRadius;
-    }
-
-    /* Remove input */
-    .ui.search.selection > .icon.input > .remove.icon {
-        pointer-events: none;
-        position: absolute;
-        left: auto;
-        opacity: 0;
-        color: @selectionCloseIconColor;
-        top: @selectionCloseTop;
-        right: @selectionCloseRight;
-        transition: @selectionCloseTransition;
-    }
-    .ui.search.selection > .icon.input > .active.remove.icon {
+    .ui.search > .icon.input > .remove.icon {
+        pointer-events: all;
+        transition: @clearableIconTransition;
         cursor: pointer;
-        opacity: @selectionCloseIconOpacity;
-        pointer-events: auto;
+        opacity: @clearableIconOpacity;
+        &:hover {
+            opacity: @clearableIconHoverOpacity;
+        }
     }
-    .ui.search.selection > .icon.input:not([class*="left icon"]) > .icon ~ .remove.icon {
-        right: @selectionCloseIconInputRight;
+    .ui.search > .icon.input:not([class*="left icon"]) > .icon ~ .remove.icon {
+        right: @clearableIconInputRight;
     }
-    .ui.search.selection > .icon.input > .remove.icon:hover {
-        opacity: @selectionCloseIconHoverOpacity;
-        color: @selectionCloseIconHoverColor;
+    .ui.search input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        cursor: pointer;
+        transition: @clearableIconTransition;
+        opacity: @clearableIconOpacity;
+        background: @clearableIconBackground;
+        height: @clearableIconHeight;
+        width: @clearableIconWidth;
+        &:hover {
+            opacity: @clearableIconHoverOpacity;
+        }
+    }
+    & when (@variationSearchLoading) {
+        .ui.loading.search input[type="search"]::-webkit-search-cancel-button {
+            display: none;
+        }
+    }
+    .ui.search > .icon.input > input:placeholder-shown ~ .remove.icon,
+    .ui.search.loading > .icon.input > .remove.icon {
+        display: none;
+    }
+    .ui.search > .icon.input > input:-ms-input-placeholder ~ .remove.icon when (@supportIE) {
+        display: none;
     }
 }
 
@@ -367,6 +376,19 @@
         transition: @categoryResultTransition;
         padding: @categoryResultPadding;
     }
+
+    & when (@variationSearchHorizontalCategory) {
+        .ui.horizontal.category.search > .results .category,
+        .ui.horizontal.category.search > .results .category > .name,
+        .ui.horizontal.category.search > .results .category > .results {
+            display: block;
+        }
+
+        .ui.horizontal.category.search > .results .category > .results {
+            width: 100%;
+            border-left: 0;
+        }
+    }
 }
 
 /*******************************
@@ -394,21 +416,39 @@
     @media only screen and (max-width: @largestMobileScreen) {
         .ui.scrolling.search > .results {
             max-height: @scrollingMobileMaxResultsHeight;
+            .resizable& when (@variationSearchResizable) {
+                height: @scrollingMobileMaxResultsHeight;
+            }
         }
     }
     @media only screen and (min-width: @tabletBreakpoint) {
         .ui.scrolling.search > .results {
             max-height: @scrollingTabletMaxResultsHeight;
+            .resizable& when (@variationSearchResizable) {
+                height: @scrollingTabletMaxResultsHeight;
+            }
         }
     }
     @media only screen and (min-width: @computerBreakpoint) {
         .ui.scrolling.search > .results {
             max-height: @scrollingComputerMaxResultsHeight;
+            .resizable& when (@variationSearchResizable) {
+                height: @scrollingComputerMaxResultsHeight;
+            }
         }
     }
     @media only screen and (min-width: @widescreenMonitorBreakpoint) {
         .ui.scrolling.search > .results {
             max-height: @scrollingWidescreenMaxResultsHeight;
+            .resizable& when (@variationSearchResizable) {
+                height: @scrollingWidescreenMaxResultsHeight;
+            }
+        }
+    }
+    & when (@variationSearchResizable) {
+        .ui.scrolling.resizable.search > .results {
+            resize: @resizableDirection;
+            max-height: none;
         }
     }
 }
@@ -534,13 +574,20 @@
 .ui.search {
     font-size: @relativeMedium;
 }
-& when not (@variationFeedSizes = false) {
-    each(@variationFeedSizes, {
+& when not (@variationSearchSizes = false) {
+    each(@variationSearchSizes, {
         @s: @{value}SearchSize;
         .ui.@{value}.search {
             font-size: @@s;
         }
     });
+}
+
+& when (@variationSearchHighlightMatches) {
+    .ui.search > .results mark {
+        background: @highlightMatchesBackground;
+        color: @highlightMatchesColor;
+    }
 }
 
 /* --------------
@@ -553,4 +600,5 @@
     }
 }
 
-.loadUIOverrides();
+// stylelint-disable no-invalid-position-at-import-rule
+@import (multiple, optional) "../../overrides.less";

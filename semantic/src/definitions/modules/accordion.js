@@ -45,7 +45,6 @@
 
                 eventNamespace  = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
-                moduleSelector  = $allModules.selector || '',
 
                 $module  = $(this),
                 $title   = $module.find(selector.title),
@@ -439,7 +438,9 @@
                             });
                         }
                         clearTimeout(module.performance.timer);
-                        module.performance.timer = setTimeout(module.performance.display, 500);
+                        module.performance.timer = setTimeout(function () {
+                            module.performance.display();
+                        }, 500);
                     },
                     display: function () {
                         var
@@ -452,9 +453,6 @@
                             totalTime += data['Execution Time'];
                         });
                         title += ' ' + totalTime + 'ms';
-                        if (moduleSelector) {
-                            title += ' \'' + moduleSelector + '\'';
-                        }
                         if (performance.length > 0) {
                             console.groupCollapsed(title);
                             if (console.table) {

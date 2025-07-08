@@ -23,8 +23,6 @@
         var
             $allModules     = $(this),
 
-            moduleSelector  = $allModules.selector || '',
-
             time            = Date.now(),
             performance     = [],
 
@@ -121,11 +119,12 @@
 
                 createPlaceholder: function (placeholder) {
                     var
-                        icon  = module.get.icon()
+                        icon  = module.get.icon(),
+                        alt   = module.get.alt()
                     ;
                     placeholder = placeholder || module.get.placeholder();
-                    $module.html(templates.placeholder(placeholder, icon));
-                    module.debug('Creating placeholder for embed', placeholder, icon);
+                    $module.html(templates.placeholder(placeholder, icon, alt));
+                    module.debug('Creating placeholder for embed', placeholder, icon, alt);
                 },
 
                 createEmbed: function (url) {
@@ -204,6 +203,9 @@
                     },
                     placeholder: function () {
                         return settings.placeholder || $module.data(metadata.placeholder);
+                    },
+                    alt: function () {
+                        return settings.alt || $module.data(metadata.alt);
                     },
                     icon: function () {
                         return settings.icon || ($module.data(metadata.icon) !== undefined
@@ -290,6 +292,7 @@
                             .removeData(metadata.id)
                             .removeData(metadata.icon)
                             .removeData(metadata.placeholder)
+                            .removeData(metadata.alt)
                             .removeData(metadata.source)
                             .removeData(metadata.url)
                         ;
@@ -442,7 +445,9 @@
                             });
                         }
                         clearTimeout(module.performance.timer);
-                        module.performance.timer = setTimeout(module.performance.display, 500);
+                        module.performance.timer = setTimeout(function () {
+                            module.performance.display();
+                        }, 500);
                     },
                     display: function () {
                         var
@@ -455,9 +460,6 @@
                             totalTime += data['Execution Time'];
                         });
                         title += ' ' + totalTime + 'ms';
-                        if (moduleSelector) {
-                            title += ' \'' + moduleSelector + '\'';
-                        }
                         if ($allModules.length > 1) {
                             title += ' (' + $allModules.length + ')';
                         }
@@ -560,6 +562,8 @@
         source: false,
         url: false,
         id: false,
+        placeholder: false,
+        alt: false,
 
         // standard video settings
         autoplay: 'auto',
@@ -582,6 +586,7 @@
             id: 'id',
             icon: 'icon',
             placeholder: 'placeholder',
+            alt: 'alt',
             source: 'source',
             url: 'url',
         },
@@ -657,7 +662,7 @@
                     + ' width="100%" height="100%"'
                     + ' msallowFullScreen allowFullScreen></iframe>';
             },
-            placeholder: function (image, icon) {
+            placeholder: function (image, icon, alt) {
                 var
                     html = '',
                     deQuote = $.fn.embed.settings.templates.deQuote
@@ -666,7 +671,7 @@
                     html += '<i class="' + deQuote(icon) + ' icon"></i>';
                 }
                 if (image) {
-                    html += '<img class="placeholder" src="' + deQuote(image) + '">';
+                    html += '<img class="placeholder" src="' + deQuote(image) + (alt ? '" alt="' + deQuote(alt) : '') + '">';
                 }
 
                 return html;

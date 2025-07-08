@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.2 - Checkbox
+ * # Fomantic-UI 2.9.4 - Checkbox
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -22,7 +22,6 @@
     $.fn.checkbox = function (parameters) {
         var
             $allModules    = $(this),
-            moduleSelector = $allModules.selector || '',
 
             time           = Date.now(),
             performance    = [],
@@ -211,7 +210,7 @@
                         ;
 
                         var
-                            r = module.get.radios(),
+                            r = module.get.radios().not(selector.disabled),
                             rIndex = r.index($module),
                             rLen = r.length,
                             checkIndex = false
@@ -229,7 +228,10 @@
 
                                 return false;
                             }
-                            if (settings.beforeChecked.apply($(r[checkIndex]).children(selector.input)[0]) === false) {
+                            var nextOption = $(r[checkIndex]),
+                                nextInput = nextOption.children(selector.input),
+                                disallowOption = nextOption.hasClass(className.readOnly) || nextInput.prop('readonly');
+                            if (disallowOption || settings.beforeChecked.apply(nextInput[0]) === false) {
                                 module.verbose('Next option should not allow check, cancelling key navigation');
 
                                 return false;
@@ -242,7 +244,9 @@
                             $input.trigger('blur');
                             shortcutPressed = true;
                             event.stopPropagation();
-                        } else if (!event.ctrlKey && module.can.change()) {
+                        } else if (!module.can.change()) {
+                            shortcutPressed = true;
+                        } else if (!event.ctrlKey) {
                             if (key === keyCode.space || (key === keyCode.enter && settings.enableEnterKey)) {
                                 module.verbose('Enter/space key pressed, toggling checkbox');
                                 module.toggle();
@@ -724,7 +728,9 @@
                             });
                         }
                         clearTimeout(module.performance.timer);
-                        module.performance.timer = setTimeout(module.performance.display, 500);
+                        module.performance.timer = setTimeout(function () {
+                            module.performance.display();
+                        }, 500);
                     },
                     display: function () {
                         var
@@ -737,9 +743,6 @@
                             totalTime += data['Execution Time'];
                         });
                         title += ' ' + totalTime + 'ms';
-                        if (moduleSelector) {
-                            title += ' \'' + moduleSelector + '\'';
-                        }
                         if (performance.length > 0) {
                             console.groupCollapsed(title);
                             if (console.table) {
@@ -875,6 +878,7 @@
 
         selector: {
             checkbox: '.ui.checkbox',
+            disabled: '.disabled, :has(input[disabled])',
             label: 'label',
             input: 'input[type="checkbox"], input[type="radio"]',
             link: 'a[href]',

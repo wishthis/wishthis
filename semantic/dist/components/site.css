@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.3 - Site
+ * # Fomantic-UI 2.9.4 - Site
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -208,11 +208,13 @@ body ::-webkit-scrollbar-thumb:window-inactive {
 body ::-webkit-scrollbar-thumb:hover {
   background: rgba(128, 135, 139, 0.8);
 }
-body .ui {
-  
+@supports (-moz-appearance: none) {
+  body .ui {
+    
 /* firefox: first color thumb, second track */
-  scrollbar-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.1);
-  scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
+  }
 }
 
 /* Inverted UI */
@@ -228,10 +230,12 @@ body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:window-inactive {
 body .ui.inverted:not(.dimmer)::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.35);
 }
-body .ui.inverted:not(.dimmer) {
-  
+@supports (-moz-appearance: none) {
+  body .ui.inverted:not(.dimmer) {
+    
 /* firefox: first color thumb, second track */
-  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);
+    scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.1);
+  }
 }
 
 

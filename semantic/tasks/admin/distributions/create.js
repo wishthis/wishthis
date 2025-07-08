@@ -3,24 +3,23 @@
 *******************************/
 
 /*
- This will create individual distribution repositories for each SUI distribution
+ This will create individual distribution repositories for each FUI distribution
 
   * copy distribution files to release
   * update package.json file
 */
 
 const
-    gulp            = require('gulp'),
-
     // node dependencies
     fs              = require('fs'),
     path            = require('path'),
+    gulp            = require('gulp'),
     mergeStream     = require('merge-stream'),
 
     // admin dependencies
     flatten         = require('gulp-flatten'),
     jsonEditor      = require('gulp-json-editor'),
-    plumber         = require('gulp-plumber'),
+    plumber         = require('@fomantic/gulp-plumber'),
     rename          = require('gulp-rename'),
     replace         = require('gulp-replace'),
 
@@ -137,7 +136,7 @@ module.exports = function (callback) {
                         components,
                         releases
                     ;
-                    themes = gulp.src('dist/themes/default/**/*', { base: 'dist/' })
+                    themes = gulp.src('dist/themes/default/**/*', { base: 'dist/', encoding: false })
                         .pipe(gulp.dest(outputDirectory))
                     ;
                     components = gulp.src('dist/components/*', { base: 'dist/' })
@@ -153,6 +152,8 @@ module.exports = function (callback) {
                 tasks.push(function () {
                     let
                         definitions,
+                        overridesImport,
+                        lessImport,
                         themeImport,
                         themeConfig,
                         siteTheme,
@@ -161,7 +162,10 @@ module.exports = function (callback) {
                     definitions = gulp.src('src/definitions/**/*', { base: 'src/' })
                         .pipe(gulp.dest(outputDirectory))
                     ;
-                    themeImport = gulp.src('src/semantic.less', { base: 'src/' })
+                    overridesImport = gulp.src('src/overrides.less', { base: 'src/' })
+                        .pipe(gulp.dest(outputDirectory))
+                    ;
+                    lessImport = gulp.src('src/semantic.less', { base: 'src/' })
                         .pipe(gulp.dest(outputDirectory))
                     ;
                     themeImport = gulp.src('src/theme.less', { base: 'src/' })
@@ -173,11 +177,11 @@ module.exports = function (callback) {
                     siteTheme = gulp.src('src/_site/**/*', { base: 'src/' })
                         .pipe(gulp.dest(outputDirectory))
                     ;
-                    themes = gulp.src('src/themes/**/*', { base: 'src/' })
+                    themes = gulp.src('src/themes/**/*', { base: 'src/', encoding: false })
                         .pipe(gulp.dest(outputDirectory))
                     ;
 
-                    return mergeStream(definitions, themeImport, themeConfig, siteTheme, themes);
+                    return mergeStream(definitions, overridesImport, lessImport, themeImport, themeConfig, siteTheme, themes);
                 });
             }
 

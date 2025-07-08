@@ -17,6 +17,8 @@
 
 @import (multiple) "../../theme.config";
 
+@notDisabled: if(@variationEmojiDisabled, e(":not(.disabled)"));
+
 /*******************************
              Emoji
 *******************************/
@@ -63,7 +65,7 @@ em[data-emoji]::before {
              Link
     -------------------- */
 
-    em[data-emoji].link:not(.disabled) {
+    em[data-emoji].link@{notDisabled} {
         cursor: pointer;
     }
 }
@@ -91,4 +93,5 @@ each(@emoji-map, {
 
 /* rtl:end:ignore */
 
-.loadUIOverrides();
+// stylelint-disable no-invalid-position-at-import-rule
+@import (multiple, optional) "../../overrides.less";

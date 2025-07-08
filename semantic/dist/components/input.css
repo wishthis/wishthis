@@ -1,5 +1,5 @@
 /*!
- * # Fomantic-UI 2.9.3 - Input
+ * # Fomantic-UI 2.9.4 - Input
  * https://github.com/fomantic/Fomantic-UI/
  *
  *
@@ -27,7 +27,7 @@
 .ui.input > input {
   margin: 0;
   max-width: 100%;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: left;
@@ -97,11 +97,17 @@
   color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
 }
+.ui.form .field > textarea:hover:not(:focus),
+.ui.input > textarea:hover:not(:focus),
+.ui.form .field > input:hover:not(:focus),
+.ui.input > input:hover:not(:focus) {
+  border-color: rgba(34, 36, 38, 0.35);
+}
 
 /* --------------------
            Loading
     --------------------- */
-.ui.loading.loading.input > i.icon::before {
+.ui.ui.loading.input > i.icon::before {
   position: absolute;
   content: "";
   top: 50%;
@@ -112,7 +118,7 @@
   border-radius: 500rem;
   border: 0.2em solid rgba(0, 0, 0, 0.1);
 }
-.ui.loading.loading.input > i.icon::after {
+.ui.ui.loading.input > i.icon::after {
   position: absolute;
   content: "";
   top: 50%;
@@ -151,18 +157,6 @@
             States
     --------------------- */
 .ui.input.error > input {
-  background-color: #fff6f6;
-  border-color: #e0b4b4;
-  color: #9f3a38;
-  box-shadow: none;
-}
-.ui.input > input:not(:-ms-input-placeholder):invalid {
-  background-color: #fff6f6;
-  border-color: #e0b4b4;
-  color: #9f3a38;
-  box-shadow: none;
-}
-.ui.input > input:not(:placeholder-shown):invalid {
   background-color: #fff6f6;
   border-color: #e0b4b4;
   color: #9f3a38;
@@ -571,7 +565,11 @@
 .ui.form .field.error > .ui.action.input:not([class*="left action"]) > input + .ui.button,
 .ui.form .field.error > .ui.right.labeled.input:not([class*="corner labeled"]) > input + .ui.label,
 .ui.action.input.error:not([class*="left action"]) > input + .ui.button,
-.ui.right.labeled.input.error:not([class*="corner labeled"]) > input + .ui.label {
+.ui.right.labeled.input.error:not([class*="corner labeled"]) > input + .ui.label,
+.ui.form .field.error > .ui.action.input:not([class*="left action"]) > textarea + .ui.button,
+.ui.form .field.error > .ui.right.labeled.input:not([class*="corner labeled"]) > textarea + .ui.label,
+.ui.action.input.error:not([class*="left action"]) > textarea + .ui.button,
+.ui.right.labeled.input.error:not([class*="corner labeled"]) > textarea + .ui.label {
   border-right: 1px solid #e0b4b4;
 }
 .ui.form .field.error > .ui.right.labeled.input:not([class*="corner labeled"]) > .ui.label:first-child,
@@ -594,7 +592,11 @@
 .ui.form .field.info > .ui.action.input:not([class*="left action"]) > input + .ui.button,
 .ui.form .field.info > .ui.right.labeled.input:not([class*="corner labeled"]) > input + .ui.label,
 .ui.action.input.info:not([class*="left action"]) > input + .ui.button,
-.ui.right.labeled.input.info:not([class*="corner labeled"]) > input + .ui.label {
+.ui.right.labeled.input.info:not([class*="corner labeled"]) > input + .ui.label,
+.ui.form .field.info > .ui.action.input:not([class*="left action"]) > textarea + .ui.button,
+.ui.form .field.info > .ui.right.labeled.input:not([class*="corner labeled"]) > textarea + .ui.label,
+.ui.action.input.info:not([class*="left action"]) > textarea + .ui.button,
+.ui.right.labeled.input.info:not([class*="corner labeled"]) > textarea + .ui.label {
   border-right: 1px solid #a9d5de;
 }
 .ui.form .field.info > .ui.right.labeled.input:not([class*="corner labeled"]) > .ui.label:first-child,
@@ -617,7 +619,11 @@
 .ui.form .field.success > .ui.action.input:not([class*="left action"]) > input + .ui.button,
 .ui.form .field.success > .ui.right.labeled.input:not([class*="corner labeled"]) > input + .ui.label,
 .ui.action.input.success:not([class*="left action"]) > input + .ui.button,
-.ui.right.labeled.input.success:not([class*="corner labeled"]) > input + .ui.label {
+.ui.right.labeled.input.success:not([class*="corner labeled"]) > input + .ui.label,
+.ui.form .field.success > .ui.action.input:not([class*="left action"]) > textarea + .ui.button,
+.ui.form .field.success > .ui.right.labeled.input:not([class*="corner labeled"]) > textarea + .ui.label,
+.ui.action.input.success:not([class*="left action"]) > textarea + .ui.button,
+.ui.right.labeled.input.success:not([class*="corner labeled"]) > textarea + .ui.label {
   border-right: 1px solid #a3c293;
 }
 .ui.form .field.success > .ui.right.labeled.input:not([class*="corner labeled"]) > .ui.label:first-child,
@@ -640,7 +646,11 @@
 .ui.form .field.warning > .ui.action.input:not([class*="left action"]) > input + .ui.button,
 .ui.form .field.warning > .ui.right.labeled.input:not([class*="corner labeled"]) > input + .ui.label,
 .ui.action.input.warning:not([class*="left action"]) > input + .ui.button,
-.ui.right.labeled.input.warning:not([class*="corner labeled"]) > input + .ui.label {
+.ui.right.labeled.input.warning:not([class*="corner labeled"]) > input + .ui.label,
+.ui.form .field.warning > .ui.action.input:not([class*="left action"]) > textarea + .ui.button,
+.ui.form .field.warning > .ui.right.labeled.input:not([class*="corner labeled"]) > textarea + .ui.label,
+.ui.action.input.warning:not([class*="left action"]) > textarea + .ui.button,
+.ui.right.labeled.input.warning:not([class*="corner labeled"]) > textarea + .ui.label {
   border-right: 1px solid #c9ba9b;
 }
 .ui.form .field.warning > .ui.right.labeled.input:not([class*="corner labeled"]) > .ui.label:first-child,
@@ -665,14 +675,16 @@
 }
 
 /* Input when ui Left */
-.ui[class*="left action"].input > input {
+.ui[class*="left action"].input > input,
+.ui[class*="left action"].input > textarea {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-color: transparent;
 }
 
 /* Input when ui Right */
-.ui.action.input:not([class*="left action"]) > input {
+.ui.action.input:not([class*="left action"]) > input,
+.ui.action.input:not([class*="left action"]) > textarea {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right-color: transparent;
@@ -696,10 +708,12 @@
 }
 
 /* Input Focus */
-.ui.action.input:not([class*="left action"]) > input:focus {
+.ui.action.input:not([class*="left action"]) > input:focus,
+.ui.action.input:not([class*="left action"]) > textarea:focus {
   border-right-color: #a285df;
 }
-.ui.ui[class*="left action"].input > input:focus {
+.ui.ui[class*="left action"].input > input:focus,
+.ui.ui[class*="left action"].input > textarea:focus {
   border-left-color: #a285df;
 }
 
@@ -740,24 +754,6 @@
 .ui.action.file.input input[type="file"]::-webkit-file-upload-button {
   display: none;
 }
-.ui.form .field input[type="file"]::-webkit-file-upload-button,
-.ui.file.input input[type="file"]::-webkit-file-upload-button {
-  border: none;
-  cursor: pointer;
-  padding: 0.67857143em 1em;
-  margin-right: 1em;
-  background: #e0e1e2;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.6);
-}
-.ui.form .field input[type="file"]::-webkit-file-upload-button:hover,
-.ui.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #cacbcd;
-  color: rgba(0, 0, 0, 0.6);
-}
-.ui.action.file.input input[type="file"]::-webkit-file-upload-button {
-  display: none;
-}
 .ui.action.file.input input[type="file"]::file-selector-button {
   display: none;
 }
@@ -788,12 +784,6 @@
 .ui.file.input input[type="file"]::file-selector-button:hover {
   background: #cacbcd;
   color: rgba(0, 0, 0, 0.6);
-}
-.ui.form .field input[type="file"]:required:invalid,
-.ui.file.input input[type="file"]:required:invalid {
-  color: #9f3a38;
-  background: #fff6f6;
-  border-color: #e0b4b4;
 }
 input[type="file"].ui.invisible.file.input,
 .ui.invisible.file.input input[type="file"] {
@@ -946,15 +936,6 @@ input[type="file"].ui.file.input:focus + label.ui.black.button:not(.basic):not(.
 .ui.file.input input[type="file"]:focus + label.ui.black.button:not(.basic):not(.tertiary).inverted {
   background-color: #000000;
 }
-input[type="file"].ui.primary.file.input::-webkit-file-upload-button,
-.ui.primary.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #6435c9;
-  color: #fff;
-}
-input[type="file"].ui.primary.file.input::-webkit-file-upload-button:hover,
-.ui.primary.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #5829bb;
-}
 input[type="file"].ui.primary.file.input::-webkit-file-upload-button, .ui.primary.file.input input[type="file"]::-webkit-file-upload-button {
   background: #6435c9;
   color: #fff;
@@ -970,15 +951,6 @@ input[type="file"].ui.primary.file.input::-webkit-file-upload-button:hover, .ui.
 input[type="file"].ui.primary.file.input::file-selector-button:hover,
 .ui.primary.file.input input[type="file"]::file-selector-button:hover {
   background: #5829bb;
-}
-input[type="file"].ui.secondary.file.input::-webkit-file-upload-button,
-.ui.secondary.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #1b1c1d;
-  color: #fff;
-}
-input[type="file"].ui.secondary.file.input::-webkit-file-upload-button:hover,
-.ui.secondary.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #27292a;
 }
 input[type="file"].ui.secondary.file.input::-webkit-file-upload-button, .ui.secondary.file.input input[type="file"]::-webkit-file-upload-button {
   background: #1b1c1d;
@@ -996,15 +968,6 @@ input[type="file"].ui.secondary.file.input::file-selector-button:hover,
 .ui.secondary.file.input input[type="file"]::file-selector-button:hover {
   background: #27292a;
 }
-input[type="file"].ui.red.file.input::-webkit-file-upload-button,
-.ui.red.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #db2828;
-  color: #fff;
-}
-input[type="file"].ui.red.file.input::-webkit-file-upload-button:hover,
-.ui.red.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #d01919;
-}
 input[type="file"].ui.red.file.input::-webkit-file-upload-button, .ui.red.file.input input[type="file"]::-webkit-file-upload-button {
   background: #db2828;
   color: #fff;
@@ -1020,15 +983,6 @@ input[type="file"].ui.red.file.input::-webkit-file-upload-button:hover, .ui.red.
 input[type="file"].ui.red.file.input::file-selector-button:hover,
 .ui.red.file.input input[type="file"]::file-selector-button:hover {
   background: #d01919;
-}
-input[type="file"].ui.orange.file.input::-webkit-file-upload-button,
-.ui.orange.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #f2711c;
-  color: #fff;
-}
-input[type="file"].ui.orange.file.input::-webkit-file-upload-button:hover,
-.ui.orange.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #f26202;
 }
 input[type="file"].ui.orange.file.input::-webkit-file-upload-button, .ui.orange.file.input input[type="file"]::-webkit-file-upload-button {
   background: #f2711c;
@@ -1046,15 +1000,6 @@ input[type="file"].ui.orange.file.input::file-selector-button:hover,
 .ui.orange.file.input input[type="file"]::file-selector-button:hover {
   background: #f26202;
 }
-input[type="file"].ui.yellow.file.input::-webkit-file-upload-button,
-.ui.yellow.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #fbbd08;
-  color: #fff;
-}
-input[type="file"].ui.yellow.file.input::-webkit-file-upload-button:hover,
-.ui.yellow.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #eaae00;
-}
 input[type="file"].ui.yellow.file.input::-webkit-file-upload-button, .ui.yellow.file.input input[type="file"]::-webkit-file-upload-button {
   background: #fbbd08;
   color: #fff;
@@ -1070,15 +1015,6 @@ input[type="file"].ui.yellow.file.input::-webkit-file-upload-button:hover, .ui.y
 input[type="file"].ui.yellow.file.input::file-selector-button:hover,
 .ui.yellow.file.input input[type="file"]::file-selector-button:hover {
   background: #eaae00;
-}
-input[type="file"].ui.olive.file.input::-webkit-file-upload-button,
-.ui.olive.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #b5cc18;
-  color: #fff;
-}
-input[type="file"].ui.olive.file.input::-webkit-file-upload-button:hover,
-.ui.olive.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #a7bd0d;
 }
 input[type="file"].ui.olive.file.input::-webkit-file-upload-button, .ui.olive.file.input input[type="file"]::-webkit-file-upload-button {
   background: #b5cc18;
@@ -1096,15 +1032,6 @@ input[type="file"].ui.olive.file.input::file-selector-button:hover,
 .ui.olive.file.input input[type="file"]::file-selector-button:hover {
   background: #a7bd0d;
 }
-input[type="file"].ui.green.file.input::-webkit-file-upload-button,
-.ui.green.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #21ba45;
-  color: #fff;
-}
-input[type="file"].ui.green.file.input::-webkit-file-upload-button:hover,
-.ui.green.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #16ab39;
-}
 input[type="file"].ui.green.file.input::-webkit-file-upload-button, .ui.green.file.input input[type="file"]::-webkit-file-upload-button {
   background: #21ba45;
   color: #fff;
@@ -1120,15 +1047,6 @@ input[type="file"].ui.green.file.input::-webkit-file-upload-button:hover, .ui.gr
 input[type="file"].ui.green.file.input::file-selector-button:hover,
 .ui.green.file.input input[type="file"]::file-selector-button:hover {
   background: #16ab39;
-}
-input[type="file"].ui.teal.file.input::-webkit-file-upload-button,
-.ui.teal.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #00b5ad;
-  color: #fff;
-}
-input[type="file"].ui.teal.file.input::-webkit-file-upload-button:hover,
-.ui.teal.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #009c95;
 }
 input[type="file"].ui.teal.file.input::-webkit-file-upload-button, .ui.teal.file.input input[type="file"]::-webkit-file-upload-button {
   background: #00b5ad;
@@ -1146,15 +1064,6 @@ input[type="file"].ui.teal.file.input::file-selector-button:hover,
 .ui.teal.file.input input[type="file"]::file-selector-button:hover {
   background: #009c95;
 }
-input[type="file"].ui.blue.file.input::-webkit-file-upload-button,
-.ui.blue.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #2185d0;
-  color: #fff;
-}
-input[type="file"].ui.blue.file.input::-webkit-file-upload-button:hover,
-.ui.blue.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #1678c2;
-}
 input[type="file"].ui.blue.file.input::-webkit-file-upload-button, .ui.blue.file.input input[type="file"]::-webkit-file-upload-button {
   background: #2185d0;
   color: #fff;
@@ -1170,15 +1079,6 @@ input[type="file"].ui.blue.file.input::-webkit-file-upload-button:hover, .ui.blu
 input[type="file"].ui.blue.file.input::file-selector-button:hover,
 .ui.blue.file.input input[type="file"]::file-selector-button:hover {
   background: #1678c2;
-}
-input[type="file"].ui.violet.file.input::-webkit-file-upload-button,
-.ui.violet.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #6435c9;
-  color: #fff;
-}
-input[type="file"].ui.violet.file.input::-webkit-file-upload-button:hover,
-.ui.violet.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #5829bb;
 }
 input[type="file"].ui.violet.file.input::-webkit-file-upload-button, .ui.violet.file.input input[type="file"]::-webkit-file-upload-button {
   background: #6435c9;
@@ -1196,15 +1096,6 @@ input[type="file"].ui.violet.file.input::file-selector-button:hover,
 .ui.violet.file.input input[type="file"]::file-selector-button:hover {
   background: #5829bb;
 }
-input[type="file"].ui.purple.file.input::-webkit-file-upload-button,
-.ui.purple.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #a333c8;
-  color: #fff;
-}
-input[type="file"].ui.purple.file.input::-webkit-file-upload-button:hover,
-.ui.purple.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #9627ba;
-}
 input[type="file"].ui.purple.file.input::-webkit-file-upload-button, .ui.purple.file.input input[type="file"]::-webkit-file-upload-button {
   background: #a333c8;
   color: #fff;
@@ -1220,15 +1111,6 @@ input[type="file"].ui.purple.file.input::-webkit-file-upload-button:hover, .ui.p
 input[type="file"].ui.purple.file.input::file-selector-button:hover,
 .ui.purple.file.input input[type="file"]::file-selector-button:hover {
   background: #9627ba;
-}
-input[type="file"].ui.pink.file.input::-webkit-file-upload-button,
-.ui.pink.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #e03997;
-  color: #fff;
-}
-input[type="file"].ui.pink.file.input::-webkit-file-upload-button:hover,
-.ui.pink.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #e61a8d;
 }
 input[type="file"].ui.pink.file.input::-webkit-file-upload-button, .ui.pink.file.input input[type="file"]::-webkit-file-upload-button {
   background: #e03997;
@@ -1246,15 +1128,6 @@ input[type="file"].ui.pink.file.input::file-selector-button:hover,
 .ui.pink.file.input input[type="file"]::file-selector-button:hover {
   background: #e61a8d;
 }
-input[type="file"].ui.brown.file.input::-webkit-file-upload-button,
-.ui.brown.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #a5673f;
-  color: #fff;
-}
-input[type="file"].ui.brown.file.input::-webkit-file-upload-button:hover,
-.ui.brown.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #975b33;
-}
 input[type="file"].ui.brown.file.input::-webkit-file-upload-button, .ui.brown.file.input input[type="file"]::-webkit-file-upload-button {
   background: #a5673f;
   color: #fff;
@@ -1271,15 +1144,6 @@ input[type="file"].ui.brown.file.input::file-selector-button:hover,
 .ui.brown.file.input input[type="file"]::file-selector-button:hover {
   background: #975b33;
 }
-input[type="file"].ui.grey.file.input::-webkit-file-upload-button,
-.ui.grey.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #767676;
-  color: #fff;
-}
-input[type="file"].ui.grey.file.input::-webkit-file-upload-button:hover,
-.ui.grey.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #838383;
-}
 input[type="file"].ui.grey.file.input::-webkit-file-upload-button, .ui.grey.file.input input[type="file"]::-webkit-file-upload-button {
   background: #767676;
   color: #fff;
@@ -1295,15 +1159,6 @@ input[type="file"].ui.grey.file.input::-webkit-file-upload-button:hover, .ui.gre
 input[type="file"].ui.grey.file.input::file-selector-button:hover,
 .ui.grey.file.input input[type="file"]::file-selector-button:hover {
   background: #838383;
-}
-input[type="file"].ui.black.file.input::-webkit-file-upload-button,
-.ui.black.file.input input[type="file"]::-webkit-file-upload-button {
-  background: #1b1c1d;
-  color: #fff;
-}
-input[type="file"].ui.black.file.input::-webkit-file-upload-button:hover,
-.ui.black.file.input input[type="file"]::-webkit-file-upload-button:hover {
-  background: #27292a;
 }
 input[type="file"].ui.black.file.input::-webkit-file-upload-button, .ui.black.file.input input[type="file"]::-webkit-file-upload-button {
   background: #1b1c1d;

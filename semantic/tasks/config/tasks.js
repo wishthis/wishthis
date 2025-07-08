@@ -1,6 +1,6 @@
 const
     browserslist = require('browserslist'),
-    console = require('better-console'),
+    console = require('@fomantic/better-console'),
     config  = require('./user'),
     release = require('./project/release')
 ;
@@ -9,7 +9,7 @@ let defaultBrowsers = browserslist(browserslist.defaults);
 let userBrowsers = browserslist();
 let hasBrowserslistConfig = JSON.stringify(defaultBrowsers) !== JSON.stringify(userBrowsers);
 
-var prefix = config.prefix || {};
+let prefix = config.prefix || {};
 if (!prefix.overrideBrowserslist && !hasBrowserslistConfig) {
     prefix.overrideBrowserslist = [
         'last 2 Chrome versions',
@@ -40,12 +40,12 @@ module.exports = {
     },
 
     filenames: {
-        concatenatedCSS: 'semantic.css',
-        concatenatedJS: 'semantic.js',
-        concatenatedMinifiedCSS: 'semantic.min.css',
-        concatenatedMinifiedJS: 'semantic.min.js',
-        concatenatedRTLCSS: 'semantic.rtl.css',
-        concatenatedMinifiedRTLCSS: 'semantic.rtl.min.css',
+        concatenatedCSS: config.fileName + release.versionInFileName + '.css',
+        concatenatedJS: config.fileName + release.versionInFileName + '.js',
+        concatenatedMinifiedCSS: config.fileName + release.versionInFileName + '.min.css',
+        concatenatedMinifiedJS: config.fileName + release.versionInFileName + '.min.js',
+        concatenatedRTLCSS: config.fileName + release.versionInFileName + '.rtl.css',
+        concatenatedMinifiedRTLCSS: config.fileName + release.versionInFileName + '.rtl.min.css',
     },
 
     regExp: {
@@ -114,10 +114,7 @@ module.exports = {
                     let
                         regExp = {
                             variable: /@(\S.*?)\s/,
-                            theme: /themes[/\\]+(.*?)[/\\].*/,
-                            element: /[/\\]([^*/\\]*)\.overrides/,
                         },
-                        theme,
                         element
                     ;
                     if (error && error.filename && /theme.less/.test(error.filename)) {
@@ -127,10 +124,6 @@ module.exports = {
                                 console.error('Missing theme.config value for', element);
                             }
                             console.error('Most likely new UI was added in an update. You will need to add missing elements from theme.config.example');
-                        } else if (error.line === 84) {
-                            element = regExp.element.exec(error.message)[1];
-                            theme = regExp.theme.exec(error.message)[1];
-                            console.error(theme + ' is not an available theme for ' + element);
                         } else {
                             console.error(error);
                         }
