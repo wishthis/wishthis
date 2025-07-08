@@ -33,32 +33,10 @@ $page->navigation();
                         <div class="field">
                             <label><?= __('Wishlist') ?></label>
 
-                            <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
-                                <option value=""><?= __('Loading your wishlists...') ?></option>
-                            </select>
-                        </div>
-
-                        <div class="field">
-                            <label><?= __('Options') ?></label>
-
-                            <div class="flex buttons">
-                                <a class="ui labeled icon button wishlist-create" title="<?= __('Create a wishlist') ?>">
-                                    <i class="add icon"></i>
-                                    <?= __('Create a wishlist') ?>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <div class="two fields">
-                        <div class="field">
-                            <div class="flex buttons">
-                                <a class="ui labeled icon primary button wishlist-wish-add disabled" title="<?= __('Add a wish') ?>">
-                                    <i class="add icon"></i>
-                                    <?= __('Add a wish') ?>
-                                </a>
+                            <div class="ui action input">
+                                <select class="ui fluid search selection dropdown loading wishlists" name="wishlist">
+                                    <option value=""><?= __('Loading your wishlists...') ?></option>
+                                </select>
 
                                 <div class="ui labeled icon top left pointing dropdown disabled button wishlist-options" title="<?= __('Options') ?>">
                                     <i class="cog icon"></i>
@@ -80,7 +58,7 @@ $page->navigation();
                         </div>
 
                         <div class="field wishlist-share">
-                            <label><?= __('Share Wishlist') ?></label>
+                            <label><?= __('Share') ?></label>
 
                             <div class="ui action input">
                                 <input type="text" value="<?= $_SERVER['REQUEST_URI'] ?? '' ?>">
@@ -94,8 +72,17 @@ $page->navigation();
                     </div>
                 </div>
 
+                <div class="flex buttons">
+                    <a class="ui labeled icon primary button wishlist-wish-add disabled" title="<?= __('Add a wish') ?>">
+                        <i class="add icon"></i>
+                        <?= __('Add a wish') ?>
+                    </a>
 
-
+                    <a class="ui labeled icon button wishlist-create" title="<?= __('Create a wishlist') ?>">
+                        <i class="add icon"></i>
+                        <?= __('Create a wishlist') ?>
+                    </a>
+                </div>
             </div>
         </div>
 
