@@ -87,7 +87,7 @@ function default_1(input, fail) {
                 if (matched) {
                     continue;
                 }
-                return fail("unmatched `" + String.fromCharCode(cc) + "`", currentChunkStartIndex);
+                return fail("unmatched `".concat(String.fromCharCode(cc), "`"), currentChunkStartIndex);
             case 47: // /, check for comment
                 if (parenLevel || (chunkerCurrentIndex == len - 1)) {
                     continue;

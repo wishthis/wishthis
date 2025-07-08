@@ -13,11 +13,11 @@ Variable.prototype = Object.assign(new node_1.default(), {
     eval: function (context) {
         var variable, name = this.name;
         if (name.indexOf('@@') === 0) {
-            name = "@" + new Variable(name.slice(1), this.getIndex(), this.fileInfo()).eval(context).value;
+            name = "@".concat(new Variable(name.slice(1), this.getIndex(), this.fileInfo()).eval(context).value);
         }
         if (this.evaluating) {
             throw { type: 'Name',
-                message: "Recursive variable definition for " + name,
+                message: "Recursive variable definition for ".concat(name),
                 filename: this.fileInfo().filename,
                 index: this.getIndex() };
         }
@@ -44,7 +44,7 @@ Variable.prototype = Object.assign(new node_1.default(), {
         }
         else {
             throw { type: 'Name',
-                message: "variable " + name + " is undefined",
+                message: "variable ".concat(name, " is undefined"),
                 filename: this.fileInfo().filename,
                 index: this.getIndex() };
         }

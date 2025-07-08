@@ -33,7 +33,7 @@ Dimension.prototype = Object.assign(new node_1.default(), {
     },
     genCSS: function (context, output) {
         if ((context && context.strictUnits) && !this.unit.isSingular()) {
-            throw new Error("Multiple units in dimension. Correct the units or use the unit function. Bad unit: " + this.unit.toString());
+            throw new Error("Multiple units in dimension. Correct the units or use the unit function. Bad unit: ".concat(this.unit.toString()));
         }
         var value = this.fround(context, this.value);
         var strValue = String(value);
@@ -76,7 +76,7 @@ Dimension.prototype = Object.assign(new node_1.default(), {
                 other = other.convertTo(this.unit.usedUnits());
                 if (context.strictUnits && other.unit.toString() !== unit.toString()) {
                     throw new Error('Incompatible units. Change the units or use the unit function. '
-                        + ("Bad units: '" + unit.toString() + "' and '" + other.unit.toString() + "'."));
+                        + "Bad units: '".concat(unit.toString(), "' and '").concat(other.unit.toString(), "'."));
                 }
                 value = this._operate(context, op, this.value, other.value);
             }

@@ -1,8 +1,6 @@
 # Fraction.js - ℚ in JavaScript
 
-[![NPM Package](https://nodei.co/npm-dl/fraction.js.png?months=6&height=1)](https://npmjs.org/package/fraction.js)
-
-[![Build Status](https://travis-ci.org/infusion/Fraction.js.svg?branch=master)](https://travis-ci.org/infusion/Fraction.js)
+[![NPM Package](https://img.shields.io/npm/v/fraction.js.svg?style=flat)](https://npmjs.org/package/fraction.js "View this project on npm")
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 
@@ -12,15 +10,21 @@ Tired of inprecise numbers represented by doubles, which have to store rational 
 1 / 98 * 98 // = 0.9999999999999999
 ```
 
-If you need more precision or just want a fraction as a result, have a look at *Fraction.js*:
+If you need more precision or just want a fraction as a result, just include *Fraction.js*:
 
 ```javascript
 var Fraction = require('fraction.js');
+// or
+import Fraction from 'fraction.js';
+```
 
+and give it a trial:
+
+```javascript
 Fraction(1).div(98).mul(98) // = 1
 ```
 
-Internally, numbers are represented as *numerator / denominator*, which adds just a little overhead. However, the library is written with performance in mind and outperforms any other implementation, as you can see [here](http://jsperf.com/convert-a-rational-number-to-a-babylonian-fractions/28). This basic data-type makes it the perfect basis for [Polynomial.js](https://github.com/infusion/Polynomial.js) and [Math.js](https://github.com/josdejong/mathjs).
+Internally, numbers are represented as *numerator / denominator*, which adds just a little overhead. However, the library is written with performance and accuracy in mind, which makes it the perfect basis for [Polynomial.js](https://github.com/infusion/Polynomial.js) and [Math.js](https://github.com/josdejong/mathjs).
 
 Convert decimal to fraction
 ===
@@ -88,23 +92,6 @@ var sec = 17; // 17 Seconds
 new Fraction(deg).add(min, 60).add(sec, 3600).toString() // -> 57.7547(2)
 ```
 
-Rounding a fraction to the closest tape measure value
-=== 
-
-A tape measure is usually divided in parts of `1/16`. Rounding a given fraction to the closest value on a tape measure can be determined by
-
-```javascript
-function closestTapeMeasure(frac) {
-
-    /*
-    k/16 ≤ a/b < (k+1)/16
-    ⇔ k ≤ 16*a/b < (k+1)
-    ⇔ k = floor(16*a/b)
-    */
-    return new Fraction(Math.round(16 * Fraction(frac).valueOf()), 16);
-}
-// closestTapeMeasure("1/3") // 5/16
-```
 
 Rational approximation of irrational numbers
 ===
@@ -162,7 +149,7 @@ Get the exact fractional part of a number
 ---
 ```javascript
 var f = new Fraction("-6.(3416)");
-console.log("" + f.mod(1).abs()); // Will print 0.(3416)
+console.log("" + f.mod(1).abs()); // 0.(3416)
 ```
 
 Mathematical correct modulo
@@ -334,7 +321,7 @@ Returns the power of the actual number, raised to an possible rational exponent.
 
 Fraction mod(n)
 ---
-Returns the modulus (rest of the division) of the actual object and n (this % n). It's a much more precise [fmod()](#fmod-impreciseness-circumvented) if you will. Please note that *mod()* is just like the modulo operator of most programming languages. If you want a mathematical correct modulo, see [here](#mathematical-correct-modulo).
+Returns the modulus (rest of the division) of the actual object and n (this % n). It's a much more precise [fmod()](#fmod-impreciseness-circumvented) if you like. Please note that *mod()* is just like the modulo operator of most programming languages. If you want a mathematical correct modulo, see [here](#mathematical-correct-modulo).
 
 Fraction mod()
 ---
@@ -359,6 +346,10 @@ Returns the floor of a rational number with Math.floor
 Fraction round([places=0-16])
 ---
 Returns the rational number rounded with Math.round
+
+Fraction roundTo(multiple)
+---
+Rounds a fraction to the closest multiple of another fraction. 
 
 Fraction inverse()
 ---
@@ -429,12 +420,7 @@ If a really hard error occurs (parsing error, division by zero), *fraction.js* t
 
 Installation
 ===
-Installing fraction.js is as easy as cloning this repo or use one of the following commands:
-
-```
-bower install fraction.js
-```
-or
+Installing fraction.js is as easy as cloning this repo or use the following command:
 
 ```
 npm install fraction.js
@@ -446,18 +432,6 @@ Using Fraction.js with the browser
 <script src="fraction.js"></script>
 <script>
     console.log(Fraction("123/456"));
-</script>
-```
-
-Using Fraction.js with require.js
-===
-```html
-<script src="require.js"></script>
-<script>
-requirejs(['fraction.js'],
-function(Fraction) {
-    console.log(Fraction("123/456"));
-});
 </script>
 ```
 
@@ -488,5 +462,5 @@ npm test
 
 Copyright and licensing
 ===
-Copyright (c) 2014-2019, [Robert Eisele](https://www.xarg.org/)
-Dual licensed under the MIT or GPL Version 2 licenses.
+Copyright (c) 2023, [Robert Eisele](https://raw.org/)
+Licensed under the MIT license.

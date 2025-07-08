@@ -285,11 +285,11 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
                     var name_2 = (r.name.length === 1) && (r.name[0] instanceof keyword_1.default) ?
                         r.name[0].value : r.name;
                     // Properties don't overwrite as they can merge
-                    if (!hash["$" + name_2]) {
-                        hash["$" + name_2] = [r];
+                    if (!hash["$".concat(name_2)]) {
+                        hash["$".concat(name_2)] = [r];
                     }
                     else {
-                        hash["$" + name_2].push(r);
+                        hash["$".concat(name_2)].push(r);
                     }
                 }
                 return hash;
@@ -454,7 +454,7 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
         // If this is the root node, we don't render
         // a selector, or {}.
         if (!this.root) {
-            debugInfo = debug_info_1.default(context, this, tabSetStr);
+            debugInfo = (0, debug_info_1.default)(context, this, tabSetStr);
             if (debugInfo) {
                 output.add(debugInfo);
                 output.add(tabSetStr);
@@ -462,7 +462,7 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
             var paths = this.paths;
             var pathCnt = paths.length;
             var pathSubCnt = void 0;
-            sep = context.compress ? ',' : (",\n" + tabSetStr);
+            sep = context.compress ? ',' : (",\n".concat(tabSetStr));
             for (i = 0; i < pathCnt; i++) {
                 path = paths[i];
                 if (!(pathSubCnt = path.length)) {
@@ -497,14 +497,14 @@ Ruleset.prototype = Object.assign(new node_1.default(), {
             }
             context.lastRule = currentLastRule;
             if (!context.lastRule && rule.isVisible()) {
-                output.add(context.compress ? '' : ("\n" + tabRuleStr));
+                output.add(context.compress ? '' : ("\n".concat(tabRuleStr)));
             }
             else {
                 context.lastRule = false;
             }
         }
         if (!this.root) {
-            output.add((context.compress ? '}' : "\n" + tabSetStr + "}"));
+            output.add((context.compress ? '}' : "\n".concat(tabSetStr, "}")));
             context.tabLevel--;
         }
         if (!output.isEmpty() && !context.compress && this.firstRoot) {

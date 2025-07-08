@@ -39,6 +39,10 @@ var NestableAtRulePrototype = {
         var path = context.mediaPath.concat([this]);
         // Extract the media-query conditions separated with `,` (OR).
         for (i = 0; i < path.length; i++) {
+            if (path[i].type !== this.type) {
+                context.mediaBlocks.splice(i, 1);
+                return this;
+            }
             value = path[i].features instanceof value_1.default ?
                 path[i].features.value : path[i].features;
             path[i] = Array.isArray(value) ? value : [value];

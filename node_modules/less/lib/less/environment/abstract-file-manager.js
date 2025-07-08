@@ -63,7 +63,7 @@ var AbstractFileManager = /** @class */ (function () {
             diff += '../';
         }
         for (i = 0; i < urlDirectories.length - 1; i++) {
-            diff += urlDirectories[i] + "/";
+            diff += "".concat(urlDirectories[i], "/");
         }
         return diff;
     };
@@ -88,13 +88,13 @@ var AbstractFileManager = /** @class */ (function () {
         var i;
         var baseUrlParts;
         if (!urlParts) {
-            throw new Error("Could not parse sheet href - '" + url + "'");
+            throw new Error("Could not parse sheet href - '".concat(url, "'"));
         }
         // Stylesheets in IE don't always return the full path
         if (baseUrl && (!urlParts[1] || urlParts[2])) {
             baseUrlParts = baseUrl.match(urlPartsRegex);
             if (!baseUrlParts) {
-                throw new Error("Could not parse page url - '" + baseUrl + "'");
+                throw new Error("Could not parse page url - '".concat(baseUrl, "'"));
             }
             urlParts[1] = urlParts[1] || baseUrlParts[1] || '';
             if (!urlParts[2]) {

@@ -1,3 +1,14 @@
+## 2.6.0
+
+### Added
+
+- Support editor to return PromiseLike object (#48)
+
+### Changed
+
+- Test on Node.js 18 and upwards
+- Update dependencies
+
 ## 2.5.7
 
 ### Changed

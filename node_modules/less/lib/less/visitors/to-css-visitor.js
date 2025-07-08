@@ -160,7 +160,7 @@ ToCSSVisitor.prototype = {
             // be considered illegal css as it has to be on the first line
             if (this.charset) {
                 if (atRuleNode.debugInfo) {
-                    var comment = new tree_1.default.Comment("/* " + atRuleNode.toCSS(this._context).replace(/\n/g, '') + " */\n");
+                    var comment = new tree_1.default.Comment("/* ".concat(atRuleNode.toCSS(this._context).replace(/\n/g, ''), " */\n"));
                     comment.debugInfo = atRuleNode.debugInfo;
                     return this._visitor.visit(comment);
                 }
@@ -181,11 +181,11 @@ ToCSSVisitor.prototype = {
                     index: ruleNode.getIndex(), filename: ruleNode.fileInfo() && ruleNode.fileInfo().filename };
             }
             if (ruleNode instanceof tree_1.default.Call) {
-                throw { message: "Function '" + ruleNode.name + "' did not return a root node",
+                throw { message: "Function '".concat(ruleNode.name, "' did not return a root node"),
                     index: ruleNode.getIndex(), filename: ruleNode.fileInfo() && ruleNode.fileInfo().filename };
             }
             if (ruleNode.type && !ruleNode.allowRoot) {
-                throw { message: ruleNode.type + " node returned by a function is not valid here",
+                throw { message: "".concat(ruleNode.type, " node returned by a function is not valid here"),
                     index: ruleNode.getIndex(), filename: ruleNode.fileInfo() && ruleNode.fileInfo().filename };
             }
         }

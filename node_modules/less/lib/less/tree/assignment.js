@@ -18,7 +18,7 @@ Assignment.prototype = Object.assign(new node_1.default(), {
         return this;
     },
     genCSS: function (context, output) {
-        output.add(this.key + "=");
+        output.add("".concat(this.key, "="));
         if (this.value.genCSS) {
             this.value.genCSS(context, output);
         }

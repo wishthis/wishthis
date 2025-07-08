@@ -63,6 +63,7 @@ function OutputStream(options) {
         inline_script    : true,
         keep_quoted_props: false,
         max_line_len     : false,
+        module           : false,
         preamble         : null,
         preserve_line    : false,
         quote_keys       : false,
@@ -140,12 +141,22 @@ function OutputStream(options) {
 
     reset();
     var to_utf8 = options.ascii_only ? function(str, identifier) {
-        if (identifier) str = str.replace(/[\ud800-\udbff][\udc00-\udfff]/g, function(ch) {
+        if (identifier || options.module) str = str.replace(/[\ud800-\udbff][\udc00-\udfff]/g, function(ch) {
             return "\\u{" + (ch.charCodeAt(0) - 0xd7c0 << 10 | ch.charCodeAt(1) - 0xdc00).toString(16) + "}";
         });
-        return str.replace(/[\u0000-\u001f\u007f-\uffff]/g, function(ch) {
-            var code = ch.charCodeAt(0).toString(16);
+        return str.replace(/[\u0000-\u001f\u007f-\uffff]/g, function(s, i) {
+            var code = s.charCodeAt(0).toString(16);
             if (code.length <= 2 && !identifier) {
+                switch (s) {
+                  case "\n": return "\\n";
+                  case "\r": return "\\r";
+                  case "\t": return "\\t";
+                  case "\b": return "\\b";
+                  case "\f": return "\\f";
+                  case "\x0B": return options.ie ? "\\x0B" : "\\v";
+                  case "\0":
+                    return /[0-9]/.test(str.charAt(i+1)) ? "\\x00" : "\\0";
+                }
                 while (code.length < 2) code = "0" + code;
                 return "\\x" + code;
             } else {
@@ -259,7 +270,9 @@ function OutputStream(options) {
         if (line_fixed || flush) flush_mappings();
     } : noop;
 
-    var require_semicolon = makePredicate("( [ + * / - , .");
+    var stat_end_chars = makePredicate("; }");
+    var asi_skip_chars = makePredicate("( [ + * / - , . `");
+    var asi_skip_words = makePredicate("in instanceof");
 
     function require_space(prev, ch, str) {
         return is_identifier_char(prev) && (is_identifier_char(ch) || ch == "\\")
@@ -295,8 +308,8 @@ function OutputStream(options) {
         var prev = last.slice(-1);
         if (might_need_semicolon) {
             might_need_semicolon = false;
-            if (prev == ":" && ch == "}" || prev != ";" && (!ch || ";}".indexOf(ch) < 0)) {
-                var need_semicolon = require_semicolon[ch];
+            if (prev != ";" && !stat_end_chars[ch]) {
+                var need_semicolon = asi_skip_chars[ch] || asi_skip_words[str];
                 if (need_semicolon || options.semicolons) {
                     output += ";";
                     current_col++;
@@ -941,7 +954,12 @@ function OutputStream(options) {
     DEFPRINT(AST_LabeledStatement, function(output) {
         this.label.print(output);
         output.colon();
-        this.body.print(output);
+        var body = this.body;
+        if (body instanceof AST_EmptyStatement) {
+            output.force_semicolon();
+        } else {
+            body.print(output);
+        }
     });
     DEFPRINT(AST_SimpleStatement, function(output) {
         this.body.print(output);
@@ -1244,6 +1262,12 @@ function OutputStream(options) {
             output.print("=");
             output.space();
             self.value.print(output);
+        } else switch (self.key) {
+          case "get":
+          case "set":
+          case "static":
+            output.force_semicolon();
+            return;
         }
         output.semicolon();
     });
@@ -1775,13 +1799,16 @@ function OutputStream(options) {
         if (self.tag) self.tag.print(output);
         output.print("`");
         for (var i = 0; i < self.expressions.length; i++) {
-            output.print(self.strings[i]);
+            output.print(output.to_utf8(self.strings[i]));
             output.print("${");
             self.expressions[i].print(output);
             output.print("}");
         }
-        output.print(self.strings[i]);
+        output.print(output.to_utf8(self.strings[i]));
         output.print("`");
+    });
+    DEFPRINT(AST_BigInt, function(output) {
+        output.print(this.value + "n");
     });
     DEFPRINT(AST_Constant, function(output) {
         output.print("" + this.value);

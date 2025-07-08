@@ -331,7 +331,7 @@ exports.default = (function () {
         // this is officially deprecated but can be switched on via an option
         // in the case it causes too much performance issues.
         if (chunkInput) {
-            chunks = chunker_1.default(str, failFunction);
+            chunks = (0, chunker_1.default)(str, failFunction);
         }
         else {
             chunks = [str];

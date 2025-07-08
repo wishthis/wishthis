@@ -60,7 +60,7 @@ exports.default = (function () {
                     throw { type: 'Argument', message: 'svg-gradient direction must be \'to bottom\', \'to right\',' +
                             ' \'to bottom right\', \'to top right\' or \'ellipse at center\'' };
             }
-            returner = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1 1\"><" + gradientType + "Gradient id=\"g\" " + gradientDirectionSvg + ">";
+            returner = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1 1\"><".concat(gradientType, "Gradient id=\"g\" ").concat(gradientDirectionSvg, ">");
             for (i = 0; i < stops.length; i += 1) {
                 if (stops[i] instanceof expression_1.default) {
                     color = stops[i].value[0];
@@ -75,12 +75,12 @@ exports.default = (function () {
                 }
                 positionValue = position ? position.toCSS(renderEnv) : i === 0 ? '0%' : '100%';
                 alpha = color.alpha;
-                returner += "<stop offset=\"" + positionValue + "\" stop-color=\"" + color.toRGB() + "\"" + (alpha < 1 ? " stop-opacity=\"" + alpha + "\"" : '') + "/>";
+                returner += "<stop offset=\"".concat(positionValue, "\" stop-color=\"").concat(color.toRGB(), "\"").concat(alpha < 1 ? " stop-opacity=\"".concat(alpha, "\"") : '', "/>");
             }
-            returner += "</" + gradientType + "Gradient><rect " + rectangleDimension + " fill=\"url(#g)\" /></svg>";
+            returner += "</".concat(gradientType, "Gradient><rect ").concat(rectangleDimension, " fill=\"url(#g)\" /></svg>");
             returner = encodeURIComponent(returner);
-            returner = "data:image/svg+xml," + returner;
-            return new url_1.default(new quoted_1.default("'" + returner + "'", returner, false, this.index, this.currentFileInfo), this.index, this.currentFileInfo);
+            returner = "data:image/svg+xml,".concat(returner);
+            return new url_1.default(new quoted_1.default("'".concat(returner, "'"), returner, false, this.index, this.currentFileInfo), this.index, this.currentFileInfo);
         } };
 });
 //# sourceMappingURL=svg.js.map

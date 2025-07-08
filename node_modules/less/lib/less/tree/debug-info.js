@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function asComment(ctx) {
-    return "/* line " + ctx.debugInfo.lineNumber + ", " + ctx.debugInfo.fileName + " */\n";
+    return "/* line ".concat(ctx.debugInfo.lineNumber, ", ").concat(ctx.debugInfo.fileName, " */\n");
 }
 function asMediaQuery(ctx) {
     var filenameWithProtocol = ctx.debugInfo.fileName;
     if (!/^[a-z]+:\/\//i.test(filenameWithProtocol)) {
-        filenameWithProtocol = "file://" + filenameWithProtocol;
+        filenameWithProtocol = "file://".concat(filenameWithProtocol);
     }
-    return "@media -sass-debug-info{filename{font-family:" + filenameWithProtocol.replace(/([.:/\\])/g, function (a) {
+    return "@media -sass-debug-info{filename{font-family:".concat(filenameWithProtocol.replace(/([.:/\\])/g, function (a) {
         if (a == '\\') {
             a = '/';
         }
-        return "\\" + a;
-    }) + "}line{font-family:\\00003" + ctx.debugInfo.lineNumber + "}}\n";
+        return "\\".concat(a);
+    }), "}line{font-family:\\00003").concat(ctx.debugInfo.lineNumber, "}}\n");
 }
 function debugInfo(context, ctx, lineSeparator) {
     var result = '';

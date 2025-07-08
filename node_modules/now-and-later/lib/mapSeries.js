@@ -4,11 +4,11 @@ var once = require('once');
 
 var helpers = require('./helpers');
 
-function mapSeries(values, iterator, extensions, done) {
-  // Allow for extensions to not be specified
-  if (typeof extensions === 'function') {
-    done = extensions;
-    extensions = {};
+function mapSeries(values, iterator, options, done) {
+  // Allow for options to not be specified
+  if (typeof options === 'function') {
+    done = options;
+    options = {};
   }
 
   // Handle no callback case
@@ -25,7 +25,7 @@ function mapSeries(values, iterator, extensions, done) {
   // Return the same type as passed in
   var results = helpers.initializeResults(values);
 
-  var exts = helpers.defaultExtensions(extensions);
+  var extensions = helpers.defaultExtensions(options);
 
   if (length === 0) {
     return done(null, results);
@@ -37,18 +37,18 @@ function mapSeries(values, iterator, extensions, done) {
   function next(key) {
     var value = values[key];
 
-    var storage = exts.create(value, key) || {};
+    var storage = extensions.create(value, key) || {};
 
-    exts.before(storage);
+    extensions.before(storage);
     iterator(value, key, once(handler));
 
     function handler(err, result) {
       if (err) {
-        exts.error(err, storage);
+        extensions.error(err, storage);
         return done(err, results);
       }
 
-      exts.after(result, storage);
+      extensions.after(result, storage);
       results[key] = result;
 
       if (++idx >= length) {

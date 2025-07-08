@@ -57,9 +57,9 @@ var Visitor = /** @class */ (function () {
         var fnName;
         visitArgs.visitDeeper = true;
         if (!func) {
-            fnName = "visit" + node.type;
+            fnName = "visit".concat(node.type);
             func = impl[fnName] || _noop;
-            funcOut = impl[fnName + "Out"] || _noop;
+            funcOut = impl["".concat(fnName, "Out")] || _noop;
             this._visitInCache[nodeTypeIndex] = func;
             this._visitOutCache[nodeTypeIndex] = funcOut;
         }

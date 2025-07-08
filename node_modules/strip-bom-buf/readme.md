@@ -10,7 +10,7 @@ From Wikipedia:
 ## Install
 
 ```
-$ npm install --save strip-bom-buf
+$ npm install strip-bom-buf
 ```
 
 
@@ -18,9 +18,9 @@ $ npm install --save strip-bom-buf
 
 ```js
 const fs = require('fs');
-const stripBomBuf = require('strip-bom-buf');
+const stripBomBuffer = require('strip-bom-buf');
 
-stripBomBuf(fs.readFileSync('unicorn.txt'));
+stripBomBuffer(fs.readFileSync('unicorn.txt'));
 //=> 'unicorn'
 ```
 

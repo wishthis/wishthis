@@ -1,113 +1,32 @@
 'use strict';
 
 var chokidar = require('chokidar');
-var debounce = require('just-debounce');
 var asyncDone = require('async-done');
-var defaults = require('object.defaults/immutable');
-var isNegatedGlob = require('is-negated-glob');
-var anymatch = require('anymatch');
-var normalize = require('normalize-path');
-
-var defaultOpts = {
-  delay: 200,
-  events: ['add', 'change', 'unlink'],
-  ignored: [],
-  ignoreInitial: true,
-  queue: true,
-};
-
-function listenerCount(ee, evtName) {
-  if (typeof ee.listenerCount === 'function') {
-    return ee.listenerCount(evtName);
-  }
-
-  return ee.listeners(evtName).length;
-}
-
-function hasErrorListener(ee) {
-  return listenerCount(ee, 'error') !== 0;
-}
-
-function exists(val) {
-  return val != null;
-}
+var normalizeArgs = require('./lib/normalize-args');
+var debounce = require('./lib/debounce');
 
 function watch(glob, options, cb) {
-  if (typeof options === 'function') {
-    cb = options;
-    options = {};
-  }
+  return normalizeArgs(glob, options, cb, watchProc);
+}
 
-  var opt = defaults(options, defaultOpts);
+function watchProc(globs, options, cb) {
+  var watcher = chokidar.watch(globs, options);
+  registerWatchEvent(watcher, options, cb);
+  return watcher;
+}
 
-  if (!Array.isArray(opt.events)) {
-    opt.events = [opt.events];
-  }
-
-  if (Array.isArray(glob)) {
-    // We slice so we don't mutate the passed globs array
-    glob = glob.slice();
-  } else {
-    glob = [glob];
+function registerWatchEvent(watcher, opts, cb) {
+  if (typeof cb !== 'function') {
+    return;
   }
 
   var queued = false;
   var running = false;
 
-  // These use sparse arrays to keep track of the index in the
-  // original globs array
-  var positives = new Array(glob.length);
-  var negatives = new Array(glob.length);
-
-  // Reverse the glob here so we don't end up with a positive
-  // and negative glob in position 0 after a reverse
-  glob.reverse().forEach(sortGlobs);
-
-  function sortGlobs(globString, index) {
-    var result = isNegatedGlob(globString);
-    if (result.negated) {
-      negatives[index] = result.pattern;
-    } else {
-      positives[index] = result.pattern;
-    }
-  }
-
-  var toWatch = positives.filter(exists);
-
-  function joinCwd(glob) {
-    if (glob && opt.cwd) {
-      return normalize(opt.cwd + '/' + glob);
-    }
-
-    return glob;
-  }
-
-  // We only do add our custom `ignored` if there are some negative globs
-  // TODO: I'm not sure how to test this
-  if (negatives.some(exists)) {
-    var normalizedPositives = positives.map(joinCwd);
-    var normalizedNegatives = negatives.map(joinCwd);
-    var shouldBeIgnored = function(path) {
-      var positiveMatch = anymatch(normalizedPositives, path, true);
-      var negativeMatch = anymatch(normalizedNegatives, path, true);
-      // If negativeMatch is -1, that means it was never negated
-      if (negativeMatch === -1) {
-        return false;
-      }
-
-      // If the negative is "less than" the positive, that means
-      // it came later in the glob array before we reversed them
-      return negativeMatch < positiveMatch;
-    };
-
-    opt.ignored = [].concat(opt.ignored, shouldBeIgnored);
-  }
-  var watcher = chokidar.watch(toWatch, opt);
-
   function runComplete(err) {
     running = false;
 
-    if (err && hasErrorListener(watcher)) {
+    if (err && watcher.listenerCount('error') > 0) {
       watcher.emit('error', err);
     }
 
@@ -120,7 +39,7 @@ function watch(glob, options, cb) {
 
   function onChange() {
     if (running) {
-      if (opt.queue) {
+      if (opts.queue) {
         queued = true;
       }
       return;
@@ -130,20 +49,12 @@ function watch(glob, options, cb) {
     asyncDone(cb, runComplete);
   }
 
-  var fn;
-  if (typeof cb === 'function') {
-    fn = debounce(onChange, opt.delay);
-  }
+  var debounced = debounce(onChange, opts.delay);
+  opts.events.forEach(watchEvent);
 
   function watchEvent(eventName) {
-    watcher.on(eventName, fn);
+    watcher.on(eventName, debounced);
   }
-
-  if (fn) {
-    opt.events.forEach(watchEvent);
-  }
-
-  return watcher;
 }
 
 module.exports = watch;

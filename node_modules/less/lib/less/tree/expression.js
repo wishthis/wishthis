@@ -5,6 +5,7 @@ var node_1 = tslib_1.__importDefault(require("./node"));
 var paren_1 = tslib_1.__importDefault(require("./paren"));
 var comment_1 = tslib_1.__importDefault(require("./comment"));
 var dimension_1 = tslib_1.__importDefault(require("./dimension"));
+var anonymous_1 = tslib_1.__importDefault(require("./anonymous"));
 var Expression = function (value, noSpacing) {
     this.value = value;
     this.noSpacing = noSpacing;
@@ -55,7 +56,10 @@ Expression.prototype = Object.assign(new node_1.default(), {
         for (var i = 0; i < this.value.length; i++) {
             this.value[i].genCSS(context, output);
             if (!this.noSpacing && i + 1 < this.value.length) {
-                output.add(' ');
+                if (i + 1 < this.value.length && !(this.value[i + 1] instanceof anonymous_1.default) ||
+                    this.value[i + 1] instanceof anonymous_1.default && this.value[i + 1].value !== ',') {
+                    output.add(' ');
+                }
             }
         }
     },

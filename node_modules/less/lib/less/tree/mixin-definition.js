@@ -83,7 +83,7 @@ Definition.prototype = Object.assign(new ruleset_1.default(), {
                         continue;
                     }
                     else {
-                        throw { type: 'Runtime', message: "Named argument for " + this.name + " " + args[i].name + " not found" };
+                        throw { type: 'Runtime', message: "Named argument for ".concat(this.name, " ").concat(args[i].name, " not found") };
                     }
                 }
             }
@@ -118,7 +118,7 @@ Definition.prototype = Object.assign(new ruleset_1.default(), {
                         frame.resetCache();
                     }
                     else {
-                        throw { type: 'Runtime', message: "wrong number of arguments for " + this.name + " (" + argsLength + " for " + this.arity + ")" };
+                        throw { type: 'Runtime', message: "wrong number of arguments for ".concat(this.name, " (").concat(argsLength, " for ").concat(this.arity, ")") };
                     }
                     frame.prependRule(new declaration_1.default(name, val));
                     evaldArguments[i] = val;

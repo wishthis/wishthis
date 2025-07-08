@@ -36,6 +36,7 @@ module.exports = function(editor, jsbeautifyOptions, deepmergeOptions) {
    * create through object and return it
    */
   return through.obj(function(file, encoding, callback) {
+    var self = this;
 
     // ignore it
     if (file.isNull()) {
@@ -50,6 +51,12 @@ module.exports = function(editor, jsbeautifyOptions, deepmergeOptions) {
       return callback();
     }
 
+    // when edit fail
+    var onError = function(err) {
+      self.emit('error', new PluginError('gulp-json-editor', err));
+      callback();
+    };
+
     try {
       // try to get current indentation
       var indent = detectIndent(file.contents.toString('utf8'));
@@ -60,21 +67,34 @@ module.exports = function(editor, jsbeautifyOptions, deepmergeOptions) {
       beautifyOptions.indent_char = beautifyOptions.indent_char || (indent.type === 'tab' ? '\t' : ' ');
       beautifyOptions.beautify = !('beautify' in beautifyOptions && !beautifyOptions.beautify);
 
+      // when edit success
+      var onSuccess = function(json) {
+        json = JSON.stringify(json);
+        
+        // beautify JSON
+        if (beautifyOptions.beautify) {
+          json = jsbeautify(json, beautifyOptions);
+        }
+  
+        // write it to file
+        file.contents = Buffer.from(json);
+        self.push(file);
+        callback();
+      };
+  
       // edit JSON object and get it as string notation
-      var json = JSON.stringify(editBy(JSON.parse(file.contents.toString('utf8'))));
-
-      // beautify JSON
-      if (beautifyOptions.beautify) {
-        json = jsbeautify(json, beautifyOptions);
+      var res = editBy(JSON.parse(file.contents.toString('utf8')));
+      if (isPromiseLike(res)) {
+        res.then(onSuccess, onError);
+      } else {
+        onSuccess(res);
       }
-
-      // write it to file
-      file.contents = Buffer.from(json);
     } catch (err) {
-      this.emit('error', new PluginError('gulp-json-editor', err));
+      onError(err);
     }
-
-    this.push(file);
-    callback();
   });
 };
+
+function isPromiseLike(maybePromise) {
+  return typeof maybePromise === 'object' && maybePromise !== null && typeof maybePromise.then === 'function';
+}

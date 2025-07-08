@@ -1,19 +1,20 @@
 {
   "name": "object-assign",
-  "version": "3.0.0",
-  "description": "ES6 Object.assign() ponyfill",
+  "version": "4.1.1",
+  "description": "ES2015 `Object.assign()` ponyfill",
   "license": "MIT",
   "repository": "sindresorhus/object-assign",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "xo && ava",
+    "bench": "matcha bench.js"
   },
   "files": [
     "index.js"
@@ -23,7 +24,7 @@
     "assign",
     "extend",
     "properties",
-    "es6",
+    "es2015",
     "ecmascript",
     "harmony",
     "ponyfill",
@@ -33,6 +34,9 @@
     "browser"
   ],
   "devDependencies": {
-    "mocha": "*"
+    "ava": "^0.16.0",
+    "lodash": "^4.16.4",
+    "matcha": "^0.7.0",
+    "xo": "^0.16.0"
   }
 }

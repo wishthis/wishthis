@@ -26,13 +26,13 @@ var parse_node_version_1 = tslib_1.__importDefault(require("parse-node-version")
 function default_1(environment, fileManagers) {
     var sourceMapOutput, sourceMapBuilder, parseTree, importManager;
     environment = new environment_1.default(environment, fileManagers);
-    sourceMapOutput = source_map_output_1.default(environment);
-    sourceMapBuilder = source_map_builder_1.default(sourceMapOutput, environment);
-    parseTree = parse_tree_1.default(sourceMapBuilder);
-    importManager = import_manager_1.default(environment);
-    var render = render_1.default(environment, parseTree, importManager);
-    var parse = parse_1.default(environment, parseTree, importManager);
-    var v = parse_node_version_1.default("v" + package_json_1.version);
+    sourceMapOutput = (0, source_map_output_1.default)(environment);
+    sourceMapBuilder = (0, source_map_builder_1.default)(sourceMapOutput, environment);
+    parseTree = (0, parse_tree_1.default)(sourceMapBuilder);
+    importManager = (0, import_manager_1.default)(environment);
+    var render = (0, render_1.default)(environment, parseTree, importManager);
+    var parse = (0, parse_1.default)(environment, parseTree, importManager);
+    var v = (0, parse_node_version_1.default)("v".concat(package_json_1.version));
     var initial = {
         version: [v.major, v.minor, v.patch],
         data: data_1.default,
@@ -43,7 +43,7 @@ function default_1(environment, fileManagers) {
         environment: environment,
         visitors: visitors_1.default,
         Parser: parser_1.default,
-        functions: functions_1.default(environment),
+        functions: (0, functions_1.default)(environment),
         contexts: contexts_1.default,
         SourceMapOutput: sourceMapOutput,
         SourceMapBuilder: sourceMapBuilder,

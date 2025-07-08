@@ -15,7 +15,7 @@ function default_1(SourceMapBuilder) {
             var result = {};
             var sourceMapBuilder;
             try {
-                evaldRoot = transform_tree_1.default(this.root, options);
+                evaldRoot = (0, transform_tree_1.default)(this.root, options);
             }
             catch (e) {
                 throw new less_error_1.default(e, this.imports);

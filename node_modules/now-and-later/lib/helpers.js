@@ -9,13 +9,13 @@ var defaultExts = {
   error: noop,
 };
 
-function defaultExtensions(extensions) {
-  extensions = extensions || {};
+function defaultExtensions(options) {
+  options = options || {};
   return {
-    create: extensions.create || defaultExts.create,
-    before: extensions.before || defaultExts.before,
-    after: extensions.after || defaultExts.after,
-    error: extensions.error || defaultExts.error,
+    create: options.create || defaultExts.create,
+    before: options.before || defaultExts.before,
+    after: options.after || defaultExts.after,
+    error: options.error || defaultExts.error,
   };
 }
 

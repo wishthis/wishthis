@@ -5,7 +5,7 @@ var utils = tslib_1.__importStar(require("./utils"));
 var browser_1 = tslib_1.__importDefault(require("./browser"));
 exports.default = (function (window, less, options) {
     function errorHTML(e, rootHref) {
-        var id = "less-error-message:" + utils.extractId(rootHref || '');
+        var id = "less-error-message:".concat(utils.extractId(rootHref || ''));
         var template = '<li><label>{line}</label><pre class="{class}">{content}</pre></li>';
         var elem = window.document.createElement('div');
         var timer;
@@ -15,8 +15,8 @@ exports.default = (function (window, less, options) {
         var filenameNoPath = filename.match(/([^/]+(\?.*)?)$/)[1];
         elem.id = id;
         elem.className = 'less-error-message';
-        content = "<h3>" + (e.type || 'Syntax') + "Error: " + (e.message || 'There is an error in your .less file') +
-            ("</h3><p>in <a href=\"" + filename + "\">" + filenameNoPath + "</a> ");
+        content = "<h3>".concat(e.type || 'Syntax', "Error: ").concat(e.message || 'There is an error in your .less file') +
+            "</h3><p>in <a href=\"".concat(filename, "\">").concat(filenameNoPath, "</a> ");
         var errorline = function (e, i, classname) {
             if (e.extract[i] !== undefined) {
                 errors.push(template.replace(/\{line\}/, (parseInt(e.line, 10) || 0) + (i - 1))
@@ -28,10 +28,10 @@ exports.default = (function (window, less, options) {
             errorline(e, 0, '');
             errorline(e, 1, 'line');
             errorline(e, 2, '');
-            content += "on line " + e.line + ", column " + (e.column + 1) + ":</p><ul>" + errors.join('') + "</ul>";
+            content += "on line ".concat(e.line, ", column ").concat(e.column + 1, ":</p><ul>").concat(errors.join(''), "</ul>");
         }
         if (e.stack && (e.extract || options.logLevel >= 4)) {
-            content += "<br/>Stack Trace</br />" + e.stack.split('\n').slice(1).join('<br/>');
+            content += "<br/>Stack Trace</br />".concat(e.stack.split('\n').slice(1).join('<br/>'));
         }
         elem.innerHTML = content;
         // CSS for error messages
@@ -101,7 +101,7 @@ exports.default = (function (window, less, options) {
         }
     }
     function removeErrorHTML(path) {
-        var node = window.document.getElementById("less-error-message:" + utils.extractId(path));
+        var node = window.document.getElementById("less-error-message:".concat(utils.extractId(path)));
         if (node) {
             node.parentNode.removeChild(node);
         }
@@ -124,7 +124,7 @@ exports.default = (function (window, less, options) {
         var template = '{line} {content}';
         var filename = e.filename || rootHref;
         var errors = [];
-        var content = (e.type || 'Syntax') + "Error: " + (e.message || 'There is an error in your .less file') + " in " + filename;
+        var content = "".concat(e.type || 'Syntax', "Error: ").concat(e.message || 'There is an error in your .less file', " in ").concat(filename);
         var errorline = function (e, i, classname) {
             if (e.extract[i] !== undefined) {
                 errors.push(template.replace(/\{line\}/, (parseInt(e.line, 10) || 0) + (i - 1))
@@ -136,10 +136,10 @@ exports.default = (function (window, less, options) {
             errorline(e, 0, '');
             errorline(e, 1, 'line');
             errorline(e, 2, '');
-            content += " on line " + e.line + ", column " + (e.column + 1) + ":\n" + errors.join('\n');
+            content += " on line ".concat(e.line, ", column ").concat(e.column + 1, ":\n").concat(errors.join('\n'));
         }
         if (e.stack && (e.extract || options.logLevel >= 4)) {
-            content += "\nStack Trace\n" + e.stack;
+            content += "\nStack Trace\n".concat(e.stack);
         }
         less.logger.error(content);
     }

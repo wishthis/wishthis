@@ -25,7 +25,7 @@ Attribute.prototype = Object.assign(new node_1.default(), {
         if (this.cif) {
             value = value + ' ' + this.cif;
         }
-        return "[" + value + "]";
+        return "[".concat(value, "]");
     }
 });
 exports.default = Attribute;

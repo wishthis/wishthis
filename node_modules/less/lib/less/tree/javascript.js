@@ -20,7 +20,7 @@ JavaScript.prototype = Object.assign(new js_eval_node_1.default(), {
             return new dimension_1.default(result);
         }
         else if (type === 'string') {
-            return new quoted_1.default("\"" + result + "\"", result, this.escaped, this._index);
+            return new quoted_1.default("\"".concat(result, "\""), result, this.escaped, this._index);
         }
         else if (Array.isArray(result)) {
             return new anonymous_1.default(result.join(', '));

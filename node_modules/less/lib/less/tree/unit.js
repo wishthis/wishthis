@@ -35,7 +35,7 @@ Unit.prototype = Object.assign(new node_1.default(), {
     toString: function () {
         var i, returnStr = this.numerator.join('*');
         for (i = 0; i < this.denominator.length; i++) {
-            returnStr += "/" + this.denominator[i];
+            returnStr += "/".concat(this.denominator[i]);
         }
         return returnStr;
     },

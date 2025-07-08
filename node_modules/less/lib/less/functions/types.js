@@ -52,7 +52,7 @@ exports.default = {
     unit: function (val, unit) {
         if (!(val instanceof dimension_1.default)) {
             throw { type: 'Argument',
-                message: "the first argument to unit must be a number" + (val instanceof operation_1.default ? '. Have you forgotten parenthesis?' : '') };
+                message: "the first argument to unit must be a number".concat(val instanceof operation_1.default ? '. Have you forgotten parenthesis?' : '') };
         }
         if (unit) {
             if (unit instanceof keyword_1.default) {

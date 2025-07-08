@@ -128,7 +128,7 @@ MixinCall.prototype = Object.assign(new node_1.default(), {
                     defaultResult = defTrue;
                     if ((count[defTrue] + count[defFalse]) > 1) {
                         throw { type: 'Runtime',
-                            message: "Ambiguous use of `default()` found when matching for `" + this.format(args) + "`",
+                            message: "Ambiguous use of `default()` found when matching for `".concat(this.format(args), "`"),
                             index: this.getIndex(), filename: this.fileInfo().filename };
                     }
                 }
@@ -158,12 +158,12 @@ MixinCall.prototype = Object.assign(new node_1.default(), {
         }
         if (isOneFound) {
             throw { type: 'Runtime',
-                message: "No matching definition was found for `" + this.format(args) + "`",
+                message: "No matching definition was found for `".concat(this.format(args), "`"),
                 index: this.getIndex(), filename: this.fileInfo().filename };
         }
         else {
             throw { type: 'Name',
-                message: this.selector.toCSS().trim() + " is undefined",
+                message: "".concat(this.selector.toCSS().trim(), " is undefined"),
                 index: this.getIndex(), filename: this.fileInfo().filename };
         }
     },
@@ -177,10 +177,10 @@ MixinCall.prototype = Object.assign(new node_1.default(), {
         }
     },
     format: function (args) {
-        return this.selector.toCSS().trim() + "(" + (args ? args.map(function (a) {
+        return "".concat(this.selector.toCSS().trim(), "(").concat(args ? args.map(function (a) {
             var argValue = '';
             if (a.name) {
-                argValue += a.name + ":";
+                argValue += "".concat(a.name, ":");
             }
             if (a.value.toCSS) {
                 argValue += a.value.toCSS();
@@ -189,7 +189,7 @@ MixinCall.prototype = Object.assign(new node_1.default(), {
                 argValue += '???';
             }
             return argValue;
-        }).join(', ') : '') + ")";
+        }).join(', ') : '', ")");
     }
 });
 exports.default = MixinCall;

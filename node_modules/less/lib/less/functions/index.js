@@ -14,6 +14,7 @@ var number_1 = tslib_1.__importDefault(require("./number"));
 var string_1 = tslib_1.__importDefault(require("./string"));
 var svg_1 = tslib_1.__importDefault(require("./svg"));
 var types_1 = tslib_1.__importDefault(require("./types"));
+var style_1 = tslib_1.__importDefault(require("./style"));
 exports.default = (function (environment) {
     var functions = { functionRegistry: function_registry_1.default, functionCaller: function_caller_1.default };
     // register functions
@@ -21,13 +22,14 @@ exports.default = (function (environment) {
     function_registry_1.default.add('default', default_1.default.eval.bind(default_1.default));
     function_registry_1.default.addMultiple(color_1.default);
     function_registry_1.default.addMultiple(color_blending_1.default);
-    function_registry_1.default.addMultiple(data_uri_1.default(environment));
+    function_registry_1.default.addMultiple((0, data_uri_1.default)(environment));
     function_registry_1.default.addMultiple(list_1.default);
     function_registry_1.default.addMultiple(math_1.default);
     function_registry_1.default.addMultiple(number_1.default);
     function_registry_1.default.addMultiple(string_1.default);
-    function_registry_1.default.addMultiple(svg_1.default(environment));
+    function_registry_1.default.addMultiple((0, svg_1.default)(environment));
     function_registry_1.default.addMultiple(types_1.default);
+    function_registry_1.default.addMultiple(style_1.default);
     return functions;
 });
 //# sourceMappingURL=index.js.map

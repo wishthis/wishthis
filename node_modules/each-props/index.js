@@ -1,9 +1,9 @@
 'use strict';
 
-var isPlainObject = require('is-plain-object');
+var isPlainObject = require('is-plain-object').isPlainObject;
 var defaults = require('object.defaults/immutable');
 
-module.exports = function(obj, fn, opts) {
+module.exports = function (obj, fn, opts) {
   if (!isObject(obj)) {
     return;
   }
@@ -54,4 +54,3 @@ function forEachChild(node, baseKey, fn, depth, opts) {
 function isObject(v) {
   return Object.prototype.toString.call(v) === '[object Object]';
 }
-

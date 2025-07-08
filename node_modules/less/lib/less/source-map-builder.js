@@ -37,13 +37,13 @@ function default_1(SourceMapOutput, environment) {
                 if (this.sourceMap === undefined) {
                     return '';
                 }
-                sourceMapURL = "data:application/json;base64," + environment.encodeBase64(this.sourceMap);
+                sourceMapURL = "data:application/json;base64,".concat(environment.encodeBase64(this.sourceMap));
             }
             if (this.options.disableSourcemapAnnotation) {
                 return '';
             }
             if (sourceMapURL) {
-                return "/*# sourceMappingURL=" + sourceMapURL + " */";
+                return "/*# sourceMappingURL=".concat(sourceMapURL, " */");
             }
             return '';
         };

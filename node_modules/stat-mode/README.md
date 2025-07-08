@@ -1,7 +1,7 @@
 stat-mode
 =========
 ### Offers convenient getters and setters for the stat `mode`
-[![Build Status](https://travis-ci.org/TooTallNate/stat-mode.svg?branch=master)](https://travis-ci.org/TooTallNate/stat-mode)
+[![Build Status](https://github.com/TooTallNate/stat-mode/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/stat-mode/actions?workflow=Node+CI)
 
 You know that `mode` property on the `fs.Stat` object that you probably
 usually just ignore? Well there's acutally a lot of information packed

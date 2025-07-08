@@ -125,7 +125,7 @@ FileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(), 
                     })(0);
                 }
                 else {
-                    reject({ type: 'File', message: "'" + filename + "' wasn't found. Tried - " + filenamesTried.join(',') });
+                    reject({ type: 'File', message: "'".concat(filename, "' wasn't found. Tried - ").concat(filenamesTried.join(',')) });
                 }
             }(0));
         }

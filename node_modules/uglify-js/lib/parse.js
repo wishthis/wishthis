@@ -207,11 +207,14 @@ function JS_Parse_Error(message, filename, line, col, pos) {
     this.line = line;
     this.col = col;
     this.pos = pos;
+    try {
+        throw new SyntaxError(message, filename, line, col);
+    } catch (cause) {
+        configure_error_stack(this, cause);
+    }
 }
-JS_Parse_Error.prototype = Object.create(Error.prototype);
+JS_Parse_Error.prototype = Object.create(SyntaxError.prototype);
 JS_Parse_Error.prototype.constructor = JS_Parse_Error;
-JS_Parse_Error.prototype.name = "SyntaxError";
-configure_error_stack(JS_Parse_Error);
 
 function js_error(message, filename, line, col, pos) {
     throw new JS_Parse_Error(message, filename, line, col, pos);
@@ -391,7 +394,8 @@ function tokenizer($TEXT, filename, html5_comments, shebang) {
         var valid = parse_js_number(num);
         if (isNaN(valid)) parse_error("Invalid syntax: " + num);
         if (has_dot || has_e || peek() != "n") return token("num", valid);
-        return token("bigint", num.toLowerCase() + next());
+        next();
+        return token("bigint", num.toLowerCase());
     }
 
     function read_escaped_char(in_string) {

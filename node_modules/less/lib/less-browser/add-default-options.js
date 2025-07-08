@@ -5,7 +5,7 @@ var utils_1 = require("./utils");
 var browser_1 = tslib_1.__importDefault(require("./browser"));
 exports.default = (function (window, options) {
     // use options from the current script tag data attribues
-    utils_1.addDataAttr(options, browser_1.default.currentScript(window));
+    (0, utils_1.addDataAttr)(options, browser_1.default.currentScript(window));
     if (options.isFileProtocol === undefined) {
         options.isFileProtocol = /^(file|(chrome|safari)(-extension)?|resource|qrc|app):/.test(window.location.protocol);
     }

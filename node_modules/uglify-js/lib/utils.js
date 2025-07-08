@@ -55,28 +55,41 @@ function find_if(func, array) {
     for (var i = array.length; --i >= 0;) if (func(array[i])) return array[i];
 }
 
-function configure_error_stack(fn) {
-    Object.defineProperty(fn.prototype, "stack", {
+function configure_error_stack(ex, cause) {
+    var stack = ex.name + ": " + ex.message;
+    Object.defineProperty(ex, "stack", {
         get: function() {
-            var err = new Error(this.message);
-            err.name = this.name;
-            try {
-                throw err;
-            } catch (e) {
-                return e.stack;
+            if (cause) {
+                cause.name = "" + ex.name;
+                stack = "" + cause.stack;
+                var msg = "" + cause.message;
+                cause = null;
+                var index = stack.indexOf(msg);
+                if (index < 0) {
+                    index = 0;
+                } else {
+                    index += msg.length;
+                    index = stack.indexOf("\n", index) + 1;
+                }
+                stack = stack.slice(0, index) + stack.slice(stack.indexOf("\n", index) + 1);
             }
-        }
+            return stack;
+        },
     });
 }
 
 function DefaultsError(msg, defs) {
     this.message = msg;
     this.defs = defs;
+    try {
+        throw new Error(msg);
+    } catch (cause) {
+        configure_error_stack(this, cause);
+    }
 }
 DefaultsError.prototype = Object.create(Error.prototype);
 DefaultsError.prototype.constructor = DefaultsError;
 DefaultsError.prototype.name = "DefaultsError";
-configure_error_stack(DefaultsError);
 
 function defaults(args, defs, croak) {
     if (croak) for (var i in args) {

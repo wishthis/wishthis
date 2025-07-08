@@ -9,8 +9,8 @@ tape('shifts next', function (t) {
   passthrough.write('hello')
   passthrough.write('world')
 
-  t.same(shift(passthrough), Buffer('hello'))
-  t.same(shift(passthrough), Buffer('world'))
+  t.same(shift(passthrough), Buffer.from('hello'))
+  t.same(shift(passthrough), Buffer.from('world'))
   t.end()
 })
 
@@ -20,8 +20,8 @@ tape('shifts next with core', function (t) {
   passthrough.write('hello')
   passthrough.write('world')
 
-  t.same(shift(passthrough), Buffer('hello'))
-  t.same(shift(passthrough), Buffer('world'))
+  t.same(shift(passthrough), Buffer.from('hello'))
+  t.same(shift(passthrough), Buffer.from('world'))
   t.end()
 })
 

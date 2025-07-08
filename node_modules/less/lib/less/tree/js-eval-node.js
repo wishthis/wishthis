@@ -15,13 +15,13 @@ JsEvalNode.prototype = Object.assign(new node_1.default(), {
                 index: this.getIndex() };
         }
         expression = expression.replace(/@\{([\w-]+)\}/g, function (_, name) {
-            return that.jsify(new variable_1.default("@" + name, that.getIndex(), that.fileInfo()).eval(context));
+            return that.jsify(new variable_1.default("@".concat(name), that.getIndex(), that.fileInfo()).eval(context));
         });
         try {
-            expression = new Function("return (" + expression + ")");
+            expression = new Function("return (".concat(expression, ")"));
         }
         catch (e) {
-            throw { message: "JavaScript evaluation error: " + e.message + " from `" + expression + "`",
+            throw { message: "JavaScript evaluation error: ".concat(e.message, " from `").concat(expression, "`"),
                 filename: this.fileInfo().filename,
                 index: this.getIndex() };
         }
@@ -41,7 +41,7 @@ JsEvalNode.prototype = Object.assign(new node_1.default(), {
             result = expression.call(evalContext);
         }
         catch (e) {
-            throw { message: "JavaScript evaluation error: '" + e.name + ": " + e.message.replace(/["]/g, '\'') + "'",
+            throw { message: "JavaScript evaluation error: '".concat(e.name, ": ").concat(e.message.replace(/["]/g, '\''), "'"),
                 filename: this.fileInfo().filename,
                 index: this.getIndex() };
         }
@@ -49,7 +49,7 @@ JsEvalNode.prototype = Object.assign(new node_1.default(), {
     },
     jsify: function (obj) {
         if (Array.isArray(obj.value) && (obj.value.length > 1)) {
-            return "[" + obj.value.map(function (v) { return v.toCSS(); }).join(', ') + "]";
+            return "[".concat(obj.value.map(function (v) { return v.toCSS(); }).join(', '), "]");
         }
         else {
             return obj.toCSS();

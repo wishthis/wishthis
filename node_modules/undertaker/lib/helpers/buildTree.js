@@ -1,11 +1,9 @@
 'use strict';
 
-var map = require('collection-map');
-
 var metadata = require('./metadata');
 
 function buildTree(tasks) {
-  return map(tasks, function(task) {
+  return Object.values(tasks).map(function(task) {
     var meta = metadata.get(task);
     if (meta) {
       return meta.tree;

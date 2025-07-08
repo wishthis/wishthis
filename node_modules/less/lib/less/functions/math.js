@@ -23,7 +23,7 @@ for (var f in mathFunctions) {
 }
 mathFunctions.round = function (n, f) {
     var fraction = typeof f === 'undefined' ? 0 : f.value;
-    return math_helper_js_1.default(function (num) { return num.toFixed(fraction); }, null, n);
+    return (0, math_helper_js_1.default)(function (num) { return num.toFixed(fraction); }, null, n);
 };
 exports.default = mathFunctions;
 //# sourceMappingURL=math.js.map

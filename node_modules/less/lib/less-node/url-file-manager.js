@@ -36,18 +36,18 @@ UrlFileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(
             request.get(hackUrlStr, { follow_max: 5 }, function (err, resp, body) {
                 if (err || resp && resp.statusCode >= 400) {
                     var message = resp && resp.statusCode === 404
-                        ? "resource '" + urlStr + "' was not found\n"
-                        : "resource '" + urlStr + "' gave this Error:\n  " + (err || resp.statusMessage || resp.statusCode) + "\n";
+                        ? "resource '".concat(urlStr, "' was not found\n")
+                        : "resource '".concat(urlStr, "' gave this Error:\n  ").concat(err || resp.statusMessage || resp.statusCode, "\n");
                     reject({ type: 'File', message: message });
                     return;
                 }
                 if (resp.statusCode >= 300) {
-                    reject({ type: 'File', message: "resource '" + urlStr + "' caused too many redirects" });
+                    reject({ type: 'File', message: "resource '".concat(urlStr, "' caused too many redirects") });
                     return;
                 }
                 body = body.toString('utf8');
                 if (!body) {
-                    logger_1.default.warn("Warning: Empty body (HTTP " + resp.statusCode + ") returned by \"" + urlStr + "\"");
+                    logger_1.default.warn("Warning: Empty body (HTTP ".concat(resp.statusCode, ") returned by \"").concat(urlStr, "\""));
                 }
                 fulfill({ contents: body || '', filename: urlStr });
             });

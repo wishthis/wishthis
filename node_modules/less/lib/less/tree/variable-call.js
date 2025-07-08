@@ -17,7 +17,7 @@ VariableCall.prototype = Object.assign(new node_1.default(), {
     eval: function (context) {
         var rules;
         var detachedRuleset = new variable_1.default(this.variable, this.getIndex(), this.fileInfo()).eval(context);
-        var error = new less_error_1.default({ message: "Could not evaluate variable call " + this.variable });
+        var error = new less_error_1.default({ message: "Could not evaluate variable call ".concat(this.variable) });
         if (!detachedRuleset.ruleset) {
             if (detachedRuleset.rules) {
                 rules = detachedRuleset;

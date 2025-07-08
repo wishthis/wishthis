@@ -27,8 +27,11 @@ var minMax = function (isMin, args) {
         if (!(current instanceof dimension_1.default)) {
             if (Array.isArray(args[i].value)) {
                 Array.prototype.push.apply(args, Array.prototype.slice.call(args[i].value));
+                continue;
             }
-            continue;
+            else {
+                throw { type: 'Argument', message: 'incompatible types' };
+            }
         }
         currentUnified = current.unit.toString() === '' && unitClone !== undefined ? new dimension_1.default(current.value, unitClone).unify() : current.unify();
         unit = currentUnified.unit.toString() === '' && unitStatic !== undefined ? unitStatic : currentUnified.unit.toString();
@@ -53,7 +56,7 @@ var minMax = function (isMin, args) {
         return order[0];
     }
     args = order.map(function (a) { return a.toCSS(_this.context); }).join(this.context.compress ? ',' : ', ');
-    return new anonymous_1.default((isMin ? 'min' : 'max') + "(" + args + ")");
+    return new anonymous_1.default("".concat(isMin ? 'min' : 'max', "(").concat(args, ")"));
 };
 exports.default = {
     min: function () {
@@ -96,7 +99,7 @@ exports.default = {
         return new dimension_1.default(Math.pow(x.value, y.value), x.unit);
     },
     percentage: function (n) {
-        var result = math_helper_js_1.default(function (num) { return num * 100; }, '%', n);
+        var result = (0, math_helper_js_1.default)(function (num) { return num * 100; }, '%', n);
         return result;
     }
 };

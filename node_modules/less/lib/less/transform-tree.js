@@ -31,7 +31,7 @@ function default_1(root, options) {
                 }
                 value = new tree_1.default.Value([value]);
             }
-            return new tree_1.default.Declaration("@" + k, value, false, null, 0);
+            return new tree_1.default.Declaration("@".concat(k), value, false, null, 0);
         });
         evalEnv.frames = [new tree_1.default.Ruleset(null, variables)];
     }

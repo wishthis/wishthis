@@ -49,8 +49,9 @@ function parse_source_map(content) {
 function set_shorthand(name, options, keys) {
     keys.forEach(function(key) {
         if (options[key]) {
-            if (typeof options[key] != "object") options[key] = {};
-            if (!(name in options[key])) options[key][name] = options[name];
+            var defs = {};
+            defs[name] = options[name];
+            options[key] = defaults(options[key], defs);
         }
     });
 }
@@ -82,14 +83,14 @@ function minify(files, options) {
             keep_fargs: false,
             keep_fnames: false,
             mangle: {},
-            module: false,
+            module: undefined,
             nameCache: null,
             output: {},
             parse: {},
             rename: undefined,
             sourceMap: false,
             timings: false,
-            toplevel: !!(options && options["module"]),
+            toplevel: options && !options["expression"] && options["module"] ? true : undefined,
             v8: false,
             validate: false,
             warnings: false,
@@ -104,8 +105,9 @@ function minify(files, options) {
         if (options.ie) set_shorthand("ie", options, [ "compress", "mangle", "output", "rename" ]);
         if (options.keep_fargs) set_shorthand("keep_fargs", options, [ "compress", "mangle", "rename" ]);
         if (options.keep_fnames) set_shorthand("keep_fnames", options, [ "compress", "mangle", "rename" ]);
-        if (options.module) set_shorthand("module", options, [ "compress", "parse" ]);
-        if (options.toplevel) set_shorthand("toplevel", options, [ "compress", "mangle", "rename" ]);
+        if (options.module === undefined && !options.ie) options.module = true;
+        if (options.module) set_shorthand("module", options, [ "compress", "output", "parse" ]);
+        if (options.toplevel !== undefined) set_shorthand("toplevel", options, [ "compress", "mangle", "rename" ]);
         if (options.v8) set_shorthand("v8", options, [ "mangle", "output", "rename" ]);
         if (options.webkit) set_shorthand("webkit", options, [ "compress", "mangle", "output", "rename" ]);
         var quoted_props;

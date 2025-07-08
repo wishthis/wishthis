@@ -13,6 +13,7 @@ var Extend = function (selector, option, index, currentFileInfo, visibilityInfo)
     this.copyVisibilityInfo(visibilityInfo);
     this.allowRoot = true;
     switch (option) {
+        case '!all':
         case 'all':
             this.allowBefore = true;
             this.allowAfter = true;

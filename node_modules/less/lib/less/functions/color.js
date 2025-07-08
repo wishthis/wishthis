@@ -414,7 +414,7 @@ colorFunctions = {
         if ((c instanceof quoted_1.default) &&
             (/^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3,4})$/i.test(c.value))) {
             var val = c.value.slice(1);
-            return new color_1.default(val, undefined, "#" + val);
+            return new color_1.default(val, undefined, "#".concat(val));
         }
         if ((c instanceof color_1.default) || (c = color_1.default.fromKeyword(c.value))) {
             c.value = undefined;

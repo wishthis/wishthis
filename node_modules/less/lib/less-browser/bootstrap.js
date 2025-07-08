@@ -9,7 +9,7 @@ var tslib_1 = require("tslib");
 var default_options_1 = tslib_1.__importDefault(require("../less/default-options"));
 var add_default_options_1 = tslib_1.__importDefault(require("./add-default-options"));
 var index_1 = tslib_1.__importDefault(require("./index"));
-var options = default_options_1.default();
+var options = (0, default_options_1.default)();
 if (window.less) {
     for (var key in window.less) {
         if (Object.prototype.hasOwnProperty.call(window.less, key)) {
@@ -17,12 +17,12 @@ if (window.less) {
         }
     }
 }
-add_default_options_1.default(window, options);
+(0, add_default_options_1.default)(window, options);
 options.plugins = options.plugins || [];
 if (window.LESS_PLUGINS) {
     options.plugins = options.plugins.concat(window.LESS_PLUGINS);
 }
-var less = index_1.default(window, options);
+var less = (0, index_1.default)(window, options);
 exports.default = less;
 window.less = less;
 var css;

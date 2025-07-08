@@ -30,31 +30,31 @@ NamespaceValue.prototype = Object.assign(new node_1.default(), {
             }
             else if (name.charAt(0) === '@') {
                 if (name.charAt(1) === '@') {
-                    name = "@" + new variable_1.default(name.substr(1)).eval(context).value;
+                    name = "@".concat(new variable_1.default(name.substr(1)).eval(context).value);
                 }
                 if (rules.variables) {
                     rules = rules.variable(name);
                 }
                 if (!rules) {
                     throw { type: 'Name',
-                        message: "variable " + name + " not found",
+                        message: "variable ".concat(name, " not found"),
                         filename: this.fileInfo().filename,
                         index: this.getIndex() };
                 }
             }
             else {
                 if (name.substring(0, 2) === '$@') {
-                    name = "$" + new variable_1.default(name.substr(1)).eval(context).value;
+                    name = "$".concat(new variable_1.default(name.substr(1)).eval(context).value);
                 }
                 else {
-                    name = name.charAt(0) === '$' ? name : "$" + name;
+                    name = name.charAt(0) === '$' ? name : "$".concat(name);
                 }
                 if (rules.properties) {
                     rules = rules.property(name);
                 }
                 if (!rules) {
                     throw { type: 'Name',
-                        message: "property \"" + name.substr(1) + "\" not found",
+                        message: "property \"".concat(name.substr(1), "\" not found"),
                         filename: this.fileInfo().filename,
                         index: this.getIndex() };
                 }

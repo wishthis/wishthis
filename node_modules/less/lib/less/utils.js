@@ -45,9 +45,9 @@ function defaults(obj1, obj2) {
     var newObj = obj2 || {};
     if (!obj2._defaults) {
         newObj = {};
-        var defaults_1 = copy_anything_1.copy(obj1);
+        var defaults_1 = (0, copy_anything_1.copy)(obj1);
         newObj._defaults = defaults_1;
-        var cloned = obj2 ? copy_anything_1.copy(obj2) : {};
+        var cloned = obj2 ? (0, copy_anything_1.copy)(obj2) : {};
         Object.assign(newObj, defaults_1, cloned);
     }
     return newObj;

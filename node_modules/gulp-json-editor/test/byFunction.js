@@ -172,3 +172,29 @@ it('should multiple properties of JSON object (by function editor)', function(do
     done();
   });
 });
+
+
+it('should modify property asynchronous', function(done) {
+
+  var stream = gulp
+    .src('test/test.json')
+    .pipe(json(function(obj) {
+      obj.version = '2.0.0';
+      return Promise.resolve(obj);
+    }));
+
+  stream.on('data', function(file) {
+    var expected =
+      '{\n' +
+      '  "name": "test object",\n' +
+      '  "version": "2.0.0",\n' +
+      '  "nested": {\n' +
+      '    "name": "nested object",\n' +
+      '    "version": "1.0.0"\n' +
+      '  },\n' +
+      '  "authors": ["tom"]\n' +
+      '}';
+    file.contents.toString().should.eql(expected);
+    done();
+  });
+});

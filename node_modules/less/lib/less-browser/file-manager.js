@@ -23,7 +23,7 @@ FileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(), 
         if (typeof xhr.overrideMimeType === 'function') {
             xhr.overrideMimeType('text/css');
         }
-        logger.debug("XHR: Getting '" + url + "'");
+        logger.debug("XHR: Getting '".concat(url, "'"));
         xhr.open('GET', url, async);
         xhr.setRequestHeader('Accept', type || 'text/x-less, text/css; q=0.9, */*; q=0.5');
         xhr.send(null);
@@ -80,7 +80,7 @@ FileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(), 
                     return resolve({ contents: lessText, filename: href, webInfo: { lastModified: new Date() } });
                 }
                 catch (e) {
-                    return reject({ filename: href, message: "Error loading file " + href + " error was " + e.message });
+                    return reject({ filename: href, message: "Error loading file ".concat(href, " error was ").concat(e.message) });
                 }
             }
             self.doXHR(href, options.mime, function doXHRCallback(data, lastModified) {
@@ -89,7 +89,7 @@ FileManager.prototype = Object.assign(new abstract_file_manager_js_1.default(), 
                 // Use remote copy (re-parse)
                 resolve({ contents: data, filename: href, webInfo: { lastModified: lastModified } });
             }, function doXHRError(status, url) {
-                reject({ type: 'File', message: "'" + url + "' wasn't found (" + status + ")", href: href });
+                reject({ type: 'File', message: "'".concat(url, "' wasn't found (").concat(status, ")"), href: href });
             });
         });
     }

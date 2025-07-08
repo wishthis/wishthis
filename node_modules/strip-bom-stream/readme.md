@@ -10,7 +10,7 @@ From Wikipedia:
 ## Install
 
 ```
-$ npm install --save strip-bom-stream
+$ npm install strip-bom-stream
 ```
 
 
@@ -25,7 +25,7 @@ fs.createReadStream('unicorn.txt')
 	.pipe(fs.createWriteStream('unicorn.txt'));
 ```
 
-It's a [Transform stream](https://nodejs.org/api/stream.html#stream_class_stream_transform).
+It's a [`Transform` stream](https://nodejs.org/api/stream.html#stream_class_stream_transform).
 
 
 ## Related

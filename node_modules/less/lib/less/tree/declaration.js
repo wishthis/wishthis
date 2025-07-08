@@ -20,7 +20,7 @@ function evalName(context, name) {
 var Declaration = function (name, value, important, merge, index, currentFileInfo, inline, variable) {
     this.name = name;
     this.value = (value instanceof node_1.default) ? value : new value_1.default([value ? new anonymous_1.default(value) : null]);
-    this.important = important ? " " + important.trim() : '';
+    this.important = important ? " ".concat(important.trim()) : '';
     this.merge = merge;
     this._index = index;
     this._fileInfo = currentFileInfo;

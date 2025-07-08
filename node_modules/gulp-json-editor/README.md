@@ -96,7 +96,7 @@ This object is passed to deepmerge as its [option](https://github.com/TehShrike/
 #### editorFunction
 Type: `function`
 
-The `editorFunction` must have the following signature: `function (json) {}`, and must return JSON object.
+The `editorFunction` must have the following signature: `function (json) {}`, and must return JSON object or PromiseLike object with JSON object as value.
 
 #### jsBeautifyOptions
 Type: `object`

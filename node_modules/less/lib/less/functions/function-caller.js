@@ -44,7 +44,7 @@ var functionCaller = /** @class */ (function () {
             return item;
         });
         if (evalArgs === false) {
-            return this.func.apply(this, tslib_1.__spreadArray([this.context], args));
+            return this.func.apply(this, tslib_1.__spreadArray([this.context], args, false));
         }
         return this.func.apply(this, args);
     };

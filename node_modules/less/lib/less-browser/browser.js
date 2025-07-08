@@ -7,7 +7,7 @@ exports.default = {
         // Strip the query-string
         var href = sheet.href || '';
         // If there is no title set, use the filename, minus the extension
-        var id = "less:" + (sheet.title || utils.extractId(href));
+        var id = "less:".concat(sheet.title || utils.extractId(href));
         // If this has already been inserted into the DOM, we may need to replace it
         var oldStyleNode = document.getElementById(id);
         var keepOldStyleNode = false;

@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2017 Blaine Bublitz <blaine.bublitz@gmail.com>, Eric Schoffstall <yo@contra.io> and other contributors (Based on code from gulp-sourcemaps - ISC License - Copyright (c) 2014, Florian Reiterer)
+Copyright (c) 2017, 2022 Blaine Bublitz <blaine.bublitz@gmail.com> and Eric Schoffstall <yo@contra.io> (Based on code from gulp-sourcemaps - ISC License - Copyright (c) 2014, Florian Reiterer)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

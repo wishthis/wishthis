@@ -18,7 +18,7 @@ exports.default = (function (environment) {
         if (!fileManager) {
             throw {
                 type: 'File',
-                message: "Can not set up FileManager for " + filePathNode
+                message: "Can not set up FileManager for ".concat(filePathNode)
             };
         }
         var fileSync = fileManager.loadFileSync(filePath, currentDirectory, functionContext.context, environment);

@@ -12,24 +12,24 @@ exports.default = (function (window, options, logger) {
     return {
         setCSS: function (path, lastModified, modifyVars, styles) {
             if (cache) {
-                logger.info("saving " + path + " to cache.");
+                logger.info("saving ".concat(path, " to cache."));
                 try {
                     cache.setItem(path, styles);
-                    cache.setItem(path + ":timestamp", lastModified);
+                    cache.setItem("".concat(path, ":timestamp"), lastModified);
                     if (modifyVars) {
-                        cache.setItem(path + ":vars", JSON.stringify(modifyVars));
+                        cache.setItem("".concat(path, ":vars"), JSON.stringify(modifyVars));
                     }
                 }
                 catch (e) {
                     // TODO - could do with adding more robust error handling
-                    logger.error("failed to save \"" + path + "\" to local storage for caching.");
+                    logger.error("failed to save \"".concat(path, "\" to local storage for caching."));
                 }
             }
         },
         getCSS: function (path, webInfo, modifyVars) {
             var css = cache && cache.getItem(path);
-            var timestamp = cache && cache.getItem(path + ":timestamp");
-            var vars = cache && cache.getItem(path + ":vars");
+            var timestamp = cache && cache.getItem("".concat(path, ":timestamp"));
+            var vars = cache && cache.getItem("".concat(path, ":vars"));
             modifyVars = modifyVars || {};
             vars = vars || '{}'; // if not set, treat as the JSON representation of an empty object
             if (timestamp && webInfo.lastModified &&

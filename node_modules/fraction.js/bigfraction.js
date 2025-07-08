@@ -1,8 +1,8 @@
 /**
- * @license Fraction.js v4.2.0 23/05/2021
+ * @license Fraction.js v4.2.1 20/08/2023
  * https://www.xarg.org/2014/03/rational-numbers-in-javascript/
  *
- * Copyright (c) 2021, Robert Eisele (robert@xarg.org)
+ * Copyright (c) 2023, Robert Eisele (robert@raw.org)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  **/
 
@@ -13,8 +13,8 @@
  * You can pass a fraction in different formats. Either as array, as double, as string or as an integer.
  *
  * Array/Object form
- * [ 0 => <nominator>, 1 => <denominator> ]
- * [ n => <nominator>, d => <denominator> ]
+ * [ 0 => <numerator>, 1 => <denominator> ]
+ * [ n => <numerator>, d => <denominator> ]
  *
  * Integer form
  * - Single integer value
@@ -42,7 +42,7 @@
   "use strict";
 
   // Set Identity function to downgrade BigInt to Number if needed
-  if (!BigInt) BigInt = function(n) { if (isNaN(n)) throw new Error(""); return n; };
+  if (typeof BigInt === 'undefined') BigInt = function(n) { if (isNaN(n)) throw new Error(""); return n; };
 
   const C_ONE = BigInt(1);
   const C_ZERO = BigInt(0);
@@ -67,7 +67,7 @@
     try {
       n = BigInt(n);
     } catch (e) {
-      throw Fraction['InvalidParameter'];
+      throw InvalidParameter();
     }
     return n * s;
   }
@@ -76,7 +76,7 @@
   function newFraction(n, d) {
 
     if (d === C_ZERO) {
-      throw Fraction['DivisionByZero'];
+      throw DivisionByZero();
     }
 
     const f = Object.create(Fraction.prototype);
@@ -129,7 +129,7 @@
       s = n * d;
 
       if (n % C_ONE !== C_ZERO || d % C_ONE !== C_ZERO) {
-        throw Fraction['NonIntegerParameter'];
+        throw NonIntegerParameter();
       }
 
     } else if (typeof p1 === "object") {
@@ -145,17 +145,17 @@
       } else if (p1 instanceof BigInt) {
         n = BigInt(p1);
       } else {
-        throw Fraction['InvalidParameter'];
+        throw InvalidParameter();
       }
       s = n * d;
     } else if (typeof p1 === "bigint") {
       n = p1;
       s = p1;
-      d = BigInt(1);
+      d = C_ONE;
     } else if (typeof p1 === "number") {
 
       if (isNaN(p1)) {
-        throw Fraction['InvalidParameter'];
+        throw InvalidParameter();
       }
 
       if (p1 < 0) {
@@ -230,7 +230,7 @@
       let match = p1.match(/\d+|./g);
 
       if (match === null)
-        throw Fraction['InvalidParameter'];
+        throw InvalidParameter();
 
       if (match[ndx] === '-') {// Check for minus sign at the beginning
         s = -C_ONE;
@@ -278,15 +278,15 @@
         s = /* void */
         n = x + d * v + z * w;
       } else {
-        throw Fraction['InvalidParameter'];
+        throw InvalidParameter();
       }
 
     } else {
-      throw Fraction['InvalidParameter'];
+      throw InvalidParameter();
     }
 
     if (d === C_ZERO) {
-      throw Fraction['DivisionByZero'];
+      throw DivisionByZero();
     }
 
     P["s"] = s < C_ZERO ? -C_ONE : C_ONE;
@@ -391,9 +391,9 @@
     }
   }
 
-  Fraction['DivisionByZero'] = new Error("Division by Zero");
-  Fraction['InvalidParameter'] = new Error("Invalid argument");
-  Fraction['NonIntegerParameter'] = new Error("Parameters must be integer");
+  var DivisionByZero = function() {return new Error("Division by Zero");};
+  var InvalidParameter = function() {return new Error("Invalid argument");};
+  var NonIntegerParameter = function() {return new Error("Parameters must be integer");};
 
   Fraction.prototype = {
 
@@ -499,7 +499,7 @@
 
       parse(a, b);
       if (0 === P["n"] && 0 === this["d"]) {
-        throw Fraction['DivisionByZero'];
+        throw DivisionByZero();
       }
 
       /*
@@ -739,7 +739,11 @@
       let N = this["n"];
       let D = this["d"];
 
-      dec = dec || 15; // 15 = decimal places when no repitation
+      function trunc(x) {
+          return typeof x === 'bigint' ? x : Math.floor(x);
+      }
+
+      dec = dec || 15; // 15 = decimal places when no repetition
 
       let cycLen = cycleLen(N, D); // Cycle length
       let cycOff = cycleStart(N, D, cycLen); // Cycle start
@@ -747,7 +751,7 @@
       let str = this['s'] < C_ZERO ? "-" : "";
 
       // Append integer part
-      str+= N / D;
+      str+= trunc(N / D);
 
       N%= D;
       N*= C_TEN;
@@ -758,20 +762,20 @@
       if (cycLen) {
 
         for (let i = cycOff; i--;) {
-          str+= N / D;
+          str+= trunc(N / D);
           N%= D;
           N*= C_TEN;
         }
         str+= "(";
         for (let i = cycLen; i--;) {
-          str+= N / D;
+          str+= trunc(N / D);
           N%= D;
           N*= C_TEN;
         }
         str+= ")";
       } else {
         for (let i = dec; N && i--;) {
-          str+= N / D;
+          str+= trunc(N / D);
           N%= D;
           N*= C_TEN;
         }
@@ -871,7 +875,7 @@
           s = s['inverse']()['add'](cont[k]);
         }
 
-        if (s['sub'](thisABS)['abs']().valueOf() < eps) {
+        if (Math.abs(s['sub'](thisABS).valueOf()) < eps) {
           return s['mul'](this['s']);
         }
       }

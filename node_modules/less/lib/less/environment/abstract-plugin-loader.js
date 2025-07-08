@@ -101,7 +101,7 @@ var AbstractPluginLoader = /** @class */ (function () {
     AbstractPluginLoader.prototype.trySetOptions = function (plugin, filename, name, options) {
         if (options && !plugin.setOptions) {
             return new less_error_1.default({
-                message: "Options have been provided but the plugin " + name + " does not support any options."
+                message: "Options have been provided but the plugin ".concat(name, " does not support any options.")
             });
         }
         try {
@@ -121,7 +121,7 @@ var AbstractPluginLoader = /** @class */ (function () {
             if (plugin.minVersion) {
                 if (this.compareVersion(plugin.minVersion, this.less.version) < 0) {
                     return new less_error_1.default({
-                        message: "Plugin " + name + " requires version " + this.versionToString(plugin.minVersion)
+                        message: "Plugin ".concat(name, " requires version ").concat(this.versionToString(plugin.minVersion))
                     });
                 }
             }

@@ -102,20 +102,20 @@ Color.prototype = Object.assign(new node_1.default(), {
                 color = this.toHSL();
                 args = [
                     this.fround(context, color.h),
-                    this.fround(context, color.s * 100) + "%",
-                    this.fround(context, color.l * 100) + "%"
+                    "".concat(this.fround(context, color.s * 100), "%"),
+                    "".concat(this.fround(context, color.l * 100), "%")
                 ].concat(args);
         }
         if (colorFunction) {
             // Values are capped between `0` and `255`, rounded and zero-padded.
-            return colorFunction + "(" + args.join("," + (compress ? '' : ' ')) + ")";
+            return "".concat(colorFunction, "(").concat(args.join(",".concat(compress ? '' : ' ')), ")");
         }
         color = this.toRGB();
         if (compress) {
             var splitcolor = color.split('');
             // Convert color to short format
             if (splitcolor[1] === splitcolor[2] && splitcolor[3] === splitcolor[4] && splitcolor[5] === splitcolor[6]) {
-                color = "#" + splitcolor[1] + splitcolor[3] + splitcolor[5];
+                color = "#".concat(splitcolor[1]).concat(splitcolor[3]).concat(splitcolor[5]);
             }
         }
         return color;
@@ -227,10 +227,10 @@ function clamp(v, max) {
     return Math.min(Math.max(v, 0), max);
 }
 function toHex(v) {
-    return "#" + v.map(function (c) {
+    return "#".concat(v.map(function (c) {
         c = clamp(Math.round(c), 255);
         return (c < 16 ? '0' : '') + c.toString(16);
-    }).join('');
+    }).join(''));
 }
 exports.default = Color;
 //# sourceMappingURL=color.js.map

@@ -17,7 +17,7 @@ Property.prototype = Object.assign(new node_1.default(), {
         var mergeRules = context.pluginManager.less.visitors.ToCSSVisitor.prototype._mergeRules;
         if (this.evaluating) {
             throw { type: 'Name',
-                message: "Recursive property reference for " + name,
+                message: "Recursive property reference for ".concat(name),
                 filename: this.fileInfo().filename,
                 index: this.getIndex() };
         }
@@ -46,7 +46,7 @@ Property.prototype = Object.assign(new node_1.default(), {
         }
         else {
             throw { type: 'Name',
-                message: "Property '" + name + "' is undefined",
+                message: "Property '".concat(name, "' is undefined"),
                 filename: this.currentFileInfo.filename,
                 index: this.index };
         }

@@ -6,7 +6,7 @@
 
 # mute-stdout
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 Mute and unmute stdout.
 
@@ -38,18 +38,14 @@ Unmutes the `process.stdout` stream by restoring the original `write` method.
 
 MIT
 
-[downloads-image]: http://img.shields.io/npm/dm/mute-stdout.svg
+<!-- prettier-ignore-start -->
+[downloads-image]: http://img.shields.io/npm/dm/mute-stdout.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/mute-stdout
-[npm-image]: http://img.shields.io/npm/v/mute-stdout.svg
+[npm-image]: http://img.shields.io/npm/v/mute-stdout.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/gulpjs/mute-stdout
-[travis-image]: http://img.shields.io/travis/gulpjs/mute-stdout.svg?label=travis-ci
-
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/mute-stdout
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/mute-stdout.svg?label=appveyor
+[ci-url]: https://github.com/gulpjs/mute-stdout/actions?query=workflow:dev
+[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/mute-stdout/dev?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/mute-stdout
 [coveralls-image]: http://img.shields.io/coveralls/gulpjs/mute-stdout/master.svg
-
-[gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+<!-- prettier-ignore-end -->

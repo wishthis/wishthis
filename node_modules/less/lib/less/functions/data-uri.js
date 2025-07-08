@@ -50,7 +50,7 @@ exports.default = (function (environment) {
             }
             var fileSync = fileManager.loadFileSync(filePath, currentDirectory, context, environment);
             if (!fileSync.contents) {
-                logger_1.default.warn("Skipped data-uri embedding of " + filePath + " because file not found");
+                logger_1.default.warn("Skipped data-uri embedding of ".concat(filePath, " because file not found"));
                 return fallback(this, filePathNode || mimetypeNode);
             }
             var buf = fileSync.contents;
@@ -58,8 +58,8 @@ exports.default = (function (environment) {
                 return fallback(this, filePathNode);
             }
             buf = useBase64 ? environment.encodeBase64(buf) : encodeURIComponent(buf);
-            var uri = "data:" + mimetype + "," + buf + fragment;
-            return new url_1.default(new quoted_1.default("\"" + uri + "\"", uri, false, this.index, this.currentFileInfo), this.index, this.currentFileInfo);
+            var uri = "data:".concat(mimetype, ",").concat(buf).concat(fragment);
+            return new url_1.default(new quoted_1.default("\"".concat(uri, "\""), uri, false, this.index, this.currentFileInfo), this.index, this.currentFileInfo);
         } };
 });
 //# sourceMappingURL=data-uri.js.map

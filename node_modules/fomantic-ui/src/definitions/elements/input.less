@@ -17,6 +17,14 @@
 
 @import (multiple) "../../theme.config";
 
+@notCorner: if(@variationInputCorner, e(":not(.corner)"));
+@notAction: if(@variationInputAction, e(":not(.action)"));
+@notDisabled: if(@variationInputDisabled, e(":not(.disabled)"));
+
+@notBasic: if(@variationButtonBasic, e(":not(.basic)"));
+@notTertiary: if(@variationButtonTertiary, e(":not(.tertiary)"));
+@notLink: if(@variationIconLink, e(":not(.link)"));
+
 /*******************************
            Standard
 *******************************/
@@ -35,7 +43,7 @@
 .ui.input > input {
     margin: 0;
     max-width: 100%;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     outline: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     text-align: @textAlign;
@@ -83,12 +91,12 @@
     --------------------- */
 
     .ui.disabled.input,
-    .ui.input:not(.disabled) input[disabled] {
+    .ui.input@{notDisabled} input[disabled] {
         opacity: @disabledOpacity;
     }
 
     .ui.disabled.input > input,
-    .ui.input:not(.disabled) input[disabled] {
+    .ui.input@{notDisabled} input[disabled] {
         pointer-events: @disabledPointerEvents;
     }
 }
@@ -103,6 +111,13 @@
     background: @downBackground;
     color: @downColor;
     box-shadow: @downBoxShadow;
+}
+
+.ui.form .field > textarea:hover:not(:focus),
+.ui.input > textarea:hover:not(:focus),
+.ui.form .field > input:hover:not(:focus),
+.ui.input > input:hover:not(:focus) {
+    border-color: @selectedBorderColor;
 }
 
 & when (@variationInputLoading) {
@@ -275,11 +290,11 @@
         border-radius: 0 @borderRadius @borderRadius 0;
         transition: @iconTransition;
     }
-    .ui.icon.input > i.icon:not(.link) {
+    .ui.icon.input > i.icon@{notLink} {
         pointer-events: none;
     }
-    .ui.ui.ui.ui.icon.input:not(.corner) > textarea,
-    .ui.ui.ui.ui.icon.input:not(.corner) > input {
+    .ui.ui.ui.ui.icon.input@{notCorner} > textarea,
+    .ui.ui.ui.ui.icon.input@{notCorner} > input {
         padding-right: @iconMargin;
     }
 
@@ -314,8 +329,8 @@
     .ui.ui.ui.ui[class*="left icon"]:not([class*="left corner"]).input > input {
         padding-left: @iconMargin;
     }
-    .ui.ui.ui.ui[class*="left icon"]:not(.corner).input > textarea,
-    .ui.ui.ui.ui[class*="left icon"]:not(.corner).input > input {
+    .ui.ui.ui.ui[class*="left icon"]@{notCorner}.input > textarea,
+    .ui.ui.ui.ui[class*="left icon"]@{notCorner}.input > input {
         padding-right: @horizontalPadding;
     }
 
@@ -338,7 +353,7 @@
         margin: 0;
         font-size: @relativeMedium;
     }
-    .ui.labeled.input > .label:not(.corner) {
+    .ui.labeled.input > .label@{notCorner} {
         padding-top: @verticalPadding;
         padding-bottom: @verticalPadding;
     }
@@ -524,7 +539,11 @@
         .ui.form .field.@{state} > .ui.action.input:not([class*="left action"]) > input + .ui.button,
         .ui.form .field.@{state} > .ui.right.labeled.input:not([class*="corner labeled"]) > input + .ui.label,
         .ui.action.input.@{state}:not([class*="left action"]) > input + .ui.button,
-        .ui.right.labeled.input.@{state}:not([class*="corner labeled"]) > input + .ui.label {
+        .ui.right.labeled.input.@{state}:not([class*="corner labeled"]) > input + .ui.label,
+        .ui.form .field.@{state} > .ui.action.input:not([class*="left action"]) > textarea + .ui.button,
+        .ui.form .field.@{state} > .ui.right.labeled.input:not([class*="corner labeled"]) > textarea + .ui.label,
+        .ui.action.input.@{state}:not([class*="left action"]) > textarea + .ui.button,
+        .ui.right.labeled.input.@{state}:not([class*="corner labeled"]) > textarea + .ui.label {
             border-right: @borderWidth solid @borderColor;
         }
         .ui.form .field.@{state} > .ui.right.labeled.input:not([class*="corner labeled"]) > .ui.label:first-child,
@@ -553,14 +572,16 @@
     }
 
     /* Input when ui Left */
-    .ui[class*="left action"].input > input {
+    .ui[class*="left action"].input > input,
+    .ui[class*="left action"].input > textarea {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         border-left-color: transparent;
     }
 
     /* Input when ui Right */
-    .ui.action.input:not([class*="left action"]) > input {
+    .ui.action.input:not([class*="left action"]) > input,
+    .ui.action.input:not([class*="left action"]) > textarea {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right-color: transparent;
@@ -584,11 +605,13 @@
     }
 
     /* Input Focus */
-    .ui.action.input:not([class*="left action"]) > input:focus {
+    .ui.action.input:not([class*="left action"]) > input:focus,
+    .ui.action.input:not([class*="left action"]) > textarea:focus {
         border-right-color: @focusBorderColor;
     }
 
-    .ui.ui[class*="left action"].input > input:focus {
+    .ui.ui[class*="left action"].input > input:focus,
+    .ui.ui[class*="left action"].input > textarea:focus {
         border-left-color: @focusBorderColor;
     }
 }
@@ -631,7 +654,7 @@
     }
 
     .ui.form .field > input[type="file"],
-    .ui.file.input:not(.action) input[type="file"] {
+    .ui.file.input@{notAction} input[type="file"] {
         padding: 0;
     }
 
@@ -712,8 +735,8 @@
         position: absolute;
     }
 
-    input[type="file"].ui.file.input:focus + label.ui.button:not(.basic):not(.tertiary),
-    .ui.file.input input[type="file"]:focus + label.ui.button:not(.basic):not(.tertiary) {
+    input[type="file"].ui.file.input:focus + label.ui.button@{notBasic}@{notTertiary},
+    .ui.file.input input[type="file"]:focus + label.ui.button@{notBasic}@{notTertiary} {
         background: @fileButtonBackgroundHover;
         color: @hoveredTextColor;
         &.inverted {
@@ -728,8 +751,8 @@
             @h: @colors[@@color][hover];
             @lh: @colors[@@color][lightHover];
 
-            input[type="file"].ui.file.input:focus + label.ui.@{color}.button:not(.basic):not(.tertiary),
-            .ui.file.input input[type="file"]:focus + label.ui.@{color}.button:not(.basic):not(.tertiary) {
+            input[type="file"].ui.file.input:focus + label.ui.@{color}.button@{notBasic}@{notTertiary},
+            .ui.file.input input[type="file"]:focus + label.ui.@{color}.button@{notBasic}@{notTertiary} {
                 background-color: @h;
                 color: @white;
                 &.inverted when (@variationButtonInverted) {

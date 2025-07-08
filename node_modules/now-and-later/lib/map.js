@@ -4,11 +4,11 @@ var once = require('once');
 
 var helpers = require('./helpers');
 
-function map(values, iterator, extensions, done) {
-  // Allow for extensions to not be specified
-  if (typeof extensions === 'function') {
-    done = extensions;
-    extensions = {};
+function map(values, iterator, options, done) {
+  // Allow for options to not be specified
+  if (typeof options === 'function') {
+    done = options;
+    options = {};
   }
 
   // Handle no callback case
@@ -26,35 +26,55 @@ function map(values, iterator, extensions, done) {
   // Return the same type as passed in
   var results = helpers.initializeResults(values);
 
-  var exts = helpers.defaultExtensions(extensions);
+  var extensions = helpers.defaultExtensions(options);
 
   if (length === 0) {
     return done(null, results);
   }
 
-  for (idx = 0; idx < length; idx++) {
-    var key = keys[idx];
-    next(key);
+  var maxConcurrent = length;
+  if (options && options.concurrency) {
+    maxConcurrent = options.concurrency;
+  }
+  var running = 0;
+  var sync = false;
+  kickoff();
+
+  function kickoff() {
+    if (sync) {
+      return;
+    }
+    sync = true;
+    while (running < maxConcurrent && idx < length) {
+      var key = keys[idx];
+      next(key);
+      idx++;
+    }
+    sync = false;
   }
 
   function next(key) {
+    running++;
     var value = values[key];
 
-    var storage = exts.create(value, key) || {};
+    var storage = extensions.create(value, key) || {};
 
-    exts.before(storage);
+    extensions.before(storage);
     iterator(value, key, once(handler));
 
     function handler(err, result) {
+      running--;
       if (err) {
-        exts.error(err, storage);
+        extensions.error(err, storage);
         return done(err, results);
       }
 
-      exts.after(result, storage);
+      extensions.after(result, storage);
       results[key] = result;
       if (--count === 0) {
         done(err, results);
+      } else {
+        kickoff();
       }
     }
   }

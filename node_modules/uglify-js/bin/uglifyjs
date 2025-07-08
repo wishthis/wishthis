@@ -108,7 +108,8 @@ function process_option(name, no_value) {
                 "  --ie                                     Support non-standard Internet Explorer.",
                 "  --keep-fargs                             Do not mangle/drop function arguments.",
                 "  --keep-fnames                            Do not mangle/drop function names. Useful for code relying on Function.prototype.name.",
-                "  --module                                 Process input as ES module (implies --toplevel)",
+                "  --module                                 Process input as ES module (implies --toplevel).",
+                "  --no-module                              Process input with improved JavaScript compatibility.",
                 "  --name-cache <file>                      File to hold mangled name mappings.",
                 "  --rename                                 Force symbol expansion.",
                 "  --no-rename                              Disable symbol expansion.",
@@ -155,7 +156,6 @@ function process_option(name, no_value) {
       case "expression":
       case "ie":
       case "ie8":
-      case "module":
       case "timings":
       case "toplevel":
       case "v8":
@@ -200,6 +200,12 @@ function process_option(name, no_value) {
       case "mangle-props":
         if (typeof options.mangle != "object") options.mangle = {};
         options.mangle.properties = parse_js(read_value(), options.mangle.properties);
+        break;
+      case "module":
+        options.module = true;
+        break;
+      case "no-module":
+        options.module = false;
         break;
       case "name-cache":
         nameCache = read_value(true);
@@ -295,9 +301,19 @@ if (specified["in-situ"]) {
     process.stdin.setEncoding("utf8");
     process.stdin.once("data", function() {
         clearTimeout(timerId);
-    }).on("data", function(chunk) {
+    }).on("data", process.stdin.isTTY ? function(chunk) {
+        // emulate console input termination via Ctrl+D / Ctrl+Z
+        var match = /[\x04\x1a]\r?\n?$/.exec(chunk);
+        if (match) {
+            chunks.push(chunk.slice(0, -match[0].length));
+            process.stdin.pause();
+            process.stdin.emit("end");
+        } else {
+            chunks.push(chunk);
+        }
+    } : function(chunk) {
         chunks.push(chunk);
-    }).on("end", function() {
+    }).once("end", function() {
         files = { STDIN: chunks.join("") };
         run();
     });
@@ -451,11 +467,14 @@ function run() {
     } else if (output) {
         var code;
         if (result.ast) {
-            var opts = {};
-            for (var name in options.output) {
-                if (!/^ast|code$/.test(name)) opts[name] = options.output[name];
+            var output_options = {};
+            for (var name in UglifyJS.default_options("output")) {
+                if (name in options) output_options[name] = options[name];
             }
-            code = UglifyJS.AST_Node.from_mozilla_ast(result.ast.to_mozilla_ast()).print_to_string(opts);
+            for (var name in options.output) {
+                if (!/^ast|code$/.test(name)) output_options[name] = options.output[name];
+            }
+            code = UglifyJS.AST_Node.from_mozilla_ast(result.ast.to_mozilla_ast()).print_to_string(output_options);
         } else {
             code = result.code;
         }

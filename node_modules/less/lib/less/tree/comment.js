@@ -14,7 +14,7 @@ Comment.prototype = Object.assign(new node_1.default(), {
     type: 'Comment',
     genCSS: function (context, output) {
         if (this.debugInfo) {
-            output.add(debug_info_1.default(context, this), this.fileInfo(), this.getIndex());
+            output.add((0, debug_info_1.default)(context, this), this.fileInfo(), this.getIndex());
         }
         output.add(this.value);
     },

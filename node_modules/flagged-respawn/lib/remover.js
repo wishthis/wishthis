@@ -1,6 +1,6 @@
 var isV8flags = require('./is-v8flags');
 
-module.exports = function(flags, argv) {
+module.exports = function (flags, argv) {
   var args = argv.slice(0, 1);
   for (var i = 1, n = argv.length; i < n; i++) {
     var arg = argv[i];

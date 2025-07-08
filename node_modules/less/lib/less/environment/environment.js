@@ -20,7 +20,7 @@ var Environment = /** @class */ (function () {
                 this[propName] = environmentFunc.bind(externalEnvironment);
             }
             else if (i < requiredFunctions.length) {
-                this.warn("missing required function in environment - " + propName);
+                this.warn("missing required function in environment - ".concat(propName));
             }
         }
     }

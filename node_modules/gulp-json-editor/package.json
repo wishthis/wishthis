@@ -1,6 +1,6 @@
 {
   "name": "gulp-json-editor",
-  "version": "2.5.7",
+  "version": "2.6.0",
   "description": "A gulp plugin to edit JSON objects",
   "license": "MIT",
   "main": "./index.js",
@@ -14,12 +14,12 @@
   "dependencies": {
     "deepmerge": "^4.3.1",
     "detect-indent": "^6.1.0",
-    "js-beautify": "^1.14.8",
+    "js-beautify": "^1.14.11",
     "plugin-error": "^2.0.1",
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "eslint": "^8.45.0",
+    "eslint": "^8.56.0",
     "eslint-config-gulp": "^5.0.1",
     "gulp": "^4.0.2",
     "mocha": "^10.2.0",

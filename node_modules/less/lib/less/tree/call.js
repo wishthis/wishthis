@@ -62,7 +62,7 @@ Call.prototype = Object.assign(new node_1.default(), {
                 }
                 throw {
                     type: e.type || 'Runtime',
-                    message: "Error evaluating function `" + this.name + "`" + (e.message ? ": " + e.message : ''),
+                    message: "Error evaluating function `".concat(this.name, "`").concat(e.message ? ": ".concat(e.message) : ''),
                     index: this.getIndex(),
                     filename: this.fileInfo().filename,
                     line: e.lineNumber,
@@ -90,7 +90,7 @@ Call.prototype = Object.assign(new node_1.default(), {
         return new Call(this.name, args, this.getIndex(), this.fileInfo());
     },
     genCSS: function (context, output) {
-        output.add(this.name + "(", this.fileInfo(), this.getIndex());
+        output.add("".concat(this.name, "("), this.fileInfo(), this.getIndex());
         for (var i = 0; i < this.args.length; i++) {
             this.args[i].genCSS(context, output);
             if (i + 1 < this.args.length) {

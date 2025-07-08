@@ -45,7 +45,7 @@ function default_1(environment) {
                 var importedEqualsRoot = fullPath === importManager.rootFilename;
                 if (importOptions.optional && e) {
                     callback(null, { rules: [] }, false, null);
-                    logger_1.default.info("The file " + fullPath + " was skipped because it was not found and the import was marked optional.");
+                    logger_1.default.info("The file ".concat(fullPath, " was skipped because it was not found and the import was marked optional."));
                 }
                 else {
                     // Inline imports aren't cached here.
@@ -68,7 +68,7 @@ function default_1(environment) {
             };
             var fileManager = environment.getFileManager(path, currentFileInfo.currentDirectory, this.context, environment);
             if (!fileManager) {
-                fileParsedFunc({ message: "Could not find a file-manager for " + path });
+                fileParsedFunc({ message: "Could not find a file-manager for ".concat(path) });
                 return;
             }
             var loadFileCallback = function (loadedFile) {

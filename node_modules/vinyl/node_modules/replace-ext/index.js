@@ -26,8 +26,7 @@ function replaceExt(npath, ext) {
 
 function startsWithSingleDot(fpath) {
   var first2chars = fpath.slice(0, 2);
-  return (first2chars === '.' + path.sep) ||
-         (first2chars === './');
+  return first2chars === '.' + path.sep || first2chars === './';
 }
 
 module.exports = replaceExt;

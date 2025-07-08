@@ -16,18 +16,18 @@ var cache_1 = tslib_1.__importDefault(require("./cache"));
 var image_size_1 = tslib_1.__importDefault(require("./image-size"));
 exports.default = (function (window, options) {
     var document = window.document;
-    var less = less_1.default();
+    var less = (0, less_1.default)();
     less.options = options;
     var environment = less.environment;
-    var FileManager = file_manager_1.default(options, less.logger);
+    var FileManager = (0, file_manager_1.default)(options, less.logger);
     var fileManager = new FileManager();
     environment.addFileManager(fileManager);
     less.FileManager = FileManager;
     less.PluginLoader = plugin_loader_1.default;
-    log_listener_1.default(less, options);
-    var errors = error_reporting_1.default(window, less, options);
-    var cache = less.cache = options.cache || cache_1.default(window, options, less.logger);
-    image_size_1.default(less.environment);
+    (0, log_listener_1.default)(less, options);
+    var errors = (0, error_reporting_1.default)(window, less, options);
+    var cache = less.cache = options.cache || (0, cache_1.default)(window, options, less.logger);
+    (0, image_size_1.default)(less.environment);
     // Setup user functions - Deprecate?
     if (options.functions) {
         less.functions.functionRegistry.addMultiple(options.functions);
@@ -81,7 +81,7 @@ exports.default = (function (window, options) {
     }
     function loadStyleSheet(sheet, callback, reload, remaining, modifyVars) {
         var instanceOptions = clone(options);
-        utils_1.addDataAttr(instanceOptions, sheet);
+        (0, utils_1.addDataAttr)(instanceOptions, sheet);
         instanceOptions.mime = sheet.type;
         if (modifyVars) {
             instanceOptions.modifyVars = modifyVars;
@@ -226,19 +226,19 @@ exports.default = (function (window, options) {
                         return;
                     }
                     if (webInfo.local) {
-                        less.logger.info("Loading " + sheet.href + " from cache.");
+                        less.logger.info("Loading ".concat(sheet.href, " from cache."));
                     }
                     else {
-                        less.logger.info("Rendered " + sheet.href + " successfully.");
+                        less.logger.info("Rendered ".concat(sheet.href, " successfully."));
                     }
                     browser_1.default.createCSS(window.document, css, sheet);
-                    less.logger.info("CSS for " + sheet.href + " generated in " + (new Date() - endTime) + "ms");
+                    less.logger.info("CSS for ".concat(sheet.href, " generated in ").concat(new Date() - endTime, "ms"));
                     // Count completed sheet
                     remainingSheets--;
                     // Check if the last remaining sheet was processed and then call the promise
                     if (remainingSheets === 0) {
                         totalMilliseconds = new Date() - startTime;
-                        less.logger.info("Less has finished. CSS generated in " + totalMilliseconds + "ms");
+                        less.logger.info("Less has finished. CSS generated in ".concat(totalMilliseconds, "ms"));
                         resolve({
                             startTime: startTime,
                             endTime: endTime,
