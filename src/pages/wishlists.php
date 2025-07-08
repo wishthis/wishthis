@@ -83,7 +83,7 @@ $page->navigation();
                         <?= __('Create a wishlist') ?>
                     </a>
                 </div>
-            </div>npm
+            </div>
         </div>
 
         <h2 class="ui header"><?= __('Wishes') ?></h2>
