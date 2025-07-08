@@ -6,7 +6,7 @@
 
 ### Changed
 
--   Nothing
+-   Updated translations from transifex
 
 ### Deprecated
 
