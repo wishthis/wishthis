@@ -130,7 +130,7 @@ if (isset($_POST['user-email'])) {
  * Birthdate
  */
 if (isset($_POST['user-birthdate'])) {
-    $birthdateTimestamp = \strtoime($_POST['user-birthdate']);
+    $birthdateTimestamp = \strtotime($_POST['user-birthdate']);
 
     if (\is_int($birthdateTimestamp)) {
         $birthdate = \date('Y-m-d', $birthdateTimestamp);
