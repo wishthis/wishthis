@@ -76,6 +76,29 @@ namespace wishthis;
                     />
                 </div>
 
+                <?php if (\defined('UPLOAD_ENABLED') && UPLOAD_ENABLED): ?>
+                    <div class="field image-mode-options">
+                        <label><?= __('Image Handling') ?></label>
+                        <div class="ui radio image-mode-url">
+                            <input type="radio"
+                                id="image_mode_url"
+                                name="wish_image_mode"
+                                value="url"
+                                checked
+                            />
+                            <label for="image_mode_url"><?= __('Save as URL (default)') ?></label>
+                        </div>
+                        <div class="ui radio image-mode-download">
+                            <input type="radio"
+                                id="image_mode_download"
+                                name="wish_image_mode"
+                                value="download"
+                            />
+                            <label for="image_mode_download"><?= __('Download and store locally') ?></label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
                 <div class="grouped fields">
                     <label><?= __('Properties') ?></label>
 

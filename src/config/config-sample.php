@@ -55,6 +55,15 @@ namespace wishthis;
 \define('PLAUSIBLE', false);
 
 /**
+ * Image Download from URL
+ *
+ * Allows fetching external images and storing them locally.
+ */
+\define('UPLOAD_ENABLED', true);
+\define('UPLOAD_MAX_SIZE', 2 * 1024 * 1024);
+\define('UPLOAD_ALLOWED_TYPES', ['image/jpeg', 'image/png', 'image/webp']);
+
+/**
  * Miscellaneous
  */
 \define('DISABLE_USER_REGISTRATION', false);
