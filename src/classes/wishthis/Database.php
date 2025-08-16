@@ -144,4 +144,14 @@ class Database
 
         $this->query($disableForeignKeyChecks);
     }
+
+    public function getDateNow(): string
+    {
+        $dateNow = match ($this->engine) {
+            'mysql'  => 'NOW()',
+            'sqlite' => 'datetime(\'now\')',
+        };
+
+        return $dateNow;
+    }
 }

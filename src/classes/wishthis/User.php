@@ -451,7 +451,7 @@ class User
         $database
         ->query(
             'UPDATE `users`
-                SET `last_login` = NOW()
+                SET `last_login` = ' . $database->getDateNow() . '
               WHERE `email`      = :user_email',
             [
                 'user_email' => $email,
@@ -642,7 +642,7 @@ class User
         $database
         ->query(
             'DELETE FROM `sessions`
-                   WHERE `expires` <= NOW()',
+                   WHERE `expires` <= ' . $database->getDateNow()
         );
 
         /** Find existing session */
