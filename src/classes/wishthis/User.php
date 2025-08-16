@@ -394,6 +394,7 @@ class User
     public function logIn(string $email = '', string $password = '', bool $userLoginIsPersistent = false): bool
     {
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -482,6 +483,7 @@ class User
     {
         /** Destroy session */
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -624,6 +626,7 @@ class User
         }
 
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -701,6 +704,7 @@ class User
         }
 
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,

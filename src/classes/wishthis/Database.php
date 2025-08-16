@@ -23,6 +23,7 @@ class Database
     public \PDO $pdo;
 
     public function __construct(
+        public string $engine,
         public string $host,
         public string $database,
         public string $user,
@@ -32,7 +33,17 @@ class Database
 
     public function connect(): void
     {
-        $dsn     = 'mysql:host=' . $this->host . ';dbname=' . $this->database . ';port=3306;charset=utf8mb4';
+        $dsn = match ($this->engine) {
+            'mysql'  => \sprintf(
+                'mysql:host=%1$s;dbname=%2$s;port=3306;charset=utf8mb4',
+                $this->host, $this->database
+            ),
+            'sqlite' => \sprintf(
+                'sqlite:%1$s',
+                ROOT . '/database.sqlite'
+            ),
+        };
+
         $options = ['placeholders' => []];
 
         $this->pdo = new \PDO($dsn, $this->user, $this->password, $options);
