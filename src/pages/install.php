@@ -49,6 +49,15 @@ switch ($step) {
 
                         <div class="ui error message"></div>
 
+                        <div class="field">
+                            <label><?= __('Database Engine') ?></label>
+
+                            <select name="DATABASE_ENGINE" class="ui selection dropdown">
+                                <option value="mysql"><?= __('MySQL') ?></option>
+                                <option value="sqlite"><?= __('SQLite') ?></option>
+                            </select>
+                        </div>
+
                         <div class="equal width fields">
                             <div class="field">
                                 <label><?= __('Host') ?></label>
@@ -259,6 +268,7 @@ switch ($step) {
          * Database
          */
         $database = new Database(
+            $_SESSION['DATABASE_ENGINE'],
             $_SESSION['DATABASE_HOST'],
             $_SESSION['DATABASE_NAME'],
             $_SESSION['DATABASE_USER'],
@@ -267,7 +277,7 @@ switch ($step) {
         $database->connect();
         unset($_SESSION);
 
-        $database->query('SET foreign_key_checks = 0;');
+        $database->disableForeignKeyChecks();
 
         /**
          * Users
@@ -275,28 +285,16 @@ switch ($step) {
         $currencyFormatter = new \NumberFormatter(DEFAULT_LOCALE, \NumberFormatter::CURRENCY);
         $currencyISO       = $currencyFormatter->getSymbol(\NumberFormatter::INTL_CURRENCY_SYMBOL);
 
-        $database->query('DROP TABLE IF EXISTS `users`;');
-        $database->query(
-            'CREATE TABLE `users` (
-                `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
-                `email`                      VARCHAR(64)  NOT NULL UNIQUE,
-                `password`                   VARCHAR(128) NOT NULL,
-                `password_reset_token`       VARCHAR(128) NULL     DEFAULT NULL,
-                `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
-                `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
-                `power`                      INT          NOT NULL DEFAULT 1,
-                `birthdate`                  DATE         NULL     DEFAULT NULL,
-                `language`                   VARCHAR(6)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
-                `currency`                   VARCHAR(3)   NOT NULL DEFAULT "' . $currencyISO . '",
-                `name_first`                 VARCHAR(32)  NULL     DEFAULT NULL,
-                `name_last`                  VARCHAR(32)  NULL     DEFAULT NULL,
-                `name_nick`                  VARCHAR(32)  NULL     DEFAULT NULL,
-                `channel`                    VARCHAR(24)  NULL     DEFAULT NULL,
-                `advertisements`             TINYINT(1)   NOT NULL DEFAULT 0,
-
-                INDEX `idx_password` (`password`)
-            );'
+        $usersTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/users-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $usersTableCreateSql  = \file_get_contents($usersTableCreatePath);
+        $usersTableCreateSql  = \str_replace(
+            ['{{DEFAULT_LOCALE}}', '{{CURRENCY_ISO}}'],
+            [DEFAULT_LOCALE, $currencyISO],
+            $usersTableCreateSql
 
         /**
          * Wishlists

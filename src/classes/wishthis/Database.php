@@ -124,4 +124,24 @@ class Database
 
         return $exists;
     }
+
+    public function enableForeignKeyChecks(): void
+    {
+        $disableForeignKeyChecks = match ($this->engine) {
+            'mysql'  => 'SET foreign_key_checks = 1;',
+            'sqlite' => 'PRAGMA foreign_keys = ON;',
+        };
+
+        $this->query($disableForeignKeyChecks);
+    }
+
+    public function disableForeignKeyChecks(): void
+    {
+        $disableForeignKeyChecks = match ($this->engine) {
+            'mysql'  => 'SET foreign_key_checks = 0;',
+            'sqlite' => 'PRAGMA foreign_keys = OFF;',
+        };
+
+        $this->query($disableForeignKeyChecks);
+    }
 }
