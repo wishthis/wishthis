@@ -697,7 +697,7 @@ class Page
                             </a>
 
                             <a class="item"
-                               href="https://www.transifex.com/wishthis/wishthis/"
+                               href="https://explore.transifex.com/wishthis/wishthis/"
                                target="_blank"
                                title="<?= __('Transifex') ?>"
                             >
