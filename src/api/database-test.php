@@ -28,7 +28,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 host:     $_POST['DATABASE_HOST'],
                 database: $_POST['DATABASE_NAME'],
                 user:     $_POST['DATABASE_USER'],
-                password: $_POST['DATABASE_USER'],
+                password: $_POST['DATABASE_PASSWORD'],
             );
             $dbTest->connect();
 
