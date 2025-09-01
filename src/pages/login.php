@@ -169,21 +169,18 @@ $page->navigation();
                         <?php if ($options->getOption('mjml_api_application_id') && $options->getOption('mjml_api_secret_key')) { ?>
                             <p>
                                 <form class="ui form reset" method="POST">
-                                    <div class="field">
-                                        <div class="ui action input">
-                                            <div class="ui left icon action input">
-                                                <input type="email" name="email" placeholder="john.doe@domain.tld" />
-                                                <i class="envelope icon"></i>
-                                            </div>
-
-                                            <input class="ui primary button"
-                                                type="submit"
-                                                name="reset"
-                                                value="<?= __('Send email') ?>"
-                                                title="<?= __('Send email') ?>"
-                                            />
+                                    <div class="ui action input" style="display: flex;">
+                                        <div class="ui left icon action input" style="width: 100%;">
+                                            <input type="email" name="email" placeholder="john.doe@domain.tld" />
+                                            <i class="envelope icon"></i>
                                         </div>
 
+                                        <input class="ui primary button"
+                                            type="submit"
+                                            name="reset"
+                                            value="<?= __('Send email') ?>"
+                                            title="<?= __('Send email') ?>"
+                                        />
                                     </div>
                                 </form>
                             </p>
