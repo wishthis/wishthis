@@ -394,6 +394,7 @@ class User
     public function logIn(string $email = '', string $password = '', bool $userLoginIsPersistent = false): bool
     {
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -450,7 +451,7 @@ class User
         $database
         ->query(
             'UPDATE `users`
-                SET `last_login` = NOW()
+                SET `last_login` = ' . $database->getDateNow() . '
               WHERE `email`      = :user_email',
             [
                 'user_email' => $email,
@@ -482,6 +483,7 @@ class User
     {
         /** Destroy session */
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -624,6 +626,7 @@ class User
         }
 
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,
@@ -639,7 +642,7 @@ class User
         $database
         ->query(
             'DELETE FROM `sessions`
-                   WHERE `expires` <= NOW()',
+                   WHERE `expires` <= ' . $database->getDateNow()
         );
 
         /** Find existing session */
@@ -701,6 +704,7 @@ class User
         }
 
         $database = new Database(
+            DATABASE_ENGINE,
             DATABASE_HOST,
             DATABASE_NAME,
             DATABASE_USER,

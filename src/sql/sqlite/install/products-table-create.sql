@@ -1,0 +1,5 @@
+CREATE TABLE products (
+    wish  INTEGER PRIMARY KEY,
+    price REAL    DEFAULT NULL,
+    FOREIGN KEY (wish) REFERENCES wishes(id) ON DELETE CASCADE
+);

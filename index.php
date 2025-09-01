@@ -65,12 +65,14 @@ $database = false;
 $options  = false;
 
 if (
-       \defined('DATABASE_HOST')
+       \defined('DATABASE_ENGINE')
+    && \defined('DATABASE_HOST')
     && \defined('DATABASE_NAME')
     && \defined('DATABASE_USER')
     && \defined('DATABASE_PASSWORD')
 ) {
     $database = new Database(
+        DATABASE_ENGINE,
         DATABASE_HOST,
         DATABASE_NAME,
         DATABASE_USER,

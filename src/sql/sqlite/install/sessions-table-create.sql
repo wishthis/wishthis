@@ -1,0 +1,9 @@
+CREATE TABLE sessions (
+    id      INTEGER   PRIMARY KEY AUTOINCREMENT,
+    user    INTEGER   NOT NULL,
+    session TEXT      NOT NULL,
+    expires TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_user ON sessions(session);

@@ -3,6 +3,7 @@
 ### Added
 
 -   Textfield for public wishlist url (#220)
+-   SQLite support (#67)
 
 ### Changed
 

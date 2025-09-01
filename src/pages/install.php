@@ -49,6 +49,15 @@ switch ($step) {
 
                         <div class="ui error message"></div>
 
+                        <div class="field">
+                            <label><?= __('Database Engine') ?></label>
+
+                            <select name="DATABASE_ENGINE" class="ui selection dropdown">
+                                <option value="mysql"><?= __('MySQL') ?></option>
+                                <option value="sqlite"><?= __('SQLite') ?></option>
+                            </select>
+                        </div>
+
                         <div class="equal width fields">
                             <div class="field">
                                 <label><?= __('Host') ?></label>
@@ -259,6 +268,7 @@ switch ($step) {
          * Database
          */
         $database = new Database(
+            $_SESSION['DATABASE_ENGINE'],
             $_SESSION['DATABASE_HOST'],
             $_SESSION['DATABASE_NAME'],
             $_SESSION['DATABASE_USER'],
@@ -267,7 +277,7 @@ switch ($step) {
         $database->connect();
         unset($_SESSION);
 
-        $database->query('SET foreign_key_checks = 0;');
+        $database->disableForeignKeyChecks();
 
         /**
          * Users
@@ -275,107 +285,85 @@ switch ($step) {
         $currencyFormatter = new \NumberFormatter(DEFAULT_LOCALE, \NumberFormatter::CURRENCY);
         $currencyISO       = $currencyFormatter->getSymbol(\NumberFormatter::INTL_CURRENCY_SYMBOL);
 
-        $database->query('DROP TABLE IF EXISTS `users`;');
-        $database->query(
-            'CREATE TABLE `users` (
-                `id`                         INT          PRIMARY KEY AUTO_INCREMENT,
-                `email`                      VARCHAR(64)  NOT NULL UNIQUE,
-                `password`                   VARCHAR(128) NOT NULL,
-                `password_reset_token`       VARCHAR(128) NULL     DEFAULT NULL,
-                `password_reset_valid_until` DATETIME     NOT NULL DEFAULT NOW(),
-                `last_login`                 DATETIME     NOT NULL DEFAULT NOW(),
-                `power`                      INT          NOT NULL DEFAULT 1,
-                `birthdate`                  DATE         NULL     DEFAULT NULL,
-                `language`                   VARCHAR(6)   NOT NULL DEFAULT "' . DEFAULT_LOCALE . '",
-                `currency`                   VARCHAR(3)   NOT NULL DEFAULT "' . $currencyISO . '",
-                `name_first`                 VARCHAR(32)  NULL     DEFAULT NULL,
-                `name_last`                  VARCHAR(32)  NULL     DEFAULT NULL,
-                `name_nick`                  VARCHAR(32)  NULL     DEFAULT NULL,
-                `channel`                    VARCHAR(24)  NULL     DEFAULT NULL,
-                `advertisements`             TINYINT(1)   NOT NULL DEFAULT 0,
-
-                INDEX `idx_password` (`password`)
-            );'
+        $usersTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/users-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $usersTableCreateSql  = \file_get_contents($usersTableCreatePath);
+        $usersTableCreateSql  = \str_replace(
+            ['{{DEFAULT_LOCALE}}', '{{CURRENCY_ISO}}'],
+            [DEFAULT_LOCALE, $currencyISO],
+            $usersTableCreateSql
+        );
+
+        $database->query('DROP TABLE IF EXISTS `users`;');
+        $database->query($usersTableCreateSql);
 
         /**
          * Wishlists
          */
-        $database->query('DROP TABLE IF EXISTS `wishlists`;');
-        $database->query(
-            'CREATE TABLE `wishlists` (
-                `id`                INT          PRIMARY KEY AUTO_INCREMENT,
-                `user`              INT          NOT NULL,
-                `name`              VARCHAR(128) NOT NULL,
-                `hash`              VARCHAR(128) NOT NULL,
-                `notification_sent` TIMESTAMP        NULL DEFAULT NULL,
-
-                INDEX `idx_hash` (`hash`),
-                CONSTRAINT `FK_wishlists_user` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-            );'
+        $wishlistsTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/wishlists-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $wishlistsTableCreateSql  = \file_get_contents($wishlistsTableCreatePath);
+
+        $database->query('DROP TABLE IF EXISTS `wishlists`;');
+        $database->query($wishlistsTableCreateSql);
 
         /**
          * Wishlists Saved
          */
-        $database->query('DROP TABLE IF EXISTS `wishlists_saved`;');
-        $database->query(
-            'CREATE TABLE `wishlists_saved` (
-                `id`       INT PRIMARY KEY AUTO_INCREMENT,
-                `user`     INT NOT NULL,
-                `wishlist` INT NOT NULL,
-
-                INDEX `idx_wishlist` (`wishlist`),
-                CONSTRAINT `FK_wishlists_saved_user` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-            );'
+        $wishlistsSavedTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/wishlists-saved-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $wishlistsSavedTableCreateSql  = \file_get_contents($wishlistsSavedTableCreatePath);
+
+        $database->query('DROP TABLE IF EXISTS `wishlists_saved`;');
+        $database->query($wishlistsSavedTableCreateSql);
 
         /**
          * Wishes
          */
-        $database->query('DROP TABLE IF EXISTS `wishes`;');
-        $database->query(
-            'CREATE TABLE `wishes` (
-                `id`             INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                `wishlist`       INT          NOT NULL,
-                `title`          VARCHAR(128) NULL     DEFAULT NULL,
-                `description`    TEXT         NULL     DEFAULT NULL,
-                `image`          TEXT         NULL     DEFAULT NULL,
-                `url`            VARCHAR(255) NULL     DEFAULT NULL,
-                `priority`       TINYINT(1)   NULL     DEFAULT NULL,
-                `status`         VARCHAR(32)  NULL     DEFAULT NULL,
-                `is_purchasable` BOOLEAN      NOT NULL DEFAULT FALSE,
-                `edited`         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-                INDEX `idx_url` (`url`),
-                CONSTRAINT `FK_wishes_wishlists` FOREIGN KEY (`wishlist`) REFERENCES `wishlists` (`id`) ON DELETE CASCADE
-            );'
+        $wishesTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/wishes-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $wishesTableCreateSql  = \file_get_contents($wishesTableCreatePath);
+
+        $database->query('DROP TABLE IF EXISTS `wishes`;');
+        $database->query($wishesTableCreateSql);
 
         /**
          * Products
          */
-        $database->query('DROP TABLE IF EXISTS `products`;');
-        $database->query(
-            'CREATE TABLE `products` (
-                `wish`  INT   NOT NULL PRIMARY KEY,
-                `price` FLOAT NULL     DEFAULT NULL,
-
-                CONSTRAINT `FK_products_wishes` FOREIGN KEY (`wish`) REFERENCES `wishes` (`id`) ON DELETE CASCADE
-            );'
+        $productsTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/products-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $productsTableCreateSql  = \file_get_contents($productsTableCreatePath);
+
+        $database->query('DROP TABLE IF EXISTS `products`;');
+        $database->query($productsTableCreateSql);
 
         /**
          * Options
          */
-        $database->query('DROP TABLE IF EXISTS `options`;');
-        $database->query(
-            'CREATE TABLE `options` (
-                `id`    INT          PRIMARY KEY AUTO_INCREMENT,
-                `key`   VARCHAR(64)  NOT NULL UNIQUE,
-                `value` VARCHAR(128) NOT NULL
-            );'
+        $optionsTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/options-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $optionsTableCreateSql  = \file_get_contents($optionsTableCreatePath);
+
+        $database->query('DROP TABLE IF EXISTS `options`;');
+        $database->query($optionsTableCreateSql);
 
         $database->query(
             'INSERT INTO
@@ -389,20 +377,17 @@ switch ($step) {
         /**
          * Sessions
          */
-        $database->query('DROP TABLE IF EXISTS `sessions`;');
-        $database->query(
-            'CREATE TABLE `sessions` (
-                `id`      INT         NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                `user`    INT         NOT NULL,
-                `session` VARCHAR(60) NOT NULL,
-                `expires` TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-
-                INDEX `idx_user` (`session`),
-                CONSTRAINT `FK_sessions_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE
-            );'
+        $sessionsTableCreatePath = \sprintf(
+            '%1$s/src/sql/%2$s/install/sessions-table-create.sql',
+            ROOT,
+            $database->engine
         );
+        $sessionsTableCreateSql  = \file_get_contents($sessionsTableCreatePath);
 
-        $database->query('SET foreign_key_checks = 1;');
+        $database->query('DROP TABLE IF EXISTS `sessions`;');
+        $database->query($sessionsTableCreateSql);
+
+        $database->enableForeignKeyChecks();
         ?>
         <main>
             <div class="ui hidden divider"></div>

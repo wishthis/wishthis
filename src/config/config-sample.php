@@ -11,8 +11,11 @@ namespace wishthis;
 /**
  * Database
  *
- * Used to connect to your MySQL database.
+ * Used to connect to your database.
+ *
+ * @param DATABASE_ENGINE can be either `mysql` or `sqlite`.
  */
+\define('DATABASE_ENGINE', 'mysql');
 \define('DATABASE_HOST', 'localhost');
 \define('DATABASE_NAME', 'wishthis');
 \define('DATABASE_USER', 'root');
