@@ -20,6 +20,7 @@
 ### Fixed
 
 -   An error when attempting to send an email (such as requesting new wishes) when the instance does not have MJML API keys configured (#215)
+-   Outdated transifex project link (#231)
 
 ### Security
 
