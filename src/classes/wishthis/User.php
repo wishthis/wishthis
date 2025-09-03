@@ -197,7 +197,13 @@ class User
 
         /** Set Language */
         if (!isset($this->language)) {
-            $this->language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) : DEFAULT_LOCALE;
+            $locale = DEFAULT_LOCALE;
+
+            if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+                $locale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']) ?: DEFAULT_LOCALE;
+            }
+
+            $this->language = $locale;
         }
 
         $this->setLocale($this->language);
