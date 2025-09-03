@@ -138,8 +138,8 @@ if ($options && $options->getOption('isInstalled')) {
 if (!isset($page)) {
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 }
-$pagePath    = 'src/pages/' . $page . '.php';
-$pagePathAlt = 'src/pages/' . $page . '/' . $page . '.php';
+$pagePath    = __DIR__ . '/src/pages/' . $page . '.php';
+$pagePathAlt = __DIR__ . '/src/pages/' . $page . '/' . $page . '.php';
 
 if (\file_exists($pagePath)) {
     require $pagePath;
