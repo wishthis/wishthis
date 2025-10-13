@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.4.17] - 2025-05-13
+### Fixed
+- Adapters hostname detection [#556].
+
+## [4.4.16] - 2025-05-09
+### Fixed
+- Adapters hostname detection [#555].
+
+## [4.4.15] - 2025-01-02
+### Fixed
+- Type bug [#553].
+
+## [4.4.14] - 2024-12-04
+### Fixed
+- Php 8.4 support [#551].
+
+## [4.4.13] - 2024-11-21
+### Fixed
+- Php 8.4 support [#548].
+
 ## [4.4.12] - 2024-07-24
 ### Fixed
 - X.com (Twitter) [#540]
@@ -239,7 +259,17 @@ Full library refactoring.
 [#529]: https://github.com/oscarotero/Embed/issues/529
 [#537]: https://github.com/oscarotero/Embed/issues/537
 [#540]: https://github.com/oscarotero/Embed/issues/540
+[#548]: https://github.com/oscarotero/Embed/issues/548
+[#551]: https://github.com/oscarotero/Embed/issues/551
+[#553]: https://github.com/oscarotero/Embed/issues/553
+[#555]: https://github.com/oscarotero/Embed/issues/555
+[#556]: https://github.com/oscarotero/Embed/issues/556
 
+[4.4.17]: https://github.com/oscarotero/Embed/compare/v4.4.16...v4.4.17
+[4.4.16]: https://github.com/oscarotero/Embed/compare/v4.4.15...v4.4.16
+[4.4.15]: https://github.com/oscarotero/Embed/compare/v4.4.14...v4.4.15
+[4.4.14]: https://github.com/oscarotero/Embed/compare/v4.4.13...v4.4.14
+[4.4.13]: https://github.com/oscarotero/Embed/compare/v4.4.12...v4.4.13
 [4.4.12]: https://github.com/oscarotero/Embed/compare/v4.4.11...v4.4.12
 [4.4.11]: https://github.com/oscarotero/Embed/compare/v4.4.10...v4.4.11
 [4.4.10]: https://github.com/oscarotero/Embed/compare/v4.4.9...v4.4.10

@@ -38,9 +38,9 @@
             'dev_requirement' => true,
         ),
         'embed/embed' => array(
-            'pretty_version' => 'v4.4.12',
-            'version' => '4.4.12.0',
-            'reference' => 'b0e1c0496e3707794e96d4eef53ffffd538b850a',
+            'pretty_version' => 'v4.4.17',
+            'version' => '4.4.17.0',
+            'reference' => 'b2ea091a5586c14ea5f2c5bf52fb0ef38e5aef87',
             'type' => 'library',
             'install_path' => __DIR__ . '/../embed/embed',
             'aliases' => array(),

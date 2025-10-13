@@ -26,7 +26,35 @@ class Document
         $html = str_replace('<br>', "\n<br>", $html);
         $html = str_replace('<br ', "\n<br ", $html);
 
-        $this->document = !empty($html) ? Parser::parse($html) : new DOMDocument();
+        $encoding = null;
+        $contentType = $extractor->getResponse()->getHeaderLine('content-type');
+        preg_match('/charset=(?:"|\')?(.*?)(?=$|\s|;|"|\'|>)/i', $contentType, $match);
+        if (!empty($match[1])) {
+            $encoding = trim($match[1], ',');
+            try {
+                $ret = mb_encoding_aliases($encoding ?? '');
+                if ($ret === false) {
+                    $encoding = null;
+                }
+            } catch (\ValueError $exception) {
+                $encoding = null;
+            }
+        }
+        if (is_null($encoding) && !empty($html)) {
+            preg_match('/charset=(?:"|\')?(.*?)(?=$|\s|;|"|\'|>)/i', $html, $match);
+            if (!empty($match[1])) {
+                $encoding = trim($match[1], ',');
+            }
+            try {
+                $ret = mb_encoding_aliases($encoding ?? '');
+                if ($ret === false) {
+                    $encoding = null;
+                }
+            } catch (\ValueError $exception) {
+                $encoding = null;
+            }
+        }
+        $this->document = !empty($html) ? Parser::parse($html, $encoding) : new DOMDocument();
         $this->initXPath();
     }
 
@@ -79,7 +107,7 @@ class Document
     /**
      * Select a element in the dom
      */
-    public function select(string $query, array $attributes = null, DOMNode $context = null): QueryResult
+    public function select(string $query, ?array $attributes = null, ?DOMNode $context = null): QueryResult
     {
         if (!empty($attributes)) {
             $query = self::buildQuery($query, $attributes);
@@ -91,7 +119,7 @@ class Document
     /**
      * Select a element in the dom using a css selector
      */
-    public function selectCss(string $query, DOMNode $context = null): QueryResult
+    public function selectCss(string $query, ?DOMNode $context = null): QueryResult
     {
         return $this->select(self::cssToXpath($query), null, $context);
     }

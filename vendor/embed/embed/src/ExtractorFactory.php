@@ -46,7 +46,14 @@ class ExtractorFactory
         $class = $this->default;
 
         foreach ($this->adapters as $adapterHost => $adapter) {
-            if (substr($host, -strlen($adapterHost)) === $adapterHost) {
+            // Check if $host is the same domain as $adapterHost.
+            if ($host === $adapterHost) {
+                $class = $adapter;
+                break;
+            }
+
+            // Check if $host is a subdomain of $adapterHost.
+            if (substr($host, -strlen($adapterHost) - 1) === ".{$adapterHost}") {
                 $class = $adapter;
                 break;
             }
