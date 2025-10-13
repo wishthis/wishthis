@@ -69,6 +69,7 @@ $changelogFilepath   = $changelogsDirectory . '/changelog.md';
                             <?php
                             $text = \file_get_contents($filepath);
                             $text = \preg_replace('/(#(\d+))/', '<a href="https://github.com/wishthis/wishthis/issues/$2">$1</a>', $text);
+                            $text = \preg_replace('/(([a-f0-9]{7}))/', '<a href="https://github.com/wishthis/wishthis/commit/$2">$1</a>', $text);
                             ?>
                             <div class="ui segment"><?= $parsedown->text($text); ?></div>
                         </div>
