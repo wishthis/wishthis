@@ -1,6 +1,7 @@
-*.code-workspace
-
+/.vscode
+/*.code-workspace
 /src/cache/*
+/src/config/config.php
 
 /vendor/bin
 /vendor/squizlabs/php_codesniffer
@@ -15,6 +16,3 @@
 /node_modules/prr
 /node_modules/sax
 /node_modules/@octokit
-
-/.vscode
-/src/config/config.php
