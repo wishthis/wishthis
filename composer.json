@@ -3,7 +3,7 @@
         "embed/embed": "^4.4",
         "qferr/mjml-php": "^2.0",
         "gettext/gettext": "^5.7",
-        "gettext/translator": "^1.1",
+        "gettext/translator": "^1.2",
         "jaybizzle/crawler-detect": "^1.2",
         "slim/psr7": "^1.6",
         "erusev/parsedown": "^1.7"

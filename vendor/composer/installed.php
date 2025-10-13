@@ -83,9 +83,9 @@
             'dev_requirement' => false,
         ),
         'gettext/translator' => array(
-            'pretty_version' => 'v1.2.0',
-            'version' => '1.2.0.0',
-            'reference' => 'a4fa5ed740f304a0ed7b3e169b2b554a195c7570',
+            'pretty_version' => 'v1.2.1',
+            'version' => '1.2.1.0',
+            'reference' => '8ae0ac79053bcb732a6c584cd86f7a82ef183161',
             'type' => 'library',
             'install_path' => __DIR__ . '/../gettext/translator',
             'aliases' => array(),

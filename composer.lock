@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef1e609b599c7cf37fde910aa927897d",
+    "content-hash": "787aef52109d9a4d6d3287b2f1781217",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -427,16 +427,16 @@
         },
         {
             "name": "gettext/translator",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-gettext/Translator.git",
-                "reference": "a4fa5ed740f304a0ed7b3e169b2b554a195c7570"
+                "reference": "8ae0ac79053bcb732a6c584cd86f7a82ef183161"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-gettext/Translator/zipball/a4fa5ed740f304a0ed7b3e169b2b554a195c7570",
-                "reference": "a4fa5ed740f304a0ed7b3e169b2b554a195c7570",
+                "url": "https://api.github.com/repos/php-gettext/Translator/zipball/8ae0ac79053bcb732a6c584cd86f7a82ef183161",
+                "reference": "8ae0ac79053bcb732a6c584cd86f7a82ef183161",
                 "shasum": ""
             },
             "require": {
@@ -481,7 +481,7 @@
             "support": {
                 "email": "oom@oscarotero.com",
                 "issues": "https://github.com/php-gettext/Translator/issues",
-                "source": "https://github.com/php-gettext/Translator/tree/v1.2.0"
+                "source": "https://github.com/php-gettext/Translator/tree/v1.2.1"
             },
             "funding": [
                 {
@@ -497,7 +497,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-11-06T15:42:03+00:00"
+            "time": "2025-01-09T09:20:22+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",

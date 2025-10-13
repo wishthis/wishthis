@@ -8,7 +8,7 @@ abstract class TranslatorFunctions
     private static $translator;
     private static $formatter;
 
-    public static function register(TranslatorInterface $translator, FormatterInterface $formatter = null): void
+    public static function register(TranslatorInterface $translator, ?FormatterInterface $formatter = null): void
     {
         self::$translator = $translator;
         self::$formatter = $formatter ?: new Formatter();

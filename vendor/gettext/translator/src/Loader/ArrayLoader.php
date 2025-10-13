@@ -12,14 +12,14 @@ use Gettext\Translations;
  */
 final class ArrayLoader extends Loader
 {
-    public function loadFile(string $filename, Translations $translations = null): Translations
+    public function loadFile(string $filename, ?Translations $translations = null): Translations
     {
         $array = self::includeSafe($filename);
 
         return $this->loadArray($array, $translations);
     }
 
-    public function loadString(string $string, Translations $translations = null): Translations
+    public function loadString(string $string, ?Translations $translations = null): Translations
     {
         throw new BadMethodCallException('Arrays cannot be loaded from string. Use ArrayLoader::loadFile() instead');
     }
@@ -29,7 +29,7 @@ final class ArrayLoader extends Loader
         return include $filename;
     }
 
-    public function loadArray(array $array, Translations $translations = null): Translations
+    public function loadArray(array $array, ?Translations $translations = null): Translations
     {
         if (!$translations) {
             $translations = $this->createTranslations();

@@ -10,7 +10,7 @@ class GettextTranslator implements TranslatorInterface
     /**
      * Detects the current language using the environment variables.
      */
-    public function __construct(string $language = null)
+    public function __construct(?string $language = null)
     {
         if (!function_exists('gettext')) {
             throw new RuntimeException('This class require the gettext extension for PHP');
@@ -30,7 +30,7 @@ class GettextTranslator implements TranslatorInterface
     /**
      * Define the current locale.
      */
-    public function setLanguage(string $language, int $category = null): self
+    public function setLanguage(string $language, ?int $category = null): self
     {
         if ($category === null) {
             $category = defined('LC_MESSAGES') ? LC_MESSAGES : LC_ALL;
@@ -45,7 +45,7 @@ class GettextTranslator implements TranslatorInterface
     /**
      * Loads a gettext domain.
      */
-    public function loadDomain(string $domain, string $path = null, bool $default = true): self
+    public function loadDomain(string $domain, ?string $path = null, bool $default = true): self
     {
         bindtextdomain($domain, $path);
         bind_textdomain_codeset($domain, 'UTF-8');
