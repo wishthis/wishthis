@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'gettext/gettext' => array(
-            'pretty_version' => 'v5.7.1',
-            'version' => '5.7.1.0',
-            'reference' => 'a9f89e0cc9d9a67b422632b594b5f1afb16eccfc',
+            'pretty_version' => 'v5.7.3',
+            'version' => '5.7.3.0',
+            'reference' => '95820f020e4f2f05e0bbaa5603e4c6ec3edc50f1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../gettext/gettext',
             'aliases' => array(),
