@@ -92,9 +92,9 @@
             'dev_requirement' => false,
         ),
         'jaybizzle/crawler-detect' => array(
-            'pretty_version' => 'v1.2.119',
-            'version' => '1.2.119.0',
-            'reference' => '275002e22b0333c15a7c6792fdae5d5deefc9ef0',
+            'pretty_version' => 'v1.3.6',
+            'version' => '1.3.6.0',
+            'reference' => '61f2ef1ad2d0ae922c265931cb0a8032a1ed2813',
             'type' => 'library',
             'install_path' => __DIR__ . '/../jaybizzle/crawler-detect',
             'aliases' => array(),

@@ -19,7 +19,7 @@ class Exclusions extends AbstractProvider
      *
      * @var array
      */
-    protected $data = array(
+    protected $data = [
         'Safari.[\d\.]*',
         'Firefox.[\d\.]*',
         ' Chrome.[\d\.]*',
@@ -70,5 +70,7 @@ class Exclusions extends AbstractProvider
         'OCTOPUS-CORE',
         'htc_botdugls',
         'super\/\d+\/Android\/\d+',
-    );
+        '"Yandex"',
+        'YandexModule2',
+    ];
 }
