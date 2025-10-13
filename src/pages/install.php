@@ -119,9 +119,17 @@ switch ($step) {
                 'label'     => __('Compatible'),
             ],
             [
-                'filename'  => __('PHP Version < 8.4'),
+                'filename'  => __('PHP Version <= 8.4'),
                 'icon'      => 'php',
-                'condition' => \version_compare(\PHP_VERSION, '8.4', '<'),
+                'condition' => \version_compare(
+                    \sprintf(
+                        '%1$s.%2$s',
+                        \PHP_MAJOR_VERSION,
+                        \PHP_MINOR_VERSION
+                    ),
+                    '8.4',
+                    '<='
+                ),
                 'label'     => __('Compatible'),
             ],
             [
