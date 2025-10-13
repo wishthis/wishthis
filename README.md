@@ -7,7 +7,7 @@ wishthis is a simple, intuitive and modern wishlist platform to create, manage a
 > [!IMPORTANT]
 > wishthis automatically adds an affiliate tracking parameter to all amazon.de links. This behaviour cannot currently be deactivated. It was added in an attempt to monetise wishthis without impacting the user experience and to keep me motivated to work on the project.
 >
-> I am very conflicted about this, as I believe software should be free (as in libre), yet I live in a capitalist economy, which forces me to pay or die. As mentioned on [my sponsors profile](<(https://github.com/sponsors/grandeljay)>), I am working full time and am not dependent on any donations to live, but I am struggling to justify the sheer amount of time and thought I have spent and am still spending on wishthis, as it requires regular maintenance.
+> I am very conflicted about this, as I believe software should be free (as in libre), yet I live in a capitalist economy, which forces me to pay or die. As mentioned on [my sponsors profile](https://github.com/sponsors/grandeljay), I am working full time and am not dependent on any donations to live, but I am struggling to justify the sheer amount of time and thought I have spent and am still spending on wishthis, as it requires regular maintenance.
 >
 > Please reach out in the Discussions, Discord or Matrix to let me tknow what your opionion is on the matter.
 
