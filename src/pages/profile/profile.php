@@ -246,12 +246,19 @@ $page->navigation();
                     <?php
                     $user_is_active = '`last_login` >= CURDATE() - INTERVAL 60 DAY';
 
+                    $query_mysql  = 'SELECT COUNT(`id`)
+                                       FROM `users`
+                                      WHERE `last_login` >= CURDATE() - INTERVAL 60 DAY';
+                    $query_sqlite = 'SELECT COUNT("id")
+                                       FROM "users"
+                                      WHERE "last_login" >= date(\'now\', \'-60 day\')';
+                    $query        = match ($database->engine) {
+                        'mysql'  => $query_mysql,
+                        'sqlite' => $query_sqlite,
+                    };
+
                     $count_users = $database
-                    ->query(
-                        'SELECT COUNT(`id`)
-                           FROM `users`
-                          WHERE ' . $user_is_active . ';'
-                    )
+                    ->query($query)
                     ->fetch();
                     $count_users = reset($count_users);
 
@@ -266,12 +273,7 @@ $page->navigation();
                     );
 
                     $count_users_rc = $database
-                    ->query(
-                        'SELECT COUNT(`id`)
-                           FROM `users`
-                          WHERE ' . $user_is_active . '
-                            AND `channel` = "release-candidate";'
-                    )
+                    ->query($query . 'AND `channel` = "release-candidate"')
                     ->fetch();
                     $count_users_rc = reset($count_users_rc);
                     ?>
