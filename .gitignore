@@ -1,4 +1,3 @@
-/.vscode
 /*.code-workspace
 /src/cache/*
 /src/config/config.php
