@@ -6,8 +6,11 @@
 
 namespace wishthis;
 
-function __(string $text, string $context = null, User $user = null): string
-{
+function __(
+    string $text,
+    string|null $context = null,
+    User|null $user = null
+): string {
     if (null === $user) {
         $user = User::getCurrent();
     }
@@ -32,7 +35,7 @@ function _n(string $singular, string $plural, int $amount): string
     return 1 === $amount ? __($singular) : __($plural);
 }
 
-function _x(string $text, string $context = null): string
+function _x(string $text, string|null $context = null): string
 {
     return __($text, $context);
 }
