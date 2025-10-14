@@ -133,7 +133,6 @@ class Wishlist
             OR (
                     `wishes`.`status` != "' . Wish::STATUS_UNAVAILABLE . '"
                 AND `wishes`.`status` != "' . Wish::STATUS_FULFILLED . '"
-                AND `wishes`.`status`  < unix_timestamp(CURRENT_TIMESTAMP - INTERVAL ' . Wish::STATUS_TEMPORARY_MINUTES . ' MINUTE)
             )
         )';
 
