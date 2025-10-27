@@ -9,8 +9,14 @@
 namespace wishthis;
 
 \define('VERSION', '1.2.3');
-\define('ROOT', __DIR__);
 \define('DEFAULT_LOCALE', 'en_GB');
+
+$pathDirectoryRoot = isset($_SERVER['SCRIPT_NAME'])
+                   ? \rtrim(\dirname($_SERVER['SCRIPT_NAME']), '/\\')
+                   : '';
+
+\define('ROOT', __DIR__);
+\define('ROOT_URL', $pathDirectoryRoot);
 
 /**
  * Include

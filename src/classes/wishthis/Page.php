@@ -359,7 +359,7 @@ class Page
                 ?>
                 <link rel="stylesheet"
                       type="text/css"
-                      href="/<?= $stylesheet_filepath ?>?v=<?= $hash ?>"
+                      href="<?= ROOT_URL ?>/<?= $stylesheet_filepath ?>?v=<?= $hash ?>"
                 />
                 <?php
             }
@@ -382,7 +382,7 @@ class Page
                 ?>
                 <script defer
                         type="text/javascript"
-                        src="/<?= $script_page ?>?v=<?= $hash ?>">
+                        src="<?= ROOT_URL ?>/<?= $script_page ?>?v=<?= $hash ?>">
                 </script>
                 <?php
             }
