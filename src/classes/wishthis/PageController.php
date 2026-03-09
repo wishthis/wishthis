@@ -17,7 +17,62 @@ class PageController
             $this->metaTitle = $this->pageTitle;
         }
 
-        global $locales, $locale;
+        $this->setPlaceholders();
+    }
+
+    private function setPlaceholders(): void
+    {
+        $this->setPlaceholderPageLocale();
+
+        $this->setPlaceholderPageMetaTitle();
+        $this->setPlaceholderPageMetaDescription();
+        $this->setPlaceholderPageMetaLinkPreview();
+        $this->setPlaceholderPageMetaAlternates();
+        $this->setPlaceholderPageMetaHost();
+        $this->setPlaceholderPageMetaUrl();
+        $this->setPlaceholderPageMetaCanonical();
+
+        $this->setPlaceholderPageTitle();
+
+        $this->setPlaceholderPageMetaStylsheets();
+        $this->setPlaceholderPageMetaScripts();
+
+        $this->setPlaceholderPageNavigation();
+    }
+
+    private function setPlaceholderPageLocale(): void
+    {
+        global $locale;
+
+        $this->placeholders['PAGE_LOCALE'] = $locale;
+    }
+
+    private function setPlaceholderPageMetaTitle(): void
+    {
+        $this->placeholders['PAGE_META_TITLE'] = \sprintf(
+            '%1$s - wishthis',
+            $this->metaTitle
+        );
+    }
+
+    private function setPlaceholderPageMetaDescription(): void
+    {
+        $this->placeholders['PAGE_META_DESCRIPTION'] = __(
+            'wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.'
+        );
+    }
+
+    private function setPlaceholderPageMetaLinkPreview(): void
+    {
+        $this->placeholders['PAGE_META_LINK_PREVIEW'] = \sprintf(
+            'https://%1$s/src/assets/img/link-previews/default.png',
+            $_SERVER['HTTP_HOST']
+        );
+    }
+
+    private function setPlaceholderPageMetaAlternates(): void
+    {
+        global $locales;
 
         $pageMetaAlternates = [];
 
@@ -37,14 +92,27 @@ class PageController
             $pageMetaAlternates
         );
 
-        $this->placeholders['PAGE_LOCALE']            = $locale;
-        $this->placeholders['PAGE_META_TITLE']        = \sprintf('%1$s - wishthis', $this->metaTitle);
-        $this->placeholders['PAGE_META_DESCRIPTION']  = __('wishthis is a simple, intuitive and modern wishlist platform to create, manage and view your wishes for any kind of occasion.');
-        $this->placeholders['PAGE_META_LINK_PREVIEW'] = \sprintf('https://%1$s/src/assets/img/link-previews/default.png', $_SERVER['HTTP_HOST']);
-        $this->placeholders['PAGE_META_ALTERNATES']   = \implode(\PHP_EOL, $pageMetaAlternates);
-        $this->placeholders['PAGE_META_HOST']         = $_SERVER['HTTP_HOST'];
-        $this->placeholders['PAGE_META_URL']          = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $this->placeholders['PAGE_META_ALTERNATES'] = \implode(
+            \PHP_EOL,
+            $pageMetaAlternates
+        );
+    }
 
+    private function setPlaceholderPageMetaHost(): void
+    {
+        $this->placeholders['PAGE_META_HOST'] = $_SERVER['HTTP_HOST'];
+    }
+
+    private function setPlaceholderPageMetaUrl(): void
+    {
+        $this->placeholders['PAGE_META_URL'] = $_SERVER['REQUEST_SCHEME']
+                                             . '://'
+                                             . $_SERVER['HTTP_HOST']
+                                             . $_SERVER['REQUEST_URI'];
+    }
+
+    private function setPlaceholderPageMetaCanonical(): void
+    {
         if (\defined('CHANNELS') && \is_array(CHANNELS)) {
             $channels = CHANNELS;
             $stable   = \reset($channels);
@@ -59,9 +127,15 @@ class PageController
                 $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI']
             );
         }
+    }
 
+    private function setPlaceholderPageTitle(): void
+    {
         $this->placeholders['PAGE_TITLE'] = $this->pageTitle;
+    }
 
+    private function setPlaceholderPageMetaStylsheets(): void
+    {
         $stylesheets             = [
             'fomantic-ui' => 'semantic/dist/semantic.min.css',
             'default'     => 'src/assets/css/default.css',
@@ -92,7 +166,10 @@ class PageController
                 $stylesheets
             )
         );
+    }
 
+    private function setPlaceholderPageMetaScripts(): void
+    {
         $scripts             = [
             'j-query'     => 'node_modules/jquery/dist/jquery.min.js',
             'fomantic-ui' => 'semantic/dist/semantic.min.js',
@@ -124,7 +201,6 @@ class PageController
             )
         );
 
-
         if (\defined('PLAUSIBLE') && true === PLAUSIBLE) {
             $this->placeholders['PAGE_META_SCRIPTS'] .= \PHP_EOL . '    ' . \sprintf(
                 '<script defer type="text/javascript" data-domain="%1$s" src="https://plausible.io/js/plausible.js"></script>',
@@ -135,7 +211,10 @@ class PageController
         \ob_start();
         require \sprintf('%1$s/src/assets/js/inline.js.php', \ROOT);
         $this->placeholders['PAGE_META_SCRIPTS'] .=  \PHP_EOL . '    ' . \ob_get_clean();
+    }
 
+    private function setPlaceholderPageNavigation(): void
+    {
         $user = User::getCurrent();
 
         $wishlists = Navigation::Wishlists->value;
