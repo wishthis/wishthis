@@ -144,4 +144,5 @@ if ('/' !== $requestUri) {
 $router = new Router();
 $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
+$router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->resolve($requestUri);

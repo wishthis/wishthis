@@ -57,7 +57,7 @@ $(function() {
     /**
      * News
      */
-    fetch('/index.php?page=api&module=blog', {
+    fetch('/api/blog', {
         method      : 'GET',
         credentials : 'include',
     })

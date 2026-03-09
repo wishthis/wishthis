@@ -1,32 +1,32 @@
 <?php
 
-/**
- * Blog
- *
- * @category API
- */
-
 namespace wishthis;
 
-global $page;
+class PageControllerApiBlog extends PageController
+{
+    protected string $id = 'api-blog';
 
-if (!isset($page)) {
-    \http_response_code(403);
-    die('Direct access to this location is not allowed.');
-}
+    public function __construct()
+    {
+        $this->pageTitle = 'API';
 
-$user = User::getCurrent();
+        parent::__construct();
+    }
 
-$dateFormatter = new \IntlDateFormatter(
-    $user->getLocale(),
-    \IntlDateFormatter::MEDIUM,
-    \IntlDateFormatter::NONE
-);
-
-switch ($_SERVER['REQUEST_METHOD']) {
-    case 'GET':
+    public function blog(): void
+    {
         $posts = Blog::getPosts();
-        $html  = '';
+        $user  = User::getCurrent();
+
+        $dateFormatter = new \IntlDateFormatter(
+            $user->getLocale(),
+            \IntlDateFormatter::MEDIUM,
+            \IntlDateFormatter::NONE
+        );
+
+        $html = '';
+
+        \ob_start();
 
         for ($i = 0; $i < 2; $i++) {
             $post = $posts[$i];
@@ -43,5 +43,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $response['posts'] = $posts;
         $response['html']  = $html;
-        break;
+
+        $response['warning'] = \ob_get_clean();
+        $response['success'] = true;
+
+        \header('Content-type: application/json; charset=utf-8');
+        echo \json_encode($response);
+    }
 }
