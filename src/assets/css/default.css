@@ -152,9 +152,6 @@ p .ui.horizontal.label {
 /**
  * Menu
  */
-.pusher {
-    min-height: 100vh;
-}
 body.pushable > .pusher {
     background-color: transparent;
 }

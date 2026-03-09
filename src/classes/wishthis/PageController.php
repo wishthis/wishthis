@@ -135,6 +135,229 @@ class PageController
         \ob_start();
         require \sprintf('%1$s/src/assets/js/inline.js.php', \ROOT);
         $this->placeholders['PAGE_META_SCRIPTS'] .=  \PHP_EOL . '    ' . \ob_get_clean();
+
+        $user = User::getCurrent();
+
+        $wishlists = Navigation::Wishlists->value;
+        $blog      = Navigation::Blog->value;
+        $system    = Navigation::System->value;
+        $settings  = Navigation::Settings->value;
+        $account   = Navigation::Account->value;
+        $login     = Navigation::Login->value;
+        $register  = Navigation::Register->value;
+
+        $pages = [
+            $blog    => [
+                'text'      => __('Blog'),
+                'alignment' => 'left',
+                'items'     => [
+                    [
+                        'text' => __('Blog'),
+                        'url'  => Page::PAGE_BLOG,
+                        'icon' => 'rss',
+                    ],
+                ],
+            ],
+            $system  => [
+                'text'      => __('System'),
+                'icon'      => 'wrench',
+                'alignment' => 'right',
+                'items'     => [],
+            ],
+            $account => [
+                'text'      => __('Account'),
+                'icon'      => 'user circle',
+                'alignment' => 'right',
+                'items'     => [],
+            ],
+        ];
+
+        if ($user->isLoggedIn()) {
+            $pages[$wishlists] = [
+                'text'      => __('Wishlists'),
+                'alignment' => 'left',
+                'items'     => [
+                    [
+                        'text' => __('My lists'),
+                        'url'  => Page::PAGE_WISHLISTS,
+                        'icon' => 'list',
+                    ],
+                    [
+                        'text' => __('Remembered lists'),
+                        'url'  => Page::PAGE_WISHLISTS_SAVED,
+                        'icon' => 'heart',
+                    ],
+                ],
+            ];
+        }
+
+        if ($user->isLoggedIn()) {
+            $pages[$account]['items'][] = [
+                'text' => __('Profile'),
+                'url'  => Page::PAGE_PROFILE,
+                'icon' => 'user circle alternate',
+            ];
+            if (100 === $user->getPower()) {
+                $pages[$account]['items'][] = [
+                    'text' => __('Login as'),
+                    'url'  => Page::PAGE_LOGIN_AS,
+                    'icon' => 'sign out alternate',
+                ];
+            }
+            $pages[$account]['items'][] = [
+                'text' => __('Logout'),
+                'url'  => Page::PAGE_LOGOUT,
+                'icon' => 'sign out alternate',
+            ];
+        } else {
+            $pages[$login] = [
+                'text'      => __('Login'),
+                'alignment' => 'right',
+                'items'     => [
+                    [
+                        'text' => __('Login'),
+                        'url'  => Page::PAGE_LOGIN,
+                        'icon' => 'sign in alternate',
+                    ],
+                ],
+            ];
+
+            $registrationDisabled = \defined('DISABLE_USER_REGISTRATION') && true === DISABLE_USER_REGISTRATION;
+
+            if (!$registrationDisabled) {
+                $pages[$register] = [
+                    'text'      => __('Register'),
+                    'alignment' => 'right',
+                    'items'     => [
+                        [
+                            'text' => __('Register'),
+                            'url'  => Page::PAGE_REGISTER,
+                            'icon' => 'user plus alternate',
+                        ],
+                    ],
+                ];
+            }
+        }
+
+        if (100 === $user->getPower()) {
+            $pages[$system]['items'][] = [
+                'text' => __('Settings'),
+                'url'  => Page::PAGE_SETTINGS,
+                'icon' => 'cog',
+            ];
+        }
+
+        \ksort($pages);
+
+        if ('home' === $this->id) {
+            $logo = \file_get_contents(ROOT . '/src/assets/img/logo-animation.svg');
+        } else {
+            $logo = \file_get_contents(ROOT . '/src/assets/img/logo.svg');
+        }
+
+        \ob_start();
+        ?>
+        <div class="ui attached stackable vertical menu sidebar">
+            <div class="ui container">
+
+                <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
+
+                <?php foreach ($pages as $page) { ?>
+                    <?php foreach ($page['items'] as $item) { ?>
+                        <a class="item" href="<?= $item['url'] ?>">
+                            <i class="<?= $item['icon'] ?> icon"></i>
+                            <?= $item['text'] ?>
+                        </a>
+                    <?php } ?>
+                <?php } ?>
+
+            </div>
+        </div>
+
+        <div class="pusher">
+            <div class="ui attached menu desktop">
+                <div class="ui container">
+                    <a class="item home" href="<?= Page::PAGE_HOME ?>"><?= $logo ?></a>
+
+                    <?php foreach ($pages as $page) { ?>
+                        <?php if ('left' === $page['alignment']) { ?>
+                            <?php if (\count($page['items']) > 1) { ?>
+                                <div class="ui simple dropdown item">
+                                    <?php if (isset($page['icon'])) { ?>
+                                        <i class="<?= $page['icon'] ?> icon"></i>
+                                    <?php } ?>
+
+                                    <?= $page['text'] ?>
+
+                                    <i class="dropdown icon"></i>
+
+                                    <div class="menu">
+                                        <?php foreach ($page['items'] as $item) { ?>
+                                            <a class="item" href="<?= $item['url'] ?>">
+                                                <i class="<?= $item['icon'] ?> icon"></i>
+                                                <?= $item['text'] ?>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <?php foreach ($page['items'] as $item) { ?>
+                                    <a class="item" href="<?= $item['url'] ?>">
+                                        <i class="<?= $item['icon'] ?> icon"></i>
+                                        <?= $item['text'] ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <div class="right menu">
+                        <?php foreach ($pages as $page) { ?>
+                            <?php if ('right' === $page['alignment']) { ?>
+                                <?php if (\count($page['items']) > 1) { ?>
+                                    <div class="ui simple dropdown item">
+                                        <?php if (isset($page['icon'])) { ?>
+                                            <i class="<?= $page['icon'] ?> icon"></i>
+                                        <?php } ?>
+
+                                        <?= $page['text'] ?>
+
+                                        <i class="dropdown icon"></i>
+
+                                        <div class="menu">
+                                            <?php foreach ($page['items'] as $item) { ?>
+                                                <a class="item" href="<?= $item['url'] ?>">
+                                                    <i class="<?= $item['icon'] ?> icon"></i>
+                                                    <?= $item['text'] ?>
+                                                </a>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <?php foreach ($page['items'] as $item) { ?>
+                                        <a class="item" href="<?= $item['url'] ?>">
+                                            <i class="<?= $item['icon'] ?> icon"></i>
+                                            <?= $item['text'] ?>
+                                        </a>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui attached stackable menu toggle">
+                <div class="ui container">
+                    <a class="item">
+                        <i class="hamburger icon"></i>
+                        Menu
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php
+        $this->placeholders['PAGE_NAVIGATION'] = \ob_get_clean();
     }
 
     protected function render(): void
