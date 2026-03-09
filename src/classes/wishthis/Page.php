@@ -11,24 +11,24 @@ class Page
     /**
      * Static
      */
-    public const PAGE_API             = '/index.php?page=api';
-    public const PAGE_BLOG            = '/index.php?page=blog';
-    public const PAGE_CHANGELOG       = '/index.php?page=changelog';
-    public const PAGE_HOME            = '/index.php?page=home';
-    public const PAGE_INSTALL         = '/index.php?page=install';
-    public const PAGE_LOGIN_AS        = '/index.php?page=login-as';
-    public const PAGE_LOGIN           = '/index.php?page=login';
-    public const PAGE_LOGOUT          = '/index.php?page=logout';
-    public const PAGE_MAINTENANCE     = '/index.php?page=maintenance';
-    public const PAGE_POST            = '/index.php?page=post';
-    public const PAGE_POWER           = '/index.php?page=power';
-    public const PAGE_PROFILE         = '/index.php?page=profile';
-    public const PAGE_REGISTER        = '/index.php?page=register';
-    public const PAGE_SETTINGS        = '/index.php?page=settings';
-    public const PAGE_UPDATE          = '/index.php?page=update';
-    public const PAGE_WISHLIST        = '/index.php?page=wishlist';
-    public const PAGE_WISHLISTS_SAVED = '/index.php?page=wishlists-saved';
-    public const PAGE_WISHLISTS       = '/index.php?page=wishlists';
+    public const PAGE_API             = '/api';
+    public const PAGE_BLOG            = '/blog';
+    public const PAGE_CHANGELOG       = '/changelog';
+    public const PAGE_HOME            = '/';
+    public const PAGE_INSTALL         = '/install';
+    public const PAGE_LOGIN_AS        = '/login-as';
+    public const PAGE_LOGIN           = '/login';
+    public const PAGE_LOGOUT          = '/logout';
+    public const PAGE_MAINTENANCE     = '/maintenance';
+    public const PAGE_POST            = '/post';
+    public const PAGE_POWER           = '/power';
+    public const PAGE_PROFILE         = '/profile';
+    public const PAGE_REGISTER        = '/register';
+    public const PAGE_SETTINGS        = '/settings';
+    public const PAGE_UPDATE          = '/update';
+    public const PAGE_WISHLIST        = '/wishlist';
+    public const PAGE_WISHLISTS_SAVED = '/wishlists-saved';
+    public const PAGE_WISHLISTS       = '/wishlists';
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
