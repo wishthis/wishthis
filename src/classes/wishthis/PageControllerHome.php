@@ -144,21 +144,21 @@ class PageControllerHome extends PageController
                     </a>
                 </div>
                 <?php
-            } else {
-                ?>
-                <div class="column">
-                    <a class="ui fluid primary button" href="<?= Page::PAGE_REGISTER ?>" title="<?= __('Register now') ?>">
-                        <?= __('Register now') ?>
-                    </a>
-                </div>
-
-                <div class="column">
-                    <a class="ui fluid button" href="<?= Page::PAGE_LOGIN ?>" title="<?= __('Login') ?>">
-                        <?= __('Login') ?>
-                    </a>
-                </div>
-                <?php
             }
+        } else {
+            ?>
+            <div class="column">
+                <a class="ui fluid primary button" href="<?= Page::PAGE_REGISTER ?>" title="<?= __('Register now') ?>">
+                    <?= __('Register now') ?>
+                </a>
+            </div>
+
+            <div class="column">
+                <a class="ui fluid button" href="<?= Page::PAGE_LOGIN ?>" title="<?= __('Login') ?>">
+                    <?= __('Login') ?>
+                </a>
+            </div>
+                <?php
         }
 
         return \ob_get_clean();
