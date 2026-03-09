@@ -135,22 +135,11 @@ if ($options && $options->getOption('isInstalled')) {
 /**
  * Page
  */
-if (!isset($page)) {
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-}
-$pagePath    = __DIR__ . '/src/pages/' . $page . '.php';
-$pagePathAlt = __DIR__ . '/src/pages/' . $page . '/' . $page . '.php';
+$requestUri = \parse_url($_SERVER['REQUEST_URI'] ?? '/', \PHP_URL_PATH);
 
-if (\file_exists($pagePath)) {
-    require $pagePath;
-} elseif (\file_exists($pagePathAlt)) {
-    require $pagePathAlt;
-} else {
-    \http_response_code(404);
-    ?>
-    <h1>Not found</h1>
-    <p>The requested URL was not found on this server.</p>
-    <?php
-    echo $pagePath;
-    die();
+if ('/' !== $requestUri) {
+    $requestUri = \rtrim($requestUri, '/');
 }
+
+$router = new Router();
+$router->resolve($requestUri);
