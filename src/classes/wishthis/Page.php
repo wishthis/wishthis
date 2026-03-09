@@ -345,48 +345,6 @@ class Page
             <meta name="theme-color" content="#f4f4f4" />
 
             <?php
-            /**
-             * Stylesheets
-             */
-            $stylesheet_page = 'src/assets/css/' . $this->name .  '.css';
-
-            if (\file_exists($stylesheet_page)) {
-                $this->stylesheets['page'] = $stylesheet_page;
-            }
-
-            foreach ($this->stylesheets as $stylesheet_filepath) {
-                $hash = \hash_file('crc32', $stylesheet_filepath);
-                ?>
-                <link rel="stylesheet"
-                      type="text/css"
-                      href="/<?= $stylesheet_filepath ?>?v=<?= $hash ?>"
-                />
-                <?php
-            }
-
-            /**
-             * Scripts
-             */
-            /** Inline */
-            require ROOT . '/src/assets/js/inline.js.php';
-
-            /** Files */
-            $script_page = 'src/assets/js/' . $this->name .  '.js';
-
-            if (\file_exists($script_page)) {
-                $this->scripts['page'] = $script_page;
-            }
-
-            foreach ($this->scripts as $script_page) {
-                $hash = \hash_file('crc32', $script_page);
-                ?>
-                <script defer
-                        type="text/javascript"
-                        src="/<?= $script_page ?>?v=<?= $hash ?>">
-                </script>
-                <?php
-            }
-
             /** plausible */
             if (\defined('PLAUSIBLE') && true === PLAUSIBLE) {
                 ?>

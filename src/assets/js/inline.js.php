@@ -6,15 +6,15 @@
 
 namespace wishthis;
 
-global $options;
+global $options, $locale;
 ?>
 
 <script type="text/javascript">
     var wishthis = {};
 
     /** General */
-    wishthis.version = '<?= VERSION ?>';
-    wishthis.locale  = '<?= \str_replace('_', '-', $this->language) ?>';
+    wishthis.version = '<?= \VERSION ?>';
+    wishthis.locale  = '<?= \str_replace('_', '-', $locale) ?>';
     wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? \json_encode($_GET) : \json_encode([]) ?>');
 
     /** Wish */

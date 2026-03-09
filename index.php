@@ -142,4 +142,5 @@ if ('/' !== $requestUri) {
 }
 
 $router = new Router();
+$router->get('/', [PageControllerHome::class, 'default']);
 $router->resolve($requestUri);
