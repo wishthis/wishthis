@@ -434,6 +434,8 @@ class PageController
                     </a>
                 </div>
             </div>
+
+            <div class="ui hidden divider"></div>
         </div>
         <?php
         $this->placeholders['PAGE_NAVIGATION'] = \ob_get_clean();
