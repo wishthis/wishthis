@@ -17,10 +17,12 @@ class PageController
             $this->metaTitle = $this->pageTitle;
         }
 
-        $this->setPlaceholders();
+        if (!isset($this->template)) {
+            $this->template = \sprintf('%1$s.html', $this->id);
+        }
     }
 
-    private function setPlaceholders(): void
+    protected function setPlaceholders(): void
     {
         $this->setPlaceholderPageLocale();
 
@@ -38,6 +40,7 @@ class PageController
         $this->setPlaceholderPageMetaScripts();
 
         $this->setPlaceholderPageNavigation();
+        $this->setPlaceholderPageMessages();
     }
 
     private function setPlaceholderPageLocale(): void
@@ -441,8 +444,74 @@ class PageController
         $this->placeholders['PAGE_NAVIGATION'] = \ob_get_clean();
     }
 
+    private function setPlaceholderPageMessages(): void
+    {
+        if (!isset($_SESSION['messages'])) {
+            $this->placeholders['PAGE_MESSAGES'] = '';
+
+            return;
+        }
+
+        \ob_start();
+
+        foreach ($_SESSION['messages'] as $message) {
+            $messageContent = $message->getContent();
+            $messageHeader  = $message->getHeader();
+            $messageType    = $message->getType();
+
+            $containerClasses = ['ui', 'message'];
+            $iconClasses      = ['ui', 'icon'];
+
+            switch ($messageType) {
+                case MessageType::ERROR:
+                    $containerClasses[] = 'error icon';
+                    $iconClasses[]      = 'exclamation triangle';
+                    break;
+
+                case MessageType::WARNING:
+                    $containerClasses[] = 'warning icon';
+                    $iconClasses[]      = 'exclamation circle';
+                    break;
+
+                case MessageType::INFO:
+                    $containerClasses[] = 'info icon';
+                    $iconClasses[]      = 'info circle';
+                    break;
+
+                case MessageType::SUCCESS:
+                    $containerClasses[] = 'success icon';
+                    $iconClasses[]      = 'check circle';
+                    break;
+            }
+
+            $containerClass = \implode(' ', $containerClasses);
+            $iconClass      = \implode(' ', $iconClasses);
+            ?>
+            <div class="<?= $containerClass ?>">
+                <i class="<?= $iconClass ?>"></i>
+
+                <div class="content">
+                    <?php if ($messageHeader) { ?>
+                        <div class="header"><?= $messageHeader ?></div>
+                    <?php } ?>
+
+                    <?php if ($messageContent) { ?>
+                        <p><?= $messageContent ?></p>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php
+        }
+
+        $this->placeholders['PAGE_MESSAGES'] = \ob_get_clean();
+
+        unset($_SESSION['messages']);
+    }
+
     protected function render(): void
     {
+        $this->setPlaceholders();
+
         $directoryTemplates = \ROOT . '/src/templates/' . $this->template;
         $templateContent    = \file_get_contents($directoryTemplates);
 

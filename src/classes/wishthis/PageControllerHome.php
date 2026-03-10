@@ -8,7 +8,6 @@ class PageControllerHome extends PageController
 
     public function __construct()
     {
-        $this->template  = \sprintf('%1$s.html', $this->id);
         $this->pageTitle = __('Home');
 
         $this->placeholders['APP_HEADING']              = __('Make a wish');
