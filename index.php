@@ -148,6 +148,8 @@ $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all'])
 $router->get('/blog', [PageControllerBlog::class, 'default']);
 $router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
 $router->get('/login', [PageControllerLogin::class, 'default']);
+$router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
+$router->post('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'reset']);
 $router->post('/login/user', [PageControllerLogin::class, 'login']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
 $router->resolve($requestUri);

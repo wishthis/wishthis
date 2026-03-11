@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="{{PAGE_LOCALE}}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="{{PAGE_META_DESCRIPTION}}" />
+
+        <meta property="og:title" content="{{PAGE_META_TITLE}}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+        <meta property="og:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta property="og:locale" content="{{PAGE_LOCALE}}" />
+        <meta property="og:site_name" content="wishthis" />
+        {{PAGE_META_ALTERNATES}}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="{{PAGE_META_HOST}}" />
+        <meta property="twitter:url" content="{{PAGE_META_URL}}" />
+        <meta name="twitter:title" content="{{PAGE_META_TITLE}}" />
+        <meta name="twitter:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta name="twitter:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+
+        {{PAGE_META_CANONICAL}} {{PAGE_META_STYLESHEETS}} {{PAGE_META_SCRIPTS}}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/favicon/favicon-16x16.png" />
+        <link rel="mask-icon" href="/src/assets/img/favicon/safari-pinned-tab.svg" color="#5829bb" />
+        <link rel="shortcut icon" href="/src/assets/img/favicon/favicon.ico" />
+
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-config" content="/src/assets/img/favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#f4f4f4" />
+
+        <title>{{PAGE_META_TITLE}}</title>
+    </head>
+    <body>
+        {{PAGE_NAVIGATION}}
+
+        <main>
+            <div class="ui container">
+                <h1 class="ui header">{{PAGE_TITLE}}</h1>
+
+                {{PAGE_MESSAGES}}
+
+                <div class="ui segment">
+                    <form class="ui form" method="POST">
+                        <div class="ui divided relaxed stackable two column grid">
+                            <div class="row">
+                                <div class="column">
+                                    <h2 class="ui header">{{USER_DETAILS_HEADING}}</h2>
+
+                                    <div class="field">
+                                        <label>{{USER_EMAIL_HEADING}}</label>
+
+                                        <div class="ui left icon input disabled">
+                                            <input type="email" name="email" placeholder="john.doe@domain.tld" value="{{USER_EMAIL}}" readonly />
+                                            <i class="envelope icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>{{USER_PASSWORD_HEADING}}</label>
+
+                                        <div class="ui left icon input">
+                                            <input type="password" name="password" />
+                                            <i class="key icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <h2 class="ui header">{{AUTHENTICATION_HEADING}}</h2>
+                                    <p>{{AUTHENTICATION_DESCRIPTION}}</p>
+
+                                    <div class="field">
+                                        <label>{{AUTHENTICATION_PLANET_HEADING}}</label>
+
+                                        <div class="ui left icon input">
+                                            <input type="text" name="planet" />
+                                            <i class="globe icon"></i>
+                                        </div>
+                                    </div>
+                                    <p>{{AUTHENTICATION_PLANET_DESCRIPTION}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="sixteen wide column">
+                                    <div class="ui error message"></div>
+
+                                    <input class="ui primary button" type="submit" value="{{BUTTON_RESET_HEADING}}" title="{{BUTTON_RESET_HEADING}}" />
+                                    <a class="ui tertiary button" href="{{BUTTON_LOGIN_URL}}" title="{{BUTTON_LOGIN_HEADING}}"> {{BUTTON_LOGIN_HEADING}} </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="ui segment">
+                    <h2 class="ui header">{{ABOUT_EMAIL_HEADING}}</h2>
+
+                    <p>{{ABOUT_EMAIL_DESCRIPTION_1}}</p>
+                    <p>{{ABOUT_EMAIL_DESCRIPTION_2}}</p>
+                    <p>{{ABOUT_EMAIL_DESCRIPTION_3}}</p>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
