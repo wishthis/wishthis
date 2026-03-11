@@ -37,8 +37,8 @@ class PageControllerBlog extends PageController
             <?php foreach ($posts as $post) { ?>
                 <?php
                     $mediaHTML      = isset($post->featured_media) && (0 !== $post->featured_media)
-                               ? Blog::getMediaHTML($post->featured_media)
-                               : '';
+                                    ? Blog::getMediaHTML($post->featured_media)
+                                    : '';
                     $categoriesHTML = Blog::getCategoriesHTML($post->categories);
                     $postLink       = Page::PAGE_POST . '&slug=' . $post->slug;
                 ?>
