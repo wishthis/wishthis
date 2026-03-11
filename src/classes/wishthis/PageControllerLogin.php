@@ -120,10 +120,24 @@ class PageControllerLogin extends PageController
                 'user_email' => $emailAddress,
             ]
         );
+        $userData  = $userQuery->fetch() ?: null;
 
-        $user = false !== $userQuery
-              ? new User($userQuery->fetch())
-              : new User();
+        if (null === $userData) {
+            $messageContent = __('If a match can be found for this email address, a password reset link will be sent to it.');
+            $messageHeader  = __('Info');
+            $messageType    = MessageType::INFO;
+            $message        = new Message(
+                $messageContent,
+                $messageHeader,
+                $messageType
+            );
+
+            $_SESSION['messages'][] = $message;
+
+            \redirect(PAGE::PAGE_LOGIN);
+        }
+
+        $user = new User($userData);
 
         $token           = \sha1(\time() . rand(0, 999999));
         $tokenValidUntil = \time() + 3600;
