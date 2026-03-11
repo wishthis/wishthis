@@ -16,7 +16,7 @@
 
 ### Removed
 
--   Nothing
+-   Planet captcha when resetting your password
 
 ### Fixed
 

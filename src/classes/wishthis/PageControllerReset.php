@@ -31,11 +31,6 @@ class PageControllerReset extends PageController
         $this->placeholders['USER_EMAIL']            = $this->resetEmail;
         $this->placeholders['USER_PASSWORD_HEADING'] = __('Password');
 
-        $this->placeholders['AUTHENTICATION_HEADING']            = __('Authentication');
-        $this->placeholders['AUTHENTICATION_DESCRIPTION']        = __('Prove you are a Human, Lizard-person or Zuck-like creature. Please name a planet from our solar system.');
-        $this->placeholders['AUTHENTICATION_PLANET_HEADING']     = __('Planet');
-        $this->placeholders['AUTHENTICATION_PLANET_DESCRIPTION'] = __('Robots are obviously from another solar system so this will keep them at bay.');
-
         $this->placeholders['BUTTON_RESET_HEADING'] = __('Reset');
         $this->placeholders['BUTTON_LOGIN_HEADING'] = __('Login');
         $this->placeholders['BUTTON_LOGIN_URL']     = Page::PAGE_LOGIN;
@@ -69,72 +64,6 @@ class PageControllerReset extends PageController
                 FROM `users`;'
         )
         ->fetchAll();
-
-        $emails = \array_map(
-            function (array $user): string {
-                return $user['email'];
-            },
-            $users
-        );
-
-        $planet                = mb_strtolower($_POST['planet']);
-        $planetNameCapitalised = \mb_strtoupper(\mb_substr($planet, 0, 1))
-                               . \mb_substr($planet, 1);
-        $planetName            = Sanitiser::sanitiseText($planetNameCapitalised);
-        $planets               = [
-            \mb_strtolower(__('Mercury')),
-            \mb_strtolower(__('Venus')),
-            \mb_strtolower(__('Earth')),
-            \mb_strtolower(__('Mars')),
-            \mb_strtolower(__('Jupiter')),
-            \mb_strtolower(__('Saturn')),
-            \mb_strtolower(__('Uranus')),
-            \mb_strtolower(__('Neptune')),
-        ];
-        $notPlanets            = [
-            \mb_strtolower(__('Pluto')),
-            \mb_strtolower(__('Sun')),
-        ];
-        $isHuman               = \in_array($planet, \array_merge($planets, $notPlanets));
-
-        if (\in_array($planet, $notPlanets)) {
-            $messageContent = \sprintf(
-                /** TRANSLATORS: %1$s: name of the planet */
-                __('%1$s is not a planet but I\'ll let it slide, since only a human would make this kind of mistake.'),
-                \sprintf('<strong>%1$s</strong>', $planetName)
-            );
-            $messageHeader = __('Invalid planet');
-            $messageType   = MessageType::WARNING;
-            $message       = new Message(
-                $messageContent,
-                $messageHeader,
-                $messageType
-            );
-
-            $_SESSION['messages'][] = $message;
-        }
-
-        if (!$isHuman) {
-            $messageContent = \sprintf(
-                /** TRANSLATORS: %1$s: name of the planet, %2$s: link to space.com */
-                __('%1$s is not a planet in our solar system. Read this for more information: %2$s.'),
-                \sprintf('<strong>%1$s</strong>', $planetName),
-                '<a href="https://www.space.com/16080-solar-system-planets.html" target="_blank">Solar system planets: Order of the 8 (or 9) planets</a>'
-            );
-            $messageHeader = __('Invalid planet');
-            $messageType   = MessageType::ERROR;
-            $message       = new Message(
-                $messageContent,
-                $messageHeader,
-                $messageType
-            );
-
-            $_SESSION['messages'][] = $message;
-
-            parent::render();
-
-            return;
-        }
 
         $userEmail = $this->resetEmail;
         $userToken = $this->resetToken;
