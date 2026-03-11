@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{PAGE_LOCALE}}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="{{PAGE_META_DESCRIPTION}}" />
+
+        <meta property="og:title" content="{{PAGE_META_TITLE}}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+        <meta property="og:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta property="og:locale" content="{{PAGE_LOCALE}}" />
+        <meta property="og:site_name" content="wishthis" />
+        {{PAGE_META_ALTERNATES}}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="{{PAGE_META_HOST}}" />
+        <meta property="twitter:url" content="{{PAGE_META_URL}}" />
+        <meta name="twitter:title" content="{{PAGE_META_TITLE}}" />
+        <meta name="twitter:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta name="twitter:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+
+        {{PAGE_META_CANONICAL}} {{PAGE_META_STYLESHEETS}} {{PAGE_META_SCRIPTS}}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/favicon/favicon-16x16.png" />
+        <link rel="mask-icon" href="/src/assets/img/favicon/safari-pinned-tab.svg" color="#5829bb" />
+        <link rel="shortcut icon" href="/src/assets/img/favicon/favicon.ico" />
+
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-config" content="/src/assets/img/favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#f4f4f4" />
+
+        <title>{{PAGE_META_TITLE}}</title>
+    </head>
+    <body>
+        {{PAGE_NAVIGATION}}
+
+        <main>
+            <div class="ui text container">
+                {{PAGE_MESSAGES}}
+
+                <div class="ui segments">
+                    <div class="ui fitted segment image">{{POST_MEDIA}}</div>
+
+                    <div class="ui segment">
+                        <h1 class="ui header">{{POST_TITLE}}</h1>
+
+                        <div>{{POST_HTML}}</div>
+                    </div>
+                </div>
+
+                <div class="ui two columns grid">
+                    <div class="column">
+                        <a href="#top" class="ui fluid labeled icon button">
+                            <i class="arrow up icon"></i>
+                            {{LINK_TOP_HEADING}}
+                        </a>
+                    </div>
+
+                    <div class="column">
+                        <a href="{{LINK_BLOG_URL}}" class="ui fluid labeled icon button">
+                            <i class="rss icon"></i>
+                            {{LINK_BLOG_HEADING}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

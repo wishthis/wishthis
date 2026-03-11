@@ -44,7 +44,7 @@ if ('en' !== \Locale::getPrimaryLanguage($user->getLocale())) {
                 );
                 $mediaHTML      = isset($post->featured_media) && 0 !== $post->featured_media ? Blog::getMediaHTML($post->featured_media) : '';
                 $categoriesHTML = Blog::getCategoriesHTML($post->categories);
-                $postLink       = Page::PAGE_POST . '&slug=' . $post->slug;
+                $postLink       = Page::PAGE_POST . '/' . $post->slug;
                 ?>
 
                 <div class="column">

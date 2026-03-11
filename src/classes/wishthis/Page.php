@@ -20,7 +20,7 @@ class Page
     public const PAGE_LOGIN           = '/login';
     public const PAGE_LOGOUT          = '/logout';
     public const PAGE_MAINTENANCE     = '/maintenance';
-    public const PAGE_POST            = '/post';
+    public const PAGE_POST            = self::PAGE_BLOG . '/post';
     public const PAGE_POWER           = '/power';
     public const PAGE_PROFILE         = '/profile';
     public const PAGE_REGISTER        = '/register';
