@@ -49,6 +49,14 @@ class Router
                 continue;
             }
 
+            $matches = \array_filter(
+                $matches,
+                function (mixed $key): string {
+                    return \is_string($key);
+                },
+                \ARRAY_FILTER_USE_KEY
+            );
+
             $controller = new $controllerClass($matches);
             $controller->$controllerMethod();
 
