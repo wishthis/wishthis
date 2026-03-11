@@ -16,7 +16,7 @@
 
 ### Removed
 
--   Planet captcha when resetting your password
+-   Planet captcha when resetting your password (32094be4)
 
 ### Fixed
 
