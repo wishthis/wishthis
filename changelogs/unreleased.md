@@ -23,7 +23,7 @@
 -   An error when attempting to send an email (such as requesting new wishes) when the instance does not have MJML API keys configured (#215)
 -   Outdated transifex project link (#231)
 -   Apache RewriteRules not working (56bbc6d)
--   An error when requesting a password reset link for a non-existent email address
+-   An error when requesting a password reset link for a non-existent email address (93d9642d)
 
 ### Security
 
