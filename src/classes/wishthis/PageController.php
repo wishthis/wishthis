@@ -161,7 +161,7 @@ class PageController
                     );
 
                     return \sprintf(
-                        '    <link rel="stylesheet" type="text/css" href="%1$s?v=%2$s">',
+                        '    <link rel="stylesheet" type="text/css" href="/%1$s?v=%2$s">',
                         $stylesheetPath,
                         $styleshettHash
                     );
@@ -195,7 +195,7 @@ class PageController
                     );
 
                     return \sprintf(
-                        '    <script defer type="text/javascript" src="%1$s?v=%2$s"></script>',
+                        '    <script defer type="text/javascript" src="/%1$s?v=%2$s"></script>',
                         $scriptPath,
                         $scriptHash
                     );
