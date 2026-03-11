@@ -128,11 +128,11 @@ class PageControllerHome extends PageController
                     'user_id' => $user->getId(),
                 ]
             );
+            $lastWishlist      = $lastWishlistQuery->fetch();
 
-            if (false !== $lastWishlistQuery) {
-                $lastWishlist = $lastWishlistQuery->fetch();
-                $href         = Page::PAGE_WISHLISTS . '&id=' . $lastWishlist['id'];
-                $hrefAdd      = $href . '&wish_add=true';
+            if (false !== $lastWishlist) {
+                $href    = Page::PAGE_WISHLISTS . '&id=' . $lastWishlist['id'];
+                $hrefAdd = $href . '&wish_add=true';
                 ?>
                 <div class="column buttons">
                     <a class="ui left attached button" href="<?= $href ?>">
