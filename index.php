@@ -146,4 +146,7 @@ $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
 $router->get('/blog', [PageControllerBlog::class, 'default']);
+$router->get('/login', [PageControllerLogin::class, 'default']);
+$router->post('/login/user', [PageControllerLogin::class, 'login']);
+$router->post('/login/reset', [PageControllerLogin::class, 'reset']);
 $router->resolve($requestUri);
