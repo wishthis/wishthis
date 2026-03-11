@@ -180,7 +180,7 @@ class PageControllerLogin extends PageController
             $_SERVER['REQUEST_SCHEME'] . '://' .
             $_SERVER['HTTP_HOST'] .
             \sprintf(
-                'reset/%2$s/%3$s',
+                '/reset/%1$s/%2$s',
                 $emailAddress,
                 $token
             )
