@@ -4,7 +4,8 @@ namespace wishthis;
 
 class PageControllerBlogPost extends PageController
 {
-    protected string $id = 'blog-post';
+    protected string $id                   = 'blog-post';
+    protected bool $requiresAuthentication = false;
 
     private string $postSlug;
 

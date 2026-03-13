@@ -4,7 +4,8 @@ namespace wishthis;
 
 class PageControllerReset extends PageController
 {
-    protected string $id = 'reset';
+    protected string $id                   = 'reset';
+    protected bool $requiresAuthentication = false;
 
     private string $resetEmail;
     private string $resetToken;

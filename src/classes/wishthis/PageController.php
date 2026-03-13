@@ -11,6 +11,8 @@ class PageController
 
     protected array $placeholders;
 
+    protected bool $requiresAuthentication = true;
+
     public function __construct()
     {
         if (!isset($this->metaTitle)) {
@@ -506,6 +508,16 @@ class PageController
         $this->placeholders['PAGE_MESSAGES'] = \ob_get_clean();
 
         unset($_SESSION['messages']);
+    }
+
+    public function setRequiresAuthentication(bool $requiresAuthentication): void
+    {
+        $this->requiresAuthentication = $requiresAuthentication;
+    }
+
+    public function getRequiresAuthentication(): bool
+    {
+        return $this->requiresAuthentication;
     }
 
     protected function render(): void

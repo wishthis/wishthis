@@ -4,7 +4,8 @@ namespace wishthis;
 
 class PageControllerRegister extends PageController
 {
-    protected string $id = 'register';
+    protected string $id                   = 'register';
+    protected bool $requiresAuthentication = false;
 
     private string $email;
     private string $password;

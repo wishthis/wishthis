@@ -4,7 +4,8 @@ namespace wishthis;
 
 class PageControllerLogin extends PageController
 {
-    protected string $id = 'login';
+    protected string $id                   = 'login';
+    protected bool $requiresAuthentication = false;
 
     public function __construct()
     {

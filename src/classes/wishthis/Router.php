@@ -42,6 +42,9 @@ class Router
         $method = $_REQUEST['METHOD']    ?? $_SERVER['REQUEST_METHOD'];
         $routes = $this->routes[$method] ?? [];
 
+        $user           = User::getCurrent();
+        $userIsLoggedIn = $user->isLoggedIn();
+
         foreach ($routes as $pattern => [$controllerClass, $controllerMethod]) {
             $pathMatches = 1 === \preg_match($pattern, $path, $matches);
 
@@ -57,8 +60,14 @@ class Router
                 \ARRAY_FILTER_USE_KEY
             );
 
-            $controller = new $controllerClass($matches);
-            $controller->$controllerMethod();
+            $controller                       = new $controllerClass($matches);
+            $controllerRequiresAuthentication = $controller->getRequiresAuthentication();
+
+            if ($controllerRequiresAuthentication && !$userIsLoggedIn) {
+                \redirect(Page::PAGE_LOGIN);
+            } else {
+                $controller->$controllerMethod();
+            }
 
             return;
         }
