@@ -115,8 +115,8 @@ class PageControllerReset extends PageController
             $_SESSION['messages'][] = $message;
         } else {
             $messageContent = __('This password reset link has expired, please request a new one.');
-            $messageHeader  = __('Success');
-            $messageType    = MessageType::SUCCESS;
+            $messageHeader  = __('Failure');
+            $messageType    = MessageType::ERROR;
             $message        = new Message(
                 $messageContent,
                 $messageHeader,
