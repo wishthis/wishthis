@@ -43,6 +43,8 @@ class PageController
 
         $this->setPlaceholderPageNavigation();
         $this->setPlaceholderPageMessages();
+
+        $this->setPlaceholderFooter();
     }
 
     private function setPlaceholderPageLocale(): void
@@ -508,6 +510,24 @@ class PageController
         $this->placeholders['PAGE_MESSAGES'] = \ob_get_clean();
 
         unset($_SESSION['messages']);
+    }
+
+    public function setPlaceholderFooter(): void
+    {
+        $this->placeholders['APP_NAME']                     = 'wishthis';
+        $this->placeholders['APP_VERSION']                  = \VERSION;
+        $this->placeholders['CHANGELOG_HEADING']            = __('Changelog');
+        $this->placeholders['CHANGELOG_LINK']               = PAGE::PAGE_CHANGELOG;
+        $this->placeholders['CONTRIBUTE_HEADING']           = __('Contribute');
+        $this->placeholders['CONTRIBUTE_GITHUB_HEADING']    = __('GitHub');
+        $this->placeholders['CONTRIBUTE_GITHUB_LINK']       = 'https://github.com/wishthis/wishthis';
+        $this->placeholders['CONTRIBUTE_TRANSIFEX_HEADING'] = __('Transifex');
+        $this->placeholders['CONTRIBUTE_TRANSIFEX_LINK']    = 'https://explore.transifex.com/wishthis/wishthis';
+        $this->placeholders['CONTACT_HEADING']              = __('Contact');
+        $this->placeholders['CONTACT_MATRIX_HEADING']       = __('Matrix');
+        $this->placeholders['CONTACT_MATRIX_LINK']          = 'https://matrix.to/#/#wishthis:matrix.org';
+        $this->placeholders['CONTACT_DISCORD_HEADING']      = __('Discord');
+        $this->placeholders['CONTACT_DISCORD_LINK']         = 'https://discord.gg/WrUXnpNyza';
     }
 
     public function setRequiresAuthentication(bool $requiresAuthentication): void
