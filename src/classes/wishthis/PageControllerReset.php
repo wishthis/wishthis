@@ -36,18 +36,6 @@ class PageControllerReset extends PageController
         $this->placeholders['BUTTON_LOGIN_HEADING'] = __('Login');
         $this->placeholders['BUTTON_LOGIN_URL']     = Page::PAGE_LOGIN;
 
-        $this->placeholders['ABOUT_EMAIL_HEADING']       = __('About your email address');
-        $this->placeholders['ABOUT_EMAIL_DESCRIPTION_1'] = __('Currently the email address is used as a unique identifier and does not have to be verified. You may enter a fake address.');
-        $this->placeholders['ABOUT_EMAIL_DESCRIPTION_2'] = __('wishthis is not interested in sending you marketing emails or selling your information to third parties. Although possible to do otherwise, it is strongly recommend to enter your real email address in case you need to recover your password or receive important notifications. These do not exist yet, but some future features and options might require sending you an email (e. g. when a wish has been fulfilled).');
-        $this->placeholders['ABOUT_EMAIL_DESCRIPTION_3'] = \sprintf(
-            /** TRANSLATORS: %1$s: source code */
-            __('Trust is a two way street and wishthis aims to be a transparent, trustworthy product, which is why the wishthis %1$s is publicly viewable.'),
-            \sprintf(
-                '<a href="https://github.com/wishthis/wishthis" target="_blank">%1$s</a>',
-                __('source code')
-            )
-        );
-
         parent::setPlaceholders();
     }
 
