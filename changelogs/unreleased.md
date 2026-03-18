@@ -18,6 +18,7 @@
 
 -   Planet captcha when resetting your password (32094be4)
 -   Release channel segment under profile preferences when disabled in the configuration file (b9c6f19b)
+-   Option to enable advertisements under profile preferences (b9c6f19b)
 
 ### Fixed
 
