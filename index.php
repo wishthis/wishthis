@@ -149,6 +149,8 @@ $router->get('/blog', [PageControllerBlog::class, 'default']);
 $router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
 $router->get('/login', [PageControllerLogin::class, 'default']);
 $router->get('/logout', [PageControllerLogout::class, 'default']);
+$router->get('/profile', [PageControllerProfile::class, 'default']);
+$router->post('/profile', [PageControllerProfile::class, 'update']);
 $router->get('/register', [PageControllerRegister::class, 'default']);
 $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
