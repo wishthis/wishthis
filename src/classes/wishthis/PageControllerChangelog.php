@@ -14,7 +14,6 @@ class PageControllerChangelog extends PageController
         parent::__construct();
     }
 
-
     public function default(): void
     {
         $parsedown           = new \Parsedown();
