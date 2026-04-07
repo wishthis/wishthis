@@ -2,8 +2,6 @@
 
 namespace wishthis;
 
-use function Avifinfo\read;
-
 class PageControllerWishlists extends PageController
 {
     protected string $id = 'wishlists';
