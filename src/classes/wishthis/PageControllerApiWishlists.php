@@ -50,3 +50,30 @@ class PageControllerApiWishlists extends PageController
         \header('Content-type: application/json; charset=utf-8');
         echo \json_encode($response);
     }
+
+    public function delete(): void
+    {
+        global $database;
+
+        $user   = User::getCurrent();
+        $userId = $user->getId();
+
+        $wishlistId = $this->wishlistId;
+
+        $database->query(
+            'DELETE FROM `wishlists`
+                   WHERE `wishlists`.`id`   = :wishlist_id
+                     AND `wishlists`.`user` = :user_id;',
+            [
+                'wishlist_id' => $this->wishlistId,
+                'user_id'     => $userId,
+            ]
+        );
+
+        $response['warning'] = \ob_get_clean();
+        $response['success'] = true;
+
+        \header('Content-type: application/json; charset=utf-8');
+        echo \json_encode($response);
+    }
+}

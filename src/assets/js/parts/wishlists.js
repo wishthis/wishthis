@@ -219,15 +219,9 @@ $(function () {
                 'onApprove': function (buttonApprove) {
                     buttonApprove.addClass('loading');
 
-                    var delete_wishlist = new URLSearchParams(
-                        {
-                            'wishlist_id' : wishlist_id,
-                        }
-                    );
-                    fetch('/index.php?page=api&module=wishlists', {
+                    fetch('/api/wishlists/' + wishlist_id, {
                         'method'      : 'DELETE',
                         'credentials' : 'include',
-                        'body'        : delete_wishlist,
                     })
                     .then(handleFetchError)
                     .then(handleFetchResponse)
