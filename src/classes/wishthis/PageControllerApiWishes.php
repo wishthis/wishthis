@@ -4,33 +4,32 @@ namespace wishthis;
 
 class PageControllerApiWishes extends PageController
 {
-    protected string $id = 'api-wishes';
+    protected string $id                   = 'api-wishes';
+    protected bool $requiresAuthentication = false;
 
-    private int $wishlistId;
-    private string $wishlistHash;
+    private Wishlist $wishlist;
 
     public function __construct(array $parameters = [])
     {
         $this->pageTitle = 'API';
 
         if (isset($parameters['id'])) {
-            $this->wishlistId = $parameters['id'];
+            $this->wishlist = Wishlist::getFromId($parameters['id']);
         }
 
         if (isset($parameters['hash'])) {
-            $this->wishlistHash = $parameters['hash'];
+            $this->wishlist = Wishlist::getFromHash($parameters['hash']);
         }
 
         parent::__construct();
     }
 
-    public function getById(): void
+    public function get(): void
     {
         \ob_start();
         \parse_str($_SERVER['QUERY_STRING'], $arguments);
 
-        $user         = User::getCurrent();
-        $wishlist     = Wishlist::getFromId($this->wishlistId);
+        $wishlist     = $this->wishlist;
         $wishlistId   = $wishlist->getId();
         $wishPriority = (int) $arguments['priority'];
 

@@ -30,6 +30,8 @@ class PageControllerWishlist extends PageController
         $userId               = $userIsLoggedIn ? $user->getId() : -1;
         $userIsViewingOwnList = $userId === $this->wishlist->getUserId();
 
+        $this->placeholders['WISHLIST_HASH'] = $this->wishlist->getHash();
+
         $this->placeholders['REMEMBER_LIST_HTML'] = '';
 
         if ($userIsLoggedIn) {
