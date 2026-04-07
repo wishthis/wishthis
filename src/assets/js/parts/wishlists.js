@@ -326,7 +326,7 @@ $(function () {
 
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
 
-                fetch('/index.php?page=api&module=wishlists', {
+                fetch('/api/wishlists', {
                     method      : 'POST',
                     credentials : 'include',
                     body        : formData

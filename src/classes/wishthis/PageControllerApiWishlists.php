@@ -12,7 +12,9 @@ class PageControllerApiWishlists extends PageController
     {
         $this->pageTitle = 'API';
 
-        $this->wishlistId = $parameters['id'];
+        if (isset($parameters['id'])) {
+            $this->wishlistId = $parameters['id'];
+        }
 
         parent::__construct();
     }
@@ -43,6 +45,44 @@ class PageControllerApiWishlists extends PageController
 
         $response['wishlists']      = $wishlists;
         $response['wishlistsItems'] = $wishlistsItems;
+
+        $response['warning'] = \ob_get_clean();
+        $response['success'] = true;
+
+        \header('Content-type: application/json; charset=utf-8');
+        echo \json_encode($response);
+    }
+
+    public function create(): void
+    {
+        global $database;
+
+        $user   = User::getCurrent();
+        $userId = $user->getId();
+
+        $wishlistName = Sanitiser::getTitle($_POST['wishlist-name']);
+        $wishlistHash = \sha1(\time() . $userId . $wishlistName);
+
+        $database->query(
+            'INSERT INTO `wishlists` (
+                `user`,
+                `name`,
+                `hash`
+            ) VALUES (
+                :user_id,
+                :wishlist_name,
+                :wishlist_hash
+            );',
+            [
+                'user_id'       => $userId,
+                'wishlist_name' => $wishlistName,
+                'wishlist_hash' => $wishlistHash,
+            ]
+        );
+
+        $response['data'] = [
+            'lastInsertId' => $database->lastInsertId(),
+        ];
 
         $response['warning'] = \ob_get_clean();
         $response['success'] = true;

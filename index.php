@@ -142,11 +142,11 @@ if ('/' !== $requestUri) {
 }
 
 $router = new Router();
+$router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'delete']);
 $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
 $router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
-$router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'delete']);
 $router->get('/blog', [PageControllerBlog::class, 'default']);
 $router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
 $router->get('/changelog', [PageControllerChangelog::class, 'default']);
@@ -157,6 +157,7 @@ $router->get('/register', [PageControllerRegister::class, 'default']);
 $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
 $router->get('/settings', [PageControllerSettings::class, 'default']);
 $router->get('/wishlists', [PageControllerWishlists::class, 'default']);
+$router->post('/api/wishlists', [PageControllerApiWishlists::class, 'create']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
 $router->post('/login/user', [PageControllerLogin::class, 'login']);
 $router->post('/profile', [PageControllerProfile::class, 'update']);
