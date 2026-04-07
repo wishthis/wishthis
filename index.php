@@ -154,6 +154,7 @@ $router->get('/profile', [PageControllerProfile::class, 'default']);
 $router->get('/register', [PageControllerRegister::class, 'default']);
 $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
 $router->get('/settings', [PageControllerSettings::class, 'default']);
+$router->get('/wishlists', [PageControllerWishlists::class, 'default']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
 $router->post('/login/user', [PageControllerLogin::class, 'login']);
 $router->post('/profile', [PageControllerProfile::class, 'update']);
