@@ -21,6 +21,8 @@ class PageControllerApiWishlists extends PageController
 
     public function get(): void
     {
+        \ob_start();
+
         $user = User::getCurrent();
 
         $wishlists      = [];
@@ -57,6 +59,8 @@ class PageControllerApiWishlists extends PageController
     {
         global $database;
 
+        \ob_start();
+
         $user   = User::getCurrent();
         $userId = $user->getId();
 
@@ -91,8 +95,42 @@ class PageControllerApiWishlists extends PageController
         echo \json_encode($response);
     }
 
+    public function update(): void
+    {
+        global $database;
+
+        \ob_start();
+        \parse_str(\file_get_contents('php://input'), $_PUT);
+
+        $user   = User::getCurrent();
+        $userId = $user->getId();
+
+        $wishlistId   = $this->wishlistId;
+        $wishlistName = Sanitiser::getTitle($_PUT['wishlist_title']);
+
+        $database->query(
+            'UPDATE `wishlists`
+                SET `wishlists`.`name` = :wishlist_name
+              WHERE `wishlists`.`id`   = :wishlist_id
+                AND `wishlists`.`user` = :user_id',
+            [
+                'wishlist_name' => $wishlistName,
+                'wishlist_id'   => $wishlistId,
+                'user_id'       => $userId,
+            ]
+        );
+
+        $response['warning'] = \ob_get_clean();
+        $response['success'] = true;
+
+        \header('Content-type: application/json; charset=utf-8');
+        echo \json_encode($response);
+    }
+
     public function delete(): void
     {
+        \ob_start();
+
         global $database;
 
         $user   = User::getCurrent();
@@ -105,7 +143,7 @@ class PageControllerApiWishlists extends PageController
                    WHERE `wishlists`.`id`   = :wishlist_id
                      AND `wishlists`.`user` = :user_id;',
             [
-                'wishlist_id' => $this->wishlistId,
+                'wishlist_id' => $wishlistId,
                 'user_id'     => $userId,
             ]
         );

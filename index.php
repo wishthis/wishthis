@@ -164,4 +164,5 @@ $router->post('/profile', [PageControllerProfile::class, 'update']);
 $router->post('/register', [PageControllerRegister::class, 'register']);
 $router->post('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'reset']);
 $router->post('/settings', [PageControllerSettings::class, 'save']);
+$router->put('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'update']);
 $router->resolve($requestUri);

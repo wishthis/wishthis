@@ -139,9 +139,8 @@ $(function () {
 
         var formRename = modalRename.find('.form.wishlist-rename');
         var formData   = new URLSearchParams(new FormData(formRename[0]));
-        formData.append('wishlist_id', wishthis.$_GET.id);
 
-        fetch('/index.php?page=api&module=wishlists', {
+        fetch('/api/wishlists/' + wishthis.$_GET.id, {
             method      : 'PUT',
             credentials : 'include',
             body        : formData,
