@@ -146,9 +146,9 @@ $router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class,
 $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
-$router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
-$router->get('/api/wishlist/(?<id>\d+)/wishes', [PageControllerApiWishes::class, 'get']);
 $router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/wishes', [PageControllerApiWishes::class, 'get']);
+$router->get('/api/wishlist/(?<id>\d+)/wishes', [PageControllerApiWishes::class, 'get']);
+$router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
 $router->get('/blog', [PageControllerBlog::class, 'default']);
 $router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
 $router->get('/changelog', [PageControllerChangelog::class, 'default']);
