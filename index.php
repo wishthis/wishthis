@@ -156,6 +156,7 @@ $router->get('/profile', [PageControllerProfile::class, 'default']);
 $router->get('/register', [PageControllerRegister::class, 'default']);
 $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
 $router->get('/settings', [PageControllerSettings::class, 'default']);
+$router->get('/wishlist/(?<hash>[0-9a-f]{40})', [PageControllerWishlist::class, 'default']);
 $router->get('/wishlists', [PageControllerWishlists::class, 'default']);
 $router->post('/api/wishlists', [PageControllerApiWishlists::class, 'create']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
