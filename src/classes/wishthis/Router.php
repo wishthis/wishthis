@@ -63,8 +63,25 @@ class Router
             $controller                       = new $controllerClass($matches);
             $controllerRequiresAuthentication = $controller->getRequiresAuthentication();
 
+            $acceptHeader         = $_SERVER['HTTP_ACCEPT'];
+            $acceptList           = \explode(',', $acceptHeader);
+            $acceptListNormalised = \array_map(
+                function (string $contentAndQuality): string {
+                    $parts = \explode(';', $contentAndQuality);
+
+                    return $parts[0];
+                },
+                $acceptList
+            );
+            $acceptContent        = \reset($acceptListNormalised);
+
             if ($controllerRequiresAuthentication && !$userIsLoggedIn) {
-                \redirect(Page::PAGE_LOGIN);
+                if ('text/html' === $acceptContent) {
+                    \redirect(Page::PAGE_LOGIN);
+                } else {
+                    \http_response_code(403);
+                    die();
+                }
             } else {
                 $controller->$controllerMethod();
             }
