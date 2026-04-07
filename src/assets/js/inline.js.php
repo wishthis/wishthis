@@ -162,7 +162,7 @@ global $options, $locale;
      */
     <?php
     $api_urls = [
-        'get wishlists'               => '/index.php?page=api&module=wishlists',
+        'get wishlists'               => '/api/wishlists',
         'get wishes by wishlist id'   => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_id={wishlistid}',
         'get wishes by wishlist hash' => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_hash={wishlisthash}',
         'delete wishlist'             => '/index.php?page=api&module=wishlists',
