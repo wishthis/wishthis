@@ -147,6 +147,7 @@ $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
 $router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
+$router->get('/api/wishlist/(?<id>\d+)/wishes', [PageControllerApiWishes::class, 'getById']);
 $router->get('/blog', [PageControllerBlog::class, 'default']);
 $router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
 $router->get('/changelog', [PageControllerChangelog::class, 'default']);

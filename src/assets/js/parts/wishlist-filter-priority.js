@@ -12,7 +12,7 @@ $(function () {
 
         settings.urlData.style      = $('input[name="style"]').val();
         settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');
-        settings.urlData.wishlistid = wishthis.$_GET.id;
+        settings.urlData.wishlistId = wishthis.$_GET.id;
 
         return settings;
     };
