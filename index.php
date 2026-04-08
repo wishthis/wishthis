@@ -162,6 +162,7 @@ $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::cl
 $router->get('/settings', [PageControllerSettings::class, 'default']);
 $router->get('/wishlist/(?<hash>[0-9a-f]{40})', [PageControllerWishlist::class, 'default']);
 $router->get('/wishlists', [PageControllerWishlists::class, 'default']);
+$router->get('/wishlists/saved', [PageControllerWishlistsSaved::class, 'default']);
 $router->post('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'create']);
 $router->post('/api/wishlists', [PageControllerApiWishlists::class, 'create']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
