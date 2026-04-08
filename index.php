@@ -124,15 +124,6 @@ Wish::initialize();
 $url = new URL($_SERVER['REQUEST_URI']);
 
 /**
- * Database Update
- */
-if ($options && $options->getOption('isInstalled')) {
-    if (-1 === \version_compare($options->version, VERSION)) {
-        $options->setOption('updateAvailable', true);
-    }
-}
-
-/**
  * Page
  */
 $requestUri = \parse_url($_SERVER['REQUEST_URI'] ?? '/', \PHP_URL_PATH);
@@ -158,6 +149,7 @@ $router->get('/profile', [PageControllerProfile::class, 'default']);
 $router->get('/register', [PageControllerRegister::class, 'default']);
 $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
 $router->get('/settings', [PageControllerSettings::class, 'default']);
+$router->get('/update', [PageControllerUpdate::class, 'default']);
 $router->get('/wishlist/(?<hash>[0-9a-f]{40})', [PageControllerWishlist::class, 'default']);
 $router->get('/wishlists', [PageControllerWishlists::class, 'default']);
 $router->get('/wishlists/saved', [PageControllerWishlistsSaved::class, 'default']);
@@ -169,5 +161,6 @@ $router->post('/profile', [PageControllerProfile::class, 'update']);
 $router->post('/register', [PageControllerRegister::class, 'register']);
 $router->post('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'reset']);
 $router->post('/settings', [PageControllerSettings::class, 'save']);
+$router->post('/update', [PageControllerUpdate::class, 'update']);
 $router->put('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'update']);
 $router->resolve($requestUri);
