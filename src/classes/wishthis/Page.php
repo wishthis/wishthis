@@ -27,8 +27,8 @@ class Page
     public const PAGE_SETTINGS        = '/settings';
     public const PAGE_UPDATE          = '/update';
     public const PAGE_WISHLIST        = '/wishlist';
-    public const PAGE_WISHLISTS_SAVED = '/wishlists-saved';
     public const PAGE_WISHLISTS       = '/wishlists';
+    public const PAGE_WISHLISTS_SAVED = self::PAGE_WISHLISTS . '/saved';
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {

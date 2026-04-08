@@ -142,10 +142,12 @@ if ('/' !== $requestUri) {
 }
 
 $router = new Router();
+$router->delete('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'delete']);
 $router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'delete']);
 $router->get('/', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
+$router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'get']);
 $router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/wishes', [PageControllerApiWishes::class, 'get']);
 $router->get('/api/wishlist/(?<id>\d+)/wishes', [PageControllerApiWishes::class, 'get']);
 $router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
@@ -160,6 +162,7 @@ $router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::cl
 $router->get('/settings', [PageControllerSettings::class, 'default']);
 $router->get('/wishlist/(?<hash>[0-9a-f]{40})', [PageControllerWishlist::class, 'default']);
 $router->get('/wishlists', [PageControllerWishlists::class, 'default']);
+$router->post('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'create']);
 $router->post('/api/wishlists', [PageControllerApiWishlists::class, 'create']);
 $router->post('/login/reset', [PageControllerLogin::class, 'reset']);
 $router->post('/login/user', [PageControllerLogin::class, 'login']);
