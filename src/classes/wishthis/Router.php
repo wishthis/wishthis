@@ -39,11 +39,38 @@ class Router
 
     public function resolve(string $path): void
     {
+        global $options;
+
         $method = $_REQUEST['METHOD']    ?? $_SERVER['REQUEST_METHOD'];
         $routes = $this->routes[$method] ?? [];
 
         $user           = User::getCurrent();
         $userIsLoggedIn = $user->isLoggedIn();
+        $userPower      = $user->getPower();
+        $userIsAdmin    = 100 === $userPower;
+
+        $versionCurrent    = $options->version;
+        $versionNew        = VERSION;
+        $versionIsOutdated = \version_compare($versionCurrent, $versionNew, '<');
+
+        if ($versionIsOutdated) {
+            $pathNeedsRedirect = 'GET' === $method && !\in_array(
+                $path,
+                [
+                    Page::PAGE_LOGIN,
+                    Page::PAGE_UPDATE,
+                    Page::PAGE_MAINTENANCE,
+                ]
+            );
+
+            if ($pathNeedsRedirect) {
+                if ($userIsAdmin) {
+                    redirect(Page::PAGE_UPDATE);
+                } else {
+                    redirect(Page::PAGE_MAINTENANCE);
+                }
+            }
+        }
 
         foreach ($routes as $pattern => [$controllerClass, $controllerMethod]) {
             $pathMatches = 1 === \preg_match($pattern, $path, $matches);
