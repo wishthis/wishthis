@@ -136,15 +136,12 @@ if ($options && $options->getOption('isInstalled')) {
  * Page
  */
 $requestUri = \parse_url($_SERVER['REQUEST_URI'] ?? '/', \PHP_URL_PATH);
-
-if ('/' !== $requestUri) {
-    $requestUri = \rtrim($requestUri, '/');
-}
+$requestUri = \rtrim($requestUri, '/');
 
 $router = new Router();
 $router->delete('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'delete']);
 $router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'delete']);
-$router->get('/', [PageControllerHome::class, 'default']);
+$router->get('', [PageControllerHome::class, 'default']);
 $router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
 $router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
 $router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'get']);
