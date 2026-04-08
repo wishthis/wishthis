@@ -4,8 +4,7 @@ namespace wishthis;
 
 class PageControllerSettings extends PageController
 {
-    protected string $id                   = 'settings';
-    protected bool $requiresAuthentication = false;
+    protected string $id = 'settings';
 
     public function __construct(array $parameters = [])
     {
