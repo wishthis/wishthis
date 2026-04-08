@@ -48,16 +48,16 @@ class Options
     {
         $optionExists = 0 !== $this->database
         ->query(
-            'SELECT *
+            'SELECT 1
                FROM `options`
               WHERE `key` = :option_key;',
             [
                 'option_key' => $key,
             ]
         )
-        ->rowCount();
+        ->fetchColumn();
 
-        if ($optionExists) {
+        if (false !== $optionExists) {
             $this->database->query(
                 'UPDATE `options`
                     SET `value` = :option_value

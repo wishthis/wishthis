@@ -139,9 +139,8 @@ $(function () {
 
         var formRename = modalRename.find('.form.wishlist-rename');
         var formData   = new URLSearchParams(new FormData(formRename[0]));
-        formData.append('wishlist_id', wishthis.$_GET.id);
 
-        fetch('/index.php?page=api&module=wishlists', {
+        fetch('/api/wishlists/' + wishthis.$_GET.id, {
             method      : 'PUT',
             credentials : 'include',
             body        : formData,
@@ -219,15 +218,9 @@ $(function () {
                 'onApprove': function (buttonApprove) {
                     buttonApprove.addClass('loading');
 
-                    var delete_wishlist = new URLSearchParams(
-                        {
-                            'wishlist_id' : wishlist_id,
-                        }
-                    );
-                    fetch('/index.php?page=api&module=wishlists', {
+                    fetch('/api/wishlists/' + wishlist_id, {
                         'method'      : 'DELETE',
                         'credentials' : 'include',
-                        'body'        : delete_wishlist,
                     })
                     .then(handleFetchError)
                     .then(handleFetchResponse)
@@ -332,7 +325,7 @@ $(function () {
 
                 var formData = new URLSearchParams(new FormData(formWishlistCreate[0]));
 
-                fetch('/index.php?page=api&module=wishlists', {
+                fetch('/api/wishlists', {
                     method      : 'POST',
                     credentials : 'include',
                     body        : formData

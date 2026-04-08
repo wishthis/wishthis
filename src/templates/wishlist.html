@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="{{PAGE_LOCALE}}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="{{PAGE_META_DESCRIPTION}}" />
+
+        <meta property="og:title" content="{{PAGE_META_TITLE}}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+        <meta property="og:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta property="og:locale" content="{{PAGE_LOCALE}}" />
+        <meta property="og:site_name" content="wishthis" />
+        {{PAGE_META_ALTERNATES}}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="{{PAGE_META_HOST}}" />
+        <meta property="twitter:url" content="{{PAGE_META_URL}}" />
+        <meta name="twitter:title" content="{{PAGE_META_TITLE}}" />
+        <meta name="twitter:description" content="{{PAGE_META_DESCRIPTION}}" />
+        <meta name="twitter:image" content="{{PAGE_META_LINK_PREVIEW}}" />
+
+        {{PAGE_META_CANONICAL}}
+
+        {{PAGE_META_STYLESHEETS}}
+        <link rel="stylesheet" href="/src/assets/css/wish.css">
+        <link rel="stylesheet" href="/src/assets/css/wish-card.css">
+
+        {{PAGE_META_SCRIPTS}}
+        <script defer src="/src/assets/js/parts/wish.js"></script>
+        <script defer src="/src/assets/js/parts/wishlist-filter-priority.js"></script>
+        <script defer src="/src/assets/js/parts/wishlists.js"></script>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/img/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/img/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/img/favicon/favicon-16x16.png" />
+        <link rel="mask-icon" href="/src/assets/img/favicon/safari-pinned-tab.svg" color="#5829bb" />
+        <link rel="shortcut icon" href="/src/assets/img/favicon/favicon.ico" />
+
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-config" content="/src/assets/img/favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#f4f4f4" />
+
+        <title>{{PAGE_META_TITLE}}</title>
+    </head>
+    <body>
+        {{PAGE_NAVIGATION}}
+
+        <input type="hidden" name="wishlist_hash" value="{{WISHLIST_HASH}}">
+
+        <main>
+            <div class="ui container">
+                <h1 class="ui header">{{PAGE_TITLE}}</h1>
+
+                {{PAGE_MESSAGES}}
+
+                {{REMEMBER_LIST_HTML}}
+
+                {{VIEWING_OWN_LIST_WARNING_HTML}}
+
+                <div class="ui segments">
+                    <div class="ui segment">
+                        <h2 class="ui header">{{WHAT_TO_DO_HEADING}}</h2>
+                        <p>{{WHAT_TO_DO_DESCRIPTION}}</p>
+                    </div>
+                </div>
+
+                <h2 class="ui header">{{WISHLIST_WISHES_HEADING}}</h2>
+
+                {{WISHLIST_WISHES}}
+
+                <div class="ui basic center aligned segment">
+                    <button class="ui primary button wishlist-request-wishes" data-locale="<?= $wishlist_user->getLocale() ?>">
+                        {{WISHLIST_WISHES_REQUEST_MORE}}
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal: Default -->
+        <div class="ui modal default">
+            <div class="header"></div>
+            <div class="content"></div>
+            <div class="actions"></div>
+        </div>
+
+        <div class="ui hidden divider"></div>
+        <div class="ui inverted vertical footer segment">
+            <div class="ui container">
+                <div class="ui stackable inverted divided equal height stackable grid">
+                    <div class="six wide column">
+                        <h4 class="ui inverted header">{{APP_NAME}}</h4>
+
+                        <div class="ui inverted link list">
+                            <div class="item">
+                                <i class="code branch icon"></i>
+                                <div class="content">{{APP_VERSION}}</div>
+                            </div>
+
+                            <a class="item" href="{{CHANGELOG_LINK}}" title="{{CHANGELOG_HEADING}}">
+                                <i class="newspaper icon"></i>
+                                <div class="content">{{CHANGELOG_HEADING}}</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="five wide column">
+                        <h4 class="ui inverted header">{{CONTRIBUTE_HEADING}}</h4>
+
+                        <div class="ui inverted link list">
+                            <a class="item" href="{{CONTRIBUTE_GITHUB_LINK}}" target="_blank" title="{{CONTRIBUTE_GITHUB_HEADING}}">
+                                <i class="github icon"></i>
+                                <div class="content">{{CONTRIBUTE_GITHUB_HEADING}}</div>
+                            </a>
+
+                            <a class="item" href="{{CONTRIBUTE_TRANSIFEX_LINK}}" target="_blank" title="{{CONTRIBUTE_TRANSIFEX_HEADING}}">
+                                <i class="language icon"></i>
+                                <div class="content">{{CONTRIBUTE_TRANSIFEX_HEADING}}</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="five wide column">
+                        <h4 class="ui inverted header">{{CONTACT_HEADING}}</h4>
+
+                        <div class="ui inverted link list">
+                            <a class="item" href="{{CONTACT_MATRIX_LINK}}" target="_blank" title="{{CONTACT_MATRIX_HEADING}}">
+                                <i class="comment dots icon"></i>
+                                <div class="content">{{CONTACT_MATRIX_HEADING}}</div>
+                            </a>
+
+                            <a class="item" href="{{CONTACT_DISCORD_LINK}}" target="_blank" title="{{CONTACT_DISCORD_HEADING}}">
+                                <i class="discord icon"></i>
+                                <div class="content">{{CONTACT_DISCORD_HEADING}}</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

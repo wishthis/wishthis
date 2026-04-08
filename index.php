@@ -124,33 +124,43 @@ Wish::initialize();
 $url = new URL($_SERVER['REQUEST_URI']);
 
 /**
- * Database Update
- */
-if ($options && $options->getOption('isInstalled')) {
-    if (-1 === \version_compare($options->version, VERSION)) {
-        $options->setOption('updateAvailable', true);
-    }
-}
-
-/**
  * Page
  */
-if (!isset($page)) {
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-}
-$pagePath    = __DIR__ . '/src/pages/' . $page . '.php';
-$pagePathAlt = __DIR__ . '/src/pages/' . $page . '/' . $page . '.php';
+$requestUri = \parse_url($_SERVER['REQUEST_URI'] ?? '/', \PHP_URL_PATH);
+$requestUri = \rtrim($requestUri, '/');
 
-if (\file_exists($pagePath)) {
-    require $pagePath;
-} elseif (\file_exists($pagePathAlt)) {
-    require $pagePathAlt;
-} else {
-    \http_response_code(404);
-    ?>
-    <h1>Not found</h1>
-    <p>The requested URL was not found on this server.</p>
-    <?php
-    echo $pagePath;
-    die();
-}
+$router = new Router();
+$router->delete('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'delete']);
+$router->delete('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'delete']);
+$router->get('', [PageControllerHome::class, 'default']);
+$router->get('/api/blog', [PageControllerApiBlog::class, 'blog']);
+$router->get('/api/statistics/all', [PageControllerApiStatistics::class, 'all']);
+$router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'get']);
+$router->get('/api/wishlist/(?<hash>[0-9a-f]{40})/wishes', [PageControllerApiWishes::class, 'get']);
+$router->get('/api/wishlist/(?<id>\d+)/wishes', [PageControllerApiWishes::class, 'get']);
+$router->get('/api/wishlists', [PageControllerApiWishlists::class, 'get']);
+$router->get('/blog', [PageControllerBlog::class, 'default']);
+$router->get('/blog/post/(?<slug>.+)', [PageControllerBlogPost::class, 'default']);
+$router->get('/changelog', [PageControllerChangelog::class, 'default']);
+$router->get('/login', [PageControllerLogin::class, 'default']);
+$router->get('/logout', [PageControllerLogout::class, 'default']);
+$router->get('/maintenance', [PageControllerMaintenance::class, 'default']);
+$router->get('/profile', [PageControllerProfile::class, 'default']);
+$router->get('/register', [PageControllerRegister::class, 'default']);
+$router->get('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'default']);
+$router->get('/settings', [PageControllerSettings::class, 'default']);
+$router->get('/update', [PageControllerUpdate::class, 'default']);
+$router->get('/wishlist/(?<hash>[0-9a-f]{40})', [PageControllerWishlist::class, 'default']);
+$router->get('/wishlists', [PageControllerWishlists::class, 'default']);
+$router->get('/wishlists/saved', [PageControllerWishlistsSaved::class, 'default']);
+$router->post('/api/wishlist/(?<hash>[0-9a-f]{40})/saved', [PageControllerApiWishlistsSaved::class, 'create']);
+$router->post('/api/wishlists', [PageControllerApiWishlists::class, 'create']);
+$router->post('/login/reset', [PageControllerLogin::class, 'reset']);
+$router->post('/login/user', [PageControllerLogin::class, 'login']);
+$router->post('/profile', [PageControllerProfile::class, 'update']);
+$router->post('/register', [PageControllerRegister::class, 'register']);
+$router->post('/reset/(?<email>.+)/(?<token>[0-9a-f]+)', [PageControllerReset::class, 'reset']);
+$router->post('/settings', [PageControllerSettings::class, 'save']);
+$router->post('/update', [PageControllerUpdate::class, 'update']);
+$router->put('/api/wishlists/(?<id>\d+)', [PageControllerApiWishlists::class, 'update']);
+$router->resolve($requestUri);

@@ -2,7 +2,7 @@ $(function() {
     /**
      * Statistics
      */
-    fetch('/index.php?page=api&module=statistics&table=all', {
+    fetch('/api/statistics/all', {
         method      : 'GET',
         credentials : 'include',
     })
@@ -57,7 +57,7 @@ $(function() {
     /**
      * News
      */
-    fetch('/index.php?page=api&module=blog', {
+    fetch('/api/blog', {
         method      : 'GET',
         credentials : 'include',
     })
