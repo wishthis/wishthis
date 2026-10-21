@@ -23,30 +23,27 @@ class PageControllerApiWishlists extends PageController
     {
         \ob_start();
 
-        $user = User::getCurrent();
+        $user          = User::getCurrent();
+        $userWishlists = $user->getWishlists();
 
-        $wishlists      = [];
-        $wishlistsItems = [];
+        $wishlistResults = [];
 
-        foreach ($user->getWishlists() as $wishlistData) {
-            $wishlist     = new Wishlist($wishlistData);
-            $wishlistId   = $wishlist->getId();
-            $wishlistName = $wishlist->getName();
+        foreach ($userWishlists as $wishlistData) {
+            $wishlist       = new Wishlist($wishlistData);
+            $wishlistId     = $wishlist->getId();
+            $wishlistName   = $wishlist->getName();
+            $wishlistHash   = $wishlist->getHash();
+            $wishlistUserId = $wishlist->getUserId();
 
-            $wishlists[]      = [
+            $wishlistResults[] = [
                 'id'     => $wishlistId,
-                'hash'   => $wishlist->getHash(),
-                'userId' => $wishlist->getUserId(),
-            ];
-            $wishlistsItems[] = [
-                'name'  => $wishlistName,
-                'value' => $wishlistId,
-                'text'  => $wishlistName,
+                'name'   => $wishlistName,
+                'hash'   => $wishlistHash,
+                'userId' => $wishlistUserId,
             ];
         }
 
-        $response['wishlists']      = $wishlists;
-        $response['wishlistsItems'] = $wishlistsItems;
+        $response['results'] = $wishlistResults;
 
         $response['warning'] = \ob_get_clean();
         $response['success'] = true;

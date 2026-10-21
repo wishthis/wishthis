@@ -13,12 +13,18 @@ class PageControllerApiWishes extends PageController
     {
         $this->pageTitle = 'API';
 
+        $response = false;
+
         if (isset($parameters['id'])) {
-            $this->wishlist = Wishlist::getFromId($parameters['id']);
+            $response = Wishlist::getFromId($parameters['id']);
         }
 
         if (isset($parameters['hash'])) {
-            $this->wishlist = Wishlist::getFromHash($parameters['hash']);
+            $response = Wishlist::getFromHash($parameters['hash']);
+        }
+
+        if (false !== $response) {
+            $this->wishlist = $response;
         }
 
         parent::__construct();
@@ -26,6 +32,18 @@ class PageControllerApiWishes extends PageController
 
     public function get(): void
     {
+        if (!isset($this->wishlist)) {
+            \http_response_code(404);
+
+            $response['results'] = '';
+            $response['warning'] = __('The request wishlist was not found.');
+            $response['success'] = false;
+
+            \header('Content-type: application/json; charset=utf-8');
+            echo \json_encode($response);
+            die();
+        }
+
         \ob_start();
         \parse_str($_SERVER['QUERY_STRING'], $arguments);
 
