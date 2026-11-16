@@ -320,21 +320,30 @@ class User
         return $wishlists;
     }
 
-    public function ownsWishlist(): bool
+    public function ownsWishlist(int $wishlistId): bool
     {
         if (!$this->isLoggedIn()) {
             return false;
         }
 
-        $wishlists = $this->getWishlists();
+        global $database;
 
-        foreach ($wishlists as $wishlistData) {
-            if ($wishlistData['user'] === $this->id) {
-                return true;
-            }
-        }
+        $sql = 'SELECT 1
+                  FROM `wishlists`
+                 WHERE `wishlists`.`id`   = :wishlist_id
+                   AND `wishlists`.`user` = :user_id';
 
-        return false;
+        $placeholders = [
+            ':wishlist_id' => $wishlistId,
+            ':user_id'     => $this->id,
+        ];
+
+        $statement = $database->query($sql, $placeholders);
+
+        $result           = $statement->fetchColumn();
+        $userOwnsWishlist = 1 === $result;
+
+        return $userOwnsWishlist;
     }
 
     public function getSavedWishlists(): array

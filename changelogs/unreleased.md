@@ -23,6 +23,7 @@
 -   An error when attempting to send an email (such as requesting new wishes) when the instance does not have MJML API keys configured (#215)
 -   Outdated transifex project link (#231)
 -   Apache RewriteRules not working (56bbc6d)
+-   An exploit where any user could edit or delete other user's wishes and wishlists (#244)
 
 ### Security
 

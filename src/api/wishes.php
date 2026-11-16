@@ -94,9 +94,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 break;
             }
 
-            $user = User::getCurrent();
+            $user       = User::getCurrent();
+            $wishlistId = \filter_input(
+                \INPUT_POST,
+                'wishlist_id',
+                \FILTER_SANITIZE_NUMBER_INT
+            );
 
-            if (!$user->ownsWishlist()) {
+            if (!$user->ownsWishlist($wishlistId)) {
                 \http_response_code(403);
 
                 die(__('You may only modify wishes you own.'));
