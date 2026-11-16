@@ -137,71 +137,7 @@ class URL
      */
     public function getPretty(): string
     {
-        $htaccess = \preg_split('/\r\n|\r|\n/', \file_get_contents(ROOT . '/.htaccess'));
-
-        if (!$this->url) {
-            return '';
-        }
-
-        foreach ($htaccess as $index => $line) {
-            $parts = \explode(\chr(32), \trim($line));
-
-            if (\count($parts) >= 2) {
-                switch ($parts[0]) {
-                    case 'RewriteRule':
-                        $rewriteRule = $parts[1];
-                        $rewriteRule = \ltrim($rewriteRule, '^');
-                        $rewriteRule = \rtrim($rewriteRule, '$');
-                        $target      = \ltrim($parts[2], '/?');
-                        $keys        = \array_map(
-                            function ($item) {
-                                return \explode('=', $item)[0];
-                            },
-                            \explode('&', \parse_url($target, PHP_URL_QUERY))
-                        );
-                        $flags       = \explode(',', \substr($parts[3], 1, -1)) ?? [];
-
-                        \parse_str(\parse_url($target, \PHP_URL_QUERY), $parameters);
-                        /** */
-
-                        /** Determine a potential URL. */
-                        $potential_url = $rewriteRule;
-
-                        \preg_match_all('/\(.+?\)/', $rewriteRule, $groups);
-                        $groups = $groups[0];
-
-                        for ($i = 0; $i < \count($groups); $i++) {
-                            foreach ($parameters as $key => $value) {
-                                $replacement = '$' . $i + 1;
-
-                                if ($replacement === $value && isset($_GET[$key])) {
-                                    $potential_url = \str_replace(
-                                        $groups[$i],
-                                        $_GET[$key],
-                                        $potential_url
-                                    );
-                                }
-                            }
-                        }
-
-                        $match = \preg_match(
-                            '/^' . \str_replace(['/'], ['\/'], $rewriteRule) . '$/',
-                            $potential_url
-                        );
-
-                        if (1 === $match && \count($_GET) === \count(\explode('/', $rewriteRule))) {
-                            return '/' . $potential_url;
-                        }
-                        break;
-                }
-            }
-        }
-
-        if ('/?' === \substr($this->url, 0, 2)) {
-            return $this->url;
-        }
-
-        return '/?' . $this->url;
+        return $this->url;
     }
 
     /**

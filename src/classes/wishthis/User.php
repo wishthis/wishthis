@@ -349,12 +349,12 @@ class User
 
         $result = $database
         ->query(
-            '  SELECT `wishlists_saved`.`wishlist`,
-                      `wishlists`.`user`,
-                      `wishlists`.`hash`
-                 FROM `wishlists_saved`
-            LEFT JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
-                WHERE `wishlists_saved`.`user` = :user_id;',
+            '   SELECT `wishlists_saved`.`wishlist`,
+                       `wishlists`.`user`,
+                       `wishlists`.`hash`
+                  FROM `wishlists_saved`
+            INNER JOIN `wishlists` ON `wishlists`.`id` = `wishlists_saved`.`wishlist`
+                 WHERE `wishlists_saved`.`user` = :user_id;',
             [
                 'user_id' => $this->id,
             ]

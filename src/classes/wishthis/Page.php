@@ -6,40 +6,29 @@
 
 namespace wishthis;
 
-enum Navigation: int
-{
-    case Wishlists = 1;
-    case Blog      = 2;
-    case System    = 3;
-    case Settings  = 4;
-    case Account   = 5;
-    case Login     = 6;
-    case Register  = 7;
-}
-
 class Page
 {
     /**
      * Static
      */
-    public const PAGE_API             = '/index.php?page=api';
-    public const PAGE_BLOG            = '/index.php?page=blog';
-    public const PAGE_CHANGELOG       = '/index.php?page=changelog';
-    public const PAGE_HOME            = '/index.php?page=home';
-    public const PAGE_INSTALL         = '/index.php?page=install';
-    public const PAGE_LOGIN_AS        = '/index.php?page=login-as';
-    public const PAGE_LOGIN           = '/index.php?page=login';
-    public const PAGE_LOGOUT          = '/index.php?page=logout';
-    public const PAGE_MAINTENANCE     = '/index.php?page=maintenance';
-    public const PAGE_POST            = '/index.php?page=post';
-    public const PAGE_POWER           = '/index.php?page=power';
-    public const PAGE_PROFILE         = '/index.php?page=profile';
-    public const PAGE_REGISTER        = '/index.php?page=register';
-    public const PAGE_SETTINGS        = '/index.php?page=settings';
-    public const PAGE_UPDATE          = '/index.php?page=update';
-    public const PAGE_WISHLIST        = '/index.php?page=wishlist';
-    public const PAGE_WISHLISTS_SAVED = '/index.php?page=wishlists-saved';
-    public const PAGE_WISHLISTS       = '/index.php?page=wishlists';
+    public const PAGE_API             = '/api';
+    public const PAGE_BLOG            = '/blog';
+    public const PAGE_CHANGELOG       = '/changelog';
+    public const PAGE_HOME            = '/';
+    public const PAGE_INSTALL         = '/install';
+    public const PAGE_LOGIN_AS        = '/login-as';
+    public const PAGE_LOGIN           = '/login';
+    public const PAGE_LOGOUT          = '/logout';
+    public const PAGE_MAINTENANCE     = '/maintenance';
+    public const PAGE_POST            = self::PAGE_BLOG . '/post';
+    public const PAGE_POWER           = '/power';
+    public const PAGE_PROFILE         = '/profile';
+    public const PAGE_REGISTER        = '/register';
+    public const PAGE_SETTINGS        = '/settings';
+    public const PAGE_UPDATE          = '/update';
+    public const PAGE_WISHLIST        = '/wishlist';
+    public const PAGE_WISHLISTS       = '/wishlists';
+    public const PAGE_WISHLISTS_SAVED = self::PAGE_WISHLISTS . '/saved';
 
     public static function message(string $content = '', string $header = '', string $type = '', string $class = ''): string
     {
@@ -345,48 +334,6 @@ class Page
             <meta name="theme-color" content="#f4f4f4" />
 
             <?php
-            /**
-             * Stylesheets
-             */
-            $stylesheet_page = 'src/assets/css/' . $this->name .  '.css';
-
-            if (\file_exists($stylesheet_page)) {
-                $this->stylesheets['page'] = $stylesheet_page;
-            }
-
-            foreach ($this->stylesheets as $stylesheet_filepath) {
-                $hash = \hash_file('crc32', $stylesheet_filepath);
-                ?>
-                <link rel="stylesheet"
-                      type="text/css"
-                      href="/<?= $stylesheet_filepath ?>?v=<?= $hash ?>"
-                />
-                <?php
-            }
-
-            /**
-             * Scripts
-             */
-            /** Inline */
-            require ROOT . '/src/assets/js/inline.js.php';
-
-            /** Files */
-            $script_page = 'src/assets/js/' . $this->name .  '.js';
-
-            if (\file_exists($script_page)) {
-                $this->scripts['page'] = $script_page;
-            }
-
-            foreach ($this->scripts as $script_page) {
-                $hash = \hash_file('crc32', $script_page);
-                ?>
-                <script defer
-                        type="text/javascript"
-                        src="/<?= $script_page ?>?v=<?= $hash ?>">
-                </script>
-                <?php
-            }
-
             /** plausible */
             if (\defined('PLAUSIBLE') && true === PLAUSIBLE) {
                 ?>

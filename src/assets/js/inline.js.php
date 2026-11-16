@@ -6,15 +6,15 @@
 
 namespace wishthis;
 
-global $options;
+global $options, $locale;
 ?>
 
 <script type="text/javascript">
     var wishthis = {};
 
     /** General */
-    wishthis.version = '<?= VERSION ?>';
-    wishthis.locale  = '<?= \str_replace('_', '-', $this->language) ?>';
+    wishthis.version = '<?= \VERSION ?>';
+    wishthis.locale  = '<?= \str_replace('_', '-', $locale) ?>';
     wishthis.$_GET   = JSON.parse('<?= isset($_GET) ? \json_encode($_GET) : \json_encode([]) ?>');
 
     /** Wish */
@@ -162,9 +162,9 @@ global $options;
      */
     <?php
     $api_urls = [
-        'get wishlists'               => '/index.php?page=api&module=wishlists',
-        'get wishes by wishlist id'   => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_id={wishlistid}',
-        'get wishes by wishlist hash' => '/index.php?page=api&module=wishlists&style={style}&priority={priority}&wishlist_hash={wishlisthash}',
+        'get wishlists'               => '/api/wishlists',
+        'get wishes by wishlist id'   => '/api/wishlist/{wishlistId}/wishes?style={style}&priority={priority}',
+        'get wishes by wishlist hash' => '/api/wishlist/{wishlistHash}/wishes?style={style}&priority={priority}',
         'delete wishlist'             => '/index.php?page=api&module=wishlists',
         'update wish status'          => '/index.php?page=api&module=wishes',
         'delete wish'                 => '/index.php?page=api&module=wishes&wish_id={wishid}',

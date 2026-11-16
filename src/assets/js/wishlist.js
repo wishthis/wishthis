@@ -99,72 +99,69 @@ $(function() {
     /**
      * Save wishlist
      */
-    $(document).on('click', '.button.save', function() {
-        var buttonSave = $(this);
-
-        buttonSave.addClass('disabled loading');
-
-        var formData = new URLSearchParams(
-            {
-                'wishlist' : $('[data-wishlist]').attr('data-wishlist'),
-            }
-        );
-
-        fetch('/index.php?page=api&module=wishlists-saved', {
-            method      : 'POST',
-            credentials : 'include',
-            body        : formData
-        })
-        .then(handleFetchError)
-        .then(handleFetchResponse)
-        .then(function(response) {
-            switch (response.action) {
-                case 'created':
-                    button_set_saved_state(buttonSave);
-                    break;
-
-                case 'deleted':
-                    button_set_default_state(buttonSave);
-                    break;
-            }
-        })
-        .finally(function() {
-            buttonSave.removeClass('disabled loading');
-        });
-    });
+    var wishlistHash = $('input[type="hidden"][name="wishlist_hash"]').val();
 
     /** Determine if list is saved */
-    fetch('/index.php?page=api&module=wishlists-saved', {
-        method      : 'GET',
-        credentials : 'include',
-    })
-    .then(handleFetchError)
+    fetch('/api/wishlist/' + wishlistHash + '/saved', { method : 'GET' })
     .then(handleFetchResponse)
     .then(function(response) {
-        var wishlists  = response.data;
-        var buttonSave = $('.button.save');
+        var buttonSave      = $('.button.save');
+        var wishlistIsSaved = response.data.isSaved;
 
-        wishlists.forEach(wishlist => {
-            if (wishlist.hash == wishthis.$_GET.hash) {
-                button_set_saved_state(buttonSave);
-                return;
-            }
-        });
+        if (wishlistIsSaved) {
+            button_set_saved_state(buttonSave);
+        } else {
+            button_set_default_state(buttonSave);
+        }
 
         buttonSave.removeClass('disabled loading');
     });
 
     /** Set default state */
     function button_set_default_state(buttonSave) {
+        buttonSave.attr('data-state', 'unsaved');
         buttonSave.find('.icon').removeClass('red');
         buttonSave.find('span').text(wishthis.strings.button.wishlist.remember);
     }
 
+    $(document).on('click', '.button.save[data-state="saved"]', function() {
+        var buttonSave = $(this);
+
+        buttonSave.addClass('disabled loading');
+
+        fetch('/api/wishlist/' + wishlistHash + '/saved', { method : 'DELETE' })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            button_set_default_state(buttonSave);
+        })
+        .finally(function() {
+            buttonSave.removeClass('disabled loading');
+        });
+    });
+
     /** Set saved state */
     function button_set_saved_state(buttonSave) {
+        buttonSave.attr('data-state', 'saved');
         buttonSave.find('.icon').addClass('red');
         buttonSave.find('span').text(wishthis.strings.button.wishlist.forget);
     }
+
+    $(document).on('click', '.button.save[data-state="unsaved"]', function() {
+        var buttonSave = $(this);
+
+        buttonSave.addClass('disabled loading');
+
+        fetch('/api/wishlist/' + wishlistHash + '/saved', { method : 'POST' })
+        .then(handleFetchError)
+        .then(handleFetchResponse)
+        .then(function(response) {
+            button_set_saved_state(buttonSave);
+        })
+        .finally(function() {
+            buttonSave.removeClass('disabled loading');
+        });
+    });
 
     /**
      * Request more wishes

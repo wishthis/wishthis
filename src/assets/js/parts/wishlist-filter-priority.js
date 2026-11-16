@@ -3,30 +3,30 @@ $(function () {
     /**
      * Filter wishes
      */
+    var wishlistId   = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
+    var wishlistHash = $('input[type="hidden"][name="wishlist_hash"]').val();
+
     var apiGetWishesByWishlistId = function (settings) {
-        var wishlistId = $('.wishlist-cards[data-wishlist]').attr('data-wishlist');
-
-        if (undefined === wishthis.$_GET.id && undefined !== wishlistId && wishlistId.length > 0) {
-            wishthis.$_GET.id = wishlistId;
-        }
-
         settings.urlData.style      = $('input[name="style"]').val();
         settings.urlData.priority   = $('.ui.dropdown.filter.priority').dropdown('get value');
-        settings.urlData.wishlistid = wishthis.$_GET.id;
+        settings.urlData.wishlistId = wishthis.$_GET.id;
 
         return settings;
     };
     var apiGetWishesByWishlistHash = function (settings) {
         settings.urlData.style        = $('input[name="style"]').val();
         settings.urlData.priority     = $('.ui.dropdown.filter.priority').dropdown('get value');
-        settings.urlData.wishlisthash = wishthis.$_GET.hash;
+        settings.urlData.wishlistHash = wishlistHash;
 
         return settings;
     };
-    var action       = 'get wishes by wishlist id';
-    var apiGetWishes = apiGetWishesByWishlistId;
 
-    if (wishthis.$_GET.hash) {
+    if (wishlistId) {
+        var action       = 'get wishes by wishlist id';
+        var apiGetWishes = apiGetWishesByWishlistId;
+    }
+
+    if (wishlistHash) {
         var action       = 'get wishes by wishlist hash';
         var apiGetWishes = apiGetWishesByWishlistHash;
     }

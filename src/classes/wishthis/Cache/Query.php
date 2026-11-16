@@ -38,11 +38,7 @@ class Query extends Cache
             ->query($this->url, $this->placeholders);
 
             if (false !== $pdoStatement) {
-                if (1 === $pdoStatement->rowCount()) {
-                    $response = $pdoStatement->fetch();
-                } else {
-                    $response = $pdoStatement->fetchAll();
-                }
+                $response = $pdoStatement->fetch();
             }
 
             $this->write($response);
