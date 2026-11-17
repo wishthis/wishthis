@@ -2,29 +2,29 @@
 
 ### Added
 
--   Textfield for public wishlist url (#220)
--   SQLite support (#67)
--   PHP 8.4 support
+- Textfield for public wishlist url (#220)
+- SQLite support (#67)
+- PHP 8.4 support
 
 ### Changed
 
--   Updated translations from transifex
+- Updated translations from transifex
 
 ### Deprecated
 
--   Nothing
+- Nothing
 
 ### Removed
 
--   Nothing
+- Nothing
 
 ### Fixed
 
--   An error when attempting to send an email (such as requesting new wishes) when the instance does not have MJML API keys configured (#215)
--   Outdated transifex project link (#231)
--   Apache RewriteRules not working (56bbc6d)
--   An exploit where any user could edit or delete other user's wishes and wishlists (#244)
+- An error when attempting to send an email (such as requesting new wishes) when the instance does not have MJML API keys configured (#215)
+- Outdated transifex project link (#231)
+- Apache RewriteRules not working (56bbc6d)
+- An exploit where any user could edit or delete other user's wishes and wishlists (#244)
 
 ### Security
 
--   Nothing
+- Nothing
