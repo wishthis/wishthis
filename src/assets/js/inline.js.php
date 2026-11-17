@@ -176,6 +176,7 @@ global $options;
         $.fn.api.settings.api = {
             <?php
             foreach ($api_urls as $action => $url) {
+                $url    = ROOT_URL . $url;
                 $url    = new URL($url);
                 $pretty = $url->getPretty();
 

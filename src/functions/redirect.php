@@ -13,6 +13,11 @@ function redirect(string $target)
     $user = User::getCurrent();
 
     /**
+     * Add sub directory to target
+     */
+    $target = ROOT_URL . $target;
+
+    /**
      * Redirect user based on channel setting
      */
     $isDevEnvironment = \defined('ENV_IS_DEV') && true === ENV_IS_DEV;
