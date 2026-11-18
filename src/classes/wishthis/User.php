@@ -346,6 +346,23 @@ class User
         return $userOwnsWishlist;
     }
 
+    /** Check the stored wish-to-list relation, rather than trusting submitted IDs. */
+    public function ownsWishInWishlist(int $wishId, int $wishlistId): bool
+    {
+        if (!$this->isLoggedIn()) {
+            return false;
+        }
+        global $database;
+        $result = $database->query(
+            'SELECT 1 FROM `wishes`
+             JOIN `wishlists` ON `wishlists`.`id` = `wishes`.`wishlist`
+             WHERE `wishes`.`id` = :wish_id AND `wishlists`.`id` = :wishlist_id
+               AND `wishlists`.`user` = :user_id',
+            ['wish_id' => $wishId, 'wishlist_id' => $wishlistId, 'user_id' => $this->id]
+        )->fetchColumn();
+        return $result !== false;
+    }
+
     public function getSavedWishlists(): array
     {
         global $database;

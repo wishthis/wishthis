@@ -109,6 +109,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 return;
             }
 
+            // The submitted wishlist is not proof that the existing wish belongs to it.
+            // Check the stored relation before fetching product metadata or updating data.
+            if (isset($_POST['wish_id'])) {
+                $wishId = \filter_input(\INPUT_POST, 'wish_id', \FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+                if (!$wishId || !$user->ownsWishInWishlist($wishId, (int) $wishlistId)) {
+                    \http_response_code(403);
+                    die(__('You may only modify wishes you own.'));
+                }
+            }
+
             $wish_title          = addslashes(filter_input(INPUT_POST, 'wish_title', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
             $wish_description    = addslashes(filter_input(INPUT_POST, 'wish_description', FILTER_SANITIZE_SPECIAL_CHARS) ?? '');
             $wish_image          = addslashes(filter_input(INPUT_POST, 'wish_image', FILTER_SANITIZE_URL) ?? '');
